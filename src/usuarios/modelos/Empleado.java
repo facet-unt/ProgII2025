@@ -14,5 +14,5 @@ public class Empleado {
     String apellido;
     String nombre;
     
-    void mostrar();
+    //void mostrar();
 }

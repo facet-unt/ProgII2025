@@ -10,13 +10,19 @@ package productos.modelos;
  */
 public class Producto {
     int codigo;
-    String descripcion;
-    String categoria;
-    String estado;
-    float precio;
+    public String descripcion;
+    public  String categoria;
+    public String estado;
+    public float precio;
     
-    void mostrar(){
+    public void mostrar(){
+        
         System.out.println("Hola, soy un producto");
     }
     //Agregar to string
+
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+    }
 }

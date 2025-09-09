@@ -14,5 +14,5 @@ public class Encargado {
     String apellido;
     String nombre;
     
-    void mostrar();
+   // void mostrar();
 }
