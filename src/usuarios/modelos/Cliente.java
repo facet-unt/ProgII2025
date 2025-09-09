@@ -9,5 +9,12 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Cliente {
-    
-}
+    String nombre;
+    String apellido;
+    String correo;
+    String clave;
+    void mostrar(){
+        System.out.println("Cliente: " +nombre + " " +apellido + "Correo:  "+correo);
+     }
+    }
+
