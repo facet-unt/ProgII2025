@@ -18,10 +18,10 @@ public class Encargado
      public void mostrar ()
     {
       Encargado unEncargado=new Encargado();
-      System.out.print(unEncargado.correo);
-      System.out.print(unEncargado.clave);
-      System.out.print(unEncargado.apellido);
-      System.out.print(unEncargado.nombre);
+      System.out.println(unEncargado.correo);
+      System.out.println(unEncargado.clave);
+      System.out.println(unEncargado.apellido);
+      System.out.println(unEncargado.nombre);
       
     }
 }

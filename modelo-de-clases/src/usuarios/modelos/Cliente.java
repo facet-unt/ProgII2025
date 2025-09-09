@@ -18,10 +18,10 @@ public class Cliente
     public void mostrar ()
     {
       Cliente unCliente=new Cliente();
-      System.out.print(unCliente.correo);
-      System.out.print(unCliente.clave);
-      System.out.print(unCliente.apellido);
-      System.out.print(unCliente.nombre);
+      System.out.println(unCliente.correo);
+      System.out.println(unCliente.clave);
+      System.out.println(unCliente.apellido);
+      System.out.println(unCliente.nombre);
 
 
 

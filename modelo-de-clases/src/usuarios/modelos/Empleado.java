@@ -18,10 +18,10 @@ public class Empleado
     public void mostrar ()
     {
       Empleado unEmpleado=new Empleado();
-      System.out.print(unEmpleado.correo);
-      System.out.print(unEmpleado.clave);
-      System.out.print(unEmpleado.apellido);
-      System.out.print(unEmpleado.nombre);
+      System.out.println(unEmpleado.correo);
+      System.out.println(unEmpleado.clave);
+      System.out.println(unEmpleado.apellido);
+      System.out.println(unEmpleado.nombre);
       
     }
 }
