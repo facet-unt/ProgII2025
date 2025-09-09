@@ -2,17 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package usuarios.modelos;
+package principal.controladores;
 
 /**
  *
  * @author estudiante
  */
-public class Cliente {
-    String correo;
-    String clave;
-    String apellido;
-    String nombre;
-    public void mostrar(){
+public class ControladorPrincipal {
+       public static void main(String[] args) {
+        Arraylist unProducto: new Arraylist;
     }
 }
