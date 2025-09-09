@@ -2,7 +2,13 @@ package productos.modelos;
 
 
 public class Producto {
-    public void mostrar() {
-        System.out.println("Soy un producto");
+    int codigo;
+    String descripcion;
+    String categoria;
+    String estado;
+    float precio;
+    
+    void mostrar() {
+        System.out.println("Codigo: "+codigo+"\nDescripcion: "+descripcion);
     }
 }
