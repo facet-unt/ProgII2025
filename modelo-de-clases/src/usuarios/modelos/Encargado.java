@@ -10,10 +10,10 @@ package usuarios.modelos;
  */
 public class Encargado
 {
-    String correo;
-    String clave;
-    String apellido;
-    String nombre;
+    public String correo;
+    public String clave;
+    public String apellido;
+    public String nombre;
     
      public void mostrar ()
     {
