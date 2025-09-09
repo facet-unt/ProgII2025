@@ -6,7 +6,11 @@ package usuarios.modelos;
 
 /**
  *
+<<<<<<< HEAD
  * @author Oli Toledo
+=======
+ * @author estudiante
+>>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Encargado {
     
