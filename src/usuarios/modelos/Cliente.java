@@ -13,4 +13,8 @@ public class Cliente {
     String clave;
     String apellido;
     String nombre;
+    
+    void mostrar(){
+        System.out.println("Apellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo);
+    }
 }
