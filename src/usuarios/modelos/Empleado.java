@@ -9,5 +9,10 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Empleado {
+    String correo;
+    String clave;
+    String apellido;
+    String nombre;
     
+    void mostrar();
 }
