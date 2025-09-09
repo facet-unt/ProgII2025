@@ -9,5 +9,14 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Cliente {
+
+    public String correo;
+    public String clave;
+    public String apellido;
+    public String nombre;
     
+    public void mostrar()
+    {
+        System.out.println(".");
+    }
 }
