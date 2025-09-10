@@ -13,12 +13,15 @@ package usuarios.modelos;
 >>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Cliente {
-    String nombre;
     String apellido;
+    String nombre;
     String correo;
     String clave;
     void mostrar(){
-        System.out.println("Cliente: " +nombre + " " +apellido + "Correo:  "+correo);
+        System.out.println("-- CLIENTE --");
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
      }
-    }
-
+}

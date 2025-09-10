@@ -7,9 +7,12 @@ public class Producto {
     public String categoria;
     public String estado;
     public float precio;
-    
     public void mostrar() {
-        System.out.println("Producto: "+codigo +" "+descripcion);
+        System.out.println("-- PRODUCTO --");
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
+        System.out.println("Precio: " + precio);
     }
 }
-
