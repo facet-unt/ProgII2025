@@ -9,15 +9,15 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Cliente {
-    String correo; 
-    String clave;
-    String apellido;
-    String nombre;
+    public String correo; 
+    public String clave;
+    public String apellido;
+    public String nombre;
     
     public void mostrar(){
-        System.out.println(correo);
-        System.out.println(clave);
-        System.out.println(apellido);
-        System.out.println(nombre);
+        System.out.println("correo: " + correo);
+        System.out.println("clave: " + clave);
+        System.out.println("apellido: " + apellido);
+        System.out.println("nombre: " + nombre);
     }
  }
