@@ -16,6 +16,9 @@ public class Encargado {
     public String nombre;
 
     public void mostrar() {
-        System.out.println(".");
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre:" + nombre);
     }
 }
