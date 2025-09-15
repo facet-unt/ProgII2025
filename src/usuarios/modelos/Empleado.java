@@ -13,11 +13,11 @@ package usuarios.modelos;
 >>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Empleado {
-    String apellido;
-    String nombre;
-    String correo;
-    String clave;
-    void mostrar(){
+    public String apellido;
+    public String nombre;
+    public String correo;
+    public String clave;
+    public void mostrar(){
         System.out.println("-- EMPLEADO --");
         System.out.println("Apellido: " + apellido);
         System.out.println("Nombre: " + nombre);
