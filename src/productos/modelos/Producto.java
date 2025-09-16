@@ -53,6 +53,16 @@ public class Producto {
 
     public void asignarPrecio(float p) {
         precio = p;
->>>>>>> origin
     }
+
+    public Producto(int c, String d, String cat, String e, float p) {
+        codigo = c;
+        descripcion = d;
+        categoria = cat;
+        estado = e;
+        precio = p;
+    }
+
+    
+    
 }
