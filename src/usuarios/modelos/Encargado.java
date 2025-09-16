@@ -11,6 +11,7 @@ package usuarios.modelos;
 public class Encargado {
     String correo;
     String clave;
+<<<<<<< HEAD
     String nombre;
     String apellido;
      void mostrar()
@@ -23,4 +24,10 @@ public class Encargado {
         System.out.println("\n");
         System.out.println("Apellido : " + apellido);
     }
+=======
+    String apellido;
+    String nombre;
+    
+   // void mostrar();
+>>>>>>> origin
 }

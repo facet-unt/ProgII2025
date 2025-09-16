@@ -8,6 +8,7 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+<<<<<<< HEAD
 public class Empleado 
 {
     String correo;
@@ -24,4 +25,13 @@ public class Empleado
         System.out.println("\n");
         System.out.println("Apellido : " + apellido);
     }
+=======
+public class Empleado {
+    String correo;
+    String clave;
+    String apellido;
+    String nombre;
+    
+    //void mostrar();
+>>>>>>> origin
 }
