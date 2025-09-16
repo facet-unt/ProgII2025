@@ -2,83 +2,35 @@ package principal.controladores;
 
 import java.util.ArrayList;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
-import usuarios.modelos.Empleado;
-import usuarios.modelos.Encargado;
+
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         
-        ArrayList<Cliente> clientesArray=new ArrayList();
-        ArrayList<Empleado> empleadosArray=new ArrayList();
-        ArrayList<Encargado> encargadosArray=new ArrayList();
-        ArrayList<Producto> productosArray=new ArrayList();
+        System.out.println("#################### ");
+        System.out.println("PRODUCTOS");
+        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
+        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
+        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
-        Producto pizza = new Producto();
-        Producto burger = new Producto();
-        Producto sanguche = new Producto();
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+        listaProductos.add(p3);
         
-        pizza.precio=12000f;
-        pizza.categoria="Con lactosa";
-        pizza.codigo=123;
-        pizza.estado="Disponible";
-        pizza.descripcion="Pizza";
+        System.out.println("PRODUCTOS usando mostrar()");
+        for (Producto p: listaProductos)
+            p.mostrar();
+         
+        listaProductos.get(2).asignarDescripcion("Producto 3");
+        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        listaProductos.get(2).asignarPrecio(1898.98f);
+        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
-        burger.precio=10000f;
-        burger.categoria="No apto para cardiacos";
-        burger.codigo=124;
-        burger.estado="Disponible";
-        burger.descripcion="Hamburgesa";
-        
-        sanguche.precio=8000f;
-        sanguche.categoria="Balanceado";
-        sanguche.codigo=125;
-        sanguche.estado="Disponible";
-        sanguche.descripcion="Sanguche de milanesa";
-                
-        productosArray.add(pizza);
-        productosArray.add(burger);
-        productosArray.add(sanguche);
-        
-        Cliente clienteUno=new Cliente();
-        Cliente clienteDos=new Cliente();
-        Cliente clienteTres=new Cliente();
-        
-        clientesArray.add(clienteUno);
-        clientesArray.add(clienteDos);
-        clientesArray.add(clienteTres);
-        
-        Empleado empleadoUno=new Empleado();
-        Empleado empleadoDos=new Empleado();
-        Empleado empleadoTres=new Empleado();
-        
-        empleadosArray.add(empleadoUno);
-        empleadosArray.add(empleadoDos);
-        empleadosArray.add(empleadoTres);
-        
-        Encargado encargadoUno=new Encargado();
-        Encargado encargadoDos=new Encargado();
-        Encargado encargadoTres=new Encargado();
-        
-        encargadosArray.add(encargadoUno);
-        encargadosArray.add(encargadoDos);
-        encargadosArray.add(encargadoTres);
-        
-        for(Producto obj: productosArray){
-            System.out.println(obj.toString());
-        }
-        
-        for(Cliente obj: clientesArray){
-            obj.mostrar();
-        }
-        
-        for(Empleado obj: empleadosArray){
-            obj.mostrar();
-        }
-        
-        for(Encargado obj: encargadosArray){
-            obj.mostrar();
-        }
-        
+        System.out.println("\nPRODUCTOS usando toString()");
+        for (Producto p: listaProductos)
+            System.out.println(p);
+        System.out.println("#################### ");
+ 
     }
 }

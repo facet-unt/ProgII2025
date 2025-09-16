@@ -1,24 +1,58 @@
 package productos.modelos;
 
-
 public class Producto {
-    public int codigo;
-    public String descripcion, categoria, estado;
-    public float precio;
-    
-    public void mostrar(){
-        System.out.println("los datos de este producto son: ");
-        System.out.println("Codigo"+codigo);
-        System.out.println("Categoria: "+categoria);
-        System.out.println("Estado: "+estado);
-        System.out.println("Precio: "+ precio+ "$");
-        System.out.println("Descripcion: "+descripcion);
-    }
+
+    private int codigo;
+    private String descripcion;
+    private String categoria;
+    private String estado;
+    private float precio;
 
     @Override
     public String toString() {
-        System.out.println("Los datos de este producto son: ");
-        return "Producto" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio;
+        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
 
+    public int verCodigo() {
+        return codigo;
+    }
+
+    public void asignarCodigo(int c) {
+        if (c > 0)
+            codigo = c;
+    }
+
+    public String verDescripcion() {
+        return descripcion;
+    }
+
+    public void asignarDescripcion(String d) {
+        if (d != null && !d.isBlank())
+            descripcion = d;
+    }
+
+    public String verCategoria() {
+        return categoria;
+    }
+
+    public void asignarCategoria(String c) {
+        categoria = c;
+    }
+
+    public String verEstado() {
+        return estado;
+    }
+
+    public void asignarEstado(String e) {
+        estado = e;
+    }
+
+    public float verPrecio() {
+        return precio;
+    }
+
+    public void asignarPrecio(float p) {
+        precio = p;
+>>>>>>> origin
+    }
 }
