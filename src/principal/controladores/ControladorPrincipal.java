@@ -1,58 +1,37 @@
 package principal.controladores;
 
+import java.util.ArrayList;
 import productos.modelos.Producto;
 import java.util.ArrayList;
 import usuarios.modelos.*;
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-       
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Empleado> empleados = new ArrayList<>();
-        ArrayList<Encargado> encargados = new ArrayList<>();
-        ArrayList<Producto> productos = new ArrayList<>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         
+        System.out.println("#################### ");
+        System.out.println("PRODUCTOS");
+        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
+        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
+        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
-        Cliente C1 = new Cliente();
-        clientes.add(C1);
-        Cliente C2 = new Cliente();
-        clientes.add(C2);
-        Cliente C3 = new Cliente();
-        clientes.add(C3);
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+        listaProductos.add(p3);
         
-        Empleado Emp1 = new Empleado();
-        empleados.add(Emp1);
-        Empleado Emp2 = new Empleado();
-        empleados.add(Emp2);
-        Empleado Emp3 = new Empleado();
-        empleados.add(Emp3);
+        System.out.println("PRODUCTOS usando mostrar()");
+        for (Producto p: listaProductos)
+            p.mostrar();
+         
+        listaProductos.get(2).asignarDescripcion("Producto 3");
+        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        listaProductos.get(2).asignarPrecio(1898.98f);
+        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
-        Encargado Enc1 = new Encargado();
-        encargados.add(Enc1);
-        Encargado Enc2 = new Encargado();
-        encargados.add(Enc2);
-        Encargado Enc3 = new Encargado();
-        encargados.add(Enc3);
-        
-        Producto P1 = new Producto();
-        productos.add(P1);
-        Producto P2 = new Producto();
-        productos.add(P2);
-        Producto P3 = new Producto();
-        productos.add(P3);
-        
-        for(Cliente c : clientes){
-            c.mostrar();
-        }
-        for(Empleado e : empleados){
-            e.mostrar();
-        }
-        for(Encargado e : encargados){
-            e.mostrar();
-        }
-        for(Producto p : productos){
+        System.out.println("\nPRODUCTOS usando toString()");
+        for (Producto p: listaProductos)
             System.out.println(p);
-        }
-        
+        System.out.println("#################### ");
+ 
     }
 }
