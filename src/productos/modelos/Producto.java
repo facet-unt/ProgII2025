@@ -5,22 +5,7 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
-    public int codigo;
-    public String descripcion;
-    public String categoria;
-    public String estado;
-    public float precio;
-    
-    public void mostrar() {
-        System.out.println("Codigo: " + codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categorias: " + categoria);
-        System.out.println("Estado: " + estado);
-        System.out.println("Precio: " + precio);
-    }
-        @Override
-    public String toString() {
-        return "Producto{Codigo: " + codigo + " Descripcion: " + descripcion + " Categoria: " + categoria + " Estado: " + estado + " Precio: " + precio;
+
     private int codigo;
     private String descripcion;
     private String categoria;
@@ -28,25 +13,26 @@ public class Producto {
     private float precio;
     
     
-    
-    public void mostrar(){
-        
+
+    public void mostrar() {
+
         System.out.println("Hola, soy un producto");
     }
-    //Agregar to string
 
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+        return "Producto{Codigo: " + codigo + " Descripcion: " + descripcion + " Categoria: " + categoria + " Estado: " + estado + " Precio: " + precio;
     }
 
+    //Agregar to string
     public int verCodigo() {
         return codigo;
     }
 
     public void asignarCodigo(int c) {
-        if (c > 0)
+        if (c > 0) {
             codigo = c;
+        }
     }
 
     public String verDescripcion() {
@@ -54,8 +40,9 @@ public class Producto {
     }
 
     public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank())
+        if (d != null && !d.isBlank()) {
             descripcion = d;
+        }
     }
 
     public String verCategoria() {
