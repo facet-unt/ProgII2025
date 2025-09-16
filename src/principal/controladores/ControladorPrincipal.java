@@ -1,84 +1,68 @@
 package principal.controladores;
 
-import java.util.ArrayList;
-
 import productos.modelos.Producto;
-
-import usuarios.modelos.Cliente;
-import usuarios.modelos.Empleado;
-import usuarios.modelos.Encargado;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
+        Producto p = new Producto();
+        p.asignarCodigo(1);
+        p.asignarDescripcion("Pizza");
+        System.out.println(p);
         
-        ArrayList<Producto> unProducto = new ArrayList();
-        ArrayList<Cliente> unCliente = new ArrayList();
-        ArrayList<Empleado> unEmpleado = new ArrayList();
-        ArrayList<Encargado> unEncargado = new ArrayList();
         
-        Producto producto1 = new Producto();
-        Cliente cliente1 = new Cliente();
-        Empleado empleado1 = new Empleado();
-        Encargado encargado1 = new Encargado();
+/*        
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<Encargado> encargados = new ArrayList<>();
+        ArrayList<Producto> productos = new ArrayList<>();
         
-        producto1.codigo=1234;
-        producto1.descripcion="Producto1";
-        producto1.categoria="A";
-        producto1.estado="Disponible";
-        producto1.precio=43.5f
-;        
-        cliente1.correo="correo1@gmail.com";
-        cliente1.clave="11111";
-        cliente1.apellido="aaa";
-        cliente1.nombre="bbb";
+        pizza.descripcion = "muzzarela";
+        pizza.categoria= "comida";
+        pizza.estado = "pendiente";
+        pizza.precio = 1200f;
         
-        empleado1.correo="correo2@gmail.com";
-        empleado1.clave="22222";
-        empleado1.apellido="ccc";
-        empleado1.nombre="ddd";
+        productos.add(pizza);
         
-        encargado1.correo="correo3@gmail.com";
-        encargado1.clave="33333";
-        encargado1.apellido="eee";
-        encargado1.nombre="fff";
+        Producto hamburguesa= new Producto();
+        hamburguesa.estado="pendiente";
+        hamburguesa.precio=10000f;
+        hamburguesa.descripcion="Con cheddar y baccon";
+        hamburguesa.categoria="comida";
         
-        unCliente.add(cliente1);
-        unEmpleado.add(empleado1);
-        unEncargado.add(encargado1);
-        unProducto.add(producto1);
+        productos.add(hamburguesa);
         
-        for (int i=0;i<2;i++){
-            for(Cliente cliente: unCliente)
-            System.out.println(cliente);
-        
-            for(Empleado empleado: unEmpleado)
-                System.out.println(empleado);
-        
-            for(Encargado encargado: unEncargado)
-                System.out.println(encargado);
-
-            for(Producto producto: unProducto)
-                System.out.println(producto);
+        for(Producto comida:productos){
+            System.out.println(comida);
             
-            producto1.codigo=54376;
-            producto1.categoria="C";
-            producto1.estado="No Disponible";
-            producto1.precio=654.5f
-    ;        
-            cliente1.clave="11211";
-            cliente1.apellido="aaaAA";
-            cliente1.nombre="bbbB";
-
-            empleado1.correo="correo2@gmail.com";
-            empleado1.clave="22322";
-            empleado1.apellido="cccCC";
-            empleado1.nombre="dddDD";
-
-            encargado1.correo="correo3@gmail.com";
-            encargado1.clave="33433";
-            encargado1.apellido="eeeEE";
-            encargado1.nombre="fffFF";
         }
+        
+        Cliente cliente1 = new Cliente();
+        cliente1.apellido= "lodi";
+        cliente1.clave= "45332932";
+        cliente1.correo="gdewhfg";
+        cliente1.nombre="sofia";
+        
+        Cliente cliente2= new Cliente();
+        cliente2.apellido= "acevedo";
+        cliente2.clave= "453329334342";
+        cliente2.correo="gdfgdgewhfg";
+        cliente2.nombre="sodfghtgfrshhsrhtyia";
+        
+               clientes.add(cliente1);
+               clientes.add(cliente2);
+
+        
+        for(Cliente clientess:clientes){
+            System.out.println(clientess);
+            
+        }
+        
+        */
+
+        //System.out.println(pizza);
     }
+    
+    
+    
 }
