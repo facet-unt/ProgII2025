@@ -14,7 +14,7 @@ public class Cliente {
     String apellido;
     String nombre;
     
-    void mostrar(){
-        System.out.println("Apellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo);
+    public void mostrar(){
+        System.out.println("Cliente\nApellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo+"\n");
     }
 }
