@@ -1,19 +1,17 @@
 package principal.controladores;
 
-import java.util.ArrayList;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
-import usuarios.modelos.Empleado;
-import usuarios.modelos.Encargado;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-        Producto pizza = new Producto();
-      
+        Producto p = new Producto();
+        p.asignarCodigo(1);
+        p.asignarDescripcion("Pizza");
+        System.out.println(p);
         
         
-        
+/*        
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
@@ -60,7 +58,9 @@ public class ControladorPrincipal {
             
         }
         
-        
+        */
+
+        //System.out.println(pizza);
     }
     
     
