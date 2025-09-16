@@ -26,7 +26,11 @@ public class Producto {
     }
     //Agregar to string
 
-    @Override
+    //@Override
+    public Producto (int c,String descripcion, String categoria,String estado,float precio)
+    {
+        
+    }
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
