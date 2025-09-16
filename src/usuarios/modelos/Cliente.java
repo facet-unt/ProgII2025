@@ -17,6 +17,46 @@ public class Cliente {
     public String nombre;
     public String correo;
     public String clave;
+
+    public Cliente(String apellido, String nombre, String correo, String clave) {
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.clave = clave;
+    }
+
+    public String verApellido() {
+        return apellido;
+    }
+
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String verNombre() {
+        return nombre;
+    }
+
+    public void asignarNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String verCorreo() {
+        return correo;
+    }
+
+    public void asignarCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String verClave() {
+        return clave;
+    }
+
+    public void asignarClave(String clave) {
+        this.clave = clave;
+    }
+
     public void mostrar(){
         System.out.println("-- CLIENTE --");
         System.out.println("Apellido: " + apellido);

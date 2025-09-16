@@ -29,6 +29,5 @@ public class ControladorPrincipal {
         System.out.println("\nPRODUCTOS usando toString()");
         for (Producto p: listaProductos)
             System.out.println(p);
-        System.out.println("#################### ");
     }
 }
