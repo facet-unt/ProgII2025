@@ -6,8 +6,6 @@ import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
 
-
-
 public class ControladorPrincipal {
     public static void main(String[] args) {
         Cliente cliente1 = new Cliente();

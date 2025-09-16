@@ -1,6 +1,5 @@
 package productos.modelos;
 
-
 public class Producto {
     public int codigo;
     public String descripcion;
@@ -19,6 +18,5 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
-    }
-    
+    }   
 }
