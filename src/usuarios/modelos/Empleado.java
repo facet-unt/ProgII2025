@@ -9,7 +9,7 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Empleado {
-    public String correo, clave, apellido, nombre;
+    private String correo, clave, apellido, nombre;
     
     public void mostrar(){
         System.out.println("Los datos de este empleado son:");
@@ -18,4 +18,54 @@ public class Empleado {
         System.out.println("Correo: "+correo);
         System.out.println("Clave: "+clave);
     }
+    
+    
+    public String verCorreo(){
+        return correo;
+    }
+    
+    public void asignarCorreo(String c) {
+        if (c != null && !c.isBlank()){
+            correo = c;
+        }
+    }
+    
+    public String verClave(){
+        return clave;
+    }
+    
+    public void asignarClave(String c) {
+        if (c != null && !c.isBlank()){
+            clave = c;
+        }
+    }
+    
+    public String verNombre(){
+        return nombre;
+    }
+    
+    public void asignarNombre(String n) {
+        if (n != null && !n.isBlank()){
+            nombre = n;
+        }
+    }
+    
+    public String verApellido(){
+        return apellido;
+    }
+    
+    public void asignarApellido(String a) {
+        if (a != null && !a.isBlank()){
+            apellido = a;
+        }
+    }
+    
+    
+    public Empleado(String correo, String clave, String apellido, String nombre) {
+        this.correo = correo;
+        this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
+    }
+    
 }
