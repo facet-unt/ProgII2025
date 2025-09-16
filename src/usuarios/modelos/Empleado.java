@@ -8,6 +8,7 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+
 public class Empleado
 {
    public String correo;

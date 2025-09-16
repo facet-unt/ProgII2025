@@ -8,12 +8,13 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
-public class Cliente 
+public class Cliente
 {
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
+
     
     public void mostrar ()
     {
@@ -21,10 +22,15 @@ public class Cliente
       System.out.println(clave);
       System.out.println(apellido);
       System.out.println(nombre);
-
-
-
       
     }
     
 }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+}
+
