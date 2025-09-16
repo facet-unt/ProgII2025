@@ -9,11 +9,17 @@ package usuarios.modelos;
  * @author lazar
  */
 public class Cliente {
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
     
+    public Cliente(String c,String cl,String a,String n){
+        correo=c;
+        clave=c;
+        apellido=a;
+        nombre=n;
+    }
     
     void mostrar(){
         System.out.println("Correo: "+correo);
@@ -25,6 +31,38 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+
+    public String verCorreo() {
+        return correo;
+    }
+
+    public void sasignarCorreo(String c) {
+        correo = c;
+    }
+
+    public String verClave() {
+        return clave;
+    }
+
+    public void asignarClave(String c) {
+        clave = c;
+    }
+
+    public String verApellido() {
+        return apellido;
+    }
+
+    public void asignarApellido(String a) {
+        apellido = a;
+    }
+
+    public String verNombre() {
+        return nombre;
+    }
+
+    public void asignarNombre(String n) {
+        nombre = n;
     }
     
 }
