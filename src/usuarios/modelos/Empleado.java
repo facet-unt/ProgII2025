@@ -16,7 +16,7 @@ public class Empleado {
     private String nombre;
     
     //Metodos
-    void mostrar(){
+    public void mostrar(){
         System.out.println("Empleado: " + apellido + " " + nombre);   
     }
 

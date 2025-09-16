@@ -16,7 +16,7 @@ public class Encargado {
     private String nombre;
     
     //Metodos
-    void mostrar(){
+    public void mostrar(){
         System.out.println("Encargado: " + apellido + " " + nombre);
     }
 
