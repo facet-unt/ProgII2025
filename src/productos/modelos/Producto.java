@@ -7,11 +7,11 @@ package productos.modelos;
 public class Producto {
 
 
-    public int codigo;
-    public String descripcion;
-    public String categoria;
-    public String estado;
-    public float precio;
+    private int codigo;
+    private String descripcion;
+    private String categoria;
+    private String estado;
+    private float precio;
 
 
     // Métodos
@@ -32,25 +32,19 @@ public class Producto {
                 ", estado='" + estado + '\'' +
                 ", precio=" + precio +
                 '}';
-
-    private int codigo;
-    private String descripcion;
-    private String categoria;
-    private String estado;
-    private float precio;
-    
-    
-    
-    public void mostrar(){
-        
-        System.out.println("Hola, soy un producto");
     }
-    //Agregar to string
-
-    @Override
-    public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+    public Producto(int c, String d, String cat, String e, float p)
+    {
+        codigo = c;
+        descripcion = d;
+        categoria = cat;
+        estado = e;
+        precio = p;
     }
+
+    
+
+   
 
     public int verCodigo() {
         return codigo;
