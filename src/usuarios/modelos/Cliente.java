@@ -9,17 +9,19 @@ package usuarios.modelos;
  * @author Esteban
  */
 public class Cliente {
-    //atributos
-    
+    //Atributos
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
     
-    //metodos
-    void mostrar(){
-        System.out.println("Cliente");
-        
+    //Metodos
+    public void mostrar(){
+        System.out.println("Cliente: " + apellido + " " + nombre);
     }
-    
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
 }

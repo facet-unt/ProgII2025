@@ -9,17 +9,19 @@ package usuarios.modelos;
  * @author Esteban
  */
 public class Encargado {
-    //atributos
-    
+    //Atributos
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
     
-    //metodos
-    
+    //Metodos
     void mostrar(){
-        System.out.println("Encargado");
-        
+        System.out.println("Encargado: " + apellido + " " + nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
 }
