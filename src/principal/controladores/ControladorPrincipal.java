@@ -155,69 +155,37 @@ public class ControladorPrincipal {
 }
 package principal.controladores;
 
+import java.util.ArrayList;
 import productos.modelos.Producto;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-        Producto p = new Producto();
-        p.asignarCodigo(1);
-        p.asignarDescripcion("Pizza");
-        System.out.println(p);
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         
+        System.out.println("#################### ");
+        System.out.println("PRODUCTOS");
+        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
+        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
+        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
-/*        
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Empleado> empleados = new ArrayList<>();
-        ArrayList<Encargado> encargados = new ArrayList<>();
-        ArrayList<Producto> productos = new ArrayList<>();
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+        listaProductos.add(p3);
         
-        pizza.descripcion = "muzzarela";
-        pizza.categoria= "comida";
-        pizza.estado = "pendiente";
-        pizza.precio = 1200f;
+        System.out.println("PRODUCTOS usando mostrar()");
+        for (Producto p: listaProductos)
+            p.mostrar();
+         
+        listaProductos.get(2).asignarDescripcion("Producto 3");
+        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        listaProductos.get(2).asignarPrecio(1898.98f);
+        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
-        productos.add(pizza);
-        
-        Producto hamburguesa= new Producto();
-        hamburguesa.estado="pendiente";
-        hamburguesa.precio=10000f;
-        hamburguesa.descripcion="Con cheddar y baccon";
-        hamburguesa.categoria="comida";
-        
-        productos.add(hamburguesa);
-        
-        for(Producto comida:productos){
-            System.out.println(comida);
-            
-        }
-        
-        Cliente cliente1 = new Cliente();
-        cliente1.apellido= "lodi";
-        cliente1.clave= "45332932";
-        cliente1.correo="gdewhfg";
-        cliente1.nombre="sofia";
-        
-        Cliente cliente2= new Cliente();
-        cliente2.apellido= "acevedo";
-        cliente2.clave= "453329334342";
-        cliente2.correo="gdfgdgewhfg";
-        cliente2.nombre="sodfghtgfrshhsrhtyia";
-        
-               clientes.add(cliente1);
-               clientes.add(cliente2);
-
-        
-        for(Cliente clientess:clientes){
-            System.out.println(clientess);
-            
-        }
-        
-        */
-
-        //System.out.println(pizza);
+        System.out.println("\nPRODUCTOS usando toString()");
+        for (Producto p: listaProductos)
+            System.out.println(p);
+        System.out.println("#################### ");
+ 
     }
-    
-    
-    
 }
