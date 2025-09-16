@@ -5,12 +5,12 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
-// lo nuestro
-    public int codigo;
-    public String descripcion;
-    public String categoria;
-    public String estado;
-    public float precio;
+// lo nuestro (lo pasé a privado a los atributos)
+    private int codigo;
+    private String descripcion;
+    private String categoria;
+    private String estado;
+    private float precio;
     public void mostrar(Producto unProducto) {
         System.out.println("Soy un producto");
         System.out.println("Codigo: " + unProducto.codigo);
@@ -19,14 +19,7 @@ public class Producto {
         System.out.println("Estado: " + unProducto.estado);
         System.out.println("Precio: " + unProducto.precio);
 // lo del ingeniero
-    private int codigo;
-    private String descripcion;
-    private String categoria;
-    private String estado;
-    private float precio;
-    
-    
-    
+ } 
     public void mostrar(){
         
         System.out.println("Hola, soy un producto");
