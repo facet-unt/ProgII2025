@@ -40,7 +40,9 @@ public class Empleado {
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -48,7 +50,9 @@ public class Empleado {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -56,7 +60,9 @@ public class Empleado {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -64,7 +70,9 @@ public class Empleado {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
     
 }

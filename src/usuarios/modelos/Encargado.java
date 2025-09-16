@@ -10,10 +10,10 @@ package usuarios.modelos;
  */
 public class Encargado {
     //Atributos
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
     
     //Metodos
     void mostrar(){
@@ -26,7 +26,7 @@ public class Encargado {
     }
     
     //constructor
-
+    
     public Encargado(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
@@ -40,7 +40,9 @@ public class Encargado {
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -48,7 +50,9 @@ public class Encargado {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -56,7 +60,9 @@ public class Encargado {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -64,6 +70,8 @@ public class Encargado {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
 }

@@ -58,7 +58,9 @@ public class Producto {
     }
 
     public void asignarCategoria(String c) {
-        categoria = c;
+        if (categoria != null && !c.isBlank()){
+            categoria = c;
+        }
     }
 
     public String verEstado() {
@@ -66,7 +68,9 @@ public class Producto {
     }
 
     public void asignarEstado(String e) {
-        estado = e;
+        if (categoria != null && !e.isBlank()){
+            estado = e;
+        }
     }
 
     public float verPrecio() {
@@ -74,6 +78,8 @@ public class Producto {
     }
 
     public void asignarPrecio(float p) {
-        precio = p;
+        if (p > 0){
+            precio = p;
+        }
     }
 }
