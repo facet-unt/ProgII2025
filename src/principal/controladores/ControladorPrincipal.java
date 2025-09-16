@@ -11,7 +11,7 @@ public class ControladorPrincipal {
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
         Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
-        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
+        Producto p2 = new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
         Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
         listaProductos.add(p1);
