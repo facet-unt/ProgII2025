@@ -11,6 +11,14 @@ public class Producto {
     private String categoria;
     private String estado;
     private float precio;
+
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
+    }
     
     
 

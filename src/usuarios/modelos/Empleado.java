@@ -10,10 +10,10 @@ package usuarios.modelos;
  */
 public class Empleado {
 
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
 
     public void mostrar() {
         System.out.println("Correo: " + correo);
