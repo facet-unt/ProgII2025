@@ -23,9 +23,9 @@ public class ControladorPrincipal {
             p.mostrar();
          
         listaProductos.get(2).setDescripcion("Producto 3");
-        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).getPrecio());
         listaProductos.get(2).setPrecio(1898.98f);
-        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
+        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).getPrecio());
         
         System.out.println("\nPRODUCTOS usando toString()");
         for (Producto p: listaProductos)
