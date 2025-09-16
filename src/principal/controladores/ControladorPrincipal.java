@@ -2,6 +2,9 @@ package principal.controladores;
 
 import java.util.ArrayList;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 
 
 public class ControladorPrincipal {
@@ -76,21 +79,26 @@ public class ControladorPrincipal {
         unEncargado.add(encargado3);
         
        //Asignando valores a los atributos de algunos objetos
+       producto1.asignarCodigo(12);
+       producto1.asignarCodigo(312);
+       producto1.asignarDescripcion("pizza");
+       producto1.asignarEstado("Disponible");
+       producto1.asignarCategoria("Plato principal");
+       producto1.verCategoria();
+       producto1.verCodigo();
+       producto1.verDescripcion();
+       producto1.verEstado();
+       producto1.verPrecio();
        
-       producto1.precio = 1540.32f;
-       producto1.descripcion = "gaseosa";
        
-       producto2.categoria = "bebidas";
-       producto2.codigo = 1325;  
+       cliente1.asignarApellido("Ortega");
+       cliente1.asignarClave("11fsaf");
        
-       cliente1.nombre = "Rocio";
-       cliente2.nombre = "Lyan";
+       empleado1.asignarApellido("Mensege");
+       empleado1.asignarClave("123JK");
        
-       empleado1.correo = "rocioorteg@gmail.com";
-       empleado2.correo = "lmensege@gmail.com";
-       
-       encargado1.clave = "incorrecta";
-       encargado2.clave = "123456";
+       encargado2.asignarNombre("Leandro");
+       encargado2.asignarCorreo("lmensege@gmail.com");
        
        //Recorriendo cada Arraylist
        
