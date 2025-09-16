@@ -11,4 +11,8 @@ public class Producto {
     void mostrar() {
         System.out.println("Codigo: "+codigo+"\nDescripcion: "+descripcion);
     }
+    @Override
+    public String toString() {
+        return "Producto[Descripcion=" + descripcion + ", Estado=" + estado + "]";
+    }
 }
