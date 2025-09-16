@@ -25,16 +25,15 @@ public class Producto {
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
-
+    
+    //constructor
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.estado = estado;
         this.precio = precio;
-    }
-
-    
+    }    
 
     public int verCodigo() {
         return codigo;

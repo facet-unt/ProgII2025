@@ -10,6 +10,8 @@ package principal.controladores;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 
 /**
  *
@@ -20,6 +22,10 @@ import usuarios.modelos.Cliente;
 public class ControladorPrincipal {
     public static void main(String[] args) {
         ArrayList<Producto> listaProductos = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        ArrayList<Encargado> listaEncargados = new ArrayList<>();
+        
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
@@ -43,6 +49,33 @@ public class ControladorPrincipal {
         System.out.println("\nPRODUCTOS usando toString()");
         for (Producto p: listaProductos)
             System.out.println(p);
+        System.out.println("#################### ");
+        
+        
+        
+        
+        System.out.println("#################### ");
+        System.out.println("CLIENTES");
+        Cliente c1 = new Cliente("tebybtb@gmail.com", "46263", "Lobo Silva","Esteban");
+        Cliente c2 = new Cliente("pepito@gmail.com", "00063", "Perez","Pedro");
+        Cliente c3 = new Cliente("vegeta777@gmail.com", "77777", "Cano","Joaquin");
+        
+        listaClientes.add(c1);
+        listaClientes.add(c2);
+        listaClientes.add(c3);
+        
+        System.out.println("CLIENTES usando mostrar()");
+        for (Cliente c: listaClientes)
+            c.mostrar();
+         
+        listaClientes.get(1).asignarClave("55555");
+        System.out.println("\nEl nombre del cliente es :" +  listaClientes.get(1).verNombre());
+        listaClientes.get(1).asignarCorreo("esteban@gmail.com");
+        System.out.println("El nuevo correo es :" +  listaClientes.get(1).verCorreo());
+        
+        System.out.println("\nCLIENTES usando toString()");
+        for (Cliente c: listaClientes)
+            System.out.println(c);
         System.out.println("#################### ");
  
     }
