@@ -10,59 +10,62 @@ public class Producto {
     private String categoria;
     private String estado;
     private float precio;
-    
-    
+
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
+    }
     
     public void mostrar(){
-        
-        System.out.println("Hola, soy un producto");
+        System.out.println("Codigo: "+ codigo);
     }
-    //Agregar to string
-
+    
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
 
-    public int verCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void asignarCodigo(int c) {
-        if (c > 0)
-            codigo = c;
+    public void setCodigo(int c) {
+        codigo = c;
     }
 
-    public String verDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank())
-            descripcion = d;
+    public void setDescripcion(String d) {
+        descripcion = d;
     }
 
-    public String verCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
-        categoria = c;
+    public void setCategoria(String ca) {
+        categoria = ca;
     }
 
-    public String verEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
+    public void setEstado(String e) {
         estado = e;
     }
 
-    public float verPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void asignarPrecio(float p) {
+    public void setPrecio(float p) {
         precio = p;
     }
+
 }
