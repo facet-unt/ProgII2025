@@ -9,10 +9,19 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Encargado {
+// lo nuestro
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
     public void mostrar(){
     }
+// lo del ingeniero
+    String correo;
+    String clave;
+    String apellido;
+    String nombre;
+    
+   // void mostrar();
+
 }

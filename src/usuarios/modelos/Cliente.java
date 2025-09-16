@@ -13,6 +13,17 @@ public class Cliente {
     public String clave;
     public String apellido;
     public String nombre;
+// lo  nuestro
     public void mostrar(){
     }
+// lo del ingeniero
+    
+    //void mostrar();
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+
 }
