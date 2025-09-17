@@ -4,15 +4,18 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author alumno
- */
+
+
+ // @author alumno
+ 
+
+ 
 public class Encargado {
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
+
     
     public void mostrar(){
         System.out.println("Correo: " +correo);
@@ -21,4 +24,5 @@ public class Encargado {
         System.out.println("Nombre: " +nombre);
     
     }
+
 }

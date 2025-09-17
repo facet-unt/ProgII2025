@@ -4,10 +4,12 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author alumno
- */
+
+ 
+
+// @author alumno
+
+ 
 public class Cliente {
     public String correo;
     public String clave;
@@ -21,4 +23,13 @@ public class Cliente {
         System.out.println("Nombre: " +nombre);
     
     }
+
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    
+
 }

@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 /**
  *
+
  * @author alumno
  */
 public class Empleado {
