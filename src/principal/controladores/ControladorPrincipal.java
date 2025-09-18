@@ -4,30 +4,14 @@ import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
+import usuarios.modelos.Cliente;
 
-
-<<<<<<< HEAD
-public class ControladorPrincipal 
-{
-    public static void main(String[] args) 
-    {
-        Producto p = new Producto();
-        Encargado encargado = new Encargado();
-        Empleado emp = new Empleado();
-        
-        ArrayList<Producto> prod = new ArrayList<>();
-        ArrayList<Encargado> enc = new ArrayList<>();
-        ArrayList<Empleado> empleado = new ArrayList<>();
-        
-        prod.add(new Prodcuto(""))
-        p.adds.descripcion()
-                
-        enc
-                       
-=======
 public class ControladorPrincipal {
     public static void main(String[] args) {
         ArrayList<Producto> listaProductos = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<> ();
+        ArrayList<Encargado> listaEncargados = new ArrayList<> ();
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
@@ -53,6 +37,30 @@ public class ControladorPrincipal {
             System.out.println(p);
         System.out.println("#################### ");
  
->>>>>>> origin
+        System.out.println("#################### ");
+        System.out.println("CLIENTES");
+        Cliente c1 = new Cliente ("jp@gmail.com","holasi","Toledo","Juan Pablo");
+        Cliente c2 = new Cliente ("capoidolo@gmail.com","metelenomas","Royale","Clash");
+        Cliente c3 = new Cliente ("increible@gmail.com","espectacular","Ronaldo","Cristiano");
+        
+        
+        listaClientes.add(c1);
+        listaClientes.add(c2);
+        listaClientes.add(c3);
+        
+        for (Cliente c: listaClientes)
+            System.out.println(c);
+        
+        System.out.println("\n El nombre del cliente es :" + listaClientes.get(1).verNombre());
+        listaClientes.get(1).AsignarNombre("Tobias");
+        System.out.println("\n El nuevo nombre del cliente es :" + listaClientes.get(1).verNombre());
+        
+        for (Cliente c: listaClientes)
+            System.out.println(c);
+         
+        
+
+       
+            
     }
 }

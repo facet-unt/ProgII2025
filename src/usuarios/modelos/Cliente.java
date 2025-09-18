@@ -4,18 +4,54 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author estudiante
- */
-<<<<<<< HEAD
-public class Cliente 
-{
-    String correo;
-    String clave;
-    String nombre;
-    String apellido;
-    void mostrar()
+
+public class Cliente {
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
+    
+    public void AsignarCorreo (String c){
+        correo = c;
+    }   
+    
+    public void AsignarClave (String cl) {
+        clave = cl;
+    }
+    
+    public void AsignarApellido (String a) {
+        apellido = a;
+    }
+    
+    public void AsignarNombre (String n) {
+        nombre = n;
+    }
+    
+    public String verCorreo (){
+        return correo;
+    }
+    
+    public String verApellido() {
+        return apellido;
+    }
+    
+    public String verNombre() {
+        return nombre;
+    }
+    
+    public String verClave () {
+        return clave;
+    }
+    
+    
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        this.correo = correo;
+        this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
+    }
+    
+     public void mostrar()
     {
         System.out.println("Correo : " + correo);
         System.out.println("\n");
@@ -25,19 +61,11 @@ public class Cliente
         System.out.println("\n");
         System.out.println("Apellido : " + apellido);
     }
-=======
-public class Cliente {
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
-    
-    //void mostrar();
 
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
     
->>>>>>> origin
+
 }
