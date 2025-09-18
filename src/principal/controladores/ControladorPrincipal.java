@@ -2,10 +2,138 @@ package principal.controladores;
 
 import java.util.ArrayList;
 import productos.modelos.Producto;
+import usuarios.modelos.*;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
+
+        ArrayList<Producto> productos = new ArrayList<>();
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<Encargado> encargados = new ArrayList<>();
+
+        Producto prod1 = new Producto(1, "Laptop", "Electronica", "Nuevo", 1200.5f);
+       
+        Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
+        
+        Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
+      
+        productos.add(prod1);
+        productos.add(prod2);
+        productos.add(prod3);
+
+        // Clientes
+        Cliente cli1 = new Cliente("juan@mail.com", "1234", "Perez", "Juan");
+      
+        Cliente cli2 = new Cliente("ana@mail.com", "5678", "Garcia", "Ana");
+        
+
+        Cliente cli3 = new Cliente("mario@mail.com", "abcd", "Lopez", "Mario");
+        
+
+        clientes.add(cli1);
+        clientes.add(cli2);
+        clientes.add(cli3);
+
+        // Empleados
+        Empleado emp1 = new Empleado("emp1@mail.com", "pass1", "Rodriguez", "Carlos");
+        
+        Empleado emp2 = new Empleado("emp2@mail.com", "pass2", "Martinez", "Lucia");
+        
+
+        Empleado emp3 = new Empleado("emp3@mail.com", "pass3", "Gomez", "Pedro");
+        
+
+        empleados.add(emp1);
+        empleados.add(emp2);
+        empleados.add(emp3);
+
+        // Encargados
+        Encargado en1 = new Encargado("enc1@mail.com", "key1", "Sanchez", "Laura");
+        
+
+        Encargado en2 = new Encargado("enc2@mail.com", "key2", "Fernandez", "Jose");
+      
+
+        Encargado en3 = new Encargado("enc3@mail.com", "key3", "Ruiz", "Marta");
+       
+
+        encargados.add(en1);
+        encargados.add(en2);
+        encargados.add(en3);
+
+        // Mostrar contenido inicial
+        System.out.println("---- Productos ----");
+        for (Producto p : productos) p.mostrar();
+
+        System.out.println("---- Clientes ----");
+        for (Cliente c : clientes) c.mostrar();
+
+        System.out.println("---- Empleados ----");
+        for (Empleado e : empleados) e.mostrar();
+
+        System.out.println("---- Encargados ----");
+        for (Encargado en : encargados) en.mostrar();
+
+       /* Producto p = new Producto();
+        p.asignarCodigo(1);
+        p.asignarDescripcion("Pizza");
+        System.out.println(p);*/
+        
+        
+/*        
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<Encargado> encargados = new ArrayList<>();
+        ArrayList<Producto> productos = new ArrayList<>();
+        
+        pizza.descripcion = "muzzarela";
+        pizza.categoria= "comida";
+        pizza.estado = "pendiente";
+        pizza.precio = 1200f;
+        
+        productos.add(pizza);
+        
+        Producto hamburguesa= new Producto();
+        hamburguesa.estado="pendiente";
+        hamburguesa.precio=10000f;
+        hamburguesa.descripcion="Con cheddar y baccon";
+        hamburguesa.categoria="comida";
+        
+        productos.add(hamburguesa);
+        
+        for(Producto comida:productos){
+            System.out.println(comida);
+            
+        }
+        
+        Cliente cliente1 = new Cliente();
+        cliente1.apellido= "lodi";
+        cliente1.clave= "45332932";
+        cliente1.correo="gdewhfg";
+        cliente1.nombre="sofia";
+        
+        Cliente cliente2= new Cliente();
+        cliente2.apellido= "acevedo";
+        cliente2.clave= "453329334342";
+        cliente2.correo="gdfgdgewhfg";
+        cliente2.nombre="sodfghtgfrshhsrhtyia";
+        
+               clientes.add(cliente1);
+               clientes.add(cliente2);
+
+        
+        for(Cliente clientess:clientes){
+            System.out.println(clientess);
+            
+        }
+        
+        */
+
+        //System.out.println(pizza);
+
+
         ArrayList<Producto> listaProductos = new ArrayList<>();
         
         System.out.println("#################### ");
@@ -31,6 +159,6 @@ public class ControladorPrincipal {
         for (Producto p: listaProductos)
             System.out.println(p);
         System.out.println("#################### ");
- 
+
     }
 }
