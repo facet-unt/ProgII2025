@@ -21,7 +21,7 @@ public class Cliente {
         nombre=n;
     }
     
-    void mostrar(){
+    public void mostrar(){
         System.out.println("Correo: "+correo);
         System.out.println("clave: "+clave);
         System.out.println("apellido: "+apellido);
