@@ -27,6 +27,7 @@ public class Producto {
     //Agregar to string
 
     //@Override
+    //AQUI
     public Producto (int c,String descripcion, String categoria,String estado,float precio)
     {
         

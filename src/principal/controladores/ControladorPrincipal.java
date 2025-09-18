@@ -28,6 +28,7 @@ public class ControladorPrincipal {
         System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
         System.out.println("\nPRODUCTOS usando toString()");
+        
         for (Producto p: listaProductos)
             System.out.println(p);
         System.out.println("#################### ");
