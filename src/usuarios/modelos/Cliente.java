@@ -16,7 +16,7 @@ public class Cliente {
     
     public Cliente(String c,String cl,String a,String n){
         correo=c;
-        clave=c;
+        clave=cl;
         apellido=a;
         nombre=n;
     }
