@@ -11,27 +11,26 @@ public class Producto {
     private String categoria;
     private String estado;
     private float precio;
-    public void mostrar(Producto unProducto) {
+    public void mostrar() {
         System.out.println("Soy un producto");
-        System.out.println("Codigo: " + unProducto.codigo);
-        System.out.println("Descripcion: " + unProducto.descripcion);
-        System.out.println("Categoria: " + unProducto.categoria);
-        System.out.println("Estado: " + unProducto.estado);
-        System.out.println("Precio: " + unProducto.precio);
-// lo del ingeniero
- } 
-    public void mostrar(){
-        
-        System.out.println("Hola, soy un producto");
-    }
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
+        System.out.println("Precio: " + precio);
+    } 
     //Agregar to string
 
     //@Override
-    //AQUI
-    public Producto (int c,String descripcion, String categoria,String estado,float precio)
-    {
-        
+
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
     }
+    
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
