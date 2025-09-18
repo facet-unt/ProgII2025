@@ -14,6 +14,13 @@ public class Encargado {
     public String apellido;
     public String nombre;
     
+    public Encargado(String c,String cl,String a,String n){
+        correo=c;
+        clave=cl;
+        apellido=a;
+        nombre=n;
+    }
+    
     void mostrar(){
         System.out.println("Correo: "+correo);
         System.out.println("clave: "+clave);
@@ -24,6 +31,38 @@ public class Encargado {
     @Override
     public String toString() {
         return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    public String verCorreo() {
+        return correo;
+    }
+
+    public void sasignarCorreo(String c) {
+        correo = c;
+    }
+
+    public String verClave() {
+        return clave;
+    }
+
+    public void asignarClave(String c) {
+        clave = c;
+    }
+
+    public String verApellido() {
+        return apellido;
+    }
+
+    public void asignarApellido(String a) {
+        apellido = a;
+    }
+
+    public String verNombre() {
+        return nombre;
+    }
+
+    public void asignarNombre(String n) {
+        nombre = n;
     }
     
 }
