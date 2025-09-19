@@ -58,9 +58,18 @@ public class Empleado
         System.out.println("\n");
         System.out.println("Apellido : " + apellido);
     }
+
+    public Empleado(String correo, String clave, String nombre, String apellido)
+    {
+        this.correo = correo;
+        this.clave = clave;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    
     
         @Override
         public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
 }
