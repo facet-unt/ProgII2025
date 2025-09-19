@@ -59,8 +59,67 @@ public class ControladorPrincipal {
             System.out.println(c);
          
         
-
+        System.out.println("########### EMPLEADOS ###########\n");
+        
+        Empleado emp1 = new Empleado("hola123@gmail.com", "EgW221", "Santiago", "Montiel");
+        Empleado emp2 = new Empleado("martin123@gmail.com", "Vg_21", "Martin", "Lucero");
+        Empleado emp3 = new Empleado("interesante@gmail.com", "McN_28", "Alvaro", "Juarez");
+        
+        listaEmpleados.add(emp1);
+        listaEmpleados.add(emp2);
+        listaEmpleados.add(emp3);
+        
+        
+        System.out.println("Informacion de Cada Empleado usando metodo toString\n");
+        for(Empleado emp : listaEmpleados)
+            System.out.println(emp);
        
             
+        System.out.println("Modificacion de Atributos");
+        
+        listaEmpleados.get(0).AsignarApellido("Molina");
+        System.out.println("Nuevo Apellido del Primer Empleado : " + listaEmpleados.get(0).verApellido());
+        
+        listaEmpleados.get(1).AsignarNombre("Joaquin");
+        System.out.println("Nuevo Nombre del Segundo Empleado : " + listaEmpleados.get(1).verNombre());
+        
+        listaEmpleados.get(2).AsignarClave("Nm_1zx");
+        System.out.println("Nueva Clave del tercer Empleado : " + listaEmpleados.get(2).verClave());
+        
+        for(Empleado emp : listaEmpleados)
+            System.out.println(emp);
+        
+        System.out.println("############ ENCARGADOS ###############\n");
+        
+        Encargado enc1 = new Encargado("Modo2@gmail.com", "Bma_12", "Lucas", "Salgado");
+        Encargado enc2 = new Encargado("tobiaskpo.1450@gmail.com", "QwErTy54", "Tobias", "Manzilla");
+        Encargado enc3 = new Encargado("informatica@gmail.com", "info25", "Jose", "Younes");
+
+        listaEncargados.add(enc1);
+        listaEncargados.add(enc2);
+        listaEncargados.add(enc3);
+
+        System.out.println("Informacion de Cada Encargado usando metodo toString\n");
+        for(Encargado enc : listaEncargados)
+            System.out.println(enc);
+        
+        System.out.println("Modificacion de Atributos para Encargados");
+        
+        listaEncargados.get(0).AsignarClave("44531lv");
+        System.out.println("Nueva Clave del Primer Encargado : " + listaEncargados.get(0).verClave());
+        
+        listaEncargados.get(1).AsignarClave("44531lv");
+        System.out.println("Nueva Clave del Segundo Encargado : " + listaEncargados.get(1).verClave());
+        
+        listaEncargados.get(2).AsignarNombre("Enzo");
+        System.out.println("Nueva Nombre del Tercer Encargado : " + listaEncargados.get(2).verNombre());
+        
+        
+        System.out.println("Nuevos Datos de Cada Encargado\n");
+        
+        for(Encargado enc : listaEncargados)
+            System.out.println(enc);
+        
+        
     }
 }
