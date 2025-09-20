@@ -11,12 +11,12 @@ public class Producto {
     private String estado;
     private float precio;
 
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.estado = estado;
-        this.precio = precio;
+    public Producto(int c, String d, String ca, String e, float p) {
+        codigo = c;
+        descripcion = d;
+        categoria = ca;
+        estado = e;
+        precio = p;
     }
     
     public void mostrar(){
@@ -28,43 +28,43 @@ public class Producto {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
 
-    public int getCodigo() {
+    public int obtenerCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int c) {
+    public void asignarCodigo(int c) {
         codigo = c;
     }
 
-    public String getDescripcion() {
+    public String obtenerDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String d) {
+    public void asignarDescripcion(String d) {
         descripcion = d;
     }
 
-    public String getCategoria() {
+    public String obtenerCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String ca) {
+    public void asignarCategoria(String ca) {
         categoria = ca;
     }
 
-    public String getEstado() {
+    public String obtenerEstado() {
         return estado;
     }
 
-    public void setEstado(String e) {
+    public void asignarEstado(String e) {
         estado = e;
     }
 
-    public float getPrecio() {
+    public float obtenerPrecio() {
         return precio;
     }
 
-    public void setPrecio(float p) {
+    public void asignarPrecio(float p) {
         precio = p;
     }
 
