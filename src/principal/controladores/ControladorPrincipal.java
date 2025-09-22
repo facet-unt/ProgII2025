@@ -42,7 +42,7 @@ public class ControladorPrincipal {
         System.out.println("CLIENTES");
         Cliente c1 = new Cliente("correo1","clave","apellidoa","nombrea"); 
         Cliente c2 = new Cliente("correo2","clave","apellidob","nombreb"); 
-        Cliente c3 = new Cliente("correo3","clave","apellidoc","nombrec"); 
+        Cliente c3 = new Cliente("correo3","clave","apellidoc","nombrec");
         
         listaClientes.add(c1);
         listaClientes.add(c2);
@@ -53,7 +53,7 @@ public class ControladorPrincipal {
         
         ArrayList<Empleado> listaEmpleado = new ArrayList<>();
         
-        System.out.println("#################### ");
+        System.out.println("####################");
         System.out.println("EMPLEADO");
         Empleado e1 = new Empleado("Correouno","clave","apellidouno","nombreuno");
         Empleado e2 = new Empleado("Correodos","clave","apellidouno","nombreuno");

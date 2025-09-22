@@ -5,7 +5,6 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
-// lo nuestro (lo pasé a privado a los atributos)
     private int codigo;
     private String descripcion;
     private String categoria;
@@ -19,10 +18,6 @@ public class Producto {
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
     } 
-    //Agregar to string
-
-    //@Override
-
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;

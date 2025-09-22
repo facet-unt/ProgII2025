@@ -9,12 +9,10 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Cliente {
-    //pase a privado los atributos 
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-// lo  nuestro
     public void mostrar(){
         System.out.println("Soy un Cliente");
         System.out.println("Correo: " + correo);
@@ -64,12 +62,6 @@ public class Cliente {
         nombre = n;
     }
     
-    
-    
-// lo del ingeniero
-    
-    //void mostrar();
-
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';

@@ -9,14 +9,6 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Empleado {
-// lo nuestro, lo dejare en comentario
-    /*public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
-    public void mostrar(){
-    }*/
-// lo del ingeniero
     private String correo;
     private String clave;
     private String apellido;
@@ -64,7 +56,6 @@ public class Empleado {
     public void asignarNombre(String n) {
         nombre = n;
     }
-
     public Empleado(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
