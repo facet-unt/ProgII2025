@@ -16,7 +16,7 @@ public class Producto {
 
     // Métodos
     public void mostrar() {
-        System.out.println("Codigo: " + codigo);
+        System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
@@ -33,13 +33,25 @@ public class Producto {
                 ", precio=" + precio +
                 '}';
     }
-    public Producto(int c, String d, String cat, String e, float p)
-    {
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.asignarCodigo(codigo);
+        //this.codigo = codigo;
+        this.estado = estado;        
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+    
+    public Producto(int c, String d, String cat, float p) {
         codigo = c;
         descripcion = d;
         categoria = cat;
-        estado = e;
         precio = p;
+    }
+    
+    public Producto(int c, String d, float p) {
+        this(c, d, "Plato principal", p);        
     }
 
     
