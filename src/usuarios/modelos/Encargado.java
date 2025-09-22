@@ -9,7 +9,7 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Encargado {
-     private String correo;
+    private String correo;
     private String clave;
     private String apellido;
     private String nombre;

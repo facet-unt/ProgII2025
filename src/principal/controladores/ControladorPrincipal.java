@@ -2,12 +2,16 @@ package principal.controladores;
 import usuarios.modelos.Cliente;
 import java.util.ArrayList;
 import productos.modelos.Producto;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Cliente> listaCliente = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        ArrayList<Encargado> listaEncargado = new ArrayList<>();
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
@@ -37,6 +41,39 @@ public class ControladorPrincipal {
         Cliente c1= new Cliente("alumno@gmail.com", "1234ju", "dadamo","pablo");
         Cliente c2= new Cliente("alumno1@gmail.com", "1234", "perez","juan");
         Cliente c3= new Cliente("alumno2@gmail.com", "1234123", "correa","angel");
- 
+        
+        listaCliente.add(c1);
+        listaCliente.add(c2);
+        listaCliente.add(c3);
+        
+        for (Cliente p: listaCliente)
+            p.mostrar();
+        System.out.println("#################### ");
+        
+        System.out.println("EMPLEADOS");
+        Empleado e1= new Empleado("empleado@gmail.com", "1234ju", "andrada","cablo");
+        Empleado e2= new Empleado("empleado1@gmail.com", "1234ju", "miranda","joseu");
+        Empleado e3= new Empleado("empleado2@gmail.com", "1234ju", "pereira","pablo");
+        
+        listaEmpleados.add(e1);
+        listaEmpleados.add(e2);
+        listaEmpleados.add(e3);
+        
+        for (Empleado p: listaEmpleados)
+            p.mostrar();
+        System.out.println("#################### ");
+        
+        System.out.println("ENCARGADOS");
+        Encargado en1=new Encargado("encargado@gmail.com", "12345", "oro", "faustino");
+        Encargado en2=new Encargado("encargado@gmail.com", "12345", "carsel", "daniel");
+        Encargado en3=new Encargado("encargado@gmail.com", "12345", "luna", "camila");
+        
+        listaEncargado.add(en3);
+        listaEncargado.add(en1);
+        listaEncargado.add(en2);
+        
+        for (Encargado p: listaEncargado)
+            p.mostrar();
+        System.out.println("#################### ");
     }
 }
