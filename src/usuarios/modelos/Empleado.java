@@ -22,6 +22,7 @@ public class Empleado {
         nombre = n;
     }
 
+<<<<<<< Updated upstream
     public String obtenerCorreo() {
         return correo;
     }
@@ -52,6 +53,38 @@ public class Empleado {
 
     public void asignarNombre(String n) {
         nombre = n;
+=======
+    public String verCorreo() {
+        return correo;
+    }
+
+    public void asignarCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String verClave() {
+        return clave;
+    }
+
+    public void asignarClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String verApellido() {
+        return apellido;
+    }
+
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String verNombre() {
+        return nombre;
+    }
+
+    public void asignarNombre(String nombre) {
+        this.nombre = nombre;
+>>>>>>> Stashed changes
     }
 
 }
