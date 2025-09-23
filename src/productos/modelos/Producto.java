@@ -5,30 +5,58 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
+
+
     private int codigo;
     private String descripcion;
     private String categoria;
     private String estado;
     private float precio;
+
+
+    // Métodos
     public void mostrar() {
-        System.out.println("Soy un producto");
-        System.out.println("Codigo: " + codigo);
+        System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
-    } 
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", estado='" + estado + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
+    
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.codigo = codigo;
+        this.asignarCodigo(codigo);
+        //this.codigo = codigo;
+        this.estado = estado;        
         this.descripcion = descripcion;
         this.categoria = categoria;
-        this.estado = estado;
         this.precio = precio;
     }
     
-    public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+    public Producto(int c, String d, String cat, float p) {
+        codigo = c;
+        descripcion = d;
+        categoria = cat;
+        precio = p;
     }
+    
+    public Producto(int c, String d, float p) {
+        this(c, d, "Plato principal", p);        
+    }
+
+    
+
+   
 
     public int verCodigo() {
         return codigo;
