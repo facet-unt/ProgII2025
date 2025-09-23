@@ -142,13 +142,13 @@ public class VentanaAMEncargado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
-        this.clientes.add(unCliente);
+        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
+        this.encargado.add(unEncargado);
         
-        System.out.println("Clientes");
+        System.out.println("Encargados");
         System.out.println("========");
-        for(Cliente c : this.clientes) {
-            c.mostrar();
+        for(Encargado en : this.encargado) {
+            en.mostrar();
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
