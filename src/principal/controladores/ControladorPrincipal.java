@@ -31,7 +31,7 @@ public class ControladorPrincipal {
         System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
         for (Producto p: listaProductos)
-            System.out.println(p);
+            p.mostrar();
         System.out.println("#################### ");
         
         
@@ -48,7 +48,7 @@ public class ControladorPrincipal {
         listaClientes.add(c3);
         
         for (Cliente c: listaClientes)
-            System.out.println(c);
+            c.mostrar();
         System.out.println("#################### ");
         
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
@@ -64,7 +64,7 @@ public class ControladorPrincipal {
         listaEmpleados.add(emp3);
         
         for (Empleado emp: listaEmpleados)
-            System.out.println(emp);
+            emp.mostrar();
         System.out.println("#################### ");
     
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
@@ -80,7 +80,7 @@ public class ControladorPrincipal {
         listaEncargados.add(enc3);
         
         for (Encargado enc: listaEncargados)
-            System.out.println(enc);
+            enc.mostrar();
         System.out.println("#################### ");
     
     }

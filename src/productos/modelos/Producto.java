@@ -7,6 +7,10 @@ public class Producto {
     private String categoria;
     private String estado;
     private float precio;
+    
+    public void mostrar() {
+        System.out.println("Producto\nCodigo=" + codigo + "\nDescripcion=" + descripcion +"\nCategoria=" + categoria + "\nEstado=" + estado + "\nPrecio=" + precio);
+    }
 
     @Override
     public String toString() {
