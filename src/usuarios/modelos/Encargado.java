@@ -25,6 +25,8 @@ public class Encargado {
         this.clave = clave;
     }
 
+  
+
     public String verApellido() {
         return apellido;
     }
@@ -64,4 +66,10 @@ public class Encargado {
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
      } 
+    //Preguntar si deberia eliminar el void mostrar
+    @Override
+    public String toString() {
+        return "Encargado{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
+    }
+    
 }

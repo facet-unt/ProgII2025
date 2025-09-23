@@ -64,4 +64,10 @@ public class Cliente {
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
      }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
+    }
+    
 }
