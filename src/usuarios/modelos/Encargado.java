@@ -25,8 +25,6 @@ public class Encargado {
         this.clave = clave;
     }
 
-  
-
     public String verApellido() {
         return apellido;
     }
@@ -59,17 +57,16 @@ public class Encargado {
         this.clave = clave;
     }
     
-    public void mostrar(){
-        System.out.println("-- ENCARGADO --");
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-     } 
-    //Preguntar si deberia eliminar el void mostrar
+//    public void mostrar(){
+//        System.out.println("-- ENCARGADO --");
+//        System.out.println("Apellido: " + apellido);
+//        System.out.println("Nombre: " + nombre);
+//        System.out.println("Correo: " + correo);
+//        System.out.println("Clave: " + clave);
+//     } 
+
     @Override
     public String toString() {
         return "Encargado{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
     }
-    
 }

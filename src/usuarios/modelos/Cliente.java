@@ -57,17 +57,16 @@ public class Cliente {
         this.clave = clave;
     }
 
-    public void mostrar(){
-        System.out.println("-- CLIENTE --");
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-     }
+//    public void mostrar(){
+//        System.out.println("-- CLIENTE --");
+//        System.out.println("Apellido: " + apellido);
+//        System.out.println("Nombre: " + nombre);
+//        System.out.println("Correo: " + correo);
+//        System.out.println("Clave: " + clave);
+//     }
 
     @Override
     public String toString() {
         return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
     }
-    
 }
