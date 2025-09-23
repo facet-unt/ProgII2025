@@ -99,4 +99,6 @@ public class Producto {
     public void asignarPrecio(float p) {
         precio = p;
     }
+    
+    
 }
