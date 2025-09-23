@@ -22,8 +22,8 @@ public class Cliente {
         nombre = n;
     }
 
-<<<<<<< Updated upstream
-    public String obtenerCorreo() {
+
+    public String verCorreo() {
         return correo;
     }
 
@@ -31,7 +31,7 @@ public class Cliente {
         correo = c;
     }
 
-    public String obtenerClave() {
+    public String verClave() {
         return clave;
     }
 
@@ -39,7 +39,7 @@ public class Cliente {
         clave = cl;
     }
 
-    public String obtenerApellido() {
+    public String verApellido() {
         return apellido;
     }
 
@@ -47,44 +47,13 @@ public class Cliente {
         apellido = a;
     }
 
-    public String obtenerNombre() {
+    public String verNombre() {
         return nombre;
     }
 
     public void asignarNombre(String n) {
         nombre = n;
-=======
-    public String verCorreo() {
-        return correo;
-    }
 
-    public void asignarCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        this.nombre = nombre;
->>>>>>> Stashed changes
     }
 
     @Override

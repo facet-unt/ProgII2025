@@ -2,12 +2,14 @@ package principal.controladores;
 
 import java.util.ArrayList;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 
 public class ControladorPrincipal {
 
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-=======
+
 
         ArrayList<Producto> productos = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
@@ -69,13 +71,15 @@ public class ControladorPrincipal {
         for (Producto p : productos) p.mostrar();
 
         System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) c.mostrar();
+        for (Cliente c : clientes) 
+            System.out.println("test"+c.verApellido());
+            
 
         System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) e.mostrar();
+        for (Empleado e : empleados) e.verApellido();
 
         System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) en.mostrar();
+        for (Encargado en : encargados) en.verApellido();
         
         
         //Cambio de algunas variables
@@ -90,13 +94,13 @@ public class ControladorPrincipal {
         for (Producto p : productos) p.mostrar();
 
         System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) c.mostrar();
+        for (Cliente c : clientes) c.verApellido();
 
         System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) e.mostrar();
+        for (Empleado e : empleados) e.verApellido();
 
         System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) en.mostrar();
+        for (Encargado en : encargados) en.verApellido();
        
        
        
@@ -104,34 +108,5 @@ public class ControladorPrincipal {
         
 
      
->>>>>>> Stashed changes
-        ArrayList<Producto> listaProductos = new ArrayList<>();
-
-        System.out.println("#################### ");
-        System.out.println("PRODUCTOS");
-        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
-        Producto p2 = new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
-        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
-
-        listaProductos.add(p1);
-        listaProductos.add(p2);
-        listaProductos.add(p3);
-
-        System.out.println("PRODUCTOS usando mostrar()");
-        for (Producto p : listaProductos) {
-            p.mostrar();
-        }
-
-        listaProductos.get(2).asignarDescripcion("Producto 3");
-        System.out.println("\nEl precio del producto es :" + listaProductos.get(2).obtenerPrecio());
-        listaProductos.get(2).asignarPrecio(1898.98f);
-        System.out.println("El nuevo precio del producto es :" + listaProductos.get(2).obtenerPrecio());
-
-        System.out.println("\nPRODUCTOS usando toString()");
-        for (Producto p : listaProductos) {
-            System.out.println(p);
-        }
-        System.out.println("#################### ");
-
     }
 }
