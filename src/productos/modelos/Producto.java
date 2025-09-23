@@ -5,6 +5,8 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
+
+
     private int codigo;
     private String descripcion;
     private String categoria;
@@ -23,9 +25,9 @@ public class Producto {
 
     public Producto() {
     }
-        
+   
+    // Métodos
     
-
     public int verCodigo() {
         return codigo;
     }
@@ -68,20 +70,20 @@ public class Producto {
         precio = p;
         
     }
+    
+    public void mostrar(){
+        System.out.println("Soy un producto");
+    }
 
     //Coloco el to string
-        
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
-   	}
-
-public void mostrar() {
-        System.out.println("codigo: " + codigo);
-        System.out.println("descripcion: " + descripcion);
-        System.out.println("categoria: " + categoria);
-        System.out.println("estado: " + estado);
-        System.out.println("precio: " + precio);
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", estado='" + estado + '\'' +
+                ", precio=" + precio +
+                '}';
     }
 }
-

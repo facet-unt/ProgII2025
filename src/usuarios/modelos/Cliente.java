@@ -57,16 +57,16 @@ public class Cliente {
     }
     
     
-          
+    public void mostrar() {
+      System.out.println(correo);
+      System.out.println(clave);
+      System.out.println(apellido);
+      System.out.println(nombre);      
+    }
+    
     @Override
     public String toString(){
 
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-
-    //void mostrar();
-    public void mostrar(){
-        System.out.println("Soy un cliente");
-    }    
-    
+    }      
 }

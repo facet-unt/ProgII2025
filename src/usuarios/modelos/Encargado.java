@@ -8,6 +8,7 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+
 public class Encargado {
     private String correo;
     private String clave;
@@ -23,7 +24,7 @@ public class Encargado {
 
     public Encargado() {
     }
-    
+   
     public String verCorreo() {
         return correo;
     }
@@ -56,14 +57,10 @@ public class Encargado {
         this.nombre = nombre;
     }
     
-   
     public void mostrar(){
         System.out.println("correo: " + correo);
         System.out.println("clave: " + clave);
         System.out.println("apelldio: " + apellido);
         System.out.println("nombre: " + nombre);
-    }
-
-    
-         
-}
+    }         
+}    

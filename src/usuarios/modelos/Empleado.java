@@ -8,6 +8,7 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+
 public class Empleado {
     private String correo;
     private String clave;
@@ -24,6 +25,10 @@ public class Empleado {
     public Empleado() {
     }
     
+     public void asignarClave(String clave) {
+        this.clave = clave;
+    }
+    
     public String verCorreo() {
         return correo;
     }
@@ -35,21 +40,13 @@ public class Empleado {
     public String verApellido() {
         return apellido;
     }
+    
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public String verNombre() {
         return nombre;
-    }
-
-    public void asignarCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public void asignarClave(String clave) {
-        this.clave = clave;
-    }
-
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public void asignarNombre(String nombre) {
