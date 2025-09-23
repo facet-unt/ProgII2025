@@ -19,20 +19,21 @@ public class Producto {
         this.precio = precio;
     }
     
+    //agregado de constructor
     
     
     public void mostrar(){
         
-        //System.out.println("Hola, soy un producto");
-        System.out.println(toString());
+        System.out.println("Hola, soy un producto");
     }
-    //Agregar to string
+    //metodo mostrar
 
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
-
+     //agregado de tostring
+    
     public int verCodigo() {
         return codigo;
     }
@@ -74,4 +75,6 @@ public class Producto {
     public void asignarPrecio(float p) {
         precio = p;
     }
+    
+  
 }

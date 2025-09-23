@@ -73,4 +73,13 @@ public class Cliente {
         if (Apellido!= null && !Apellido.isBlank())
             apellido = Apellido;
     }
+    
+    
+    //asignacion de nuevo valor
+//    public void asignarApellido (String Apellido){
+//        if (apellido == null || apellido.isBlank()) {
+//            apellido = null;
+//            
+//        }
+    
 }
