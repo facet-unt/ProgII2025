@@ -34,26 +34,26 @@ public class ControladorPrincipalGUI {
         ventana.setVisible(true);
         
         //CLIENTE
-      /* 
-        VentanaAMCliente ventana = new VentanaAMCliente(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo cliente");
-        ventana.setVisible(true);
-       */        
+      /*Modificar el método main() de la clase ControladorPrincipalGUI y agregar el código para que
+        muestre las ventanas que permiten crear clientes, empleados y encargados.*///(esto fue lo que hice)
+        VentanaAMCliente ventana = new VentanaAMCliente(null); 
+        ventana.setLocationRelativeTo(null); //la ubico en el centro de la pantalla
+        ventana.setTile("Nuevo Cliente"); //quiero que tenga por titulo eso
+        ventana.setVisible(true); //quiero que la ventana sea  visible
+       
+     
        //EMPLEADO 
-       /*
+       
         VentanaAMEmpleado ventana = new VentanaAMEmpleado(null);
         ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo empleado");
+        ventana.setTitle("Nuevo Empleado");
         ventana.setVisible(true);
-        */
        //ENCARGADO
-       /*
-        VentanaAMEncargado ventana = new VentanaAMEncargado(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo encargado");
-        ventana.setVisible(true);
-       */
+       
+       VentanaAMEncargado ventana = new VentanaAMEncargado(null);
+       ventana.setLocationRelativeTo(null);
+       ventana.setTitle("Nuevo Encargado");
+       ventana.setVisible(true);
     }
     
     /**

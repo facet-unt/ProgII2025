@@ -8,6 +8,7 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 
 public class VentanaAMEmpleado extends JDialog {
@@ -136,7 +137,33 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        //Completar
+        //Completar (ya lo completé, es el punto 7)
+        String correo = this.txtCorreo.getText().trim();
+        String apellido = this.txtApellido.getText().trim();
+        String nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
+        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        this.clientes.add(unCliente);
+        
+        System.out.println("Clientes");
+        System.out.println("========");
+        for(Cliente c : this.clientes) {
+            c.mostrar();
+            System.out.println();
+        })
+        String correo = this.txtCorreo.getText().trim();
+        String apellido = this.txtApellido.getText().trim();
+        String nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
+        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        this.clientes.add(unCliente);
+        
+        System.out.println("Clientes");
+        System.out.println("========");
+        for(Cliente c : this.clientes) {
+            c.mostrar();
+            System.out.println();
+        }
     }//GEN-LAST:event_btnGuardarClic
 
 
