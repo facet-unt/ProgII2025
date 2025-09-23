@@ -20,7 +20,12 @@ public class Producto {
     }
     
     public void mostrar(){
-        System.out.println("Codigo: "+ codigo);
+        System.out.println("Codigo: "+ verCodigo());
+        System.out.println("Estado: "+ verEstado());
+        System.out.println("Descripcion: "+ verDescripcion());
+        System.out.println("Categoria: "+ verCategoria());
+        System.out.println("Precio: "+ verPrecio());
+        
     }
     
     @Override

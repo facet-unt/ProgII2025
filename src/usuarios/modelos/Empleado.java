@@ -16,7 +16,11 @@ public class Empleado {
     private String nombre;
 
     public void mostrar(){
-        System.out.println("Correo: "+ correo);
+        System.out.println("Nombre: "+ verNombre());
+        System.out.println("Apellido: "+ verApellido());
+        System.out.println("Correo: "+ verCorreo());
+        System.out.println("Clave: "+ verClave());
+        
     }
     
     public Empleado(String c, String cl, String a, String n) {
