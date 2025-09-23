@@ -5,7 +5,6 @@ import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
 import productos.modelos.Producto;
-import usuarios.modelos.*;
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
