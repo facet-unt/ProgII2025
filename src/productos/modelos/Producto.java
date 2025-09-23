@@ -1,12 +1,14 @@
 package productos.modelos;
 
 public class Producto {
+
+
     private int codigo;
     private String descripcion;
     private String categoria;
     private String estado;
     private float precio;
-
+    
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -57,9 +59,13 @@ public class Producto {
         precio = p;
     }
     
+//    public void mostrar() {
+//        System.out.println("-- PRODUCTO --");
+//        System.out.println("Codigo: " + codigo);
+
+    // Métodos
     public void mostrar() {
-        System.out.println("-- PRODUCTO --");
-        System.out.println("Codigo: " + codigo);
+        System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
@@ -68,6 +74,12 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", estado='" + estado + '\'' +
+                ", precio=" + precio +
+                '}';
     }
 }

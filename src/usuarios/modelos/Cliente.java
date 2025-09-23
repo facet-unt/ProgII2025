@@ -13,6 +13,7 @@ package usuarios.modelos;
 >>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Cliente {
+
     private String apellido;
     private String nombre;
     private String correo;
@@ -65,9 +66,20 @@ public class Cliente {
 //        System.out.println("Clave: " + clave);
 //     }
 
+    
+    public void mostrar() {
+      System.out.println(correo);
+      System.out.println(clave);
+      System.out.println(apellido);
+      System.out.println(nombre);      
+    }
+    
     @Override
     public String toString() {
         return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
     }
-    
+
+   
 }
+
+
