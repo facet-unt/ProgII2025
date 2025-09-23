@@ -73,6 +73,4 @@ public class ControladorPrincipal {
         for (Encargado en: listaEncargados)
             System.out.println(en);
     }
-    
-
 }
