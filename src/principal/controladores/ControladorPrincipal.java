@@ -8,6 +8,8 @@ package principal.controladores;
 // Paquetes importados:
 
 import java.util.ArrayList;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
 
@@ -20,15 +22,11 @@ public class ControladorPrincipal {
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
 
-        Producto prod1 = new Producto(1, "Laptop", "Electronica", "Nuevo", 1200.5f);
-       
-        Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
+        Producto prod1 = new Producto(1, "Pizza", 1222.6f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE);
         
-        Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
+        Producto prod2 = new Producto(2, "Empanadas", 200.6f, Categoria.ENTRADA, Estado.DISPONIBLE);
         
-        Producto prod4 = new Producto(4, "Pizza", "Plato principal", 100.0f);
-        
-        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
+        Producto prod3 = new Producto(3, "Helado", 122.6f, Categoria.POSTRE, Estado.NODISPONIBLE);
       
         productos.add(prod1);
         productos.add(prod2);
@@ -94,15 +92,7 @@ public class ControladorPrincipal {
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         
         
-        System.out.println("#################### ");
-        System.out.println("PRODUCTOS\n");
-        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
-        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
-        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
-        listaProductos.add(p1);
-        listaProductos.add(p2);
-        listaProductos.add(p3);
         
         System.out.println("PRODUCTOS usando mostrar()");
         for (Producto p: listaProductos)

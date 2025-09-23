@@ -12,18 +12,19 @@ public class Producto {
     //Atributos
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
     private float precio;
+    private Categoria categoria;
+    private Estado estado;
+
+
 
 
     // Métodos
     public void mostrar() {
         System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
+        
     }
 
     @Override
@@ -36,30 +37,16 @@ public class Producto {
                 ", precio=" + precio +
                 '}';
     }
-    
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.asignarCodigo(codigo);
-        //this.codigo = codigo;
-        this.estado = estado;        
+
+    public Producto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        this.codigo = codigo;
         this.descripcion = descripcion;
-        this.categoria = categoria;
         this.precio = precio;
+        this.categoria = categoria;
+        this.estado = estado;
     }
     
-    public Producto(int c, String d, String cat, float p) {
-        codigo = c;
-        descripcion = d;
-        categoria = cat;
-        precio = p;
-    }
     
-    public Producto(int c, String d, float p) {
-        this(c, d, "Plato principal", p);        
-    }
-
-    
-
-   
 
     public int verCodigo() {
         return codigo;
@@ -79,24 +66,24 @@ public class Producto {
             descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
-        if (categoria != null && !c.isBlank()){
+    public void asignarCategoria(Categoria c) {
+        
             categoria = c;
-        }
+        
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
-        if (categoria != null && !e.isBlank()){
+    public void asignarEstado(Estado e) {
+        
             estado = e;
-        }
+        
     }
 
     public float verPrecio() {
