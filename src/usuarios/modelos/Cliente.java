@@ -4,14 +4,6 @@
  */
 package usuarios.modelos;
 
-/**
- *
-<<<<<<< HEAD
- * @author Oli Toledo
-=======
- * @author estudiante
->>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
- */
 public class Cliente {
     private String apellido;
     private String nombre;
@@ -64,7 +56,7 @@ public class Cliente {
 //        System.out.println("Correo: " + correo);
 //        System.out.println("Clave: " + clave);
 //     }
-
+    
     @Override
     public String toString() {
         return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
