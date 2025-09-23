@@ -13,10 +13,10 @@ package usuarios.modelos;
 >>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Encargado {
-    public String apellido;
-    public String nombre;
-    public String correo;
-    public String clave;
+    private String apellido;
+    private String nombre;
+    private String correo;
+    private String clave;
 
     public Encargado(String apellido, String nombre, String correo, String clave) {
         this.apellido = apellido;
