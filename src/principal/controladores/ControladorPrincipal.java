@@ -19,9 +19,6 @@ public class ControladorPrincipal {
         
         Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
         
-        Producto prod4 = new Producto(4, "Pizza", "Plato principal", 100.0f);
-        
-        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
       
         productos.add(prod1);
         productos.add(prod2);

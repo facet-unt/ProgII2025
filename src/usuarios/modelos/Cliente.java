@@ -15,6 +15,10 @@ public class Cliente {
     private String apellido;
     private String nombre;
 
+    public void mostrar(){
+        System.out.println("Correo: "+ correo);
+    }
+    
     public Cliente(String c, String cl, String a, String n) {
         correo = c;
         clave = cl;

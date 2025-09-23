@@ -28,7 +28,7 @@ public class Producto {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
     }
 
-    public int obtenerCodigo() {
+    public int verCodigo() {
         return codigo;
     }
 
@@ -36,7 +36,7 @@ public class Producto {
         codigo = c;
     }
 
-    public String obtenerDescripcion() {
+    public String verDescripcion() {
         return descripcion;
     }
 
@@ -44,7 +44,7 @@ public class Producto {
         descripcion = d;
     }
 
-    public String obtenerCategoria() {
+    public String verCategoria() {
         return categoria;
     }
 
@@ -52,7 +52,7 @@ public class Producto {
         categoria = ca;
     }
 
-    public String obtenerEstado() {
+    public String verEstado() {
         return estado;
     }
 
@@ -60,7 +60,7 @@ public class Producto {
         estado = e;
     }
 
-    public float obtenerPrecio() {
+    public float verPrecio() {
         return precio;
     }
 

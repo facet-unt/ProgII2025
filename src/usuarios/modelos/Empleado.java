@@ -15,6 +15,10 @@ public class Empleado {
     private String apellido;
     private String nombre;
 
+    public void mostrar(){
+        System.out.println("Correo: "+ correo);
+    }
+    
     public Empleado(String c, String cl, String a, String n) {
         correo = c;
         clave = cl;
