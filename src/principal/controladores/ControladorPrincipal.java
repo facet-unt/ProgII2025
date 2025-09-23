@@ -12,12 +12,7 @@ import usuarios.modelos.Encargado;
 public class ControladorPrincipal {
     public static void main(String[] args) {
         ArrayList<Producto> listaProductos = new ArrayList<>();
-<<<<<<< HEAD
-=======
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
-        ArrayList<Encargado> listaEncargados = new ArrayList<>();
-        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
->>>>>>> origin/G07
+        
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
@@ -55,9 +50,7 @@ public class ControladorPrincipal {
         ListaClientes.add(c3);
         
         System.out.println("CLIENTES usando mostrar()");
-        System.out.println("El nombre del cliente es: " + ListaClientes.get (1).VerNombre());
-        ListaClientes.get(2).asignarNombre("juan");
-        
+      
         for (Cliente c: ListaClientes)
             System.out.println(c);
         System.out.println("#################### ");
@@ -76,8 +69,7 @@ public class ControladorPrincipal {
         ListaEncargado.add(E3);
         
         System.out.println("Encargados usando mostrar()");
-        System.out.println("El nombre del encargado es: " + ListaEncargado.get (1).VerNombre());
-        ListaEncargado.get(2).asignarApellido("Juarez");
+        
         
         for (Encargado E: ListaEncargado)
             System.out.println(E);

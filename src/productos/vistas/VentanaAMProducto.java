@@ -5,13 +5,13 @@
  */
 package productos.vistas;
 
+import Producto.Modelos.Producto;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import productos.modelos.Producto;
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ArrayList<Producto> productos;
     
     /**
      * Constructor
@@ -19,6 +19,7 @@ public class VentanaAMProducto extends JDialog {
      */
     public VentanaAMProducto(Dialog ventanaPadre) {
         super(ventanaPadre, true);
+        this.productos = new ArrayList<>();
         initComponents();
     }
     

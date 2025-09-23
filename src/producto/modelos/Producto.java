@@ -28,60 +28,54 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCodigo() {
+    public int verCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void asignarCodigo(int codigo) {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
+    public String verDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void asignarDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getEstado() {
+    public String verEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void asignarEstado(String estado) {
         this.estado = estado;
     }
 
-    public String getCategoria() {
+    public String verCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void asignarCategoria(String categoria) {
         this.categoria = categoria;
     }
 
-    public float getPrecio() {
+    public float verPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void asignarPrecio(float precio) {
         this.precio = precio;
     }
 
+    
     public void mostrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public String verPrecio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void asignarDescripcion(String producto_3) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void asignarPrecio(float f) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
+        System.out.println("Precio: " + precio);
     }
     
- }
+    
+}
