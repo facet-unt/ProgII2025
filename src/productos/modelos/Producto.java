@@ -9,8 +9,8 @@ public class Producto {
 
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria unaCategoria;
+    private Estado unEstado;
     private float precio;
 
 
@@ -18,8 +18,8 @@ public class Producto {
     public void mostrar() {
         System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
+        System.out.println("Categoria: " + unaCategoria);
+        System.out.println("Estado: " + unEstado);
         System.out.println("Precio: " + precio);
     }
 
@@ -28,30 +28,30 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", estado='" + estado + '\'' +
+                ", categoria='" + unaCategoria + '\'' +
+                ", estado='" + unEstado + '\'' +
                 ", precio=" + precio +
                 '}';
     }
     
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.asignarCodigo(codigo);
         //this.codigo = codigo;
-        this.estado = estado;        
+        this.unEstado = estado;        
         this.descripcion = descripcion;
-        this.categoria = categoria;
+        this.unaCategoria = categoria;
         this.precio = precio;
     }
     
-    public Producto(int c, String d, String cat, float p) {
+    public Producto(int c, String d, Categoria cat, float p) {
         codigo = c;
         descripcion = d;
-        categoria = cat;
+        unaCategoria = cat;
         precio = p;
     }
     
-    public Producto(int c, String d, float p) {
-        this(c, d, "Plato principal", p);        
+    public Producto(int c, String d, float p, Categoria cat) {
+        this(c, d,cat, p);        
     }
 
     
@@ -76,20 +76,20 @@ public class Producto {
             descripcion = d;
     }
 
-    public String verCategoria() {
-        return categoria;
+    public Categoria verCategoria() {
+        return unaCategoria;
     }
 
-    public void asignarCategoria(String c) {
-        categoria = c;
+    public void asignarCategoria(Categoria c) {
+        unaCategoria = c;
     }
 
-    public String verEstado() {
-        return estado;
+    public Estado verEstado() {
+        return unEstado;
     }
 
-    public void asignarEstado(String e) {
-        estado = e;
+    public void asignarEstado(Estado e) {
+        unEstado = e;
     }
 
     public float verPrecio() {
