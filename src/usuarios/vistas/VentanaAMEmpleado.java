@@ -8,6 +8,7 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 
 public class VentanaAMEmpleado extends JDialog {
@@ -75,6 +76,12 @@ public class VentanaAMEmpleado extends JDialog {
 
         txtCorreo.setToolTipText("Documento");
 
+        passClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passClaveActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Clave:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,8 +143,24 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        //Completar
+        String correo = this.txtCorreo.getText().trim();
+        String apellido = this.txtApellido.getText().trim();
+        String nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
+        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
+        this.empleados.add(unEmpleado);
+        
+        System.out.println("Empleados");
+        System.out.println("========");
+        for(Empleado emp : this.empleados) {
+            emp.mostrar();
+            System.out.println();
+        }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void passClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passClaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
