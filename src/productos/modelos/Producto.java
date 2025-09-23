@@ -16,15 +16,13 @@ public class Producto {
     private Categoria categoria;
     private Estado estado;
 
-
-
-
     // Métodos
     public void mostrar() {
-        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Precio: " + precio);
-        
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
     }
 
     @Override
@@ -45,9 +43,7 @@ public class Producto {
         this.categoria = categoria;
         this.estado = estado;
     }
-    
-    
-
+   
     public int verCodigo() {
         return codigo;
     }
@@ -71,9 +67,7 @@ public class Producto {
     }
 
     public void asignarCategoria(Categoria c) {
-        
-            categoria = c;
-        
+        categoria = c;
     }
 
     public Estado verEstado() {
@@ -81,9 +75,7 @@ public class Producto {
     }
 
     public void asignarEstado(Estado e) {
-        
             estado = e;
-        
     }
 
     public float verPrecio() {
