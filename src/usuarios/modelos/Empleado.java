@@ -9,67 +9,56 @@ package usuarios.modelos;
  * @author estudiante
  */
 
-public class Empleado 
-{
-    private String correo;
-    private String clave;
-    private String nombre;
-    private String apellido;    
-    
-    public String verCorreo () {
-        return correo;
+public class Empleado {
+   private String correo;
+   private String clave;
+   private String apellido;
+   private String nombre;
+   
+    public void mostrar() {
+      System.out.println(correo);
+      System.out.println(clave);
+      System.out.println(apellido);
+      System.out.println(nombre);
     }
     
-    public String verClave () { 
-        return clave;
-    }
-    
-    public String verNombre () {
-        return nombre;
-    }
-    
-    public String verApellido () {
-        return apellido;
-    }
-    
-    public void AsignarCorreo (String c) {
+    public Empleado(String c, String cl, String a, String n) {
         correo = c;
-    }
-    
-    public void AsignarClave (String cl) {
         clave = cl;
-    }
-    
-    public void AsignarNombre (String n) {
+        apellido = a;
         nombre = n;
     }
-    
-    public void AsignarApellido (String a) {
-        apellido = a;
-    }
-    
-    public void mostrar()
-    {
-        System.out.println("Correo : " + correo);
-        System.out.println("\n");
-        System.out.println("Clave : " + clave);
-        System.out.println("\n");
-        System.out.println("Nombre : " + nombre);
-        System.out.println("\n");
-        System.out.println("Apellido : " + apellido);
+
+    public String verCorreo() {
+        return correo;
     }
 
-    public Empleado(String correo, String clave, String nombre, String apellido)
-    {
+    public void asignarCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String verClave() {
+        return clave;
+    }
+
+    public void asignarClave(String clave) {
         this.clave = clave;
-        this.nombre = nombre;
+    }
+
+    public String verApellido() {
+        return apellido;
+    }
+
+    public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
-    
-    
-        @Override
-        public String toString() {
-        return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+
+    public String verNombre() {
+        return nombre;
     }
+
+    public void asignarNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 }
