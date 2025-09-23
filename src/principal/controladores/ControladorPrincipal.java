@@ -2,14 +2,11 @@ package principal.controladores;
 
 import java.util.ArrayList;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
-import usuarios.modelos.Empleado;
-import usuarios.modelos.Encargado;
+import usuarios.modelos.*;
+
 
 public class ControladorPrincipal {
-
     public static void main(String[] args) {
-
 
         ArrayList<Producto> productos = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
@@ -21,6 +18,10 @@ public class ControladorPrincipal {
         Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
         
         Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
+        
+        Producto prod4 = new Producto(4, "Pizza", "Plato principal", 100.0f);
+        
+        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
       
         productos.add(prod1);
         productos.add(prod2);
@@ -71,42 +72,40 @@ public class ControladorPrincipal {
         for (Producto p : productos) p.mostrar();
 
         System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) 
-            System.out.println("test"+c.verApellido());
-            
+        for (Cliente c : clientes) c.mostrar();
 
         System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) e.verApellido();
+        for (Empleado e : empleados) e.mostrar();
 
         System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) en.verApellido();
-        
-        
-        //Cambio de algunas variables
-       prod1.asignarCodigo(4);
-       cli2.asignarClave("12345");
-       emp3.asignarClave("45678");
-       en2.asignarNombre("Mauro");
-       
-       System.out.println("----CON CAMBIOS----");
-       //Mostrar Cambios
-        System.out.println("---- Productos ----");
-        for (Producto p : productos) p.mostrar();
+        for (Encargado en : encargados) en.mostrar();
 
-        System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) c.verApellido();
 
-        System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) e.verApellido();
-
-        System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) en.verApellido();
-       
-       
-       
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         
+        System.out.println("#################### ");
+        System.out.println("PRODUCTOS");
+        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
+        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
+        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
         
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+        listaProductos.add(p3);
+        
+        System.out.println("PRODUCTOS usando mostrar()");
+        for (Producto p: listaProductos)
+            p.mostrar();
+         
+        listaProductos.get(2).asignarDescripcion("Producto 3");
+        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        listaProductos.get(2).asignarPrecio(1898.98f);
+        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
+        
+        System.out.println("\nPRODUCTOS usando toString()");
+        for (Producto p: listaProductos)
+            System.out.println(p);
+        System.out.println("#################### ");
 
-     
     }
 }
