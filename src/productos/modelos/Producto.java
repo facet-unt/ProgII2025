@@ -54,8 +54,17 @@ public class Producto {
         this(c, d, "Plato principal", p);        
     }
 
-    
+    public enum Categoria
+    {
+        ENTRADA("Entrada");
+        
+    }
 
+    public enum Estado
+    {
+        ESTADO("Disponible");
+        ESTADO("No Disponible");
+    }
    
 
     public int verCodigo() {

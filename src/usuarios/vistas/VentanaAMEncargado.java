@@ -136,7 +136,18 @@ public class VentanaAMEncargado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        //Completar
+        String correo = this.txtCorreo.getText().trim();
+        String apellido = this.txtApellido.getText().trim();
+        String Nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
+        
+        Encargado unEncargado = new Encargado(correo, clave, apellido, Nombre);
+        this.encargado.add(unEncargado);
+        System.out.println("ENCARGADOS");
+        System.out.println("\n==================");
+        for(Encargado enc : this.encargado)
+            enc.mostrar();
+        
     }//GEN-LAST:event_btnGuardarClic
 
 
