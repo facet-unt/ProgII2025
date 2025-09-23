@@ -13,10 +13,10 @@ package usuarios.modelos;
 >>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
  */
 public class Encargado {
-    public String apellido;
-    public String nombre;
-    public String correo;
-    public String clave;
+    private String apellido;
+    private String nombre;
+    private String correo;
+    private String clave;
 
     public Encargado(String apellido, String nombre, String correo, String clave) {
         this.apellido = apellido;
@@ -24,6 +24,8 @@ public class Encargado {
         this.correo = correo;
         this.clave = clave;
     }
+
+  
 
     public String verApellido() {
         return apellido;
@@ -64,4 +66,10 @@ public class Encargado {
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
      } 
+    //Preguntar si deberia eliminar el void mostrar
+    @Override
+    public String toString() {
+        return "Encargado{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
+    }
+    
 }
