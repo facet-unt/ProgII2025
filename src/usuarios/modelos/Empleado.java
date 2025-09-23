@@ -8,6 +8,7 @@ package usuarios.modelos;
  *
  * @author Esteban
  */
+
 public class Empleado {
     //Atributos
     private String correo;

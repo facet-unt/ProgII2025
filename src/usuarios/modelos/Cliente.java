@@ -9,11 +9,10 @@ package usuarios.modelos;
  * @author Esteban
  */
 public class Cliente {
-    //Atributos
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+    public String correo;
+    public String clave;
+    public String apellido;
+    public String nombre;
     
     //Metodos
     public void mostrar(){
