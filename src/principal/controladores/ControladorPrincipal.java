@@ -12,6 +12,12 @@ import usuarios.modelos.Encargado;
 public class ControladorPrincipal {
     public static void main(String[] args) {
         ArrayList<Producto> listaProductos = new ArrayList<>();
+<<<<<<< HEAD
+=======
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Encargado> listaEncargados = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+>>>>>>> origin/G07
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
