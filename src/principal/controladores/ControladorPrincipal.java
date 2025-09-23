@@ -2,6 +2,7 @@ package principal.controladores;
 
 import productos.modelos.Producto;
 import java.util.ArrayList;
+import usuarios.modelos.*;
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
@@ -30,6 +31,45 @@ public class ControladorPrincipal {
         for (Producto p: listaProductos)
             System.out.println(p);
         System.out.println("#################### ");
- 
+
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        ArrayList<Encargado> listaEncargados = new ArrayList<>();
+
+        System.out.println("####################");
+        System.out.println("CLIENTES");
+        Cliente c1 = new Cliente("correo1@ejemplo.com", "clave1", "Gómez", "Ana");
+        Cliente c2 = new Cliente("correo2@ejemplo.com", "clave2", "Pérez", "Luis");
+        Cliente c3 = new Cliente("correo3@ejemplo.com", "clave3", "Díaz", "María");
+
+        listaClientes.add(c1);
+        listaClientes.add(c2);
+        listaClientes.add(c3);
+
+        System.out.println("CLIENTES usando mostrar():");
+        for (Cliente c : listaClientes)
+            c.mostrar();
+
+        System.out.println("\n####################");
+        System.out.println("EMPLEADOS");
+        Empleado e1 = new Empleado("empleado1@empresa.com", "empclave1", "Ruiz", "Carlos");
+        Empleado e2 = new Empleado("empleado2@empresa.com", "empclave2", "Fernández", "Lucía");
+
+        listaEmpleados.add(e1);
+        listaEmpleados.add(e2);
+
+        System.out.println("EMPLEADOS usando mostrar():");
+        for (Empleado e : listaEmpleados)
+            e.mostrar();
+
+        System.out.println("\n####################");
+        System.out.println("ENCARGADOS");
+        Encargado en1 = new Encargado("encargado1@empresa.com", "encclave1", "Mendoza", "Jorge");
+
+        listaEncargados.add(en1);
+
+        System.out.println("ENCARGADOS usando mostrar():");
+        for (Encargado en : listaEncargados)
+            en.mostrar();
     }
 }
