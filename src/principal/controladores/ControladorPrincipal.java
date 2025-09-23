@@ -1,7 +1,12 @@
 package principal.controladores;
 
+import Producto.Modelos.Producto;
 import java.util.ArrayList;
-import productos.modelos.Producto;
+
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
+ 
 
 
 public class ControladorPrincipal {
@@ -31,6 +36,66 @@ public class ControladorPrincipal {
         for (Producto p: listaProductos)
             System.out.println(p);
         System.out.println("#################### ");
- 
-    }
+     
+        ArrayList<Cliente> ListaClientes = new ArrayList<>();
+        System.out.println("#################### ");
+        System.out.println("Cliente: ");
+        Cliente c1 = new Cliente ("correo", "clave", "Apellido", "nombre");
+        Cliente c2 = new Cliente ("correo", "clave", "Apellido", "nombre");
+        Cliente c3 = new Cliente ("correo", "clave", "Apellido", "nombre");
+        
+        ListaClientes.add(c1);
+        ListaClientes.add(c2);
+        ListaClientes.add(c3);
+        
+        System.out.println("CLIENTES usando mostrar()");
+        System.out.println("El nombre del cliente es: " + ListaClientes.get (1).VerNombre());
+        ListaClientes.get(2).asignarNombre("juan");
+        
+        for (Cliente c: ListaClientes)
+            System.out.println(c);
+        System.out.println("#################### ");
+        
+        
+        
+       ArrayList<Encargado> ListaEncargado = new ArrayList<>();
+        System.out.println("#################### ");
+        System.out.println("Cliente: ");
+        Encargado E1 = new Encargado ("correo", "clave", "Apellido", "nombre");
+        Encargado E2 = new Encargado ("correo", "clave", "Apellido", "nombre");
+        Encargado E3 = new Encargado ("correo", "clave", "Apellido", "nombre");
+        
+        ListaEncargado.add(E1);
+        ListaEncargado.add(E2);
+        ListaEncargado.add(E3);
+        
+        System.out.println("Encargados usando mostrar()");
+        System.out.println("El nombre del encargado es: " + ListaEncargado.get (1).VerNombre());
+        ListaEncargado.get(2).asignarApellido("Juarez");
+        
+        for (Encargado E: ListaEncargado)
+            System.out.println(E);
+        System.out.println("#################### ");
+        
+        
+        ArrayList<Empleado> ListaEmpleado = new ArrayList<>();
+        System.out.println("#################### ");
+        System.out.println("Cliente: ");
+        Empleado Em1 = new Empleado ("correo", "clave", "Apellido", "nombre");
+        Empleado Em2 = new Empleado ("correo", "clave", "Apellido", "nombre");
+        Empleado Em3 = new Empleado ("correo", "clave", "Apellido", "nombre");
+        
+        ListaEmpleado.add(Em1);
+        ListaEmpleado.add(Em2);
+        ListaEmpleado.add(Em3);
+        
+        System.out.println("Encargados usando mostrar()");
+        System.out.println("El nombre del encargado es: " + ListaEncargado.get (1).VerNombre());
+        ListaEncargado.get(2).asignarApellido("Juarez");
+        
+        for (Empleado Em: ListaEmpleado)
+            System.out.println(Em);
+        System.out.println("#################### ");
+             
+        }
 }
