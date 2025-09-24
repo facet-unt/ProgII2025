@@ -14,23 +14,17 @@ public class Encargado {
     private String clave;
     private String apellido;
     private String nombre;
-    
-     public void mostrar() {
-      System.out.println(correo);
-      System.out.println(clave);
-      System.out.println(apellido);
-      System.out.println(nombre);
 
-      
-    }
-     
-     public Encargado(String c, String cl, String a, String n) {
-        correo = c;
-        clave = cl;
-        apellido = a;
-        nombre = n;
+    public Encargado(String correo, String clave, String apellido, String nombre) {
+        this.correo = correo;
+        this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
     }
 
+    public Encargado() {
+    }
+   
     public String verCorreo() {
         return correo;
     }
@@ -62,6 +56,12 @@ public class Encargado {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-     
     
-}
+    public void mostrar(){
+        System.out.println("=================");
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre: " + nombre);
+    }         
+}    
