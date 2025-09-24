@@ -9,13 +9,19 @@ package pedidos.modelos;
  * @author thoma
  */
 public enum Estado {
-    CREADO,
-    SOLICITADO,
-    PROCESANDO,
-    ENTREGADO;
+    CREADO("Creado"),
+    SOLICITADO("Solicitado"),
+    PROCESANDO("Procesando"),
+    ENTREGADO("Entregado");
+    
+    private String valor;
 
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+    
     @Override
     public String toString() {
-        return "Estado{" + "ordinal=" + ordinal() + ", name=" + name() + '}';
+        return this.valor;
     } 
 }
