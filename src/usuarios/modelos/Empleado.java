@@ -75,5 +75,4 @@ public class Empleado {
             this.nombre = nombre;
         }
     }
-    
 }

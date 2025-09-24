@@ -8,11 +8,15 @@ package usuarios.modelos;
  *
  * @author Esteban
  */
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Cliente {
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
+    private ArrayList<Pedido> listaPedidos;
     
     //Metodos
     public void mostrar(){
@@ -31,6 +35,7 @@ public class Cliente {
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+        this.listaPedidos = new ArrayList<>();
     }
     
     //metodos get/set
@@ -73,6 +78,12 @@ public class Cliente {
             this.nombre = nombre;
         }
     }
-    
-    
+
+    public ArrayList<Pedido> verListaPedidos() {
+        return this.listaPedidos;
+    }
+
+    public void asignarPedido(Pedido p) {
+        this.listaPedidos.add(p);
+    }    
 }
