@@ -4,11 +4,11 @@ package productos.modelos;
 public class Producto{
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
     private float precio;
 
-    public Producto(int c, String d, String cat, String e, float p){
+    public Producto(int c, String d, Categoria cat, Estado e, float p){
         codigo=c;
         descripcion=d;
         categoria=cat;
@@ -32,19 +32,19 @@ public class Producto{
         descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
+    public void asignarCategoria(Categoria c) {
         categoria = c;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
+    public void asignarEstado(Estado e) {
         estado = e;
     }
 
