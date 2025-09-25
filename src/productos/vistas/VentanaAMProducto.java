@@ -8,6 +8,8 @@ package productos.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 
 public class VentanaAMProducto extends JDialog {
@@ -148,11 +150,11 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
+        /*int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
         String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        String categoria = this.txtCategoria.getText().trim();
-        String estado  = this.txtEstado.getText().trim();
+        Categoria categoria = this.txtCategoria.getText();
+        Estado estado  = this.txtEstado.getText();
         Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         this.productos.add(unProducto);
         
@@ -161,7 +163,7 @@ public class VentanaAMProducto extends JDialog {
         for(Producto p : this.productos) {
             p.mostrar();
             System.out.println();
-        }
+        }*/
     }//GEN-LAST:event_btnGuardarClic
 
 
