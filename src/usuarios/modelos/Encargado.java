@@ -9,23 +9,23 @@ package usuarios.modelos;
  * @author lazar
  */
 public class Encargado {
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
     
-    public Encargado(String c,String cl,String a,String n){
+    public Encargado(String c,String a,String n,String cl){
         correo=c;
-        clave=cl;
         apellido=a;
         nombre=n;
+        clave=cl;
     }
     
     public void mostrar(){
         System.out.println("Correo: "+correo);
-        System.out.println("clave: "+clave);
         System.out.println("apellido: "+apellido);
         System.out.println("nombre: "+nombre);
+        System.out.println("clave: "+clave);
     }
 
     @Override
