@@ -9,5 +9,13 @@ package productos.modelos;
  * @author estudiante
  */
 public enum Estado {
+    DISPONIBLE("Disponible"),
+    NO_DISPONIBLE("No disponible");
+
+    private String valor;
+
+    private Estado(String valor) {
+        this.valor = valor;
+    }
     
 }
