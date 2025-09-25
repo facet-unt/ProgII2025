@@ -14,18 +14,18 @@ public class Empleado {
     private String apellido;
     private String nombre;
     
-    public Empleado(String c,String cl,String a,String n){
+    public Empleado(String c,String a,String n,String cl){
         correo=c;
-        clave=cl;
         apellido=a;
         nombre=n;
+        clave=cl;
     }
     
     public void mostrar(){
         System.out.println("Correo: "+correo);
-        System.out.println("clave: "+clave);
         System.out.println("apellido: "+apellido);
         System.out.println("nombre: "+nombre);
+        System.out.println("clave: "+clave);
     }
 
     @Override
