@@ -140,13 +140,13 @@ public class VentanaAMEmpleado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
+        Empleado unEmpleado = new Empleado(correo,apellido,nombre,clave);
         this.empleados.add(unEmpleado);
         
         System.out.println("Empleados");
         System.out.println("========");
-        for(Empleado c : this.empleados) {
-            c.mostrar();
+        for(Empleado e : this.empleados) {
+            e.mostrar();
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
