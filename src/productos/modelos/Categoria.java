@@ -4,18 +4,19 @@
  */
 package productos.modelos;
 
-/**
- *
- * @author sofia
- */
 public enum Categoria {
-    ENTRADA,
-    PLATOPRINCIPAL,
-    POSTRE;
+    ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato principal"),
+    POSTRE("Postre");
+
+    private final String nombre;
+
+    private Categoria(String nombre) {
+        this.nombre = nombre;
+    }
 
     @Override
     public String toString() {
-        return "Categoria{" + '}';
+        return nombre;
     }
-    
 }

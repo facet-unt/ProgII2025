@@ -5,29 +5,30 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
+
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
     private float precio;
 
-    public Producto(int c, String d, String ca, String e, float p) {
-        codigo = c;
-        descripcion = d;
-        categoria = ca;
-        estado = e;
-        precio = p;
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
     }
-    
-    public void mostrar(){
-        System.out.println("Codigo: "+ verCodigo());
-        System.out.println("Estado: "+ verEstado());
-        System.out.println("Descripcion: "+ verDescripcion());
-        System.out.println("Categoria: "+ verCategoria());
-        System.out.println("Precio: "+ verPrecio());
-        
+
+    public void mostrar() {
+        System.out.println("Codigo: " + verCodigo());
+        System.out.println("Estado: " + verEstado());
+        System.out.println("Descripcion: " + verDescripcion());
+        System.out.println("Categoria: " + verCategoria());
+        System.out.println("Precio: " + verPrecio());
+
     }
-    
+
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
@@ -49,19 +50,19 @@ public class Producto {
         descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String ca) {
+    public void asignarCategoria(Categoria ca) {
         categoria = ca;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
+    public void asignarEstado(Estado e) {
         estado = e;
     }
 
