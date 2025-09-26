@@ -5,16 +5,27 @@
 package pedidos.modelos;
 
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
+import usuarios.modelos.Cliente;
 
 public class Pedido {
+
     private int numero;
     private LocalDateTime fechaYHora;
-    
-    public void mostrar(){
-        System.out.println("Codigo: " + obtenerNumero());
-        System.out.println("Estado: " + obtenerFechaYHora());
+    private Estado estado;
+    private Cliente cliente;
 
+    public void mostrar() {
+        System.out.println("Numero: " + obtenerNumero());
+        System.out.println("Fecha: " + obtenerFecha() + "Hora: " + obtenerHora());
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Estado: " + estado);
+
+    }
+
+    public Pedido(int numero, LocalDateTime fechaYHora) {
+        this.numero = numero;
+        this.fechaYHora = fechaYHora;
     }
 
     public int obtenerNumero() {
@@ -32,4 +43,16 @@ public class Pedido {
     public void asignarFechaYHora(LocalDateTime fechaYHora) {
         this.fechaYHora = fechaYHora;
     }
+
+    public String obtenerFecha() {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaYHora.format(formatoFecha);
+    }
+
+    // Devuelve solo la hora
+    public String obtenerHora() {
+        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+        return fechaYHora.format(formatoHora);
+    }
+
 }

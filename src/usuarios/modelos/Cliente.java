@@ -4,12 +4,12 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author estudiante
- */
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Cliente {
 
+    private ArrayList<Pedido> pedido;
     private String correo;
     private String clave;
     private String apellido;
