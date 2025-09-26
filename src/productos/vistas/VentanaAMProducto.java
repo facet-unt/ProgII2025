@@ -8,6 +8,8 @@ package productos.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 
 public class VentanaAMProducto extends JDialog {
@@ -151,9 +153,9 @@ public class VentanaAMProducto extends JDialog {
         int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
         String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        String categoria = this.txtCategoria.getText().trim();
-        String estado  = this.txtEstado.getText().trim();
-        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
+        //String categoria = this.txtCategoria.getText().trim();
+        //String estado  = this.txtEstado.getText().trim();
+        Producto unProducto = new Producto(codigo, descripcion, Categoria.POSTRE, Estado.DISPONIBLE, precio);
         this.productos.add(unProducto);
         
         System.out.println("Productos");
