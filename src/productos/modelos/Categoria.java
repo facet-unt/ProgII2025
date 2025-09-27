@@ -8,15 +8,30 @@ package productos.modelos;
  *
  * @author estudiante
  */
-
-
- /* Creación de enumeracion Categoria */
+/* Creación de enumeracion Categoria */
 public enum Categoria {
-    ENTRADA, PLATO_PRINCIPAL, POSTRE;
+    ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato Principal"),
+    POSTRE("Postre");
 
+    private String valor;
+
+    /* Se crea constructor */
+    private Categoria(String valor) {
+        this.valor = valor;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "{" + ", name=" + name() + '}';
+//    }
+//    
+    /* Modificacion del metodo toString()*/
     @Override
     public String toString() {
-        return "Categoria{" + '}';
+        return valor;
     }
-    
+
+
+
 }

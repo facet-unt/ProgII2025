@@ -10,10 +10,26 @@ package productos.modelos;
  */
 /* Creación de enumeracion Estado */
 public enum Estado {
-    DISPONIBLE, NO_DISPONIBLE;
+    DISPONIBLE("Disponible"),
+    NO_DISPONIBLE("No disponible");
 
+    private String valor;
+
+    /* Se crea constructor */
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+
+//   @Override
+//    public String toString() {
+//        return "Estado{" + '}';
+//    }    
+    
+    
+    /* Modificacion del metodo toString() */
     @Override
     public String toString() {
-        return "Estado{" + '}';
-    }    
+        return valor;
+    }
+
 }

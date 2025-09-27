@@ -11,12 +11,37 @@ package pedidos.modelos;
 
 /* Creacion de enumeracion Estado */
 public enum Estado {
-    CREADO, SOLICITADO, PROCESANDO, ENTREGADO;
+    CREADO("Creado"),
+    SOLICITADO("Solicitando"),
+    PROCESANDO("Procesando"),
+    ENTREGADO("Entregado");
+    
+    private String valor;
 
+    /* Se crea constructor */
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "{" + valor + '}';
+//    }
+    
+    
+    
+    /* Modificacion del metodo toString() */
     @Override
     public String toString() {
-        return "{"  + name() + '}';
+        return valor;
     }
+    
+    
+
+   
+    
+    
+ 
     
     
     
