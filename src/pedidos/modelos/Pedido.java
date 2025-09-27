@@ -21,7 +21,7 @@ public class Pedido {
 
 
     public void mostrar() {
-
+        System.out.println("====================== PEDIDO ==========================");
         String hora = "HH:mm";
         String horaFormateada = fechaYhora.format(DateTimeFormatter.ofPattern(hora));
         String fecha = "dd/MM/yyyy";
@@ -41,7 +41,7 @@ public class Pedido {
         this.unCliente = unCliente;
     }
 
-    /* Agregado de metodo get/set */
+    /* Agregado de metodos get/set */
     public int verNumero() {
         return numero;
     }
