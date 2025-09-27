@@ -4,7 +4,9 @@
  */
 package pedidos.modelos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import usuarios.modelos.Cliente;
 
@@ -74,4 +76,14 @@ public class Pedido {
         this.unCliente = unCliente;
     }
 
+    //Metodo get que SOLO DEVUELVE la hora:
+    
+    public LocalTime verHora() {
+        return fechaYhora.toLocalTime();
+    }
+    //Metodo get que solo DEVUELVE la fecha:
+    
+    public LocalDate verFecha(){
+        return fechaYhora.toLocalDate();
+    }
 }
