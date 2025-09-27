@@ -76,12 +76,12 @@ public class Pedido {
         this.unCliente = unCliente;
     }
 
-    //Metodo get que SOLO DEVUELVE la hora:
+    //Metodo get que SOLO devuelve la hora:
     
     public LocalTime verHora() {
         return fechaYhora.toLocalTime();
     }
-    //Metodo get que solo DEVUELVE la fecha:
+    //Metodo get que SOLO devuelve la fecha:
     
     public LocalDate verFecha(){
         return fechaYhora.toLocalDate();
