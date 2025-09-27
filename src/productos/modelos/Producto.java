@@ -6,31 +6,57 @@ package productos.modelos;
  */
 public class Producto {
 
+
     private int codigo;
     private String descripcion;
     private String categoria;
     private String estado;
     private float precio;
 
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.estado = estado;
-        this.precio = precio;
-    }
-    
-    
 
+    // Métodos
     public void mostrar() {
-
-        System.out.println("Hola, soy un producto");
+        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
+        System.out.println("Precio: " + precio);
     }
 
     @Override
     public String toString() {
-        return "Producto{Codigo: " + codigo + " Descripcion: " + descripcion + " Categoria: " + categoria + " Estado: " + estado + " Precio: " + precio;
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", estado='" + estado + '\'' +
+                ", precio=" + precio +
+                '}';
     }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.asignarCodigo(codigo);
+        //this.codigo = codigo;
+        this.estado = estado;        
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+    
+    public Producto(int c, String d, String cat, float p) {
+        codigo = c;
+        descripcion = d;
+        categoria = cat;
+        precio = p;
+    }
+    
+    public Producto(int c, String d, float p) {
+        this(c, d, "Plato principal", p);        
+    }
+
+    
+
+   
 
     //Agregar to string
     public int verCodigo() {
@@ -38,7 +64,7 @@ public class Producto {
     }
 
     public void asignarCodigo(int c) {
-        if (c > 0) {
+        if (c > 0)
             codigo = c;
         }
     }
@@ -48,7 +74,7 @@ public class Producto {
     }
 
     public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank()) {
+        if (d != null && !d.isBlank())
             descripcion = d;
         }
     }
@@ -77,4 +103,3 @@ public class Producto {
         precio = p;
     }
 }
-//INTENTO DE PUSH

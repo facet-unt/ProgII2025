@@ -8,18 +8,25 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+
 public class Empleado {
-
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
-
+   private String correo;
+   private String clave;
+   private String apellido;
+   private String nombre;
+   
     public void mostrar() {
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre:" + nombre);
+      System.out.println(correo);
+      System.out.println(clave);
+      System.out.println(apellido);
+      System.out.println(nombre);
+    }
+    
+    public Empleado(String c, String cl, String a, String n) {
+        correo = c;
+        clave = cl;
+        apellido = a;
+        nombre = n;
     }
 
     public String verCorreo() {
@@ -53,6 +60,5 @@ public class Empleado {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    
     
 }

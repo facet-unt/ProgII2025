@@ -9,18 +9,30 @@ package usuarios.modelos;
  * @author estudiante
  */
 public class Cliente {
-
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
+
     
-    public void mostrar(){
-    System.out.println("Correo: "+ correo );
-    System.out.println("Clave: " + clave );
-    System.out.println("Apellido: " + apellido);
-    System.out.println("Nombre:" + nombre);
-    } 
+    public void mostrar() {
+      System.out.println(correo);
+      System.out.println(clave);
+      System.out.println(apellido);
+      System.out.println(nombre);      
+    }
+    
+    @Override
+    public String toString() {
+        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+
+    public Cliente(String c, String cl, String a, String n) {
+        correo = c;
+        clave = cl;
+        apellido = a;
+        nombre = n;
+    }
 
     public String verCorreo() {
         return correo;
@@ -54,4 +66,9 @@ public class Cliente {
         this.nombre = nombre;
     }
     
+    
+    
+    
+    
 }
+
