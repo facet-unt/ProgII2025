@@ -5,34 +5,43 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
-    
-    private Estado unEstado;
-    private Categoria unaCategoria;
+
+    private Estado estado;
+    private Categoria categoria;
     private int codigo;
     private String descripcion;
     private float precio;
 
     // Métodos
-    public void mostrar() {
-        System.out.println("Codigo: " + this.codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Precio: " + precio);
-    }
 
+    public void mostrar() {
+        System.out.println("Código: " + this.verCodigo());
+        System.out.println("Descripción: " + this.verDescripcion());
+        System.out.println("Categoría: " + this.verCategoria());
+        System.out.println("Estado: " + this.verEstado());
+        System.out.println("Precio: " + this.verPrecio());
+        System.out.println("------------");
+    }
+    
     @Override
     public String toString() {
-        return "Producto{"
-                + "codigo=" + codigo
-                + ", descripcion='" + descripcion + '\''
-                + ", precio=" + precio
-                + '}';
+        return "Código: " + codigo + "\nDescripción: " + descripcion + "\nCategoría: " + categoria + "\nEstado: " + estado + "\nPrecio: " + precio;
     }
 
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+    public void mostrarProducto() {
+        System.out.println("Información del Producto:\n" + this.toString());
+    }
+
+
+
+
+public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.asignarCodigo(codigo);
         //this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.estado = estado;
+        this.categoria = categoria;
     }
 
     public Producto(int c, String d, String cat, float p) {
@@ -66,6 +75,24 @@ public class Producto {
         }
     }
 
+    public Estado verEstado() {
+        return estado;
+    }
+
+    public void asignarEstado(Estado unEstado) {
+        this.estado = unEstado;
+    }
+
+    public Categoria verCategoria() {
+        return categoria;
+    }
+
+    public void asignarCategoria(Categoria unaCategoria) {
+        this.categoria = unaCategoria;
+    }
+
+
+    
     public float verPrecio() {
         return precio;
     }

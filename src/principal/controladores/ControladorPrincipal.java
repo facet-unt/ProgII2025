@@ -6,6 +6,7 @@ import productos.modelos.Producto;
 import usuarios.modelos.*;
 import productos.modelos.Estado;
 import productos.modelos.Categoria;
+
 public class ControladorPrincipal {
 
     public static void main(String[] args) {
@@ -45,7 +46,7 @@ public class ControladorPrincipal {
          
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
-        Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA, 200.0f );        
+        Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA, Estado.DISPONIBLE, 200.0f );        
         Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
         Producto p3 = new  Producto(3, "Producto 3", Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
         
