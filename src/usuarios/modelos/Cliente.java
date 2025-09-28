@@ -4,24 +4,28 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author estudiante
  */
 public class Cliente {
+
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
+    private ArrayList<Pedido> pedidos;
 
-    
     public void mostrar() {
-      System.out.println(correo);
-      System.out.println(clave);
-      System.out.println(apellido);
-      System.out.println(nombre);      
+        System.out.println(correo);
+        System.out.println(clave);
+        System.out.println(apellido);
+        System.out.println(nombre);
     }
-    
+
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
@@ -65,10 +69,5 @@ public class Cliente {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
-    
-    
-    
-}
 
+}

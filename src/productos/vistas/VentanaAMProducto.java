@@ -154,7 +154,7 @@ public class VentanaAMProducto extends JDialog {
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         String categoria = this.txtCategoria.getText().trim();
         String estado  = this.txtEstado.getText().trim();
-        Producto unProducto = new Producto(codigo, descripcion, categoria, Estado, precio);
+        Producto unProducto = new Producto(codigo, descripcion, categoria, precio);
         this.productos.add(unProducto);
         
         System.out.println("Productos");
