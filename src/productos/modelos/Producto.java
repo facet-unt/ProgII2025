@@ -5,19 +5,17 @@ package productos.modelos;
  * @author estudiante
  */
 public class Producto {
-
+    
+    private Estado unEstado;
+    private Categoria unaCategoria;
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
     private float precio;
 
     // Métodos
     public void mostrar() {
         System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
     }
 
@@ -26,8 +24,6 @@ public class Producto {
         return "Producto{"
                 + "codigo=" + codigo
                 + ", descripcion='" + descripcion + '\''
-                + ", categoria='" + categoria + '\''
-                + ", estado='" + estado + '\''
                 + ", precio=" + precio
                 + '}';
     }
@@ -35,16 +31,13 @@ public class Producto {
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.asignarCodigo(codigo);
         //this.codigo = codigo;
-        this.estado = estado;
         this.descripcion = descripcion;
-        this.categoria = categoria;
         this.precio = precio;
     }
 
     public Producto(int c, String d, String cat, float p) {
         codigo = c;
         descripcion = d;
-        categoria = cat;
         precio = p;
     }
 
@@ -71,22 +64,6 @@ public class Producto {
         if (d != null && !d.isBlank()) {
             descripcion = d;
         }
-    }
-
-    public String verCategoria() {
-        return categoria;
-    }
-
-    public void asignarCategoria(String c) {
-        categoria = c;
-    }
-
-    public String verEstado() {
-        return estado;
-    }
-
-    public void asignarEstado(String e) {
-        estado = e;
     }
 
     public float verPrecio() {
