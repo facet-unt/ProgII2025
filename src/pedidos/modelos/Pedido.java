@@ -6,6 +6,7 @@ package pedidos.modelos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import usuarios.modelos.Cliente;
 
 /**
  *
@@ -15,29 +16,48 @@ public class Pedido {
 
     private int numero;
     private LocalDateTime fechaYHora;
-    private Estado estado;
+    private Estados estado;
+    private Cliente cliente;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYHora,Estados estado, Cliente cliente) { 
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.estado = estado;
+        this.cliente = cliente;
     }
 
-    public void verNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public void asignarFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
-    }
-
-    public int verNumero() {
+    public int asignarNumero() {
         return numero;
     }
 
     public LocalDateTime asignarFechaYHora() {
         return fechaYHora;
     }
+
+    public Estados asignarEstado() {
+        return estado;
+    }
+
+    public Cliente asignarCliente() {
+        return cliente;
+    }
+
+    public void verNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void verFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYHora = fechaYHora;
+    }
+
+    public void verEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public void verCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 
     public void mostrar() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -46,7 +66,7 @@ public class Pedido {
         System.out.println("Nro: " + this.numero);
         System.out.println("Fecha: " + this.fechaYHora.format(dateFormatter) + " Hora: " + this.fechaYHora.format(timeFormatter));
 
-        System.out.println("Cliente: ");
+        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
         System.out.println("Estado: " + this.estado);
 
     }
