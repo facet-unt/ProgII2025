@@ -2,6 +2,8 @@ package productos.modelos;
 
 
 public class Producto {
+
+
     private int codigo;
     private String descripcion;
     private String categoria;
