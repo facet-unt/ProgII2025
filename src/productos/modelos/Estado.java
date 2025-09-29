@@ -4,12 +4,15 @@
  */
 package productos.modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author estudiante
  */
 public enum Estado {
-    DISPONIBLE("Disponible"), NO_DISPONIBLE("No Disponible");                  
+    DISPONIBLE("Disponible"), 
+    NO_DISPONIBLE("No Disponible");                  
     
     private String valor;
 
@@ -21,5 +24,6 @@ public enum Estado {
     public String toString(){
         return this.valor;
     }
+    private ArrayList<Producto> productos = new ArrayList<>();
     
 }

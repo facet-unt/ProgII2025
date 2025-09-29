@@ -4,21 +4,26 @@
  */
 package productos.modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author estudiante
  */
 public enum Categoria {
-    ENTRADA("Entrada"), PLATO_PRINCIPAL("Plato Principal"),POSTRE("Postre");
+    ENTRADA("Entrada"), 
+    PLATO_PRINCIPAL("Plato Principal"),
+    POSTRE("Postre");
     
     private String valor;
-
+    
     private Categoria(String valor) {
         this.valor = valor;
     }
     
+    @Override
     public String toString(){
         return this.valor;
     }
-    
+    private ArrayList<Producto> productos = new ArrayList<>();
 }

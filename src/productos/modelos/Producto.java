@@ -9,8 +9,8 @@ public class Producto {
 
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
     private float precio;
 
 
@@ -34,30 +34,21 @@ public class Producto {
                 '}';
     }
     
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.asignarCodigo(codigo);
-        //this.codigo = codigo;
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
         this.estado = estado;        
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
     }
     
-    public Producto(int c, String d, String cat, float p) {
+    public Producto(int c, String d, Categoria categoria, float p) {
         codigo = c;
         descripcion = d;
-        categoria = cat;
+        this.categoria = categoria;
         precio = p;
     }
     
-    public Producto(int c, String d, float p) {
-        this(c, d, "Plato principal", p);        
-    }
-
-    
-
-   
-
     public int verCodigo() {
         return codigo;
     }
@@ -76,20 +67,20 @@ public class Producto {
             descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
-        categoria = c;
+    public void asignarCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
-        estado = e;
+    public void asignarEstado(Estado estado) {
+        this.estado = estado ;
     }
 
     public float verPrecio() {
@@ -100,5 +91,6 @@ public class Producto {
         precio = p;
     }
     
+     
     
 }
