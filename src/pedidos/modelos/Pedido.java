@@ -47,7 +47,6 @@ public class Pedido {
         this.estado = estado;
         this.unCliente = unCliente;
         this.unPedido = unPedido;
-        
     }
     
     /* Agregado de metodos get/set */

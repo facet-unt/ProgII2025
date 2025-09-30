@@ -23,6 +23,8 @@ public class ControladorPrincipal {
         ArrayList<Encargado> unEncargado = new ArrayList();
         ArrayList<Pedido> listaPedidos = new ArrayList<>(); /* Nuevo arraylist */
         ArrayList<ProductoDelPedido> pido1 = new ArrayList<>(); 
+        ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
+        ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
         
         //Creacion de cada objeto y asignado de valores //
         System.out.println("PRODUCTOS");
@@ -47,8 +49,8 @@ public class ControladorPrincipal {
 
         /* Creacion de nuevos objetos de tipo Pedido */
         Pedido pedido1 = new Pedido(1, LocalDateTime.now(), Estado.SOLICITADO, cliente1, pido1);
-        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, cliente2,pido1);
-        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, cliente3, pido1);
+        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, cliente2,pido2);
+        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, cliente3, pido3);
         
         
 
@@ -77,6 +79,12 @@ public class ControladorPrincipal {
         //Agregacion de objeto del tipo ProductoDelPedido al arraylist
         pido1.add(new ProductoDelPedido(1, producto1));
         pido1.add(new ProductoDelPedido(2, producto2));
+        
+        pido2.add(new ProductoDelPedido(5, producto3));
+        pido2.add(new ProductoDelPedido(10, producto2));
+        
+        pido3.add(new ProductoDelPedido(5, producto1));
+        pido3.add(new ProductoDelPedido(2, producto2));
         
         //Asignando valores a los atributos de algunos objetos con metodos
         /*producto1.asignarCodigo(12);
