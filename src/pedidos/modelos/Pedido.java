@@ -15,23 +15,25 @@ public class Pedido {
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
+    private ArrayList<ProductoDelPedido> cantidadProducto;
 
     public void mostrar() {
         System.out.println("Numero: " + obtenerNumero());
         System.out.println("Fecha: " + obtenerFecha() + " Hora: " + obtenerHora());
-        System.out.println("Cliente: " + cliente.verApellido()+", "+cliente.verNombre());
+        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
         System.out.println("Estado: " + estado);
 
     }
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado estado,Cliente cliente ) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Estado estado, Cliente cliente, ArrayList cantidadProducto) {
         ArrayList<Pedido> pedidosCliente = cliente.getPedidos();
         pedidosCliente.add(this);
         cliente.setPedidos(pedidosCliente);
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.estado=estado;
-        this.cliente=cliente;
+        this.estado = estado;
+        this.cliente = cliente;
+        this.cantidadProducto=cantidadProducto;
     }
 
     public int obtenerNumero() {
@@ -61,4 +63,11 @@ public class Pedido {
         return fechaYHora.format(formatoHora);
     }
 
+    public ArrayList<ProductoDelPedido> getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(ArrayList<ProductoDelPedido> cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
 }

@@ -3,6 +3,7 @@ package principal.controladores;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 
@@ -18,7 +19,9 @@ public class ControladorPrincipal {
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        ArrayList<ProductoDelPedido> productoTotal = new ArrayList<>();
 
+        
         //Consulta 1
         Producto prod1 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1200.5f);
 
@@ -62,10 +65,24 @@ public class ControladorPrincipal {
         encargados.add(en1);
         encargados.add(en2);
         encargados.add(en3);
-
-        Pedido ped1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1);
-        Pedido ped2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1);
-
+        
+        
+        Pedido ped1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1,productoTotal);
+        Pedido ped2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1,productoTotal);
+        
+        
+        
+        ProductoDelPedido pdp1=new ProductoDelPedido(1,prod1);
+        ProductoDelPedido pdp2=new ProductoDelPedido(2,prod2);
+        
+        productoTotal.add(pdp1);
+        productoTotal.add(pdp2);
+        
+        for(ProductoDelPedido x:productoTotal){
+            x.mostrar();
+           
+        }
+        
         listaPedidos.add(ped1);
         listaPedidos.add(ped2);
 
