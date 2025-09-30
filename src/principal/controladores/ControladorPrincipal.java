@@ -145,9 +145,9 @@ public class ControladorPrincipal {
         Encargado en2 = new Encargado("Quintero ", "Franco ", "julieta@gmail.com", "f34g6");
         Encargado en3 = new Encargado("Barrios ", "Carlos ", "Carlos@gmail.com", "f345g");
         
-        Pedido ped1 = new Pedido(1, LocalDateTime.now(), c1, pedidos.modelos.Estado.CREADO);
-        Pedido ped2 = new Pedido(2, LocalDateTime.now(), c2, pedidos.modelos.Estado.PROCESANDO);
-        Pedido ped3 = new Pedido(3, LocalDateTime.now(), c3, pedidos.modelos.Estado.ENTREGADO);
+        Pedido ped1 = new Pedido(1, LocalDateTime.now(), c1, pedidos.modelos.Estado.CREADO, new ArrayList<>());
+        Pedido ped2 = new Pedido(2, LocalDateTime.now(), c2, pedidos.modelos.Estado.PROCESANDO, new ArrayList<>());
+        Pedido ped3 = new Pedido(3, LocalDateTime.now(), c3, pedidos.modelos.Estado.ENTREGADO, new ArrayList<>());
 
         listaProductos.add(p1);
         listaProductos.add(p2);

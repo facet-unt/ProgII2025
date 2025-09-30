@@ -6,6 +6,7 @@ package pedidos.modelos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 public class Pedido {
@@ -13,13 +14,17 @@ public class Pedido {
     private LocalDateTime fechaYHora;
     private Cliente cliente;
     private Estado estado;
+    private ArrayList<ProductoDelPedido> listaProductosPedidos;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductos) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.cliente = cliente;
         this.estado = estado;
+        this.listaProductosPedidos = listaProductosPedidos;
     }
+
+  
 
     public int verNumero() {
         return numero;
@@ -62,6 +67,20 @@ public class Pedido {
         System.out.println("Fecha: " + verFecha() + " Hora: " + verHora());
         System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
         System.out.println("Estado: " + estado);
+        System.out.println("Producto \t"  +  "Cantidad");
+        for(ProductoDelPedido Pp :  listaProductosPedidos){
+            System.out.println(Pp);
+        }  
     }
+
+
+    public ArrayList<ProductoDelPedido> verListaProductos() {
+        return listaProductosPedidos;
+    }
+
+    public void asignarListaProductos(ArrayList<ProductoDelPedido> listaProductos) {
+        this.listaProductosPedidos = listaProductosPedidos;
+    }
+    
 
 }
