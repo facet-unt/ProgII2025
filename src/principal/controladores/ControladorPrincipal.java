@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import pedidos.modelos.Estado;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 //import productos.modelos.Estado; Error hay dos enum con el mismo nombre (cambiar alguna¿)
 import productos.modelos.Producto;
@@ -21,7 +22,8 @@ public class ControladorPrincipal {
         ArrayList<Empleado> unEmpleado = new ArrayList();
         ArrayList<Encargado> unEncargado = new ArrayList();
         ArrayList<Pedido> listaPedidos = new ArrayList<>(); /* Nuevo arraylist */
-
+        ArrayList<ProductoDelPedido> pido1 = new ArrayList<>(); 
+        
         //Creacion de cada objeto y asignado de valores //
         System.out.println("PRODUCTOS");
         Producto producto1 = new Producto(0, "Pizza", Categoria.ENTRADA, productos.modelos.Estado.NO_DISPONIBLE, 453.23f);
@@ -44,9 +46,11 @@ public class ControladorPrincipal {
         Encargado encargado3 = new Encargado("lourdes@gmail.com", "233", "Gomez", "Lourdes");
 
         /* Creacion de nuevos objetos de tipo Pedido */
-        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), Estado.SOLICITADO, cliente1);
-        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, cliente2);
-        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, cliente3);
+        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), Estado.SOLICITADO, cliente1, pido1);
+        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, cliente2,pido1);
+        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, cliente3, pido1);
+        
+        
 
         //Cargado de cada objeto en el arraylist
         unProducto.add(producto1);
@@ -69,7 +73,11 @@ public class ControladorPrincipal {
         listaPedidos.add(pedido1);
         listaPedidos.add(pedido2);
         listaPedidos.add(pedido3);
-
+        
+        //Agregacion de objeto del tipo ProductoDelPedido al arraylist
+        pido1.add(new ProductoDelPedido(1, producto1));
+        pido1.add(new ProductoDelPedido(2, producto2));
+        
         //Asignando valores a los atributos de algunos objetos con metodos
         /*producto1.asignarCodigo(12);
        producto1.asignarCodigo(312);

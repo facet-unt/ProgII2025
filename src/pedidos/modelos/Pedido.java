@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 /**
@@ -20,7 +21,7 @@ public class Pedido {
     private LocalDateTime fechaYhora;
     private Estado estado;
     private Cliente unCliente; /*implementacion de asociacion con clase cliente*/
-
+    private ArrayList<ProductoDelPedido> unPedido = new ArrayList<>(); //Asociacion 1 a mucho de Pedido y Productodelpedido
 
     public void mostrar() {
         System.out.println("====================== PEDIDO ==========================");
@@ -32,17 +33,23 @@ public class Pedido {
         System.out.println("Fecha: " + fechaFormateada + " Hora: " + horaFormateada);
         System.out.println("Cliente:" + unCliente);
         System.out.println("Estado:" + estado);
-
+        System.out.println("Producto ====== Cantidad");
+        System.out.println("============================");
+        for(ProductoDelPedido pedido: unPedido)
+        System.out.println(pedido.verUnProducto().verDescripcion() + " ========> " + pedido.verCantidad());   
     }
+    
 
     /* Agregado de constructor */
-    public Pedido(int numero, LocalDateTime fechaYhora, Estado estado, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYhora, Estado estado, Cliente unCliente, ArrayList<ProductoDelPedido> unPedido) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.estado = estado;
         this.unCliente = unCliente;
+        this.unPedido = unPedido;
+        
     }
-
+    
     /* Agregado de metodos get/set */
     public int verNumero() {
         return numero;
@@ -86,4 +93,14 @@ public class Pedido {
     public LocalDate verFecha(){
         return fechaYhora.toLocalDate();
     }
+
+    public ArrayList<ProductoDelPedido> getunPedido() {
+        return unPedido;
+    }
+
+    public void setPedido1(ArrayList<ProductoDelPedido> unPedido) {
+        this.unPedido = unPedido;
+    }
+    
+    
 }
