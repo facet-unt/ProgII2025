@@ -6,6 +6,7 @@ package pedidos.modelos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 public class Pedido {
@@ -17,15 +18,20 @@ public class Pedido {
 
     public void mostrar() {
         System.out.println("Numero: " + obtenerNumero());
-        System.out.println("Fecha: " + obtenerFecha() + "Hora: " + obtenerHora());
-        System.out.println("Cliente: " + cliente);
+        System.out.println("Fecha: " + obtenerFecha() + " Hora: " + obtenerHora());
+        System.out.println("Cliente: " + cliente.verApellido()+", "+cliente.verNombre());
         System.out.println("Estado: " + estado);
 
     }
 
-    public Pedido(int numero, LocalDateTime fechaYHora) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Estado estado,Cliente cliente ) {
+        ArrayList<Pedido> pedidosCliente = cliente.getPedidos();
+        pedidosCliente.add(this);
+        cliente.setPedidos(pedidosCliente);
         this.numero = numero;
         this.fechaYHora = fechaYHora;
+        this.estado=estado;
+        this.cliente=cliente;
     }
 
     public int obtenerNumero() {

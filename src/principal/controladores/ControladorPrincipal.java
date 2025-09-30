@@ -1,8 +1,11 @@
 package principal.controladores;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import pedidos.modelos.Pedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
+
 import productos.modelos.Producto;
 import usuarios.modelos.*;
 
@@ -14,7 +17,9 @@ public class ControladorPrincipal {
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
 
+        //Consulta 1
         Producto prod1 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1200.5f);
 
         Producto prod2 = new Producto(2, "Hamburguesa", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 25.0f);
@@ -58,54 +63,63 @@ public class ControladorPrincipal {
         encargados.add(en2);
         encargados.add(en3);
 
-        // Mostrar contenido inicial
-        System.out.println("---- Productos ----");
-        for (Producto p : productos) {
-            p.mostrar();
+        Pedido ped1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1);
+        Pedido ped2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1);
+
+        listaPedidos.add(ped1);
+        listaPedidos.add(ped2);
+
+        System.out.println("---- Pedidos ----");
+        for (Pedido pe : listaPedidos) {
+            pe.mostrar();
         }
 
+//        // Mostrar contenido inicial
+//        System.out.println("---- Productos ----");
+//        for (Producto p : productos) {
+//            p.mostrar();
+//        }
         System.out.println("---- Clientes ----");
         for (Cliente c : clientes) {
             c.mostrar();
         }
-
-        System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) {
-            e.mostrar();
-        }
-
-        System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) {
-            en.mostrar();
-        }
-
-        //Cambio de algunas variables
-        prod1.asignarCodigo(4);
-        cli2.asignarClave("12345");
-        emp3.asignarClave("45678");
-        en2.asignarNombre("Mauro");
-
-        System.out.println("----CON CAMBIOS----");
-        //Mostrar Cambios
-        System.out.println("---- Productos ----");
-        for (Producto p : productos) {
-            p.mostrar();
-        }
-
-        System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) {
-            c.mostrar();
-        }
-
-        System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) {
-            e.mostrar();
-        }
-
-        System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) {
-            en.mostrar();
-        }
-
+//
+//        System.out.println("---- Empleados ----");
+//        for (Empleado e : empleados) {
+//            e.mostrar();
+//        }
+//
+//        System.out.println("---- Encargados ----");
+//        for (Encargado en : encargados) {
+//            en.mostrar();
+//        }
+//
+//        //Cambio de algunas variables
+//        prod1.asignarCodigo(4);
+//        cli2.asignarClave("12345");
+//        emp3.asignarClave("45678");
+//        en2.asignarNombre("Mauro");
+//
+//        System.out.println("----CON CAMBIOS----");
+//        //Mostrar Cambios
+//        System.out.println("---- Productos ----");
+//        for (Producto p : productos) {
+//            p.mostrar();
+//        }
+//
+//        System.out.println("---- Clientes ----");
+//        for (Cliente c : clientes) {
+//            c.mostrar();
+//        }
+//
+//        System.out.println("---- Empleados ----");
+//        for (Empleado e : empleados) {
+//            e.mostrar();
+//        }
+//
+//        System.out.println("---- Encargados ----");
+//        for (Encargado en : encargados) {
+//            en.mostrar();
+//        }
     }
 }

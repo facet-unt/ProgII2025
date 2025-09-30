@@ -9,29 +9,39 @@ import pedidos.modelos.Pedido;
 
 public class Cliente {
 
-    private ArrayList<Pedido> pedido;
+    private ArrayList<Pedido> pedidos=new ArrayList<>();
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
 
-    public void mostrar(){
-      
-        System.out.println("Nombre: "+ verNombre());
-        System.out.println("Apellido: "+ verApellido());
-        System.out.println("Correo: "+ verCorreo());
-        System.out.println("Clave: "+ verClave());
-        
-        
-    }
-    
-    
     public Cliente(String c, String cl, String a, String n) {
         correo = c;
         clave = cl;
         apellido = a;
         nombre = n;
     }
+    
+    public void mostrar(){
+      
+        System.out.println("Nombre: "+ verNombre());
+        System.out.println("Apellido: "+ verApellido());
+        System.out.println("Correo: "+ verCorreo());
+        System.out.println("Clave: "+ verClave());
+        for(Pedido p: pedidos){
+            System.out.println("pedido numero:"+ p.obtenerNumero());
+        }
+    }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
+    
 
 
     public String verCorreo() {
