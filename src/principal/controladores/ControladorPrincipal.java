@@ -7,6 +7,7 @@ import productos.modelos.Producto;
 import usuarios.modelos.*;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.EstadoPedido;
+import pedidos.modelos.ProductoDelPedido;
 
 
 public class ControladorPrincipal {
@@ -90,6 +91,7 @@ public class ControladorPrincipal {
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<ProductoDelPedido> cantidad = new ArrayList<>();
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");

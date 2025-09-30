@@ -85,7 +85,7 @@ public class VentanaAMEmpleado extends JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 293, Short.MAX_VALUE)
+                        .addGap(0, 294, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar))
@@ -137,18 +137,19 @@ public class VentanaAMEmpleado extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         String correo = this.txtCorreo.getText().trim();
-        String clave = new String(this.passClave.getPassword());
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
         Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
         this.empleados.add(unEmpleado);
         
-        System.out.println("EMPLEADOS");
-        System.out.println("\n==================");
-        for(Empleado emp : this.empleados)
-            emp.mostrar();
+        System.out.println("empleados");
+        System.out.println("========");
+        for(Empleado c : this.empleados) {
+            c.mostrar();
+            System.out.println();
     }//GEN-LAST:event_btnGuardarClic
-
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
