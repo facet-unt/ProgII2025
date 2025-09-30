@@ -39,9 +39,9 @@ public class Pedido {
         System.out.println("Fecha: "+fechaEnCadena+"\tHora: "+horaEnCadena);
         System.out.println("Cliente: "+unCliente.verApellido()+", "+unCliente.verNombre());
         System.out.println("Estado: "+estado);
-        System.out.println("\tProducto\tCantidad\n======================");
+        System.out.println("\tProducto\tCantidad\n\t===========================");
         for(ProductoDelPedido p: listaProductosDelPedido)
-            System.out.println("Producto "+p.verUnProducto().verCodigo()+"\t"+p.verCantidad());
+            System.out.println("\tProducto "+p.verUnProducto().verCodigo()+"\t"+p.verCantidad());
     }
     
     public int verNumero() {
