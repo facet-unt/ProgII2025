@@ -72,10 +72,15 @@ public class Pedido {
     //OTROS METODOS
    //MOSTRAR
     public void mostrar(){
-        System.out.println("Nro:" + numero);
-        System.out.println("Fecha:" + fechaYHora.toLocalDate()+ "Hora:" + fechaYHora.toLocalTime());
-        System.out.println("Cliente:" + unCliente.verApellido() + ", " + unCliente.verNombre());
-        System.out.println("Estado:" + unEstado);
+        System.out.println("Nro: " + numero);
+        System.out.println("Fecha: " + fechaYHora.toLocalDate()+ "\tHora:" + fechaYHora.toLocalTime());
+        System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
+        System.out.println("Estado: " + unEstado);
+        System.out.println("\t\t Producto\t\t Cantidad");
+        System.out.println("\t\t========================================");
+        /*for (ProductoDelPedido e: pedidosDelProducto)
+            System.out.println("\t\t"+e.unProducto.verDescripcion()+"\t\t"+e.verCantidad);*/
+        
     }
 
    
