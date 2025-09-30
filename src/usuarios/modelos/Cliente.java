@@ -16,7 +16,7 @@ public class Cliente {
     private String clave;
     private String apellido;
     private String nombre;
-    private ArrayList<Pedido> pedidos;
+    private ArrayList<Pedido> pedidos= new ArrayList<>();
 
     
     public void mostrar() {
@@ -38,6 +38,7 @@ public class Cliente {
         clave = cl;
         apellido = a;
         nombre = n;
+ 
     }
 
     public String verCorreo() {

@@ -27,6 +27,7 @@ public class Pedido {
         this.unCliente = unCliente;
         this.unEstado = unEstado;
         
+        this.unCliente.asignarPedido(this);
 
     }
     

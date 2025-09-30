@@ -85,10 +85,10 @@ public class ControladorPrincipal {
         listaClientes.add(cliente2);
         listaClientes.add(cliente3);
         
-        /*System.out.println("CLIENTES");
+
         for (Cliente e: listaClientes)
            e.mostrar();
-        System.out.println("#################### ");*/
+
         
         //SEGUNDA PARTE
         System.out.println("#################### ");
