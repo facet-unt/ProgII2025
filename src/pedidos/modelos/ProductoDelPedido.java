@@ -18,19 +18,19 @@ public class ProductoDelPedido {
         this.producto = producto;
     }
 
-    public int getCantidad() {
+    public int verCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void asignarCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Producto getProducto() {
+    public Producto verProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void asignarProducto(Producto producto) {
         this.producto = producto;
     }
     
