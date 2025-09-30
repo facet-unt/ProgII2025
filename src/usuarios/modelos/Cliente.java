@@ -4,6 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author lazar
@@ -13,6 +16,7 @@ public class Cliente {
     private String clave;
     private String apellido;
     private String nombre;
+    private ArrayList<Pedido> listaPedidos = new ArrayList<>();
     
     public Cliente(String c,String cl,String a,String n){
         correo=c;
