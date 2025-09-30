@@ -14,6 +14,7 @@ import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 
 
 public class ControladorPrincipal {
@@ -24,6 +25,7 @@ public class ControladorPrincipal {
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        ArrayList<ProductoDelPedido> listaProductosdelPedido = new ArrayList<>();
 
         // Productos
         Producto prod1 = new Producto(1, "Pizza", 1222.6f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE);
@@ -85,10 +87,15 @@ public class ControladorPrincipal {
         //Segunda PARTE
         System.out.println("\n#################### ");
         System.out.println("PEDIDOS");
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cli1); 
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), clientes.get(1)); 
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cli2); 
         
+        listaProductosdelPedido.add(new ProductoDelPedido(prod2,2));
+        listaProductosdelPedido.add(new ProductoDelPedido(prod1,1));
+        listaProductosdelPedido.add(new ProductoDelPedido(prod3,5));
+        
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cli1, listaProductosdelPedido); 
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), clientes.get(1),listaProductosdelPedido); 
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cli2,listaProductosdelPedido); 
+               
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);
         listaPedidos.add(unPedido3);

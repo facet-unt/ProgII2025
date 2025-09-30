@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 public class Pedido {
@@ -19,35 +20,37 @@ public class Pedido {
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
+    private ArrayList<ProductoDelPedido> listaproductosdelpedido;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente,ArrayList listaproductosdelpedido) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.estado = Estado.CREADO;
         this.cliente = cliente;
+        this.listaproductosdelpedido= listaproductosdelpedido;
     }
 
-    public int getNumero() {
+    public int verNumero() {
         return numero;
     }
     
-    public LocalDate getFecha() {
+    public LocalDate verFecha() {
         return this.fechaYHora.toLocalDate();
     }
     
-    public LocalTime getHora() {
+    public LocalTime verHora() {
         return this.fechaYHora.toLocalTime();
     }
 
-    public Estado getEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public Cliente getCliente() {
+    public Cliente verCliente() {
         return cliente;
     }
     
@@ -62,5 +65,11 @@ public class Pedido {
         System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
         System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
         System.out.println("Estado: " + this.estado);
+        
+        System.out.println("\t\tProducto "+ "\t\tCantidad");
+        System.out.println("\t\t=================================");
+        for(ProductoDelPedido p : listaproductosdelpedido)
+            p.mostrar();
+        
     } 
 }
