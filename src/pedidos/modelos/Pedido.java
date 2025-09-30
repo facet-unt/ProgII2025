@@ -21,9 +21,9 @@ public class Pedido {
     private Cliente cliente;
     private ArrayList<ProductoDelPedido> productoDelPedido;
 
-    public Pedido(ArrayList<ProductoDelPedido> productoDelPedido) {
-        this.productoDelPedido = productoDelPedido;
-    }
+//    public Pedido(int par, LocalDateTime now, ArrayList<ProductoDelPedido> productoDelPedido, Cliente cliente1) {
+//        this.productoDelPedido = productoDelPedido;
+//    }
 
     public ArrayList<ProductoDelPedido> verProductoDelPedido() {
         return productoDelPedido;
@@ -34,11 +34,12 @@ public class Pedido {
     }
     
     
-    public Pedido(int numero, LocalDateTime fechaYHora,Estados estado, Cliente cliente) { 
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> productoDelPedido, Cliente cliente, Estados estado) { 
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.estado = estado;
         this.cliente = cliente;
+        this.productoDelPedido = productoDelPedido;
     }
     
     public int asignarNumero() {
@@ -86,8 +87,9 @@ public class Pedido {
         
         System.out.println("===============================");
         for(ProductoDelPedido producto : productoDelPedido){
-        System.out.println("Producto " + producto.verProducto());
+        System.out.println("Producto " + producto.verProducto().verDescripcion());                                                                   
         System.out.println("Cantidad " + producto.verCantidad());
+
         }
 
     }
