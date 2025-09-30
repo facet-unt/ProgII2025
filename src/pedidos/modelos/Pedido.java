@@ -5,6 +5,7 @@
 package pedidos.modelos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 /**
@@ -17,23 +18,19 @@ public class Pedido {
    private LocalDateTime fechaYHora;
    private Cliente unCliente;
    private Estado unEstado;
+   private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
    
    
    //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente, Estado unEstado) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
         this.unEstado = unEstado;
-        
         this.unCliente.asignarPedido(this);
+        this.productoPedido = unProductoDelPedido;
 
-    }
-    
-    
-    public Pedido(int numero,LocalDateTime fechaYHora, Cliente unCliente){
-        this(numero,fechaYHora,unCliente,Estado.CREADO);
     }
     
     
@@ -58,6 +55,16 @@ public class Pedido {
     public void asignarFechaYHora(LocalDateTime fechaYHora) {
         this.fechaYHora = fechaYHora;
     }
+
+    public ArrayList<ProductoDelPedido> verProductoPedido() {
+        return productoPedido;
+    }
+
+    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
+        this.productoPedido = productoPedido;
+    }
+    
+    
     
     //METODS toString
 
