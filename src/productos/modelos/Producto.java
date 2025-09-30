@@ -68,5 +68,5 @@ public class Producto {
 
     public void asignarPrecio(float precio) {
         this.precio = precio;
-    }
+    }  
 }
