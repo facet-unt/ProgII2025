@@ -7,6 +7,7 @@ package pedidos.modelos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 /**
@@ -18,6 +19,7 @@ public class Pedido {
     private LocalDateTime fechayHora;
     private Estado estado;
     private Cliente cliente;
+    private ArrayList<ProductoDelPedido> listaProductos = new ArrayList<>();
     
     public void mostrar(){
         System.out.println("Nro:" + numero);
