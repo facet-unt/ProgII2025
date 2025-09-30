@@ -33,6 +33,12 @@ public class Pedido {
 
     }
     
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente, ArrayList<ProductoDelPedido> unProductoDelPedido) {
+        this(numero,fechaYHora,unCliente,Estado.CREADO,unProductoDelPedido);
+    }
+    
+    
+    
     
     
 
@@ -85,8 +91,8 @@ public class Pedido {
         System.out.println("Estado: " + unEstado);
         System.out.println("\t\t Producto\t\t Cantidad");
         System.out.println("\t\t========================================");
-        /*for (ProductoDelPedido e: pedidosDelProducto)
-            System.out.println("\t\t"+e.unProducto.verDescripcion()+"\t\t"+e.verCantidad);*/
+        for (ProductoDelPedido e: productoPedido)
+            System.out.println("\t\t"+e.verUnProducto().verDescripcion()+"\t\t"+e.verCantidad());
         
     }
 

@@ -23,6 +23,16 @@ public enum Estado {
         return this.valor;
     }
 
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
+    
+    
+
     
     
 
