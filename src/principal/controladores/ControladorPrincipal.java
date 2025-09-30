@@ -16,7 +16,7 @@ public class ControladorPrincipal {
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
-        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        //ArrayList<Pedido> listaPedidos = new ArrayList<>();
         
         /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
         Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
@@ -88,7 +88,7 @@ public class ControladorPrincipal {
             e.mostrar();
         
         //SEGUNDA PARTE
-        System.out.println("#################### ");
+        /*System.out.println("#################### ");
         System.out.println("PEDIDOS");
         Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1); 
         Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(1)); 
@@ -100,6 +100,6 @@ public class ControladorPrincipal {
         
         for (Pedido p: listaPedidos)
             p.mostrar();
-        System.out.println("#################### ");
+        System.out.println("#################### ");*/
     }
 }
