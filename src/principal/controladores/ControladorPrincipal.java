@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package principal.controladores;
 
+package principal.controladores;
 
 // Paquetes importados:
 
@@ -13,19 +9,17 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
 
-        ArrayList<Producto> productos = new ArrayList<>();
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Empleado> empleados = new ArrayList<>();
-        ArrayList<Encargado> encargados = new ArrayList<>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
-        ArrayList<ProductoDelPedido> listaProductosdelPedido = new ArrayList<>();
 
         // Productos
         Producto prod1 = new Producto(1, "Pizza", 1222.6f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE);
@@ -34,9 +28,9 @@ public class ControladorPrincipal {
         
         Producto prod3 = new Producto(3, "Helado", 122.6f, Categoria.POSTRE, Estado.NODISPONIBLE);
       
-        productos.add(prod1);
-        productos.add(prod2);
-        productos.add(prod3);
+        listaProductos.add(prod1);
+        listaProductos.add(prod2);
+        listaProductos.add(prod3);
 
         // Clientes
         Cliente cli1 = new Cliente("juan@mail.com", "1234", "Perez", "Juan");
@@ -45,9 +39,9 @@ public class ControladorPrincipal {
 
         Cliente cli3 = new Cliente("mario@mail.com", "abcd", "Lopez", "Mario");
 
-        clientes.add(cli1);
-        clientes.add(cli2);
-        clientes.add(cli3);
+        listaClientes.add(cli1);
+        listaClientes.add(cli2);
+        listaClientes.add(cli3);
 
         // Empleados
         Empleado emp1 = new Empleado("emp1@mail.com", "pass1", "Rodriguez", "Carlos");
@@ -56,9 +50,9 @@ public class ControladorPrincipal {
         
         Empleado emp3 = new Empleado("emp3@mail.com", "pass3", "Gomez", "Pedro");
         
-        empleados.add(emp1);
-        empleados.add(emp2);
-        empleados.add(emp3);
+        listaEmpleados.add(emp1);
+        listaEmpleados.add(emp2);
+        listaEmpleados.add(emp3);
 
         // Encargados
         Encargado en1 = new Encargado("enc1@mail.com", "key1", "Sanchez", "Laura");
@@ -67,41 +61,43 @@ public class ControladorPrincipal {
       
         Encargado en3 = new Encargado("enc3@mail.com", "key3", "Ruiz", "Marta");
        
-        encargados.add(en1);
-        encargados.add(en2);
-        encargados.add(en3);
+        listaEncargados.add(en1);
+        listaEncargados.add(en2);
+        listaEncargados.add(en3);
 
         // Mostrar contenido inicial
         System.out.println("---- Productos ----");
-        for (Producto p : productos) p.mostrar();
+        for (Producto p : listaProductos) p.mostrar();
 
         System.out.println("---- Clientes ----");
-        for (Cliente c : clientes) c.mostrar();
+        for (Cliente c : listaClientes) c.mostrar();
 
         System.out.println("---- Empleados ----");
-        for (Empleado e : empleados) e.mostrar();
+        for (Empleado e : listaEmpleados) e.mostrar();
 
         System.out.println("---- Encargados ----");
-        for (Encargado en : encargados) en.mostrar();
+        for (Encargado en : listaEncargados) en.mostrar();
         
         //Segunda PARTE
         System.out.println("\n#################### ");
         System.out.println("PEDIDOS");
         
-        listaProductosdelPedido.add(new ProductoDelPedido(prod2,2));
-        listaProductosdelPedido.add(new ProductoDelPedido(prod1,1));
-        listaProductosdelPedido.add(new ProductoDelPedido(prod3,5));
-        
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cli1, listaProductosdelPedido); 
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), clientes.get(1),listaProductosdelPedido); 
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cli2,listaProductosdelPedido); 
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cli1, pedidos.modelos.Estado.CREADO); 
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(2), pedidos.modelos.Estado.SOLICITADO); 
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cli2, pedidos.modelos.Estado.ENTREGADO); 
                
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);
         listaPedidos.add(unPedido3);
         
+        unPedido1.agregarProductodelPedido(prod3, 6);
+        unPedido2.agregarProductodelPedido(prod1, 7);
+        unPedido3.agregarProductodelPedido(prod2, 1);
+        unPedido1.agregarProductodelPedido(prod1, 2);
+        
+        
         for (Pedido p: listaPedidos)
             p.mostrar();
-        System.out.println("#################### ");
+        
     }
 }

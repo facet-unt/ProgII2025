@@ -4,9 +4,7 @@
  */
 package pedidos.modelos;
 
-import java.util.ArrayList;
 import productos.modelos.Producto;
-
 /**
  *
  * @author Esteban
@@ -15,9 +13,9 @@ public class ProductoDelPedido {
     private int cantidad;
     private Producto producto;
 
-    public ProductoDelPedido(Producto producto,int cantidad) {
+    public ProductoDelPedido(Producto producto, int cantidad) {
         this.cantidad = cantidad;
-        this.producto= producto;
+        this.producto = producto;
     }
 
     public int verCantidad() {
@@ -37,10 +35,7 @@ public class ProductoDelPedido {
     }
 
     public void mostrar(){
-        System.out.println("\t\t"+verProducto().verDescripcion()+"\t\t\t"+verCantidad());
+        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
     }
     
-    
-    
-   
 }

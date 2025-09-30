@@ -14,20 +14,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import usuarios.modelos.Cliente;
+import productos.modelos.Producto;
 
 public class Pedido {
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> listaproductosdelpedido;
+    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente,ArrayList listaproductosdelpedido) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.estado = Estado.CREADO;
         this.cliente = cliente;
-        this.listaproductosdelpedido= listaproductosdelpedido;
+        this.listaProductosdelPedido = new ArrayList<>();
+        this.estado = estado;
     }
 
     public int verNumero() {
@@ -53,6 +54,11 @@ public class Pedido {
     public Cliente verCliente() {
         return cliente;
     }
+
+    public void agregarProductodelPedido(Producto produc, int cantidad) {
+        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
+        this.listaProductosdelPedido.add(nuevoProducto);
+    }
     
     public void mostrar(){
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -66,10 +72,10 @@ public class Pedido {
         System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
         System.out.println("Estado: " + this.estado);
         
-        System.out.println("\t\tProducto "+ "\t\tCantidad");
+        System.out.println("\t\tProducto " + "\t\tCantidad");
         System.out.println("\t\t=================================");
-        for(ProductoDelPedido p : listaproductosdelpedido)
+        for(ProductoDelPedido p : listaProductosdelPedido)
             p.mostrar();
-        
+        System.out.println("#################### ");
     } 
 }
