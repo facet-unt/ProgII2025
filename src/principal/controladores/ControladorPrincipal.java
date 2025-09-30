@@ -5,6 +5,8 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.EstadoPedido;
 
 
 public class ControladorPrincipal {
@@ -86,7 +88,8 @@ public class ControladorPrincipal {
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
-        
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
@@ -139,6 +142,24 @@ public class ControladorPrincipal {
             enc.mostrar();
         }
         
+        Cliente c1 = new Cliente("juan@mail.com", "1234", "Toledo", "Juan");
+        Cliente c2 = new Cliente("ana@mail.com", "5678", "Pérez", "Ana");
         
+        Pedido pedido1 = new Pedido(1, c1, EstadoPedido.CREADO);
+        Pedido pedido2 = new Pedido(2, c2, EstadoPedido.PROCESANDO);
+
+
+        c1.agregarPedido(pedido1);
+        c2.agregarPedido(pedido2);
+
+        listaClientes.add(c1);
+        listaClientes.add(c2);
+        
+        listaPedidos.add(pedido1);
+        listaPedidos.add(pedido2);
+        
+          for (Cliente c : listaClientes) {
+            c.mostrar();
+        }
     }
 }
