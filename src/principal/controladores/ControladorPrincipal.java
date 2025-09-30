@@ -1,6 +1,8 @@
 package principal.controladores;
 import usuarios.modelos.Cliente;
 import java.util.ArrayList;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
@@ -15,9 +17,10 @@ public class ControladorPrincipal {
         
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
-        Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1666.8f);
-        Producto p2= new Producto(2, "Producto2", "Postre", "Disponible", 850.8f);
-        Producto p3 = new Producto(3, "Producto3", "Plato Principal", "No Disponible", 1050.0f);
+        Producto p1 = new Producto(1, "Producto1", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1666.8f);
+        Producto p2;
+        p2 = new Producto(2, "Producto2", Categoria.POSTRE, Estado.DISPONIBLE, 850.8f);
+        Producto p3 = new Producto(3, "Producto3", Categoria.PLATOPRINCIPAL, Estado.NO_DISPONIBLE, 1050.0f);
         
         listaProductos.add(p1);
         listaProductos.add(p2);
