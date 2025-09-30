@@ -50,15 +50,11 @@ public class ControladorPrincipal {
         System.out.println("PRODUCTOS");
         Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
         Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-        Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
+        Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
         
         Cliente c1 = new Cliente("Cagna ", "Pedro ", "pedri@gmail.com", "5656", new ArrayList<>());
         Cliente c2 = new Cliente("Toledo ", "Olivia ", "olivia@gmail.com", "ht5", new ArrayList<>());
         Cliente c3 = new Cliente("Sanchez ", "Mariana ", "Mariana@gmail.com", "j6e", new ArrayList<>());
-        
-        Empleado e1 = new Empleado("Martinez ", "Juan ", "juan@gmail.com", "h566");
-        Empleado e2 = new Empleado("Paz ", "Lucia ", "Lucia@gmail.com", "h566");
-        Empleado e3 = new Empleado("Alvarez ", "Martin ", "Martin@gmail.com", "h566");
        
         Encargado en1 = new Encargado("Rodriguez ", "Leandro ", "Leandro@gmail.com", "j67r");
         Encargado en2 = new Encargado("Quintero ", "Franco ", "julieta@gmail.com", "f34g6");
@@ -84,7 +80,6 @@ public class ControladorPrincipal {
         listaEncargados.add(en2);
         listaEncargados.add(en3);
         
-        ArrayList<Pedido> listaPedidos = new ArrayList<>();
         listaPedidos.add(ped1);
         listaPedidos.add(ped2);
         listaPedidos.add(ped3);
@@ -98,7 +93,6 @@ public class ControladorPrincipal {
         for (Producto p: listaProductos)
             System.out.println(p);
 
-        
         System.out.println("\n==Modificar un cliente==");
         listaClientes.get(0).asignarCorreo("nuevoCorreo@gmail.com");
         System.out.println("Correo actualizado: " + listaClientes.get(0).verCorreo());
