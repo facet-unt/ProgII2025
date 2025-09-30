@@ -12,6 +12,14 @@ public enum Estado {
     DISPONIBLE ("Disponible"),
     NO_DISPONIBLE ("No disponible");
 
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
+   
 
     private String valor;
     

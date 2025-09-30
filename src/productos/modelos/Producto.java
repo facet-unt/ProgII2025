@@ -18,8 +18,8 @@ public class Producto {
     public void mostrar() {
         System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + unaCategoria);
-        System.out.println("Estado: " + unEstado);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
         System.out.println("Precio: " + precio);
     }
 
@@ -28,8 +28,8 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + unaCategoria + '\'' +
-                ", estado='" + unEstado + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
                 ", precio=" + precio +
                 '}';
     }

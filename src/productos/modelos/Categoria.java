@@ -13,6 +13,15 @@ public enum Categoria {
     PLATO_PRINCIPAL ("Plato principal"),
     POSTRE ("Postre");
 
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
+    
+    
 
     private String valor;
 
