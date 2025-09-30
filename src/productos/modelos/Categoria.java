@@ -4,8 +4,6 @@
  */
 package productos.modelos;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author estudiante
@@ -25,5 +23,4 @@ public enum Categoria {
     public String toString(){
         return this.valor;
     }
-    private ArrayList<Producto> productos = new ArrayList<>();
 }
