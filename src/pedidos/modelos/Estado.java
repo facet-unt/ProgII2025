@@ -9,7 +9,7 @@ package pedidos.modelos;
  * @author salut
  */
 public enum Estado {
-    CREADO("Creado"),
+    CREANDO("Creando"),
     SOLICITADO("Solicitado"),
     PROCESANDO("Procesando"),
     ENTREGADO("Entregado");

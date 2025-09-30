@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 /**
@@ -19,12 +20,14 @@ public class Pedido {
     private LocalDateTime fechaYhora;
     private Cliente unCliente;
     private Estado estado;
+    private ArrayList<ProductoDelPedido> listaProductosDelPedido = new ArrayList<>();
 
-    public Pedido(int numero, LocalDateTime fechaYhora, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYhora, Cliente unCliente, ArrayList<ProductoDelPedido> listaProductosDelPedido) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.unCliente = unCliente;
-        this.estado = Estado.CREADO;
+        this.estado = Estado.CREANDO;
+        this.listaProductosDelPedido = listaProductosDelPedido;
     }
     
     public void mostrar(){
@@ -36,6 +39,9 @@ public class Pedido {
         System.out.println("Fecha: "+fechaEnCadena+"\tHora: "+horaEnCadena);
         System.out.println("Cliente: "+unCliente.verApellido()+", "+unCliente.verNombre());
         System.out.println("Estado: "+estado);
+        System.out.println("\tProducto\tCantidad\n======================");
+        for(ProductoDelPedido p: listaProductosDelPedido)
+            System.out.println("Producto "+p.verUnProducto().verCodigo()+"\t"+p.verCantidad());
     }
     
     public int verNumero() {
@@ -74,5 +80,13 @@ public class Pedido {
 
     public void asignarEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public ArrayList<ProductoDelPedido> verListaProductos() {
+        return listaProductosDelPedido;
+    }
+
+    public void asignarListaProductos(ArrayList<ProductoDelPedido> listaProductosDelPedido) {
+        this.listaProductosDelPedido = listaProductosDelPedido;
     }
 }
