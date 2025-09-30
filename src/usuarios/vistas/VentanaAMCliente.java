@@ -140,7 +140,7 @@ public class VentanaAMCliente extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        Cliente unCliente = new Cliente(apellido, nombre, correo, clave, new ArrayList<>());
         this.clientes.add(unCliente);
         
         System.out.println("Clientes");
@@ -150,7 +150,6 @@ public class VentanaAMCliente extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

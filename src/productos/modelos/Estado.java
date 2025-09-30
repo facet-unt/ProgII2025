@@ -4,23 +4,19 @@
  */
 package productos.modelos;
 
-/**
- *
- * @author HP Casa
- */
 public enum Estado {
-    DISPONIBLE("Disponible"),
+    DISPONIBLE ("Disponible"),
     NODISPONIBLE("No Disponible");
     
-     private String valor;
+    private String valor;
     
-    private Estado(String valor){
+    private Estado (String valor){
         this.valor = valor;
-}
-
-    @Override
-    public String toString() {
-        return "Estado{" + "valor=" + valor + '}';
     }
     
+    @Override
+    public String toString() {
+        return this.valor;
+    }
 }
+

@@ -152,7 +152,6 @@ public class VentanaAMEncargado extends JDialog {
         }
     }//GEN-LAST:event_btnGuardarClic
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

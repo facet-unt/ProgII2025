@@ -3,28 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios.modelos;
+import java.util.ArrayList;
+import java.util.List;
+import pedidos.modelos.Pedido;
 
-/**
- *
-<<<<<<< HEAD
- * @author Oli Toledo
-=======
- * @author estudiante
->>>>>>> 22dc9e4978e472b497ec4e3c8fa0cb322aa6d032
- */
 public class Cliente {
-
     private String apellido;
     private String nombre;
     private String correo;
     private String clave;
+    private ArrayList<Pedido> pedidos;
 
-    public Cliente(String apellido, String nombre, String correo, String clave) {
+    public Cliente(String apellido, String nombre, String correo, String clave, ArrayList<Pedido> pedidos) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;
         this.clave = clave;
+        this.pedidos = pedidos;
     }
+    
+   
+
+ 
 
     public String verApellido() {
         return apellido;
@@ -57,6 +57,24 @@ public class Cliente {
     public void asignarClave(String clave) {
         this.clave = clave;
     }
+    
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void agregarPedido(Pedido pedido) {
+        if (pedido != null && !pedidos.contains(pedido)) {
+            pedidos.add(pedido);
+        }
+    }
+
+    public void mostrarPedidos() {
+        System.out.println("-- PEDIDOS DEL CLIENTE " + apellido + ", " + nombre + " --");
+        for (Pedido p : pedidos) {
+            p.mostrar();
+            System.out.println();
+        }
+    }
 
 //    public void mostrar(){
 //        System.out.println("-- CLIENTE --");
@@ -73,13 +91,9 @@ public class Cliente {
       System.out.println(apellido);
       System.out.println(nombre);      
     }
-    
+ 
     @Override
     public String toString() {
         return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
     }
-
-   
 }
-
-
