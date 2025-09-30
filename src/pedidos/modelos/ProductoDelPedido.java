@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pedidos.modelos;
+import productos.modelos.Producto;
 
 /**
  *
  * @author estudiante
  */
 public class ProductoDelPedido {
-    
+    private int cantidad;
+    private Producto producto;
 }
