@@ -14,8 +14,6 @@ public class Cliente {
     private String apellido;
     private String nombre;
 
-    }
-
     public Cliente(String c, String cl, String a, String n) {
         correo = c;
         clave = cl;
@@ -55,46 +53,9 @@ public class Cliente {
         this.nombre = nombre;
     }
     
-    
-    
-    
-    
     public void mostrar(){
         System.out.println("Cliente\nApellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo+"\n");
     }
-
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void asignarCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    
+     
 }
 
