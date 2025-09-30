@@ -4,6 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author estudiante
@@ -13,13 +16,16 @@ public class Cliente {
     private String clave;
     private String apellido;
     private String nombre;
+    private ArrayList<Pedido> pedidos;
 
     
     public void mostrar() {
       System.out.println(correo);
       System.out.println(clave);
       System.out.println(apellido);
-      System.out.println(nombre);      
+      System.out.println(nombre);
+      for (Pedido p: pedidos)
+            System.out.println(p.verNumero());
     }
     
     @Override
@@ -64,6 +70,14 @@ public class Cliente {
 
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public Pedido verPedido(int indice) {
+        return pedidos.get(indice);
+    }
+
+    public void asignarPedido(Pedido unPedido) {
+        this.pedidos.add(unPedido);
     }
     
     

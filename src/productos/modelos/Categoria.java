@@ -12,6 +12,8 @@ public enum Categoria {
     ENTRADA ("Entrada"),
     PLATO_PRINCIPAL ("Plato principal"),
     POSTRE ("Postre");
+
+
     private String valor;
 
     private Categoria(String valor) {

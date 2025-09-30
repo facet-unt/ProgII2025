@@ -35,11 +35,18 @@ public class Producto {
     }
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.asignarCodigo(codigo);
-        //this.codigo = codigo;
+        this.codigo = codigo;
         this.unEstado = estado;        
         this.descripcion = descripcion;
         this.unaCategoria = categoria;
+        this.precio = precio;
+    }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.descripcion = descripcion;
+        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
         this.precio = precio;
     }
     
@@ -99,4 +106,6 @@ public class Producto {
     public void asignarPrecio(float p) {
         precio = p;
     }
+
+    
 }

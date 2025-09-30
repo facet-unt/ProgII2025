@@ -26,10 +26,16 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
         this.unEstado = unEstado;
+        
+
     }
     
     
-
+    public Pedido(int numero,LocalDateTime fechaYHora, Cliente unCliente){
+        this(numero,fechaYHora,unCliente,Estado.CREADO);
+    }
+    
+    
     
 
     
@@ -63,9 +69,14 @@ public class Pedido {
     
     
     //OTROS METODOS
+   //MOSTRAR
     public void mostrar(){
-        
+        System.out.println("Nro:" + numero);
+        System.out.println("Fecha:" + fechaYHora.toLocalDate()+ "Hora:" + fechaYHora.toLocalTime());
+        System.out.println("Cliente:" + unCliente.verApellido() + ", " + unCliente.verNombre());
+        System.out.println("Estado:" + unEstado);
     }
+
    
     
 }
