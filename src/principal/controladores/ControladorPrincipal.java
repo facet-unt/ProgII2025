@@ -2,28 +2,37 @@ package principal.controladores;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-
+        ArrayList<Pedido> pedidos = new ArrayList<>();
         ArrayList<Producto> productos = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
-
-        Producto prod1 = new Producto(1, "Laptop", "Electronica", "Nuevo", 1200.5f);
+        
+        Producto prod1 = new Producto(1, "Laptop", Categoria.ENTRADA, Estado.DISPONIBLE, 1200.5f);
        
-        Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
+        Producto prod2 = new Producto(2, "Mouse", Categoria.PLATO_PRINCIPAL, Estado.NO_DISPONIBLE, 25.0f);
         
-        Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
+        Producto prod3 = new Producto(3, "Silla", Categoria.POSTRE, Estado.DISPONIBLE, 100.0f);
         
-        Producto prod4 = new Producto(4, "Pizza", "Plato principal", 100.0f);
+        Producto prod4 = new Producto(4, "Pizza", Categoria.PLATO_PRINCIPAL, 100.0f);
         
-        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
+        Producto prod5 = new Producto(5, "Hamburguesa", Categoria.ENTRADA, Estado.NO_DISPONIBLE, 100.0f);
+        
+        Pedido pedido1 = new Pedido();
       
+        Pedido pedido2 = new Pedido();
+        
+        Pedido pedido3 = new Pedido();
+        
         productos.add(prod1);
         productos.add(prod2);
         productos.add(prod3);
