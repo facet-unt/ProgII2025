@@ -1,74 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package usuarios.modelos;
 
-/**
- *
- * @author Asus
- */
+import java.util.List;
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;   
+
 public class Cliente {
+
     public String correo;
     public String clave;
     public String apellido;
     public String nombre;
+
+    // Nuevo atributo para guardar pedidos
+    private List<Pedido> pedidos;
 
     public Cliente (String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    }//esto es el constructor
+        this.pedidos = new ArrayList<>();  
+    }
     
-    
-    public void mostrar (){
-        System.out.println ("soy el cliente:");
-        }
+    // Método para agregar un pedido al cliente
+    public void agregarPedido(Pedido pedido) {
+        pedidos.add(pedido);
+    }
 
+    // Método para obtener todos los pedidos del cliente
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void mostrar () {
+        System.out.println("Soy el cliente: " + apellido + ", " + nombre);
+        System.out.println("Pedidos del cliente:");
+        for (Pedido p : pedidos) {
+            p.mostrar();  
+            System.out.println("--------------------");
+        }
+    }
     
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
 
-    public String verCorreo (){
+    // Get y set
+    public String verCorreo() {
         return correo;
     }
-    //esto se llama get, es para otener al objeto
     
-    public void asignarCorreo (String Correo) {
+    public void asignarCorreo(String Correo) {
         if (Correo != null && !Correo.isBlank())
             correo = Correo;
     }
     
-    
-    public String VerClave (){
+    public String verClave() {
         return clave;
     }
     
-    public void asignarClave (String Clave) {
+    public void asignarClave(String Clave) {
         if (Clave != null && !Clave.isBlank())
             clave = Clave;
     }
-    //esto es el set, sirve para que uno pueda modificar al objeto
     
-    public String VerNombre (){
+    public String verNombre() {
         return nombre;
     }
     
-    public void asignarNombre (String Nombre) {
-        if (Nombre!= null && !Nombre.isBlank())
+    public void asignarNombre(String Nombre) {
+        if (Nombre != null && !Nombre.isBlank())
             nombre = Nombre;
     }
     
-    public String VerApellid0 (){
+    public String verApellido() {
         return apellido;
     }
     
     public void asignarApellido(String Apellido) {
-        if (Apellido!= null && !Apellido.isBlank())
+        if (Apellido != null && !Apellido.isBlank())
             apellido = Apellido;
     }
-    
 }
+
+
