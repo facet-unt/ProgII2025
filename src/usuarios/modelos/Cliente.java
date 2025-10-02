@@ -16,7 +16,9 @@ public class Cliente {
     private String clave;
     private String apellido;
     private String nombre;
-    ArrayList<Pedido> pedidos = new ArrayList<>();
+    
+    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    
     public void mostrar(){
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);

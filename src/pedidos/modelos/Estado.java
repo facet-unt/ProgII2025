@@ -6,19 +6,20 @@ package pedidos.modelos;
 
 /**
  *
- * @author octav
+ * @author estudiante
  */
 public enum Estado {
-    CREADO("CREADO"),
-    SOLICITADCO("SOLICITADO"),
-    PROCESANDO("PROCESANDO"),
-    ENTREGADO("ENTREGADO");
-     
-    private String valor; 
-            
-    private Estado(String valor){
-        this.valor=valor;
+    CREADO("Creado"), 
+    SOLICITADO("Solicitado"),
+    PROCESANDO("Procesando"),
+    ENTREGADAO("Entregado");
+    
+    private String valor;
+
+    private Estado(String valor) {
+        this.valor = valor;
     }
+    @Override
     public String toString(){
         return this.valor;
     }

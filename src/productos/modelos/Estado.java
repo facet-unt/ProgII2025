@@ -4,7 +4,6 @@
  */
 package productos.modelos;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -24,6 +23,5 @@ public enum Estado {
     public String toString(){
         return this.valor;
     }
-    private ArrayList<Producto> productos = new ArrayList<>();
     
 }
