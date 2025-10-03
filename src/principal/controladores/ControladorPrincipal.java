@@ -93,8 +93,6 @@ public class ControladorPrincipal {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<ProductoDelPedido> cantidad = new ArrayList<>();
         
-        System.out.println("#################### ");
-        System.out.println("PRODUCTOS");
         Producto p1 = new Producto(1, "Helado",Categoria.POSTRE , Estado.DISPONIBLE, 1550.8f);
         Producto p2= new Producto(2, "Pizza", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 850.8f);
         Producto p3 = new Producto(3, "Empanadas", Categoria.ENTRADA, Estado.DISPONIBLE, 1050.0f);
@@ -103,9 +101,10 @@ public class ControladorPrincipal {
         listaProductos.add(p2);
         listaProductos.add(p3);
         
-        System.out.println("PRODUCTOS usando mostrar()");
-        for (Producto p: listaProductos)
+        System.out.println("------------ Lista de Productos ------------");
+        for (Producto p: listaProductos){
             p.mostrar();
+        }
          
         listaProductos.get(2).asignarDescripcion("Producto 3");
         System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
@@ -129,6 +128,7 @@ public class ControladorPrincipal {
         System.out.println("---- Lista de Empleados ----");
         for (Empleado e : listaEmpleados){
             e.mostrar();
+            System.out.println("---------------------------");
         }
 
         Encargado enc1 = new Encargado("enc1@mail.com", "pass", "Martinez", "Lucia");        
@@ -142,6 +142,7 @@ public class ControladorPrincipal {
         System.out.println("---- Lista de Encargados ----");
         for(Encargado enc : listaEncargados){
             enc.mostrar();
+            System.out.println("-----------------------------");
         }
         
         Cliente c1 = new Cliente("juan@mail.com", "1234", "Toledo", "Juan");

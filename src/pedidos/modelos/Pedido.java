@@ -85,7 +85,7 @@ public class Pedido {
         System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
         System.out.println("Estado: " + estado);
         System.out.println("-----------------------------");
-        System.out.println("Producto               Cantidad");
+        System.out.println("Producto:               Cantidad" + productos );
         System.out.println("--------------------------------");
     }
 }

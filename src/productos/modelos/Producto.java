@@ -17,10 +17,10 @@ public class Producto {
     // Métodos
     public void mostrar() {
         System.out.println("Codigo: " + this.codigo);
-        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Descripcion: " + this.descripcion);
         System.out.println("Categoria: " + this.categoria);
         System.out.println("Estado: " + this.estado);
-        System.out.println("Precio: " + precio);
+        System.out.println("Precio: " + this.precio);
     }
 
     @Override
@@ -35,11 +35,10 @@ public class Producto {
     }
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        //this.asignarCodigo(codigo);
         this.codigo = codigo;
-        //this.estado = Estado;        
+        this.estado = estado;        
         this.descripcion = descripcion;
-        //this.categoria = Categoria;
+        this.categoria = categoria;
         this.precio = precio;
     }
     
