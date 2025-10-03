@@ -4,9 +4,12 @@ public class Producto {
 
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
+    private String categoriagui;
+    private String estadogui;
     private float precio;
+    
     
     public void mostrar() {
         System.out.println("Producto\nCodigo=" + codigo + "\nDescripcion=" + descripcion +"\nCategoria=" + categoria + "\nEstado=" + estado + "\nPrecio=" + precio);
@@ -35,19 +38,19 @@ public class Producto {
             descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
+    public void asignarCategoria(Categoria c) {
         categoria = c;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
+    public void asignarEstado(Estado e) {
         estado = e;
     }
 
@@ -59,14 +62,19 @@ public class Producto {
         precio = p;
     }
 
-    public Producto(int c, String d, String cat, String e, float p) {
-        codigo = c;
-        descripcion = d;
-        categoria = cat;
-        estado = e;
-        precio = p;
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
     }
 
-    
-    
+    public Producto(int codigo, String descripcion, String categoriagui, String estadogui, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoriagui = categoriagui;
+        this.estadogui = estadogui;
+        this.precio = precio;
+    }
 }

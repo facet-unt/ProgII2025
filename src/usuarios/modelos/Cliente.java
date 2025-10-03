@@ -4,12 +4,16 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author estudiante
  */
 public class Cliente {
     private String correo, clave, apellido, nombre;
+    private ArrayList<Pedido> pedidos;
     
     public void mostrar(){
         System.out.println("Los datos de este cliente son:");
