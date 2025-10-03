@@ -2,8 +2,11 @@ package principal.controladores;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
