@@ -1,12 +1,8 @@
 package usuarios.modelos;
 
-/**
- *
- * @author Asus
- */
 
-public class Empleado {
-
+//>>>>>>> 80b7346787475faa76904755c790b9a7495f6632
+    public class Empleado {
     private String correo;
     private String clave;
     private String apellido;
@@ -69,5 +65,3 @@ public class Empleado {
             apellido = Apellido;
     }
 }
-
- 

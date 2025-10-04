@@ -16,7 +16,15 @@ public class Pedido {
     private LocalDateTime fechaHora;
     private Cliente cliente;
     private Estado estado;
+    private LocalDateTime Fecha;
 
+    public Pedido(int numero, LocalDateTime fecha, Cliente cliente) {
+        this.numero = numero;
+        this.Fecha = fecha;
+        this.cliente = cliente;
+    }
+    
+    
     public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaHora = fechaHora;

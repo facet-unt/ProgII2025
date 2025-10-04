@@ -1,9 +1,10 @@
 package usuarios.modelos;
 
+//<<<<<<< HEAD
 
 
 public class Encargado {
-//<<<<<<< HEAD
+
     public String correo;
     public String clave;
     public String apellido;
@@ -66,20 +67,6 @@ public class Encargado {
         if (Apellido!= null && !Apellido.isBlank())
             apellido = Apellido;
     }
-    
+
 }
 
-//<<<<<<< HEAD
- 
-//public class Encargado {
-//    private String apellido;
-//    private String nombre;
-//    private String correo;
-//    private String clave;
-
-//    public Encargado(String apellido, String nombre, String correo, String clave) {
-//        this.apellido = apellido;
-//        this.nombre = nombre;
-//        this.correo = correo;
-//        this.clave = clave;
-//    }

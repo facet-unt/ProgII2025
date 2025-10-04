@@ -1,4 +1,3 @@
-
 package principal.controladores;
 
 import javax.swing.UIManager;
@@ -31,6 +30,7 @@ public class ControladorPrincipalGUI {
         
         //CLIENTE
       
+//<<<<<<< HEAD
         VentanaAMCliente ventana1 = new VentanaAMCliente(null);
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo cliente");
@@ -49,6 +49,26 @@ public class ControladorPrincipalGUI {
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo encargado");
         ventana.setVisible(true);
+
+        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
+        ventanaCliente.setLocationRelativeTo(null);
+        ventanaCliente.setTitle("Nuevo cliente");
+        ventanaCliente.setVisible(true);
+              
+       //EMPLEADO 
+       
+        VentanaAMEmpleado ventanaEMpleado = new VentanaAMEmpleado(null);
+        ventanaEMpleado.setLocationRelativeTo(null);
+        ventanaEMpleado.setTitle("Nuevo empleado");
+        ventanaEMpleado.setVisible(true);
+         
+       //ENCARGADO
+       
+        VentanaAMEncargado ventanaENcargado = new VentanaAMEncargado(null);
+        ventanaENcargado.setLocationRelativeTo(null);
+        ventanaENcargado.setTitle("Nuevo encargado");
+        ventanaENcargado.setVisible(true);
+
        
     }
     

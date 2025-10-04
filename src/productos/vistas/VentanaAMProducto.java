@@ -1,5 +1,6 @@
 package productos.vistas;
 
+
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
@@ -17,6 +18,7 @@ public class VentanaAMProducto extends JDialog {
      */
     public VentanaAMProducto(Dialog ventanaPadre) {
         super(ventanaPadre, true);
+        this.producto = new ArrayList<>();
         initComponents();
     }
     

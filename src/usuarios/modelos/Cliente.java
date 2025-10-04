@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;   
 
-public class Cliente {
 
+public class Cliente {
     public String correo;
     public String clave;
     public String apellido;
@@ -27,19 +27,9 @@ public class Cliente {
     public void agregarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
-
-    // Método para obtener todos los pedidos del cliente
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void mostrar () {
-        System.out.println("Soy el cliente: " + apellido + ", " + nombre);
-        System.out.println("Pedidos del cliente:");
-        for (Pedido p : pedidos) {
-            p.mostrar();  
-            System.out.println("--------------------");
-        }
+    
+    public void mostrar(){
+        
     }
     
     @Override
@@ -51,8 +41,11 @@ public class Cliente {
     public String verCorreo() {
         return correo;
     }
+   
     
-    public void asignarCorreo(String Correo) {
+    //esto se llama get, es para otener al objeto
+    
+    public void asignarCorreo (String Correo) {
         if (Correo != null && !Correo.isBlank())
             correo = Correo;
     }

@@ -93,6 +93,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Perez"/>
         <Property name="toolTipText" type="java.lang.String" value="Apellidos"/>
       </Properties>
     </Component>
@@ -103,6 +104,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Juan"/>
         <Property name="toolTipText" type="java.lang.String" value="Nombres "/>
       </Properties>
     </Component>
@@ -133,10 +135,14 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
       <Properties>
+        <Property name="text" type="java.lang.String" value="perez20@gmail.com"/>
         <Property name="toolTipText" type="java.lang.String" value="Correo del cliente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passClave">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="01"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>

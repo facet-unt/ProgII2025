@@ -37,10 +37,12 @@ public class VentanaAMCliente extends JDialog {
 
         jLabel1.setText("Apellido:");
 
+        txtApellido.setText("Perez");
         txtApellido.setToolTipText("Apellidos");
 
         jLabel2.setText("Nombre:");
 
+        txtNombre.setText("Juan");
         txtNombre.setToolTipText("Nombres ");
 
         btnGuardar.setMnemonic('G');
@@ -63,7 +65,10 @@ public class VentanaAMCliente extends JDialog {
 
         jLabel4.setText("Correo:");
 
+        txtCorreo.setText("perez20@gmail.com");
         txtCorreo.setToolTipText("Correo del cliente");
+
+        passClave.setText("01");
 
         jLabel6.setText("Clave:");
 
@@ -136,7 +141,7 @@ public class VentanaAMCliente extends JDialog {
         System.out.println("Clientes");
         System.out.println("========");
         for(Cliente c : this.clientes) {
-            c.mostrar();
+          c.mostrar();
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
