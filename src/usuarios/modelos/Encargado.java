@@ -20,7 +20,7 @@ public class Encargado {
       System.out.println(clave);
       System.out.println(apellido);
       System.out.println(nombre);
-
+      System.out.println("\n");
       
     }
      

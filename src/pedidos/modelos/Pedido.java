@@ -74,8 +74,9 @@ public class Pedido {
         return fechaYHora.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
     
-    public void agregarProducto (ProductoDelPedido productos){
-        this.productos.add(productos);
+    public void agregarProducto (Producto producto, int cantidad)
+    {
+        productos.add(new ProductoDelPedido(cantidad, producto));
     }
 
     
@@ -85,7 +86,12 @@ public class Pedido {
         System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
         System.out.println("Estado: " + estado);
         System.out.println("-----------------------------");
-        System.out.println("Producto:               Cantidad" + productos );
+        System.out.println("Producto:               Cantidad");
         System.out.println("--------------------------------");
+        for (ProductoDelPedido pro : productos){
+            System.out.println(pro);
+        }
+        System.out.println("----------------------------------");
+        System.out.println("\n");
     }
 }
