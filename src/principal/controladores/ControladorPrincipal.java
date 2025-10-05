@@ -28,63 +28,6 @@ public class ControladorPrincipal {
 //        
 //        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
 //      
-//        productos.add(prod1);
-//        productos.add(prod2);
-//        productos.add(prod3);
-//
-//        // Clientes
-//        Cliente cli1 = new Cliente("juan@mail.com", "1234", "Perez", "Juan");
-//      
-//        Cliente cli2 = new Cliente("ana@mail.com", "5678", "Garcia", "Ana");
-//        
-//
-//        Cliente cli3 = new Cliente("mario@mail.com", "abcd", "Lopez", "Mario");
-//        
-//
-//        clientes.add(cli1);
-//        clientes.add(cli2);
-//        clientes.add(cli3);
-//
-//        // Empleados
-//        Empleado emp1 = new Empleado("emp1@mail.com", "pass1", "Rodriguez", "Carlos");
-//        
-//        Empleado emp2 = new Empleado("emp2@mail.com", "pass2", "Martinez", "Lucia");
-//        
-//
-//        Empleado emp3 = new Empleado("emp3@mail.com", "pass3", "Gomez", "Pedro");
-//        
-//
-//        empleados.add(emp1);
-//        empleados.add(emp2);
-//        empleados.add(emp3);
-//
-//        // Encargados
-//        Encargado en1 = new Encargado("enc1@mail.com", "key1", "Sanchez", "Laura");
-//        
-//
-//        Encargado en2 = new Encargado("enc2@mail.com", "key2", "Fernandez", "Jose");
-//      
-//
-//        Encargado en3 = new Encargado("enc3@mail.com", "key3", "Ruiz", "Marta");
-//       
-//
-//        encargados.add(en1);
-//        encargados.add(en2);
-//        encargados.add(en3);
-//
-//        // Mostrar contenido inicial
-//        System.out.println("---- Productos ----");
-//        for (Producto p : productos) p.mostrar();
-//
-//        System.out.println("---- Clientes ----");
-//        for (Cliente c : clientes) c.mostrar();
-//
-//        System.out.println("---- Empleados ----");
-//        for (Empleado e : empleados) e.mostrar();
-//
-//        System.out.println("---- Encargados ----");
-//        for (Encargado en : encargados) en.mostrar();
-
 
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
@@ -147,22 +90,33 @@ public class ControladorPrincipal {
         
         Cliente c1 = new Cliente("juan@mail.com", "1234", "Toledo", "Juan");
         Cliente c2 = new Cliente("ana@mail.com", "5678", "Pérez", "Ana");
+        Cliente c3 = new Cliente("info25@gmail.com", "key123", "Manzilla","Tobias");
         
         Pedido pedido1 = new Pedido(1, c1, EstadoPedido.CREADO);
         Pedido pedido2 = new Pedido(2, c2, EstadoPedido.PROCESANDO);
-
-
+        Pedido pedido3 = new Pedido(3, c3, EstadoPedido.ENTREGADO);
+        
+        pedido1.agregarProducto(p1, 2);
+        pedido2.agregarProducto(p2, 3);
+        pedido3.agregarProducto(p3, 4);
+        
         c1.agregarPedido(pedido1);
         c2.agregarPedido(pedido2);
-
+        c3.agregarPedido(pedido3);
+        
         listaClientes.add(c1);
         listaClientes.add(c2);
         
         listaPedidos.add(pedido1);
         listaPedidos.add(pedido2);
+        listaPedidos.add(pedido3);
         
-          for (Cliente c : listaClientes) {
+          /*for (Cliente c : listaClientes) {
             c.mostrar();
-        }
+        }*/
+          
+        for(Pedido ped : listaPedidos){
+            ped.mostrar();
+        }  
     }
 }

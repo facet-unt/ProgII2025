@@ -68,15 +68,15 @@ public class Cliente {
         this.pedidos.add(pedido);
     }
     
-      public void mostrar() {
+      /*public void mostrar() {
         System.out.println("Cliente: " + apellido + ", " + nombre);
         System.out.println("Correo: " + correo);
         System.out.println("Pedidos del cliente:");
         for (Pedido p : pedidos) {
             p.mostrar();
         }
-        System.out.println("-----------------------------");
-    }
+        System.out.println("-----------------------------");*/
+   // }
     
 }
 
