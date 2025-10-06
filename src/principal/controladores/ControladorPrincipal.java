@@ -17,7 +17,7 @@ public class ControladorPrincipal {
         /*
         Definir un ArrayList para cada una de las clases Cliente, 
         Empleado, Encargado y Producto  (realizar las importaciones correspondientes).
-        */
+         */
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
@@ -33,8 +33,6 @@ public class ControladorPrincipal {
         listaEmpleados.add(e2);
         listaEmpleados.add(e3);
 
-      
-
         Producto p1 = new Producto(1, "Producto 1", Categoria.ENTRADA, Estado.DISPONIBLE, 200.0f);
         Producto p2 = new Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);
         Producto p3 = new Producto(3, "Producto 3", Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);
@@ -46,7 +44,6 @@ public class ControladorPrincipal {
         p1.asignarDescripcion("Milanesa con puré");
         p1.asignarPrecio(250.0f);
 
-
         Encargado unEncargado1 = new Encargado("encargado1@mail.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Encargado unEncargado2 = new Encargado("encargado2@mail.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Encargado unEncargado3 = new Encargado("encargado3@mail.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
@@ -55,7 +52,6 @@ public class ControladorPrincipal {
         listaEncargados.add(unEncargado2);
         listaEncargados.add(unEncargado3);
 
-
         Cliente cliente1 = new Cliente("cliente1@bar.com", "claveCliente1", "ApellidoCliente1", "NombreCliente1");
         Cliente cliente2 = new Cliente("cliente2@bar.com", "claveCliente2", "ApellidoCliente2", "NombreCliente2");
         Cliente cliente3 = new Cliente("cliente3@bar.com", "claveCliente3", "ApellidoCliente3", "NombreCliente3");
@@ -63,23 +59,34 @@ public class ControladorPrincipal {
         listaClientes.add(cliente1);
         listaClientes.add(cliente2);
         listaClientes.add(cliente3);
-        
+
+        /*se intencio 3 objetos del tipo Pedido y guardarlos en un ArrayList. */
         ArrayList<ProductoDelPedido> pedido1 = new ArrayList<>();
         pedido1.add(new ProductoDelPedido(1, p3));
         pedido1.add(new ProductoDelPedido(2, p2));
         Pedido unPedido = new Pedido(1, LocalDateTime.now(), pedido1, cliente1, Estados.PROCESANDO);
-        
+
+        ArrayList<ProductoDelPedido> pedido2 = new ArrayList<>();
+        pedido2.add(new ProductoDelPedido(3, p1));
+        pedido2.add(new ProductoDelPedido(1, p3));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), pedido2, cliente2, Estados.CREADO);
+
+        ArrayList<ProductoDelPedido> pedido3 = new ArrayList<>();
+        pedido3.add(new ProductoDelPedido(4, p3));
+        pedido3.add(new ProductoDelPedido(5, p2));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), pedido3, cliente3, Estados.ENTREGADO);
+
         listaPedidos.add(unPedido);
-                for (Pedido p: listaPedidos) {
-            p.mostrar();
-        }
-         /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
+        listaPedidos.add(unPedido2);
+        listaPedidos.add(unPedido3);
+
+
+        /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
         //DEBO usar los métodos para ese fin
-        e1.asignarApellido("APELLIDOEmpleado11");
-        listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
-        
+//        e1.asignarApellido("APELLIDOEmpleado11");
+//        listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
+
         /* SALIDA DESPUÉS DE MODIFICACIONES (para verificar cambios como indica el TP)*/
-       
         //  SALIDA EMPLEADOS
         System.out.println("Empleados");
         System.out.println("===================================");
@@ -88,7 +95,7 @@ public class ControladorPrincipal {
             System.out.println();
         }
         System.out.println();
-      
+
         //SALIDA PRODUCTO 
         System.out.println("Productos");
         System.out.println("===================================");
@@ -97,7 +104,7 @@ public class ControladorPrincipal {
             System.out.println();
         }
         System.out.println();
-       
+
         //  SALIDA ENCARGADO
         System.out.println("Encargados");
         System.out.println("===================================");
@@ -106,7 +113,7 @@ public class ControladorPrincipal {
             System.out.println();
         }
         System.out.println();
-    
+
         //  SALIDA CLIENTE
         System.out.println("Clientes");
         System.out.println("===================================");
@@ -115,6 +122,11 @@ public class ControladorPrincipal {
             System.out.println();
         }
         System.out.println();
+        
+        //contenido de  3 objetos del tipo Pedido por pantalla.
+        for (Pedido p : listaPedidos) {
+            p.mostrar();
+        }
 //        SEGUNDA PARTE
 //        System.out.println("#################### ");
 //        System.out.println("PEDIDOS");
