@@ -1,5 +1,4 @@
 package pedidos.modelos;
-
 import productos.modelos.Producto;
 
 /*
@@ -7,10 +6,6 @@ import productos.modelos.Producto;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author HP Casa
- */
 public class ProductoDelPedido {
 
     private int cantidad;

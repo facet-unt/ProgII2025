@@ -55,7 +55,7 @@ public class Empleado {
         System.out.println("Nombre: " + nombre);
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
-    }
+}
 
     @Override
     public String toString() {

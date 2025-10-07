@@ -12,17 +12,19 @@ import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 
 public class VentanaAMEmpleado extends JDialog {
+
     private ArrayList<Empleado> empleados = new ArrayList<>();
-    
+
     /**
      * Constructor
-     * @param ventanaPadre ventana padre 
+     *
+     * @param ventanaPadre ventana padre
      */
     public VentanaAMEmpleado(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
-          
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,12 +98,12 @@ public class VentanaAMEmpleado extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passClave)
+                            .addComponent(txtApellido)
                             .addComponent(txtNombre)
-                            .addComponent(passClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtApellido))))
+                            .addComponent(txtCorreo))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,6 +113,7 @@ public class VentanaAMEmpleado extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -137,21 +140,20 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-
         String correo = this.txtCorreo.getText().trim();
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
         Empleado unEmpleado = new Empleado(apellido, nombre, correo, clave);
         this.empleados.add(unEmpleado);
-        
+
         System.out.println("Empleados");
         System.out.println("========");
 
-        for(Empleado e : this.empleados) {
+        for (Empleado e : this.empleados) {
             e.mostrar();
             System.out.println();
-        }
+        }                               
     }//GEN-LAST:event_btnGuardarClic
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

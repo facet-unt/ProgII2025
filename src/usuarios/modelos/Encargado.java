@@ -60,4 +60,4 @@ public class Encargado {
     public String toString() {
         return "Encargado{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
     }
-} 
+   } 

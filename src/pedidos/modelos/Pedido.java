@@ -23,7 +23,7 @@ public class Pedido {
         this.estado = estado;
         this.listaProductosPedidos = listaProductos;
     }
-
+    
     public int verNumero() {
         return numero;
     }
@@ -69,11 +69,11 @@ public class Pedido {
             System.out.println(Pp);
         }  
     }
-
     public ArrayList<ProductoDelPedido> verListaProductos() {
         return listaProductosPedidos;
     }
     public void asignarListaProductos(ArrayList<ProductoDelPedido> listaProductos) {
         this.listaProductosPedidos = listaProductos;
     }
+   
 }

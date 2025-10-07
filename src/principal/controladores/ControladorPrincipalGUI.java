@@ -11,6 +11,10 @@ import usuarios.vistas.VentanaAMCliente;
 import usuarios.vistas.VentanaAMEmpleado;
 import usuarios.vistas.VentanaAMEncargado;
 
+/**
+ *
+ * @author mariana
+ */
 public class ControladorPrincipalGUI {
     public static void main(String[] args) {
     //Trabajamos con una ventana por vez
@@ -30,6 +34,7 @@ public class ControladorPrincipalGUI {
         ventanaProducto.setVisible(true);
         
         //CLIENTE
+      
         VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
         ventanaCliente.setLocationRelativeTo(null);
         ventanaCliente.setTitle("Nuevo cliente");
@@ -37,20 +42,18 @@ public class ControladorPrincipalGUI {
                
        //EMPLEADO 
        
-        
-       //EMPLEADO 
         VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
         ventanaEmpleado.setLocationRelativeTo(null);
         ventanaEmpleado.setTitle("Nuevo empleado");
         ventanaEmpleado.setVisible(true);
         
-      
-
        //ENCARGADO
+       
         VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
         ventanaEncargado.setLocationRelativeTo(null);
         ventanaEncargado.setTitle("Nuevo encargado");
         ventanaEncargado.setVisible(true);
+       
     }
     
     /**

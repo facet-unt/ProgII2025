@@ -4,10 +4,6 @@
  */
 package pedidos.modelos;
 
-/**
- *
- * @author Oli Toledo
- */
 public enum Estado {
     CREADO ("Creado"),
     SOLICITADO ("Solicitado"),

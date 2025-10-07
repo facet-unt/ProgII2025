@@ -21,7 +21,7 @@ public class Cliente {
         this.clave = clave;
         this.pedidos = pedidos;
     }
-
+    
     public String verApellido() {
         return apellido;
     }
