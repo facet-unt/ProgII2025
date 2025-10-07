@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pedidos.modelos;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import usuarios.modelos.Cliente;
+import productos.modelos.Producto;
 
 public class Pedido {
 
@@ -16,22 +14,25 @@ public class Pedido {
     private LocalDateTime fechaHora;
     private Cliente cliente;
     private Estado estado;
-    private LocalDateTime Fecha;
+    private ArrayList<ProductoDelPedido> productosDelPedido;
 
-    public Pedido(int numero, LocalDateTime fecha, Cliente cliente) {
+    // 🔹 Constructores
+    public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente) {
         this.numero = numero;
-        this.Fecha = fecha;
+        this.fechaHora = fechaHora;
         this.cliente = cliente;
+        this.productosDelPedido = new ArrayList<>();
     }
-    
-    
+
     public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaHora = fechaHora;
         this.cliente = cliente;
         this.estado = estado;
+        this.productosDelPedido = new ArrayList<>();
     }
 
+    // 🔹 Getters y Setters
     public int getNumero() {
         return numero;
     }
@@ -72,14 +73,55 @@ public class Pedido {
         return fechaHora.toLocalTime();
     }
 
-    // Método mostrar según consigna
+    public ArrayList<ProductoDelPedido> getProductosDelPedido() {
+        return productosDelPedido;
+    }
+
+    public void setProductosDelPedido(ArrayList<ProductoDelPedido> productosDelPedido) {
+        this.productosDelPedido = productosDelPedido;
+    }
+
+    public void agregarProducto(ProductoDelPedido productoDelPedido) {
+        this.productosDelPedido.add(productoDelPedido);
+    }
+
+    public void eliminarProducto(ProductoDelPedido productoDelPedido) {
+        this.productosDelPedido.remove(productoDelPedido);
+    }
+
+    // 🔹 Cálculo de total
+    public double calcularTotal() {
+        double total = 0;
+        for (ProductoDelPedido pdp : productosDelPedido) {
+            total += pdp.getProducto().verPrecio() * pdp.getCantidad();
+        }
+        return total;
+    }
+
+    // 🔹 Mostrar pedido en formato tabular
     public void mostrar() {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
 
         System.out.println("Nro: " + numero);
-        System.out.println("Fecha: " + getFecha().format(formatoFecha) + " Hora: " + getHora().format(formatoHora));
+        System.out.println("Fecha: " + getFecha().format(formatoFecha) +
+                "        Hora: " + getHora().format(formatoHora));
         System.out.println("Cliente: " + cliente);
         System.out.println("Estado: " + estado);
+
+        if (productosDelPedido.isEmpty()) {
+            System.out.println("No hay productos en este pedido.");
+        } else {
+            System.out.println("Producto       Cantidad");
+            System.out.println("========================");
+            for (ProductoDelPedido pdp : productosDelPedido) {
+                String nombreProducto = pdp.getProducto().verDescripcion(); // ⬅️ Usamos descripcion
+                int cantidad = pdp.getCantidad();
+                System.out.printf("%-15s %5d%n", nombreProducto, cantidad);
+            }
+        }
+
+        System.out.println();
+        //System.out.printf("Total: $%.2f%n", calcularTotal());
     }
 }

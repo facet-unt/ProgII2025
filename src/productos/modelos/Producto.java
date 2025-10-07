@@ -8,6 +8,7 @@ public class Producto {
     private Categoria categoria;
     private Estado estado;
     private float precio;
+    private String nombre;
 
     // Métodos
     public void mostrar() {
@@ -90,4 +91,9 @@ public class Producto {
     public void asignarPrecio(float p) {
         precio = p;
     }
+
+    public String getNombre(){
+        return nombre;
+    }
+    
 }
