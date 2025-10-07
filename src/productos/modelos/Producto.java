@@ -55,9 +55,6 @@ public class Producto {
     }
 
     
-
-=======
->>>>>>> desarrollo
    
     public int verCodigo() {
         return codigo;
