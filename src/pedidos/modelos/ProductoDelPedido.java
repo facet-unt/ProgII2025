@@ -16,7 +16,7 @@ public class ProductoDelPedido {
     public ProductoDelPedido(int cantidad, Producto unProducto) {
         this.cantidad = cantidad;
         this.unProducto = unProducto;
-
+    }
 
     public int verCantidad() {
         return cantidad;
@@ -33,10 +33,11 @@ public class ProductoDelPedido {
 
     public void asignarUnProducto(Producto unProducto) {
         this.unProducto = unProducto;
+    }
 
     public void mostrar(){
-        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
->>>>>>> desarrollo
+        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
+
     }
     
 }

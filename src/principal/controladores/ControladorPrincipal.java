@@ -1,14 +1,15 @@
+/*
 package principal.controladores;
 
 import java.time.LocalDateTime;
 
 import pedidos.modelos.*;
 import productos.modelos.*;
-=======
+
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
->>>>>>> desarrollo
+
 import usuarios.modelos.*;
 import pedidos.modelos.*;
 
@@ -19,6 +20,7 @@ public class ControladorPrincipal {
          /*
         Definir un ArrayList para cada una de las clases Cliente, 
         Empleado, Encargado y Producto  (realizar las importaciones correspondientes).*/
+        /*
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
@@ -27,8 +29,10 @@ public class ControladorPrincipal {
         ArrayList<ProductoDelPedido> listaProductosPedidos1 = new ArrayList<>();
         ArrayList<ProductoDelPedido> listaProductosPedidos2 = new ArrayList<>();
         ArrayList<ProductoDelPedido> listaProductosPedidos3 = new ArrayList<>();
+         /*
         
         /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
+        /*
         Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
         Empleado e2 = new Empleado("empleado2@mail.com", "123", "ApellidoEmpleado2", "NombreEmpleado2");
         Empleado e3= new Empleado("empleado3@mail.com", "123", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -39,16 +43,21 @@ public class ControladorPrincipal {
         
         System.out.println("#################### ");
         System.out.println("EMPLEADOS ");
+        */
         /*Recorrer cada ArrayList y mostrar su contenido por pantalla. */
+        /*
         for (Empleado e: listaEmpleados)
             e.mostrar();
+        */
         
         /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
         //DEBO usar los métodos para ese fin
+/*
         e1.asignarApellido("APELLIDOEmpleado11");
         listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
         
         /*y volver a recorrer los ArrayLists verificando que se hicieron los cambios. */
+/*
          for (Empleado e: listaEmpleados)
             e.mostrar();
          
@@ -151,4 +160,4 @@ public class ControladorPrincipal {
         
         
     }
-}
+}*/

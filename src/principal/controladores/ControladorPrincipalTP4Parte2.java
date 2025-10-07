@@ -1,3 +1,4 @@
+/*
 package principal.controladores;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class ControladorPrincipalTP4Parte2 {
             INICIO Segunda parte - herencia
             ***************************************************
         */
-
+/*
 
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -30,7 +31,7 @@ public class ControladorPrincipalTP4Parte2 {
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
             *************************************************
         */       
-
+/*
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
         Usuario unEmpleado2 = new Empleado("empleado2@bar.com", "claveEmpleado2", "ApellidoEmpleado2", "NombreEmpleado2");        
         Usuario unEmpleado3 = new Empleado("empleado3@bar.com", "claveEmpleado3", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -43,7 +44,7 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios verificando que NO se repitan
             *************************************************
         */
-        
+        /*
         System.out.println("Clientes");
         System.out.println("=========");
         
@@ -53,7 +54,7 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son Clientes
             *************************************************
         */
-        
+        /*
         System.out.println();        
         System.out.println("Empleados");
         System.out.println("=========");
@@ -64,7 +65,7 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son empleados
             *************************************************
         */
-        
+        /*
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
@@ -77,7 +78,7 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios verificando que NO se repitan
             *************************************************
         */
-        
+        /*
         System.out.println();
         System.out.println("Encargados");
         System.out.println("==========");
@@ -88,7 +89,7 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son encargados
             *************************************************
         */
-                
+              /*  
         Usuario unEncargado5 = new Encargado("cliente1@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         if(!usuarios.contains(unEncargado5))
             usuarios.add(unEncargado5);
@@ -112,6 +113,8 @@ public class ControladorPrincipalTP4Parte2 {
             *************************************************
             FIN Segunda parte - herencia
             ***************************************************
-        */        
+        */   
+/*
     }
 }
+*/

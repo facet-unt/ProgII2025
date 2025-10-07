@@ -1,3 +1,4 @@
+/*
 package principal.controladores;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class ControladorPrincipalTP4Parte3 {
             INICIO Tercera parte - herencia
             ***************************************************
         */
-             
+        /*     
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
@@ -38,7 +39,7 @@ public class ControladorPrincipalTP4Parte3 {
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
             *************************************************
         */ 
-                        
+          /*              
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
         Usuario unEmpleado2 = new Empleado("empleado2@bar.com", "claveEmpleado2", "ApellidoEmpleado2", "NombreEmpleado2");        
         Usuario unEmpleado3 = new Empleado("empleado3@bar.com", "claveEmpleado3", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -51,7 +52,7 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
-        
+        /*
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
@@ -64,7 +65,7 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
-
+/*
         Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, Estado.DISPONIBLE, 1.0f);        
         Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 2.0f);
         Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, Estado.DISPONIBLE, 3.0f);
@@ -79,7 +80,7 @@ public class ControladorPrincipalTP4Parte3 {
              * la lista de productos
             **************************************************
         */
-        
+        /*
         ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
         ProductoDelPedido pdp1 = new ProductoDelPedido(listaProductos.get(0), 1);
         ProductoDelPedido pdp2 = new ProductoDelPedido(listaProductos.get(1), 2);        
@@ -150,5 +151,7 @@ public class ControladorPrincipalTP4Parte3 {
             FIN Tercera parte - herencia
             ***************************************************
         */ 
+/*
     }
 }
+*/

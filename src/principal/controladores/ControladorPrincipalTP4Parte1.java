@@ -1,3 +1,4 @@
+/*
 package principal.controladores;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public static void main(String[] args) {
         INICIO Primera parte - comparación de objetos
         ***************************************************
     */
+/*
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -45,7 +47,7 @@ public static void main(String[] args) {
          * de productos, deberían listarse 4
         **************************************************
     */
-
+/*
     System.out.println();
     System.out.println("\n#################### ");
     System.out.println("CLIENTES");
@@ -59,6 +61,7 @@ public static void main(String[] args) {
     /*
     Clientes, se crean 3 para crear los pedidos
     */
+/*
     for (Cliente e: listaClientes)
         e.mostrar();
 
@@ -114,6 +117,7 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
+/*
 
     System.out.println();        
 
@@ -122,5 +126,7 @@ public static void main(String[] args) {
          FIN Primera parte - comparación de objetos
         ***************************************************
     */
+/*
   }
 }
+*/
