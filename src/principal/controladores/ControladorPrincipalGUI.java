@@ -38,11 +38,9 @@ public class ControladorPrincipalGUI {
         ventanaCliente.setLocationRelativeTo(null);
         ventanaCliente.setTitle("Nuevo cliente");
         ventanaCliente.setVisible(true);
-<<<<<<< HEAD
+
              
-=======
-               
->>>>>>> desarrollo
+
        //EMPLEADO 
        
         VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
@@ -52,17 +50,17 @@ public class ControladorPrincipalGUI {
         
        //ENCARGADO
        
-<<<<<<< HEAD
+
         VentanaAMEncargado ventana = new VentanaAMEncargado(null);
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo encargado");
         ventana.setVisible(true);
-=======
+
         VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
         ventanaEncargado.setLocationRelativeTo(null);
         ventanaEncargado.setTitle("Nuevo encargado");
         ventanaEncargado.setVisible(true);
->>>>>>> desarrollo
+
        
     }
     

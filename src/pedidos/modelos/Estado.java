@@ -4,50 +4,13 @@
  */
 package pedidos.modelos;
 
-<<<<<<< HEAD
 
 /**
  *
  * @author estudiante
- */
-public enum Estado {
-    CREADO("Creado"),PROCESADO("Procesado"),ENTREGADO("Entregado");
-    private String valor;
-
-
-    private Estado(String valor) {
-        this.valor = valor;
-    }
-
-    @Override
-    public String toString() {
-        return this.valor;
-    }
-
-    public String verValor() {
-        return valor;
-    }
-
-    public void asignarValor(String valor) {
-        this.valor = valor;
-    }
     
-    
-
-    
-    
-
-    
-    
-    
-
-    
-    
-    
-=======
 /**
- *
- * @author thoma
+
  */
 public enum Estado {
     CREADO("Creado"),
@@ -65,5 +28,4 @@ public enum Estado {
     public String toString() {
         return this.valor;
     } 
->>>>>>> desarrollo
 }
