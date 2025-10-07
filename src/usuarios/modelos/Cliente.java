@@ -22,10 +22,6 @@ public class Cliente {
         this.pedidos = pedidos;
     }
     
-   
-
- 
-
     public String verApellido() {
         return apellido;
     }
@@ -76,15 +72,6 @@ public class Cliente {
         }
     }
 
-//    public void mostrar(){
-//        System.out.println("-- CLIENTE --");
-//        System.out.println("Apellido: " + apellido);
-//        System.out.println("Nombre: " + nombre);
-//        System.out.println("Correo: " + correo);
-//        System.out.println("Clave: " + clave);
-//     }
-
-    
     public void mostrar() {
       System.out.println(correo);
       System.out.println(clave);
