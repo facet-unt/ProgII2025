@@ -9,18 +9,18 @@ import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
 
-    private ArrayList<Pedido> pedidos=new ArrayList<>();
-  
+    private ArrayList<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(String c, String cl, String a, String n) {
-        super();
+        super(c, cl, a, n);
+
     }
-    
-    public void mostrar(){
-      super.mostrar();
-      
-        for(Pedido p: pedidos){
-            System.out.println("pedido numero:"+ p.obtenerNumero());
+
+    public void mostrar() {
+        super.mostrar();
+
+        for (Pedido p : pedidos) {
+            System.out.println("pedido numero:" + p.obtenerNumero());
         }
     }
 
@@ -31,46 +31,10 @@ public class Cliente extends Usuario {
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-    
-    
-
-
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void asignarCorreo(String c) {
-        correo = c;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String cl) {
-        clave = cl;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String a) {
-        apellido = a;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String n) {
-        nombre = n;
-
-    }
 
     @Override
     public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Cliente{" + "correo=" + verCorreo() + ", clave=" + verClave() + ", apellido=" + verApellido() + ", nombre=" + verNombre() + '}';
     }
 
 }

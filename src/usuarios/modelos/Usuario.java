@@ -59,7 +59,7 @@ public abstract class Usuario {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
     
