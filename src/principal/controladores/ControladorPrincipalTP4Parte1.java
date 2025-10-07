@@ -127,7 +127,9 @@ public class ControladorPrincipalTP4Parte1 {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
          */
-
+        for (Pedido p : listaPedidos) {
+            p.mostrar();
+        }
         System.out.println();
 
         /*

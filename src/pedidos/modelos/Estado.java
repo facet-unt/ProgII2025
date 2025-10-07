@@ -8,8 +8,8 @@ package pedidos.modelos;
  *
  * @author Lucas
  */
-//Se cambió el nombre de la variable a "Estados" de pedidos.modelos para evitar conflictos con la clase "Estado" del producto.modelo
-public enum Estados {
+//Se cambió el nombre de la variable a "Estado" de pedidos.modelos para evitar conflictos con la clase "Estado" del producto.modelo
+public enum Estado {
        
     CREADO("CREADO"), 
     SOLICITADO("SOLICITADO"), 
@@ -18,7 +18,7 @@ public enum Estados {
     
     private String valor;
 
-    private Estados(String valor) {
+    private Estado(String valor) {
         this.valor = valor;
     }
 

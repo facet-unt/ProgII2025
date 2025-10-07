@@ -17,7 +17,7 @@ public class Pedido {
 
     private int numero;
     private LocalDateTime fechaYHora;
-    private Estados estado;
+    private pedidos.modelos.Estado estado;
     private Cliente cliente;
     private ArrayList<ProductoDelPedido> productoDelPedido;
 
@@ -35,7 +35,7 @@ public class Pedido {
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> productoDelPedido, Cliente cliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.estado = estado;
+        this.estado = Estado.CREADO;
         this.cliente = cliente;
         this.productoDelPedido = productoDelPedido;
     }
@@ -48,7 +48,7 @@ public class Pedido {
         return fechaYHora;
     }
 
-    public Estados asignarEstado() {
+    public Estado asignarEstado() {
         return estado;
     }
 
@@ -64,7 +64,7 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
     }
 
-    public void verEstado(Estados estado) {
+    public void verEstado(Estado estado) {
         this.estado = estado;
     }
 

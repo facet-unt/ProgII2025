@@ -2,7 +2,7 @@ package principal.controladores;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import pedidos.modelos.Estados;
+import pedidos.modelos.Estado;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
@@ -130,10 +130,10 @@ public class ControladorPrincipal {
 //        SEGUNDA PARTE
 //        System.out.println("#################### ");
 //        System.out.println("PEDIDOS");
-//        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), Estados.PROCESANDO, cliente1); 
-//        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), Estados.SOLICITADO, listaClientes.get(1));
-//        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), Estados.ENTREGADO, cliente2); 
-//         Se añadió el estado al pedido. Se cambió el nombre de la variable a "Estados" de pedidos.modelos para evitar conflictos con la clase "Estado" del producto.modelo
+//        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), Estado.PROCESANDO, cliente1); 
+//        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), Estado.SOLICITADO, listaClientes.get(1));
+//        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), Estado.ENTREGADO, cliente2); 
+//         Se añadió el estado al pedido. Se cambió el nombre de la variable a "Estado" de pedidos.modelos para evitar conflictos con la clase "Estado" del producto.modelo
 //        listaPedidos.add(unPedido1);
 //        listaPedidos.add(unPedido2);
 //        listaPedidos.add(unPedido3);

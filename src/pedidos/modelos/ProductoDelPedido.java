@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pedidos.modelos;
+
+import java.util.Objects;
 import productos.modelos.Producto;
 
 /**
@@ -10,6 +12,28 @@ import productos.modelos.Producto;
  * @author estudiante
  */
 public class ProductoDelPedido {
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.producto);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductoDelPedido other = (ProductoDelPedido) obj;
+        return Objects.equals(this.producto, other.producto);
+    }
     private int cantidad;
     private Producto producto;
 
@@ -33,6 +57,5 @@ public class ProductoDelPedido {
     public void asignarProducto(Producto producto) {
         this.producto = producto;
     }
-    
-    
+
 }
