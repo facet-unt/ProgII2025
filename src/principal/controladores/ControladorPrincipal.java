@@ -1,122 +1,119 @@
 package principal.controladores;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.EstadoPedido;
-import pedidos.modelos.ProductoDelPedido;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-
-//        ArrayList<Producto> productos = new ArrayList<>();
-//        ArrayList<Cliente> clientes = new ArrayList<>();
-//        ArrayList<Empleado> empleados = new ArrayList<>();
-//        ArrayList<Encargado> encargados = new ArrayList<>();
-//
-//        Producto prod1 = new Producto(1, "Laptop", "Electronica", "Nuevo", 1200.5f);
-//       
-//        Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
-//        
-//        Producto prod3 = new Producto(3, "Silla", "Muebles", "Usado", 100.0f);
-//        
-//        Producto prod4 = new Producto(4, "Pizza", "Plato principal", 100.0f);
-//        
-//        Producto prod5 = new Producto(5, "Hamburguesa", 100.0f);
-//      
-
-        ArrayList<Producto> listaProductos = new ArrayList<>();
+        //PRIMERA PARTE
+         /*
+        Definir un ArrayList para cada una de las clases Cliente, 
+        Empleado, Encargado y Producto  (realizar las importaciones correspondientes).*/
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
-        ArrayList<ProductoDelPedido> cantidad = new ArrayList<>();
         
-        Producto p1 = new Producto(1, "Helado",Categoria.POSTRE , Estado.DISPONIBLE, 1550.8f);
-        Producto p2= new Producto(2, "Pizza", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 850.8f);
-        Producto p3 = new Producto(3, "Empanadas", Categoria.ENTRADA, Estado.DISPONIBLE, 1050.0f);
+        /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
+        Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
+        Empleado e2 = new Empleado("empleado2@mail.com", "123", "ApellidoEmpleado2", "NombreEmpleado2");
+        Empleado e3= new Empleado("empleado3@mail.com", "123", "ApellidoEmpleado3", "NombreEmpleado3");
+               
+        listaEmpleados.add(e1);
+        listaEmpleados.add(e2);
+        listaEmpleados.add(e3);
+        
+        System.out.println("#################### ");
+        System.out.println("EMPLEADOS ");
+        /*Recorrer cada ArrayList y mostrar su contenido por pantalla. */
+        for (Empleado e: listaEmpleados)
+            e.mostrar();
+        
+        /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
+        //DEBO usar los métodos para ese fin
+        e1.asignarApellido("APELLIDOEmpleado11");
+        listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
+        
+        /*y volver a recorrer los ArrayLists verificando que se hicieron los cambios. */
+         for (Empleado e: listaEmpleados)
+            e.mostrar();
+         
+        System.out.println("#################### ");
+        System.out.println("PRODUCTOS");
+        Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
+        Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
+        Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
         
         listaProductos.add(p1);
         listaProductos.add(p2);
         listaProductos.add(p3);
         
-        System.out.println("------------ Lista de Productos ------------");
-        for (Producto p: listaProductos){
+        for (Producto p: listaProductos)
             p.mostrar();
-        }
-         
-        listaProductos.get(2).asignarDescripcion("Producto 3");
-        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
-        listaProductos.get(2).asignarPrecio(1898.98f);
-        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
         
-        System.out.println("\nPRODUCTOS usando toString()");
+        p1.asignarDescripcion("Milanesa con puré");
+        p1.asignarPrecio(250.0f);
+        
         for (Producto p: listaProductos)
             System.out.println(p);
+         
         System.out.println("#################### ");
+        System.out.println("ENCARGADOS");
+        Encargado unEncargado1 = new Encargado("encargado1@mail.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
+        Encargado unEncargado2 = new Encargado("encargado2@mail.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
+        Encargado unEncargado3 = new Encargado("encargado3@mail.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
         
-        System.out.println("Agreagado de Empleados\n");
-        Empleado emp1 = new Empleado("emp1@mail.com", "pass1", "Juarez", "Lucas");
-        Empleado emp2 = new Empleado("emp2@mail.com", "pass2", "Acevedo", "Karian");
-        Empleado emp3 = new Empleado("emp3@mail.com", "pass3", "Lobo", "javier");
+        listaEncargados.add(unEncargado1);
+        listaEncargados.add(unEncargado2);
+        listaEncargados.add(unEncargado3);
         
-        listaEmpleados.add(emp1);
-        listaEmpleados.add(emp2);
-        listaEmpleados.add(emp3);
-        
-        System.out.println("---- Lista de Empleados ----");
-        for (Empleado e : listaEmpleados){
+        for (Encargado e: listaEncargados)
             e.mostrar();
-            System.out.println("---------------------------");
-        }
-
-        Encargado enc1 = new Encargado("enc1@mail.com", "pass", "Martinez", "Lucia");        
-        Encargado enc2 = new Encargado("enc2@mail.com", "pass2", "Toledo", "Juan Pablo");
-        Encargado enc3 = new Encargado("enc3@mail.com", "pass3", "Gomez", "Lautaro");
         
-        listaEncargados.add(enc1);
-        listaEncargados.add(enc2);
-        listaEncargados.add(enc3);
+        System.out.println("#################### ");
+        System.out.println("CLIENTES");
+        Cliente cliente1 = new Cliente("cliente1@bar.com", "claveCliente1", "ApellidoCliente1", "NombreCliente1");        
+        Cliente cliente2 = new Cliente("cliente2@bar.com", "claveCliente2", "ApellidoCliente2", "NombreCliente2");       
+        Cliente cliente3 = new Cliente("cliente3@bar.com", "claveCliente3", "ApellidoCliente3", "NombreCliente3");
         
-        System.out.println("---- Lista de Encargados ----");
-        for(Encargado enc : listaEncargados){
-            enc.mostrar();
-            System.out.println("-----------------------------");
-        }
+        listaClientes.add(cliente1);
+        listaClientes.add(cliente2);
+        listaClientes.add(cliente3);
         
-        Cliente c1 = new Cliente("juan@mail.com", "1234", "Toledo", "Juan");
-        Cliente c2 = new Cliente("ana@mail.com", "5678", "Pérez", "Ana");
-        Cliente c3 = new Cliente("info25@gmail.com", "key123", "Manzilla","Tobias");
+        for (Cliente e: listaClientes)
+            e.mostrar();
         
-        Pedido pedido1 = new Pedido(1, c1, EstadoPedido.CREADO);
-        Pedido pedido2 = new Pedido(2, c2, EstadoPedido.PROCESANDO);
-        Pedido pedido3 = new Pedido(3, c3, EstadoPedido.ENTREGADO);
+        //SEGUNDA PARTE
+        System.out.println("#################### ");
+        System.out.println("PEDIDOS");
+        ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
+        pido1.add(new ProductoDelPedido(p1, 1));
+        pido1.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),pido1, cliente1); 
         
-        pedido1.agregarProducto(p1, 2);
-        pedido2.agregarProducto(p2, 3);
-        pedido3.agregarProducto(p3, 4);
+        ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
+        pido2.add(new ProductoDelPedido(p3, 1));
+        pido2.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),pido2,  listaClientes.get(1)); 
         
-        c1.agregarPedido(pedido1);
-        c2.agregarPedido(pedido2);
-        c3.agregarPedido(pedido3);
+        ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
+        pido3.add(new ProductoDelPedido(p1, 1));
+        pido3.add(new ProductoDelPedido(p3, 2));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
         
-        listaClientes.add(c1);
-        listaClientes.add(c2);
+        listaPedidos.add(unPedido1);
+        listaPedidos.add(unPedido2);
+        listaPedidos.add(unPedido3);
         
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
-        listaPedidos.add(pedido3);
-        
-          /*for (Cliente c : listaClientes) {
-            c.mostrar();
-        }*/
-          
-        for(Pedido ped : listaPedidos){
-            ped.mostrar();
-        }  
+        for (Pedido p: listaPedidos)
+            p.mostrar();
+        System.out.println("#################### ");
     }
 }

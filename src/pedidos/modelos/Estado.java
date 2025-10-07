@@ -2,31 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package productos.modelos;
+package pedidos.modelos;
 
 /**
  *
- * @author Esteban
+ * @author thoma
  */
-public enum Categoria {
-    PLATOPRINCIPAL("Plato Principal"),
-    ENTRADA("Entrada"),
-    POSTRE("Postre");
+public enum Estado {
+    CREADO("Creado"),
+    SOLICITADO("Solicitado"),
+    PROCESANDO("Procesando"),
+    ENTREGADO("Entregado");
     
     private String valor;
-    
-    //Constructor
-    private Categoria(String valor){
-        this.valor=valor;
-    }
 
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+    
     @Override
     public String toString() {
         return this.valor;
-    }
-    
-    
-    
+    } 
 }
-
-

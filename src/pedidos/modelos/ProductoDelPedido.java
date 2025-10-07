@@ -3,43 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pedidos.modelos;
-import productos.modelos.Producto;
 
+import productos.modelos.Producto;
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 public class ProductoDelPedido {
-    private int cantidad;   
+    private int cantidad;
     private Producto producto;
 
-    public ProductoDelPedido(int cantidad, Producto producto) {
+    public ProductoDelPedido(Producto producto, int cantidad) {
         this.cantidad = cantidad;
         this.producto = producto;
     }
-    
-    public void AsignarNumero(int cantidad) {
-        this.cantidad = cantidad;
-    }
-    
-    public int verNumero() {
+
+    public int verCantidad() {
         return cantidad;
     }
-        
-    public void AsignarProducto (Producto producto) {
-        this.producto = producto;
+
+    public void asignarCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
-    
-    public Producto verProducto(){
+
+    public Producto verProducto() {
         return producto;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s\t\t\t\t%d",producto.verDescripcion(), cantidad);
+    public void asignarProducto(Producto producto) {
+        this.producto = producto;
     }
-       
+
+    public void mostrar(){
+        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
+    }
+    
 }
-
-
-
