@@ -97,4 +97,26 @@ public class Pedido {
         System.out.println();
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
+    }
+
 }
