@@ -56,12 +56,28 @@ public class Producto {
     public void asignarPrecio(float p) {
         precio = p;
     }
-    
-//    public void mostrar() {
-//        System.out.println("-- PRODUCTO --");
-//        System.out.println("Codigo: " + codigo);
 
-    // Métodos
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override    
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Producto other = (Producto) obj;
+        return this.codigo == other.codigo;
+    }
+
     public void mostrar() {
 
         System.out.println("-- PRODUCTO --");
@@ -71,7 +87,6 @@ public class Producto {
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
     }
-
     @Override
     public String toString() {
         return "Producto{" +

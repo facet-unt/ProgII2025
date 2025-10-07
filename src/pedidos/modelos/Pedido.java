@@ -16,6 +16,13 @@ public class Pedido {
     private Estado estado;
     private ArrayList<ProductoDelPedido> listaProductosPedidos;
 
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> listaProductosPedidos, Cliente cliente) {
+        this.numero = numero;
+        this.fechaYHora = fechaYHora;
+        this.cliente = cliente;
+        this.listaProductosPedidos = listaProductosPedidos;
+    }
+
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductos) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
@@ -56,6 +63,27 @@ public class Pedido {
     public String verHora() {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
         return fechaYHora.format(formatoHora);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
     }
     
     public void mostrar() {

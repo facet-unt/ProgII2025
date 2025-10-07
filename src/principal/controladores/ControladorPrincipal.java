@@ -74,11 +74,11 @@ public class ControladorPrincipal {
         Pedido ped3 = new Pedido(3, LocalDateTime.now(), c3, pedidos.modelos.Estado.ENTREGADO, new ArrayList<>());
 
         // === Agrego productos con cantidades a los pedidos ===
-        ped1.verListaProductos().add(new ProductoDelPedido(2, p1));  
-        ped1.verListaProductos().add(new ProductoDelPedido(1, p2));  
-        ped2.verListaProductos().add(new ProductoDelPedido(3, p3));  
-        ped3.verListaProductos().add(new ProductoDelPedido(1, p1));  
-        ped3.verListaProductos().add(new ProductoDelPedido(2, p3));  
+        ped1.verListaProductos().add(new ProductoDelPedido(p1, 2));  
+        ped1.verListaProductos().add(new ProductoDelPedido(p2, 1));  
+        ped2.verListaProductos().add(new ProductoDelPedido(p3, 3));  
+        ped3.verListaProductos().add(new ProductoDelPedido(p1, 1));  
+        ped3.verListaProductos().add(new ProductoDelPedido(p3, 2));  
 
         
         listaProductos.add(p1);

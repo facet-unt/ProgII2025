@@ -14,7 +14,14 @@ public class Cliente {
     private String clave;
     private ArrayList<Pedido> pedidos;
 
-    public Cliente(String apellido, String nombre, String correo, String clave, ArrayList<Pedido> pedidos) {
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.clave = clave;
+    }
+
+    public Cliente(String correo, String clave, String apellido, String nombre, ArrayList<Pedido> pedidos) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;

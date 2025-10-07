@@ -25,26 +25,25 @@ public static void main(String[] args) {
     System.out.println("PRODUCTOS");
     Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
     Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-    Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
+    Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
+    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
+    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NODISPONIBLE, 7580.0f);     
     //no debe agregar a p5
 
     if (!listaProductos.contains(p1))
         listaProductos.add(p1); 
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para completar el llenado de 
-         * la lista de productos
-        **************************************************
-    */
+    if (!listaProductos.contains(p2))
+        listaProductos.add(p2);
+    if (!listaProductos.contains(p3))
+        listaProductos.add(p3);
+    if (!listaProductos.contains(p4))
+        listaProductos.add(p4);
+    if (!listaProductos.contains(p5))
+        listaProductos.add(p5);
 
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para mostrar la lista
-         * de productos, deberían listarse 4
-        **************************************************
-    */
+    for (Producto p : listaProductos) {
+        p.mostrar();
+    }
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -56,9 +55,7 @@ public static void main(String[] args) {
     listaClientes.add(cliente1);
     listaClientes.add(cliente2);
     listaClientes.add(cliente3);
-    /*
-    Clientes, se crean 3 para crear los pedidos
-    */
+
     for (Cliente e: listaClientes)
         e.mostrar();
 
@@ -108,19 +105,10 @@ public static void main(String[] args) {
         listaPedidos.add(unPedido3);
 
     System.out.println("Los pedidos son: ");
+        for (Pedido p : listaPedidos) {
+            p.mostrar();
+        }
     System.out.println("=======");
-    /*
-        *************************************************
-        AGREGAR aqui la sentencia para mostrar la lista de pedidos
-        *************************************************
-    */
-
-    System.out.println();        
-
-    /*
-        *************************************************
-         FIN Primera parte - comparación de objetos
-        ***************************************************
-    */
+    System.out.println();
   }
 }
