@@ -132,9 +132,10 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
-    for (Pedido p: listaPedidos)
+    for (Pedido p: listaPedidos){
+        System.out.println("Los pedidos realizados son:");
         p.mostrar();
-    
+    }
 
     System.out.println();        
 
