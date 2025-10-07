@@ -28,16 +28,26 @@ public static void main(String[] args) {
     Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
     Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
     Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
-    //no debe agregar a p5
+    //no debe agregar a p5 poruqe tiene el mismo codigo
 
-    if (!listaProductos.contains(p1))
-        listaProductos.add(p1); 
+    
     /*
         **************************************************
          * AGREGAR aqui las sentencias para completar el llenado de 
          * la lista de productos
         **************************************************
+    
     */
+    if (!listaProductos.contains(p1))
+        listaProductos.add(p1); 
+    if (!listaProductos.contains(p2))
+        listaProductos.add(p2); 
+    if (!listaProductos.contains(p3))
+        listaProductos.add(p3); 
+    if (!listaProductos.contains(p4))
+        listaProductos.add(p4); 
+    if (!listaProductos.contains(p5))
+        listaProductos.add(p5); 
 
     /*
         **************************************************
@@ -45,7 +55,11 @@ public static void main(String[] args) {
          * de productos, deberían listarse 4
         **************************************************
     */
+    
+    for(Producto p: listaProductos)
+        p.mostrar();
 
+    
     System.out.println();
     System.out.println("\n#################### ");
     System.out.println("CLIENTES");
@@ -65,23 +79,40 @@ public static void main(String[] args) {
     System.out.println();
     System.out.println("#################### ");
     System.out.println("PEDIDOS");
-    ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
+    ArrayList<ProductoDelPedido> productosDelPedido1 = new ArrayList<>();
     ProductoDelPedido pdp1 = new ProductoDelPedido(listaProductos.get(0), 1);
     ProductoDelPedido pdp2 = new ProductoDelPedido(listaProductos.get(1), 2);        
     ProductoDelPedido pdp3 = new ProductoDelPedido(listaProductos.get(1), 8);
-    if (!listapdp1.contains(pdp1))
-        listapdp1.add(pdp1);
-    if (!listapdp1.contains(pdp2))
-        listapdp1.add(pdp2);
-    if (!listapdp1.contains(pdp3))
-        listapdp1.add(pdp3);
-    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
+    //producto repetido, se debe poder agregar igual pero sumando las cantidades
+    
+    if(pdp1.equals(pdp2))
+        pdp1.asignarCantidad(pdp1.verCantidad()+pdp2.verCantidad());
+    else if (pdp1.equals(pdp3))
+        pdp1.asignarCantidad(pdp1.verCantidad()+pdp3.verCantidad());
+    else if(pdp3.equals(pdp2))
+        pdp2.asignarCantidad(pdp2.verCantidad()+pdp3.verCantidad());
+    
+    if (!productosDelPedido1.contains(pdp1))
+        productosDelPedido1.add(pdp1);
+    if (!productosDelPedido1.contains(pdp2))
+        productosDelPedido1.add(pdp2);
+    if (!productosDelPedido1.contains(pdp3))
+        productosDelPedido1.add(pdp3);
+    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), productosDelPedido1, cliente1);        
 
     ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
     ProductoDelPedido pdp4 = new ProductoDelPedido(listaProductos.get(2), 10);
     ProductoDelPedido pdp5 = new ProductoDelPedido(listaProductos.get(0), 20);
     ProductoDelPedido pdp6 = new ProductoDelPedido(listaProductos.get(2), 30);
-    //producto repetido        
+    //producto repetido, se debe poder agregar igual pero sumando las cantidades
+    
+    if(pdp4.equals(pdp5))
+        pdp4.asignarCantidad(pdp4.verCantidad()+pdp5.verCantidad());
+    else if (pdp4.equals(pdp6))
+        pdp4.asignarCantidad(pdp4.verCantidad()+pdp6.verCantidad());
+    else if(pdp5.equals(pdp6))
+        pdp5.asignarCantidad(pdp5.verCantidad()+pdp6.verCantidad());
+    
     if (!productosDelPedido2.contains(pdp4))
         productosDelPedido2.add(pdp4);
     if (!productosDelPedido2.contains(pdp5))
@@ -114,8 +145,8 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
-
-    System.out.println();        
+    for(Pedido ped:listaPedidos)
+    ped.mostrar();
 
     /*
         *************************************************
