@@ -8,11 +8,10 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import usuarios.modelos.Cliente;
 import usuarios.modelos.Encargado;
 
 public class VentanaAMEncargado extends JDialog {
-    private ArrayList<Encargado> encargado = new ArrayList<>();
+    private ArrayList<Encargado> encargados = new ArrayList<>();
     
     /**
      * Constructor
@@ -96,12 +95,12 @@ public class VentanaAMEncargado extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passClave)
+                            .addComponent(txtApellido)
                             .addComponent(txtNombre)
-                            .addComponent(passClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtApellido))))
+                            .addComponent(txtCorreo))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,6 +110,7 @@ public class VentanaAMEncargado extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))

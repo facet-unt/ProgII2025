@@ -7,8 +7,10 @@ import pedidos.modelos.Estado;
 //import productos.modelos.Estado;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {

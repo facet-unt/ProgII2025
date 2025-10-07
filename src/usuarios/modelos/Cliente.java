@@ -9,7 +9,7 @@ import pedidos.modelos.Pedido;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 public class Cliente {
     private String correo;
@@ -22,9 +22,9 @@ public class Cliente {
     public void mostrar(){
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
-        System.out.println("apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
     }
+    
+    //constructor
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
@@ -32,7 +32,8 @@ public class Cliente {
         this.apellido = apellido;
         this.nombre = nombre;
     }
-
+    
+    //metodos get/set
     public String verCorreo() {
         return correo;
     }
