@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario{
-    private ArrayList<Pedido> listaPedidos= new ArrayList<>();
+    private ArrayList<Pedido> pedidos= new ArrayList<>();
 
     
     public void mostrar() {
       super.mostrar();
-      for (Pedido p: listaPedidos)
+      for (Pedido p: pedidos)
             System.out.println(p.verNumero());
     }
 
@@ -35,20 +35,20 @@ public class Cliente extends Usuario{
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo,clave, apellido, nombre);
-        this.listaPedidos = new ArrayList<>();
+
 
     }
     
     //metodos get/set
-
-    public ArrayList<Pedido> verListaPedidos() {
-        return listaPedidos;
-    }
-
-    public void asignarListaPedidos(ArrayList<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
-    }
     
+    public Pedido verPedido(int indice) {
+        return pedidos.get(indice);
+    }
+
+    public void asignarPedido(Pedido unPedido) {
+        this.pedidos.add(unPedido);
+    }
+
     
     
     
