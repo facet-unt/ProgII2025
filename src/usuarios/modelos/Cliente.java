@@ -14,15 +14,11 @@ public class Cliente {
     private String apellido;
     private String nombre;
 
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-    }
-    
-    public void mostrar(){
-        System.out.println("Cliente\nApellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo+"\n");
+    public Cliente(String c, String cl, String a, String n) {
+        correo = c;
+        clave = cl;
+        apellido = a;
+        nombre = n;
     }
 
     public String verCorreo() {
@@ -57,5 +53,9 @@ public class Cliente {
         this.nombre = nombre;
     }
     
-    
+    public void mostrar(){
+        System.out.println("Cliente\nApellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo+"\n");
+    }
+     
 }
+

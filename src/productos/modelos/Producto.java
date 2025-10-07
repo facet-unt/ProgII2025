@@ -1,22 +1,27 @@
 package productos.modelos;
 
+import usuarios.modelos.Categoria;
+import usuarios.modelos.Estado;
+
 
 public class Producto {
+
+
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
     private float precio;
     
     //Producto p1 = new Producto(1, "Producto1", "Plato Principal", "Disponible", 1550.8f);
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.estado = estado;
         this.precio = precio;
     }
-    
+
     public void mostrar() {
         System.out.println("Codigo: "+ codigo +"\nDescripcion: "+descripcion);
     }
@@ -41,19 +46,19 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String categoria) {
+    public void asignarCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String estado) {
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -63,5 +68,5 @@ public class Producto {
 
     public void asignarPrecio(float precio) {
         this.precio = precio;
-    }
+    }  
 }
