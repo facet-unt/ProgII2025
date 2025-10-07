@@ -131,7 +131,10 @@ public class Pedido {
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(cantidad, produc);
-        productoPedido.add(unProductoDelPedido);
+        if (!productoPedido.contains(unProductoDelPedido))
+        {
+            productoPedido.add(unProductoDelPedido);
+        }
     }
 
     @Override
