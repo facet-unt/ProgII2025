@@ -19,19 +19,6 @@ public class ControladorPrincipal {
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
-        ArrayList<ProductoDelPedido> productoTotal = new ArrayList<>();
-
-        
-        //Consulta 1
-        Producto prod1 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1200.5f);
-
-        Producto prod2 = new Producto(2, "Hamburguesa", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 25.0f);
-
-        Producto prod3 = new Producto(3, "Pancho", Categoria.ENTRADA, Estado.DISPONIBLE, 100.0f);
-
-        productos.add(prod1);
-        productos.add(prod2);
-        productos.add(prod3);
 
         // Clientes
         Cliente cli1 = new Cliente("juan@mail.com", "1234", "Perez", "Juan");
@@ -65,30 +52,53 @@ public class ControladorPrincipal {
         encargados.add(en1);
         encargados.add(en2);
         encargados.add(en3);
-        
-        
-        Pedido ped1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1,productoTotal);
-        Pedido ped2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1,productoTotal);
-        
-        
+
+        // CREAR PRODUCTOS
+        Producto prod1 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1200.5f);
+        Producto prod2 = new Producto(2, "Hamburguesa", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 25.0f);
+        Producto prod3 = new Producto(3, "Pancho", Categoria.ENTRADA, Estado.DISPONIBLE, 100.0f);
+
+        productos.add(prod1);
+        productos.add(prod2);
+        productos.add(prod3);
+
+        // crear PRODUCTOS DEL PEDIDO
         
         ProductoDelPedido pdp1=new ProductoDelPedido(1,prod1);
         ProductoDelPedido pdp2=new ProductoDelPedido(2,prod2);
+        ProductoDelPedido pdp3=new ProductoDelPedido(3,prod3);
+        ProductoDelPedido pdp4=new ProductoDelPedido(4,prod1);
+        ProductoDelPedido pdp5 =new ProductoDelPedido(3,prod3);
+
+
         
-        productoTotal.add(pdp1);
-        productoTotal.add(pdp2);
+        // CREAR LAS LISTAS CON LOS PDP
+        ArrayList<ProductoDelPedido> productoTotal1 = new ArrayList<>();
+        ArrayList<ProductoDelPedido> productoTotal2 = new ArrayList<>();
+        ArrayList<ProductoDelPedido> productoTotal3 = new ArrayList<>();
         
-        for(ProductoDelPedido x:productoTotal){
-            x.mostrar();
-           
-        }
-        
+
+        // AGREGAR PDP CREADOS A LAS LISTAS
+        productoTotal1.add(pdp1);
+        productoTotal1.add(pdp2);
+        productoTotal1.add(pdp3);
+        productoTotal2.add(pdp4);
+        productoTotal3.add(pdp5);
+
+
+        // CREAR LOS PEDIDOS
+        Pedido ped1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1, productoTotal1);
+        Pedido ped2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli1, productoTotal2);
+        Pedido ped3 = new Pedido(3, LocalDateTime.now(), pedidos.modelos.Estado.CREADO, cli2, productoTotal3);
+
         listaPedidos.add(ped1);
         listaPedidos.add(ped2);
+        listaPedidos.add(ped3);
 
         System.out.println("---- Pedidos ----");
         for (Pedido pe : listaPedidos) {
             pe.mostrar();
+            System.out.println("");
         }
 
 //        // Mostrar contenido inicial
@@ -99,6 +109,8 @@ public class ControladorPrincipal {
         System.out.println("---- Clientes ----");
         for (Cliente c : clientes) {
             c.mostrar();
+            System.out.println("");
+
         }
 //
 //        System.out.println("---- Empleados ----");

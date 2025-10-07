@@ -21,7 +21,7 @@ public class ProductoDelPedido {
     }
 
     public void mostrar(){
-        System.out.println("Producto: "+ unProducto.verDescripcion()+" Cantidad: "+ cantidad);
+        System.out.println(unProducto.verDescripcion()+"\t"+ cantidad);
     }
     public Producto getUnProducto() {
         return unProducto;
