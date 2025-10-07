@@ -159,7 +159,7 @@ public class VentanaAMProducto extends JDialog {
         Categoria enumCategoria = Categoria.valueOf(categoria.toUpperCase());
         Estado enumEstado = Estado.valueOf(estado.toUpperCase());
         
-        Producto unProducto = new Producto(codigo, descripcion, precio, enumCategoria, enumEstado);
+        Producto unProducto = new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
         this.productos.add(unProducto);
         
         System.out.println("Productos");
