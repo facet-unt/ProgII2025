@@ -7,27 +7,18 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente {
+public class Cliente extends Usuario {
 
     private ArrayList<Pedido> pedidos=new ArrayList<>();
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+  
 
     public Cliente(String c, String cl, String a, String n) {
-        correo = c;
-        clave = cl;
-        apellido = a;
-        nombre = n;
+        super();
     }
     
     public void mostrar(){
+      super.mostrar();
       
-        System.out.println("Nombre: "+ verNombre());
-        System.out.println("Apellido: "+ verApellido());
-        System.out.println("Correo: "+ verCorreo());
-        System.out.println("Clave: "+ verClave());
         for(Pedido p: pedidos){
             System.out.println("pedido numero:"+ p.obtenerNumero());
         }
