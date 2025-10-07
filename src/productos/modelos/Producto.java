@@ -1,26 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 public class Producto {
-
-
+    //Atributos
     private int codigo;
     private String descripcion;
-    private String categoria;
-    private String estado;
     private float precio;
-
+    private Categoria categoria;
+    private Estado estado;
 
     // Métodos
     public void mostrar() {
-        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
+        System.out.println("Precio: " + precio);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
-        System.out.println("Precio: " + precio);
     }
 
     @Override
@@ -33,31 +35,15 @@ public class Producto {
                 ", precio=" + precio +
                 '}';
     }
-    
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.asignarCodigo(codigo);
-        //this.codigo = codigo;
-        this.estado = estado;        
+
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
         this.descripcion = descripcion;
-        this.categoria = categoria;
         this.precio = precio;
+        this.categoria = categoria;
+        this.estado = estado;
     }
-    
-    public Producto(int c, String d, String cat, float p) {
-        codigo = c;
-        descripcion = d;
-        categoria = cat;
-        precio = p;
-    }
-    
-    public Producto(int c, String d, float p) {
-        this(c, d, "Plato principal", p);        
-    }
-
-    
-
    
-
     public int verCodigo() {
         return codigo;
     }
@@ -76,20 +62,20 @@ public class Producto {
             descripcion = d;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String c) {
+    public void asignarCategoria(Categoria c) {
         categoria = c;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String e) {
-        estado = e;
+    public void asignarEstado(Estado e) {
+            estado = e;
     }
 
     public float verPrecio() {
@@ -97,6 +83,8 @@ public class Producto {
     }
 
     public void asignarPrecio(float p) {
-        precio = p;
+        if (p > 0){
+            precio = p;
+        }
     }
 }
