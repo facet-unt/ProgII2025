@@ -9,70 +9,19 @@ package usuarios.modelos;
  * @author Esteban
  */
 
-public class Empleado {
-    //Atributos
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
-    
+public class Empleado extends Usuario {
+        
     //Metodos
-    public void mostrar(){
-        System.out.println("Empleado: " + apellido + " " + nombre);   
-    }
 
     @Override
     public String toString() {
-        return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Empleado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
     }
     
     //constructor
 
     public Empleado(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+        super(correo, clave, apellido, nombre);
     }
     
-    //metodos get/set
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
-    }
 }
