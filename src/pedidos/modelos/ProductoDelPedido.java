@@ -12,27 +12,33 @@ import productos.modelos.Producto;
  * @author HP Casa
  */
 public class ProductoDelPedido {
-    private int  cantidadProducto;
-    private Producto prod;
 
-    public ProductoDelPedido(int cantidadProducto, Producto prod) {
-        this.cantidadProducto = cantidadProducto;
-        this.prod = prod;
+    private int cantidad;
+    private Producto producto;
+
+    public ProductoDelPedido(int cantidad, Producto producto) {
+        this.cantidad = cantidad;
+        this.producto = producto;
     }
 
-    public int verCantidadProducto() {
-        return cantidadProducto;
+    public int verCantidad() {
+        return cantidad;
     }
 
-    public void asignarCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
+    public void asignarCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public Producto verProd() {
-        return prod;
+    public Producto verProducto() {
+        return producto;
     }
 
-    public void asignarProd(Producto prod) {
-        this.prod = prod;
-    }   
+    public void asignarProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    @Override
+    public String toString() {
+        return  producto.verDescripcion() + "\t\t" + cantidad;
+    }
 }

@@ -21,7 +21,7 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
         this.cliente = cliente;
         this.estado = estado;
-        this.listaProductosPedidos = listaProductosPedidos;
+        this.listaProductosPedidos = listaProductos;
     }
 
     public int verNumero() {
@@ -52,12 +52,12 @@ public class Pedido {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaYHora.format(formatoFecha);
     }
-
+    
     public String verHora() {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
         return fechaYHora.format(formatoHora);
     }
-
+    
     public void mostrar() {
         System.out.println("-- PEDIDO --");
         System.out.println("Nro: " + numero);
@@ -73,8 +73,7 @@ public class Pedido {
     public ArrayList<ProductoDelPedido> verListaProductos() {
         return listaProductosPedidos;
     }
-
     public void asignarListaProductos(ArrayList<ProductoDelPedido> listaProductos) {
-        this.listaProductosPedidos = listaProductosPedidos;
+        this.listaProductosPedidos = listaProductos;
     }
 }
