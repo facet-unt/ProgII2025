@@ -3,8 +3,8 @@ package principal.controladores;
 import javax.swing.UIManager;
 import productos.vistas.VentanaAMProducto;
 import usuarios.vistas.VentanaAMCliente;
-import usuarios.vistas.VentanaAMEmpleado;
-import usuarios.vistas.VentanaAMEncargado;
+//import usuarios.vistas.VentanaAMEmpleado;
+//import usuarios.vistas.VentanaAMEncargado;
 
 /**
  *
@@ -38,14 +38,14 @@ public class ControladorPrincipalGUI {
               
        //EMPLEADO 
        
-        VentanaAMEmpleado ventana2 = new VentanaAMEmpleado(null);
+//        VentanaAMEmpleado ventana2 = new VentanaAMEmpleado(null);
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo empleado");
         ventana.setVisible(true);
         
        //ENCARGADO
        
-        VentanaAMEncargado ventana3 = new VentanaAMEncargado(null);
+//        VentanaAMEncargado ventana3 = new VentanaAMEncargado(null);
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo encargado");
         ventana.setVisible(true);
@@ -57,17 +57,17 @@ public class ControladorPrincipalGUI {
               
        //EMPLEADO 
        
-        VentanaAMEmpleado ventanaEMpleado = new VentanaAMEmpleado(null);
-        ventanaEMpleado.setLocationRelativeTo(null);
-        ventanaEMpleado.setTitle("Nuevo empleado");
-        ventanaEMpleado.setVisible(true);
-         
-       //ENCARGADO
-       
-        VentanaAMEncargado ventanaENcargado = new VentanaAMEncargado(null);
-        ventanaENcargado.setLocationRelativeTo(null);
-        ventanaENcargado.setTitle("Nuevo encargado");
-        ventanaENcargado.setVisible(true);
+//        VentanaAMEmpleado ventanaEMpleado = new VentanaAMEmpleado(null);
+//        ventanaEMpleado.setLocationRelativeTo(null);
+//        ventanaEMpleado.setTitle("Nuevo empleado");
+//        ventanaEMpleado.setVisible(true);
+//         
+//       //ENCARGADO
+//       
+//        VentanaAMEncargado ventanaENcargado = new VentanaAMEncargado(null);
+//        ventanaENcargado.setLocationRelativeTo(null);
+//        ventanaENcargado.setTitle("Nuevo encargado");
+//        ventanaENcargado.setVisible(true);
 
        
     }

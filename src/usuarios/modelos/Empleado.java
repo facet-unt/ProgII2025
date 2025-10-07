@@ -1,32 +1,30 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package usuarios.modelos;
-
 import java.util.List;
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;   
-
-
-public class Cliente {
+import pedidos.modelos.Pedido; 
+/**
+ *
+ * @author Asus
+ */
+public class Empleado {
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
 
-    // Nuevo atributo para guardar pedidos
-    private List<Pedido> pedidos;
 
-    public Cliente (String correo, String clave, String apellido, String nombre) {
+     public Empleado (String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-        this.pedidos = new ArrayList<>();  
+        
     }
     
-    // Método para agregar un pedido al cliente
-    public void agregarPedido(Pedido pedido) {
-        pedidos.add(pedido);
-    }
     
     public void mostrar(){
         
@@ -77,5 +75,3 @@ public class Cliente {
             apellido = Apellido;
     }
 }
-
-

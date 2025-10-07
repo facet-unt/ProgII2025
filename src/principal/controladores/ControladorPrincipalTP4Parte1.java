@@ -24,27 +24,43 @@ public static void main(String[] args) {
     System.out.println("#################### ");
     System.out.println("PRODUCTOS");
     Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
-    Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
+    Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
     Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
     Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
     Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
     //no debe agregar a p5
 
-    if (!listaProductos.contains(p1))
-        listaProductos.add(p1); 
-    /*
+    
+     /*
         **************************************************
          * AGREGAR aqui las sentencias para completar el llenado de 
          * la lista de productos
         **************************************************
     */
-
+    if (!listaProductos.contains(p1))
+        listaProductos.add(p1); 
+    if (!listaProductos.contains(p2))
+        listaProductos.add(p2);
+    if (!listaProductos.contains(p3))
+        listaProductos.add(p3);
+    if (!listaProductos.contains(p4))
+        listaProductos.add(p4);
+    if (!listaProductos.contains(p5))
+        listaProductos.add(p5);
+    
+    
     /*
         **************************************************
          * AGREGAR aqui las sentencias para mostrar la lista
          * de productos, deberían listarse 4
         **************************************************
     */
+    //solo se recorre el arrayList, como 5 esta repetido mostrara solo 4 elementos 
+
+        for (Producto p: listaProductos)
+            p.mostrar();
+    
+    
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -76,7 +92,8 @@ public static void main(String[] args) {
     if (!listapdp1.contains(pdp3))
         listapdp1.add(pdp3);
     Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
-
+    
+  
     ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
     ProductoDelPedido pdp4 = new ProductoDelPedido(listaProductos.get(2), 10);
     ProductoDelPedido pdp5 = new ProductoDelPedido(listaProductos.get(0), 20);
@@ -97,8 +114,9 @@ public static void main(String[] args) {
         productosDelPedido3.add(pdp7);
     if (!productosDelPedido3.contains(pdp8))
         productosDelPedido3.add(pdp8);
-    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), productosDelPedido3, cliente3);        
-    //pedido repetido no debe agregarse a la lista
+    Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), productosDelPedido3, cliente3);        
+//    pedido repetido no debe agregarse a la lista
+
 
     if(!listaPedidos.contains(unPedido1))
         listaPedidos.add(unPedido1);
@@ -106,7 +124,7 @@ public static void main(String[] args) {
         listaPedidos.add(unPedido2);
     if(!listaPedidos.contains(unPedido3))
         listaPedidos.add(unPedido3);
-
+    
     System.out.println("Los pedidos son: ");
     System.out.println("=======");
     /*
@@ -114,6 +132,9 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
+    for (Pedido p: listaPedidos)
+        p.mostrar();
+    
 
     System.out.println();        
 

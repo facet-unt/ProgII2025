@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import usuarios.modelos.Cliente;
-import productos.modelos.Producto;
 
 public class Pedido {
 
@@ -23,7 +22,18 @@ public class Pedido {
         this.cliente = cliente;
         this.productosDelPedido = new ArrayList<>();
     }
-
+    
+    
+    //constructor para la parte de ControladorPrincipalTP4Parte1
+    public Pedido(int numero, LocalDateTime fechaHora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+        this.numero = numero;
+        this.fechaHora = fechaHora;
+        this.cliente = cliente;
+        this.productosDelPedido = productosDelPedido;
+    }
+    
+    
+    
     public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaHora = fechaHora;
@@ -124,4 +134,31 @@ public class Pedido {
         System.out.println();
         //System.out.printf("Total: $%.2f%n", calcularTotal());
     }
+    
+    
+    
+    //hago un metodo para comparar los pedidos (con el insert code)
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
+    }
+    
+    
 }
