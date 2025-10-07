@@ -5,6 +5,7 @@
 package pedidos.modelos;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
@@ -21,8 +22,14 @@ public class Pedido {
     private ArrayList<ProductoDelPedido> productosdelpedido;
     
     public void mostrar(){
+        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
+        
+        String fechaFormateada = fechaYhora.format(Fecha);
+        String horaFormateada = fechaYhora.format(Hora);
+        
         System.out.println("Numero: " + numero);
-        System.out.println("Fecha: " + fechaYhora.getDayOfMonth() + "/" + fechaYhora.getMonthValue() + "/" + fechaYhora.getYear() + "                  Hora: " + fechaYhora.getHour() + ":" + fechaYhora.getMinute());
+        System.out.println("Fecha: " + fechaFormateada + "                  Hora: " + horaFormateada);
         System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
         System.out.println("Estado: " + estado);
         System.out.println("        Producto        Cantidad");
@@ -77,7 +84,7 @@ public class Pedido {
         this.fechaYhora = fechaYhora;
         this.unCliente = unCliente;
         this.productosdelpedido = productosdelpedido;
-        
+        this.estado = this.estado.CREADO;
     }
     
 }
