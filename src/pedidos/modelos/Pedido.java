@@ -29,13 +29,13 @@ public class Pedido {
         }
     }
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado estado, Cliente cliente, ArrayList cantidadProducto) {
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList cantidadProducto , Cliente cliente) {
         ArrayList<Pedido> pedidosCliente = cliente.getPedidos();
         pedidosCliente.add(this);
         cliente.setPedidos(pedidosCliente);
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.estado = estado;
+        this.estado=estado.CREADO;
         this.cliente = cliente;
         this.productos=cantidadProducto;
     }
