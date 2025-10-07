@@ -16,72 +16,28 @@ import pedidos.modelos.Pedido;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente {
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+public class Cliente extends Usuario {
 
-    private ArrayList<Pedido> pedidos; /*implementacion de asociacion con clase pedido*/
+
+   private ArrayList<Pedido> pedidos; /*implementacion de asociacion con clase pedido*/
     
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+   /*Constructor*/
+   
+   public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
     }
-    
-
-    public Cliente() {
-    }
-    
-    //metodos get/set
-    public String verCorreo() {
-        return correo;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public void asignarClave(String clave) {
-        this.clave = clave;
-    }
-
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
-    }
-    
-    
+   
     public void mostrar() {
       System.out.println("=================");
-      System.out.println("Correo:" + correo);
-      System.out.println("Clave:" + clave);
-      System.out.println("Apellido:"+ apellido);
-      System.out.println("Nombre:" + nombre);      
+      System.out.println("Correo:" +  verCorreo());
+      System.out.println("Clave:" + verClave());
+      System.out.println("Apellido:"+ verApellido());
+      System.out.println("Nombre:" + verNombre());      
     }
     
     @Override
     public String toString(){
 
-        return "{" + "Apellido=" + apellido + ", Nombre=" + nombre + '}';
+        return "{" + "Apellido=" + verApellido() + ", Nombre=" + verNombre() + '}';
     }      
 }

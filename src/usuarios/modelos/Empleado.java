@@ -4,67 +4,23 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author Esteban
- */
 
-public class Empleado {
+public class Empleado extends Usuario {
 
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
-
+    /*Constructor*/
+    
     public Empleado(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-    }
-
-    public Empleado() {
+        super(correo, clave, apellido, nombre);
     }
     
-     public void asignarClave(String clave) {
-        this.clave = clave;
-    }
     
-    public String verCorreo() {
-        return correo;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
     
-    public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
-    }
-
-
     public void mostrar()
     {
-        System.out.println("=================");
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
+      System.out.println("=================");
+      System.out.println("Correo:" +  verCorreo());
+      System.out.println("Clave:" + verClave());
+      System.out.println("Apellido:"+ verApellido());
+      System.out.println("Nombre:" + verNombre());  
     }
 }
