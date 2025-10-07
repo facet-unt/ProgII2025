@@ -34,7 +34,7 @@ public class ControladorPrincipal {
         listaEmpleados.add(e3);
 
         Producto p1 = new Producto(1, "Producto 1", Categoria.ENTRADA, Estado.DISPONIBLE, 200.0f);
-        Producto p2 = new Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);
+        Producto p2 = new Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);
         Producto p3 = new Producto(3, "Producto 3", Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);
 
         listaProductos.add(p1);
@@ -62,19 +62,19 @@ public class ControladorPrincipal {
 
         /*se intencio 3 objetos del tipo Pedido y guardarlos en un ArrayList. */
         ArrayList<ProductoDelPedido> pedido1 = new ArrayList<>();
-        pedido1.add(new ProductoDelPedido(1, p3));
-        pedido1.add(new ProductoDelPedido(2, p2));
-        Pedido unPedido = new Pedido(1, LocalDateTime.now(), pedido1, cliente1, Estados.PROCESANDO);
+        pedido1.add(new ProductoDelPedido(p3, 1));
+        pedido1.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido = new Pedido(1, LocalDateTime.now(), pedido1, cliente1);
 
         ArrayList<ProductoDelPedido> pedido2 = new ArrayList<>();
-        pedido2.add(new ProductoDelPedido(3, p1));
-        pedido2.add(new ProductoDelPedido(1, p3));
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), pedido2, cliente2, Estados.CREADO);
+        pedido2.add(new ProductoDelPedido(p1, 3));
+        pedido2.add(new ProductoDelPedido(p3, 2));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), pedido2, cliente2);
 
         ArrayList<ProductoDelPedido> pedido3 = new ArrayList<>();
-        pedido3.add(new ProductoDelPedido(4, p3));
-        pedido3.add(new ProductoDelPedido(5, p2));
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), pedido3, cliente3, Estados.ENTREGADO);
+        pedido3.add(new ProductoDelPedido(p3, 4));
+        pedido3.add(new ProductoDelPedido(p2, 5));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), pedido3, cliente3);
 
         listaPedidos.add(unPedido);
         listaPedidos.add(unPedido2);
