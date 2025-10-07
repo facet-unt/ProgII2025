@@ -14,20 +14,12 @@ import pedidos.modelos.Pedido;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente {
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+public class Cliente extends Usuario{
     private ArrayList<Pedido> pedidos= new ArrayList<>();
-     private ArrayList<Pedido> listaPedidos;
 
     
     public void mostrar() {
-      System.out.println(correo);
-      System.out.println(clave);
-      System.out.println(apellido);
-      System.out.println(nombre);
+      super.mostrar();
       for (Pedido p: pedidos)
             System.out.println(p.verNumero());
     }
@@ -37,63 +29,17 @@ public class Cliente {
     //Metodos
  
 
-    @Override
-    public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
     
     //constructor
 
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.listaPedidos = new ArrayList<>();
+        super(correo,clave, apellido, nombre);
+
 
     }
     
     //metodos get/set
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
-    }
     
     public Pedido verPedido(int indice) {
         return pedidos.get(indice);
@@ -103,14 +49,6 @@ public class Cliente {
         this.pedidos.add(unPedido);
     }
 
-    public ArrayList<Pedido> verListaPedidos() {
-        return listaPedidos;
-    }
-
-    public void asignarListaPedidos(ArrayList<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
-    }
-    
     
     
     
