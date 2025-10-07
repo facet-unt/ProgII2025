@@ -40,7 +40,7 @@ public class Pedido {
     
 
     /* Agregado de constructor */
-    public Pedido(int numero, LocalDateTime fechaYhora, Estado estado, Cliente unCliente, ArrayList<ProductoDelPedido> unPedido) {
+    public Pedido(int numero, LocalDateTime fechaYhora, Estado estado, ArrayList<ProductoDelPedido> unPedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.estado = estado;
@@ -99,6 +99,31 @@ public class Pedido {
     public void setPedido1(ArrayList<ProductoDelPedido> unPedido) {
         this.unPedido = unPedido;
     }
-    
 
+    /* Agregado del metodo equals y hashcode para comparar si dos pedidos son iguales en base al numero */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
+    }
+    
+    
+    
+   
 }
