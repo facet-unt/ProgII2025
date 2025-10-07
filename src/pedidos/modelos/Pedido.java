@@ -27,7 +27,7 @@ public class Pedido {
    
    //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
@@ -37,8 +37,8 @@ public class Pedido {
 
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente, ArrayList<ProductoDelPedido> unProductoDelPedido) {
-        this(numero,fechaYHora,unCliente,Estado.CREADO,unProductoDelPedido);
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
+        this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
     
 
@@ -130,7 +130,7 @@ public class Pedido {
     }
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {
-        ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(cantidad, produc);
+        ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(produc, cantidad);
         if (!productoPedido.contains(unProductoDelPedido))
         {
             productoPedido.add(unProductoDelPedido);
