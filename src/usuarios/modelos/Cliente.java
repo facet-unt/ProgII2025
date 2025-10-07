@@ -9,8 +9,11 @@ import pedidos.modelos.Pedido;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Cliente {
     private String correo;
     private String clave;
@@ -26,27 +29,41 @@ public class Cliente {
       System.out.println(nombre);
       for (Pedido p: pedidos)
             System.out.println(p.verNumero());
-    }
+=======
+    private ArrayList<Pedido> listaPedidos;
     
+    //Metodos
+    public void mostrar(){
+        System.out.println("Cliente: " + apellido + " " + nombre);
+>>>>>>> desarrollo
+    }
+
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
+    
+    //constructor
 
-    public Cliente(String c, String cl, String a, String n) {
-        correo = c;
-        clave = cl;
-        apellido = a;
-        nombre = n;
- 
+=======
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        this.correo = correo;
+        this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.listaPedidos = new ArrayList<>();
+>>>>>>> desarrollo
     }
-
+    
+    //metodos get/set
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -54,7 +71,9 @@ public class Cliente {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -62,7 +81,9 @@ public class Cliente {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -70,7 +91,9 @@ public class Cliente {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
     
     public Pedido verPedido(int indice) {
@@ -86,4 +109,14 @@ public class Cliente {
     
     
 }
+=======
+>>>>>>> desarrollo
 
+    public ArrayList<Pedido> verListaPedidos() {
+        return this.listaPedidos;
+    }
+
+    public void asignarPedido(Pedido p) {
+        this.listaPedidos.add(p);
+    }    
+}

@@ -1,10 +1,16 @@
 package principal.controladores;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+
 import pedidos.modelos.*;
 import productos.modelos.*;
+=======
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
+import productos.modelos.Producto;
+>>>>>>> desarrollo
 import usuarios.modelos.*;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
@@ -115,6 +121,22 @@ public class ControladorPrincipal {
         listaProductosPedidos3.add(pdp5);
         
         Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2,listaProductosPedidos3); 
+=======
+        ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
+        pido1.add(new ProductoDelPedido(p1, 1));
+        pido1.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),pido1, cliente1); 
+        
+        ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
+        pido2.add(new ProductoDelPedido(p3, 1));
+        pido2.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),pido2,  listaClientes.get(1)); 
+        
+        ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
+        pido3.add(new ProductoDelPedido(p1, 1));
+        pido3.add(new ProductoDelPedido(p3, 2));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
+>>>>>>> desarrollo
         
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);

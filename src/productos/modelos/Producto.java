@@ -1,26 +1,39 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 public class Producto {
-
-
+    //Atributos
     private int codigo;
     private String descripcion;
+<<<<<<< HEAD
     private Categoria unaCategoria;
     private Estado unEstado;
+=======
+>>>>>>> desarrollo
     private float precio;
-
+    private Categoria categoria;
+    private Estado estado;
 
     // Métodos
     public void mostrar() {
-        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
+<<<<<<< HEAD
         System.out.println("Categoria: " + unaCategoria.verValor());
         System.out.println("Estado: " + unEstado.verValor());
         System.out.println("Precio: " + precio);
+=======
+        System.out.println("Precio: " + precio);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
+>>>>>>> desarrollo
     }
 
     @Override
@@ -33,6 +46,7 @@ public class Producto {
                 ", precio=" + precio +
                 '}';
     }
+<<<<<<< HEAD
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
@@ -47,8 +61,17 @@ public class Producto {
         this.unEstado =  Estado.valueOf(estado.toUpperCase());        
         this.descripcion = descripcion;
         this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+=======
+
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+>>>>>>> desarrollo
         this.precio = precio;
+        this.categoria = categoria;
+        this.estado = estado;
     }
+<<<<<<< HEAD
     
     public Producto(int c, String d, Categoria cat, float p) {
         codigo = c;
@@ -63,8 +86,9 @@ public class Producto {
 
     
 
+=======
+>>>>>>> desarrollo
    
-
     public int verCodigo() {
         return codigo;
     }
@@ -84,6 +108,7 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
+<<<<<<< HEAD
         return unaCategoria;
     }
 
@@ -97,6 +122,21 @@ public class Producto {
 
     public void asignarEstado(Estado e) {
         unEstado = e;
+=======
+        return categoria;
+    }
+
+    public void asignarCategoria(Categoria c) {
+        categoria = c;
+    }
+
+    public Estado verEstado() {
+        return estado;
+    }
+
+    public void asignarEstado(Estado e) {
+            estado = e;
+>>>>>>> desarrollo
     }
 
     public float verPrecio() {
@@ -104,7 +144,9 @@ public class Producto {
     }
 
     public void asignarPrecio(float p) {
-        precio = p;
+        if (p > 0){
+            precio = p;
+        }
     }
 
     

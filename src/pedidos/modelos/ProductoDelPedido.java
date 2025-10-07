@@ -5,7 +5,6 @@
 package pedidos.modelos;
 
 import productos.modelos.Producto;
-
 /**
  *
  * @author estudiante
@@ -17,7 +16,7 @@ public class ProductoDelPedido {
     public ProductoDelPedido(int cantidad, Producto unProducto) {
         this.cantidad = cantidad;
         this.unProducto = unProducto;
-    }
+
 
     public int verCantidad() {
         return cantidad;
@@ -27,12 +26,17 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
+
     public Producto verUnProducto() {
         return unProducto;
     }
 
     public void asignarUnProducto(Producto unProducto) {
         this.unProducto = unProducto;
+
+    public void mostrar(){
+        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
+>>>>>>> desarrollo
     }
     
 }

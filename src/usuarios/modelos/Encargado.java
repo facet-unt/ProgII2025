@@ -6,37 +6,44 @@ package usuarios.modelos;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 
 public class Encargado {
+    //Atributos
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
     
-     public void mostrar() {
-      System.out.println(correo);
-      System.out.println(clave);
-      System.out.println(apellido);
-      System.out.println(nombre);
-
-      
-    }
-     
-     public Encargado(String c, String cl, String a, String n) {
-        correo = c;
-        clave = cl;
-        apellido = a;
-        nombre = n;
+    //Metodos
+    public void mostrar(){
+        System.out.println("Encargado: " + apellido + " " + nombre);
     }
 
+    @Override
+    public String toString() {
+        return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    //constructor
+    
+    public Encargado(String correo, String clave, String apellido, String nombre) {
+        this.correo = correo;
+        this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
+    }
+    
+    //metodos get/set
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -44,7 +51,9 @@ public class Encargado {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -52,7 +61,9 @@ public class Encargado {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -60,8 +71,8 @@ public class Encargado {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
-     
-    
 }

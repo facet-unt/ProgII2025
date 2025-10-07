@@ -35,3 +35,29 @@ public enum Categoria {
     
     
 }
+=======
+ * @author Esteban
+ */
+public enum Categoria {
+    PLATOPRINCIPAL("Plato Principal"),
+    ENTRADA("Entrada"),
+    POSTRE("Postre");
+    
+    private String valor;
+    
+    //Constructor
+    private Categoria(String valor){
+        this.valor=valor;
+    }
+
+    @Override
+    public String toString() {
+        return this.valor;
+    }
+    
+    
+    
+}
+
+
+>>>>>>> desarrollo
