@@ -21,10 +21,6 @@ public class Cliente {
         this.clave = clave;
         this.pedidos = pedidos;
     }
-    
-   
-
- 
 
     public String verApellido() {
         return apellido;
@@ -84,7 +80,6 @@ public class Cliente {
 //        System.out.println("Clave: " + clave);
 //     }
 
-    
     public void mostrar() {
       System.out.println(correo);
       System.out.println(clave);

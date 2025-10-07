@@ -34,10 +34,5 @@ public class ProductoDelPedido {
 
     public void asignarProd(Producto prod) {
         this.prod = prod;
-    }
-
-
-    
+    }   
 }
-
-

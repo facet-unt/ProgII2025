@@ -19,4 +19,3 @@ public enum Estado {
         return this.valor;
     }
 }
-

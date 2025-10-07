@@ -12,16 +12,13 @@ public enum Categoria {
     POSTRE("Postre");
     
     private String valor;
-    
 
     private Categoria(String valor){
         this.valor = valor;
-}
+    }
 
     @Override
     public String toString() {
         return "Categoria{" + "valor=" + valor + '}';
-    }
-
-   
+    }  
 }

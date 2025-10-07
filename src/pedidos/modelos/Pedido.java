@@ -24,8 +24,6 @@ public class Pedido {
         this.listaProductosPedidos = listaProductosPedidos;
     }
 
-  
-
     public int verNumero() {
         return numero;
     }
@@ -50,7 +48,6 @@ public class Pedido {
         this.estado = estado;
     }
     
-    
     public String verFecha() {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaYHora.format(formatoFecha);
@@ -73,7 +70,6 @@ public class Pedido {
         }  
     }
 
-
     public ArrayList<ProductoDelPedido> verListaProductos() {
         return listaProductosPedidos;
     }
@@ -81,6 +77,4 @@ public class Pedido {
     public void asignarListaProductos(ArrayList<ProductoDelPedido> listaProductos) {
         this.listaProductosPedidos = listaProductosPedidos;
     }
-    
-
 }
