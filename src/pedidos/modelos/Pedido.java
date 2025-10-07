@@ -32,7 +32,7 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
         this.unEstado = unEstado;
-        this.unCliente.asignarPedido(this);
+        this.unCliente.agregarPedido(this);
         this.productoPedido = unProductoDelPedido;
 
     }
@@ -98,8 +98,6 @@ public class Pedido {
         {
             p.mostrar();
         }
-        System.out.println("\t\tProducto " + "\t\tCantidad");
-        System.out.println("\t\t=================================");
         
         System.out.println("#################### ");
         

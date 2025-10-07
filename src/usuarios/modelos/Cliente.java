@@ -4,8 +4,6 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
-import pedidos.modelos.Pedido;
 
 /**
  *
@@ -22,16 +20,8 @@ public class Cliente extends Usuario{
       super.mostrar();
       for (Pedido p: pedidos)
             System.out.println(p.verNumero());
+  
     }
-
-   
-    
-    //Metodos
- 
-
-    
-    //constructor
-
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo,clave, apellido, nombre);
@@ -41,12 +31,20 @@ public class Cliente extends Usuario{
     
     //metodos get/set
     
-    public Pedido verPedido(int indice) {
-        return pedidos.get(indice);
-    }
 
-    public void asignarPedido(Pedido unPedido) {
+
+    public void agregarPedido(Pedido unPedido) {
         this.pedidos.add(unPedido);
+    }
+    public void cancelarPedido(Pedido unPedido) {
+        if(pedidos.contains(unPedido)&&unPedido!=null)
+        this.pedidos.remove(unPedido);
+    }
+   
+
+    @Override
+    public ArrayList<Pedido> verPedido() {
+        return(pedidos);
     }
 
     
