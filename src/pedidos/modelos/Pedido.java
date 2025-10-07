@@ -4,20 +4,29 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import usuarios.modelos.Cliente;
+import productos.modelos.Producto;
 
 public class Pedido {
-    private int numero;
-    private LocalDateTime fechaHora;
-    private Cliente cliente;
+    private int numero = 0;
+    private LocalDateTime fechaYHora;
     private Estado estado;
-    private ArrayList<ProductoDelPedido> productos;
+    private Cliente cliente;
+    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
 
-    public Pedido(int numero, LocalDateTime fechaHora, ArrayList<ProductoDelPedido> productos, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
+        this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
+    }
+    
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
-        this.fechaHora = fechaHora;
-        this.cliente = cliente;
-        this.estado = Estado.CREADO;
-        this.productos = productos;
+        this.fechaYHora = fechaYHora;
+        this.listaProductosdelPedido = lista;
+        this.cliente = cliente;        
+        this.estado = estado;
+    }
+    
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente) {
+        this(numero, fechaYHora, lista, cliente, Estado.CREADO);
     }
 
     public int verNumero() {
@@ -25,7 +34,7 @@ public class Pedido {
     }
 
     public LocalDateTime verFechaHora() {
-        return fechaHora;
+        return fechaYHora;
     }
 
     public Cliente verCliente() {
@@ -40,23 +49,28 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public ArrayList<ProductoDelPedido> verProductos() {
-        return productos;
-    }
 
-    public void mostrar() {
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
-
-        System.out.println("Nro: " + numero);
-        System.out.println("Fecha: " + fechaHora.format(formatoFecha) + " Hora: " + fechaHora.format(formatoHora));
-        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
-        System.out.println("Estado: " + estado);
-        System.out.println("Productos:");
-        for (ProductoDelPedido pdp : productos) {
-            pdp.mostrar();
-        }
-        System.out.println(); // Separador
+    public void agregarProductodelPedido(Producto produc, int cantidad) {
+        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
+        this.listaProductosdelPedido.add(nuevoProducto);
     }
+    
+    public void mostrar(){
+        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
+        
+        String fechaFormateada = this.fechaYHora.format(Fecha);
+        String horaFormateada = this.fechaYHora.format(Hora);
+        
+        System.out.println("\nNro: " + this.numero);
+        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
+        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
+        System.out.println("Estado: " + this.estado);
+        
+        System.out.println("\t\tProducto " + "\t\tCantidad");
+        System.out.println("\t\t=================================");
+        for(ProductoDelPedido p : listaProductosdelPedido)
+            p.mostrar();
+        System.out.println("#################### ");
+    } 
 }
-

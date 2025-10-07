@@ -27,8 +27,8 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-    public void mostrar() {
-        System.out.println("- " + producto.verDescripcion() + " (Cantidad: " + cantidad + ")");
+    public void mostrar(){
+        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
     }
 }
 

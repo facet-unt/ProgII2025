@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package usuarios.modelos;
 
-/**
- *
- * @author estudiante
- */
 public class Encargado {
+    //Atributos
     private String correo;
     private String clave;
     private String apellido;
@@ -24,13 +18,19 @@ public class Encargado {
     public void mostrar(){
         System.out.println("Encargado\nApellido: "+apellido+"\nNombre: "+nombre+"\nCorreo: "+correo+"\n");
     }
-
+    @Override
+    public String toString() {
+        return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    //metodos get/set
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -38,7 +38,9 @@ public class Encargado {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -46,7 +48,9 @@ public class Encargado {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -54,7 +58,8 @@ public class Encargado {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
-
 }

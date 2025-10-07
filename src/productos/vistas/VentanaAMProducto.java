@@ -9,8 +9,8 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import productos.modelos.Producto;
-import usuarios.modelos.Estado;
-import usuarios.modelos.Categoria;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 
 public class VentanaAMProducto extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
@@ -155,7 +155,11 @@ public class VentanaAMProducto extends JDialog {
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         String categoria = this.txtCategoria.getText().trim();
         String estado  = this.txtEstado.getText().trim();
-        Producto unProducto = new Producto(codigo, descripcion, Categoria.valueOf(categoria), Estado.valueOf(estado), precio);
+        
+        Categoria enumCategoria = Categoria.valueOf(categoria.toUpperCase());
+        Estado enumEstado = Estado.valueOf(estado.toUpperCase());
+        
+        Producto unProducto = new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
         this.productos.add(unProducto);
         
         System.out.println("Productos");

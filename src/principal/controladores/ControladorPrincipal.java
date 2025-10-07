@@ -1,13 +1,14 @@
 package principal.controladores;
 
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
-/*import pedidos.modelos.Estado*/; // Este Estado es de Pedido porque se pone error aqui?
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import productos.modelos.Producto;
-import usuarios.modelos.Estado;
-import usuarios.modelos.*;
+import productos.modelos.*;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
+
 
 
 public class ControladorPrincipal {
@@ -20,7 +21,7 @@ public class ControladorPrincipal {
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
-        //ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
         
         /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
         Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
@@ -48,9 +49,9 @@ public class ControladorPrincipal {
          
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
-        Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
+        Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA , Estado.DISPONIBLE, 200.0f);        
         Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-        Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
+        Producto p3 = new  Producto(3, "Producto 3", Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
         
         listaProductos.add(p1);
         listaProductos.add(p2);
@@ -92,37 +93,29 @@ public class ControladorPrincipal {
             e.mostrar();
         
         //SEGUNDA PARTE
-        
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
-        
-        ArrayList<Pedido> listaPedidos = new ArrayList<>();
-        
-        // Pedido 1
         ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
-        pido1.add(new ProductoDelPedido(p3, 1));
+        pido1.add(new ProductoDelPedido(p1, 1));
         pido1.add(new ProductoDelPedido(p2, 2));
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), pido1, cliente1);
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),pido1, cliente1); 
         
-        // Pedido 2
         ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
-        pido2.add(new ProductoDelPedido(p1, 3));
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), pido2, cliente2);
+        pido2.add(new ProductoDelPedido(p3, 1));
+        pido2.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),pido2,  listaClientes.get(1)); 
         
-        // Pedido 3
         ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
-        pido3.add(new ProductoDelPedido(p2, 1));
-        pido3.add(new ProductoDelPedido(p3, 1));
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), pido3, cliente3);
-
+        pido3.add(new ProductoDelPedido(p1, 1));
+        pido3.add(new ProductoDelPedido(p3, 2));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
+        
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);
         listaPedidos.add(unPedido3);
-
-        for (Pedido p : listaPedidos)
-        p.mostrar();
-
+        
+        for (Pedido p: listaPedidos)
+            p.mostrar();
         System.out.println("#################### ");
-       
     }
 }

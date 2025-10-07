@@ -1,12 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
 
-import usuarios.modelos.Categoria;
-import usuarios.modelos.Estado;
 
-
+/**
+ *
+ * @author estudiante
+ */
 public class Producto {
-
-
+    //Atributos
     private int codigo;
     private String descripcion;
     private Categoria categoria;
@@ -20,11 +24,15 @@ public class Producto {
         this.categoria = categoria;
         this.estado = estado;
         this.precio = precio;
+        this.categoria = categoria;
+        this.estado = estado;
     }
+    
 
     public void mostrar() {
-        System.out.println("Codigo: "+ codigo +"\nDescripcion: "+descripcion);
+        System.out.println("Codigo: "+ codigo +"\nDescripcion: "+ descripcion);
     }
+    
     @Override
     public String toString() {
         return "Producto[Descripcion=" + descripcion + ", Estado=" + estado + "]\n";
@@ -42,31 +50,34 @@ public class Producto {
         return descripcion;
     }
 
-    public void asignarDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void asignarDescripcion(String d) {
+        if (d != null && !d.isBlank())
+            descripcion = d;
     }
 
     public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void asignarCategoria(Categoria c) {
+        categoria = c;
     }
 
     public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(Estado estado) {
-        this.estado = estado;
+    public void asignarEstado(Estado e) {
+            estado = e;
     }
 
     public float verPrecio() {
         return precio;
     }
 
-    public void asignarPrecio(float precio) {
-        this.precio = precio;
-    }  
+    public void asignarPrecio(float p) {
+        if (p > 0){
+            precio = p;
+        }
+    }
 }
