@@ -16,48 +16,48 @@ import usuarios.vistas.VentanaAMEncargado;
  * @author mariana
  */
 public class ControladorPrincipalGUI {
+
     public static void main(String[] args) {
-    //Trabajamos con una ventana por vez
-    //Para todas las ventanas lo pasos son:
-    /*
+        //Trabajamos con una ventana por vez
+        //Para todas las ventanas lo pasos son:
+        /*
     * Asigna el look and feel "Nimbus" a la ventana
     * Se crea la ventana
     * Se centra la ventana
     * Se asigna un título a la ventana
     * Se hace visible la ventana
-    */
-        establecerLookAndFeel("Nimbus"); 
+         */
+        establecerLookAndFeel("Nimbus");
         // PRODUCTO
         VentanaAMProducto ventana = new VentanaAMProducto(null);
         ventana.setLocationRelativeTo(null);
         ventana.setTitle("Nuevo producto");
         ventana.setVisible(true);
-        
+
         //CLIENTE
-      /*Modificar el método main() de la clase ControladorPrincipalGUI y agregar el código para que
+        /*Modificar el método main() de la clase ControladorPrincipalGUI y agregar el código para que
         muestre las ventanas que permiten crear clientes, empleados y encargados.*///(esto fue lo que hice)
-        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null); 
+        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
         ventanaCliente.setLocationRelativeTo(null); //la ubico en el centro de la pantalla
         ventanaCliente.setTitle("Nuevo Cliente"); //quiero que tenga por titulo eso
         ventanaCliente.setVisible(true); //quiero que la ventana sea  visible
-       
-     
-       //EMPLEADO 
-       
+
+        //EMPLEADO 
         VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
         ventanaEmpleado.setLocationRelativeTo(null);
         ventanaEmpleado.setTitle("Nuevo Empleado");
         ventanaEmpleado.setVisible(true);
-       //ENCARGADO
-       
-       VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
-       ventanaEncargado.setLocationRelativeTo(null);
-       ventanaEncargado.setTitle("Nuevo Encargado");
-       ventanaEncargado.setVisible(true);
+        //ENCARGADO
+
+        VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
+        ventanaEncargado.setLocationRelativeTo(null);
+        ventanaEncargado.setTitle("Nuevo Encargado");
+        ventanaEncargado.setVisible(true);
     }
-    
+
     /**
      * Asigna el look and feel especificado a la ventana
+     *
      * @param laf cadena con el nombre del look and feel
      */
     public static void establecerLookAndFeel(String laf) {
@@ -70,8 +70,7 @@ public class ControladorPrincipalGUI {
         } catch (Exception e) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } 
-            catch (Exception e2) {
+            } catch (Exception e2) {
             }
         }
     }

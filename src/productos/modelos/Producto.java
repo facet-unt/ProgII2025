@@ -42,13 +42,6 @@ public class Producto {
         this.precio = precio;
     }
     
-    public Producto(int c, String d, Categoria categoria, float p) {
-        codigo = c;
-        descripcion = d;
-        this.categoria = categoria;
-        precio = p;
-    }
-    
     public int verCodigo() {
         return codigo;
     }

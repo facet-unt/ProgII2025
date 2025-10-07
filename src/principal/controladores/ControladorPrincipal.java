@@ -3,8 +3,10 @@ package principal.controladores;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.Estado;
+//import productos.modelos.Estado;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
-import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
 
@@ -16,7 +18,9 @@ public class ControladorPrincipal {
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Encargado> encargados = new ArrayList<>();
-//
+        pedidos.modelos.Estado estadoPedido1 = pedidos.modelos.Estado.
+        
+ 
 //        Producto prod1 = new Producto(1, "Laptop", "Electronica", "Nuevo", 1200.5f);
 //       
 //        Producto prod2 = new Producto(2, "Mouse", "Accesorio", "Nuevo", 25.0f);
@@ -165,18 +169,18 @@ public class ControladorPrincipal {
             e.mostrar();
         
 //        SEGUNDA PARTE
-        System.out.println("#################### ");
-        System.out.println("PEDIDOS");
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1); 
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(1)); 
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2); 
+ArrayList<ProductoDelPedido> listadelPedido = new ArrayList<>();
+        ProductoDelPedido productoDelPedido1=new ProductoDelPedido(1,p1);
+       Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), ,cliente1,listadelPedido); 
+       Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), cliente3,p2); 
+       Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2,p3); 
         
-        listaPedidos.add(unPedido1);
-        listaPedidos.add(unPedido2);
+       listaPedidos.add(unPedido1);
+       listaPedidos.add(unPedido2);
         listaPedidos.add(unPedido3);
         
-        for (Pedido p: listaPedidos)
-            p.mostrar();
-        System.out.println("#################### ");
+       for (Pedido p: listaPedidos)
+       p.mostrar();
+//        System.out.println("#################### ");
     }
 }

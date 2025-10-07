@@ -34,7 +34,13 @@ public class ProductoDelPedido {
     public void asignarProducto(Producto producto) {
         this.producto = producto;
     }
-    
+    public void mostrar()
+    {
+        System.out.println("Producto\t\tCantidad");
+        System.out.println("====================");
+        System.out.println("Producto:" + producto);
+        System.out.println("Cantidad:" + cantidad);
+    }
     
     
 }
