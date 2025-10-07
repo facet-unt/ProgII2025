@@ -15,27 +15,17 @@ public class Encargado {
     private String clave;
     private String apellido;
     private String nombre;
-    
-    //Metodos
-    public void mostrar(){
-        System.out.println("Encargado: " + apellido + " " + nombre);
-    }
 
-    @Override
-    public String toString() {
-        return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-    
-    //constructor
-    
     public Encargado(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
     }
-    
-    //metodos get/set
+
+    public Encargado() {
+    }
+  
     public String verCorreo() {
         return correo;
     }
@@ -75,4 +65,12 @@ public class Encargado {
             this.nombre = nombre;
         }
     }
-}
+
+    public void mostrar(){
+        System.out.println("=================");
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre: " + nombre);
+    }         
+}    

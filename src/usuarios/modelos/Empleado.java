@@ -10,23 +10,11 @@ package usuarios.modelos;
  */
 
 public class Empleado {
-    //Atributos
+
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-    
-    //Metodos
-    public void mostrar(){
-        System.out.println("Empleado: " + apellido + " " + nombre);   
-    }
-
-    @Override
-    public String toString() {
-        return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-    
-    //constructor
 
     public Empleado(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
@@ -34,32 +22,26 @@ public class Empleado {
         this.apellido = apellido;
         this.nombre = nombre;
     }
+
+    public Empleado() {
+    }
     
-    //metodos get/set
+     public void asignarClave(String clave) {
+        this.clave = clave;
+    }
+    
     public String verCorreo() {
         return correo;
-    }
-
-    public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
     }
 
     public String verClave() {
         return clave;
     }
 
-    public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
-    }
-
     public String verApellido() {
         return apellido;
     }
-
+    
     public void asignarApellido(String apellido) {
         if (apellido != null && !apellido.isBlank()){
             this.apellido = apellido;
@@ -74,5 +56,15 @@ public class Empleado {
         if (nombre != null && !nombre.isBlank()){
             this.nombre = nombre;
         }
+    }
+
+
+    public void mostrar()
+    {
+        System.out.println("=================");
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre: " + nombre);
     }
 }

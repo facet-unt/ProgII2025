@@ -5,19 +5,24 @@
 package pedidos.modelos;
 
 import productos.modelos.Producto;
+
+
 /**
  *
- * @author Esteban
+ * @author estudiante
  */
 public class ProductoDelPedido {
     private int cantidad;
-    private Producto producto;
+    private Producto unProducto;
 
-    public ProductoDelPedido(Producto producto, int cantidad) {
+    public ProductoDelPedido(int cantidad, Producto unProducto) {
         this.cantidad = cantidad;
-        this.producto = producto;
+        this.unProducto = unProducto;
     }
 
+    public ProductoDelPedido() {
+    }
+    
     public int verCantidad() {
         return cantidad;
     }
@@ -26,16 +31,15 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-    public Producto verProducto() {
-        return producto;
+    public Producto verUnProducto() {
+        return unProducto;
     }
 
-    public void asignarProducto(Producto producto) {
-        this.producto = producto;
+    public void asignarUnProducto(Producto unProducto) {
+        this.unProducto = unProducto;
     }
 
-    public void mostrar(){
-        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
-    }
     
+    
+        
 }

@@ -4,6 +4,11 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
+
+
 /**
  *
  * @author Esteban
@@ -16,26 +21,18 @@ public class Cliente {
     private String clave;
     private String apellido;
     private String nombre;
-    private ArrayList<Pedido> listaPedidos;
-    
-    //Metodos
-    public void mostrar(){
-        System.out.println("Cliente: " + apellido + " " + nombre);
-    }
 
-    @Override
-    public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
+    private ArrayList<Pedido> pedidos; /*implementacion de asociacion con clase pedido*/
     
-    //constructor
-
     public Cliente(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-        this.listaPedidos = new ArrayList<>();
+    }
+    
+
+    public Cliente() {
     }
     
     //metodos get/set
@@ -43,34 +40,28 @@ public class Cliente {
         return correo;
     }
 
-    public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
-    }
-
     public String verClave() {
         return clave;
-    }
-
-    public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
     }
 
     public String verApellido() {
         return apellido;
     }
 
-    public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
-    }
-
     public String verNombre() {
         return nombre;
+    }
+
+    public void asignarCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void asignarClave(String clave) {
+        this.clave = clave;
+    }
+
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public void asignarNombre(String nombre) {
@@ -78,12 +69,19 @@ public class Cliente {
             this.nombre = nombre;
         }
     }
-
-    public ArrayList<Pedido> verListaPedidos() {
-        return this.listaPedidos;
+    
+    
+    public void mostrar() {
+      System.out.println("=================");
+      System.out.println("Correo:" + correo);
+      System.out.println("Clave:" + clave);
+      System.out.println("Apellido:"+ apellido);
+      System.out.println("Nombre:" + nombre);      
     }
+    
+    @Override
+    public String toString(){
 
-    public void asignarPedido(Pedido p) {
-        this.listaPedidos.add(p);
-    }    
+        return "{" + "Apellido=" + apellido + ", Nombre=" + nombre + '}';
+    }      
 }

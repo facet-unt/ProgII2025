@@ -6,21 +6,29 @@ package productos.modelos;
 
 /**
  *
- * @author Esteban
+ * @author estudiante
  */
+/* Creación de enumeracion Estado */
 public enum Estado {
     DISPONIBLE("Disponible"),
-    NO_DISPONIBLE("No Disponible");
-    
+    NO_DISPONIBLE("No disponible");
+
     private String valor;
-    
-    //Constructor
-    private Estado(String valor){
-        this.valor=valor;
+
+    /* Se crea constructor */
+    private Estado(String valor) {
+        this.valor = valor;
     }
 
+//   @Override
+//    public String toString() {
+//        return "Estado{" + '}';
+//    }    
+    
+    
+    /* Modificacion del metodo toString() */
     @Override
     public String toString() {
-        return this.valor;
+        return valor;
     }
 }
