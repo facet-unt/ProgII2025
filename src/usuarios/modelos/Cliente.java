@@ -20,6 +20,7 @@ public class Cliente {
     private String apellido;
     private String nombre;
     private ArrayList<Pedido> pedidos= new ArrayList<>();
+     private ArrayList<Pedido> listaPedidos;
 
     
     public void mostrar() {
@@ -29,14 +30,12 @@ public class Cliente {
       System.out.println(nombre);
       for (Pedido p: pedidos)
             System.out.println(p.verNumero());
-=======
-    private ArrayList<Pedido> listaPedidos;
+    }
+
+   
     
     //Metodos
-    public void mostrar(){
-        System.out.println("Cliente: " + apellido + " " + nombre);
->>>>>>> desarrollo
-    }
+ 
 
     @Override
     public String toString() {
@@ -45,14 +44,14 @@ public class Cliente {
     
     //constructor
 
-=======
+
     public Cliente(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
         this.listaPedidos = new ArrayList<>();
->>>>>>> desarrollo
+
     }
     
     //metodos get/set
@@ -103,20 +102,17 @@ public class Cliente {
     public void asignarPedido(Pedido unPedido) {
         this.pedidos.add(unPedido);
     }
-    
-    
-    
-    
-    
-}
-=======
->>>>>>> desarrollo
 
     public ArrayList<Pedido> verListaPedidos() {
-        return this.listaPedidos;
+        return listaPedidos;
     }
 
-    public void asignarPedido(Pedido p) {
-        this.listaPedidos.add(p);
-    }    
-}
+    public void asignarListaPedidos(ArrayList<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
+    }
+    
+    
+    
+    
+    
+} 

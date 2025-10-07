@@ -157,7 +157,7 @@ public class VentanaAMEmpleado extends JDialog {
             System.out.println();
         }
 
->>>>>>> desarrollo
+
     }//GEN-LAST:event_btnGuardarClic
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

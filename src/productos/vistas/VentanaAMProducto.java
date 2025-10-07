@@ -9,11 +9,11 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import productos.modelos.*;
-=======
+
 import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
->>>>>>> desarrollo
+
 
 public class VentanaAMProducto extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
