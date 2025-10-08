@@ -145,12 +145,12 @@ public class ControladorPrincipalTP4Parte3 {
         if(!listaPedidos.contains(unPedido3))
             listaPedidos.add(unPedido3);
         
-//        System.out.println("Pedidos");
-//        System.out.println("=======");
-//        for(Pedido p : listaPedidos) {
-//            p.mostrar();
-//            System.out.println();
-//        }
+        System.out.println("Pedidos");
+        System.out.println("=======");
+        for(Pedido p : listaPedidos) {
+            p.mostrar();
+            System.out.println();
+        }
         
         ((Cliente)unCliente1).agregarPedido(unPedido1);
         ((Cliente)unCliente1).agregarPedido(unPedido1);
