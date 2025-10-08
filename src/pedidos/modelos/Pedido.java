@@ -75,7 +75,7 @@ public class Pedido {
         String fechaFormateada = this.fechaYHora.format(Fecha);
         String horaFormateada = this.fechaYHora.format(Hora);
         
-        System.out.println("\nNro: " + this.numero);
+        System.out.println("Nro: " + this.numero);
         System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
         System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
         System.out.println("Estado: " + this.estado);
@@ -84,7 +84,7 @@ public class Pedido {
         System.out.println("\t\t=================================");
         for(ProductoDelPedido p : listaProductosdelPedido)
             p.mostrar();
-        System.out.println("#################### ");
+        System.out.println("\n####################");
     } 
 
     @Override

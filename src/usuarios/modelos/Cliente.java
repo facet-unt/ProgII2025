@@ -12,7 +12,14 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
+    //Atributos
     private ArrayList<Pedido> listaPedidos;
+    
+    //Constructor
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
+        this.listaPedidos = new ArrayList<>();
+    }
     
     //Metodos
 
@@ -21,18 +28,43 @@ public class Cliente extends Usuario {
         return "Cliente{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
     }
     
-    //constructor
-
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
-        this.listaPedidos = new ArrayList<>();
-    }
-    
-    public ArrayList<Pedido> verListaPedidos() {
+    @Override
+    public ArrayList<Pedido> verPedidos() {
         return this.listaPedidos;
     }
 
-    public void asignarPedido(Pedido p) {
-        this.listaPedidos.add(p);
-    }    
+    @Override
+    public void mostrar() {
+        System.out.print("Cliente: ");
+        super.mostrar();
+    }
+    
+    public void agregarPedido(Pedido p) {
+        if (this.equals(p.verCliente())) {
+            if (!listaPedidos.contains(p)){
+                listaPedidos.add(p);
+            }
+            else {
+                int indice = listaPedidos.indexOf(p);
+                listaPedidos.set(indice, p);
+            }
+        }
+        else {
+            System.out.println("Error: El pedido que intenta agregar no corresponda con el cliente\n");
+        }  
+    }
+    
+    public void cancelarPedido(Pedido p) {
+        System.out.println("\n==================");
+        System.out.print("Cliente: ");
+        super.mostrar();
+        if (listaPedidos.contains(p)){
+            listaPedidos.remove(p);
+            System.out.println("Se ha cancelado el pedido numero: " + p.verNumero());
+        }
+        else {
+            System.out.println("No se ha encontrado el pedido numero: " + p.verNumero());
+        }
+        System.out.println("==================\n");
+    }
 }

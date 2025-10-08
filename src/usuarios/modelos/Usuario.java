@@ -4,7 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -25,9 +27,12 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
     
+    //metodos
     public void mostrar(){
         System.out.println(this.verApellido() + ", " + this.verNombre());
     }
+    
+    public abstract ArrayList<Pedido> verPedidos();
     
     //metodos get/set
     public String verCorreo() {
