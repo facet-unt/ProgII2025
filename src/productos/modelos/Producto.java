@@ -86,12 +86,8 @@ public class Producto {
         if (p > 0){
             precio = p;
         }
-    public boolean equals (Object o) {
-        if (o =)
-    }
-        
-        
     
+
     }
     
 }

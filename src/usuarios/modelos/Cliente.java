@@ -24,5 +24,7 @@ public class Cliente extends Usuario {
 
     public void asignarPedido(Pedido p) {
         this.listaPedidos.add(p);
-    }    
-}
+    }
+}  
+    
+   
