@@ -50,7 +50,7 @@ public class ControladorPrincipal {
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
         Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
-        Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
+        Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
         Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
         
         listaProductos.add(p1);
@@ -94,9 +94,9 @@ public class ControladorPrincipal {
         //SEGUNDA PARTE
 //        System.out.println("#################### ");
 //        System.out.println("PRODUCTOS DE LOS PEDIDOS");
-        ProductoDelPedido pdp1 = new ProductoDelPedido(2, p1);
-        ProductoDelPedido pdp2 = new ProductoDelPedido(6, p3);
-        ProductoDelPedido pdp3 = new ProductoDelPedido(1, p2);
+        ProductoDelPedido pdp1 = new ProductoDelPedido(p1, 2);
+        ProductoDelPedido pdp2 = new ProductoDelPedido(p3, 6);
+        ProductoDelPedido pdp3 = new ProductoDelPedido(p2, 1);
         productosdelpedido1.add(pdp1);
         productosdelpedido1.add(pdp2);
         productosdelpedido2.add(pdp3);
@@ -105,9 +105,9 @@ public class ControladorPrincipal {
         
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1, productosdelpedido1); 
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(1), productosdelpedido2); 
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2, productosdelpedido3); 
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), productosdelpedido1, cliente1); 
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosdelpedido2, listaClientes.get(1)); 
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), productosdelpedido3, cliente2); 
         
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);

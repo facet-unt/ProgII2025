@@ -78,8 +78,30 @@ public class Pedido {
     public void asignarProductosdelpedido(ArrayList<ProductoDelPedido> productosdelpedido) {
         this.productosdelpedido = productosdelpedido;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
+    }
     
-    public Pedido(int numero, LocalDateTime fechaYhora, Cliente unCliente, ArrayList<ProductoDelPedido> productosdelpedido) {
+    public Pedido(int numero, LocalDateTime fechaYhora,ArrayList<ProductoDelPedido> productosdelpedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.unCliente = unCliente;

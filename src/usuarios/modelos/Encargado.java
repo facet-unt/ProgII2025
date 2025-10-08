@@ -4,68 +4,27 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author estudiante
  */
-public class Encargado {
-    public String correo, clave, apellido, nombre;
+public class Encargado extends Usuario {
     
+    @Override
     public void mostrar(){
         System.out.println("Los datos de este encargado son:");
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: "+nombre);
-        System.out.println("Correo: "+correo);
-        System.out.println("Clave: "+clave);
+        super.mostrar();
     }
+   
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return null;
+    } 
     
-    
-    public String verCorreo(){
-        return correo;
-    }
-    
-    public void asignarCorreo(String c) {
-        if (c != null && !c.isBlank()){
-            correo = c;
-        }
-    }
-    
-    public String verClave(){
-        return clave;
-    }
-    
-    public void asignarClave(String c) {
-        if (c != null && !c.isBlank()){
-            clave = c;
-        }
-    }
-    
-    public String verNombre(){
-        return nombre;
-    }
-    
-    public void asignarNombre(String n) {
-        if (n != null && !n.isBlank()){
-            nombre = n;
-        }
-    }
-    
-    public String verApellido(){
-        return apellido;
-    }
-    
-    public void asignarApellido(String a) {
-        if (a != null && !a.isBlank()){
-            apellido = a;
-        }
-    }
-    
-    
-
     public Encargado(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+        super(correo, clave, apellido, nombre);
     }
 }

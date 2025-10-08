@@ -33,6 +33,12 @@ public class ControladorPrincipalTP4Parte3 {
         
         if (!usuarios.contains(unCliente1))
             usuarios.add(unCliente1);
+        if (!usuarios.contains(unCliente2))
+            usuarios.add(unCliente2);
+        if (!usuarios.contains(unCliente3))
+            usuarios.add(unCliente3);
+        if (!usuarios.contains(unCliente4))
+            usuarios.add(unCliente4);
         /*
             *************************************************
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
@@ -44,7 +50,14 @@ public class ControladorPrincipalTP4Parte3 {
         Usuario unEmpleado3 = new Empleado("empleado3@bar.com", "claveEmpleado3", "ApellidoEmpleado3", "NombreEmpleado3");
         Usuario unEmpleado4 = new Empleado("empleado3@bar.com", "claveEmpleado4", "ApellidoEmpleado4", "NombreEmpleado4");
         //empleado repetido
-        
+        if(!usuarios.contains(unEmpleado1))
+            usuarios.add(unEmpleado1);
+        if(!usuarios.contains(unEmpleado2))
+            usuarios.add(unEmpleado2);
+        if(!usuarios.contains(unEmpleado3))
+            usuarios.add(unEmpleado3);
+        if(!usuarios.contains(unEmpleado4))
+            usuarios.add(unEmpleado4);
         /*
             *************************************************
             AGREGAR aqui las sentencias para agregar los empleados a la lista de
@@ -57,7 +70,14 @@ public class ControladorPrincipalTP4Parte3 {
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
         Usuario unEncargado4 = new Encargado("encargado3@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         //encargado repetido
-
+        if(!usuarios.contains(unEncargado1))
+            usuarios.add(unEncargado1);
+        if(!usuarios.contains(unEncargado2))
+            usuarios.add(unEncargado2);
+        if(!usuarios.contains(unEncargado3))
+            usuarios.add(unEncargado3);
+        if(!usuarios.contains(unEncargado4))
+            usuarios.add(unEncargado4);
         /*
             *************************************************
             AGREGAR aqui las sentencias para agregar los encargados a la lista de
@@ -71,14 +91,20 @@ public class ControladorPrincipalTP4Parte3 {
         Producto unProducto4 = new Producto(3, "Producto4", Categoria.POSTRE, Estado.DISPONIBLE, 4.0f);
         //producto repetido
         
-        if (!listaProductos.contains(p1))
-        listaProductos.add(p1); 
+        if (!listaProductos.contains(unProducto1))
+            listaProductos.add(unProducto1); 
+        if (!listaProductos.contains(unProducto2))
+            listaProductos.add(unProducto2);
+        if (!listaProductos.contains(unProducto3))
+            listaProductos.add(unProducto3);
+        if (!listaProductos.contains(unProducto4))
+            listaProductos.add(unProducto4);
         /*
             **************************************************
              * AGREGAR aqui las sentencias para completar el llenado de 
              * la lista de productos
             **************************************************
-        */
+        */ 
         
         ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
         ProductoDelPedido pdp1 = new ProductoDelPedido(listaProductos.get(0), 1);
@@ -119,12 +145,12 @@ public class ControladorPrincipalTP4Parte3 {
         if(!listaPedidos.contains(unPedido3))
             listaPedidos.add(unPedido3);
         
-        System.out.println("Pedidos");
-        System.out.println("=======");
-        for(Pedido p : listaPedidos) {
-            p.mostrar();
-            System.out.println();
-        }
+//        System.out.println("Pedidos");
+//        System.out.println("=======");
+//        for(Pedido p : listaPedidos) {
+//            p.mostrar();
+//            System.out.println();
+//        }
         
         ((Cliente)unCliente1).agregarPedido(unPedido1);
         ((Cliente)unCliente1).agregarPedido(unPedido1);

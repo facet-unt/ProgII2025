@@ -11,62 +11,42 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public class Cliente {
-    private String correo, clave, apellido, nombre;
+public class Cliente extends Usuario {
     private ArrayList<Pedido> pedidos;
     
+    @Override
     public void mostrar(){
         System.out.println("Los datos de este cliente son:");
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: "+nombre);
-        System.out.println("Correo: "+correo);
-        System.out.println("Clave: "+clave);
+        super.mostrar();
+    }
+
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
     }
     
-    public String verCorreo(){
-        return correo;
-    }
-    
-    public void asignarCorreo(String c) {
-        if (c != null && !c.isBlank()){
-            correo = c;
+    public void agregarPedido(Pedido unpedido){
+        if(!pedidos.contains(unpedido)){
+            pedidos.add(unpedido);
+        }else{
+            for(Pedido p: pedidos){
+                if(p.equals(unpedido))
+                    p=unpedido;
+                }
         }
-    }
+    }    
     
-    public String verClave(){
-        return clave;
-    }
-    
-    public void asignarClave(String c) {
-        if (c != null && !c.isBlank()){
-            clave = c;
-        }
-    }
-    
-    public String verNombre(){
-        return nombre;
-    }
-    
-    public void asignarNombre(String n) {
-        if (n != null && !n.isBlank()){
-            nombre = n;
-        }
-    }
-    
-    public String verApellido(){
-        return apellido;
-    }
-    
-    public void asignarApellido(String a) {
-        if (a != null && !a.isBlank()){
-            apellido = a;
-        }
+    public void cancelarPedido(Pedido unpedido){
+        for(Pedido p: pedidos){
+            if(p.equals(unpedido)){
+                pedidos.remove(p);
+                break;
+            }
+        }    
     }
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+       super(correo, clave, apellido, nombre);
+       this.pedidos = new ArrayList<>();
     }
 }
