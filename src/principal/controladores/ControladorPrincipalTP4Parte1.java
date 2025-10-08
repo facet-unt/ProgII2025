@@ -90,7 +90,7 @@ public static void main(String[] args) {
     if (!listapdp1.contains(pdp2))
         listapdp1.add(pdp2);
     if (!listapdp1.contains(pdp3))
-        listapdp1.add(pdp3);
+        listapdp1.add(pdp3);//crea dos ProductosDelPedido y comprueba si estan repetidos
     Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
     
   
@@ -104,7 +104,7 @@ public static void main(String[] args) {
     if (!productosDelPedido2.contains(pdp5))
         productosDelPedido2.add(pdp5);
     if (!productosDelPedido2.contains(pdp6))
-        productosDelPedido2.add(pdp6);
+        productosDelPedido2.add(pdp6);//crea dos ProductosDelPedido y comprueba si estan repetidos
     Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, cliente2);        
 
     ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
@@ -113,9 +113,9 @@ public static void main(String[] args) {
     if (!productosDelPedido3.contains(pdp7))
         productosDelPedido3.add(pdp7);
     if (!productosDelPedido3.contains(pdp8))
-        productosDelPedido3.add(pdp8);
-    Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), productosDelPedido3, cliente3);        
-//    pedido repetido no debe agregarse a la lista
+        productosDelPedido3.add(pdp8); //crea dos ProductosDelPedido y comprueba si estan repetidos
+    Pedido unPedido3 = new Pedido(1, LocalDateTime.now(), productosDelPedido3, cliente3);        
+//    pedido repetido no debe agregarse a la lista, pues tiene el mismo numero
 
 
     if(!listaPedidos.contains(unPedido1))
@@ -124,6 +124,8 @@ public static void main(String[] args) {
         listaPedidos.add(unPedido2);
     if(!listaPedidos.contains(unPedido3))
         listaPedidos.add(unPedido3);
+    
+    
     
     System.out.println("Los pedidos son: ");
     System.out.println("=======");
