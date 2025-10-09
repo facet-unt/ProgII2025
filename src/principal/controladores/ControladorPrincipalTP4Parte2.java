@@ -54,7 +54,7 @@ public class ControladorPrincipalTP4Parte2 {
             if(unUsuario instanceof Cliente)
             {
                 Cliente c= (Cliente)unUsuario;  
-                c.mostrar(); //Para mostrar los objetos de tipo Cliente se hace un cash de Usuario a cliente //
+                c.mostrar(); //Para mostrar los objetos de tipo Cliente se hace un cast de Usuario a cliente //
             }
         }
         
@@ -99,7 +99,7 @@ public class ControladorPrincipalTP4Parte2 {
             if(unUsuario instanceof Empleado)
             {
                 Empleado e= (Empleado)unUsuario;  
-                e.mostrar(); //Para mostrar los objetos de tipo Emmpleado se hace un cash de Usuario a Empleado//
+                e.mostrar(); //Para mostrar los objetos de tipo Empleado se hace un cast de Usuario a Empleado//
             }
         }
         System.out.println("=========");
@@ -143,7 +143,7 @@ public class ControladorPrincipalTP4Parte2 {
         for(Usuario unUsuario : usuarios){
             if(unUsuario instanceof Encargado)
             {
-                Encargado e= (Encargado)unUsuario;   //Para mostrar los objetos de tipo Encargado se hace un cash de Usuario a Encargado- //
+                Encargado e= (Encargado)unUsuario;   //Para mostrar los objetos de tipo Encargado se hace un cast de Usuario a Encargado- //
                 e.mostrar();
             }
         }
