@@ -62,18 +62,16 @@ public class ControladorPrincipalTP4Parte2 {
             if (usuario instanceof Cliente) {
                 usuario.mostrar();
             }
-            
         }
         System.out.println();
         System.out.println("Empleados");
         System.out.println("=========");
 
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son empleados
-            *************************************************
-         */
+        for (Usuario usuario : usuarios) {
+            if (usuario instanceof Empleado) {
+                usuario.mostrar();
+            }
+        }
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
