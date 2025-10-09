@@ -57,13 +57,13 @@ public class ControladorPrincipalTP4Parte2 {
         
         System.out.println("Clientes");
         System.out.println("=========");
-
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son Clientes
-            *************************************************
-         */
+        
+        for (Usuario usuario : usuarios) {
+            if (usuario instanceof Cliente) {
+                usuario.mostrar();
+            }
+            
+        }
         System.out.println();
         System.out.println("Empleados");
         System.out.println("=========");
