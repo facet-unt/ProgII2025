@@ -91,7 +91,7 @@ public abstract class  Usuario {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass().getSuperclass() != obj.getClass().getSuperclass()) { //se modifica el equals de usuario para que compare objetos distintos
             return false;
         }
         final Usuario other = (Usuario) obj;
