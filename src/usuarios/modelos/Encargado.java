@@ -8,61 +8,14 @@ package usuarios.modelos;
  *
  * @author lazar
  */
-public class Encargado {
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+public class Encargado extends Usuario {
     
-    public Encargado(String c,String a,String n,String cl){
-        correo=c;
-        apellido=a;
-        nombre=n;
-        clave=cl;
-    }
-    
-    public void mostrar(){
-        System.out.println("Correo: "+correo);
-        System.out.println("apellido: "+apellido);
-        System.out.println("nombre: "+nombre);
-        System.out.println("clave: "+clave);
+    public Encargado(String c,String cl,String a,String n){
+        super(c,cl,a,n);
     }
 
     @Override
     public String toString() {
-        return "Encargado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Encargado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
     }
-    
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void sasignarCorreo(String c) {
-        correo = c;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String c) {
-        clave = c;
-    }
-
-    public String verApellido() {
-        return apellido;
-    }
-
-    public void asignarApellido(String a) {
-        apellido = a;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String n) {
-        nombre = n;
-    }
-    
 }
