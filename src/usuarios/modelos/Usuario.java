@@ -9,7 +9,7 @@ package usuarios.modelos;
  *
  * @author Amadeo
  */
-public class Usuario {
+public abstract class Usuario {
 
     private String correo;
     private String clave;
