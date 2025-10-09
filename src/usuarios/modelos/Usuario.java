@@ -5,9 +5,15 @@
 package usuarios.modelos;
 
 /**
+ * b
  *
  * @author Amadeo
  */
 public class Usuario {
-    
+
+    private String correo;
+    private String clave;
+    private String apellido;
+    private String nombre;
+
 }
