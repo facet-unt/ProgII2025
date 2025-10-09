@@ -25,6 +25,8 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
     
+    public abstract void verPedidos();
+    
       public void mostrar(){
         System.out.println("Nombre: "+ verNombre());
         System.out.println("Apellido: "+ verApellido());
