@@ -94,12 +94,12 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println("Encargados");
         System.out.println("==========");
 
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son encargados
-            *************************************************
-         */
+          for (Usuario usuario : usuarios) {
+            if (usuario instanceof Encargado) {
+                usuario.mostrar();
+            }
+        }
+          
         Usuario unEncargado5 = new Encargado("cliente1@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         if (!usuarios.contains(unEncargado5)) {
             usuarios.add(unEncargado5);
