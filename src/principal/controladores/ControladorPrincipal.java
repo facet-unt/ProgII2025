@@ -10,18 +10,15 @@ import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
+    /*
     public static void main(String[] args) {
         //PRIMERA PARTE
-         /*
-        Definir un ArrayList para cada una de las clases Cliente, 
-        Empleado, Encargado y Producto  (realizar las importaciones correspondientes).*/
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         
-        /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
         Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
         Empleado e2 = new Empleado("empleado2@mail.com", "123", "ApellidoEmpleado2", "NombreEmpleado2");
         Empleado e3= new Empleado("empleado3@mail.com", "123", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -32,17 +29,14 @@ public class ControladorPrincipal {
         
         System.out.println("#################### ");
         System.out.println("EMPLEADOS ");
-        /*Recorrer cada ArrayList y mostrar su contenido por pantalla. */
+  
         for (Empleado e: listaEmpleados)
             e.mostrar();
         
-        /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
-        //DEBO usar los métodos para ese fin
         e1.asignarApellido("APELLIDOEmpleado11");
         listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
         
-        /*y volver a recorrer los ArrayLists verificando que se hicieron los cambios. */
-         for (Empleado e: listaEmpleados)
+        for (Empleado e: listaEmpleados)
             e.mostrar();
          
         System.out.println("#################### ");
@@ -89,31 +83,6 @@ public class ControladorPrincipal {
         
         for (Cliente e: listaClientes)
             e.mostrar();
-        
-        //SEGUNDA PARTE
-        System.out.println("#################### ");
-        System.out.println("PEDIDOS");
-        ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
-        pido1.add(new ProductoDelPedido(p1, 1));
-        pido1.add(new ProductoDelPedido(p2, 2));
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),pido1, cliente1); 
-        
-        ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
-        pido2.add(new ProductoDelPedido(p3, 1));
-        pido2.add(new ProductoDelPedido(p2, 2));
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),pido2,  listaClientes.get(1)); 
-        
-        ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
-        pido3.add(new ProductoDelPedido(p1, 1));
-        pido3.add(new ProductoDelPedido(p3, 2));
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
-        
-        listaPedidos.add(unPedido1);
-        listaPedidos.add(unPedido2);
-        listaPedidos.add(unPedido3);
-        
-        for (Pedido p: listaPedidos)
-            p.mostrar();
-        System.out.println("#################### ");
     }
+*/
 }

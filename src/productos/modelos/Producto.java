@@ -65,6 +65,29 @@ public class Producto{
         System.out.println("estado: "+estado);
         System.out.println("precio: "+precio);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Producto other = (Producto) obj;
+        return this.codigo == other.codigo;
+    }
+    
     
     @Override
     public String toString() {
