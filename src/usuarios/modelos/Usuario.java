@@ -23,6 +23,13 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
+    public void mostras() {
+        System.out.println(correo);
+        System.out.println(clave);
+        System.out.println(apellido);
+        System.out.println(nombre);
+    }
+
     public String verCorreo() {
         return correo;
     }
@@ -55,5 +62,4 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    
 }
