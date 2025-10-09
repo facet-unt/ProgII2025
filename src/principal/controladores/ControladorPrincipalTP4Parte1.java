@@ -32,19 +32,23 @@ public static void main(String[] args) {
 
     if (!listaProductos.contains(p1))
         listaProductos.add(p1); 
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para completar el llenado de 
-         * la lista de productos
-        **************************************************
-    */
+    
+    if (!listaProductos.contains(p2))
+        listaProductos.add(p2); 
 
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para mostrar la lista
-         * de productos, deberían listarse 4
-        **************************************************
-    */
+    if (!listaProductos.contains(p3))
+        listaProductos.add(p3); 
+    
+    if (!listaProductos.contains(p4))
+        listaProductos.add(p4);
+    
+    if (!listaProductos.contains(p5))
+        listaProductos.add(p5); 
+    
+    for (Producto pro : listaProductos){
+        pro.mostrar();
+        System.out.println("\n");
+    }
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -59,8 +63,10 @@ public static void main(String[] args) {
     /*
     Clientes, se crean 3 para crear los pedidos
     */
-    for (Cliente e: listaClientes)
+    for (Cliente e: listaClientes){
         e.mostrar();
+        System.out.println("\n");
+    }
 
     System.out.println();
     System.out.println("#################### ");
@@ -109,11 +115,11 @@ public static void main(String[] args) {
 
     System.out.println("Los pedidos son: ");
     System.out.println("=======");
-    /*
-        *************************************************
-        AGREGAR aqui la sentencia para mostrar la lista de pedidos
-        *************************************************
-    */
+    
+    for (Pedido unpedido : listaPedidos){
+        unpedido.mostrar();
+        System.out.println("\n");
+    }
 
     System.out.println();        
 
