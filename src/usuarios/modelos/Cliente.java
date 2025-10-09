@@ -27,9 +27,9 @@ public class Cliente {
     
     public void mostrar(){
         System.out.println("Correo: "+correo);
-        System.out.println("clave: "+clave);
-        System.out.println("apellido: "+apellido);
-        System.out.println("nombre: "+nombre);
+        System.out.println("Clave: "+clave);
+        System.out.println("Apellido: "+apellido);
+        System.out.println("Nombre: "+nombre);
     }
 
     @Override
