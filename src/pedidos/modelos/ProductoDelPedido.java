@@ -14,9 +14,9 @@ public class ProductoDelPedido {
     private int cantidad;
     private Producto unProducto;
 
-    public ProductoDelPedido(int cantidad, Producto unProducto) {
-        this.cantidad = cantidad;
+    public ProductoDelPedido(Producto unProducto, int cantidad) {
         this.unProducto = unProducto;
+        this.cantidad = cantidad;
     }
 
     public int verCantidad() {

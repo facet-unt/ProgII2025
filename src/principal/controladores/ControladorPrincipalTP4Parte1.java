@@ -32,19 +32,18 @@ public static void main(String[] args) {
 
     if (!listaProductos.contains(p1))
         listaProductos.add(p1); 
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para completar el llenado de 
-         * la lista de productos
-        **************************************************
-    */
-
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para mostrar la lista
-         * de productos, deberían listarse 4
-        **************************************************
-    */
+    if (!listaProductos.contains(p2))
+        listaProductos.add(p2);
+    if (!listaProductos.contains(p3))
+        listaProductos.add(p3);
+    if (!listaProductos.contains(p4))
+        listaProductos.add(p4);
+    if (!listaProductos.contains(p5))
+        listaProductos.add(p5);
+    
+    for(Producto p: listaProductos){
+        p.mostrar();
+    }
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -109,11 +108,9 @@ public static void main(String[] args) {
 
     System.out.println("Los pedidos son: ");
     System.out.println("=======");
-    /*
-        *************************************************
-        AGREGAR aqui la sentencia para mostrar la lista de pedidos
-        *************************************************
-    */
+    for(Pedido p: listaPedidos){
+        p.mostrar();
+    }
 
     System.out.println();        
 
