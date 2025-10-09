@@ -77,10 +77,7 @@ public abstract class Usuario {
         if (obj == null) {
             return false;
         }
-        
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
-    
 }

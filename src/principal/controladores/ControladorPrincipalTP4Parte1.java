@@ -16,6 +16,7 @@ public static void main(String[] args) {
         INICIO Primera parte - comparación de objetos
         ***************************************************
     */
+    /*
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -55,9 +56,7 @@ public static void main(String[] args) {
     listaClientes.add(cliente1);
     listaClientes.add(cliente2);
     listaClientes.add(cliente3);
-    /*
-    Clientes, se crean 3 para crear los pedidos
-    */
+    
     for (Cliente e: listaClientes)
         e.mostrar();
 
@@ -112,7 +111,8 @@ public static void main(String[] args) {
         p.mostrar();
     }
 
-    System.out.println();        
+    System.out.println(); 
+    
     /*
         *************************************************
          FIN Primera parte - comparación de objetos
