@@ -11,10 +11,14 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public class Cliente extends Usuario  {
+public class Cliente extends Usuario {
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
     }
 
+    @Override
+    public void mostrar() {
+        super.mostrar();
+    }
 }

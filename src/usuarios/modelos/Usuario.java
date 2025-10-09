@@ -25,7 +25,7 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    public void mostras() {
+    public void mostrar() {
         System.out.println(correo);
         System.out.println(clave);
         System.out.println(apellido);
