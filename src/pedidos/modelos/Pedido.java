@@ -7,7 +7,9 @@ package pedidos.modelos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 /**
@@ -33,10 +35,9 @@ public class Pedido {
         }
     }
 
-    public Pedido(int numero, LocalDateTime fechayHora, Estado estado, Cliente cliente, ArrayList<ProductoDelPedido> lista) {
+    public Pedido(int numero, LocalDateTime fechayHora, Cliente cliente, ArrayList<ProductoDelPedido> lista) {
         this.numero = numero;
         this.fechayHora = fechayHora;
-        this.estado = estado;
         this.cliente = cliente;
         this.listaProductos=lista;
     }
@@ -80,27 +81,50 @@ public class Pedido {
         return cliente;
     }
 
-    public void agregarProductodelPedido(Producto produc, int cantidad) {
-        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
-        this.listaProductosdelPedido.add(nuevoProducto);
+//    public void agregarProductodelPedido(Producto produc, int cantidad) {
+//        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
+//        this.listaProductosdelPedido.add(nuevoProducto);
+//    }
+    
+//    public void mostrar(){
+//        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
+//        
+//        String fechaFormateada = this.fechayHora.format(Fecha);
+//        String horaFormateada = this.fechayHora.format(Hora);
+//        
+//        System.out.println("\nNro: " + this.numero);
+//        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
+//        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
+//        System.out.println("Estado: " + this.estado);
+//        
+//        System.out.println("\t\tProducto " + "\t\tCantidad");
+//        System.out.println("\t\t=================================");
+//        for(ProductoDelPedido p : listaProductos)
+//            p.mostrar();
+//        System.out.println("#################### ");
+//    } 
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
     }
     
-    public void mostrar(){
-        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-        
-        String fechaFormateada = this.fechaYHora.format(Fecha);
-        String horaFormateada = this.fechaYHora.format(Hora);
-        
-        System.out.println("\nNro: " + this.numero);
-        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
-        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
-        System.out.println("Estado: " + this.estado);
-        
-        System.out.println("\t\tProducto " + "\t\tCantidad");
-        System.out.println("\t\t=================================");
-        for(ProductoDelPedido p : listaProductosdelPedido)
-            p.mostrar();
-        System.out.println("#################### ");
-    } 
 }
