@@ -113,7 +113,6 @@ public static void main(String[] args) {
     }
 
     System.out.println();        
-
     /*
         *************************************************
          FIN Primera parte - comparación de objetos
