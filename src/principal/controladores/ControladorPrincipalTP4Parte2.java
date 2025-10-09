@@ -30,7 +30,13 @@ public class ControladorPrincipalTP4Parte2 {
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
             *************************************************
         */       
-
+        if (!usuarios.contains(unCliente2))
+            usuarios.add(unCliente2);
+        if (!usuarios.contains(unCliente3))
+            usuarios.add(unCliente3);
+        if (!usuarios.contains(unCliente4))
+            usuarios.add(unCliente4);
+        
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
         Usuario unEmpleado2 = new Empleado("empleado2@bar.com", "claveEmpleado2", "ApellidoEmpleado2", "NombreEmpleado2");        
         Usuario unEmpleado3 = new Empleado("empleado3@bar.com", "claveEmpleado3", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -43,6 +49,14 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+        if (!usuarios.contains(unEmpleado1))
+            usuarios.add(unEmpleado1);
+        if (!usuarios.contains(unEmpleado2))
+            usuarios.add(unEmpleado2);
+        if (!usuarios.contains(unEmpleado3))
+            usuarios.add(unEmpleado3);
+        if (!usuarios.contains(unEmpleado4))
+            usuarios.add(unEmpleado4);
         
         System.out.println("Clientes");
         System.out.println("=========");
@@ -53,6 +67,12 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son Clientes
             *************************************************
         */
+        for(Usuario u : usuarios){
+            if(u instanceof Cliente){
+                Cliente c=(Cliente)u;
+                c.mostrar();
+            }
+        }
         
         System.out.println();        
         System.out.println("Empleados");
@@ -64,7 +84,12 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son empleados
             *************************************************
         */
-        
+        for(Usuario u : usuarios){
+            if(u instanceof Empleado){
+                Empleado e=(Empleado)u;
+                e.mostrar();
+            }
+        }
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
@@ -77,6 +102,14 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+        if (!usuarios.contains(unEncargado1))
+            usuarios.add(unEncargado1);
+        if (!usuarios.contains(unEncargado2))
+            usuarios.add(unEncargado2);
+        if (!usuarios.contains(unEncargado3))
+            usuarios.add(unEncargado3);
+        if (!usuarios.contains(unEncargado4))
+            usuarios.add(unEncargado4);
         
         System.out.println();
         System.out.println("Encargados");
@@ -88,7 +121,13 @@ public class ControladorPrincipalTP4Parte2 {
             Usuarios de la lista que son encargados
             *************************************************
         */
-                
+         for(Usuario u : usuarios){
+            if(u instanceof Encargado){
+                Encargado e=(Encargado)u;
+                e.mostrar();
+            }
+        }
+         
         Usuario unEncargado5 = new Encargado("cliente1@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         if(!usuarios.contains(unEncargado5))
             usuarios.add(unEncargado5);
