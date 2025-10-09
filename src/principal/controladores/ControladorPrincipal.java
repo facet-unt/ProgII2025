@@ -2,12 +2,11 @@ package principal.controladores;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
+import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
@@ -91,17 +90,27 @@ public class ControladorPrincipal {
         for (Cliente e: listaClientes)
             e.mostrar();
         
-        
+        //SEGUNDA PARTE
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
-        ArrayList<ProductoDelPedido> listaProductosDelPedido = new ArrayList<>();
-        ProductoDelPedido pdp1 = new ProductoDelPedido(4,p1);
-        ProductoDelPedido pdp2 = new ProductoDelPedido(10,p2);
-        listaProductosDelPedido.add(pdp1);
-        listaProductosDelPedido.add(pdp2);
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1, listaProductosDelPedido); 
+        ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
+        pido1.add(new ProductoDelPedido(p1, 1));
+        pido1.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),pido1, cliente1); 
+        
+        ArrayList<ProductoDelPedido> pido2 = new ArrayList<>();
+        pido2.add(new ProductoDelPedido(p3, 1));
+        pido2.add(new ProductoDelPedido(p2, 2));
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),pido2,  listaClientes.get(1)); 
+        
+        ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
+        pido3.add(new ProductoDelPedido(p1, 1));
+        pido3.add(new ProductoDelPedido(p3, 2));
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
         
         listaPedidos.add(unPedido1);
+        listaPedidos.add(unPedido2);
+        listaPedidos.add(unPedido3);
         
         for (Pedido p: listaPedidos)
             p.mostrar();
