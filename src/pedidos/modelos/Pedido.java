@@ -17,25 +17,20 @@ public class Pedido {
     private Estado estado;
     private ArrayList<ProductoDelPedido> productosDelPedido;
 
-    // 🔹 Constructores
     public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente) {
         this.numero = numero;
         this.fechaHora = fechaHora;
         this.cliente = cliente;
         this.productosDelPedido = new ArrayList<>();
     }
-    
-    
-    //constructor para la parte de ControladorPrincipalTP4Parte1
+
     public Pedido(int numero, LocalDateTime fechaHora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         this.numero = numero;
         this.fechaHora = fechaHora;
         this.cliente = cliente;
         this.productosDelPedido = productosDelPedido;
     }
-    
-    
-    
+
     public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaHora = fechaHora;
@@ -44,7 +39,6 @@ public class Pedido {
         this.productosDelPedido = new ArrayList<>();
     }
 
-    // 🔹 Getters y Setters
     public int getNumero() {
         return numero;
     }
@@ -93,15 +87,21 @@ public class Pedido {
         this.productosDelPedido = productosDelPedido;
     }
 
-    public void agregarProducto(ProductoDelPedido productoDelPedido) {
-        this.productosDelPedido.add(productoDelPedido);
+    // Agregar producto con validación para evitar duplicados
+    public void agregarProducto(ProductoDelPedido nuevoProductoDelPedido) {
+        for (ProductoDelPedido pdp : productosDelPedido) {
+            if (pdp.getProducto().equals(nuevoProductoDelPedido.getProducto())) {
+                System.out.println("️ El producto ya está en el pedido y no se agregó nuevamente.");
+                return;
+            }
+        }
+        this.productosDelPedido.add(nuevoProductoDelPedido);
     }
 
     public void eliminarProducto(ProductoDelPedido productoDelPedido) {
         this.productosDelPedido.remove(productoDelPedido);
     }
 
-    // 🔹 Cálculo de total
     public double calcularTotal() {
         double total = 0;
         for (ProductoDelPedido pdp : productosDelPedido) {
@@ -110,7 +110,6 @@ public class Pedido {
         return total;
     }
 
-    // 🔹 Mostrar pedido en formato tabular
     public void mostrar() {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
@@ -127,19 +126,16 @@ public class Pedido {
             System.out.println("Producto       Cantidad");
             System.out.println("========================");
             for (ProductoDelPedido pdp : productosDelPedido) {
-                String nombreProducto = pdp.getProducto().verDescripcion(); // ⬅️ Usamos descripcion
+                String nombreProducto = pdp.getProducto().verDescripcion();
                 int cantidad = pdp.getCantidad();
                 System.out.printf("%-15s %5d%n", nombreProducto, cantidad);
             }
         }
 
         System.out.println();
-        //System.out.printf("Total: $%.2f%n", calcularTotal());
     }
-    
-    
-    
-    //hago un metodo para comparar los pedidos (con el insert code)
+
+    // Comparar pedidos por número
     @Override
     public int hashCode() {
         int hash = 3;
@@ -149,18 +145,13 @@ public class Pedido {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
-    
-    
 }
