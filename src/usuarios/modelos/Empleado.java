@@ -4,6 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author Esteban
@@ -16,5 +19,9 @@ public class Empleado extends Usuario {
     }
     
     
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return null;
+    }
     
 }
