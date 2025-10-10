@@ -14,6 +14,7 @@ import pedidos.modelos.Pedido;
 public class Cliente extends Usuario {
     private ArrayList<Pedido> listaPedidos;
     
+    
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo,clave,apellido,nombre);
         this.listaPedidos = new ArrayList<>();
@@ -21,9 +22,28 @@ public class Cliente extends Usuario {
     public ArrayList<Pedido> verListaPedidos() {
         return this.listaPedidos;
     }
+    
+    
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return this.listaPedidos;
+    }
 
     public void asignarPedido(Pedido p) {
         this.listaPedidos.add(p);
+    }
+    
+    public void agregarPedido(Pedido unpedido){
+        int i = this.listaPedidos.indexOf(unpedido);
+        
+        if (!this.listaPedidos.contains(unpedido))
+            this.listaPedidos.add(unpedido);
+        else
+            this.listaPedidos.set(i, unpedido);
+    }
+    
+    public void cancelarPedido(Pedido unpedido){
+        this.listaPedidos.remove(unpedido);
     }
 }  
     
