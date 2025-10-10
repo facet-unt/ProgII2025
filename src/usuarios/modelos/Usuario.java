@@ -4,7 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -25,9 +27,9 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
     
-    public abstract void verPedidos();
+    public abstract ArrayList<Pedido> verPedidos();
     
-      public void mostrar(){
+    public void mostrar(){
         System.out.println("Nombre: "+ verNombre());
         System.out.println("Apellido: "+ verApellido());
         System.out.println("Correo: "+ verCorreo());
