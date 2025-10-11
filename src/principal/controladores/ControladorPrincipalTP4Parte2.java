@@ -26,11 +26,11 @@ public class ControladorPrincipalTP4Parte2 {
         if (!usuarios.contains(unCliente1))
             usuarios.add(unCliente1);
         if (!usuarios.contains(unCliente2))
-            usuarios.add(unCliente1);
+            usuarios.add(unCliente2);
         if (!usuarios.contains(unCliente3))
-            usuarios.add(unCliente1);
+            usuarios.add(unCliente3);
         if (!usuarios.contains(unCliente4))
-            usuarios.add(unCliente1);
+            usuarios.add(unCliente4);
               
         
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
