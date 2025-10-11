@@ -4,9 +4,12 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
- * @author Esteban
+ * @author Lyan
  */
 
 public class Encargado extends Usuario{
@@ -15,12 +18,13 @@ public class Encargado extends Usuario{
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
     }
-   
-    public void mostrar(){
-      System.out.println("=================");
-      System.out.println("Correo:" +  verCorreo());
-      System.out.println("Clave:" + verClave());
-      System.out.println("Apellido:"+ verApellido());
-      System.out.println("Nombre:" + verNombre());  
-    }         
+         
+
+ public ArrayList<Pedido> p = new ArrayList<>();
+    
+    @Override
+      public ArrayList<Pedido> verPedidos()
+    {
+        return new ArrayList<>(); /*Devuelve un arraylist vacio*/
+    }
 }    

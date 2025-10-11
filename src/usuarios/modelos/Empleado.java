@@ -4,6 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 
 public class Empleado extends Usuario {
 
@@ -14,13 +17,11 @@ public class Empleado extends Usuario {
     }
     
     
-    
-    public void mostrar()
+    @Override
+      public ArrayList<Pedido> verPedidos()
     {
-      System.out.println("=================");
-      System.out.println("Correo:" +  verCorreo());
-      System.out.println("Clave:" + verClave());
-      System.out.println("Apellido:"+ verApellido());
-      System.out.println("Nombre:" + verNombre());  
+       return new ArrayList<>(); /*Devuelve un arraylist vacio*/
     }
+          
+    
 }

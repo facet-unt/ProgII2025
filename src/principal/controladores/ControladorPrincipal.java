@@ -52,9 +52,9 @@ public class ControladorPrincipal {
         Encargado encargado3 = new Encargado("lourdes@gmail.com", "233", "Gomez", "Lourdes");
 
         /* Creacion de nuevos objetos de tipo Pedido */
-        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), Estado.CREADO, cliente1, pido1);
-        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, cliente2,pido2);
-        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, cliente3, pido3);
+        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), Estado.CREADO, pido1, cliente1);
+        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), Estado.ENTREGADO, pido2, cliente2);
+        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), Estado.PROCESANDO, pido3, cliente3);
         
         //Cargado de cada objeto en el arraylist
         unProducto.add(producto1);
@@ -79,14 +79,14 @@ public class ControladorPrincipal {
         listaPedidos.add(pedido3);
         
         //Agregacion de objeto del tipo ProductoDelPedido al arraylist
-        pido1.add(new ProductoDelPedido(1, producto1));
-        pido1.add(new ProductoDelPedido(2, producto2));
+        pido1.add(new ProductoDelPedido(producto1, 1));
+        pido1.add(new ProductoDelPedido(producto2, 2));
         
-        pido2.add(new ProductoDelPedido(5, producto3));
-        pido2.add(new ProductoDelPedido(10, producto2));
+        pido2.add(new ProductoDelPedido(producto3, 5));
+        pido2.add(new ProductoDelPedido(producto2, 10));
         
-        pido3.add(new ProductoDelPedido(5, producto1));
-        pido3.add(new ProductoDelPedido(2, producto2));
+        pido3.add(new ProductoDelPedido(producto1, 5));
+        pido3.add(new ProductoDelPedido(producto2, 2));
         
         //Asignando valores a los atributos de algunos objetos con metodos
         /*producto1.asignarCodigo(12);

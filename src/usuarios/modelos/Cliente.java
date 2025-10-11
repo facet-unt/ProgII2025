@@ -11,7 +11,7 @@ import pedidos.modelos.Pedido;
 
 /**
  *
- * @author Esteban
+ * @author
  */
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
@@ -25,19 +25,38 @@ public class Cliente extends Usuario {
    
    public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
+        this.pedidos = new ArrayList<>();
     }
    
-    public void mostrar() {
-      System.out.println("=================");
-      System.out.println("Correo:" +  verCorreo());
-      System.out.println("Clave:" + verClave());
-      System.out.println("Apellido:"+ verApellido());
-      System.out.println("Nombre:" + verNombre());      
-    }
     
-    @Override
+    
+
     public String toString(){
 
         return "{" + "Apellido=" + verApellido() + ", Nombre=" + verNombre() + '}';
     }      
+
+   @Override /*Redifinicion del metodo verPedidos. Devuelve los pedidos del cliente*/
+    public ArrayList<Pedido> verPedidos()
+    {
+        return this.pedidos;
+    }
+   
+    /*Agrega pedidos, al conjunto de pedidos de un cliente.*/
+    public void agregarPedido(Pedido unPedido)
+    {
+        if(!pedidos.contains(unPedido)) /*Si no existe el pedido. Lo añade */
+        {
+           pedidos.add(unPedido);
+        } else /*Si ya existe lo reemplaza.*/
+        {
+           pedidos.remove(unPedido);
+           pedidos.add(unPedido);
+        }
+    }
+
+    public void cancelarPedido(Pedido unPedido)
+    {
+        pedidos.remove(unPedido); /*Metodo para remover un pedido*/
+    }
 }
