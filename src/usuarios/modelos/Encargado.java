@@ -13,9 +13,13 @@ public class Encargado extends Usuario{
     }
 
     @Override
-    public void mostrar(){
-        
+   public void mostrar(){
+        System.out.println ("Mail: " + verCorreo());
+        System.out.println ("Nombre: " + verNombre());
+        System.out.println ("Apellido: " + verApellido()); 
+        System.out.println ("Clave: " + verClave());
     }
+
 
     @Override
     public String toString() {

@@ -76,7 +76,7 @@ public class ControladorPrincipalTP4Parte2 {
         */
         for (Usuario c : usuarios){
             if (c instanceof Cliente) {
-               c.mostrar();
+               c.mostrar ();
         System.out.println();
             }
         }

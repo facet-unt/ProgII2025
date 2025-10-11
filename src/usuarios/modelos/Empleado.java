@@ -19,7 +19,10 @@ public class Empleado extends Usuario {
 
     @Override
     public void mostrar(){
-        
+        System.out.println ("Mail: " + verCorreo());
+        System.out.println ("Nombre: " + verNombre());
+        System.out.println ("Apellido: " + verApellido()); 
+        System.out.println ("Clave: " + verClave());
     }
 
     @Override
