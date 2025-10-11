@@ -4,7 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -62,6 +64,8 @@ public abstract class Usuario {
         System.out.println("Nombre: "+nombre);
     }
 
+    public abstract ArrayList<Pedido> verPedidos();
+    
     @Override
     public int hashCode() {
         int hash = 7;
