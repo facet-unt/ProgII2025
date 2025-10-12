@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 /**
@@ -63,7 +64,9 @@ public abstract class Usuario {
         hash = 83 * hash + Objects.hashCode(this.correo);
         return hash;
     }
-
+    
+    public abstract List<Pedido> verPedidos();
+     
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

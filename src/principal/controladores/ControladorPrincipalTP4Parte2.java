@@ -40,13 +40,6 @@ public class ControladorPrincipalTP4Parte2 {
         Usuario unEmpleado4 = new Empleado("empleado3@bar.com", "claveEmpleado4", "ApellidoEmpleado4", "NombreEmpleado4");
         //empleado repetido
 
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para agregar los empleados a la lista de
-            usuarios verificando que NO se repitan
-            *************************************************
-        */
-
         if(!usuarios.contains(unEmpleado1))
             usuarios.add(unEmpleado1);
         if(!usuarios.contains(unEmpleado2))
@@ -58,12 +51,6 @@ public class ControladorPrincipalTP4Parte2 {
         
         System.out.println("Clientes");
         System.out.println("=========");
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son Clientes
-            *************************************************
-        */
 
         for( Usuario u: usuarios){
             if(u instanceof Cliente){
@@ -75,12 +62,6 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println("Empleados");
         System.out.println("=========");
         
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son empleados
-            *************************************************
-        */
         for( Usuario u: usuarios){
             if(u instanceof Empleado){
                 u.mostrar();
@@ -92,13 +73,6 @@ public class ControladorPrincipalTP4Parte2 {
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
         Usuario unEncargado4 = new Encargado("encargado3@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         //encargado repetido
-
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para agregar los encargados a la lista de
-            usuarios verificando que NO se repitan
-            *************************************************
-        */
 
         if(!usuarios.contains(unEncargado1))
             usuarios.add(unEncargado1);
@@ -112,13 +86,6 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println();
         System.out.println("Encargados");
         System.out.println("==========");
-        
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para mostrar UNICAMENTE los
-            Usuarios de la lista que son encargados
-            *************************************************
-        */
         
         for( Usuario u : usuarios){
             if(u instanceof Encargado){

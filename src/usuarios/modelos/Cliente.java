@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package usuarios.modelos;
+
 import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.Pedido;
@@ -21,48 +23,17 @@ public class Cliente extends Usuario{
         this.pedidos = pedidos;
     }
     
-//    public String verApellido() {
-//        return apellido;
-//    }
-//
-//    public void asignarApellido(String apellido) {
-//        this.apellido = apellido;
-//    }
-//
-//    public String verNombre() {
-//        return nombre;
-//    }
-//
-//    public void asignarNombre(String nombre) {
-//        this.nombre = nombre;
-//    }
-
-//    public String verCorreo() {
-//        return correo;
-//    }
-//
-//    public void asignarCorreo(String correo) {
-//        this.correo = correo;
-//    }
-//
-//    public String verClave() {
-//        return clave;
-//    }
-//
-//    public void asignarClave(String clave) {
-//        this.clave = clave;
-//    }
-    
     public List<Pedido> getPedidos() {
         return pedidos;
     }
 
     public void agregarPedido(Pedido pedido) {
         if (pedido != null && !pedidos.contains(pedido)) {
+            pedidos.remove(pedido);
             pedidos.add(pedido);
         }
     }
-
+        
     public void mostrarPedidos() {
         System.out.println("-- PEDIDOS DEL CLIENTE " + verApellido() + ", " + verNombre() + " --");
         for (Pedido p : pedidos) {
@@ -70,15 +41,13 @@ public class Cliente extends Usuario{
             System.out.println();
         }
     }
-
-    public ArrayList<Pedido> verPedidos(){
-        return pedidos;
+    
+    public void cancelarPedido(Pedido pedido) {
+        pedidos.remove(pedido);
     }
 
-// 
-//    @Override
-//    public String toString() {
-//        return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
-//    }
-
+    @Override
+    public List<Pedido> verPedidos(){
+        return pedidos;
+    }
 }
