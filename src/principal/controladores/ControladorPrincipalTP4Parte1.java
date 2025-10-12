@@ -52,7 +52,7 @@ public static void main(String[] args) {
         **************************************************
     */
     for(Producto p : listaProductos)
-        System.out.println(p);
+        p.mostrar();
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -123,7 +123,7 @@ public static void main(String[] args) {
         *************************************************
     */
     for(Pedido p : listaPedidos)
-        System.out.println(p);        
+        p.mostrar();      
 
     /*
         *************************************************
