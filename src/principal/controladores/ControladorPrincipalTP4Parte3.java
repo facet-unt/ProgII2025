@@ -92,12 +92,15 @@ public class ControladorPrincipalTP4Parte3 {
         if (!listaProductos.contains(unProducto1)) {
             listaProductos.add(unProducto1);
         }
-        /*
-            **************************************************
-             * AGREGAR aqui las sentencias para completar el llenado de 
-             * la lista de productos
-            **************************************************
-         */
+        if (!listaProductos.contains(unProducto2)) {
+            listaProductos.add(unProducto2);
+        }
+        if (!listaProductos.contains(unProducto3)) {
+            listaProductos.add(unProducto3);
+        }
+        if (!listaProductos.contains(unProducto4)) {
+            listaProductos.add(unProducto4);
+        }
 
         ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
         ProductoDelPedido pdp1 = new ProductoDelPedido(listaProductos.get(0), 1);
