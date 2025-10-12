@@ -11,62 +11,76 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
-public class Cliente {
+public class Cliente extends Usuario{
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-    
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
-    public void mostrar(){
-        System.out.println("Apellido: " + apellido + "\tNombre:" + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);  
-    }
-    
-    //constructor
-
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-    }
-    
     //metodos get/set
+    
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
+    }
+    
+    @Override
+    public void mostrar(){
+        super.mostrar();
+    }
+
+    @Override
     public String verCorreo() {
         return correo;
     }
 
-    public void asignarCorreo(String c) {
-        if (c != null && !c.isBlank())
-            correo = c;
-    }
-
+    @Override
     public String verClave() {
         return clave;
     }
 
-    public void asignarClave(String c) {
-        if (c != null && !c.isBlank())
-            correo = c;
-    }
-
+    @Override
     public String verApellido() {
         return apellido;
     }
 
-    public void asignarApellido(String a) {
-        apellido = a;
+    @Override
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
     }
 
+    @Override
     public String verNombre() {
         return nombre;
     }
 
-    public void asignarNombre(String n) {
-        nombre = n;
+    @Override
+    public void asignarNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ArrayList<Pedido> verPedidos() {
+        return pedidos;
+    }
+
+    public void asignarPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    
+    @Override
+    public void asignarCorreo(String c) {
+        super.mostrar();
+        if (c != null && !c.isBlank())
+            correo = c;
+    }
+
+
+    @Override
+    public void asignarClave(String c) {
+        super.mostrar();
+        if (c != null && !c.isBlank())
+            correo = c;
     }
     
     @Override
