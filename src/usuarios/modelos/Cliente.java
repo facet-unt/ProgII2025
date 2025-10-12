@@ -12,28 +12,34 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
-    private ArrayList<Pedido> listaPedidos;
+    private ArrayList<Pedido> listaPedidos = new ArrayList<>();
     
     //Metodos
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return listaPedidos;
+    }
     
+    public void agregarPedido(Pedido p) {
+        if (!listaPedidos.contains(p)&& p!=null) {
+            listaPedidos.add(p);
+        }
+    } 
+    
+    public void cancelarPedido(Pedido p){
+        if (listaPedidos.contains(p) && p!=null ) {
+            listaPedidos.remove(p);
+        }
+    }
 
     @Override
     public String toString() {
-        return "Cliente{" + "correo=" + super.verCorreo() + ", clave=" + super.verClave() + ", apellido=" + super.verApellido() + ", nombre=" + super.verNombre() + '}';
+        return super.toString()+ "pedidos: "+ listaPedidos.size();
     }
     
     //constructores
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
-        this.listaPedidos = new ArrayList<>();
-    }
-    
-    public ArrayList<Pedido> verListaPedidos() {
-        return this.listaPedidos;
-    }
-
-    public void asignarPedido(Pedido p) {
-        this.listaPedidos.add(p);
     }    
 }

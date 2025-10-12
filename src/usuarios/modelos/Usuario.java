@@ -4,7 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -25,6 +27,14 @@ public abstract class Usuario {
         System.out.println("clave: "+verClave());
         System.out.println("=================================");
     }
+    
+    public abstract ArrayList<Pedido> verPedidos();
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
     //constructor
 
     public Usuario(String correo, String clave, String apellido, String nombre) {

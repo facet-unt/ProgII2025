@@ -4,17 +4,26 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author estudiante
  */
 
 public class Empleado extends Usuario{
+    
+    //metodos
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return null;
+    }
     //Atributos
     
     @Override
     public String toString() {
-        return "Empleado{" + "correo=" + super.verCorreo() + ", clave=" + super.verClave() + ", apellido=" + super.verApellido() + ", nombre=" + super.verNombre() + '}';
+        return super.toString();
     }
     
     //constructor
