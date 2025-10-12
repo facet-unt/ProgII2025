@@ -70,12 +70,19 @@ public class ControladorPrincipalTP4Parte3 {
         Usuario unEncargado4 = new Encargado("encargado3@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         //encargado repetido
 
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para agregar los encargados a la lista de
-            usuarios verificando que NO se repitan
-            *************************************************
-         */
+        if (!usuarios.contains(unEncargado1)) {
+            usuarios.add(unEncargado1);
+        }
+        if (!usuarios.contains(unEncargado2)) {
+            usuarios.add(unEncargado2);
+        }
+        if (!usuarios.contains(unEncargado3)) {
+            usuarios.add(unEncargado3);
+        }
+        if (!usuarios.contains(unEncargado4)) {
+            usuarios.add(unEncargado4);
+        }
+
         Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, Estado.DISPONIBLE, 1.0f);
         Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 2.0f);
         Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, Estado.DISPONIBLE, 3.0f);
