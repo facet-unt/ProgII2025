@@ -1,4 +1,5 @@
 package pedidos.modelos;
+import java.util.Objects;
 import productos.modelos.Producto;
 
 /*
@@ -11,9 +12,9 @@ public class ProductoDelPedido {
     private int cantidad;
     private Producto producto;
 
-    public ProductoDelPedido(int cantidad, Producto producto) {
-        this.cantidad = cantidad;
+    public ProductoDelPedido(Producto producto, int cantidad) {
         this.producto = producto;
+        this.cantidad = cantidad;
     }
 
     public int verCantidad() {
@@ -32,6 +33,30 @@ public class ProductoDelPedido {
         this.producto = producto;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.producto);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductoDelPedido other = (ProductoDelPedido) obj;
+        return Objects.equals(this.producto, other.producto);
+    }
+
+    
+    
     @Override
     public String toString() {
         return  producto.verDescripcion() + "\t\t" + cantidad;

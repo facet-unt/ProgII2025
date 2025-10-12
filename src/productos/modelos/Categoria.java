@@ -18,6 +18,6 @@ public enum Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "valor=" + valor + '}';
+        return "Categoria: " + valor ;
     }  
 }

@@ -16,13 +16,21 @@ public class Pedido {
     private Estado estado;
     private ArrayList<ProductoDelPedido> listaProductosPedidos;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductos) {
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> listaProductos, Cliente cliente) {
+        this.numero = numero;
+        this.fechaYHora = fechaYHora;
+        this.listaProductosPedidos = listaProductos;
+        this.cliente = cliente;
+    }
+
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductosPedidos) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.cliente = cliente;
         this.estado = estado;
-        this.listaProductosPedidos = listaProductos;
+        this.listaProductosPedidos = listaProductosPedidos;
     }
+    
     
     public int verNumero() {
         return numero;
@@ -57,6 +65,30 @@ public class Pedido {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
         return fechaYHora.format(formatoHora);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return this.numero == other.numero;
+    }
+    
+    
     
     public void mostrar() {
         System.out.println("-- PEDIDO --");
