@@ -4,6 +4,8 @@
  */
 package usuarios.modelos;
 
+import java.util.Objects;
+
 /**
  *
  * @author Gaston
@@ -57,7 +59,27 @@ public abstract class Usuario {
     public void mostrar(){
         System.out.println("Usuario: " + apellido + " " + nombre);
     }
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.correo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Usuario)) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        return Objects.equals(this.correo, other.correo);
+    }
+        
 }
