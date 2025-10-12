@@ -9,7 +9,7 @@ package usuarios.modelos;
  * @author Esteban
  */
 
-public class Encargado {
+public class Encargado extends Usuario {
     //Atributos
     private String correo;
     private String clave;
@@ -17,10 +17,9 @@ public class Encargado {
     private String nombre;
     
     //Metodos
+    @Override
     public void mostrar(){
-        System.out.println("Apellido: " + apellido + "\tNombre:" + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);  
+        super.mostrar();
     }
 
     @Override
@@ -31,47 +30,52 @@ public class Encargado {
     //constructor
     
     public Encargado(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+        super(correo,clave,apellido,nombre);
     }
     
     //metodos get/set
+    @Override
     public String verCorreo() {
         return correo;
     }
 
+    @Override
     public void asignarCorreo(String correo) {
         if (correo != null && !correo.isBlank()){
             this.correo = correo;
         }
     }
 
+    @Override
     public String verClave() {
         return clave;
     }
 
+    @Override
     public void asignarClave(String clave) {
         if (clave != null && !clave.isBlank()){
             this.clave = clave;
         }
     }
 
+    @Override
     public String verApellido() {
         return apellido;
     }
 
+    @Override
     public void asignarApellido(String apellido) {
         if (apellido != null && !apellido.isBlank()){
             this.apellido = apellido;
         }
     }
 
+    @Override
     public String verNombre() {
         return nombre;
     }
 
+    @Override
     public void asignarNombre(String nombre) {
         if (nombre != null && !nombre.isBlank()){
             this.nombre = nombre;
