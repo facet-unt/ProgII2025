@@ -7,7 +7,6 @@ import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
 import usuarios.modelos.*;
-import productos.modelos.Estado;
 import productos.modelos.Categoria;
 
 public class ControladorPrincipal {
@@ -33,9 +32,9 @@ public class ControladorPrincipal {
         listaEmpleados.add(e2);
         listaEmpleados.add(e3);
 
-        Producto p1 = new Producto(1, "Producto 1", Categoria.ENTRADA, Estado.DISPONIBLE, 200.0f);
-        Producto p2 = new Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);
-        Producto p3 = new Producto(3, "Producto 3", Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);
+        Producto p1 = new Producto(1, "Producto 1", Categoria.ENTRADA, productos.modelos.Estado.DISPONIBLE, 200.0f);
+        Producto p2 = new Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, productos.modelos.Estado.DISPONIBLE, 1950.0f);
+        Producto p3 = new Producto(3, "Producto 3", Categoria.POSTRE, productos.modelos.Estado.NO_DISPONIBLE, 580.0f);
 
         listaProductos.add(p1);
         listaProductos.add(p2);

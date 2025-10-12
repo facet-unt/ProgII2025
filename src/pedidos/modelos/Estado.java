@@ -14,7 +14,7 @@ public enum Estado {
     CREADO("CREADO"), 
     SOLICITADO("SOLICITADO"), 
     PROCESANDO("PROCESANDO"),
-    ENTREGADO("ENTREGADO");
+    ENTREGADO("ENTREGADO"),;
     
     private String valor;
 
