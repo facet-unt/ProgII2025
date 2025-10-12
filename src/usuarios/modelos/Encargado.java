@@ -18,7 +18,9 @@ public class Encargado {
     
     //Metodos
     public void mostrar(){
-        System.out.println("Encargado: " + apellido + " " + nombre);
+        System.out.println("Apellido: " + apellido + "\tNombre:" + nombre);
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);  
     }
 
     @Override

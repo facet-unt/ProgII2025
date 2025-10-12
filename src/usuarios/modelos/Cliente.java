@@ -20,8 +20,9 @@ public class Cliente {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     public void mostrar(){
+        System.out.println("Apellido: " + apellido + "\tNombre:" + nombre);
         System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
+        System.out.println("Clave: " + clave);  
     }
     
     //constructor
