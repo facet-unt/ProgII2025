@@ -33,8 +33,7 @@ public class Producto {
     }
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.codigo = codigo;
-        this.estado = estado;        
+        this.codigo = codigo;   
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;

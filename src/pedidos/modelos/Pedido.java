@@ -35,21 +35,14 @@ public class Pedido {
         }
     }
 
-    public Pedido(int numero, LocalDateTime fechayHora, Cliente cliente, ArrayList<ProductoDelPedido> lista) {
+    public Pedido(int numero, LocalDateTime fechayHora, Cliente cliente,Estado a, ArrayList<ProductoDelPedido> lista) {
         this.numero = numero;
         this.fechayHora = fechayHora;
         this.cliente = cliente;
+        this.estado = a;
         this.listaProductos=lista;
     }
-    
-//    public Pedido(int numero, LocalDateTime fechayHora, Cliente cliente) {
-//        this.numero = numero;
-//        this.fechayHora = fechayHora;
-//        this.estado = Estado.CREADO;
-//        this.cliente = cliente;
-//        
-//    }
-
+  
     public int verNumero() {
         return numero;
     }
