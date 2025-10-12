@@ -23,14 +23,14 @@ public class ControladorPrincipalTP4Parte2 {
         Usuario unCliente4 = new Cliente("cliente3@bar.com", "claveCliente4", "ApellidoCliente4", "NombreCliente4"); 
         //unCliente4 repetido con unCliente3
 
-//        if (!usuarios.contains(unCliente1))
-//            usuarios.add(unCliente1);
-//        if (!usuarios.contains(unCliente2))
-//            usuarios.add(unCliente2);
-//        if (!usuarios.contains(unCliente3))
-//            usuarios.add(unCliente3);
-//        if (!usuarios.contains(unCliente4))
-//            usuarios.add(unCliente4);
+        if (!usuarios.contains(unCliente1))
+            usuarios.add(unCliente1);
+        if (!usuarios.contains(unCliente2))
+            usuarios.add(unCliente2);
+        if (!usuarios.contains(unCliente3))
+            usuarios.add(unCliente3);
+        if (!usuarios.contains(unCliente4))
+            usuarios.add(unCliente4);
         
               
 
