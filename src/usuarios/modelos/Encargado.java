@@ -4,6 +4,8 @@
  */
 package usuarios.modelos;
 
+import java.util.Objects;
+
 /**
  *
  * @author Esteban
@@ -81,4 +83,27 @@ public class Encargado extends Usuario {
             this.nombre = nombre;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.correo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Encargado other = (Encargado) obj;
+        return Objects.equals(this.correo, other.correo);
+    }
+    
 }

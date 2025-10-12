@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import pedidos.modelos.Pedido;
 
 /**
@@ -87,6 +88,28 @@ public class Cliente extends Usuario{
     public String toString() {
         return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
-    
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.correo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        return Objects.equals(this.correo, other.correo);
+    }
+    
+    
 }
