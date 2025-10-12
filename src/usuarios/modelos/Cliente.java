@@ -28,7 +28,13 @@ public class Cliente extends Usuario {
     }
 
     public void agregarPedido(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (int i = 0; i < this.pedido.size() ; i++) {
+            if (this.pedido.get(i).equals(pedido)) {
+                this.pedido.set(i, pedido);
+                return;
+            }
+        }
+        this.pedido.add(pedido);
     }
 
     public void cancelarPedido(Pedido unPedido1) {

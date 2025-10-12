@@ -71,8 +71,8 @@ public class ControladorPrincipalTP4Parte3 {
         Producto unProducto4 = new Producto(3, "Producto4", Categoria.POSTRE, Estado.DISPONIBLE, 4.0f);
         //producto repetido
         
-        if (!listaProductos.contains(p1))
-        listaProductos.add(p1); 
+        if (!listaProductos.contains(unProducto1))
+        listaProductos.add(unProducto1); 
         /*
             **************************************************
              * AGREGAR aqui las sentencias para completar el llenado de 
