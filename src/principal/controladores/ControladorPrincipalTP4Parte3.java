@@ -50,12 +50,20 @@ public class ControladorPrincipalTP4Parte3 {
         Usuario unEmpleado4 = new Empleado("empleado3@bar.com", "claveEmpleado4", "ApellidoEmpleado4", "NombreEmpleado4");
         //empleado repetido
 
-        /*
-            *************************************************
-            AGREGAR aqui las sentencias para agregar los empleados a la lista de
-            usuarios verificando que NO se repitan
-            *************************************************
-         */
+        if (!usuarios.contains(unEmpleado1)) {
+            usuarios.add(unEmpleado1);
+        }
+        if (!usuarios.contains(unEmpleado2)) {
+            usuarios.add(unEmpleado2);
+        }
+        if (!usuarios.contains(unEmpleado3)) {
+            usuarios.add(unEmpleado3);
+        }
+
+        if (!usuarios.contains(unEmpleado4)) {
+            usuarios.add(unEmpleado4);
+        }
+
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
