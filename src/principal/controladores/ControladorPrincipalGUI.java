@@ -28,33 +28,32 @@ public class ControladorPrincipalGUI {
     */
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
-        VentanaAMProducto ventana = new VentanaAMProducto(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo producto");
-        ventana.setVisible(true);
+        VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
+        ventanaProducto.setLocationRelativeTo(null);
+        ventanaProducto.setTitle("Nuevo producto");
+        ventanaProducto.setVisible(true);
         
         //CLIENTE
-       
-        /*VentanaAMCliente ventana = new VentanaAMCliente(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo cliente");
-        ventana.setVisible(true);
-              
+      
+        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
+        ventanaCliente.setLocationRelativeTo(null);
+        ventanaCliente.setTitle("Nuevo cliente");
+        ventanaCliente.setVisible(true);
+               
        //EMPLEADO 
        
-      
-        /*VentanaAMEmpleado ventana = new VentanaAMEmpleado(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo empleado");
-        ventana.setVisible(true);
+        VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
+        ventanaEmpleado.setLocationRelativeTo(null);
+        ventanaEmpleado.setTitle("Nuevo empleado");
+        ventanaEmpleado.setVisible(true);
         
        //ENCARGADO
-       /*
-        VentanaAMEncargado ventana = new VentanaAMEncargado(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo encargado");
-        ventana.setVisible(true);
-       */
+       
+        VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
+        ventanaEncargado.setLocationRelativeTo(null);
+        ventanaEncargado.setTitle("Nuevo encargado");
+        ventanaEncargado.setVisible(true);
+       
     }
     
     /**

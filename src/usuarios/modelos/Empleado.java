@@ -8,19 +8,25 @@ package usuarios.modelos;
  *
  * @author estudiante
  */
+
 public class Empleado {
-     private String correo;
+    //Atributos
+    private String correo;
     private String clave;
     private String apellido;
     private String nombre;
     
-   
-   public void mostrar(){
-    System.out.println("Correo: "+correo );
-    System.out.println("Clave: "+clave );
-    System.out.println("Apellido: "+apellido);
-    System.out.println("Nombre:"+nombre);
+    //Metodos
+    public void mostrar(){
+        System.out.println("Empleado: " + apellido + " " + nombre);   
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    //constructor
 
     public Empleado(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
@@ -28,21 +34,16 @@ public class Empleado {
         this.apellido = apellido;
         this.nombre = nombre;
     }
-   
-   public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
+    
+    //metodos get/set
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -50,7 +51,9 @@ public class Empleado {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -58,10 +61,18 @@ public class Empleado {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
-   
-   
-   
-   
+
+    public String verNombre() {
+        return nombre;
+    }
+
+    public void asignarNombre(String nombre) {
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
+    }
 }

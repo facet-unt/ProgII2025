@@ -4,60 +4,86 @@
  */
 package pedidos.modelos;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import usuarios.modelos.Cliente;
-
 /**
  *
- * @author estudiante
+ * @author thoma
  */
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import usuarios.modelos.Cliente;
+import productos.modelos.Producto;
+
 public class Pedido {
-    private int numero;
+    private int numero = 0;
     private LocalDateTime fechaYHora;
+    private Estado estado;
     private Cliente cliente;
-    private Estado estado; 
-    
-    public void mostrar(){
-        System.out.println("Nro: "+ numero);
-        System.out.println("Fecha: "+ obtener_fecha()+ "\t\tHora: "+obtener_horario());
-        System.out.println("Cliente: "+ cliente.verApellido()+ ", "+cliente.verNombre());
-        System.out.println("Estado: "+ estado);
-              
-    }
+    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
 
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
+        this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
+    }
+    
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.cliente = cliente;
+        this.listaProductosdelPedido = lista;
+        this.cliente = cliente;        
+        this.estado = estado;
+    }
+    
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente) {
+        this(numero, fechaYHora, lista, cliente, Estado.CREADO);
+    }
+
+    public int verNumero() {
+        return numero;
+    }
+    
+    public LocalDate verFecha() {
+        return this.fechaYHora.toLocalDate();
+    }
+    
+    public LocalTime verHora() {
+        return this.fechaYHora.toLocalTime();
+    }
+
+    public Estado verEstado() {
+        return estado;
+    }
+
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public int asignarNumero() {
-        return numero;
+    public Cliente verCliente() {
+        return cliente;
     }
 
-    public void verNumero(int numero) {
-        this.numero = numero;
+    public void agregarProductodelPedido(Producto produc, int cantidad) {
+        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
+        this.listaProductosdelPedido.add(nuevoProducto);
     }
-
-    public LocalDateTime asignarFechaYHora() {
+    
+    public void mostrar(){
+        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
         
-        return fechaYHora;
-    }
-
-    public void verFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
-    }
-    
-    public String obtener_fecha(){
-    DateTimeFormatter formato_fecha = DateTimeFormatter.ofPattern("dd/MM/aaaa");
-    return fechaYHora.format(formato_fecha);
-    }
-    
-    public String obtener_horario(){
-    DateTimeFormatter formato_horario = DateTimeFormatter.ofPattern("hh:mm");
-    return fechaYHora.format(formato_horario);
-    }
-    
+        String fechaFormateada = this.fechaYHora.format(Fecha);
+        String horaFormateada = this.fechaYHora.format(Hora);
+        
+        System.out.println("\nNro: " + this.numero);
+        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
+        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
+        System.out.println("Estado: " + this.estado);
+        
+        System.out.println("\t\tProducto " + "\t\tCantidad");
+        System.out.println("\t\t=================================");
+        for(ProductoDelPedido p : listaProductosdelPedido)
+            p.mostrar();
+        System.out.println("#################### ");
+    } 
 }
