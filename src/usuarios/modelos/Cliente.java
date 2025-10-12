@@ -37,7 +37,7 @@ public class Cliente extends Usuario {
         this.pedido.add(pedido);
     }
 
-    public void cancelarPedido(Pedido unPedido1) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cancelarPedido(Pedido  pedidoCancelado) {
+        this.pedido.remove(pedidoCancelado);
     }
 }
