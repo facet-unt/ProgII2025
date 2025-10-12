@@ -59,11 +59,12 @@ public class Producto {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
+        hash = 19 * hash + this.codigo;
         return hash;
     }
 
-    @Override    
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

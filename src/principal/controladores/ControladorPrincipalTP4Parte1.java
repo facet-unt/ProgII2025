@@ -28,21 +28,22 @@ public static void main(String[] args) {
     Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
     Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
     Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NODISPONIBLE, 7580.0f);     
+
     //no debe agregar a p5
 
     if (!listaProductos.contains(p1))
         listaProductos.add(p1); 
-    if (!listaProductos.contains(p2))
+     if (!listaProductos.contains(p2))
         listaProductos.add(p2);
-    if (!listaProductos.contains(p3))
+     if (!listaProductos.contains(p3))
         listaProductos.add(p3);
-    if (!listaProductos.contains(p4))
+     if (!listaProductos.contains(p4))
         listaProductos.add(p4);
-    if (!listaProductos.contains(p5))
-        listaProductos.add(p5);
-
-    for (Producto p : listaProductos) {
-        p.mostrar();
+     if (!listaProductos.contains(p5))
+        listaProductos.add(p5); 
+   
+     for (Producto p: listaProductos){
+            p.mostrar();
     }
 
     System.out.println();
@@ -105,9 +106,9 @@ public static void main(String[] args) {
         listaPedidos.add(unPedido3);
 
     System.out.println("Los pedidos son: ");
-        for (Pedido p : listaPedidos) {
-            p.mostrar();
-        }
+
+    for(Pedido p : listaPedidos)
+        p.mostrar();
     System.out.println("=======");
     System.out.println();
   }

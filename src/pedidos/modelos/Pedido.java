@@ -16,19 +16,19 @@ public class Pedido {
     private Estado estado;
     private ArrayList<ProductoDelPedido> listaProductosPedidos;
 
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> listaProductosPedidos, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> listaProductos, Cliente cliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
+        this.listaProductosPedidos = listaProductos;
         this.cliente = cliente;
-        this.listaProductosPedidos = listaProductosPedidos;
     }
-
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductos) {
+    
+    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductosPedidos) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.cliente = cliente;
         this.estado = estado;
-        this.listaProductosPedidos = listaProductos;
+        this.listaProductosPedidos = listaProductosPedidos;
     }
     
     public int verNumero() {
@@ -68,6 +68,7 @@ public class Pedido {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 83 * hash + this.numero;
         return hash;
     }
 
@@ -85,7 +86,7 @@ public class Pedido {
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
-    
+
     public void mostrar() {
         System.out.println("-- PEDIDO --");
         System.out.println("Nro: " + numero);

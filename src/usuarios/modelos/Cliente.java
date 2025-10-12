@@ -7,59 +7,51 @@ import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.Pedido;
 
-public class Cliente {
-    private String apellido;
-    private String nombre;
-    private String correo;
-    private String clave;
+public class Cliente extends Usuario{
+   
     private ArrayList<Pedido> pedidos;
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.clave = clave;
+        super(correo, clave, apellido, nombre);
+        this.pedidos=new ArrayList<>();
     }
 
     public Cliente(String correo, String clave, String apellido, String nombre, ArrayList<Pedido> pedidos) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.clave = clave;
+        super(correo, clave, apellido, nombre);
         this.pedidos = pedidos;
     }
     
-    public String verApellido() {
-        return apellido;
-    }
+//    public String verApellido() {
+//        return apellido;
+//    }
+//
+//    public void asignarApellido(String apellido) {
+//        this.apellido = apellido;
+//    }
+//
+//    public String verNombre() {
+//        return nombre;
+//    }
+//
+//    public void asignarNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
 
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
-    public void asignarNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String verCorreo() {
-        return correo;
-    }
-
-    public void asignarCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String verClave() {
-        return clave;
-    }
-
-    public void asignarClave(String clave) {
-        this.clave = clave;
-    }
+//    public String verCorreo() {
+//        return correo;
+//    }
+//
+//    public void asignarCorreo(String correo) {
+//        this.correo = correo;
+//    }
+//
+//    public String verClave() {
+//        return clave;
+//    }
+//
+//    public void asignarClave(String clave) {
+//        this.clave = clave;
+//    }
     
     public List<Pedido> getPedidos() {
         return pedidos;
@@ -72,22 +64,21 @@ public class Cliente {
     }
 
     public void mostrarPedidos() {
-        System.out.println("-- PEDIDOS DEL CLIENTE " + apellido + ", " + nombre + " --");
+        System.out.println("-- PEDIDOS DEL CLIENTE " + verApellido() + ", " + verNombre() + " --");
         for (Pedido p : pedidos) {
             p.mostrar();
             System.out.println();
         }
     }
 
-    public void mostrar() {
-      System.out.println(correo);
-      System.out.println(clave);
-      System.out.println(apellido);
-      System.out.println(nombre);      
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
     }
- 
-    @Override
-    public String toString() {
-        return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
-    }
+
+// 
+//    @Override
+//    public String toString() {
+//        return "Cliente{" + "apellido=" + apellido + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + '}';
+//    }
+
 }
