@@ -4,7 +4,10 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -19,6 +22,10 @@ public abstract class Usuario {
     
     //declaro los metodos get/set
     public void mostrar(){
+        System.out.println ("Mail: " + verCorreo());
+        System.out.println ("Nombre: " + verNombre());
+        System.out.println ("Apellido: " + verApellido()); 
+        System.out.println ("Clave: " + verClave());
     }
 
     public String verCorreo() {
@@ -74,6 +81,9 @@ public abstract class Usuario {
         this.Apellido = Apellido;
     }
 
+    
+    
+    //redefino el metodo equals y hascode
     @Override
     public int hashCode() {
         int hash = 5;
@@ -98,4 +108,7 @@ public abstract class Usuario {
     
     
     
+    //agrego el metodo abstracto verPedidos();
+    public abstract ArrayList<Pedido> verPedidos();
+
 }

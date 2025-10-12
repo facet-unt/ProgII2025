@@ -30,4 +30,9 @@ public class Empleado extends Usuario {
         return super.toString(); 
     }
     
+    //modificacion del metodo verPedido para que devuelva nada 
+    @Override
+     public ArrayList<Pedido> verPedidos() {
+        return null;
+    }
 }

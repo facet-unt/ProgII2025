@@ -86,9 +86,11 @@ public class ControladorPrincipal {
         System.out.println("#################### ");
         System.out.println("CLIENTES");
 
-        Cliente c1 = new Cliente("cliente1@gmail.com", "11", "ApellidoCliente1", "NombreCliente1");
-        Cliente c2 = new Cliente("cliente2@hotmail.com", "12", "ApellidoCliente2", "NombreCliente2");
-        Cliente c3 = new Cliente("cliente3@gmail.com", "13", "ApellidoCliente3", "NombreCliente3");
+        
+        //se agrega los {} por ser clase sabstracta (sugerencia de netbeans)
+        Cliente c1 = new Cliente("cliente1@gmail.com", "11", "ApellidoCliente1", "NombreCliente1") {};
+        Cliente c2 = new Cliente("cliente2@hotmail.com", "12", "ApellidoCliente2", "NombreCliente2") {};
+        Cliente c3 = new Cliente("cliente3@gmail.com", "13", "ApellidoCliente3", "NombreCliente3") {};
 
         listaClientes.add(c1);
         listaClientes.add(c2);

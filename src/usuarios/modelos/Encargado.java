@@ -4,6 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 
 
 public class Encargado extends Usuario{
@@ -24,6 +27,12 @@ public class Encargado extends Usuario{
     @Override
     public String toString() {
         return super.toString(); 
+    }
+    
+    //modificacion del metodo verPedido para que devuelva nada 
+     @Override
+     public ArrayList<Pedido> verPedidos() {
+        return null;
     }
 }
 
