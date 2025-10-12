@@ -32,6 +32,7 @@ public class ControladorPrincipalTP4Parte2 {
         if (!usuarios.contains(unCliente4))
             usuarios.add(unCliente4);
         
+        
               
 
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
