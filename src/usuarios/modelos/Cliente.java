@@ -24,7 +24,7 @@ public class Cliente extends Usuario {
 
     @Override
     public ArrayList<Pedido> verPedidos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.pedido;
     }
 
     public void agregarPedido(Pedido pedido) {
