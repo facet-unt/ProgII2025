@@ -1,6 +1,9 @@
 
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Encargado extends Usuario {
     //Metodos
     @Override
@@ -17,6 +20,10 @@ public class Encargado extends Usuario {
 
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
-        
+    }
+    
+    public ArrayList<Pedido> verPedidos(){
+        ArrayList<Pedido> p = new ArrayList();
+    return p;
     }
 }

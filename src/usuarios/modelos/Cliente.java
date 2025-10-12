@@ -34,12 +34,21 @@ public class Cliente extends Usuario {
     }
     
     
-
-    public ArrayList<Pedido> verListaPedidos() {
+    @Override
+    public ArrayList<Pedido> verPedidos() {
         return this.listaPedidos;
     }
 
-    public void asignarPedido(Pedido p) {
-        this.listaPedidos.add(p);
-    }    
+    public void agregarPedido(Pedido p) {
+        int indice = listaPedidos.indexOf(p);
+        if(indice != -1){
+            listaPedidos.set(indice, p);
+        } else{
+            listaPedidos.add(p);
+        }
+    }
+    
+    public void cancelarPedido(Pedido p){
+            listaPedidos.remove(p);
+    }
 }
