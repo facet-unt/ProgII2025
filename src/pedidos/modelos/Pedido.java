@@ -27,8 +27,10 @@ public class Pedido {
         System.out.println("Nro:" + numero);
         System.out.println("Fecha:" + verFecha());
         System.out.println("Hora: " + verHora());
-        System.out.println("Cliente:" + cliente.verApellido() + cliente.verNombre());
+        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
         //System.out.println("Estado:" + estado);
+        System.out.println("Producto\t\t\tCantidad");
+        System.out.println("===========================================");
         for(ProductoDelPedido p: listaProductos)
         {
             p.mostrar();

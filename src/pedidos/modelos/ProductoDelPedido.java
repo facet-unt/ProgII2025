@@ -36,9 +36,7 @@ public class ProductoDelPedido {
     }
     public void mostrar()
     {
-        System.out.println("Producto\t\tCantidad");
-        System.out.println("====================");
-        System.out.println("Producto:" + producto + "\t" + cantidad);
+        System.out.println("Producto:" + producto.verDescripcion() + "\t  \t    " + cantidad);
     }
     
     

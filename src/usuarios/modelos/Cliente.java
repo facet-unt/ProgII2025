@@ -5,7 +5,6 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import pedidos.modelos.Pedido;
 
 /**
@@ -13,10 +12,6 @@ import pedidos.modelos.Pedido;
  * @author Esteban
  */
 public class Cliente extends Usuario{
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     //metodos get/set
@@ -25,41 +20,6 @@ public class Cliente extends Usuario{
         super(correo, clave, apellido, nombre);
     }
     
-    @Override
-    public void mostrar(){
-        super.mostrar();
-    }
-
-    @Override
-    public String verCorreo() {
-        return correo;
-    }
-
-    @Override
-    public String verClave() {
-        return clave;
-    }
-
-    @Override
-    public String verApellido() {
-        return apellido;
-    }
-
-    @Override
-    public void asignarApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    @Override
-    public String verNombre() {
-        return nombre;
-    }
-
-    @Override
-    public void asignarNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     @Override
     public ArrayList<Pedido> verPedidos() {
         return pedidos;
@@ -80,29 +40,7 @@ public class Cliente extends Usuario{
     }
     public void asignarPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
-    }
-
-    
-    @Override
-    public void asignarCorreo(String c) {
-        super.mostrar();
-        if (c != null && !c.isBlank())
-            correo = c;
-    }
-
-
-    @Override
-    public void asignarClave(String c) {
-        super.mostrar();
-        if (c != null && !c.isBlank())
-            correo = c;
-    }
-    
-    @Override
-    public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-
+    }   
 
     
     
