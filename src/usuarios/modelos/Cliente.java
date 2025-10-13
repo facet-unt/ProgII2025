@@ -1,81 +1,41 @@
-
 package usuarios.modelos;
 
-import java.util.List;
+import pedidos.modelos.Pedido;
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;   
+import java.util.List;
 
-
-public class Cliente {
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
-
-    // Nuevo atributo para guardar pedidos
+public class Cliente extends Usuario {
+    // Atributo específico de Cliente
     private List<Pedido> pedidos;
 
-    public Cliente (String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.pedidos = new ArrayList<>();  
+    // Constructor: usa super() para inicializar atributos heredados
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
+        this.pedidos = new ArrayList<>();
     }
-    
-    // Método para agregar un pedido al cliente
+
+    // Métodos específicos
     public void agregarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
-    
-    public void mostrar(){
-        
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
+
     
     @Override
     public String toString() {
-        return "Cliente{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+        return "Cliente{" +
+                "correo='" + correo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", pedidos=" + pedidos.size() +
+                '}';
     }
 
-    // Get y set
-    public String verCorreo() {
-        return correo;
-    }
-   
-    
-    //esto se llama get, es para otener al objeto
-    
-    public void asignarCorreo (String Correo) {
-        if (Correo != null && !Correo.isBlank())
-            correo = Correo;
-    }
-    
-    public String verClave() {
-        return clave;
-    }
-    
-    public void asignarClave(String Clave) {
-        if (Clave != null && !Clave.isBlank())
-            clave = Clave;
-    }
-    
-    public String verNombre() {
-        return nombre;
-    }
-    
-    public void asignarNombre(String Nombre) {
-        if (Nombre != null && !Nombre.isBlank())
-            nombre = Nombre;
-    }
-    
-    public String verApellido() {
-        return apellido;
-    }
-    
-    public void asignarApellido(String Apellido) {
-        if (Apellido != null && !Apellido.isBlank())
-            apellido = Apellido;
-    }
+    // Opcional: puedes sobrescribir mostrar() o usar el heredado de Usuario
+    // public void mostrar() {
+    //     System.out.println(this.toString());
+    // }
 }
-
-
