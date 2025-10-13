@@ -60,6 +60,7 @@ public class Cliente extends Usuario{
         this.nombre = nombre;
     }
 
+    @Override
     public ArrayList<Pedido> verPedidos() {
         return pedidos;
     }

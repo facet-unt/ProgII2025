@@ -4,7 +4,9 @@
  */
 package usuarios.modelos;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -17,6 +19,8 @@ public class Encargado extends Usuario {
     private String clave;
     private String apellido;
     private String nombre;
+    
+    ArrayList<Pedido> pedidos = new ArrayList<>();
     
     //Metodos
     @Override
@@ -106,4 +110,8 @@ public class Encargado extends Usuario {
         return Objects.equals(this.correo, other.correo);
     }
     
+    @Override
+    public ArrayList<Pedido> verPedidos() {
+        return pedidos;
+    }
 }
