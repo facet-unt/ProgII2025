@@ -104,7 +104,7 @@ public class Cliente extends Usuario{
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass()) {  
             return false;
         }
         final Cliente other = (Cliente) obj;

@@ -32,7 +32,15 @@ public class ControladorPrincipalTP4Parte2 {
         if (!usuarios.contains(unCliente4))
             usuarios.add(unCliente4);
         
+        System.out.println("Clientes");
+        System.out.println("=========");
         
+        for(Usuario u: usuarios){
+            if(u instanceof Cliente){
+                Cliente cliente =(Cliente) u;
+                cliente.mostrar();
+        }
+        }
               
 
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
@@ -50,21 +58,14 @@ public class ControladorPrincipalTP4Parte2 {
         if (!usuarios.contains(unEmpleado4))
             usuarios.add(unEmpleado4);
         
-        System.out.println("Clientes");
-        System.out.println("=========");
         
-        for(Usuario u: usuarios){
-            if(u instanceof Cliente cliente){
-                cliente.mostrar();
-            }
-        }
-        
-        System.out.println();        
+        System.out.println();       
         System.out.println("Empleados");
         System.out.println("=========");
         
-        for(Usuario u: usuarios){
-            if(u instanceof Empleado empleado){
+        for(Usuario us: usuarios){
+            if(us instanceof Empleado){
+               Empleado empleado=(Empleado) us;
                 empleado.mostrar();
             }
         }
@@ -88,8 +89,9 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println("Encargados");
         System.out.println("==========");
         
-        for(Usuario u: usuarios){
-            if(u instanceof Encargado encargado){
+        for(Usuario usu: usuarios){
+            if(usu instanceof Encargado){
+                Encargado encargado=(Encargado) usu;
                 encargado.mostrar();
             }
         }
@@ -107,8 +109,8 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println();
         System.out.println("Todos");
         System.out.println("=====");
-        for(Usuario u : usuarios) {
-            u.mostrar();
+        for(Usuario usua : usuarios) {
+            usua.mostrar();
             System.out.println();
         }
         System.out.println();
@@ -119,4 +121,5 @@ public class ControladorPrincipalTP4Parte2 {
             ***************************************************
         */        
     }
-}
+    }
+

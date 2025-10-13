@@ -62,10 +62,11 @@ public abstract class Usuario {
             
     }
 
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.correo);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.correo);
         return hash;
     }
 
