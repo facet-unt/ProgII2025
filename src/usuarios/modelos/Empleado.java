@@ -84,28 +84,7 @@ public class Empleado extends Usuario {
         return "Empleado{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.correo);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-      if (getClass() != obj.getClass()) { 
-          return false;
-      }
-        final Empleado other = (Empleado) obj;
-        return Objects.equals(this.correo, other.correo);
-    }
-    
     @Override
     public ArrayList<Pedido> verPedidos() {
         return pedidos;
