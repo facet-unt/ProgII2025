@@ -65,6 +65,19 @@ public class Cliente extends Usuario{
         return pedidos;
     }
 
+    public void agregarPedido(Pedido pedido)
+    {
+        if (!pedidos.contains(pedido))
+        pedidos.add(pedido);
+        else{
+            pedidos.add(pedido);
+        }
+    }
+    public void cancelarPedido(Pedido pedido)
+    {
+        if (pedidos.contains(pedido))
+        pedidos.remove(pedido);
+    }
     public void asignarPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }

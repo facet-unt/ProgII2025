@@ -30,9 +30,6 @@ public class ControladorPrincipalTP4Parte2 {
         {
             usuarios.add(unCliente2);
         }
-        else{
-            System.out.println("Hola");
-             }
         if (!usuarios.contains(unCliente3))
             usuarios.add(unCliente3);
         if (!usuarios.contains(unCliente4))

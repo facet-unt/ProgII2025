@@ -172,13 +172,13 @@ public class ControladorPrincipal {
         ProductoDelPedido productodelpedido1 = new ProductoDelPedido(p1,2);
         listadelPedido.add(productodelpedido1);
         
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1, pedidos.modelos.Estado.CREADO,listadelPedido); 
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), cliente3, pedidos.modelos.Estado.CREADO,listadelPedido); 
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2, pedidos.modelos.Estado.CREADO,listadelPedido); 
+//        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1, pedidos.modelos.Estado.CREADO,listadelPedido); 
+//        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), cliente3, pedidos.modelos.Estado.CREADO,listadelPedido); 
+//        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2, pedidos.modelos.Estado.CREADO,listadelPedido); 
 
-        listaPedidos.add(unPedido1);
-        listaPedidos.add(unPedido2);
-        listaPedidos.add(unPedido3);
+//        listaPedidos.add(unPedido1);
+//        listaPedidos.add(unPedido2);
+//        listaPedidos.add(unPedido3);
 
         for (Pedido p: listaPedidos)
         p.mostrar();

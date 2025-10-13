@@ -28,18 +28,17 @@ public class Pedido {
         System.out.println("Fecha:" + verFecha());
         System.out.println("Hora: " + verHora());
         System.out.println("Cliente:" + cliente.verApellido() + cliente.verNombre());
-        System.out.println("Estado:" + estado);
+        //System.out.println("Estado:" + estado);
         for(ProductoDelPedido p: listaProductos)
         {
             p.mostrar();
         }
     }
 
-    public Pedido(int numero, LocalDateTime fechayHora, Cliente cliente,Estado estado, ArrayList<ProductoDelPedido> lista) {
+    public Pedido(int numero, LocalDateTime fechayHora, ArrayList<ProductoDelPedido> lista,Cliente cliente) {
         this.numero = numero;
         this.fechayHora = fechayHora;
         this.cliente = cliente;
-        this.estado = estado;
         this.listaProductos=lista;
     }
   
