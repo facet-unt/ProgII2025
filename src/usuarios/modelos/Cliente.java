@@ -25,10 +25,6 @@ public class Cliente extends Usuario {
         this.listaPedidos=listaPedidos;
     }
 
-    public ArrayList<Pedido> verListaPedidos() {
-        return listaPedidos;
-    }
-
     public void asignarListaPedidos(ArrayList<Pedido> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
@@ -40,17 +36,14 @@ public class Cliente extends Usuario {
 
     @Override
     public ArrayList<Pedido> verPedidos() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return listaPedidos;
     }
 
     public void agregarPedido(Pedido Pedido){
-        for(Pedido p: listaPedidos){
-            if(!listaPedidos.contains(p))
-                listaPedidos.add(p);
+            if(!listaPedidos.contains(Pedido))
+                listaPedidos.add(Pedido);
             else
-                listaPedidos.set(listaPedidos.indexOf(p), Pedido);
-        }
+                listaPedidos.set(listaPedidos.indexOf(Pedido), Pedido);
     }
     
     public void cancelarPedido(Pedido Pedido){
