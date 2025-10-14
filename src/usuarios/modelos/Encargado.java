@@ -1,6 +1,13 @@
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Encargado extends Usuario {
+
+    private String correo;
+    private String nombre;
+    private String apellido;
 
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
@@ -15,9 +22,10 @@ public class Encargado extends Usuario {
                 ", apellido='" + apellido + '\'' +
                 '}';
     }
+    
+    //modificacion del metodo verPedido para que devuelva nada 
+     public ArrayList<Pedido> verPedidos() {
+        return null;
+    }
 
-//    // Opcional: puedes sobrescribir mostrar() si lo deseas
-//     public void mostrar() {
-//         System.out.println(this.toString());
-//    }
 }

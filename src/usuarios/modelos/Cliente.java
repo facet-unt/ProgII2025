@@ -8,34 +8,44 @@ public class Cliente extends Usuario {
     // Atributo específico de Cliente
     private List<Pedido> pedidos;
 
-    // Constructor: usa super() para inicializar atributos heredados
+    // Constructor
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
         this.pedidos = new ArrayList<>();
     }
 
-    // Métodos específicos
+    // Método para agregar un pedido
     public void agregarPedido(Pedido pedido) {
-        pedidos.add(pedido);
+        if (pedido != null && !pedidos.contains(pedido)) {
+            pedidos.add(pedido);
+        }
     }
 
+    // Getter de pedidos
     public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "correo='" + correo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", pedidos=" + pedidos.size() +
-                '}';
+    // Método para cancelar un pedido
+    public void cancelarPedido(Pedido unPedido) {
+        if (unPedido != null && pedidos.contains(unPedido)) {
+            pedidos.remove(unPedido);
+        }
     }
 
-    // Opcional: puedes sobrescribir mostrar() o usar el heredado de Usuario
-    // public void mostrar() {
-    //     System.out.println(this.toString());
-    // }
+    // Método mostrar sobrescrito
+    @Override
+    public void mostrar() {
+        System.out.println("Mail: " + verCorreo());
+        System.out.println("Nombre: " + verNombre());
+        System.out.println("Apellido: " + verApellido()); 
+        System.out.println("Clave: " + verClave());
+    }
+
+    // Puedes implementar este método si realmente lo necesitas
+    @Override
+    public ArrayList<Pedido> verPedidos() {
+        // Si quieres devolver una copia segura como ArrayList:
+        return new ArrayList<>(pedidos);
+    }
 }

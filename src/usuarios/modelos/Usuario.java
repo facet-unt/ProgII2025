@@ -1,91 +1,108 @@
 package usuarios.modelos;
 
-/**
- *
- * @author alumno
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import pedidos.modelos.Pedido;
+   
+
 public abstract class Usuario {
-    public String correo;
-    public String clave;
-    public String apellido;
-    public String nombre;
+    private String Correo;
+    private String Clave;
+    private String Nombre;
+    private String Apellido;
     
     
-    public Usuario(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
+    //declaro los metodos get/set
+    public void mostrar(){
+        System.out.println ("Mail: " + verCorreo());
+        System.out.println ("Nombre: " + verNombre());
+        System.out.println ("Apellido: " + verApellido()); 
+        System.out.println ("Clave: " + verClave());
     }
 
-        
-    //método común 
-    public void mostrar() {
-    System.out.println(this.toString());
-    }
-    
-       
-    // Getters y Setters
-    public String getCorreo() { 
-        return correo;
-    }
-    public void setCorreo(String correo) {
-        if (correo != null && !correo.isBlank()) 
-            this.correo = correo;
-    }
-    
-    
-    public String getClave() {
-        return clave; 
-    }
-    public void setClave(String clave) {
-        if (clave != null && !clave.isBlank()) 
-            this.clave = clave;
+    public String verCorreo() {
+        return Correo;
     }
 
-    
-    public String getNombre() { 
-        return nombre; 
+    public void asignarCorreo(String Correo) {
+        this.Correo = Correo;
     }
-    public void setNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()) 
-            this.nombre = nombre;
+
+    public String verClave() {
+        return Clave;
     }
-    
-    
-    public String getApellido() { 
-        return apellido; 
+
+    public void asignarClave(String Clave) {
+        this.Clave = Clave;
     }
-    public void setApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()) 
-            this.apellido = apellido;
+
+   public String verNombre() {
+        return Nombre;
     }
     
+    public void asignarNombre(String nombre) {
+        if (nombre != null && !nombre.isBlank())
+            Nombre = nombre;
+    }
     
+    public String verApellido() {
+        return Apellido;
+    }
+    
+    public void asignarApellido(String apellido) {
+        if (apellido != null && !apellido.isBlank())
+            Apellido = apellido;
+    }
+    
+     
+    
+    //declaro el metodo toString()
+
     @Override
-    public boolean equals(Object obj) {
-    if (this == obj)
-        return true;
-    if (obj == null || getClass() != obj.getClass()) 
-        return false;
-    Usuario usuario = (Usuario) obj;
-    return this.correo.equalsIgnoreCase(usuario.correo);
+    public String toString() {
+        return "Usuario{" + "Correo=" + Correo + ", Clave=" + Clave + ", Nombre=" + Nombre + ", Apellido=" + Apellido + '}';
     }
 
+    
+    
+    //agrego un constructor para inicializar las variables de instancia
+    public Usuario(String Correo, String Clave, String Nombre, String Apellido) {
+        this.Correo = Correo;
+        this.Clave = Clave;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+    }
+
+    
+    
+    //redefino el metodo equals y hascode
     @Override
     public int hashCode() {
-    return correo.toLowerCase().hashCode();
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.Correo);
+        return hash;
     }
- 
-   
-      @Override
-    public String toString() {
-        return "Usuario{" +
-                "correo='" + correo + '\'' +
-                ", clave='" + clave + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", nombre='" + nombre + '\'' +
-                '}';
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        return Objects.equals(this.Correo, other.Correo);
     }
-        
+    
+    
+    
+    //agrego el metodo abstracto verPedidos();
+    public abstract ArrayList<Pedido> verPedidos();
+
+
 }

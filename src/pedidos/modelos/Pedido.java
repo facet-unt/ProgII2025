@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 public class Pedido {
+    
+    
 
     private int numero;
     private LocalDateTime fechaHora;
@@ -134,22 +136,27 @@ public class Pedido {
     }
 
     // Comparar pedidos por número
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.numero;
+        int hash = 7;
+        hash = 97 * hash + this.numero;
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
+   
 }
