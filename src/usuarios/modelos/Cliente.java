@@ -33,9 +33,10 @@ public class Cliente extends Usuario {
 
     public String toString(){
 
-        return "{" + "Apellido=" + verApellido() + ", Nombre=" + verNombre() + '}';
+        return verApellido() + ", " + verNombre();
     }      
-
+    
+ 
    @Override /*Redifinicion del metodo verPedidos. Devuelve los pedidos del cliente*/
     public ArrayList<Pedido> verPedidos()
     {
@@ -50,8 +51,8 @@ public class Cliente extends Usuario {
            pedidos.add(unPedido);
         } else /*Si ya existe lo reemplaza.*/
         {
-           pedidos.remove(unPedido);
-           pedidos.add(unPedido);
+           int indice = pedidos.indexOf(unPedido); /* Obtiene el indice(posicion) del pedido que esta en el ArrayList  pedidos */
+           pedidos.set(indice, unPedido); /* Reemplaza el pedido viejo por el nuevo pedido en esa misma posicion */
         }
     }
 

@@ -23,7 +23,6 @@ public class Pedido {
     private ArrayList<ProductoDelPedido> unPedido = new ArrayList<>(); //Asociacion 1 a mucho de Pedido y Productodelpedido
 
     public void mostrar() {
-        System.out.println("====================== PEDIDO ==========================");
         String hora = "HH:mm";
         String horaFormateada = fechaYhora.format(DateTimeFormatter.ofPattern(hora));
         String fecha = "dd/MM/yyyy";
@@ -33,9 +32,8 @@ public class Pedido {
         System.out.println("Cliente:" + unCliente);
         System.out.println("Estado:" + estado);
         System.out.println("Producto ====== Cantidad");
-        System.out.println("============================");
         for(ProductoDelPedido pedido: unPedido)
-        System.out.println(pedido.verUnProducto().verDescripcion() + " ========> " + pedido.verCantidad());   
+        System.out.println(pedido.verUnProducto().verDescripcion() + "            " + pedido.verCantidad());   
     }
     
 

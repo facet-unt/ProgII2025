@@ -75,7 +75,6 @@ public class Producto {
     }
 
     public void mostrar() {
-        System.out.println("=================");
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
