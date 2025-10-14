@@ -21,14 +21,7 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
         this.listaProductosPedidos = listaProductos;
         this.cliente = cliente;
-    }
-    
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado, ArrayList<ProductoDelPedido> listaProductosPedidos) {
-        this.numero = numero;
-        this.fechaYHora = fechaYHora;
-        this.cliente = cliente;
-        this.estado = estado;
-        this.listaProductosPedidos = listaProductosPedidos;
+        this.estado = Estado.CREADO;
     }
     
     public int verNumero() {

@@ -33,6 +33,15 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios.add(unCliente3);
         if (!usuarios.contains(unCliente4))
             usuarios.add(unCliente4);
+        
+        System.out.println("Clientes");
+        System.out.println("=========");
+
+        for( Usuario u: usuarios){
+            if(u instanceof Cliente){
+                u.mostrar();
+            }
+        }
          
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
         Usuario unEmpleado2 = new Empleado("empleado2@bar.com", "claveEmpleado2", "ApellidoEmpleado2", "NombreEmpleado2");        
@@ -48,16 +57,7 @@ public class ControladorPrincipalTP4Parte2 {
             usuarios.add(unEmpleado3);
         if(!usuarios.contains(unEmpleado4))
             usuarios.add(unEmpleado4);
-        
-        System.out.println("Clientes");
-        System.out.println("=========");
-
-        for( Usuario u: usuarios){
-            if(u instanceof Cliente){
-                u.mostrar();
-            }
-        }
-        
+                
         System.out.println();        
         System.out.println("Empleados");
         System.out.println("=========");
