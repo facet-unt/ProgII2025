@@ -8,36 +8,34 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
-     private ArrayList<Pedido> pedidos = new ArrayList<>();
 
-    
+    private ArrayList<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(String c, String cl, String a, String n) {
         super(c, cl, a, n);
 
     }
-    
-  public ArrayList<Pedido> verPedidos()
-  {
-      return this.pedidos;
-  }
- 
-    
-    
+
+    public ArrayList<Pedido> verPedidos() {
+        return this.pedidos;
+    }
+
     public void agregarPedido(Pedido pedido) {
-        int indice = pedidos.indexOf(pedido); // usa equals de Pedido (por numero)
-        if (indice == -1) {
-            this.pedidos.add(pedido);
+
+        if (!pedidos.contains(pedido)) {
+            pedidos.add(pedido);
         } else {
-            pedidos.set(indice, pedido); // reemplazo
+            int posicion = pedidos.indexOf(pedido);
+            pedidos.set(posicion, pedido);
         }
+
     }
-    
-    public void cancelarPedido(Pedido pedido)
-    {
+
+    public void cancelarPedido(Pedido pedido) {
         pedidos.remove(pedido);
-        
+
     }
+
     public void mostrar() {
         super.mostrar();
 
