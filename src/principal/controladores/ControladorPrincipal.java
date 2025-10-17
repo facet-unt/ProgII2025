@@ -38,9 +38,9 @@ public class ControladorPrincipal {
         for (Empleado e : listaEmpleados)
             e.mostrar();
 
-        // Modificaciones
-        e1.asignarApellido("APELLIDOEmpleado11");
-        listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
+//        // Modificaciones
+//        e1.asignarApellido("APELLIDOEmpleado11");
+//        listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
 
         for (Empleado e : listaEmpleados)
             e.mostrar();

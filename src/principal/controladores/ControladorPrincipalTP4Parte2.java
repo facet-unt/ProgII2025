@@ -5,7 +5,7 @@ import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
 import usuarios.modelos.Usuario;
-//import usuarios.modelos.Usuario;
+
 
 public class ControladorPrincipalTP4Parte2 {
     public static void main(String[] args) {
@@ -159,13 +159,12 @@ public class ControladorPrincipalTP4Parte2 {
             u.mostrar();
             System.out.println();
         }
-        
-        System.out.println();
-        
+
+       
         /*
             *************************************************
             FIN Segunda parte - herencia
             ***************************************************
         */   
-            }
+    }
 }

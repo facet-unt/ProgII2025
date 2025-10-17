@@ -1,25 +1,21 @@
 
 package usuarios.modelos;
 
-import java.util.List;
-import java.util.ArrayList;
 import pedidos.modelos.Pedido;
+import java.util.ArrayList;
+import java.util.List;
 
-//se hace clase abstracta por sugerencia de netbeans
-public class Cliente extends Usuario{
-    
-    
-    // Nuevo atributo para guardar pedidos
-    private ArrayList<Pedido> pedidos= new ArrayList<>();
-    
-    
+public class Cliente extends Usuario {
+    // Atributo específico de Cliente
+    private List<Pedido> pedidos;
 
-    public Cliente (String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, nombre, apellido);
-        this.pedidos = new ArrayList<>();  
+    // Constructor
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
+        this.pedidos = new ArrayList<>();
     }
-    
-    // Método para agregar un pedido al cliente
+
+    // Método para agregar un pedido
     public void agregarPedido(Pedido pedido) {
     if (pedido != null && !pedidos.contains(pedido)) {
         pedidos.add(pedido);
@@ -43,9 +39,17 @@ public class Cliente extends Usuario{
     //redefino el metodo verPedidos();
     @Override
      public ArrayList<Pedido> verPedidos() {
-        return(pedidos);
+        if (pedido != null && !pedidos.contains(pedido)) {
+            pedidos.add(pedido);
+        }
     }
 
+    // Getter de pedidos
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    // Método para cancelar un pedido
     public void cancelarPedido(Pedido unPedido) {
         if(pedidos.contains(unPedido)&&unPedido!=null)
         this.pedidos.remove(unPedido);
