@@ -22,10 +22,7 @@ public abstract class Usuario {
     
     //declaro los metodos get/set
     public void mostrar(){
-        System.out.println ("Mail: " + verCorreo());
-        System.out.println ("Nombre: " + verNombre());
-        System.out.println ("Apellido: " + verApellido()); 
-        System.out.println ("Clave: " + verClave());
+        
     }
 
     public String verCorreo() {
@@ -64,13 +61,18 @@ public abstract class Usuario {
     
      
     
-    //declaro el metodo toString()
+    //declaro el metodo toString() (borrado para que no genere conflictos
 
+//    @Override
+//    public String toString() {
+//        return "Usuario{" + "Correo=" + Correo + ", Clave=" + Clave + ", Nombre=" + Nombre + ", Apellido=" + Apellido + '}';
+//    }
+   
+    //redefino el metodo tostrting para que devuelva solo el nombre y el apellido
     @Override
     public String toString() {
-        return "Usuario{" + "Correo=" + Correo + ", Clave=" + Clave + ", Nombre=" + Nombre + ", Apellido=" + Apellido + '}';
+        return  "Nombre: " + Nombre + ", Apellido: " + Apellido;
     }
-
     
     
     //agrego un constructor para inicializar las variables de instancia

@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 
 public class Pedido {
-    
-    
+     
 
     private int numero;
     private LocalDateTime fechaHora;
@@ -38,7 +37,10 @@ public class Pedido {
         this.estado = estado;
         this.productosDelPedido = new ArrayList<>();
     }
-
+    
+    
+    
+    
     public int getNumero() {
         return numero;
     }
@@ -86,17 +88,10 @@ public class Pedido {
     public void setProductosDelPedido(ArrayList<ProductoDelPedido> productosDelPedido) {
         this.productosDelPedido = productosDelPedido;
     }
-
-    // Agregar producto con validación para evitar duplicados
-    public void agregarProducto(ProductoDelPedido nuevoProductoDelPedido) {
-        for (ProductoDelPedido pdp : productosDelPedido) {
-            if (pdp.getProducto().equals(nuevoProductoDelPedido.getProducto())) {
-                System.out.println("️ El producto ya está en el pedido y no se agregó nuevamente.");
-                return;
-            }
-        }
-        this.productosDelPedido.add(nuevoProductoDelPedido);
-    }
+    
+    
+    
+    //metodo para eliminar un producto
 
     public void eliminarProducto(ProductoDelPedido productoDelPedido) {
         this.productosDelPedido.remove(productoDelPedido);

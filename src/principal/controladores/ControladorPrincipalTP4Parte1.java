@@ -55,6 +55,8 @@ public static void main(String[] args) {
          * de productos, deberían listarse 4
         **************************************************
     */
+    
+    
     //solo se recorre el arrayList, como 5 esta repetido mostrara solo 4 elementos 
 
         for (Producto p: listaProductos)
@@ -75,9 +77,12 @@ public static void main(String[] args) {
     /*
     Clientes, se crean 3 para crear los pedidos
     */
-    for (Cliente e: listaClientes)
+    
+    for (Cliente e: listaClientes){
         e.mostrar();
-
+        }
+    
+    
     System.out.println();
     System.out.println("#################### ");
     System.out.println("PEDIDOS");

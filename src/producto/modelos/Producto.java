@@ -4,6 +4,8 @@
  */
 package producto.modelos;
 
+import productos.modelos.Categoria;
+
 /**
  *
  * @author Asus
@@ -12,7 +14,7 @@ public class Producto {
     private int codigo;
     private String descripcion;
     private String estado;
-    private String categoria;
+    private Categoria categoria;
     private float precio;
     
     @Override
@@ -20,7 +22,7 @@ public class Producto {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", estado=" + estado + ", categoria=" + categoria + ", precio=" + precio + '}';
     }
 
-    public Producto(int codigo, String descripcion, String estado, String categoria, float precio) {
+    public Producto(int codigo, String descripcion, String estado, String Categoria, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.estado = estado;
@@ -52,11 +54,11 @@ public class Producto {
         this.estado = estado;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String categoria) {
+    public void asignarCategoria(String Categoria) {
         this.categoria = categoria;
     }
 

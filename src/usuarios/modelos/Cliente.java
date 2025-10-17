@@ -26,14 +26,13 @@ public class Cliente extends Usuario{
     }
 }
 
-    
     @Override
     public void mostrar(){
-        System.out.println ("Mail: " + verCorreo());
-        System.out.println ("Nombre: " + verNombre());
-        System.out.println ("Apellido: " + verApellido()); 
-        System.out.println ("Clave: " + verClave());
+        System.out.println("Nombre: " +this.verNombre());
+        System.out.println("apellido: " + this.verApellido());
     }
+
+   
 
     @Override
     public String toString() {
