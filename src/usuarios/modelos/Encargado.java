@@ -13,7 +13,6 @@ import pedidos.modelos.Pedido;
  */
 
 public class Encargado extends Usuario{
-    private ArrayList<Pedido> vacio= new ArrayList<>();
     
     //constructor
     
@@ -21,10 +20,10 @@ public class Encargado extends Usuario{
         super(correo,clave, apellido, nombre);
     }
     
-   @Override
+ 
+    @Override
     public ArrayList<Pedido> verPedido() {
-        
-        return vacio;
+        throw new UnsupportedOperationException("Un Encargado no puede hacer un pedido"); 
     }
     
 }

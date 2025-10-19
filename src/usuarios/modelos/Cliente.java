@@ -16,6 +16,7 @@ public class Cliente extends Usuario{
     private ArrayList<Pedido> pedidos= new ArrayList<>();
 
     
+    @Override
     public void mostrar() {
       super.mostrar();
       for (Pedido p: pedidos)
@@ -34,7 +35,15 @@ public class Cliente extends Usuario{
 
 
     public void agregarPedido(Pedido unPedido) {
-        this.pedidos.add(unPedido);
+        if(!pedidos.contains(unPedido))
+        {
+            this.pedidos.add(unPedido);
+        }
+        else
+        {
+            this.pedidos.remove(unPedido);
+            this.pedidos.add(unPedido);
+        }
     }
     public void cancelarPedido(Pedido unPedido) {
         if(pedidos.contains(unPedido)&&unPedido!=null)

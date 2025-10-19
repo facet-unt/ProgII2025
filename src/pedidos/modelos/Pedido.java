@@ -66,7 +66,10 @@ public class Pedido {
     }
 
     public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
-        this.productoPedido = productoPedido;
+        if(!(productoPedido.contains(this.productoPedido)))
+        {
+            this.productoPedido = productoPedido;
+       }
     }
     
     
