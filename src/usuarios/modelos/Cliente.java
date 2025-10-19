@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cliente extends Usuario {
     // Atributo específico de Cliente
-    private List<Pedido> pedidos;
+    ArrayList <Pedido> pedidos = new ArrayList<>();
 
     // Constructor
     public Cliente(String correo, String clave, String apellido, String nombre) {
@@ -17,9 +17,8 @@ public class Cliente extends Usuario {
 
     // Método para agregar un pedido
     public void agregarPedido(Pedido pedido) {
-    if (pedido != null && !pedidos.contains(pedido)) {
+    
         pedidos.add(pedido);
-    }
 }
 
     @Override
@@ -39,15 +38,9 @@ public class Cliente extends Usuario {
     //redefino el metodo verPedidos();
     @Override
      public ArrayList<Pedido> verPedidos() {
-        if (pedido != null && !pedidos.contains(pedido)) {
-            pedidos.add(pedido);
-        }
-    }
-
-    // Getter de pedidos
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
+        return pedidos; //devuelve pedidos por que es el arraylist que declaramos al inicio
+     }
+     
 
     // Método para cancelar un pedido
     public void cancelarPedido(Pedido unPedido) {

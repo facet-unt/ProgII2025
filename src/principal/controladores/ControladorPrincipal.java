@@ -115,13 +115,13 @@ public class ControladorPrincipal {
         ProductoDelPedido pdp2 = new ProductoDelPedido(p2, 1); // Pizza x1
         ProductoDelPedido pdp3 = new ProductoDelPedido(p3, 3); // Flan x3
 
-        pedido1.agregarProducto(pdp1);
-        pedido1.agregarProducto(pdp3);
+        pedido1.getProductosDelPedido().add(pdp1);
+        pedido1.getProductosDelPedido().add(pdp3);
+        
+        pedido2.getProductosDelPedido().add(pdp2);
 
-        pedido2.agregarProducto(pdp2);
-
-        pedido3.agregarProducto(pdp2);
-        pedido3.agregarProducto(pdp3);
+       pedido3.getProductosDelPedido().add(pdp2);
+       pedido3.getProductosDelPedido().add(pdp3);
 
         // Guardar pedidos en el ArrayList
         listaPedidos.add(pedido1);

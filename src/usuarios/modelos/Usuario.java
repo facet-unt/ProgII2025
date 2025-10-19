@@ -105,6 +105,4 @@ public abstract class Usuario {
     
     //agrego el metodo abstracto verPedidos();
     public abstract ArrayList<Pedido> verPedidos();
-
-
 }
