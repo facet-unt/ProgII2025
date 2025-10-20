@@ -28,8 +28,11 @@ public class Cliente extends Usuario{
     }
 
     public void agregarPedido(Pedido pedido) {
-        if (pedido != null && !pedidos.contains(pedido)) {
-            pedidos.remove(pedido);
+        if (pedido == null) return;
+        int index = pedidos.indexOf(pedido);
+        if (index >= 0) {
+            pedidos.set(index, pedido);
+        } else {
             pedidos.add(pedido);
         }
     }
