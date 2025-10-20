@@ -75,29 +75,6 @@ public class Pedido {
         return cliente;
     }
 
-//    public void agregarProductodelPedido(Producto produc, int cantidad) {
-//        ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
-//        this.listaProductosdelPedido.add(nuevoProducto);
-//    }
-    
-//    public void mostrar(){
-//        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-//        
-//        String fechaFormateada = this.fechayHora.format(Fecha);
-//        String horaFormateada = this.fechayHora.format(Hora);
-//        
-//        System.out.println("\nNro: " + this.numero);
-//        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
-//        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
-//        System.out.println("Estado: " + this.estado);
-//        
-//        System.out.println("\t\tProducto " + "\t\tCantidad");
-//        System.out.println("\t\t=================================");
-//        for(ProductoDelPedido p : listaProductos)
-//            p.mostrar();
-//        System.out.println("#################### ");
-//    } 
 
     @Override
     public int hashCode() {

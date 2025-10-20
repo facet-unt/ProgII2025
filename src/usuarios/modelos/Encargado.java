@@ -14,7 +14,7 @@ import pedidos.modelos.Pedido;
  */
 
 public class Encargado extends Usuario {
-    ArrayList<Pedido> pedidos = new ArrayList<>();
+   
    
     //constructor
     
@@ -24,6 +24,6 @@ public class Encargado extends Usuario {
     
     @Override
     public ArrayList<Pedido> verPedidos() {
-        return pedidos;
+       return null;
     }
 }

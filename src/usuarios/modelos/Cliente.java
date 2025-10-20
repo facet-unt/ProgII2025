@@ -30,7 +30,8 @@ public class Cliente extends Usuario{
         if (!pedidos.contains(pedido))
         pedidos.add(pedido);
         else{
-            pedidos.add(pedido);
+                pedidos.remove(pedido);
+                pedidos.add(pedido);
         }
     }
     public void cancelarPedido(Pedido pedido)
