@@ -75,13 +75,13 @@ public abstract class Usuario {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Usuario)){
-            return false;
-        }
         if (this == obj) {
             return true;
         }
         if (obj == null) {
+            return false;
+        }
+        if (getClass().getSuperclass() != obj.getClass().getSuperclass()) {
             return false;
         }
         final Usuario other = (Usuario) obj;
