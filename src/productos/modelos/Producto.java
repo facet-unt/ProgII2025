@@ -21,6 +21,7 @@ public class Producto {
         System.out.println("Estado: " + estado);
     }
 
+    
     @Override
     public String toString() {
         return "Producto{" +
@@ -81,8 +82,8 @@ public class Producto {
         if (p > 0){
             precio = p;
         }
+        
     }
-
     @Override
     public int hashCode() {
         int hash = 5;

@@ -116,6 +116,7 @@ public class ControladorPrincipal {
         listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
         
         /*y volver a recorrer los ArrayLists verificando que se hicieron los cambios. */
+        System.out.println("EMPLEADOS CON CAMBIOS");
          for (Empleado e: listaEmpleados)
             e.mostrar();
          
@@ -133,9 +134,9 @@ public class ControladorPrincipal {
             p.mostrar();
          
         listaProductos.get(2).asignarDescripcion("Producto 3");
-        System.out.println("\nEl precio del producto es :" +  listaProductos.get(2).verPrecio());
+        System.out.println("\nEl precio del producto 3 es :" +  listaProductos.get(2).verPrecio());
         listaProductos.get(2).asignarPrecio(1898.98f);
-        System.out.println("El nuevo precio del producto es :" +  listaProductos.get(2).verPrecio());
+        System.out.println("El nuevo precio del producto 3 es :" +  listaProductos.get(2).verPrecio());
         
         System.out.println("\nPRODUCTOS usando toString()");
         for (Producto p: listaProductos)
@@ -170,18 +171,20 @@ public class ControladorPrincipal {
 //        SEGUNDA PARTE
         ArrayList<ProductoDelPedido> listadelPedido = new ArrayList<>();
         ProductoDelPedido productodelpedido1 = new ProductoDelPedido(p1,2);
+        ProductoDelPedido Otroproductodelpedido1= new ProductoDelPedido(p2,3);
         listadelPedido.add(productodelpedido1);
-        
-//        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1, pedidos.modelos.Estado.CREADO,listadelPedido); 
-//        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), cliente3, pedidos.modelos.Estado.CREADO,listadelPedido); 
-//        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2, pedidos.modelos.Estado.CREADO,listadelPedido); 
+        listadelPedido.add(Otroproductodelpedido1);
+     Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),listadelPedido,cliente1); 
+      Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),listadelPedido,cliente3); 
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),listadelPedido,cliente2); 
 
-//        listaPedidos.add(unPedido1);
-//        listaPedidos.add(unPedido2);
-//        listaPedidos.add(unPedido3);
-
+        listaPedidos.add(unPedido1);
+        listaPedidos.add(unPedido2);
+        listaPedidos.add(unPedido3);
+        System.out.println("#################### ");
+        System.out.println("PEDIDOS");
         for (Pedido p: listaPedidos)
         p.mostrar();
-//        System.out.println("#################### ");
+      System.out.println("#################### ");
     }
 }
