@@ -16,7 +16,7 @@ import pedidos.modelos.*;
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
-        //PRIMERA PARTE
+        PRIMERA PARTE
          /*
         Definir un ArrayList para cada una de las clases Cliente, 
         Empleado, Encargado y Producto  (realizar las importaciones correspondientes).*/
@@ -51,7 +51,7 @@ public class ControladorPrincipal {
         */
         
         /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
-        //DEBO usar los métodos para ese fin
+       /* DEBO usar los métodos para ese fin
 /*
         e1.asignarApellido("APELLIDOEmpleado11");
         listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
@@ -108,7 +108,7 @@ public class ControladorPrincipal {
            e.mostrar();
 
         
-        //SEGUNDA PARTE
+        SEGUNDA PARTE
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
         ProductoDelPedido pdp1 = new ProductoDelPedido(2, p1); 

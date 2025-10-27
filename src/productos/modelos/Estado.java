@@ -29,7 +29,7 @@ public enum Estado {
     
     @Override
     public String toString() {
-        return "Estado{" + '}';
+        return this.valor;
     }
 
 }
