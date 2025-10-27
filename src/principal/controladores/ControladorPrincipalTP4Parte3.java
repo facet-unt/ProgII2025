@@ -189,7 +189,7 @@ public class ControladorPrincipalTP4Parte3 {
         //pedido repetido
         
         System.out.println("Pedidos de " + unCliente1.verApellido() + ", " + unCliente1.verNombre());
-        for(Pedido p : unCliente1.verPedido()) {
+        for(Pedido p : unCliente1.verPedidos()) {
             p.mostrar();
             System.out.println();
         }
@@ -198,7 +198,7 @@ public class ControladorPrincipalTP4Parte3 {
         ((Cliente)unCliente1).cancelarPedido(unPedido2);
         ((Cliente)unCliente1).cancelarPedido(unPedido1);
         System.out.println("Pedidos de " + unCliente1.verApellido() + ", " + unCliente1.verNombre());
-        for(Pedido p : unCliente1.verPedido()) {
+        for(Pedido p : unCliente1.verPedidos()) {
             p.mostrar();
             System.out.println();
         }

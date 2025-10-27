@@ -22,8 +22,8 @@ public class Producto {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.categoria = categoria;
-        this.estado = estado;
+        this.unaCategoria = categoria;
+        this.unEstado = estado;
     }
     
     // Métodos
@@ -42,8 +42,8 @@ public class Producto {
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Precio: " + precio);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
+        System.out.println("Categoria: " + unaCategoria);
+        System.out.println("Estado: " + unEstado);
     }
 
     

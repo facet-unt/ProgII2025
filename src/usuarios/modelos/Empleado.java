@@ -25,7 +25,7 @@ public class Empleado extends Usuario{
     }
 
     @Override
-    public ArrayList<Pedido> verPedido() {
+    public ArrayList<Pedido> verPedidos() {
         
         return vacio;
     }
