@@ -43,6 +43,8 @@ public class GestorProductos {
         if(estado==null){
             return ERROR_ESTADO ;
         }
+        Producto p = new Producto(codigo,descripcion,categoria,estado,precio);
+        this.productos.add(p);
         return EXITO;
     }
     
@@ -62,6 +64,8 @@ public class GestorProductos {
         if(estado==null){
             return ERROR_ESTADO ;
         }
+        Producto productoModificado = new Producto(codigo,descripcion,categoria,estado,precio);
+        productos.add(productos.indexOf(p), productoModificado);
         return EXITO;
     }
     
@@ -70,6 +74,12 @@ public class GestorProductos {
     }
     
     public ArrayList<Producto> buscarProductos(String descripcion) {
+        ArrayList<Producto> productosEncontrados = new ArrayList<>();
+        for(Producto p: productos){
+            if(p.verDescripcion().contains(descripcion)){
+                productosEncontrados.add(p);
+            }
+        }
         return null;
     }
     
