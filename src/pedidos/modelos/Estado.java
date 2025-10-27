@@ -4,9 +4,13 @@
  */
 package pedidos.modelos;
 
+
 /**
  *
- * @author thoma
+ * @author estudiante
+    
+/**
+
  */
 public enum Estado {
     CREADO("Creado"),

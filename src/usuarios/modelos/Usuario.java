@@ -17,24 +17,31 @@ public abstract class Usuario {
     private String clave;
     private String apellido;
     private String nombre;
-
+    
+    
+    
+    //CONSTRUCTOR
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+    
     }
     
-    public abstract ArrayList<Pedido> verPedidos();
-    
-     public void mostrar(){
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
+    //MOSTRAR
+    public void mostrar(){
+        System.out.println( apellido + ", " + nombre);
     }
-
     
+    //TOString
+    @Override
+    public String toString() {
+        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    
+    //METODOS GET/SET
     public String verCorreo() {
         return correo;
     }
@@ -77,8 +84,8 @@ public abstract class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.correo);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.correo);
         return hash;
     }
 
@@ -90,11 +97,13 @@ public abstract class Usuario {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass().getSuperclass() != obj.getClass().getSuperclass()) {
             return false;
         }
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
     
+    public abstract ArrayList<Pedido> verPedido();
+ 
 }

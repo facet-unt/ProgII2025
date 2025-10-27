@@ -12,14 +12,19 @@ import pedidos.modelos.Pedido;
  * @author Esteban
  */
 
-public class Encargado extends Usuario {
+public class Encargado extends Usuario{
+    private ArrayList<Pedido> vacio= new ArrayList<>();
+    
+    //constructor
     
     public Encargado(String correo, String clave, String apellido, String nombre) {
-      super(correo,clave,apellido,nombre);
+        super(correo,clave, apellido, nombre);
     }
     
-    @Override
-    public ArrayList<Pedido> verPedidos(){
-        return null;
+   @Override
+    public ArrayList<Pedido> verPedido() {
+        
+        return vacio;
     }
+    
 }
