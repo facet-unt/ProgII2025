@@ -39,7 +39,7 @@ public class Producto {
     }
 
     
-    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+    public Producto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         this.codigo = codigo;
         this.unEstado = estado;        
         this.descripcion = descripcion;

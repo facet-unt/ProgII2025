@@ -19,19 +19,34 @@ public class GestorProductos {
     }
     
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        Producto producto= new Producto(codigo,descripcion,precio,categoria,estado);
+        productos.add(producto);
+        String cadena= "Se creo el Producto con exito";
+        return cadena;
     }
     
-    public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+    public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        productoAModificar.asignarCodigo(codigo);
+        productoAModificar.asignarDescripcion(descripcion);
+        productoAModificar.asignarPrecio(precio);
+        productoAModificar.asignarCategoria(categoria);
+        productoAModificar.asignarEstado(estado);
+        String cadena="Se modificó el Producto con exito";
+        return cadena;
     }
     
     public ArrayList<Producto> menu() {
+        
         return this.productos;
     }
     
     public ArrayList<Producto> buscarProductos(String descripcion) {
-        return null;
+        ArrayList <Producto>productosbuscados =new ArrayList<>();
+        for (Producto p : productos) {
+            if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase()));
+                productosbuscados.add(p);
+        }
+        return productosbuscados;
     }
     
     public boolean existeEsteProducto(Producto producto) {
