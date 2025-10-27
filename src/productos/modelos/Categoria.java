@@ -18,9 +18,10 @@ public enum Categoria {
     private Categoria(String valor) {
         this.valor = valor;
     }
+    
     @Override
     public String toString() {
-        return "Categoria{" + "valor=" + valor + '}';
+        return this.valor;
     }
     
     
