@@ -88,6 +88,7 @@ public class Producto {
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
     }
+    
     @Override
     public String toString() {
         return "Producto{" +

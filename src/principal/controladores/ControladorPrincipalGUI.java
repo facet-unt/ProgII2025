@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package principal.controladores;
 
 import javax.swing.UIManager;
@@ -17,43 +12,11 @@ import usuarios.vistas.VentanaAMEncargado;
  */
 public class ControladorPrincipalGUI {
     public static void main(String[] args) {
-    //Trabajamos con una ventana por vez
-    //Para todas las ventanas lo pasos son:
-    /*
-    * Asigna el look and feel "Nimbus" a la ventana
-    * Se crea la ventana
-    * Se centra la ventana
-    * Se asigna un título a la ventana
-    * Se hace visible la ventana
-    */
+        
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
         VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
-        ventanaProducto.setLocationRelativeTo(null);
-        ventanaProducto.setTitle("Nuevo producto");
-        ventanaProducto.setVisible(true);
         
-        //CLIENTE
-      
-        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
-        ventanaCliente.setLocationRelativeTo(null);
-        ventanaCliente.setTitle("Nuevo cliente");
-        ventanaCliente.setVisible(true);
-               
-       //EMPLEADO 
-       
-        VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
-        ventanaEmpleado.setLocationRelativeTo(null);
-        ventanaEmpleado.setTitle("Nuevo empleado");
-        ventanaEmpleado.setVisible(true);
-        
-       //ENCARGADO
-       
-        VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
-        ventanaEncargado.setLocationRelativeTo(null);
-        ventanaEncargado.setTitle("Nuevo encargado");
-        ventanaEncargado.setVisible(true);
-       
     }
     
     /**

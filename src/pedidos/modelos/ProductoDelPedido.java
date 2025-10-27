@@ -1,17 +1,13 @@
 package pedidos.modelos;
+
 import java.util.Objects;
 import productos.modelos.Producto;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 public class ProductoDelPedido {
 
     private int cantidad;
     private Producto producto;
-
+    
     public ProductoDelPedido(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;

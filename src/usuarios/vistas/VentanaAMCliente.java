@@ -74,6 +74,11 @@ public class VentanaAMCliente extends JDialog {
         jLabel4.setText("Correo:");
 
         txtCorreo.setToolTipText("Correo del cliente");
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
@@ -152,6 +157,14 @@ public class VentanaAMCliente extends JDialog {
         }
     }//GEN-LAST:event_btnGuardarClic
 
+<<<<<<< HEAD
+=======
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+
+>>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

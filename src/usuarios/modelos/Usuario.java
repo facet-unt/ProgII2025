@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.modelos;
 
 import java.util.ArrayList;
@@ -9,10 +5,6 @@ import java.util.Objects;
 import java.util.List;
 import pedidos.modelos.Pedido;
 
-/**
- *
- * @author HP Casa
- */
 public abstract class Usuario {
     private String correo;
     private String clave;
@@ -66,7 +58,7 @@ public abstract class Usuario {
     }
     
     public abstract List<Pedido> verPedidos();
-     
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -90,5 +82,4 @@ public abstract class Usuario {
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
         }
-     
 }
