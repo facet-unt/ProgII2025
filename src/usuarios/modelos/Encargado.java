@@ -9,10 +9,11 @@ import pedidos.modelos.Pedido;
 
 /**
  *
- * @author Esteban
+ * @author Lyan
  */
 
 public class Encargado extends Usuario{
+<<<<<<< HEAD
     private ArrayList<Pedido> vacio= new ArrayList<>();
     
     //constructor
@@ -28,3 +29,20 @@ public class Encargado extends Usuario{
     }
     
 }
+=======
+
+    /*Constructor*/
+    public Encargado(String correo, String clave, String apellido, String nombre) {
+        super(correo, clave, apellido, nombre);
+    }
+         
+
+ public ArrayList<Pedido> p = new ArrayList<>();
+    
+    @Override
+      public ArrayList<Pedido> verPedidos()
+    {
+        return new ArrayList<>(); /*Devuelve un arraylist vacio*/
+    }
+}    
+>>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
