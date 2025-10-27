@@ -29,7 +29,9 @@ public class VentanaAMProducto extends JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.setVisible(true);        
+        this.setVisible(true);   
+        
+         
     }
     
       
@@ -93,6 +95,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,6 +171,7 @@ public class VentanaAMProducto extends JDialog {
         String descripcion = this.txtDescripcion.getText().trim();        
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
+        Estado estado= ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerEstado();
                             
         Producto unProducto; //= new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
         //this.productos.add(unProducto);
@@ -175,6 +183,10 @@ public class VentanaAMProducto extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

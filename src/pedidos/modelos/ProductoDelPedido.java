@@ -59,7 +59,7 @@ public class ProductoDelPedido {
             return false;
         }
         final ProductoDelPedido other = (ProductoDelPedido) obj;
-        return Objects.equals(this.producto, other.producto);
+        return Objects.equals(this.unProducto, other.unProducto);
     }
     
 }

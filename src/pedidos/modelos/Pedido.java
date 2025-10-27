@@ -53,11 +53,11 @@ public class Pedido {
     }
 
     public ArrayList<ProductoDelPedido> verProductoPedido() {
-        return productoPedido;
+        return listaProductosdelPedido;
     }
 
     public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
-        this.productoPedido = productoPedido;
+        this.listaProductosdelPedido = productoPedido;
     }
     
     
@@ -66,7 +66,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + unCliente + ", unEstado=" + unEstado + '}';
+        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + cliente + ", unEstado=" + estado + '}';
     }
 
     
@@ -81,11 +81,11 @@ public class Pedido {
         String fechaFormateada = this.fechaYHora.format(Fecha);
         String horaFormateada = this.fechaYHora.format(Hora);
         System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
-        System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
-        System.out.println("Estado: " + unEstado);
+        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
+        System.out.println("Estado: " + estado);
         System.out.println("\t\t Producto\t\t Cantidad");
         System.out.println("\t\t========================================");
-       for(ProductoDelPedido p : productoPedido)
+       for(ProductoDelPedido p : listaProductosdelPedido)
         {
             p.mostrar();
         }
@@ -107,7 +107,7 @@ public class Pedido {
     }
 
     public Estado verEstado() {
-        return unEstado;
+        return estado;
     }
 
     public void asignarEstado(Estado estado) {
@@ -115,32 +115,14 @@ public class Pedido {
     }
 
     public Cliente verCliente() {
-        return unCliente;
+        return cliente;
     }
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
         this.listaProductosdelPedido.add(nuevoProducto);
     }
-    
-    public void mostrar(){
-        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-        
-        String fechaFormateada = this.fechaYHora.format(Fecha);
-        String horaFormateada = this.fechaYHora.format(Hora);
-        
-        System.out.println("\nNro: " + this.numero);
-        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
-        System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
-        System.out.println("Estado: " + this.estado);
-        
-        System.out.println("\t\tProducto " + "\t\tCantidad");
-        System.out.println("\t\t=================================");
-        for(ProductoDelPedido p : listaProductosdelPedido)
-            p.mostrar();
-        System.out.println("#################### ");
-    } 
+   
 
     @Override
     public int hashCode() {

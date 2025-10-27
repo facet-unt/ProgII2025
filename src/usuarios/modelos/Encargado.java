@@ -13,7 +13,16 @@ import pedidos.modelos.Pedido;
  */
 
 public class Encargado extends Usuario{
-    private ArrayList<Pedido> vacio= new ArrayList<>();
+     //metodos
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return null;
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString();
+    }
     
     //constructor
     

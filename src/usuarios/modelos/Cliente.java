@@ -12,10 +12,11 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario {
     private ArrayList<Pedido> pedidos= new ArrayList<>();
 
     
+    @Override
     public void mostrar() {
       super.mostrar();
       for (Pedido p: pedidos)
@@ -29,9 +30,6 @@ public class Cliente extends Usuario{
 
     }
     
-    //metodos get/set
-    
-
 
     public void agregarPedido(Pedido unPedido) {
         this.pedidos.add(unPedido);
@@ -43,12 +41,7 @@ public class Cliente extends Usuario{
    
 
     @Override
-    public ArrayList<Pedido> verPedido() {
+    public ArrayList<Pedido> verPedidos() {
         return(pedidos);
-    }
-
-    
-    
-    
-    
+    } 
 } 

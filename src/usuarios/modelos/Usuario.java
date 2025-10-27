@@ -28,7 +28,6 @@ public abstract class Usuario {
         System.out.println("=================================");
     }
     
-    public abstract ArrayList<Pedido> verPedidos();
 
     @Override
     public String toString() {
@@ -108,6 +107,6 @@ public abstract class Usuario {
         return Objects.equals(this.correo, other.correo);
     }
     
-    public abstract ArrayList<Pedido> verPedido();
+    public abstract ArrayList<Pedido> verPedidos();
  
 }

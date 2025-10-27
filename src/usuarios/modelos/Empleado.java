@@ -15,7 +15,6 @@ import pedidos.modelos.Pedido;
 public class Empleado extends Usuario{
     
     //metodos
-    @Override
     public ArrayList<Pedido> verPedidos(){
         return null;
     }
@@ -30,6 +29,5 @@ public class Empleado extends Usuario{
 
     public Empleado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
-    
+  }
 }
-
