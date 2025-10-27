@@ -7,34 +7,29 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 /**
  *
  * @author Esteban
  */
 
-public class Empleado extends Usuario {
-        
-    //Constructor
+public class Empleado extends Usuario{
+
+    private ArrayList<Pedido> vacio= new ArrayList<>();
+    //constructor
+
     public Empleado(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
+        super(correo,clave, apellido, nombre);
+    }
+
+    @Override
+    public ArrayList<Pedido> verPedido() {
+        
+        return vacio;
     }
     
-    //Metodos
-
-    @Override
-    public String toString() {
-        return "Empleado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
-    }
-
-    @Override
-    public ArrayList<Pedido> verPedidos() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public void mostrar() {
-        System.out.print("Empleado: ");
-        super.mostrar();
-    }  
     
 }
+

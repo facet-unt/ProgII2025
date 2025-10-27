@@ -12,9 +12,10 @@ public class Producto {
     //Atributos
     private int codigo;
     private String descripcion;
+    private Categoria unaCategoria;
+    private Estado unEstado;
     private float precio;
-    private Categoria categoria;
-    private Estado estado;
+
 
     //Constructor
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
@@ -31,8 +32,8 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", estado='" + estado + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
                 ", precio=" + precio +
                 '}';
     }
@@ -44,6 +45,8 @@ public class Producto {
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
     }
+
+    
    
     public int verCodigo() {
         return codigo;
@@ -64,19 +67,21 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
-        return categoria;
+
+        return unaCategoria;
     }
 
     public void asignarCategoria(Categoria c) {
-        categoria = c;
+        unaCategoria = c;
     }
 
     public Estado verEstado() {
-        return estado;
+        return unEstado;
     }
 
     public void asignarEstado(Estado e) {
-            estado = e;
+        unEstado = e;
+
     }
 
     public float verPrecio() {

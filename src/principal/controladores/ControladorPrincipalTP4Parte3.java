@@ -1,3 +1,4 @@
+
 package principal.controladores;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class ControladorPrincipalTP4Parte3 {
             INICIO Tercera parte - herencia
             ***************************************************
         */
-             
+            
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
@@ -44,6 +45,12 @@ public class ControladorPrincipalTP4Parte3 {
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
             *************************************************
         */ 
+        if (!usuarios.contains(unCliente2))
+            usuarios.add(unCliente2);
+        if (!usuarios.contains(unCliente3))
+            usuarios.add(unCliente3);
+        if (!usuarios.contains(unCliente4))
+            usuarios.add(unCliente4);
                         
         Usuario unEmpleado1 = new Empleado("empleado1@bar.com", "claveEmpleado1", "ApellidoEmpleado1", "NombreEmpleado1");        
         Usuario unEmpleado2 = new Empleado("empleado2@bar.com", "claveEmpleado2", "ApellidoEmpleado2", "NombreEmpleado2");        
@@ -65,6 +72,14 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+        if (!usuarios.contains(unEmpleado1))
+            usuarios.add(unEmpleado1);   
+        if (!usuarios.contains(unEmpleado2))
+            usuarios.add(unEmpleado2);
+        if (!usuarios.contains(unEmpleado3))
+            usuarios.add(unEmpleado3);
+        if (!usuarios.contains(unEmpleado4))
+            usuarios.add(unEmpleado4);
         
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
@@ -87,9 +102,17 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+         if (!usuarios.contains(unEncargado1))
+            usuarios.add(unEncargado1);   
+        if (!usuarios.contains(unEncargado2))
+            usuarios.add(unEncargado2);
+        if (!usuarios.contains(unEncargado3))
+            usuarios.add(unEncargado3);
+        if (!usuarios.contains(unEncargado4))
+            usuarios.add(unEncargado4);
 
         Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, Estado.DISPONIBLE, 1.0f);        
-        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 2.0f);
+        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2.0f);
         Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, Estado.DISPONIBLE, 3.0f);
         Producto unProducto4 = new Producto(3, "Producto4", Categoria.POSTRE, Estado.DISPONIBLE, 4.0f);
         //producto repetido
@@ -108,6 +131,12 @@ public class ControladorPrincipalTP4Parte3 {
              * la lista de productos
             **************************************************
         */
+        if (!listaProductos.contains(unProducto2))
+        listaProductos.add(unProducto2);
+        if (!listaProductos.contains(unProducto3))
+        listaProductos.add(unProducto3);
+        if (!listaProductos.contains(unProducto4))
+        listaProductos.add(unProducto4);  
         
         ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
         ProductoDelPedido pdp1 = new ProductoDelPedido(listaProductos.get(0), 1);
@@ -160,7 +189,7 @@ public class ControladorPrincipalTP4Parte3 {
         //pedido repetido
         
         System.out.println("Pedidos de " + unCliente1.verApellido() + ", " + unCliente1.verNombre());
-        for(Pedido p : unCliente1.verPedidos()) {
+        for(Pedido p : unCliente1.verPedido()) {
             p.mostrar();
             System.out.println();
         }
@@ -169,7 +198,7 @@ public class ControladorPrincipalTP4Parte3 {
         ((Cliente)unCliente1).cancelarPedido(unPedido2);
         ((Cliente)unCliente1).cancelarPedido(unPedido1);
         System.out.println("Pedidos de " + unCliente1.verApellido() + ", " + unCliente1.verNombre());
-        for(Pedido p : unCliente1.verPedidos()) {
+        for(Pedido p : unCliente1.verPedido()) {
             p.mostrar();
             System.out.println();
         }
@@ -180,5 +209,6 @@ public class ControladorPrincipalTP4Parte3 {
             FIN Tercera parte - herencia
             ***************************************************
         */ 
+
     }
 }
