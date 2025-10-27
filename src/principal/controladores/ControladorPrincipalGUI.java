@@ -17,43 +17,11 @@ import usuarios.vistas.VentanaAMEncargado;
  */
 public class ControladorPrincipalGUI {
     public static void main(String[] args) {
-    //Trabajamos con una ventana por vez
-    //Para todas las ventanas lo pasos son:
-    /*
-    * Asigna el look and feel "Nimbus" a la ventana
-    * Se crea la ventana
-    * Se centra la ventana
-    * Se asigna un título a la ventana
-    * Se hace visible la ventana
-    */
+        
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
-        VentanaAMProducto ventana = new VentanaAMProducto(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo producto");
-        ventana.setVisible(true);
+        VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
         
-        //CLIENTE
-       
-        VentanaAMCliente ventana1 = new VentanaAMCliente(null);
-        ventana1.setLocationRelativeTo(null);
-        ventana1.setTitle("Nuevo cliente");
-        ventana1.setVisible(true);
-              
-       //EMPLEADO 
-       
-        VentanaAMEmpleado ventana2 = new VentanaAMEmpleado(null);
-        ventana2.setLocationRelativeTo(null);
-        ventana2.setTitle("Nuevo empleado");
-        ventana2.setVisible(true);
-        
-       //ENCARGADO
-       
-        VentanaAMEncargado ventana3 = new VentanaAMEncargado(null);
-        ventana3.setLocationRelativeTo(null);
-        ventana3.setTitle("Nuevo encargado");
-        ventana3.setVisible(true);
-       
     }
     
     /**
