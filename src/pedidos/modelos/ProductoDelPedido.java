@@ -44,7 +44,7 @@ public class ProductoDelPedido {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.producto);
+        hash = 97 * hash + Objects.hashCode(this.unProducto);
         return hash;
     }
 
@@ -60,7 +60,7 @@ public class ProductoDelPedido {
             return false;
         }
         final ProductoDelPedido other = (ProductoDelPedido) obj;
-        return Objects.equals(this.producto, other.producto);
+        return Objects.equals(this.unProducto, other.unProducto);
     }
     
     
