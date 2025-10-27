@@ -31,6 +31,11 @@ public class GestorProductos {
         if(codigo<=0){
             return ERROR_CODIGO ;
         }
+        for(Producto p1: productos){
+            if(p1.verCodigo()==codigo){
+                return PRODUCTOS_DUPLICADOS;
+            }
+        }
         if(descripcion==null||descripcion.isBlank()){
             return ERROR_DESCRIPCION ;
         }
@@ -51,6 +56,11 @@ public class GestorProductos {
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if(codigo<=0){
             return ERROR_CODIGO ;
+        }
+        for(Producto p1: productos){
+            if(p.equals(p1)){
+                return PRODUCTOS_DUPLICADOS;
+            }
         }
         if(descripcion==null||descripcion.isBlank()){
             return ERROR_DESCRIPCION ;
@@ -80,7 +90,7 @@ public class GestorProductos {
                 productosEncontrados.add(p);
             }
         }
-        return null;
+        return productosEncontrados;
     }
     
     public boolean existeEsteProducto(Producto producto) {
@@ -93,10 +103,21 @@ public class GestorProductos {
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        return null;
+        ArrayList<Producto> productosPorCategoria = new ArrayList<>();
+        for(Producto p: productos){
+            if(p.verCategoria()==categoria){
+                productosPorCategoria.add(p);
+            }
+        }
+        return productosPorCategoria;
     }
     
     public Producto obtenerProducto(Integer codigo) {
+        for(Producto p: productos){
+            if(p.verCodigo()==codigo){
+                return p;
+            }
+        }
         return null;
     }
 }
