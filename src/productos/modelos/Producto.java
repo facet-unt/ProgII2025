@@ -1,18 +1,113 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 public class Producto {
+    //Atributos
+    private int codigo;
+    private String descripcion;
+    private Categoria unaCategoria;
+    private Estado unEstado;
+    private float precio;
 
-    private Estado estado;
-    private Categoria categoria;
+
+    // Métodos
+    public void mostrar() {
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
+        System.out.println("Precio: " + precio);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
+
+    
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado = estado;        
+        this.descripcion = descripcion;
+        this.unaCategoria = categoria;
+        this.precio = precio;
+    }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.descripcion = descripcion;
+        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+    }
+
+    
+   
+    public int verCodigo() {
+        return codigo;
+    }
+
+    public void asignarCodigo(int c) {
+        if (c > 0)
+            codigo = c;
+    }
+
+    public String verDescripcion() {
+        return descripcion;
+    }
+
+    public void asignarDescripcion(String d) {
+        if (d != null && !d.isBlank())
+            descripcion = d;
+    }
+
+    public Categoria verCategoria() {
+
+        return unaCategoria;
+    }
+
+    public void asignarCategoria(Categoria c) {
+        unaCategoria = c;
+    }
+
+    public Estado verEstado() {
+        return unEstado;
+    }
+
+    public void asignarEstado(Estado e) {
+        unEstado = e;
+
+    }
+
+
+    
+    public float verPrecio() {
+        return precio;
+    }
+
+    public void asignarPrecio(float p) {
+        if (p > 0){
+            precio = p;
+        }
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.codigo;
+        int hash = 5;
+        hash = 59 * hash + this.codigo;
         return hash;
     }
 
@@ -31,97 +126,5 @@ public class Producto {
         return this.codigo == other.codigo;
     }
 
- 
-    private int codigo;
-    private String descripcion;
-    private float precio;
-
-    // Métodos
-
-    public void mostrar() {
-        System.out.println("Código: " + this.verCodigo());
-        System.out.println("Descripción: " + this.verDescripcion());
-        System.out.println("Categoría: " + this.verCategoria());
-        System.out.println("Estado: " + this.verEstado());
-        System.out.println("Precio: " + this.verPrecio());
-        System.out.println("------------");
-    }
     
-    @Override
-    public String toString() {
-        return "Código: " + codigo + "\nDescripción: " + descripcion + "\nCategoría: " + categoria + "\nEstado: " + estado + "\nPrecio: " + precio;
-    }
-
-    public void mostrarProducto() {
-        System.out.println("Información del Producto:\n" + this.toString());
-    }
-
-
-
-
-public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.asignarCodigo(codigo);
-        //this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.estado = estado;
-        this.categoria = categoria;
-    }
-
-    public Producto(int c, String d, String cat, float p) {
-        codigo = c;
-        descripcion = d;
-        precio = p;
-    }
-
-    public Producto(int c, String d, float p) {
-        this(c, d, "Plato principal", p);
-    }
-
-    //Agregar to string
-    public int verCodigo() {
-        return codigo;
-    }
-
-    public void asignarCodigo(int c) {
-        if (c > 0) {
-            codigo = c;
-        }
-    }
-
-    public String verDescripcion() {
-        return descripcion;
-    }
-
-    public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank()) {
-            descripcion = d;
-        }
-    }
-
-    public Estado verEstado() {
-        return estado;
-    }
-
-    public void asignarEstado(Estado unEstado) {
-        this.estado = unEstado;
-    }
-
-    public Categoria verCategoria() {
-        return categoria;
-    }
-
-    public void asignarCategoria(Categoria unaCategoria) {
-        this.categoria = unaCategoria;
-    }
-
-
-    
-    public float verPrecio() {
-        return precio;
-    }
-
-    public void asignarPrecio(float p) {
-        precio = p;
-    }
 }

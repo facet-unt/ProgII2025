@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 import usuarios.modelos.Encargado;
 
 public class VentanaAMEncargado extends JDialog {
-    private ArrayList<Encargado> encargado = new ArrayList<>();
+    private ArrayList<Encargado> encargados = new ArrayList<>();
     
     /**
      * Constructor
@@ -74,6 +74,11 @@ public class VentanaAMEncargado extends JDialog {
         jLabel4.setText("Correo:");
 
         txtCorreo.setToolTipText("Documento");
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
@@ -95,12 +100,12 @@ public class VentanaAMEncargado extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passClave)
+                            .addComponent(txtApellido)
                             .addComponent(txtNombre)
-                            .addComponent(passClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtApellido))))
+                            .addComponent(txtCorreo))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,6 +115,7 @@ public class VentanaAMEncargado extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -136,8 +142,25 @@ public class VentanaAMEncargado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        //Completar
+
+         String correo = this.txtCorreo.getText().trim();
+        String apellido = this.txtApellido.getText().trim();
+        String nombre = this.txtNombre.getText().trim();
+        String clave = new String(this.passClave.getPassword());
+        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
+        this.encargados.add(unEncargado);
+        
+        System.out.println("Clientes");
+        System.out.println("========");
+        for(Encargado c : this.encargados) {
+            c.mostrar();
+            System.out.println();
+        }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

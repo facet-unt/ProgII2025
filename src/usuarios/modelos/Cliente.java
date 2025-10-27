@@ -4,41 +4,51 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
-import pedidos.modelos.Pedido;
 
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
-public class Cliente extends Usuario {
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
+public class Cliente extends Usuario{
+    private ArrayList<Pedido> pedidos= new ArrayList<>();
+
     
-    private ArrayList<Pedido> pedido;
+    public void mostrar() {
+      super.mostrar();
+      for (Pedido p: pedidos)
+            System.out.println(p.verNumero());
+  
+    }
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
-        this.pedido = new ArrayList<>();
+        super(correo,clave, apellido, nombre);
+
+
     }
-    public void mostrar() {
-        super.mostrar();
+    
+    //metodos get/set
+    
+
+
+    public void agregarPedido(Pedido unPedido) {
+        this.pedidos.add(unPedido);
     }
+    public void cancelarPedido(Pedido unPedido) {
+        if(pedidos.contains(unPedido)&&unPedido!=null)
+        this.pedidos.remove(unPedido);
+    }
+   
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
-        return this.pedido;
+    public ArrayList<Pedido> verPedido() {
+        return(pedidos);
     }
 
-    public void agregarPedido(Pedido pedido) {
-        for (int i = 0; i < this.pedido.size() ; i++) {
-            if (this.pedido.get(i).equals(pedido)) {
-                this.pedido.set(i, pedido);
-                return;
-            }
-        }
-        this.pedido.add(pedido);
-    }
-
-    public void cancelarPedido(Pedido  pedidoCancelado) {
-        this.pedido.remove(pedidoCancelado);
-    }
-}
+    
+    
+    
+    
+} 

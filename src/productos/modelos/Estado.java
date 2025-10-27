@@ -5,23 +5,31 @@
 package productos.modelos;
 
 /**
- *
- * @author Fernando
+
+ * @author estudiante
  */
 public enum Estado {
-    DISPONIBLE("Disponible"),
-    NO_DISPONIBLE("No disponible");
-    
-    private String valor;
+    DISPONIBLE ("Disponible"),
+    NO_DISPONIBLE ("No disponible");
 
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
+   
+
+    private String valor;
+    
     private Estado(String valor) {
         this.valor = valor;
     }
-
+    
     @Override
     public String toString() {
-        return this.valor;
+        return "Estado{" + '}';
     }
-    
-    
+
 }

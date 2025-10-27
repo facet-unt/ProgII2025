@@ -74,6 +74,11 @@ public class VentanaAMCliente extends JDialog {
         jLabel4.setText("Correo:");
 
         txtCorreo.setToolTipText("Correo del cliente");
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
@@ -95,12 +100,12 @@ public class VentanaAMCliente extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passClave)
+                            .addComponent(txtApellido)
                             .addComponent(txtNombre)
-                            .addComponent(passClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtApellido))))
+                            .addComponent(txtCorreo))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,6 +115,7 @@ public class VentanaAMCliente extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -150,6 +156,10 @@ public class VentanaAMCliente extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
