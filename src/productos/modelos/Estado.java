@@ -12,6 +12,12 @@ public enum Estado {
     DISPONIBLE ("Disponible"),
     NO_DISPONIBLE ("No disponible");
 
+    private String valor;
+    
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+    
     public String verValor() {
         return valor;
     }
@@ -21,15 +27,9 @@ public enum Estado {
     }
    
 
-    private String valor;
-    
-    private Estado(String valor) {
-        this.valor = valor;
-    }
-    
     @Override
     public String toString() {
-        return "Estado{" + '}';
+        return this.valor;
     }
 
 }
