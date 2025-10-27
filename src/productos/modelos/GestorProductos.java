@@ -8,6 +8,16 @@ public class GestorProductos {
     
     private static GestorProductos instancia;
     
+    public static final String EXITO = "Producto creado/modificado con éxito";
+    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
+    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
+    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
+    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
+    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
+    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
+    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
+    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
+    
     private GestorProductos() {
         
     }
@@ -19,30 +29,93 @@ public class GestorProductos {
     }
     
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        if (!(codigo>0))
+            return ERROR_CODIGO;
+        if(descripcion == null || descripcion == "")
+            return ERROR_DESCRIPCION;
+        if(precio<=0)
+            return ERROR_PRECIO;
+        if (categoria == null)
+            return ERROR_CATEGORIA;
+        if (estado == null)
+            return ERROR_ESTADO;
+        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
+        if(productos.contains(p))
+            return PRODUCTOS_DUPLICADOS;
+        return EXITO;
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        if(!this.productos.contains(p))
+            return PRODUCTO_INEXISTENTE;
+        if (!(codigo>0))
+            return ERROR_CODIGO;
+        if(descripcion == null || descripcion == "")
+            return ERROR_DESCRIPCION;
+        if(precio<=0)
+            return ERROR_PRECIO;
+        if (categoria == null)
+            return ERROR_CATEGORIA;
+        if (estado == null)
+            return ERROR_ESTADO;
+        
+        p.asignarCodigo(codigo);
+        p.asignarDescripcion(descripcion);
+        p.asignarPrecio(precio);
+        p.asignarCategoria(categoria);
+        p.asignarEstado(estado);
+        
+        return EXITO;
     }
     
     public ArrayList<Producto> menu() {
+        for(Producto p: this.productos)
+            p.mostrar();
         return this.productos;
     }
     
     public ArrayList<Producto> buscarProductos(String descripcion) {
+        int i=0;
+        for(Producto p: productos){
+            if(p.verDescripcion() == descripcion){
+                p.mostrar();
+                i++;
+            }
+        }
+        if(i == 0)
+            System.out.println(PRODUCTO_INEXISTENTE);
         return null;
     }
     
     public boolean existeEsteProducto(Producto producto) {
+        if(!productos.contains(producto))
+            return false;
         return true;
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+        int i = 0;
+        for(Producto p: productos){
+            if(p.verCategoria() == categoria){
+                p.mostrar();
+                i++;
+            }
+        }
+        if (i == 0)
+            System.out.println(PRODUCTO_INEXISTENTE);
         return null;
     }
     
     public Producto obtenerProducto(Integer codigo) {
+        if(codigo<=0){
+            for(Producto p: productos){
+                if(p.verCodigo() == codigo){
+                    return p;
+                }
+            }
+        } else {
+            System.out.println(ERROR_CODIGO);
+        }
         return null;
     }
 }
