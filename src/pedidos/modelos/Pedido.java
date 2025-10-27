@@ -3,15 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pedidos.modelos;
-
-/**
- *
- * @author thoma
- */
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import productos.modelos.Producto;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
@@ -42,6 +38,65 @@ public class Pedido {
     public int verNumero() {
         return numero;
     }
+
+
+    public void asignarNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public LocalDateTime verFechaYHora() {
+        return fechaYHora;
+    }
+
+    public void asignarFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYHora = fechaYHora;
+    }
+
+    public ArrayList<ProductoDelPedido> verProductoPedido() {
+        return productoPedido;
+    }
+
+    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
+        this.productoPedido = productoPedido;
+    }
+    
+    
+    
+    //METODS toString
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + unCliente + ", unEstado=" + unEstado + '}';
+    }
+
+    
+    
+    
+    //OTROS METODOS
+   //MOSTRAR
+    public void mostrar(){
+        System.out.println("Nro: " + numero);
+        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
+        String fechaFormateada = this.fechaYHora.format(Fecha);
+        String horaFormateada = this.fechaYHora.format(Hora);
+        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
+        System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
+        System.out.println("Estado: " + unEstado);
+        System.out.println("\t\t Producto\t\t Cantidad");
+        System.out.println("\t\t========================================");
+       for(ProductoDelPedido p : productoPedido)
+        {
+            p.mostrar();
+        }
+        
+        System.out.println("#################### ");
+        
+    }
+
+   
+    
+
     
     public LocalDate verFecha() {
         return this.fechaYHora.toLocalDate();
@@ -52,7 +107,7 @@ public class Pedido {
     }
 
     public Estado verEstado() {
-        return estado;
+        return unEstado;
     }
 
     public void asignarEstado(Estado estado) {
@@ -60,7 +115,7 @@ public class Pedido {
     }
 
     public Cliente verCliente() {
-        return cliente;
+        return unCliente;
     }
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {

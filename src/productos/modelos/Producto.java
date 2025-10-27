@@ -12,17 +12,19 @@ public class Producto {
     //Atributos
     private int codigo;
     private String descripcion;
+    private Categoria unaCategoria;
+    private Estado unEstado;
     private float precio;
-    private Categoria categoria;
-    private Estado estado;
+
 
     // Métodos
     public void mostrar() {
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
         System.out.println("Precio: " + precio);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
+
     }
 
     @Override
@@ -30,19 +32,29 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", estado='" + estado + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
                 ", precio=" + precio +
                 '}';
     }
 
+    
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
+        this.unEstado = estado;        
         this.descripcion = descripcion;
+        this.unaCategoria = categoria;
         this.precio = precio;
-        this.categoria = categoria;
-        this.estado = estado;
     }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.descripcion = descripcion;
+        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+    }
+
+    
    
     public int verCodigo() {
         return codigo;
@@ -63,19 +75,21 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
-        return categoria;
+
+        return unaCategoria;
     }
 
     public void asignarCategoria(Categoria c) {
-        categoria = c;
+        unaCategoria = c;
     }
 
     public Estado verEstado() {
-        return estado;
+        return unEstado;
     }
 
     public void asignarEstado(Estado e) {
-            estado = e;
+        unEstado = e;
+
     }
 
     public float verPrecio() {
@@ -90,7 +104,8 @@ public class Producto {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
+        hash = 59 * hash + this.codigo;
         return hash;
     }
 
@@ -108,5 +123,6 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
+
     
 }

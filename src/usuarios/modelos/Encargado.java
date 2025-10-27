@@ -12,18 +12,8 @@ import pedidos.modelos.Pedido;
  * @author Esteban
  */
 
-public class Encargado extends Usuario {
-   
-    //metodos
-    @Override
-    public ArrayList<Pedido> verPedidos(){
-        return null;
-    }
-    
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+public class Encargado extends Usuario{
+    private ArrayList<Pedido> vacio= new ArrayList<>();
     
     //constructor
     

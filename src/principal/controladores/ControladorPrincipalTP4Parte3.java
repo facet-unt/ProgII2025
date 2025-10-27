@@ -66,7 +66,6 @@ public class ControladorPrincipalTP4Parte3 {
         if (!usuarios.contains(unEmpleado4))
             usuarios.add(unEmpleado4);
         
-        
         Usuario unEncargado1 = new Encargado("encargado1@bar.com", "claveEncargado1", "ApellidoEncargado1", "NombreEncargado1");
         Usuario unEncargado2 = new Encargado("encargado2@bar.com", "claveEncargado2", "ApellidoEncargado2", "NombreEncargado2");
         Usuario unEncargado3 = new Encargado("encargado3@bar.com", "claveEncargado3", "ApellidoEncargado3", "NombreEncargado3");
@@ -93,7 +92,7 @@ public class ControladorPrincipalTP4Parte3 {
         }
 
         Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, Estado.DISPONIBLE, 1.0f);        
-        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 2.0f);
+        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2.0f);
         Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, Estado.DISPONIBLE, 3.0f);
         Producto unProducto4 = new Producto(3, "Producto4", Categoria.POSTRE, Estado.DISPONIBLE, 4.0f);
         //producto repetido
@@ -164,7 +163,7 @@ public class ControladorPrincipalTP4Parte3 {
         //pedido repetido
         
         System.out.println("Pedidos de " + unCliente1.verApellido() + ", " + unCliente1.verNombre());
-        for(Pedido p : unCliente1.verPedidos()) {
+        for(Pedido p : unCliente1.verPedido()) {
             p.mostrar();
             System.out.println();
         }

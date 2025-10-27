@@ -4,42 +4,51 @@
  */
 package usuarios.modelos;
 
+
 /**
  *
- * @author estudiante
+ * @author Esteban
  */
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente extends Usuario {
-    private ArrayList<Pedido> listaPedidos = new ArrayList<>();
-    
-    //Metodos
-    @Override
-    public ArrayList<Pedido> verPedidos(){
-        return listaPedidos;
-    }
-    
-    public void agregarPedido(Pedido p) {
-        if (!listaPedidos.contains(p)&& p!=null) {
-            listaPedidos.add(p);
-        }
-    } 
-    
-    public void cancelarPedido(Pedido p){
-        if (listaPedidos.contains(p) && p!=null ) {
-            listaPedidos.remove(p);
-        }
-    }
+public class Cliente extends Usuario{
+    private ArrayList<Pedido> pedidos= new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return super.toString()+ "pedidos: "+ listaPedidos.size();
-    }
     
-    //constructores
+    public void mostrar() {
+      super.mostrar();
+      for (Pedido p: pedidos)
+            System.out.println(p.verNumero());
+  
+    }
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
-    }    
-}
+        super(correo,clave, apellido, nombre);
+
+
+    }
+    
+    //metodos get/set
+    
+
+
+    public void agregarPedido(Pedido unPedido) {
+        this.pedidos.add(unPedido);
+    }
+    public void cancelarPedido(Pedido unPedido) {
+        if(pedidos.contains(unPedido)&&unPedido!=null)
+        this.pedidos.remove(unPedido);
+    }
+   
+
+    @Override
+    public ArrayList<Pedido> verPedido() {
+        return(pedidos);
+    }
+
+    
+    
+    
+    
+} 

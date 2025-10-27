@@ -42,6 +42,7 @@ public abstract class Usuario {
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+    
     }
     
     //metodos get/set
@@ -88,6 +89,7 @@ public abstract class Usuario {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.correo);
         return hash;
     }
 
@@ -106,5 +108,6 @@ public abstract class Usuario {
         return Objects.equals(this.correo, other.correo);
     }
     
-    
+    public abstract ArrayList<Pedido> verPedido();
+ 
 }

@@ -7,6 +7,7 @@ import usuarios.modelos.Encargado;
 import usuarios.modelos.Usuario;
 
 public class ControladorPrincipalTP4Parte2 {
+
     public static void main(String[] args) {
         /*
             ***************************************************
@@ -64,7 +65,7 @@ public class ControladorPrincipalTP4Parte2 {
         
         System.out.println("Clientes");
         System.out.println("=========");
-        
+
         /*
             *************************************************
             AGREGAR aqui las sentencias para mostrar UNICAMENTE los
@@ -81,7 +82,7 @@ public class ControladorPrincipalTP4Parte2 {
         System.out.println();        
         System.out.println("Empleados");
         System.out.println("=========");
-        
+
         /*
             *************************************************
             AGREGAR aqui las sentencias para mostrar UNICAMENTE los
@@ -138,13 +139,14 @@ public class ControladorPrincipalTP4Parte2 {
         Usuario unEncargado5 = new Encargado("cliente1@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         if(!usuarios.contains(unEncargado5))
             usuarios.add(unEncargado5);
+        }
         //mismo correo que un cliente, no debe agregarse
         
         Usuario unCliente5 = new Encargado("empleado3@bar.com", "claveEncargado4", "ApellidoEncargado4", "NombreEncargado4");
         if(!usuarios.contains(unCliente5))
             usuarios.add(unCliente5);
         //mismo correo que un empleado, no debe agregarse
-        
+
         System.out.println();
         System.out.println("Todos");
         System.out.println("=====");
@@ -153,11 +155,11 @@ public class ControladorPrincipalTP4Parte2 {
             System.out.println();
         }
         System.out.println();
-        
+
         /*
             *************************************************
             FIN Segunda parte - herencia
             ***************************************************
-        */        
+         */
     }
 }
