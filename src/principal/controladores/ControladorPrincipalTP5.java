@@ -27,7 +27,7 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        ArrayList<Producto> productosBuscados = gp.buscarProductos("Producto1");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
