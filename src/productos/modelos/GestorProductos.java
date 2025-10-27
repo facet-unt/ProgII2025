@@ -84,7 +84,12 @@ public class GestorProductos {
     }
     
     public boolean existeEsteProducto(Producto producto) {
-        return true;
+        for(Producto p: productos){
+            if(p.equals(producto)){
+                return true;
+            }
+        }
+        return false;
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
