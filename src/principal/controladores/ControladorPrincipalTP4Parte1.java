@@ -18,7 +18,7 @@ public static void main(String[] args) {
         ***************************************************
     */
  
-
+    /*
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -41,6 +41,7 @@ public static void main(String[] args) {
          * la lista de productos
         **************************************************
     */
+    /*
     if (!listaProductos.contains(p2))
         listaProductos.add(p2);
     if (!listaProductos.contains(p3))
@@ -56,6 +57,7 @@ public static void main(String[] args) {
         **************************************************
     
     */
+    /*
     for(Producto p : listaProductos)
         {
             p.mostrar();
@@ -76,7 +78,7 @@ public static void main(String[] args) {
     /*
     Clientes, se crean 3 para crear los pedidos
     */
-
+    /*
     for (Cliente e: listaClientes)
         e.mostrar();
 
@@ -132,6 +134,7 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
+    /*
     for(Pedido p : listaPedidos)
         {
             p.mostrar();

@@ -21,7 +21,7 @@ public class ControladorPrincipalTP4Parte3 {
             INICIO Tercera parte - herencia
             ***************************************************
         */
-            
+        /*
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
@@ -39,6 +39,7 @@ public class ControladorPrincipalTP4Parte3 {
             AGREGAR aqui las sentencias para sumar a la lista el resto de los clientes 
             *************************************************
         */ 
+        /*
         if (!usuarios.contains(unCliente2))
             usuarios.add(unCliente2);
         if (!usuarios.contains(unCliente3))
@@ -58,6 +59,7 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+        /*
         if (!usuarios.contains(unEmpleado1))
             usuarios.add(unEmpleado1);   
         if (!usuarios.contains(unEmpleado2))
@@ -79,6 +81,7 @@ public class ControladorPrincipalTP4Parte3 {
             usuarios verificando que NO se repitan
             *************************************************
         */
+        /*
          if (!usuarios.contains(unEncargado1))
             usuarios.add(unEncargado1);   
         if (!usuarios.contains(unEncargado2))
@@ -102,6 +105,7 @@ public class ControladorPrincipalTP4Parte3 {
              * la lista de productos
             **************************************************
         */
+        /*
         if (!listaProductos.contains(unProducto2))
         listaProductos.add(unProducto2);
         if (!listaProductos.contains(unProducto3))
