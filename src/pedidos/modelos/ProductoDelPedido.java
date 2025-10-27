@@ -4,20 +4,18 @@
  */
 package pedidos.modelos;
 
-import java.util.Objects;
 import productos.modelos.Producto;
-
 /**
  *
  * @author estudiante
  */
 public class ProductoDelPedido {
     private int cantidad;
-    private Producto producto;
+    private Producto unProducto;
 
-    public ProductoDelPedido(Producto producto, int cantidad) {
+    public ProductoDelPedido( Producto unProducto,int cantidad) {
         this.cantidad = cantidad;
-        this.producto = producto;
+        this.unProducto = unProducto;
     }
 
     public int verCantidad() {
@@ -28,39 +26,18 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-    public Producto verProducto() {
-        return producto;
+
+    public Producto verUnProducto() {
+        return unProducto;
     }
 
-    public void asignarProducto(Producto producto) {
-        this.producto = producto;
-    }
-    public void mostrar()
-    {
-        System.out.println("Producto:" + producto.verDescripcion() + "\t  \t    " + cantidad);
+    public void asignarUnProducto(Producto unProducto) {
+        this.unProducto = unProducto;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.producto);
-        return hash;
-    }
+    public void mostrar(){
+        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ProductoDelPedido other = (ProductoDelPedido) obj;
-        return Objects.equals(this.producto, other.producto);
     }
-    
     
 }

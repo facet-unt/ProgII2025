@@ -10,27 +10,46 @@ import pedidos.modelos.Pedido;
 
 /**
  *
- * @author ortiz
+ * @author estudiante
  */
 public abstract class Usuario {
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-
+    
+    
+    
+    //CONSTRUCTOR
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+    
     }
-
+    
+    //MOSTRAR
+    public void mostrar(){
+        System.out.println( apellido + ", " + nombre);
+    }
+    
+    //TOString
+    @Override
+    public String toString() {
+        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    }
+    
+    
+    //METODOS GET/SET
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        this.correo = correo;
+        if (correo != null && !correo.isBlank()){
+            this.correo = correo;
+        }
     }
 
     public String verClave() {
@@ -38,7 +57,9 @@ public abstract class Usuario {
     }
 
     public void asignarClave(String clave) {
-        this.clave = clave;
+        if (clave != null && !clave.isBlank()){
+            this.clave = clave;
+        }
     }
 
     public String verApellido() {
@@ -46,7 +67,9 @@ public abstract class Usuario {
     }
 
     public void asignarApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido != null && !apellido.isBlank()){
+            this.apellido = apellido;
+        }
     }
 
     public String verNombre() {
@@ -54,21 +77,15 @@ public abstract class Usuario {
     }
 
     public void asignarNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre != null && !nombre.isBlank()){
+            this.nombre = nombre;
+        }
     }
-    
-    public void mostrar(){
-        System.out.println("Apellido: " + apellido + "\tNombre:" + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);   
-            
-    }
-
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.correo);
+        hash = 59 * hash + Objects.hashCode(this.correo);
         return hash;
     }
 
@@ -86,7 +103,7 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-   
-    public abstract ArrayList<Pedido> verPedidos();
     
+    public abstract ArrayList<Pedido> verPedido();
+ 
 }

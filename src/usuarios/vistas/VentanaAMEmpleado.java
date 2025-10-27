@@ -8,7 +8,6 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 
 public class VentanaAMEmpleado extends JDialog {
@@ -75,6 +74,11 @@ public class VentanaAMEmpleado extends JDialog {
         jLabel4.setText("Correo:");
 
         txtCorreo.setToolTipText("Documento");
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
@@ -138,8 +142,8 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        //Completar (ya lo completé, es el punto 7)
-        String correo = this.txtCorreo.getText().trim();
+
+         String correo = this.txtCorreo.getText().trim();
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
@@ -148,11 +152,17 @@ public class VentanaAMEmpleado extends JDialog {
         
         System.out.println("Empleados");
         System.out.println("========");
-        for(Empleado e : this.empleados) {
-            e.mostrar();
+        for (Empleado c : this.empleados) {
+            c.mostrar();
             System.out.println();
         }
+
+
     }//GEN-LAST:event_btnGuardarClic
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

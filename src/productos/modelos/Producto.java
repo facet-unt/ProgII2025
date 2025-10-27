@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
 
 /**
@@ -8,38 +12,50 @@ public class Producto {
     //Atributos
     private int codigo;
     private String descripcion;
-    private Categoria categoria;
-    private Estado estado;
+    private Categoria unaCategoria;
+    private Estado unEstado;
     private float precio;
+
 
     // Métodos
     public void mostrar() {
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
         System.out.println("Precio: " + precio);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
+
     }
 
-    
     @Override
     public String toString() {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", estado='" + estado + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
                 ", precio=" + precio +
                 '}';
     }
+
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.codigo = codigo;   
+        this.codigo = codigo;
+        this.unEstado = estado;        
         this.descripcion = descripcion;
+        this.unaCategoria = categoria;
         this.precio = precio;
-        this.categoria = categoria;
-        this.estado = estado;
     }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.descripcion = descripcion;
+        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+    }
+
+    
+   
     public int verCodigo() {
         return codigo;
     }
@@ -59,19 +75,21 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
-        return categoria;
+
+        return unaCategoria;
     }
 
-    public void asignarCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void asignarCategoria(Categoria c) {
+        unaCategoria = c;
     }
 
     public Estado verEstado() {
-        return estado;
+        return unEstado;
     }
 
-    public void asignarEstado(Estado estado) {
-        this.estado = estado ;
+    public void asignarEstado(Estado e) {
+        unEstado = e;
+
     }
 
     public float verPrecio() {
@@ -82,12 +100,12 @@ public class Producto {
         if (p > 0){
             precio = p;
         }
-        
     }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + this.codigo;
+        hash = 59 * hash + this.codigo;
         return hash;
     }
 
@@ -105,5 +123,6 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-   
+
+    
 }

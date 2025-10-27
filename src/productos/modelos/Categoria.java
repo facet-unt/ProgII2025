@@ -9,12 +9,12 @@ package productos.modelos;
  * @author estudiante
  */
 public enum Categoria {
-    ENTRADA("Entrada"), 
-    PLATO_PRINCIPAL("Plato Principal"),
-    POSTRE("Postre");
+    ENTRADA ("Entrada"),
+    PLATO_PRINCIPAL ("Plato principal"),
+    POSTRE ("Postre");
     
     private String valor;
-    
+
     private Categoria(String valor) {
         this.valor = valor;
     }
@@ -23,4 +23,15 @@ public enum Categoria {
     public String toString(){
         return this.valor;
     }
+    
+    
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
+      
+    
 }
