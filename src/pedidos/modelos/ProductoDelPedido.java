@@ -5,6 +5,7 @@
 package pedidos.modelos;
 
 import java.util.Objects;
+import productos.modelos.Producto;
 
 
 
@@ -43,7 +44,7 @@ public class ProductoDelPedido {
 
     public void mostrar(){
         System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
-
+    }
      /* Agregado de equals y hashcode (para comparar si dos pedidos son iguales en base al producto) */
     
     @Override

@@ -12,66 +12,21 @@ public class Producto {
 
     private int codigo;
     private String descripcion;
-    private Categoria unaCategoria;
-    private Estado unEstado;
     private float precio;
-<<<<<<< HEAD
-
-
-    // Métodos
-    public void mostrar() {
-        System.out.println("Codigo: " + codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + unaCategoria.verValor());
-        System.out.println("Estado: " + unEstado.verValor());
-        System.out.println("Precio: " + precio);
-
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "codigo=" + codigo +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + unaCategoria.verValor() + '\'' +
-                ", estado='" + unEstado.verValor() + '\'' +
-                ", precio=" + precio +
-                '}';
-    }
-
-    
-=======
     private Estado estado;
     private Categoria categoria;
 
     //Creacion del constructor
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
-        this.unEstado = estado;        
         this.descripcion = descripcion;
-<<<<<<< HEAD
-        this.unaCategoria = categoria;
-=======
         this.categoria = categoria;
         this.estado = estado;
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
         this.precio = precio;
-    }
-<<<<<<< HEAD
-    
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.codigo = codigo;
-        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
-        this.descripcion = descripcion;
-        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+        this.categoria = categoria;
+        this.estado = estado;
     }
 
-    
-   
-=======
-
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
     public int verCodigo() {
         return codigo;
     }
@@ -93,26 +48,20 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
-
-        return unaCategoria;
+        return categoria;
     }
 
     public void asignarCategoria(Categoria c) {
-        unaCategoria = c;
+        categoria = c;
     }
 
     public Estado verEstado() {
-        return unEstado;
+        return estado;
     }
 
     public void asignarEstado(Estado e) {
-<<<<<<< HEAD
-        unEstado = e;
-
-=======
 
         estado = e;
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
     }
 
     public float verPrecio() {
@@ -126,24 +75,17 @@ public class Producto {
     }
 
     public void mostrar() {
-        System.out.println("Codigo: " + codigo);
+       /* System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
+       */
+       
+        System.out.println("[" + codigo + "]"+ " Producto"+ codigo + " - " + categoria + " - " + estado + " - " + "$"+precio);
+        
     }
 
-    //Coloco el to string
-//    @Override
-//    public String toString() {
-//        return "Producto{" +
-//                "Codigo=" + codigo +
-//                ", Descripcion='" + descripcion + '\'' +
-//                ", Categoria='" + categoria + '\'' +
-//                ", Estado='" + estado + '\'' +
-//                ", Precio=" + precio +
-//                '}';
-//    }
     
     /* Modificacion del metodo toString() (correcion para que se vea mejor)*/
     @Override
@@ -175,36 +117,8 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-<<<<<<< HEAD
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.codigo;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Producto other = (Producto) obj;
-        return this.codigo == other.codigo;
-    }
-
-    
-}
-=======
     
     
     
 
 }
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17

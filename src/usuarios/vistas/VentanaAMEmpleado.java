@@ -142,36 +142,18 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-<<<<<<< HEAD
+
 
          String correo = this.txtCorreo.getText().trim();
-=======
-        String correo = this.txtCorreo.getText().trim();
-<<<<<<< HEAD
-        String clave = this.passClave.getText().trim();
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
+         
+        //String clave = this.passClave.getText().trim();
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
         Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
         this.empleados.add(unEmpleado);
-<<<<<<< HEAD
-        
-        System.out.println("Empleados");
-        System.out.println("========");
-        for (Empleado c : this.empleados) {
-            c.mostrar();
-            System.out.println();
-        }
 
-
-=======
-=======
-        String apellido = this.txtApellido.getText().trim();
-        String nombre = this.txtNombre.getText().trim();
-        String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
-        this.empleados.add(unEmpleado);
+       
         
         System.out.println("Empleados");
         System.out.println("========");
@@ -179,8 +161,7 @@ public class VentanaAMEmpleado extends JDialog {
             c.mostrar();
             System.out.println();
         }
->>>>>>> 15a0463680b867d69a4514c4d1d174206f6bafda
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
+
     }//GEN-LAST:event_btnGuardarClic
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

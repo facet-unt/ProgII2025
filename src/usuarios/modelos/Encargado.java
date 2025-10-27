@@ -4,6 +4,8 @@
  */
 package usuarios.modelos;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
@@ -13,23 +15,6 @@ import pedidos.modelos.Pedido;
  */
 
 public class Encargado extends Usuario{
-<<<<<<< HEAD
-    private ArrayList<Pedido> vacio= new ArrayList<>();
-    
-    //constructor
-    
-    public Encargado(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
-    }
-    
-   @Override
-    public ArrayList<Pedido> verPedido() {
-        
-        return vacio;
-    }
-    
-}
-=======
 
     /*Constructor*/
     public Encargado(String correo, String clave, String apellido, String nombre) {
@@ -44,5 +29,21 @@ public class Encargado extends Usuario{
     {
         return new ArrayList<>(); /*Devuelve un arraylist vacio*/
     }
+
+    @Override
+    public void mostrar() {
+        System.out.println("Encargado:" + verApellido() + "," + verNombre());
+    }
+      
+    /*AGREGADO DEL METODO generarReporteVentas()"*/
+    
+    public String generarReporteVentas(LocalDate fecha)
+    {
+        String apellido;
+        apellido = verApellido();
+        String cadenaFecha = fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        
+        return apellido + " genero el reporte de ventas del dia " + cadenaFecha;
+
+    }
 }    
->>>>>>> bab1bcd08362a00f95816f8e4b980d38761f6b17
