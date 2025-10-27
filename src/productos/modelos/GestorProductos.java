@@ -47,7 +47,22 @@ public class GestorProductos {
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        if(codigo<=0){
+            return ERROR_CODIGO ;
+        }
+        if(descripcion==null||descripcion.isBlank()){
+            return ERROR_DESCRIPCION ;
+        }
+        if(precio<=0){
+            return ERROR_PRECIO ;
+        }
+        if(categoria==null){
+            return ERROR_CATEGORIA ;
+        }
+        if(estado==null){
+            return ERROR_ESTADO ;
+        }
+        return EXITO;
     }
     
     public ArrayList<Producto> menu() {
