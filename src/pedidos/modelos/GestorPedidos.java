@@ -4,10 +4,24 @@
  */
 package pedidos.modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author salut
  */
 public class GestorPedidos {
+    private ArrayList<Pedido> pedidos = new ArrayList<>();
     
+    private static GestorPedidos instancia;
+    
+    private GestorPedidos() {
+        
+    }
+    
+    public static GestorPedidos instanciar() {
+        if (instancia == null)
+            instancia = new GestorPedidos();
+        return instancia;
+    }
 }
