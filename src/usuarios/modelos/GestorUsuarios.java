@@ -4,10 +4,9 @@
  */
 package usuarios.modelos;
 import java.util.ArrayList;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
-import productos.modelos.Producto;
 import static usuarios.modelos.Perfil.CLIENTE;
+import static usuarios.modelos.Perfil.EMPLEADO;
+import static usuarios.modelos.Perfil.ENCARGADO;
 
 /**
  *
@@ -32,72 +31,99 @@ public class GestorUsuarios {
         
         if(perfil == CLIENTE)
         {
-           Cliente u;
+           Cliente c;
            if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
            {
-               u=new Cliente(correo, clave, apellido, nombre);
-               u.asignarApellido(apellido);
-               u.asignarClave(clave);
-               u.asignarCorreo(correo);
-               u.asignarNombre(nombre);
-               usuarios.add(u);
+               c=new Cliente(correo, clave, apellido, nombre);
+               c.asignarApellido(apellido);
+               c.asignarClave(clave);
+               c.asignarCorreo(correo);
+               c.asignarNombre(nombre);
+               usuarios.add(c);
                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
            }
-             
+           else
+                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
+           }
            else
            {
-                return ("No se pudo realizar la Operación, ingrese valores válidos");
+                if(perfil == EMPLEADO)
+            {
+                Empleado em;
+                if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
+                {
+                    em=new Empleado(correo, clave, apellido, nombre);
+                    em.asignarApellido(apellido);
+                    em.asignarClave(clave);
+                    em.asignarCorreo(correo);
+                    em.asignarNombre(nombre);
+                    usuarios.add(em);
+                    return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+                }
+                else
+                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
+            } 
+            else
+            {
+                if(perfil == ENCARGADO)
+                {
+                    Encargado en;
+                    if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
+                    {
+                        en=new Encargado(correo, clave, apellido, nombre);
+                        en.asignarApellido(apellido);
+                        en.asignarClave(clave);
+                        en.asignarCorreo(correo);
+                        en.asignarNombre(nombre);
+                        usuarios.add(en);
+                        return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+                    }
+                    else
+                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
+                    } 
+                else
+                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
+            } 
+            
            } 
         }
-        }
-        
-   }
     
-    public ArrayList<Usuario> verUsuarios()
+   public ArrayList<Usuario> verUsuarios()
     {
      return this.usuarios;  
     }
     
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    public ArrayList<Usuario> buscarUsuarios(String apellido) {
          
-        ArrayList<Producto> encontrados = new ArrayList<>();
-        for (Producto p : productos) {
+        ArrayList<Usuario> encontrados = new ArrayList<>();
+        for (Usuario u : usuarios) {
              
-            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
-                encontrados.add(p);
+            if (u.verApellido().toLowerCase().contains(apellido.toLowerCase())) {
+                encontrados.add(u);
             }
                 
             }
         return encontrados;
     }
     
-    public boolean existeEsteProducto(Producto producto) {
-        if (productos.contains(producto))
-            return false;
-        else
+    public boolean existeEsteUsuario(Usuario usuario) {
+        if (usuarios.contains(usuario))
             return true;
+        else
+            return false;
     }
     
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-         ArrayList<Producto> prodcat = new ArrayList<>();
-        for (Producto p : productos) {
-             
-            if (p.verCategoria()==(categoria)) {
-                prodcat.add(p);
-            }
-                
-            }
-        return prodcat;
-    }
     
-    public Producto obtenerProducto(Integer codigo) {
-        for (Producto p : productos) {
+    public Usuario obtenerUsuario(String correo) {
+        for (Usuario u : usuarios) {
              
-            if (p.verCodigo()==(codigo)) {
-                return p;
+            if (u.verCorreo()==(correo)) {
+                return u;
             }
                 
             }
         return null;
     }
     }
+    
+    
