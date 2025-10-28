@@ -49,6 +49,9 @@ public class GestorUsuarios {
         if(!(claveRepetida.equals(clave))){
             return ERROR_CLAVES;
         }
+        if(perfil==null){
+            return ERROR_PERFIL;
+        }
         if(perfil==Perfil.CLIENTE){
             Usuario u = new Cliente(correo,clave,apellido,nombre);
             usuarios.add(u);
