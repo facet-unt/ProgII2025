@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 /**
@@ -70,5 +71,34 @@ public class GestorPedidos {
     
     public ArrayList<Pedido> verPedidos(){
         return pedidos;
+    }
+    
+    public boolean hayPedidosConEsteCliente(Cliente cliente){
+        for(Pedido p: pedidos){
+            if(p.verUnCliente().equals(cliente)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean hayPedidosConEsteProducto(Producto producto){
+        for(Pedido p: pedidos){
+            for(ProductoDelPedido p1: p.verListaProductos()){
+                if(p1.verUnProducto().equals(producto)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeEstePedido(Pedido pedido){
+        for(Pedido p: pedidos){
+            if(pedido.equals(p)){
+                return true;
+            }
+        }
+        return false;
     }
 }
