@@ -101,4 +101,13 @@ public class GestorPedidos {
         }
         return false;
     }
+    
+    public Pedido obtenerPedido(Integer numero){
+        for(Pedido p: pedidos){
+            if(p.verNumero()==numero){
+                return p;
+            }
+        }
+        return null;
+    }
 }
