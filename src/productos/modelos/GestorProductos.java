@@ -58,6 +58,9 @@ public class GestorProductos {
             return ERROR_CODIGO ;
         }
         for(Producto p1: productos){
+            if(p.verCodigo()==codigo){
+                break;
+            }
             if(p1.verCodigo()==codigo){
                 return PRODUCTOS_DUPLICADOS;
             }

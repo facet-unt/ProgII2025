@@ -37,6 +37,11 @@ public class GestorUsuarios {
         if(!(correo.contains("@"))||correo.equals(null)){
             return ERROR_CORREO;
         }
+        for(Usuario u1: usuarios){
+            if(u1.verCorreo()==correo){
+                return USUARIOS_DUPLICADOS;
+            }
+        }
         if(apellido==null||apellido.isBlank()){
             return ERROR_APELLIDO;
         }
@@ -70,6 +75,14 @@ public class GestorUsuarios {
     public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         if(!(correo.contains("@"))||correo.equals(null)){
             return ERROR_CORREO;
+        }
+        for(Usuario u1: usuarios){
+            if(u.verCorreo()==correo){
+                break;
+            }
+            if(u1.verCorreo()==correo&&u.verCorreo()!=correo){
+                return USUARIOS_DUPLICADOS;
+            }
         }
         if(apellido==null||apellido.isBlank()){
             return ERROR_APELLIDO;

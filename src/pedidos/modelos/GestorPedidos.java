@@ -58,5 +58,17 @@ public class GestorPedidos {
         return EXITO; 
     }
     
+    public String cambiarEstado(Pedido pedidoAModificar){
+        if(pedidoAModificar.verEstado()==Estado.CREANDO){
+            pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+        }
+        if(pedidoAModificar.verEstado()==Estado.PROCESANDO){
+            pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+        }
+        return EXITO;
+    }
     
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
+    }
 }
