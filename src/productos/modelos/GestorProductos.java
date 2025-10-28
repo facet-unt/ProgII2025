@@ -76,9 +76,9 @@ public class GestorProductos {
     
     public boolean existeEsteProducto(Producto producto) {
         if (productos.contains(producto))
-            return false;
-        else
             return true;
+        else
+            return false;
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
