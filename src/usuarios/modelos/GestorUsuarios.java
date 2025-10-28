@@ -82,15 +82,15 @@ public class GestorUsuarios {
         }
         if(perfil==Perfil.CLIENTE){
             Usuario usuarioModificado = new Cliente(correo,clave,apellido,nombre);
-            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+            usuarios.set(usuarios.indexOf(u), usuarioModificado);
         }
         if(perfil==Perfil.EMPLEADO){
             Usuario usuarioModificado = new Empleado(correo,clave,apellido,nombre);
-            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+            usuarios.set(usuarios.indexOf(u), usuarioModificado);
         }
         if(perfil==Perfil.ENCARGADO){
             Usuario usuarioModificado = new Encargado(correo,clave,apellido,nombre);
-            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+            usuarios.set(usuarios.indexOf(u), usuarioModificado);
         }
         return EXITO;
     }

@@ -58,7 +58,7 @@ public class GestorProductos {
             return ERROR_CODIGO ;
         }
         for(Producto p1: productos){
-            if(p.equals(p1)){
+            if(p1.verCodigo()==codigo){
                 return PRODUCTOS_DUPLICADOS;
             }
         }
@@ -75,7 +75,7 @@ public class GestorProductos {
             return ERROR_ESTADO ;
         }
         Producto productoModificado = new Producto(codigo,descripcion,categoria,estado,precio);
-        productos.add(productos.indexOf(p), productoModificado);
+        productos.set(productos.indexOf(p), productoModificado);
         return EXITO;
     }
     
@@ -95,7 +95,7 @@ public class GestorProductos {
     
     public boolean existeEsteProducto(Producto producto) {
         for(Producto p: productos){
-            if(p.equals(producto)){
+            if(producto.equals(p)){
                 return true;
             }
         }

@@ -58,7 +58,7 @@ public class Producto{
     
     
     public void mostrar() {
-        System.out.println("Soy un producto");
+        System.out.println("\nSoy un producto");
         System.out.println("codigo: "+codigo);
         System.out.println("descripcion: "+descripcion);
         System.out.println("categoria: "+categoria);
