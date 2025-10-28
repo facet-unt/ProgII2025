@@ -64,6 +64,37 @@ public class GestorUsuarios {
         return EXITO;
     }
     
+    public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        if(!(correo.contains("@"))||correo.equals(null)){
+            return ERROR_CORREO;
+        }
+        if(apellido==null||apellido.isBlank()){
+            return ERROR_APELLIDO;
+        }
+        if(nombre==null||nombre.isBlank()){
+            return ERROR_NOMBRE;
+        }
+        if(clave==null||clave.isBlank()){
+            return ERROR_CLAVES;
+        }
+        if(!(claveRepetida.equals(clave))){
+            return ERROR_CLAVES;
+        }
+        if(perfil==Perfil.CLIENTE){
+            Usuario usuarioModificado = new Cliente(correo,clave,apellido,nombre);
+            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+        }
+        if(perfil==Perfil.EMPLEADO){
+            Usuario usuarioModificado = new Empleado(correo,clave,apellido,nombre);
+            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+        }
+        if(perfil==Perfil.ENCARGADO){
+            Usuario usuarioModificado = new Encargado(correo,clave,apellido,nombre);
+            usuarios.add(usuarios.indexOf(u), usuarioModificado);
+        }
+        return EXITO;
+    }
+    
     public ArrayList<Usuario> verUsuarios(){
         return usuarios;
     }
