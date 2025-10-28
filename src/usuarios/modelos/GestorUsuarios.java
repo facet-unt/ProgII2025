@@ -34,7 +34,7 @@ public class GestorUsuarios {
     }
     
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        if(!(correo.contains("@"))||correo==null){
+        if(!(correo.contains("@"))||correo.equals(null)){
             return ERROR_CORREO;
         }
         if(apellido==null||apellido.isBlank()){
@@ -46,7 +46,7 @@ public class GestorUsuarios {
         if(clave==null||clave.isBlank()){
             return ERROR_CLAVES;
         }
-        if(claveRepetida!=clave){
+        if(!(claveRepetida.equals(clave))){
             return ERROR_CLAVES;
         }
         if(perfil==Perfil.CLIENTE){
@@ -87,5 +87,12 @@ public class GestorUsuarios {
         return false;
     }
     
-    
+    public Usuario obtenerUsuario(String correo){
+        for(Usuario u: usuarios){
+            if(u.verCorreo().equals(correo)){
+                return u;
+            }
+        }
+        return null;
+    }
 }
