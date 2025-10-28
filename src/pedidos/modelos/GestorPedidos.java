@@ -33,7 +33,7 @@ public class GestorPedidos {
     private GestorPedidos() {
         
     }
-    
+
     public static GestorPedidos instanciar() {
         if (instancia == null)
             instancia = new GestorPedidos();
@@ -60,6 +60,9 @@ public class GestorPedidos {
     }
     
     public String cambiarEstado(Pedido pedidoAModificar){
+        if(pedidoAModificar==null){
+            return PEDIDO_INEXISTENTE;
+        }
         if(pedidoAModificar.verEstado()==Estado.CREANDO){
             pedidoAModificar.asignarEstado(Estado.PROCESANDO);
         }
