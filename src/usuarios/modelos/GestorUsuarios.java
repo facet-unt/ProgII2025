@@ -77,4 +77,15 @@ public class GestorUsuarios {
         }
         return usuariosEncontrados;
     }
+    
+    public boolean existeEsteUsuario(Usuario usuario){
+        for(Usuario u: usuarios){
+            if(u.equals(usuario)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
 }
