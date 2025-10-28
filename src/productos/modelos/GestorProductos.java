@@ -54,6 +54,9 @@ public class GestorProductos {
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        if(p==null){
+            return PRODUCTO_INEXISTENTE;
+        }
         if(codigo<=0){
             return ERROR_CODIGO ;
         }
