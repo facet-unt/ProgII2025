@@ -75,24 +75,17 @@ public class Producto {
     }
 
     public void mostrar() {
-        System.out.println("Codigo: " + codigo);
+       /* System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
+       */
+       
+        System.out.println("[" + codigo + "]"+ " Producto"+ codigo + " - " + categoria + " - " + estado + " - " + "$"+precio);
+        
     }
 
-    //Coloco el to string
-//    @Override
-//    public String toString() {
-//        return "Producto{" +
-//                "Codigo=" + codigo +
-//                ", Descripcion='" + descripcion + '\'' +
-//                ", Categoria='" + categoria + '\'' +
-//                ", Estado='" + estado + '\'' +
-//                ", Precio=" + precio +
-//                '}';
-//    }
     
     /* Modificacion del metodo toString() (correcion para que se vea mejor)*/
     @Override
