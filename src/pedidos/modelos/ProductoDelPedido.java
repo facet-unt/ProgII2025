@@ -23,6 +23,10 @@ public class ProductoDelPedido {
         return unproducto.verDescripcion();
     }
 
+    public Producto getUnproducto(){
+        return unproducto;
+    }
+
     public void asignarCantidad(int cantidad) {
         this.cantidad = cantidad;
     }

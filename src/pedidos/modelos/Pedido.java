@@ -102,7 +102,7 @@ public class Pedido {
     }
     
     public Pedido(int numero, LocalDateTime fechaYhora,ArrayList<ProductoDelPedido> productosdelpedido, Cliente unCliente) {
-        this.numero = numero;
+        this.numero = numero + 1;
         this.fechaYhora = fechaYhora;
         this.unCliente = unCliente;
         this.productosdelpedido = productosdelpedido;

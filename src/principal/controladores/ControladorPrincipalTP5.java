@@ -5,13 +5,14 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
 
 /**
  *
  * @author Mariana
  */
 public class ControladorPrincipalTP5 {
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         GestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
@@ -38,5 +39,6 @@ public class ControladorPrincipalTP5 {
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
+
     }
 }

@@ -12,7 +12,7 @@ public class Producto {
     
     
     public void mostrar() {
-        System.out.println("Producto\nCodigo=" + codigo + "\nDescripcion=" + descripcion +"\nCategoria=" + categoria + "\nEstado=" + estado + "\nPrecio=" + precio);
+        System.out.println("Producto\nCodigo=" + codigo + "\nDescripcion=" + descripcion +"\nCategoria=" + categoria + "\nEstado=" + estado + "\nPrecio=" + precio + "\n");
     }
 
     @Override
