@@ -16,17 +16,17 @@ public class Cliente extends Usuario {
 
     }
 
+    @Override
     public ArrayList<Pedido> verPedidos() {
         return this.pedidos;
     }
 
-    public void agregarPedido(Pedido pedido) {
-
-        if (!pedidos.contains(pedido)) {
-            pedidos.add(pedido);
+    public void agregarPedido(Pedido p) {
+        if (!pedidos.contains(p)) {
+            pedidos.add(p);
         } else {
-            int posicion = pedidos.indexOf(pedido);
-            pedidos.set(posicion, pedido);
+            int indice = pedidos.indexOf(p);
+            pedidos.set(indice, p);
         }
 
     }
@@ -36,11 +36,17 @@ public class Cliente extends Usuario {
 
     }
 
+    /**
+     *
+     */
+    @Override
     public void mostrar() {
         super.mostrar();
-
         for (Pedido p : pedidos) {
             System.out.println("pedido numero:" + p.obtenerNumero());
+            p.mostrar();
+            System.out.println("========================");
+
         }
     }
 

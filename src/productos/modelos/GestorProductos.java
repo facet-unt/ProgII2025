@@ -29,37 +29,44 @@ public class GestorProductos {
     }
 
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo < 0 || descripcion == null || descripcion.isEmpty() || precio < 0 || categoria == null || estado == null) {
-            return PRODUCTO_INEXISTENTE;
-
+         if (codigo < 0) {
+            return ERROR_CODIGO;
         }
+        if (descripcion == null || descripcion.isEmpty()) {
+            return ERROR_DESCRIPCION;
+        }
+        if (precio < 0) {
+            return ERROR_PRECIO;
+        }
+        if (categoria == null) {
+            return ERROR_CATEGORIA;
+        }
+        if (estado == null) {
+            return ERROR_ESTADO;
+        }
+        
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(p);
         return VALIDACION_EXITO;
     }
 
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if(codigo<0)
-        {
+        if (codigo < 0) {
             return ERROR_CODIGO;
         }
-        if(descripcion==null||descripcion.isEmpty())
-        {
+        if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
         }
-        if(precio<0)
-        {
+        if (precio < 0) {
             return ERROR_PRECIO;
         }
-        if(categoria==null)
-        {
+        if (categoria == null) {
             return ERROR_CATEGORIA;
         }
-        if(estado==null)
-        {
+        if (estado == null) {
             return ERROR_ESTADO;
         }
-        
+
         return EXITO;
     }
 
@@ -68,28 +75,36 @@ public class GestorProductos {
     }
 
     public ArrayList<Producto> buscarProductos(String descripcion) {
-            ArrayList<Producto> prod = new ArrayList<>();
+        ArrayList<Producto> prod = new ArrayList<>();
 
-        for(Producto p: productos)
-        {
-            if(p.verDescripcion().contains(descripcion)){
-                System.out.println("si esta pa");
+        for (Producto p : productos) {
+            if (p.verDescripcion().contains(descripcion)) {
                 prod.add(p);
             }
-            
+
         }
         return prod;
     }
 
     public boolean existeEsteProducto(Producto producto) {
-        return true;
+        return productos.contains(producto);
     }
 
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        return null;
+        ArrayList<Producto>productosPorCategoria=new ArrayList<>();
+        for(Producto p: productos){
+            if(p.verCategoria()==categoria);
+            return productosPorCategoria;
+        }
+        return productosPorCategoria;
     }
 
     public Producto obtenerProducto(Integer codigo) {
+        for(Producto p:productos){
+            if (p.verCodigo()==codigo) {
+                return p;
+            }
+        }
         return null;
     }
 }

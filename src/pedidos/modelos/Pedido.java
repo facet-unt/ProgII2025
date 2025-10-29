@@ -75,6 +75,14 @@ public class Pedido {
         this.productos = cantidadProducto;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
