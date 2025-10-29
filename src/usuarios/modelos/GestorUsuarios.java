@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import static usuarios.modelos.Perfil.EMPLEADO;
 
 /**
  *
@@ -39,7 +40,76 @@ public class GestorUsuarios {
         if (correo == null || correo.isEmpty() || !correo.contains("@")) {
             return ERROR_CORREO;
         }
+        if (nombre == null || nombre.isEmpty()) {
+            return ERROR_NOMBRE;
+        }
+        if (apellido == null || apellido.isEmpty()) {
+            return ERROR_APELLIDO;
+        }
+        if (clave == null || clave.isEmpty() || claveRepetida == null || claveRepetida.isEmpty() || !clave.equals(claveRepetida)) {
+            return ERROR_CLAVES;
+        }
+        if (perfil == null) {
+            return ERROR_PERFIL;
+        }
 
-        return VALIDACION_EXITO;
+        switch (perfil) {
+            case ENCARGADO:
+                Encargado e = new Encargado(correo, clave, apellido, nombre);
+                if (usuarios.contains(e)) {
+                    return USUARIOS_DUPLICADOS;
+                }
+                usuarios.add(e);
+
+                break;
+
+            case EMPLEADO:
+                Empleado en = new Empleado(correo, clave, apellido, nombre);
+                if (usuarios.contains(en)) {
+                    return USUARIOS_DUPLICADOS;
+                }
+                usuarios.add(en);
+
+                break;
+
+            case CLIENTE:
+                Cliente c = new Cliente(correo, clave, apellido, nombre);
+                if (usuarios.contains(c)) {
+                    return USUARIOS_DUPLICADOS;
+                }
+                usuarios.add(c);
+
+                break;
+            default:
+                return ERROR_PERFIL;
+        }
+        return EXITO;
+    }
+
+    public ArrayList<Usuario> verUsuarios() {
+        return usuarios;
+    }
+
+    public ArrayList<Usuario> buscarUsuarios(String apellido) {
+        ArrayList<Usuario> usuariosBuscados = new ArrayList<>();
+        for (Usuario u : usuarios) {
+            if (u.verApellido().contains(apellido)) {
+                usuariosBuscados.add(u);
+            }
+        }
+        return usuariosBuscados;
+    }
+
+    public boolean existeEsteUsuario(Usuario usuario) {
+        return usuarios.contains(usuario);
+    }
+
+    public Usuario obtenerUsuario(String correo) {
+        for (Usuario u : usuarios) {
+            if (u.verCorreo().contains(correo)) {
+                return u;
+            }
+        }
+        return null;
     }
 }
