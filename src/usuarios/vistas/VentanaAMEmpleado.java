@@ -1,24 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package usuarios.vistas;
 
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 
 public class VentanaAMEmpleado extends JDialog {
-
     private ArrayList<Empleado> empleados = new ArrayList<>();
-
+    
     /**
      * Constructor
-     *
-     * @param ventanaPadre ventana padre
+     * @param ventanaPadre ventana padre 
      */
     public VentanaAMEmpleado(Dialog ventanaPadre) {
         super(ventanaPadre, true);
@@ -145,25 +137,7 @@ public class VentanaAMEmpleado extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-<<<<<<< HEAD
         String correo = this.txtCorreo.getText().trim();
-        String apellido = this.txtApellido.getText().trim();
-        String nombre = this.txtNombre.getText().trim();
-        String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(apellido, nombre, correo, clave);
-        this.empleados.add(unEmpleado);
-
-        System.out.println("Empleados");
-        System.out.println("========");
-
-        for (Empleado e : this.empleados) {
-            e.mostrar();
-            System.out.println();
-        }                               
-    }//GEN-LAST:event_btnGuardarClic
-=======
-
-         String correo = this.txtCorreo.getText().trim();
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
@@ -176,15 +150,11 @@ public class VentanaAMEmpleado extends JDialog {
             c.mostrar();
             System.out.println();
         }
-
-
-    }//GEN-LAST:event_btnGuardarClic
+    }                              
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
-
->>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

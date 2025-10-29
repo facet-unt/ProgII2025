@@ -12,6 +12,6 @@ public enum Estado {
     
     @Override
     public String toString() {
-        return "Estado{" + '}';
+        return valor;
     }
 }

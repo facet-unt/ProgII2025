@@ -1,4 +1,3 @@
-
 package principal.controladores;
 
 import java.time.LocalDateTime;
@@ -17,8 +16,6 @@ public static void main(String[] args) {
         INICIO Primera parte - comparación de objetos
         ***************************************************
     */
- 
-
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -27,23 +24,15 @@ public static void main(String[] args) {
     System.out.println("#################### ");
     System.out.println("PRODUCTOS");
     Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
-<<<<<<< HEAD
     Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
     Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
     Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NODISPONIBLE, 580.0f);        
     Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NODISPONIBLE, 7580.0f);     
 
-=======
-    Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-    Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
->>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
     //no debe agregar a p5
 
     if (!listaProductos.contains(p1))
         listaProductos.add(p1); 
-<<<<<<< HEAD
      if (!listaProductos.contains(p2))
         listaProductos.add(p2);
      if (!listaProductos.contains(p3))
@@ -55,34 +44,6 @@ public static void main(String[] args) {
    
      for (Producto p: listaProductos){
             p.mostrar();
-=======
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para completar el llenado de 
-         * la lista de productos
-        **************************************************
-    */
-    if (!listaProductos.contains(p2))
-        listaProductos.add(p2);
-    if (!listaProductos.contains(p3))
-        listaProductos.add(p3);
-    if (!listaProductos.contains(p4))
-        listaProductos.add(p4);
-    if (!listaProductos.contains(p5))
-        listaProductos.add(p5);
-    /*
-        **************************************************
-         * AGREGAR aqui las sentencias para mostrar la lista
-         * de productos, deberían listarse 4
-        **************************************************
-    
-    */
-    for(Producto p : listaProductos)
-        {
-            p.mostrar();
-        }
-    {
->>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
     }
 
     System.out.println();
@@ -95,12 +56,6 @@ public static void main(String[] args) {
     listaClientes.add(cliente1);
     listaClientes.add(cliente2);
     listaClientes.add(cliente3);
-<<<<<<< HEAD
-=======
-    /*
-    Clientes, se crean 3 para crear los pedidos
-    */
->>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
 
     for (Cliente e: listaClientes)
         e.mostrar();
@@ -155,28 +110,6 @@ public static void main(String[] args) {
     for(Pedido p : listaPedidos)
         p.mostrar();
     System.out.println("=======");
-<<<<<<< HEAD
     System.out.println();
-=======
-    /*
-        *************************************************
-        AGREGAR aqui la sentencia para mostrar la lista de pedidos
-        *************************************************
-    */
-    for(Pedido p : listaPedidos)
-        {
-            p.mostrar();
-        }
-
-
-    System.out.println();        
-
-    /*
-        *************************************************
-         FIN Primera parte - comparación de objetos
-        ***************************************************
-    */
-
->>>>>>> 844fc6b1c53fadb57af06354624db7c65fb5d643
   }
 }
