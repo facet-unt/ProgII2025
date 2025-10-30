@@ -65,9 +65,11 @@ public class GestorPedidos {
         }
         if(pedidoAModificar.verEstado()==Estado.CREANDO){
             pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+            return EXITO;
         }
         if(pedidoAModificar.verEstado()==Estado.PROCESANDO){
             pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+            return EXITO;
         }
         return EXITO;
     }
