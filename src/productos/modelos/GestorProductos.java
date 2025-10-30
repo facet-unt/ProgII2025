@@ -31,7 +31,7 @@ public class GestorProductos {
     
     // Metodos
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        String validacion = validacionDatos(codigo, descripcion, precio, categoria, estado);
+        String validacion = this.validacionDatos(codigo, descripcion, precio, categoria, estado);
         
         if (!validacion.equals(VALIDACION_EXITO)){
             return validacion;

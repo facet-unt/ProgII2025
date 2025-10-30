@@ -18,13 +18,15 @@ public abstract class Usuario {
     private String clave;
     private String apellido;
     private String nombre;
+    private Perfil perfil;
     
     //Constructor de la Super Clase
-    public Usuario (String correo, String clave, String apellido, String nombre) {
+    public Usuario (String correo, String clave, String apellido, String nombre, Perfil perfil) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+        this.perfil = perfil;
     }
     
     //metodos
@@ -75,6 +77,15 @@ public abstract class Usuario {
         }
     }
 
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+      
+  
     @Override
     public int hashCode() {
         int hash = 3;
