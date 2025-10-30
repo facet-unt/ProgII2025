@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 /**
@@ -24,7 +25,7 @@ public class Encargado extends Usuario {
 
     @Override
     public ArrayList<Pedido> verPedidos() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        return null;
+        GestorPedidos gp = GestorPedidos.instanciar();
+        return gp.verPedidos();
     }
 }
