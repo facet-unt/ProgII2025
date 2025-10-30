@@ -27,41 +27,56 @@ public class GestorProductos {
         return instancia;
     }
     
-    private String validarDatos(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo <= 0) return ERROR_CODIGO;
-        if (descripcion == null || descripcion.trim().isEmpty()) return ERROR_DESCRIPCION;
-        if (precio <= 0) return ERROR_PRECIO;
-        if (categoria == null) return ERROR_CATEGORIA;
-        if (estado == null) return ERROR_ESTADO;
-        return VALIDACION_EXITO;
-    }
-    
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        String validacion = validarDatos(codigo, descripcion, precio, categoria, estado);
-        if (!validacion.equals(VALIDACION_EXITO)) {
-            return validacion;
+        if(codigo<=0){
+            return ERROR_CODIGO;
         }
-        if (obtenerProducto(codigo) != null) {
+        if(descripcion==null || descripcion.trim().isEmpty()){
+            return ERROR_DESCRIPCION;
+        }
+        if(precio<=0){
+            return ERROR_PRECIO;
+        }
+        if(categoria==null){
+            return ERROR_CATEGORIA;
+        }
+        if(estado==null){
+            return ERROR_ESTADO;
+        }
+        Producto pNuevo =new Producto(codigo, descripcion, categoria, estado, precio);
+        
+        if(existeEsteProducto(pNuevo))
             return PRODUCTOS_DUPLICADOS;
-        }
-        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-        productos.add(p);
+        productos.add(pNuevo);
         return EXITO;
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (p == null) {
+        if (p==null){
             return PRODUCTO_INEXISTENTE;
         }
-        String validacion = validarDatos(codigo, descripcion, precio, categoria, estado);
-        if (!validacion.equals(VALIDACION_EXITO)) {
-            return validacion;
+        if (codigo <= 0){
+            return ERROR_CODIGO;
         }
+        if (descripcion == null || descripcion.trim().isEmpty()){
+            return ERROR_DESCRIPCION;
+        }
+        if (precio <= 0){
+            return ERROR_PRECIO;
+        }
+        if (categoria == null){
+            return ERROR_CATEGORIA;
+        }
+        if (estado == null){
+            return ERROR_ESTADO;
+        }
+        
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
+        
         return EXITO;
     }
     
@@ -70,27 +85,35 @@ public class GestorProductos {
     }
     
     public ArrayList<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> encontrados = new ArrayList<>();
-        for (Producto p : productos) {
-            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
-                encontrados.add(p);
+        ArrayList<Producto> pEncontrados = new ArrayList<>();
+        if(descripcion==null || descripcion.trim().isEmpty()){
+            return pEncontrados;
+        }
+        for(Producto p : productos){
+            if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())){
+                pEncontrados.add(p);
             }
         }
-        return encontrados;
+        return pEncontrados;
     }
     
     public boolean existeEsteProducto(Producto producto) {
-        return productos.contains(producto);
+        for(Producto p : productos){
+            if(p.verCodigo()== producto.verCodigo()){
+                return true;
+            }
+        }
+        return false;
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> filtrados = new ArrayList<>();
+        ArrayList<Producto> categoriaBusq = new ArrayList<>();
         for (Producto p : productos) {
             if (p.verCategoria() == categoria) {
-                filtrados.add(p);
+                categoriaBusq.add(p);
             }
         }
-        return filtrados;
+        return categoriaBusq;
     }
     
     public Producto obtenerProducto(Integer codigo) {
