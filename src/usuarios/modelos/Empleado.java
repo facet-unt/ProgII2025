@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 /**
@@ -27,7 +28,10 @@ public class Empleado extends Usuario{
         
         return vacio;
     }
-    
+    public ArrayList<Pedido> verPedidos(){
+        return 
+    }
+        
     
 }
 

@@ -18,7 +18,8 @@ import usuarios.modelos.Cliente;
 public class Pedido {
     
    private int numero;
-   private LocalDateTime fechaYHora;
+   private LocalDate fecha;
+   private LocalTime hora;
    private Cliente unCliente;
    private Estado unEstado;
    private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
@@ -27,9 +28,10 @@ public class Pedido {
    
    //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+    public Pedido(int numero,LocalDate fecha, LocalTime hora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.numero = numero;
-        this.fechaYHora = fechaYHora;
+        this.fecha = fecha;
+        this.hora=hora;
         this.unCliente = unCliente;
         this.unEstado = unEstado;
         this.unCliente.agregarPedido(this);
@@ -37,8 +39,8 @@ public class Pedido {
 
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
-        this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
+    public Pedido(int numero, LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
+        this(numero,fecha,hora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
     
 

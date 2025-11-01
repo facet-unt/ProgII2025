@@ -1,11 +1,15 @@
 package principal.controladores;
 
 import java.util.ArrayList;
+import pedidos.modelos.Pedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
-
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Usuario;
+import pedidos.modelos.GestorPedidos;
+import usuarios.modelos.Perfil;
 /**
  *
  * @author Mariana
@@ -38,6 +42,39 @@ public class ControladorPrincipalTP5 {
         for(Producto p : productosEntrada) {
             p.mostrar();
        }
-    }
-    }
+    
+    //parte para probar gestor usuarios
+    GestorUsuarios gu = GestorUsuarios.instanciar();
+        System.out.println(gu.crearUsuario("correo@UNO", "usuarioUNO", "nombreUNO",Perfil.CLIENTE, "1234","587357"));
+        System.out.println(gu.crearUsuario("correo@DOS", "usuarioDOS", "nombreDOS", Perfil.ENCARGADO, "9876","34543"));
+        System.out.println(gu.crearUsuario("correo@DOS", "usuarioCUATRO", "nombreCUATRO", Perfil.EMPLEADO, "9999","5426425"));
+        System.out.println(gu.crearUsuario("correoTRES", "usuarioTRES", "nombreTRES", Perfil.CLIENTE, "6666","80987725"));
+        for(Usuario u : gu.verUsuarios()) {
+            u.mostrar();
+        }
 
+        Usuario unUsuario = gu.obtenerUsuario("correo@UNO");
+        ArrayList<Usuario> usuariosBuscados = gu.buscarUsuarios("usuarioTRES");
+        for(Usuario u : usuariosBuscados) {
+            u.mostrar();
+        }
+        
+        System.out.println(gu.existeEsteUsuario(unUsuario));
+     
+//parte para probar gestospedidos
+        GestorPedidos gP = GestorPedidos.instanciar();
+        System.out.println(gP.crearPedido(1,));
+        System.out.println(gP.crearPedido(3,));
+        System.out.println(gP.crearPedido(2,));
+                        
+        for(Pedido P : gP.verPedidos()) {
+            P.mostrar();
+        }
+
+        Pedido unPedido = gP.obtenerPedido(2);
+        System.out.println(gP.cambiarEstado(unPedido));
+        
+       
+        System.out.println(gP.existeEstePedido(unPedido));
+}
+}
