@@ -22,12 +22,12 @@ public class ControladorPrincipalTP5 {
         }
 
         Producto unProducto = gp.obtenerProducto(1);
-        System.out.println(gp.modificarProducto(unProducto, 1, "Producto3", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.modificarProducto(unProducto,20,"Producto3", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         for(Producto p : gp.menu()) {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        ArrayList<Producto> productosBuscados = gp.buscarProductos("oductos");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
@@ -37,6 +37,7 @@ public class ControladorPrincipalTP5 {
         ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
-        }
+       }
     }
-}
+    }
+

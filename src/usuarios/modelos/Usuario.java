@@ -17,16 +17,17 @@ public abstract class Usuario {
     private String clave;
     private String apellido;
     private String nombre;
-    
-    
+    private String claveRepetida;
+    private Perfil perfil;
     
     //CONSTRUCTOR
-    public Usuario(String correo, String clave, String apellido, String nombre) {
+    public Usuario(String correo, String apellido, String nombre ,Perfil perfil,String clave,String claveRepetida) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
+        this.claveRepetida=claveRepetida;
+        this.perfil=perfil;
     }
     
     //MOSTRAR
