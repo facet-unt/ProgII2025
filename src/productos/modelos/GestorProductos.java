@@ -44,11 +44,11 @@ public class GestorProductos {
             return ERROR_PRECIO;
         }
 
-        if (!(categoria != null)) {
+        if (categoria == null) {
             return ERROR_CATEGORIA;
         }
 
-        if (!(estado != null)) {
+        if (estado == null) {
             return ERROR_ESTADO;
         }
         
@@ -72,11 +72,11 @@ public class GestorProductos {
             return ERROR_PRECIO;
         }
 
-        if (!(categoria != null)) {
+        if (categoria == null) {
             return ERROR_CATEGORIA;
         }
 
-        if (!(estado != null)) {
+        if (estado == null) {
             return ERROR_ESTADO;
         }
 
@@ -95,11 +95,12 @@ public class GestorProductos {
     }
 
     public ArrayList<Producto> buscarProductos(String descripcion) {
+        ArrayList<Producto> productosEncontrados = new ArrayList<>();
         for(Producto u: productos)
-            if(u.verDescripcion() == descripcion){
-                return this.productos;
+            if(u.verDescripcion().contains(descripcion)){
+                productosEncontrados.add(u);
             }
-        return null;
+        return productosEncontrados;
     }
 
     public boolean existeEsteProducto(Producto producto) {
@@ -111,11 +112,12 @@ public class GestorProductos {
     }
 
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-          for(Producto u: productos)
+        ArrayList<Producto> productosMismaCategoria = new ArrayList<>();
+        for(Producto u: productos)
             if(u.verCategoria() == categoria){
-                return this.productos;
+                productosMismaCategoria.add(u);
             }
-        return null;
+        return productosMismaCategoria;
     }
 
     public Producto obtenerProducto(Integer codigo) {

@@ -90,11 +90,11 @@ public class Pedido {
         return fechaYhora.toLocalDate();
     }
 
-    public ArrayList<ProductoDelPedido> getunPedido() {
+    public ArrayList<ProductoDelPedido> verunPedido() {
         return unPedido;
     }
 
-    public void setPedido1(ArrayList<ProductoDelPedido> unPedido) {
+    public void asignarPedido1(ArrayList<ProductoDelPedido> unPedido) {
         this.unPedido = unPedido;
     }
 
