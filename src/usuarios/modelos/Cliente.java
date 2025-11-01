@@ -11,10 +11,11 @@ package usuarios.modelos;
  */
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
+import productos.modelos.Perfil;
 
 public class Cliente extends Usuario{
     private ArrayList<Pedido> pedidos= new ArrayList<>();
-
+    private Perfil perfil;
     
     public void mostrar() {
       super.mostrar();
@@ -23,9 +24,9 @@ public class Cliente extends Usuario{
   
     }
 
-    public Cliente(String correo, String clave, String apellido, String nombre) {
+    public Cliente(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         super(correo,clave, apellido, nombre);
-
+        this.perfil = perfil;
 
     }
     

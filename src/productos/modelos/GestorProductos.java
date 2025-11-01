@@ -30,15 +30,7 @@ public class GestorProductos {
         
     }
     
-    
-    
-    public static GestorProductos instanciar() {
-        if (instancia == null)
-            instancia = new GestorProductos();
-        return instancia;
-    }
-    
-    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+    private String validarInfo(int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
         if(codigo < 0){
             return ERROR_CODIGO;
         }
@@ -57,6 +49,25 @@ public class GestorProductos {
         
         if (estado == null){
             return ERROR_ESTADO;
+        }
+        
+        return VALIDACION_EXITO;
+    }
+    
+    public static GestorProductos instanciar() {
+        if (instancia == null)
+            instancia = new GestorProductos();
+        return instancia;
+    }
+    
+    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {        
+        String resultado = validarInfo(codigo, descripcion, precio, categoria, estado);
+        if (!resultado.equals(VALIDACION_EXITO)){
+            return resultado;
+        }
+        
+        if (obtenerProducto(codigo) != null){
+            return PRODUCTOS_DUPLICADOS;
         }
         
         Producto nuevo = new Producto(codigo, descripcion, categoria, estado, precio);
@@ -66,31 +77,21 @@ public class GestorProductos {
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (p == null){
+        if (p == null || !this.productos.contains(p)){
             return PRODUCTO_INEXISTENTE;
         }
         
-        if(codigo < 0){
-            return ERROR_CODIGO;
-        }
-        
-        if (descripcion == null || descripcion.isEmpty()){
-            return ERROR_DESCRIPCION;
-        }
-        
-        if (precio < 0){
-            return ERROR_PRECIO;
-        }
-        
-        if (categoria == null){
-            return ERROR_CATEGORIA;
-        }
-        
-        if (estado == null){
-            return ERROR_ESTADO;
+
+        String resultado = validarInfo(codigo, descripcion, precio, categoria, estado);
+        if(!resultado.equals(VALIDACION_EXITO)){
+            return resultado;
         }
         
         p.asignarCodigo(codigo);
+        if (obtenerProducto(codigo) != null){
+            return PRODUCTOS_DUPLICADOS;
+        }            
+        
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
+
 /**
  *
  * @author estudiante
@@ -26,7 +27,6 @@ public abstract class Usuario {
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
     }
     
     //MOSTRAR
