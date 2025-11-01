@@ -46,8 +46,8 @@ public class VentanaAMProducto extends JDialog {
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JTextField();
         comboCategorias = new javax.swing.JComboBox<>();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -88,6 +88,8 @@ public class VentanaAMProducto extends JDialog {
 
         comboCategorias.setModel(new productos.modelos.ModeloComboCategorias());
 
+        comboEstado.setModel(new productos.modelos.ModeloComboEstados());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,8 +114,8 @@ public class VentanaAMProducto extends JDialog {
                             .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                             .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)
-                            .addComponent(txtEstado)
-                            .addComponent(comboCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -138,7 +140,7 @@ public class VentanaAMProducto extends JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -158,11 +160,11 @@ public class VentanaAMProducto extends JDialog {
         String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         /*String categoria = this.txtCategoria.getText().trim();*/
-        String estado  = this.txtEstado.getText().trim();
+        //String estado  = this.txtEstado.getText().trim();
         
         Categoria enumCategoria = (Categoria)this.comboCategorias.getSelectedItem();
         
-        Estado enumEstado = Estado.valueOf(estado.toUpperCase());
+        Estado enumEstado = (Estado)this.comboEstado.getSelectedItem();
         
         Producto unProducto = new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
         this.productos.add(unProducto);
@@ -180,6 +182,7 @@ public class VentanaAMProducto extends JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<Categoria> comboCategorias;
+    private javax.swing.JComboBox<Estado> comboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -187,7 +190,6 @@ public class VentanaAMProducto extends JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
