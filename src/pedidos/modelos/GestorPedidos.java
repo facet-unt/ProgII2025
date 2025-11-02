@@ -69,7 +69,14 @@ public class GestorPedidos {
             return false;
     }
     public boolean hayPedidosConEsteProducto(Producto producto){
-        
+        for(Pedido p: pedidos){
+            for(ProductoDelPedido pdp: p.verProductoPedido()){
+                if(pdp.verUnProducto() == producto){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     public boolean existeEstePedido(Pedido pedido){
         for(Pedido p: pedidos){
