@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class GestorProductos {
 
-    public static final String EXITO = "Producto creado/modificado con éxito";
+    public static final String EXITO = "Producto creado/modificado con exito";
     public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
+    public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
+    public static final String ERROR_CATEGORIA = "La categoria del producto es incorrecta";
     public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
+    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese codigo";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
     
@@ -97,7 +97,7 @@ public class GestorProductos {
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> productosEncontrados = new ArrayList<>();
         for(Producto u: productos)
-            if(u.verDescripcion().contains(descripcion)){
+            if(u.verDescripcion().equalsIgnoreCase(descripcion)){
                 productosEncontrados.add(u);
             }
         return productosEncontrados;
@@ -114,7 +114,7 @@ public class GestorProductos {
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> productosMismaCategoria = new ArrayList<>();
         for(Producto u: productos)
-            if(u.verCategoria() == categoria){
+            if(u.verCategoria().equals(categoria)){
                 productosMismaCategoria.add(u);
             }
         return productosMismaCategoria;

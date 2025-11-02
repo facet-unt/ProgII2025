@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class GestorPedidos {
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+    public static final String EXITO = "Pedido creado/modificado/cancelado con exito";
     public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
     public static final String ERROR_HORA = "La hora del pedido es incorrecta";
     public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";

@@ -13,7 +13,7 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public abstract class  Usuario {
+public class Usuario {
     private String correo;
     private String clave;
     private String apellido;
@@ -23,12 +23,14 @@ public abstract class  Usuario {
 
     /*Contructores*/
 
-    public Usuario(String correo, String clave, String apellido, String nombre) {
+    public Usuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+        
     }
+
 
     public Usuario() {
     }
@@ -100,6 +102,6 @@ public abstract class  Usuario {
         return Objects.equals(this.correo, other.correo);
     }
     
-    /*Implementacion del metodo abstracto. No lleva cuerpo*/
-    public abstract ArrayList<Pedido> verPedidos();
+//    /*Implementacion del metodo abstracto. No lleva cuerpo*/
+//    public abstract ArrayList<Pedido> verPedidos();
 }

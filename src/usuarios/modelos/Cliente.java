@@ -14,17 +14,20 @@ import pedidos.modelos.Pedido;
  * @author
  */
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
 
 
    private ArrayList<Pedido> pedidos; /*implementacion de asociacion con clase pedido*/
+   private GestorPedidos gp = GestorPedidos.instanciar();
+   
     
    /*Constructor*/
    
-   public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
+   public Cliente(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+        super(correo, apellido, nombre, perfil, clave, claveRepetida);
         this.pedidos = new ArrayList<>();
     }
    
@@ -36,13 +39,14 @@ public class Cliente extends Usuario {
         return verApellido() + ", " + verNombre();
     }      
     
- 
-   @Override /*Redifinicion del metodo verPedidos. Devuelve los pedidos del cliente*/
-    public ArrayList<Pedido> verPedidos()
-    {
-        return this.pedidos;
-    }
-   
+// 
+//   @Override /*Redifinicion del metodo verPedidos. Devuelve los pedidos del cliente*/
+//    public ArrayList<Pedido> verPedidos()
+//    {
+//        return this.pedidos;
+//    }
+//   
+     
     /*Agrega pedidos, al conjunto de pedidos de un cliente.*/
     public void agregarPedido(Pedido unPedido)
     {
