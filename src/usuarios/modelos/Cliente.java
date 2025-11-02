@@ -11,7 +11,7 @@ package usuarios.modelos;
  */
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
-import productos.modelos.Perfil;
+
 
 public class Cliente extends Usuario{
     private ArrayList<Pedido> pedidos= new ArrayList<>();

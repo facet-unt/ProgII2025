@@ -6,7 +6,7 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
-import productos.modelos.Perfil;
+
 
 /**
  *

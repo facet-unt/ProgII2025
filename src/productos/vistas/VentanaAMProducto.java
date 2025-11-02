@@ -12,7 +12,6 @@ import productos.modelos.*;
 
 import productos.modelos.Producto;
 import productos.modelos.Categoria;
-import productos.modelos.Estado;
 
 
 public class VentanaAMProducto extends JDialog {
@@ -28,6 +27,7 @@ public class VentanaAMProducto extends JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
+        this.comboEstados.setModel(new ModeloComboEstados());
         this.setVisible(true);        
     }
     
@@ -65,7 +65,6 @@ public class VentanaAMProducto extends JDialog {
 
         txtPrecio.setToolTipText("Nombres del profesor");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +73,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +90,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,9 +166,10 @@ public class VentanaAMProducto extends JDialog {
         String descripcion = this.txtDescripcion.getText().trim();        
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
+        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
                             
-        Producto unProducto; //= new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
-        //this.productos.add(unProducto);
+        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
+        this.productos.add(unProducto);
         
         System.out.println("Productos");
         System.out.println("=========");
@@ -175,7 +179,12 @@ public class VentanaAMProducto extends JDialog {
         }
     }//GEN-LAST:event_btnGuardarClic
 
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
 
+
+    private javax.swing.JComboBox<String> comboEstados;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
