@@ -68,7 +68,6 @@ public class GestorProductos {
     }
     
     public ArrayList<Producto> menu() {
-        
         return this.productos;
     }
     
@@ -84,7 +83,7 @@ public class GestorProductos {
     public boolean existeEsteProducto(Producto producto) {
         for (Producto p: productos) {
             if(p.verCodigo()==producto.verCodigo())
-        return true;
+            return true;
         }
         return false;
         }

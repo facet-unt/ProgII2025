@@ -31,7 +31,6 @@ public class GestorUsuarios {
         return instancia;
     }
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        String cadena="El usuario se creo con exito";
         Usuario usuario= new Cliente(correo,apellido,nombre,perfil,clave,claveRepetida);
         if(correo.isEmpty()||!correo.contains("@"))
             return ERROR_CORREO;
@@ -46,7 +45,7 @@ public class GestorUsuarios {
         if(usuarios.contains(usuario))
             return USUARIOS_DUPLICADOS;
         else
-        usuarios.add(usuario);
+            usuarios.add(usuario);
         return EXITO;
     }
     public ArrayList<Usuario> verUsuarios(){
@@ -65,7 +64,7 @@ public class GestorUsuarios {
             if(u.verApellido().contentEquals(usuario.verApellido()))
              return true;       
         }
-            return false;
+        return false;
     }
     public Usuario obtenerUsuario(String correo){
         for(Usuario u: usuarios){
