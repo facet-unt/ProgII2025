@@ -47,18 +47,19 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
           
-        System.out.println("GESTOR PRODUCTOS");
+        System.out.println("GESTOR PEDIDOS");
         
         GestorUsuarios gu = GestorUsuarios.instanciar();
-          gu.crearUsuario("correo", "apellido", "nombre", Perfil.CLIENTE, "clave", "claveRepetida");
+        System.out.println(gu.crearUsuario("correo@gmail", "apellido", "nombre", Perfil.CLIENTE, "clave12", "clave12"));
         ArrayList<ProductoDelPedido> pdp= new ArrayList<ProductoDelPedido>();
         
        ProductoDelPedido pdp1= new ProductoDelPedido(gp.obtenerProducto(1), 1 );
        pdp.add(pdp1);
         
-     GestorPedidos gped = GestorPedidos.instanciar();
+        GestorPedidos gped = GestorPedidos.instanciar();
         System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), pdp,(Cliente)gu.obtenerUsuario("correo") ));
-        Pedido ped1=gped.obtenerPedido(1);
+        Pedido ped1= gped.obtenerPedido(1);
+        System.out.println(gped.existeEstePedido(ped1));
         
         gped.cambiarEstado(gped.obtenerPedido(1));
         
@@ -68,7 +69,12 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gped.hayPedidosConEsteProducto(unProducto));
         
-        System.out.println(gped.existeEstePedido(ped1));
+        System.out.println("GESTOR USUARIOS");
+        
+        System.out.println(gu.buscarUsuarios("apellido"));
+        
+        System.out.println(gu.existeEsteUsuario(gu.obtenerUsuario("correo@gmail")));
+        
     }
     
     

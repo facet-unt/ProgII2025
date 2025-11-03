@@ -72,6 +72,7 @@ private ArrayList<Pedido> pedidos =new ArrayList<>();
        Pedido p=new Pedido(numero,fechayhora, productosDelPedido, cliente);
        numero++;
        cliente.agregarPedido(p);
+       pedidos.add(p);
        return VALIDACION_EXITO;
     }
     
