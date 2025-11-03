@@ -39,4 +39,13 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
     }
+    
+    //a este main no le importa como se hace para crear un producto, o como se lo obtiene
+    
+    //pero le importa a quien le pido y que le paso, como le pido y que me devuelve
+    
+    //el main no le importa si los datos que envia son aceptados por el metodo, por lo que si no se puede
+    //crear no es culpa de main, este no sabe como se hace
+    
+    
 }

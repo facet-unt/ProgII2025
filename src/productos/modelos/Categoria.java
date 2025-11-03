@@ -1,7 +1,7 @@
 package productos.modelos;
 
 public enum Categoria {
-    ENTRADA,
+    ENTRADA,   //cambiar el switch
     PLATO_PRINCIPAL,
     POSTRE;
 

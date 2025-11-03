@@ -1,18 +1,25 @@
 package productos.modelos;
 
 public enum Estado {
-    DISPONIBLE,
-    NO_DISPONIBLE;
+    DISPONIBLE ("disponible"),
+    NO_DISPONIBLE("No disponible");
+ 
+     private String valor;
 
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+     
+    private Estado(String valor) {
+        this.valor = valor;
+    }
+    
     @Override
     public String toString() {
-        switch (this) {
-            case DISPONIBLE:
-                return "Disponible";
-            case NO_DISPONIBLE:
-                return "No disponible";
-            default:
-                return super.toString();
-        }
+        return this.valor;
     }
 }

@@ -32,7 +32,7 @@ public class Producto {
 
     // Constructores
 
-    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+    public Producto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         this.codigo= codigo;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -41,11 +41,11 @@ public class Producto {
     }
 
     public Producto(int codigo, String descripcion, Categoria categoria, float precio) {
-        this(codigo, descripcion, categoria, Estado.DISPONIBLE, precio); // Estado por defecto
+        this(codigo, descripcion, precio, categoria, Estado.DISPONIBLE); // Estado por defecto
     }
 
     public Producto(int codigo, String descripcion, float precio) {
-        this(codigo, descripcion, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, precio); // Categoria y estado por defecto
+        this(codigo, descripcion, precio, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE); // Categoria y estado por defecto
     }
 
     // Getters y setters

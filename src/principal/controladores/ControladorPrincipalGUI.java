@@ -24,36 +24,36 @@ public class ControladorPrincipalGUI {
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
         VentanaAMProducto ventana = new VentanaAMProducto(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo producto");
-        ventana.setVisible(true);
+//        ventana.setLocationRelativeTo(null); //ahora en VentanaAMProducto, cambiar ventana, por una referencia (this.)
+//        ventana.setTitle("Nuevo producto");  //ahora en VentanaAMProducto, cambiar ventana, por una referencia (this.)
+//        ventana.setVisible(true);    //ahora en VentanaAMProducto, cambiar ventana, por una referencia (this.)
         
         //CLIENTE
       
 //<<<<<<< HEAD
-        VentanaAMCliente ventana1 = new VentanaAMCliente(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo cliente");
-        ventana.setVisible(true);
-              
-       //EMPLEADO 
-       
-//        VentanaAMEmpleado ventana2 = new VentanaAMEmpleado(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo empleado");
-        ventana.setVisible(true);
-        
-       //ENCARGADO
-       
-//        VentanaAMEncargado ventana3 = new VentanaAMEncargado(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo encargado");
-        ventana.setVisible(true);
-
-        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
-        ventanaCliente.setLocationRelativeTo(null);
-        ventanaCliente.setTitle("Nuevo cliente");
-        ventanaCliente.setVisible(true);
+//        VentanaAMCliente ventana1 = new VentanaAMCliente(null);
+//        ventana.setLocationRelativeTo(null);
+//        ventana.setTitle("Nuevo cliente");
+//        ventana.setVisible(true);
+//              
+//       //EMPLEADO 
+//       
+//////        VentanaAMEmpleado ventana2 = new VentanaAMEmpleado(null);
+//        ventana.setLocationRelativeTo(null);
+//        ventana.setTitle("Nuevo empleado");
+//        ventana.setVisible(true);
+//        
+//       //ENCARGADO
+//       
+////        VentanaAMEncargado ventana3 = new VentanaAMEncargado(null);
+//        ventana.setLocationRelativeTo(null);
+//        ventana.setTitle("Nuevo encargado");
+//        ventana.setVisible(true);
+//
+//        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
+//        ventanaCliente.setLocationRelativeTo(null);
+//        ventanaCliente.setTitle("Nuevo cliente");
+//        ventanaCliente.setVisible(true);
               
        //EMPLEADO 
        

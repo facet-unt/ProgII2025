@@ -7,6 +7,7 @@ import pedidos.modelos.Pedido;
    
 
 public abstract class Usuario {
+    private Perfil perfil;
     private String Correo;
     private String Clave;
     private String Nombre;
@@ -14,8 +15,7 @@ public abstract class Usuario {
     
     
     //declaro los metodos get/set
-    public void mostrar(){
-        
+    public void mostrar(){  
     }
 
     public String verCorreo() {

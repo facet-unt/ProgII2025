@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 import productos.modelos.Producto;
 
 
@@ -20,6 +22,11 @@ public class VentanaAMProducto extends JDialog {
         super(ventanaPadre, true);
         this.producto = new ArrayList<>();
         initComponents();
+        this.setLocationRelativeTo(null);//antes estaba en ControladorPrincipalGUI.java
+        this.setTitle("Nuevo producto"); //antes estaba en ControladorPrincipalGUI.java
+        this.comboCategoria.setModel(new ModeloComboCategorias());//esto carga el modelo de categoria
+        this.comboEstados.setModel(new ModeloComboEstados());//esto carga el modelo de estados
+        this.setVisible(true);//antes estaba en ControladorPrincipalGUI.java
     }
     
           
@@ -37,8 +44,8 @@ public class VentanaAMProducto extends JDialog {
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCategoria = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
+        comboCategoria = new javax.swing.JComboBox<>();
+        comboEstados = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -89,14 +96,14 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel3.setText("Categoría");
 
-        txtCategoria.setText("\"PLATO PRINCIPAL\"");
-        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCategoriaActionPerformed(evt);
+                comboCategoriaActionPerformed(evt);
             }
         });
 
-        txtEstado.setText("\"DISPONIBLE\"");
+        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,8 +129,8 @@ public class VentanaAMProducto extends JDialog {
                             .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                             .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)
-                            .addComponent(txtCategoria)
-                            .addComponent(txtEstado))))
+                            .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,11 +151,11 @@ public class VentanaAMProducto extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -167,9 +174,11 @@ public class VentanaAMProducto extends JDialog {
         int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
         String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        String categoria = this.txtCategoria.getText().trim();
-        String estado  = this.txtEstado.getText().trim();
-        Producto unProducto = new Producto(codigo, descripcion, Categoria.valueOf(categoria), Estado.valueOf(estado), precio);
+//        String categoria  = this.txtCategoria.getText().trim(); //asi estaba definida antes
+        Categoria categoria = ((ModeloComboCategorias)this.comboCategoria.getModel()).obtenerCategoria(); //redefino al metodo para cargar el nuevo comboBox
+//        String estado  = this.txtEstado.getText().trim(); //asi estaba definida antes
+        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
+        Producto unProducto = new Producto(codigo, descripcion, precio, categoria, estado);
         this.producto.add(unProducto);
         
         System.out.println("Productos");
@@ -184,23 +193,24 @@ public class VentanaAMProducto extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
-    private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCategoriaActionPerformed
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+    
+        
+    }//GEN-LAST:event_comboCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> comboCategoria;
+    private javax.swing.JComboBox<String> comboEstados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 

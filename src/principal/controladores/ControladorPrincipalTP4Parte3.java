@@ -1,6 +1,8 @@
 package principal.controladores;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -97,10 +99,10 @@ public class ControladorPrincipalTP4Parte3 {
         
         
 
-        Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, Estado.DISPONIBLE, 1.0f);        
-        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2.0f);
-        Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, Estado.DISPONIBLE, 3.0f);
-        Producto unProducto4 = new Producto(3, "Producto4", Categoria.POSTRE, Estado.DISPONIBLE, 4.0f);
+        Producto unProducto1 = new Producto(1, "Producto1", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE);        
+        Producto unProducto2 = new Producto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);
+        Producto unProducto3 = new Producto(3, "Producto3", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE);
+        Producto unProducto4 = new Producto(3, "Producto4", 4.0f, Categoria.POSTRE, Estado.DISPONIBLE);
         //producto repetido
         
         /*
@@ -128,7 +130,7 @@ public class ControladorPrincipalTP4Parte3 {
             listapdp1.add(pdp1);
         if (!listapdp1.contains(pdp2))
             listapdp1.add(pdp2);
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, (Cliente)usuarios.get(0));        
+        Pedido unPedido1 = new Pedido(1, LocalDate.now(), LocalTime.now(), listapdp1, (Cliente)usuarios.get(0));        
         
         ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
         ProductoDelPedido pdp3 = new ProductoDelPedido(listaProductos.get(2), 10);
@@ -141,7 +143,7 @@ public class ControladorPrincipalTP4Parte3 {
             productosDelPedido2.add(pdp4);
         if (!productosDelPedido2.contains(pdp5))
             productosDelPedido2.add(pdp5);
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, (Cliente)usuarios.get(1));        
+        Pedido unPedido2 = new Pedido(2, LocalDate.now(), LocalTime.now(), productosDelPedido2, (Cliente)usuarios.get(1));        
         
         ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
         ProductoDelPedido pdp6 = new ProductoDelPedido(listaProductos.get(1), 100);
@@ -150,7 +152,7 @@ public class ControladorPrincipalTP4Parte3 {
             productosDelPedido3.add(pdp6);
         if (!productosDelPedido3.contains(pdp7))
             productosDelPedido3.add(pdp7);
-        Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), productosDelPedido3, (Cliente)usuarios.get(2));        
+        Pedido unPedido3 = new Pedido(2, LocalDate.now(), LocalTime.now(), productosDelPedido3, (Cliente)usuarios.get(2));        
         //pedido repetido
 
         if(!listaPedidos.contains(unPedido1))

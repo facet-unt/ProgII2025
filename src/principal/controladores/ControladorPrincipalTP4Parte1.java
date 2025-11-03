@@ -1,6 +1,8 @@
 package principal.controladores;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;//*******************
 import pedidos.modelos.ProductoDelPedido; //****************
@@ -24,11 +26,11 @@ public static void main(String[] args) {
 
     System.out.println("#################### ");
     System.out.println("PRODUCTOS");
-    Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
-    Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-    Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
+    Producto p1 = new  Producto(1, "Producto 1", 200.0f, Categoria.ENTRADA ,Estado.DISPONIBLE);        
+    Producto p2 = new  Producto(2, "Producto 2", 1950.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);        
+    Producto p3 = new  Producto(3, "Producto 3", 580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);        
+    Producto p4 = new  Producto(4, "Producto 4", 580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);        
+    Producto p5 = new  Producto(3, "Producto 5", 7580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);     
     //no debe agregar a p5
 
     
@@ -97,7 +99,7 @@ public static void main(String[] args) {
         listapdp1.add(pdp2);
     if (!listapdp1.contains(pdp3))
         listapdp1.add(pdp3);//crea dos ProductosDelPedido y comprueba si estan repetidos
-    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
+    Pedido unPedido1 = new Pedido(1, LocalDate.now(), LocalTime.now(), listapdp1, cliente1);        
     
   
     ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
@@ -111,7 +113,7 @@ public static void main(String[] args) {
         productosDelPedido2.add(pdp5);
     if (!productosDelPedido2.contains(pdp6))
         productosDelPedido2.add(pdp6);//crea dos ProductosDelPedido y comprueba si estan repetidos
-    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, cliente2);        
+    Pedido unPedido2 = new Pedido(2, LocalDate.now(), LocalTime.now(), productosDelPedido2, cliente2);        
 
     ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
     ProductoDelPedido pdp7 = new ProductoDelPedido(listaProductos.get(1), 100);
@@ -120,7 +122,7 @@ public static void main(String[] args) {
         productosDelPedido3.add(pdp7);
     if (!productosDelPedido3.contains(pdp8))
         productosDelPedido3.add(pdp8); //crea dos ProductosDelPedido y comprueba si estan repetidos
-    Pedido unPedido3 = new Pedido(1, LocalDateTime.now(), productosDelPedido3, cliente3);        
+    Pedido unPedido3 = new Pedido(1, LocalDate.now(), LocalTime.now(), productosDelPedido3, cliente3);        
 //    pedido repetido no debe agregarse a la lista, pues tiene el mismo numero
 
 

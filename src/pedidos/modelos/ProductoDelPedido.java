@@ -22,27 +22,27 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-    public Producto getProducto() {
+    public Producto verProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void asignarProducto(Producto producto) {
         this.producto = producto;
     }
 
-    public Pedido getPedido() {
+    public Pedido verPedido() {
         return pedido;
     }
 
-    public void setPedido(Pedido pedido) {
+    public void asignarPedido(Pedido pedido) {
         this.pedido = pedido;
     }
 
-    public int getCantidad() {
+    public int verCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void asignarCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

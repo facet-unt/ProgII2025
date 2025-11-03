@@ -1,6 +1,8 @@
 package principal.controladores;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import usuarios.modelos.Cliente;
@@ -49,9 +51,9 @@ public class ControladorPrincipal {
         System.out.println("#################### ");
         System.out.println("PRODUCTOS");
 
-        Producto p1 = new Producto(1, "Hamburguesa", Categoria.ENTRADA, Estado.DISPONIBLE, 12000.0f);
-        Producto p2 = new Producto(2, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 10050.0f);
-        Producto p3 = new Producto(3, "Flan", Categoria.POSTRE, Estado.NO_DISPONIBLE, 3500.0f);
+        Producto p1 = new Producto(1, "Hamburguesa", 12000.0f, Categoria.ENTRADA, Estado.DISPONIBLE);
+        Producto p2 = new Producto(2, "Pizza", 10050.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);
+        Producto p3 = new Producto(3, "Flan", 3500.0f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
 
         listaProductos.add(p1);
         listaProductos.add(p2);
@@ -106,22 +108,22 @@ public class ControladorPrincipal {
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
 
-        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), c1);
-        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), c2);
-        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), c3);
+        Pedido pedido1 = new Pedido(1, LocalDate.now(), LocalTime.now(), c1);
+        Pedido pedido2 = new Pedido(2, LocalDate.now(), LocalTime.now(), c2);
+        Pedido pedido3 = new Pedido(3, LocalDate.now(), LocalTime.now(), c3);
 
         // Asociar productos a los pedidos
         ProductoDelPedido pdp1 = new ProductoDelPedido(p1, 2); // Milanesa con puré x2
         ProductoDelPedido pdp2 = new ProductoDelPedido(p2, 1); // Pizza x1
         ProductoDelPedido pdp3 = new ProductoDelPedido(p3, 3); // Flan x3
 
-        pedido1.getProductosDelPedido().add(pdp1);
-        pedido1.getProductosDelPedido().add(pdp3);
+        pedido1.verProductosDelPedido().add(pdp1);
+        pedido1.verProductosDelPedido().add(pdp3);
         
-        pedido2.getProductosDelPedido().add(pdp2);
+        pedido2.verProductosDelPedido().add(pdp2);
 
-       pedido3.getProductosDelPedido().add(pdp2);
-       pedido3.getProductosDelPedido().add(pdp3);
+       pedido3.verProductosDelPedido().add(pdp2);
+       pedido3.verProductosDelPedido().add(pdp3);
 
         // Guardar pedidos en el ArrayList
         listaPedidos.add(pedido1);

@@ -11,77 +11,82 @@ public class Pedido {
      
 
     private int numero;
-    private LocalDateTime fechaHora;
-    private Cliente cliente;
-    private Estado estado;
-    private ArrayList<ProductoDelPedido> productosDelPedido;
+private LocalDateTime fechaHora;
+private Cliente cliente;
+private Estado estado;
+private ArrayList<ProductoDelPedido> productosDelPedido;
+private static int contador = 1;
 
-    public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente) {
-        this.numero = numero;
-        this.fechaHora = fechaHora;
-        this.cliente = cliente;
-        this.productosDelPedido = new ArrayList<>();
-    }
+public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.productosDelPedido = new ArrayList<>();
+}
 
-    public Pedido(int numero, LocalDateTime fechaHora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
-        this.numero = numero;
-        this.fechaHora = fechaHora;
-        this.cliente = cliente;
-        this.productosDelPedido = productosDelPedido;
-    }
+public Pedido(int numero, LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.productosDelPedido = productosDelPedido;
+}
 
-    public Pedido(int numero, LocalDateTime fechaHora, Cliente cliente, Estado estado) {
-        this.numero = numero;
-        this.fechaHora = fechaHora;
-        this.cliente = cliente;
-        this.estado = estado;
-        this.productosDelPedido = new ArrayList<>();
+public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente, Estado estado) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.estado = estado;
+    this.productosDelPedido = new ArrayList<>();
+}
+
+    public Pedido(int i, LocalDate now, Cliente c1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
     
     
-    public int getNumero() {
+    public int verNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void asignarNumero(int numero) {
         this.numero = numero;
     }
 
-    public LocalDateTime getFechaHora() {
+    public LocalDateTime verFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
+    public void asignarFechaHora(LocalDateTime fechaHora) {
         this.fechaHora = fechaHora;
     }
 
-    public Cliente getCliente() {
+    public Cliente verCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void asignarCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public Estado getEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public LocalDate getFecha() {
+    public LocalDate verFecha() {
         return fechaHora.toLocalDate();
     }
 
-    public LocalTime getHora() {
+    public LocalTime verHora() {
         return fechaHora.toLocalTime();
     }
 
-    public ArrayList<ProductoDelPedido> getProductosDelPedido() {
+    public ArrayList<ProductoDelPedido> verProductosDelPedido() {
         return productosDelPedido;
     }
 
@@ -100,7 +105,7 @@ public class Pedido {
     public double calcularTotal() {
         double total = 0;
         for (ProductoDelPedido pdp : productosDelPedido) {
-            total += pdp.getProducto().verPrecio() * pdp.getCantidad();
+            total += pdp.verProducto().verPrecio() * pdp.verCantidad();
         }
         return total;
     }
@@ -110,8 +115,8 @@ public class Pedido {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
 
         System.out.println("Nro: " + numero);
-        System.out.println("Fecha: " + getFecha().format(formatoFecha) +
-                "        Hora: " + getHora().format(formatoHora));
+        System.out.println("Fecha: " + verFecha().format(formatoFecha) +
+                "        Hora: " + verHora().format(formatoHora));
         System.out.println("Cliente: " + cliente);
         System.out.println("Estado: " + estado);
 
@@ -121,8 +126,8 @@ public class Pedido {
             System.out.println("Producto       Cantidad");
             System.out.println("========================");
             for (ProductoDelPedido pdp : productosDelPedido) {
-                String nombreProducto = pdp.getProducto().verDescripcion();
-                int cantidad = pdp.getCantidad();
+                String nombreProducto = pdp.verProducto().verDescripcion();
+                int cantidad = pdp.verCantidad();
                 System.out.printf("%-15s %5d%n", nombreProducto, cantidad);
             }
         }
