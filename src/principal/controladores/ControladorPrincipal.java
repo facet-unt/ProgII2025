@@ -20,10 +20,10 @@ public class ControladorPrincipal {
         ArrayList<ProductoDelPedido> productosDelPedido1 = new ArrayList<>();
         ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
 
-        Producto prod1 = new Producto(1, "Pizza", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 2500);
+        Producto prod1 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2500);
         Producto prod2 = new Producto(2, "Pancho", Categoria.ENTRADA, Estado.DISPONIBLE, 500);
-        Producto prod3 = new Producto(3, "Hamburguesa", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 3000);
-        Producto prod4 = new Producto(1, "Pizza", Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE, 3000);
+        Producto prod3 = new Producto(3, "Hamburguesa", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 3000);
+        Producto prod4 = new Producto(1, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 3000);
 
         if (!listaProductos.contains(prod1)) {
             listaProductos.add(prod1);

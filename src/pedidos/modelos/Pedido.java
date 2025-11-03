@@ -33,11 +33,13 @@ public class Pedido {
         ArrayList<Pedido> pedidosCliente = cliente.getPedidos();
         pedidosCliente.add(this);
         cliente.setPedidos(pedidosCliente);
+   
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.estado=estado.CREADO;
         this.cliente = cliente;
         this.productos=cantidadProducto;
+        
     }
 
     public int obtenerNumero() {
@@ -81,6 +83,14 @@ public class Pedido {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

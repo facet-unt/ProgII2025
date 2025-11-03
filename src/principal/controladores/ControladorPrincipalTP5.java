@@ -1,10 +1,18 @@
 package principal.controladores;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -38,5 +46,32 @@ public class ControladorPrincipalTP5 {
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
+          
+        System.out.println("GESTOR PRODUCTOS");
+        
+        GestorUsuarios gu = GestorUsuarios.instanciar();
+          gu.crearUsuario("correo", "apellido", "nombre", Perfil.CLIENTE, "clave", "claveRepetida");
+        ArrayList<ProductoDelPedido> pdp= new ArrayList<ProductoDelPedido>();
+        
+       ProductoDelPedido pdp1= new ProductoDelPedido(gp.obtenerProducto(1), 1 );
+       pdp.add(pdp1);
+        
+     GestorPedidos gped = GestorPedidos.instanciar();
+        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), pdp,(Cliente)gu.obtenerUsuario("correo") ));
+        Pedido ped1=gped.obtenerPedido(1);
+        
+        gped.cambiarEstado(gped.obtenerPedido(1));
+        
+        System.out.println(gped.obtenerPedido(1).getEstado());
+        
+        System.out.println(gped.hayPedidosConEsteCliente((Cliente)gu.obtenerUsuario("correo")));
+        
+        System.out.println(gped.hayPedidosConEsteProducto(unProducto));
+        
+        System.out.println(gped.existeEstePedido(ped1));
     }
+    
+    
+    
+    
 }

@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 /**
@@ -13,7 +14,7 @@ import pedidos.modelos.Pedido;
  */
 public class Empleado extends Usuario {
 
-
+ GestorPedidos gp = GestorPedidos.instanciar();
 
 
     public Empleado(String c, String cl, String a, String n) {
@@ -23,6 +24,6 @@ public class Empleado extends Usuario {
 @Override
     public ArrayList<Pedido> verPedidos()
     {
-      return new ArrayList<>();
+      return gp.verPedidos();
      }
 }
