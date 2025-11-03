@@ -6,7 +6,7 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
-
+import pedidos.modelos.GestorPedidos;
 
 /**
  *
@@ -29,7 +29,7 @@ public class Empleado extends Usuario{
         
         return vacio;
     }
-    
+  
     
 }
 

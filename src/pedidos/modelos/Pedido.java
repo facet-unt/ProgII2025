@@ -68,6 +68,9 @@ public class Pedido {
         this.listaProductosdelPedido.add(nuevoProducto);
     }
     
+    public ArrayList<ProductoDelPedido> verProductosDelPedido() {
+    return listaProductosdelPedido;
+}
     public void mostrar(){
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
