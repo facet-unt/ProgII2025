@@ -4,14 +4,22 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
+import static interfaces.IGestorUsuarios.ERROR_APELLIDO;
+import static interfaces.IGestorUsuarios.ERROR_CLAVES;
+import static interfaces.IGestorUsuarios.ERROR_CORREO;
+import static interfaces.IGestorUsuarios.ERROR_NOMBRE;
+import static interfaces.IGestorUsuarios.ERROR_PERFIL;
+import static interfaces.IGestorUsuarios.USUARIOS_DUPLICADOS;
 import java.util.ArrayList;
-import usuarios.modelos.Perfil;
+import static productos.modelos.GestorProductos.EXITO;
+import static productos.modelos.GestorProductos.VALIDACION_EXITO;
 
 /**
  *
  * @author tobias150
  */
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios{
     
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     
@@ -27,25 +35,11 @@ public class GestorUsuarios {
         }
         return instancia;
     }
-    
-    public static final String EXITO = "Usuario creado/modificado con éxito";
-    
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    
-    public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
-    
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
-    
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo"; 
-    
-    public static final String VALIDACION_EXITO = "Los datos del usuario socorrectos";
-    
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+            
+        public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        
         String resultado = validarValores(correo, apellido, nombre, perfil, clave, claveRepetida);
+        
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
@@ -99,10 +93,12 @@ public class GestorUsuarios {
         return VALIDACION_EXITO;
     }
     
+    @Override
     public ArrayList<Usuario> verUsuarios(){
         return this.usuarios;
     }
     
+    @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> buscados = new ArrayList<>();
         
@@ -115,6 +111,7 @@ public class GestorUsuarios {
         return buscados;
     }
     
+    @Override
     public boolean existeEsteUsuario(Usuario usuario){
         if (usuarios.contains(usuario)){
             return true;
@@ -123,6 +120,7 @@ public class GestorUsuarios {
             return false;
     }
     
+    @Override
     public Usuario obtenerUsuario(String correo){
         for (Usuario u : usuarios){
             if (u.verCorreo().equals(correo)){
@@ -130,6 +128,11 @@ public class GestorUsuarios {
             }
         }
         return null;
+    }
+
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        
     }
     
 }
