@@ -1,10 +1,20 @@
 package principal.controladores;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Encargado;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 /**
  *
@@ -38,7 +48,25 @@ public class ControladorPrincipalTP5 {
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
-    }
+    
+    GestorUsuarios gu = GestorUsuarios.instanciar();
+    // 1. Probar creación de usuarios
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "123", "Perez", "Juan", "123", Perfil.CLIENTE));
+        System.out.println(gu.crearUsuario("encargado@mail.com", "456", "Gomez", "Ana", "456", Perfil.ENCARGADO));
+        System.out.println(gu.crearUsuario("error@mail.com", "789", "Test", "Error", "000", Perfil.CLIENTE)); // Error clave
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "111", "Test", "Duplicado", "111", Perfil.CLIENTE)); // Error duplicado
+        System.out.println(gu.crearUsuario("correo-invalido", "111", "Test", "Error", "111", Perfil.CLIENTE)); // Error correo
+
+        for(Usuario u : gu.verUsuarios()) {
+            u.mostrar();
+        }
+
+        ArrayList<Usuario> usuario = gu.buscarUsuarios("perez");
+            for(Usuario u : usuario) {
+            u.mostrar();
+        }
+        
+        }
     
     //a este main no le importa como se hace para crear un producto, o como se lo obtiene
     

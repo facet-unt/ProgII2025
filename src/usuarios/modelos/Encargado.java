@@ -3,6 +3,7 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 
 public class Encargado extends Usuario {
 
@@ -16,5 +17,15 @@ public class Encargado extends Usuario {
      return gp.verPedidos();
     }
      
-
+     //metodo para ver todos los usuarios
+     public ArrayList<Usuario> verUsuarios(){
+         GestorUsuarios gp = GestorUsuarios.instanciar();
+     return gp.verUsuarios();
+     }  
+     
+     //metodo para ver los productos
+//     public ArrayList<ProductoDelPedido> verProductosDelPedido()){
+//         GestorUsuarios gpdp = GestorUsuarios.instanciar();
+//     return gpdp.();
+//     }
 }
