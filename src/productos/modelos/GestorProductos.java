@@ -41,7 +41,7 @@ public class GestorProductos {
     
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String validacion = validarDatos(codigo, descripcion,precio,categoria,estado);
-        if(validacion == VALIDACION_EXITO){
+        if(validacion.equals(VALIDACION_EXITO)){
         if(existeEsteProducto(productoAModificar)){
             productoAModificar.asignarCodigo(codigo);
             productoAModificar.asignarDescripcion(descripcion);
