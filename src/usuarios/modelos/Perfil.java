@@ -2,15 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package productos.modelos;
+package usuarios.modelos;
 
 /**
-
- * @author estudiante
+ *
+ * @author karen
  */
-public enum Estado {
-    DISPONIBLE ("Disponible"),
-    NO_DISPONIBLE ("No disponible");
+public enum Perfil {
+    CLIENTE("Cliente"),
+    EMPLEADO("Empleado"),
+    ENCARGADO("Encargado");
+
+    private String valor;
+
+    private Perfil(String valor) {
+        this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return this.valor;
+    }
 
     public String verValor() {
         return valor;
@@ -19,18 +31,5 @@ public enum Estado {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-   
 
-    private String valor;
-    
-    private Estado(String valor) {
-        this.valor = valor;
-    }
-
-    @Override
-    public String toString() {
-        return this.valor;
-    }
-    
-  
 }
