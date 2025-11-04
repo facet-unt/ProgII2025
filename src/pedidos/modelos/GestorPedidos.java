@@ -4,6 +4,7 @@
  */
 package pedidos.modelos;
 
+import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,17 +16,8 @@ import usuarios.modelos.Cliente;
  *
  * @author salut
  */
-public class GestorPedidos {
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
-    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
-    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
-    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
-    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
-    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
-    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
-    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
-    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
-    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
+public class GestorPedidos implements IGestorPedidos{
+    
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     private static GestorPedidos instancia;
@@ -40,6 +32,7 @@ public class GestorPedidos {
         return instancia;
     }
     
+    @Override
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
         if(fecha==null){
             return ERROR_FECHA ;
@@ -59,6 +52,7 @@ public class GestorPedidos {
         return EXITO; 
     }
     
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar){
         if(pedidoAModificar==null){
             return PEDIDO_INEXISTENTE;
@@ -74,10 +68,12 @@ public class GestorPedidos {
         return EXITO;
     }
     
+    @Override
     public ArrayList<Pedido> verPedidos(){
         return pedidos;
     }
     
+    @Override
     public boolean hayPedidosConEsteCliente(Cliente cliente){
         for(Pedido p: pedidos){
             if(p.verUnCliente().equals(cliente)){
@@ -87,6 +83,7 @@ public class GestorPedidos {
         return false;
     }
     
+    @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
         for(Pedido p: pedidos){
             for(ProductoDelPedido p1: p.verListaProductos()){
@@ -98,6 +95,7 @@ public class GestorPedidos {
         return false;
     }
     
+    @Override
     public boolean existeEstePedido(Pedido pedido){
         for(Pedido p: pedidos){
             if(pedido.equals(p)){
@@ -107,6 +105,7 @@ public class GestorPedidos {
         return false;
     }
     
+    @Override
     public Pedido obtenerPedido(Integer numero){
         for(Pedido p: pedidos){
             if(p.verNumero()==numero){
@@ -114,5 +113,15 @@ public class GestorPedidos {
             }
         }
         return null;
+    }
+
+    @Override
+    public String cancelarPedido(Pedido pedido) {
+        if(pedido==null){
+            return PEDIDO_INEXISTENTE;
+        }
+        pedido.verUnCliente().cancelarPedido(pedido);
+        pedidos.remove(pedido);
+        return EXITO;
     }
 }
