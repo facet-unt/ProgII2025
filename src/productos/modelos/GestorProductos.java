@@ -1,19 +1,10 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
-public class GestorProductos {
-
-    public static final String EXITO = "Producto creado/modificado con exito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta";
-    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoria del producto es incorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese codigo";
-    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
-    
+public class GestorProductos implements IGestorProductos{
     
     
     private ArrayList<Producto> productos = new ArrayList<>();
@@ -126,5 +117,16 @@ public class GestorProductos {
                 return u;
             }
         return null;
+    }
+    
+    public String borrarProducto(Producto producto){
+        GestorPedidos gp = GestorPedidos.instanciar();
+        for(Producto u: productos){
+            if(u.equals(producto) && !gp.hayPedidosConEsteProducto(producto)){
+                productos.remove(u);
+            }
+        }
+    
+        return EXITO2; 
     }
 }

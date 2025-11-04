@@ -4,24 +4,18 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 /**
  *
  * @author rocio
  */
-public class GestorUsuarios{
+public class GestorUsuarios implements IGestorUsuarios{
     ArrayList<Usuario> usuarios = new ArrayList<>();
     private static GestorUsuarios gestor;
 
-    public static final String EXITO = "Usuario creado/modificado con exito";
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden oson incorrectas";
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
-    public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
 
     private GestorUsuarios() {                               /*Implementacion del metodo para que solo se pueda crear
                                                                              una instancia del mismo  */
@@ -140,6 +134,17 @@ public ArrayList<Usuario> buscarUsuarios(String apellido)
         return ERROR_PERFIL;
     }
     return VALIDACION_EXITO;
+    }
+    
+    public String borrarUsuario(Usuario usuario){
+        GestorPedidos gp = GestorPedidos.instanciar();
+        
+        for(Usuario u: usuarios){
+            Cliente unCliente = (Cliente)usuario;
+            if(u.equals(usuario) && !gp.hayPedidosConEsteCliente(unCliente))
+                usuarios.remove(u);
+        }
+    return EXITO2;
     }
 }
 
