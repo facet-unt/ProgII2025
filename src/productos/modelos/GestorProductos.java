@@ -1,20 +1,13 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 
-public class GestorProductos {
+public class  GestorProductos implements IGestorProductos {
     private ArrayList<Producto> productos = new ArrayList<>();
     
-    public static final String EXITO = "Producto creado/modificado con éxito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
-    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
-    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
 
     private static GestorProductos instancia;
     
@@ -28,6 +21,21 @@ public class GestorProductos {
         return instancia;
     }
     
+    @Override
+    public String borrarProducto(Producto producto){
+        if (producto==null|| !productos.contains(producto)) {
+            return PRODUCTO_INEXISTENTE;
+        }
+        //verifica si hay pedidos que contengan el producto
+        GestorPedidos gpedidos = GestorPedidos.instanciar();
+        if (gpedidos.hayPedidosConEsteProducto(producto)) {
+            return "no se puede borrar el producto porque tiene pedidos asociados";
+        }
+        productos.remove(producto);
+        return EXITO;
+    }
+    
+    @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (codigo < 0) {
             return ERROR_CODIGO;
@@ -51,6 +59,7 @@ public class GestorProductos {
  
     }
     
+    @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (codigo < 0) {
             return ERROR_CODIGO;
@@ -84,10 +93,12 @@ public class GestorProductos {
         return EXITO;
     }
     
+    @Override
     public ArrayList<Producto> menu() {
         return this.productos;
     }
     
+    @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> encontrados = new ArrayList<>();
         for (Producto p : productos) {
@@ -98,6 +109,7 @@ public class GestorProductos {
         return encontrados;
     }
     
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         if (productos.contains(producto)) {
             return productos.contains(producto);
@@ -106,6 +118,7 @@ public class GestorProductos {
          return false;
     }
     
+    @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> encontrados = new ArrayList<>();
         for (Producto p : productos) {
@@ -116,6 +129,7 @@ public class GestorProductos {
         return encontrados;
     }
     
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         for(Producto p : productos){
             if (p.verCodigo()== codigo) {
