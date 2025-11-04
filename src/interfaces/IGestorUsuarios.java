@@ -16,8 +16,8 @@ public interface IGestorUsuarios {
     
     public static final String USUARIO_TIENE_PEDIDO = "El usuario tiene un pedido en curso ";
     public static final String OPERACION_FALLIDA = "No pudo realizarse la operación ";
-    public static final String OPERACION_EXITOSA = "Operación exitosa";
-    
+    public static final String OPERACION_EXITOSA = "Operación exitosa ";
+    public static final String USUARIO_INEX = "El usuario no existe ";
     
     
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
