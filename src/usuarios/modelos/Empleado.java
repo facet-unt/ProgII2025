@@ -26,10 +26,10 @@ public class Empleado extends Usuario{
     @Override
     public ArrayList<Pedido> verPedido() {
         
-        return vacio;
+       return null ;
     }
     public ArrayList<Pedido> verPedidos(){
-        return 
+        return GestorPedidos.instanciar().verPedidos();
     }
         
     

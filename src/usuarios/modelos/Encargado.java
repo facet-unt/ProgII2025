@@ -6,7 +6,7 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
-
+import pedidos.modelos.GestorPedidos;
 /**
  *
  * @author Esteban
@@ -27,5 +27,7 @@ public class Encargado extends Usuario{
         
         return vacio;
     }
-    
+    public ArrayList<Pedido> verPedidos(){
+        return GestorPedidos.instanciar().verPedidos();
+    }
 }

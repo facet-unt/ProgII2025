@@ -4,6 +4,7 @@
  */
 package pedidos.modelos;
 
+import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -14,19 +15,19 @@ import usuarios.modelos.Cliente;
  *
  * @author octav
  */
-public class GestorPedidos {
+public class GestorPedidos implements IGestorPedidos {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     private static GestorPedidos instancia;
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
-    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
-    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
-    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
-    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
-    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
-    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
-    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
-    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
-    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
+//    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+//    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
+//    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
+//    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
+//    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
+//    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
+//    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
+//    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
+//    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
+//    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
     private GestorPedidos() {
 
     }
@@ -37,8 +38,9 @@ public class GestorPedidos {
         }
         return instancia;
     }
-    public String crearPedido(int numero,LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
-        Pedido pedido= new Pedido(numero,fecha,hora,productosDelPedido,cliente);
+    @Override
+    public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+        Pedido pedido= new Pedido(fecha,hora,productosDelPedido,cliente);
         if(cliente==null)
             return ERROR_CLIENTE;
         if(productosDelPedido==null)
@@ -50,6 +52,7 @@ public class GestorPedidos {
         cliente.agregarPedido(pedido);
         return EXITO;
     }
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar){
         if(pedidoAModificar.verEstado()==null)
             return ERROR_ESTADO;
@@ -91,5 +94,10 @@ public class GestorPedidos {
                 return p;
         }
         return null;
+    }
+    public String cancelarPedido(Pedido pedido){
+        String cadena="El pedido se cancelo con exito";
+        pedidos.remove(pedido);
+        return cadena;
     }
 }
