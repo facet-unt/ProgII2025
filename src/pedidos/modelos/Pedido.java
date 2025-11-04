@@ -38,7 +38,7 @@ public class Pedido {
     }
     
     public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
-        this(contador,);
+        this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
     }
     
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {

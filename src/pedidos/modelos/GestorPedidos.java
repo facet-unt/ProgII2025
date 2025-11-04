@@ -3,9 +3,21 @@ package pedidos.modelos;
 import java.time.*;
 import usuarios.modelos.*;
 import java.util.ArrayList;
+import productos.modelos.Categoria;
+import productos.modelos.Producto;
+
+
 
 
 public class GestorPedidos {
+    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+    public static final String CAMBIO_ESTADO_FRACASO= "Al pedido no se le puede cambiar el estado";
+    
+    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
+    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
+    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
+    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
+    public static final String VALIDACION_FRACASO = "El pedido tiene los datos incorrectos";
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     private static GestorPedidos instancia;
@@ -24,87 +36,76 @@ public class GestorPedidos {
     
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         Pedido p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
-        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
-        {
+        if(fecha!=null&&hora!=null&&!productosDelPedido.isEmpty()&&cliente!=null)
+        {   
+            if (pedidos.contains(p)){
+                return PEDIDOS_DUPLICADOS;
+            }
+            cliente.agregarPedido(p);
             pedidos.add(p);
-            return ("Operación exitosa: El producto " + descripcion + " con código "+codigo +" categoría "+ categoria + " estado "+ estado + " y precio " +precio + " se guardó correctamente"); 
+            return VALIDACION_EXITO; 
             
         }
         else
         {
-            return ("No se pudo realizar la Operación, ingrese valores válidos");
+            return VALIDACION_FRACASO;
         }
         
     }
     
-    public String modificarPedido(Pedido p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (productos.contains(p))
-            {
-                productos.remove(p);
+    public String cambiarEstado(Pedido pedidoAmodificar){
+        switch (pedidoAmodificar.verEstado()) {
+            case CREADO -> {
+                pedidoAmodificar.asignarEstado(Estado.PROCESANDO);
+                return "Procesando Pedido";
             }
-        p.asignarCodigo(codigo);
-        p.asignarDescripcion(descripcion);
-        p.asignarPrecio(precio);
-        p.asignarCategoria(categoria);
-        p.asignarEstado(estado);
-        productos.add(p);
-        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
-        {
-            productos.add(p);
-            return ("Operación exitosa: Los nuevos datos de producto son: descripción "+descripcion+", código "+codigo+", precio " +precio+", categoría "+categoria+", estado "+estado+"."); 
-            
+
+            case PROCESANDO -> {
+                pedidoAmodificar.asignarEstado(Estado.ENTREGADO);
+                return "Pedido entregado";
+            }
+
+            default -> {
+                return CAMBIO_ESTADO_FRACASO;
+            }
         }
-        else
-        {
-            return ("No se pudo realizar la Operación, ingrese valores válidos");
-        }
+      
     }
     
-    public ArrayList<Pedido> menu() {
-        return this.productos;
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
+    }
+    
+    public boolean hayPedidosConEsteProducto(Producto producto){
+        boolean bandera=false; 
+        for (Pedido unPedido: pedidos){
+            if (unPedido.verProductoPedido().contains(producto)){
+                    bandera=true;
+                    break;
+            }
+        }
+        return bandera;
+    }
+    
+    public boolean existeEstePedido(Pedido pedido){
+        boolean bandera = false;    
+        if (pedidos.contains(pedido)){
+            bandera=true;
+            System.out.println("Pedido encontrado");
+        }
+        else System.out.println(PEDIDO_INEXISTENTE);
+        return bandera;    
+    }
+    
+    public Pedido obtenerPedido(Integer numero){
+        for (Pedido unPedido : pedidos){
+            if (unPedido.verNumero()==numero)
+                return unPedido;
         
-    }
-    
-    public ArrayList<Pedido> buscarPedidos(String descripcion) {
-         
-        ArrayList<Pedido> encontrados = new ArrayList<>();
-        for (Pedido p : productos) {
-             
-            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
-                encontrados.add(p);
-            }
-                
-            }
-        return encontrados;
-    }
-    
-    public boolean existeEstePedido(Pedido producto) {
-        if (productos.contains(producto))
-            return false;
-        else
-            return true;
-    }
-    
-    public ArrayList<Pedido> verPedidosPorCategoria(Categoria categoria) {
-         ArrayList<Pedido> prodcat = new ArrayList<>();
-        for (Pedido p : productos) {
-             
-            if (p.verCategoria()==(categoria)) {
-                prodcat.add(p);
-            }
-                
-            }
-        return prodcat;
-    }
-    
-    public Pedido obtenerPedido(Integer codigo) {
-        for (Pedido p : productos) {
-             
-            if (p.verCodigo()==(codigo)) {
-                return p;
-            }
-                
-            }
+        }
+        System.out.println(PEDIDO_INEXISTENTE);
         return null;
     }
+    
+    
     }
