@@ -94,8 +94,13 @@ public class GestorPedidos implements IGestorPedidos {
     }
     @Override
     public String cancelarPedido(Pedido pedido){
-        String cadena="El pedido se cancelo con exito";
-        pedidos.remove(pedido);
-        return cadena;
+        Cliente unCliente = pedido.verCliente();
+        for(Pedido p: pedidos){
+            if(p.verCliente() == unCliente){
+                pedidos.remove(pedido);
+                return PEDIDO_BORRADO;
+            }
+        }
+        return PEDIDO_INEXISTENTE;
     }
 }

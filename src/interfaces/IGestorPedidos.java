@@ -27,6 +27,7 @@ public interface IGestorPedidos {
     public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
+    public static final String PEDIDO_BORRADO = "El pedido fue borrado";
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
     public String cambiarEstado(Pedido pedidoAModificar);
     public ArrayList<Pedido> verPedidos();
