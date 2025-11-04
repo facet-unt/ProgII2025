@@ -120,8 +120,8 @@ public class GestorPedidos implements IGestorPedidos{
         if(pedido==null){
             return PEDIDO_INEXISTENTE;
         }
-        pedido.verUnCliente().cancelarPedido(pedido);
         pedidos.remove(pedido);
+        pedido.verUnCliente().cancelarPedido(pedido);
         return EXITO;
     }
 }

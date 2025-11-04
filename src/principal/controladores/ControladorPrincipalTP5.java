@@ -1,5 +1,8 @@
 package principal.controladores;
 
+import interfaces.IGestorPedidos;
+import interfaces.IGestorProductos;
+import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -22,14 +25,14 @@ import usuarios.modelos.Usuario;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        GestorProductos gp = GestorProductos.instanciar();
-        GestorUsuarios gu = GestorUsuarios.instanciar();
-        GestorPedidos gpd = GestorPedidos.instanciar();
-        
+        IGestorProductos gp = GestorProductos.instanciar();
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        IGestorPedidos gpd = GestorPedidos.instanciar();
         
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(4, "Producto4", 5.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
                     
         for(Producto p : gp.menu()) {
             p.mostrar();
@@ -53,9 +56,18 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
+        Producto productoEliminar = gp.obtenerProducto(4);
+        gp.borrarProducto(productoEliminar);
+        //borrar producto 4
+        for(Producto p : gp.menu()) {
+            p.mostrar();
+        }
+        
+        
         System.out.println(gu.crearUsuario("correo@usuario1", "a1", "n1", Perfil.CLIENTE, "1234", "1234"));
         System.out.println(gu.crearUsuario("correo@usuario2", "a2", "n2", Perfil.ENCARGADO, "1234", "1234"));
         System.out.println(gu.crearUsuario("correo@usuario3", "a3", "n3", Perfil.CLIENTE, "1234", "1234"));
+        
         System.out.println(gu.crearUsuario("correo@usuario1", "a1", "n1", Perfil.CLIENTE, "1234", "1234"));
         //correo repetido
         System.out.println(gu.crearUsuario("correo@usuario4", "a4", "n4", Perfil.CLIENTE, "1234", "1235"));
@@ -70,8 +82,10 @@ public class ControladorPrincipalTP5 {
         }
         
         Usuario u1 = gu.obtenerUsuario("correo@usuario1");
+        /*
         System.out.println(gu.modificarUsuario(u1, "correo@usuario1", "nuevoApellido", "nuevoNombre", Perfil.CLIENTE, "1234", "1234"));
         System.out.println(gu.modificarUsuario(u1, "correo@usuario2", "nuevoApellido", "nuevoNombre", Perfil.CLIENTE, "1234", "1234"));
+        */
         //correo ya existente
         
         for(Usuario u: gu.verUsuarios()){
@@ -84,6 +98,13 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gu.existeEsteUsuario(u1));
         gu.obtenerUsuario("correo@usuario3").mostrar();
+        
+        Usuario usuarioEliminar = gu.obtenerUsuario("correo@usuario2");
+        gu.borrarUsuario(usuarioEliminar);
+        //borrar usuario 2
+        for(Usuario u: gu.verUsuarios()){
+            u.mostrar();
+        }
         
         ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
         ArrayList<ProductoDelPedido> listapdp2 = new ArrayList<>();
@@ -130,5 +151,14 @@ public class ControladorPrincipalTP5 {
         System.out.println(gpd.existeEstePedido(p1));
         
         gpd.obtenerPedido(3).mostrar();
+        //obtener pedido 3
+        
+        Pedido pedidoEliminar = gpd.obtenerPedido(1);
+        gpd.cancelarPedido(pedidoEliminar);
+        //borrar pedido 1
+
+        for(Pedido p: gpd.verPedidos()){
+            p.mostrar();
+        }
     }
 }
