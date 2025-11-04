@@ -49,67 +49,67 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-//        // -------------------- GESTOR USUARIOS --------------------
-//        System.out.println("\n=== PRUEBA GESTOR USUARIOS ===");
-//        GestorUsuarios gu = GestorUsuarios.instanciar();
-//
-//        System.out.println(gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
-//        System.out.println(gu.crearUsuario("empleado1@mail.com", "Gomez", "Juan", Perfil.EMPLEADO, "123", "123"));
-//        System.out.println(gu.crearUsuario("encargado1@mail.com", "Sosa", "Maria", Perfil.ENCARGADO, "123", "123"));
-//        System.out.println("Intento duplicado: " + gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
-//
-//        System.out.println("\nLista de usuarios registrados:");
-//        for (var u : gu.verUsuarios()) {
-//            System.out.println(u.verCorreo() + " - " + u.verApellido() + ", " + u.verNombre());
-//        }
-//
-//        Cliente cliente = (Cliente) gu.obtenerUsuario("cliente1@mail.com");
-//        Empleado empleado = (Empleado) gu.obtenerUsuario("empleado1@mail.com");
-//        Encargado encargado = (Encargado) gu.obtenerUsuario("encargado1@mail.com");
-//
-//        // -------------------- GESTOR PEDIDOS --------------------
-//        System.out.println("\n=== PRUEBA GESTOR PEDIDOS ===");
-//        GestorPedidos gped = GestorPedidos.instanciar();
-//
-//        // Crear productos para usar en los pedidos
-//        Producto p1 = new Producto(10, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2500f);
-//        Producto p2 = new Producto(11, "Flan", Categoria.POSTRE, Estado.DISPONIBLE, 1200f);
-//
-//        ArrayList<ProductoDelPedido> listaProductos = new ArrayList<>();
-//        listaProductos.add(new ProductoDelPedido(p1, 2));
-//        listaProductos.add(new ProductoDelPedido(p2, 1));
-//
-//        // Crear pedido correcto
-//        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, cliente));
-//
-//        // Crear pedido con cliente nulo (debe dar error)
-//        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, null));
-//
-//        System.out.println("\nLista de pedidos registrados:");
-//        for (Pedido p : gped.verPedidos()) {
-//            p.mostrar();
-//        }
-//
-//        // Cambiar estado de pedido 1 si existe
-//        Pedido primerPedido = gped.obtenerPedido(1);
-//        if (primerPedido != null) {
-//            System.out.println("Estado actual: " + primerPedido.verEstado());
-//            System.out.println("Resultado cambiarEstado: " + gped.cambiarEstado(primerPedido));
-//            System.out.println("Nuevo estado: " + primerPedido.verEstado());
-//        }
-//
-//        System.out.println("\nPedidos vistos por empleado:");
-//        for (Pedido p : empleado.verPedidos()) {
-//            System.out.println(p.verNumero() + " - " + p.verEstado());
-//        }
-//
-//        System.out.println("\nPedidos vistos por encargado:");
-//        for (Pedido p : encargado.verPedidos()) {
-//            System.out.println(p.verNumero() + " - " + p.verEstado());
-//        }
-//
-//        System.out.println("\nHay pedidos con este cliente?: " + gped.hayPedidosConEsteCliente(cliente));
-//        System.out.println("Hay pedidos con este producto (Pizza)?: " + gped.hayPedidosConEsteProducto(p1));
+        // -------------------- GESTOR USUARIOS --------------------
+        System.out.println("\n=== PRUEBA GESTOR USUARIOS ===");
+        GestorUsuarios gu = GestorUsuarios.instanciar();
+
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
+        System.out.println(gu.crearUsuario("empleado1@mail.com", "Gomez", "Juan", Perfil.EMPLEADO, "123", "123"));
+        System.out.println(gu.crearUsuario("encargado1@mail.com", "Sosa", "Maria", Perfil.ENCARGADO, "123", "123"));
+        System.out.println("Intento duplicado: " + gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
+
+        System.out.println("\nLista de usuarios registrados:");
+        for (var u : gu.verUsuarios()) {
+            System.out.println(u.verCorreo() + " - " + u.verApellido() + ", " + u.verNombre());
+        }
+
+        Cliente cliente = (Cliente) gu.obtenerUsuario("cliente1@mail.com");
+        Empleado empleado = (Empleado) gu.obtenerUsuario("empleado1@mail.com");
+        Encargado encargado = (Encargado) gu.obtenerUsuario("encargado1@mail.com");
+
+        // -------------------- GESTOR PEDIDOS --------------------
+        System.out.println("\n=== PRUEBA GESTOR PEDIDOS ===");
+        GestorPedidos gped = GestorPedidos.instanciar();
+
+        // Crear productos para usar en los pedidos
+        Producto p1 = new Producto(10, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2500f);
+        Producto p2 = new Producto(11, "Flan", Categoria.POSTRE, Estado.DISPONIBLE, 1200f);
+
+        ArrayList<ProductoDelPedido> listaProductos = new ArrayList<>();
+        listaProductos.add(new ProductoDelPedido(p1, 2));
+        listaProductos.add(new ProductoDelPedido(p2, 1));
+
+        // Crear pedido correcto
+        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, cliente));
+
+        // Crear pedido con cliente nulo (debe dar error)
+        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, null));
+
+        System.out.println("\nLista de pedidos registrados:");
+        for (Pedido p : gped.verPedidos()) {
+            p.mostrar();
+        }
+
+        // Cambiar estado de pedido 1 si existe
+        Pedido primerPedido = gped.obtenerPedido(1);
+        if (primerPedido != null) {
+            System.out.println("Estado actual: " + primerPedido.verEstado());
+            System.out.println("Resultado cambiarEstado: " + gped.cambiarEstado(primerPedido));
+            System.out.println("Nuevo estado: " + primerPedido.verEstado());
+        }
+
+        System.out.println("\nPedidos vistos por empleado:");
+        for (Pedido p : empleado.verPedidos()) {
+            System.out.println(p.verNumero() + " - " + p.verEstado());
+        }
+
+        System.out.println("\nPedidos vistos por encargado:");
+        for (Pedido p : encargado.verPedidos()) {
+            System.out.println(p.verNumero() + " - " + p.verEstado());
+        }
+
+        System.out.println("\nHay pedidos con este cliente?: " + gped.hayPedidosConEsteCliente(cliente));
+        System.out.println("Hay pedidos con este producto (Pizza)?: " + gped.hayPedidosConEsteProducto(p1));
     }
-//        
+
 }
