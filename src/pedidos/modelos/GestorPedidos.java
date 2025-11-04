@@ -17,10 +17,10 @@ import usuarios.modelos.GestorUsuarios;
  */
 public class GestorPedidos {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
-     private static GestorUsuarios instancia;
-     public static GestorUsuarios instanciar() {
+     private static GestorPedidos instancia;
+     public static GestorPedidos instanciar() {
         if (instancia == null)
-            instancia = new GestorUsuarios();
+            instancia = new GestorPedidos();
         return instancia;
     }
      

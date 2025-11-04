@@ -1,7 +1,7 @@
 package usuarios.modelos;
 
-import java.util.List;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido; 
 /**
  *
@@ -30,7 +30,8 @@ public class Empleado extends Usuario {
     //modificacion del metodo verPedido para que devuelva nada 
    
      public ArrayList<Pedido> verPedidos() {
-        return null;
+     GestorPedidos gp = GestorPedidos.instanciar();
+     return gp.verPedidos();
     }
 
    
