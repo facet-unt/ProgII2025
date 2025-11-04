@@ -1,5 +1,8 @@
 package principal.controladores;
 
+import interfaces.IGestorPedidos;
+import interfaces.IGestorProductos;
+import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ import usuarios.modelos.Perfil;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        GestorProductos gp = GestorProductos.instanciar();
+        IGestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
@@ -49,15 +52,15 @@ public class ControladorPrincipalTP5 {
           
         System.out.println("GESTOR PEDIDOS");
         
-        GestorUsuarios gu = GestorUsuarios.instanciar();
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
         System.out.println(gu.crearUsuario("correo@gmail", "apellido", "nombre", Perfil.CLIENTE, "clave12", "clave12"));
         ArrayList<ProductoDelPedido> pdp= new ArrayList<ProductoDelPedido>();
         
        ProductoDelPedido pdp1= new ProductoDelPedido(gp.obtenerProducto(1), 1 );
        pdp.add(pdp1);
         
-        GestorPedidos gped = GestorPedidos.instanciar();
-        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), pdp,(Cliente)gu.obtenerUsuario("correo") ));
+        IGestorPedidos gped = GestorPedidos.instanciar();
+        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), pdp,(Cliente)gu.obtenerUsuario("correo@gmail") ));
         Pedido ped1= gped.obtenerPedido(1);
         System.out.println(gped.existeEstePedido(ped1));
         
@@ -65,7 +68,7 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gped.obtenerPedido(1).getEstado());
         
-        System.out.println(gped.hayPedidosConEsteCliente((Cliente)gu.obtenerUsuario("correo")));
+        System.out.println(gped.hayPedidosConEsteCliente((Cliente)gu.obtenerUsuario("correo@gmail")));
         
         System.out.println(gped.hayPedidosConEsteProducto(unProducto));
         
@@ -75,6 +78,13 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gu.existeEsteUsuario(gu.obtenerUsuario("correo@gmail")));
         
+        System.out.println("==================================================");
+        
+        System.out.println(gped.cancelarPedido(ped1));
+        
+        System.out.println(gu.borrarUsuario(gu.obtenerUsuario("correo@gmail")));
+        
+        System.out.println(gp.borrarProducto(gp.obtenerProducto(3)));
     }
     
     
