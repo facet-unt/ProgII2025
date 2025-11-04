@@ -1,5 +1,6 @@
 package principal.controladores;
 
+import interfaces.*;
 import java.util.ArrayList;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -12,7 +13,7 @@ import productos.modelos.Producto;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        GestorProductos gp = GestorProductos.instanciar();
+        IGestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));

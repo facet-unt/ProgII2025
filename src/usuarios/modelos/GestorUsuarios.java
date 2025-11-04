@@ -3,16 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios.modelos;
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import static usuarios.modelos.Perfil.CLIENTE;
 import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
+import pedidos.modelos.*;
 
 /**
  *
  * @author estudiante
  */
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios{
  private ArrayList<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
@@ -124,6 +126,31 @@ public class GestorUsuarios {
             }
         return null;
     }
+
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        if(usuarios.contains(usuario)&&usuario!=null)
+        {
+            if (usuario instanceof Cliente)
+            {
+                GestorPedidos gDeP = GestorPedidos.instanciar();
+                for(Pedido unPedido:gDeP.verPedidos())
+                {
+                    if((unPedido.verCliente()).equals(usuario))
+                    {
+                        return (OPERACION_FALLIDA + USUARIO_TIENE_PEDIDO);
+                    }
+                }
+            }
+            usuarios.remove(usuario);
+            return(OPERACION_EXITOSA);
+        }
+       
+            return(OPERACION_FALLIDA + USUARIO_INEX);
+        
+    }
+    
+    
     }
     
     

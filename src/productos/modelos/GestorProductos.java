@@ -129,8 +129,7 @@ public class GestorProductos implements IGestorProductos{
     {
         if (productos.contains(producto)&&producto!=null)
         {
-            GestorPedidos pedidos = null;
-            pedidos.instanciar();
+            GestorPedidos pedidos = GestorPedidos.instanciar();
             for(Pedido unPedido: pedidos.verPedidos())
             {
                 for (ProductoDelPedido unProducto: unPedido.verProductoPedido())
@@ -139,19 +138,16 @@ public class GestorProductos implements IGestorProductos{
                    {
                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
                    }
-                   else
-                   {
-                       productos.remove(producto);
-                       return (OPERACION_EXITOSA);
-                   }
+             
                 }
                
             }
+             productos.remove(producto);
+             return (OPERACION_EXITOSA);
         }
         else
         {
             return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
         }
-        return null;
     }
     }
