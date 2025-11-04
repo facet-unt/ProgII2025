@@ -4,13 +4,14 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 
 /**
  *
  * @author thoma
  */
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios {
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
@@ -26,18 +27,8 @@ public class GestorUsuarios {
         return instancia;
     }
     
-    //Constantes
-    public static final String EXITO = "Usuario creado/modificado con exito";
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
-    public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
-    
-    
     //Metodos
+    @Override
     public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida) {
         String validacion = this.validacionDatos(correo, clave, apellido, nombre, perfil, claveRepetida);
         
@@ -71,10 +62,12 @@ public class GestorUsuarios {
         return null;
     }
     
+    @Override
     public ArrayList<Usuario> verUsuarios() {
         return this.listaUsuarios;
     }
     
+    @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido) {
         ArrayList <Usuario> usuariosEncontrados = new ArrayList<>();
         
@@ -91,10 +84,12 @@ public class GestorUsuarios {
         return usuariosEncontrados;
     }
     
+    @Override
     public boolean existeEsteUsuario(Usuario usuario) {
         return this.listaUsuarios.contains(usuario);
     }
     
+    @Override
     public Usuario ObtenerUsuario(String correo) {
         if (correo == null || correo.isBlank()) {
             return null;
