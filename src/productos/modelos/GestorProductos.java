@@ -2,18 +2,11 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos {
     private ArrayList<Producto> productos = new ArrayList<>();
-//    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-//    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
-//    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-//    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-//    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-//    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
-//    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-//    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
     private static GestorProductos instancia;
     
     private GestorProductos() {
@@ -114,11 +107,13 @@ public class GestorProductos implements IGestorProductos {
         }
     @Override
     public String borrarProducto(Producto producto){
-        String cadena="El producto se borro con exito";
-        String cadena1="El producto esta en un pedido, no puede ser borrado";
-        if(){
-        return cadena;
+        GestorPedidos gPedidos= GestorPedidos.instanciar();
+        if(gPedidos.hayPedidosConEsteProducto(producto)== true){
+            return PRODUCTO_EN_PEDIDO;
         }
-        return cadena1;
+        else{
+            productos.remove(producto);
+            return PRODUCTO_BORRADO;
+        }
     }
     }
