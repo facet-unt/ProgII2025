@@ -1,9 +1,11 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.*;
 
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
@@ -23,12 +25,21 @@ public class GestorProductos {
         if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
         {
             productos.add(p);
-            return ("Operación exitosa: El producto " + descripcion + " con código "+codigo +" categoría "+ categoria + " estado "+ estado + " y precio " +precio + " se guardó correctamente"); 
+            return (EXITO); 
             
         }
         else
         {
-            return ("No se pudo realizar la Operación, ingrese valores válidos");
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
         }
         
     }
@@ -47,12 +58,21 @@ public class GestorProductos {
         if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
         {
             productos.add(p);
-            return ("Operación exitosa: Los nuevos datos de producto son: descripción "+descripcion+", código "+codigo+", precio " +precio+", categoría "+categoria+", estado "+estado+"."); 
+            return (EXITO); 
             
         }
         else
         {
-            return ("No se pudo realizar la Operación, ingrese valores válidos");
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
         }
     }
     
@@ -101,6 +121,37 @@ public class GestorProductos {
             }
                 
             }
+        return null;
+    }
+    
+    @Override
+    public String borrarProducto(Producto producto)
+    {
+        if (productos.contains(producto)&&producto!=null)
+        {
+            GestorPedidos pedidos = null;
+            pedidos.instanciar();
+            for(Pedido unPedido: pedidos.verPedidos())
+            {
+                for (ProductoDelPedido unProducto: unPedido.verProductoPedido())
+                {
+                   if((unProducto.verUnProducto()).equals(producto))
+                   {
+                       return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
+                   }
+                   else
+                   {
+                       productos.remove(producto);
+                       return (OPERACION_EXITOSA);
+                   }
+                }
+               
+            }
+        }
+        else
+        {
+            return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
+        }
         return null;
     }
     }
