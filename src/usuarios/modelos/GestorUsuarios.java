@@ -1,20 +1,13 @@
 package usuarios.modelos;
 
+import Interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios{
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
-    
-    public static final String EXITO = "Usuario creado/modificado con éxito";
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    public static final String ERROR_APELLIDO = "El apellido del usuario escincorrecto";
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
-    public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
     
     private GestorUsuarios() {
         
@@ -26,7 +19,7 @@ public class GestorUsuarios {
         return instancia;
     }
 
-    public String crearUsuario(String correo, String apellido, String nombre,String clave, Perfil perfil,  String claveRepetida){
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         if(correo==null || !correo.contains("@")){
             return ERROR_CORREO;
         }
@@ -74,6 +67,27 @@ public class GestorUsuarios {
             }
         }
         return uBusq;
+    }
+    
+    public String borrarUsuario(Usuario usuario) {
+        if (usuario == null) {
+            return "El usuario no existe";
+        }
+
+        if (usuario instanceof Cliente) {
+            Cliente cliente = (Cliente) usuario;
+            GestorPedidos gp = GestorPedidos.instanciar();
+
+            if (gp.hayPedidosConEsteCliente(cliente)) {
+                return "No se puede borrar el usuario, existen pedidos con el mismo.";
+            }
+        }
+
+        if (usuarios.remove(usuario)) {
+            return "Usuario borrado con éxito";
+        } else {
+            return "El usuario no estaba registrado";
+        }
     }
     
     public boolean existeEsteUsuario(Usuario usuario){

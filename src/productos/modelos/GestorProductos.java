@@ -1,21 +1,15 @@
 package productos.modelos;
 
+import Interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
-    
-    public static final String EXITO = "Producto creado/modificado con éxito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
-    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
-    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
 
     private GestorProductos() {
         
@@ -95,6 +89,23 @@ public class GestorProductos {
             }
         }
         return pEncontrados;
+    }
+    
+    public String borrarProducto(Producto producto) {
+        if (producto == null) {
+            return PRODUCTO_INEXISTENTE;
+        }
+
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if (gp.hayPedidosConEsteProducto(producto)) {
+            return "No se puede borrar el producto, existen pedidos con el mismo.";
+        }
+        
+        if (productos.remove(producto)) {
+            return "Producto borrado con éxito";
+        } else {
+            return PRODUCTO_INEXISTENTE;
+        }
     }
     
     public boolean existeEsteProducto(Producto producto) {

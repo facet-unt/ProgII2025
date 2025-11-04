@@ -1,5 +1,6 @@
 package pedidos.modelos;
 
+import Interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -7,21 +8,10 @@ import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
-public class GestorPedidos {
+public class GestorPedidos implements IGestorPedidos{
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     private static GestorPedidos instancia;
-    
-    public static final String EXITO = "Pedido creado/modificado/cancelado con exito";
-    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
-    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
-    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
-    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
-    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
-    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
-    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
-    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
-    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
 
     private GestorPedidos() {
         
@@ -101,6 +91,27 @@ public class GestorPedidos {
             }
         }
         return false;
+    }
+    
+    public String cancelarPedido(Pedido pedido) {
+        if (pedido == null) {
+            return PEDIDO_INEXISTENTE;
+        }
+
+        if (pedido.verEstado() == Estado.ENTREGADO) {
+            return ERROR_CANCELAR;
+        }
+
+        Cliente cliente = pedido.verCliente();
+        if (cliente != null) {
+            cliente.cancelarPedido(pedido);
+        }
+
+        if (pedidos.remove(pedido)) {
+            return EXITO;
+        } else {
+            return PEDIDO_INEXISTENTE;
+        }
     }
     
     public boolean existeEstePedido(Pedido pedido){
