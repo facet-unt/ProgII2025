@@ -4,21 +4,16 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 /**
  *
  * @author salut
  */
-public class GestorUsuarios {
-    public static final String EXITO = "Usuario creado/modificado con éxito";
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
-    public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
+public class GestorUsuarios implements IGestorUsuarios{
+
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
@@ -33,6 +28,7 @@ public class GestorUsuarios {
         return instancia;
     }
     
+    @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         if(!(correo.contains("@"))||correo.equals(null)){
             return ERROR_CORREO;
@@ -111,10 +107,12 @@ public class GestorUsuarios {
         return EXITO;
     }
     
+    @Override
     public ArrayList<Usuario> verUsuarios(){
         return usuarios;
     }
     
+    @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
         for(Usuario u: usuarios){
@@ -125,6 +123,7 @@ public class GestorUsuarios {
         return usuariosEncontrados;
     }
     
+    @Override
     public boolean existeEsteUsuario(Usuario usuario){
         for(Usuario u: usuarios){
             if(u.equals(usuario)){
@@ -134,6 +133,7 @@ public class GestorUsuarios {
         return false;
     }
     
+    @Override
     public Usuario obtenerUsuario(String correo){
         for(Usuario u: usuarios){
             if(u.verCorreo().equals(correo)){
@@ -141,5 +141,17 @@ public class GestorUsuarios {
             }
         }
         return null;
+    }
+
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if(!(usuario instanceof Cliente)){
+            return ERROR_PERFIL;
+        }
+        if(!(gp.hayPedidosConEsteCliente((Cliente)usuario))){
+            usuarios.remove(usuario);
+        }
+        return EXITO;
     }
 }
