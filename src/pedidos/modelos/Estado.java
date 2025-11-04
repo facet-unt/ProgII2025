@@ -28,4 +28,12 @@ public enum Estado {
     public String toString() {
         return this.valor;
     } 
+    
+    public String verValor() {
+        return valor;
+    }
+
+    public void asignarValor(String valor) {
+        this.valor = valor;
+    }
 }

@@ -19,6 +19,8 @@ public class Pedido {
     
    private int numero;
    private LocalDateTime fechaYHora;
+   private LocalDate fecha;
+   private LocalTime hora;
    private Cliente unCliente;
    private Estado unEstado;
    private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
@@ -40,9 +42,6 @@ public class Pedido {
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
         this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
-    
-
-  
 
     public int verNumero() {
         return numero;
@@ -87,8 +86,13 @@ public class Pedido {
         System.out.println("Nro: " + numero);
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
+        if(fechaYHora==null){
+             String fechaFormateada= this.fecha.format(Fecha);
+             String horaFormateada= this.hora.format(Hora);
+        }
         String fechaFormateada = this.fechaYHora.format(Fecha);
         String horaFormateada = this.fechaYHora.format(Hora);
+        
         System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
         System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
         System.out.println("Estado: " + unEstado);
