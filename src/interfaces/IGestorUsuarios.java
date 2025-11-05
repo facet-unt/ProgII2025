@@ -39,5 +39,5 @@ public interface IGestorUsuarios {
     
     public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo"; 
     
-    public static final String VALIDACION_EXITO = "Los datos del usuario socorrectos";
+    public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
 }

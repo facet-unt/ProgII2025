@@ -6,12 +6,8 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
-import pedidos.modelos.GestorPedidos;
 
-/**
- *
- * @author Esteban
- */
+
 
 public class Empleado extends Usuario{
 

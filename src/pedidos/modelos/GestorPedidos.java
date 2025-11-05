@@ -226,6 +226,8 @@ public class GestorPedidos implements IGestorPedidos{
 
     @Override
     public String cancelarPedido(Pedido pedido) {
-        
+        if(pedidos.contains(pedido)&&pedido!=null);
+        this.pedidos.remove(pedido);
+        return EXITO;
     }   
 }

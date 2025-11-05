@@ -14,11 +14,8 @@ import static interfaces.IGestorUsuarios.USUARIOS_DUPLICADOS;
 import java.util.ArrayList;
 import static productos.modelos.GestorProductos.EXITO;
 import static productos.modelos.GestorProductos.VALIDACION_EXITO;
+import pedidos.modelos.GestorPedidos;
 
-/**
- *
- * @author tobias150
- */
 public class GestorUsuarios implements IGestorUsuarios{
     
     private ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -35,7 +32,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
         return instancia;
     }
-            
+        @Override    
         public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         
         String resultado = validarValores(correo, apellido, nombre, perfil, clave, claveRepetida);
@@ -133,6 +130,22 @@ public class GestorUsuarios implements IGestorUsuarios{
     @Override
     public String borrarUsuario(Usuario usuario) {
         
+        
+        if (usuario instanceof Cliente) {
+            Cliente cliente = (Cliente) usuario;
+            GestorPedidos gp = GestorPedidos.getInstancia();
+
+            if (gp.hayPedidosConEsteCliente(cliente)) {
+                return "No se puede eliminar el usuario, posee un pedido pendiente.";
+            }
+            else {
+            usuarios.remove(usuario);    
+                return "Usuario removido con exito";
+            }
+        }
+
+    return ERROR_PERFIL;
+    
     }
     
 }
