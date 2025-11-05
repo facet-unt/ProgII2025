@@ -5,28 +5,37 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;
 import pedidos.modelos.GestorPedidos;
-import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 /**
  *
- * @author Esteban
+ * @author Esteba
  */
 
 public class Encargado extends Usuario{
     
-    //constructor
-    
+    //Constructor
     public Encargado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
-        super(correo,clave, apellido, nombre, perfil);
+        super(correo, clave, apellido, nombre, perfil);
     }
-    
-   @Override
+
+   //Metodos
+
+    @Override
+    public String toString() {
+        return "Encargado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
+    }
+
+    @Override
     public ArrayList<Pedido> verPedidos() {
         GestorPedidos i = GestorPedidos.instanciar();
         return i.verPedidos();
     }
-    
+
+    @Override
+    public void mostrar() {
+        System.out.print("Encargado: ");
+        super.mostrar();
+    }
 }

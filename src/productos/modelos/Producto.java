@@ -81,7 +81,6 @@ public class Producto {
 
     public void asignarEstado(Estado e) {
         unEstado = e;
-
     }
 
     public float verPrecio() {

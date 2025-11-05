@@ -4,13 +4,9 @@
  */
 package pedidos.modelos;
 
-
 /**
  *
- * @author estudiante
-    
-/**
-
+ * @author thoma
  */
 public enum Estado {
     CREADO("Creado"),
@@ -27,7 +23,7 @@ public enum Estado {
     @Override
     public String toString() {
         return this.valor;
-    } 
+    }
     
     public String verValor() {
         return valor;

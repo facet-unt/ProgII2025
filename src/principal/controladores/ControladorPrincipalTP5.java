@@ -29,6 +29,7 @@ public class ControladorPrincipalTP5 {
                         
         for(Producto p : gp.menu()) {
             p.mostrar();
+            System.out.println("");
         }
 
         Producto unProducto = gp.obtenerProducto(1);
@@ -40,6 +41,7 @@ public class ControladorPrincipalTP5 {
         ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
         for(Producto p : productosBuscados) {
             p.mostrar();
+            System.out.println("");
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
