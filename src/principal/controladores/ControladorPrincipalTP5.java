@@ -21,6 +21,7 @@ import usuarios.modelos.Usuario;
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {      
         IGestorProductos gp = GestorProductos.instanciar();
+        
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE));
@@ -47,14 +48,13 @@ public class ControladorPrincipalTP5 {
             p.mostrar();               
         }    
         
-
         for (Producto p : gp.menu()) {
             p.mostrar();//Vuelvo a mostrar los productos, si se elimino uno ya no aparece
         
         }
         //No borramos todavia al producto, ya que puede tener un pedido que lo contenga
-          GestorUsuarios gu = GestorUsuarios.instanciar();
-
+        
+        GestorUsuarios gu = GestorUsuarios.instanciar();
         
         System.out.println(gu.crearUsuario("correo1@gmail.com", "Apellido1", "Nombre1", Perfil.CLIENTE, "Clave1", "Clave1"));
         System.out.println(gu.crearUsuario("correo2@gmail.com", "Apellido2", "Nombre2", Perfil.EMPLEADO, "Clave2", "Clave2"));
@@ -72,7 +72,6 @@ public class ControladorPrincipalTP5 {
         for (Usuario u : usuariosBuscados) {
             u.mostrar();
         }
-
        
         GestorPedidos gped = GestorPedidos.instanciar();
 
@@ -80,7 +79,6 @@ public class ControladorPrincipalTP5 {
         Producto prod1 = gp.obtenerProducto(1);
         Producto prod2 = gp.obtenerProducto(2);
         Producto prod3 = gp.obtenerProducto(3);
-
         
         ArrayList<ProductoDelPedido> lista1 = new ArrayList<>();
         lista1.add(new ProductoDelPedido(prod1, 2));
@@ -102,8 +100,6 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
 
-
-        
         Pedido unPedido = gped.obtenerPedido(1);
         System.out.println(gped.cambiarEstado(unPedido)); 
         System.out.println(gped.cambiarEstado(unPedido)); 
@@ -138,6 +134,5 @@ public class ControladorPrincipalTP5 {
         for (Producto p : gp.menu()) {
             p.mostrar();
         }
-    
     }
 }
