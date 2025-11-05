@@ -1,11 +1,21 @@
-package Interfaces;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package interfaces;
 
 import java.util.ArrayList;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 
+
+
+/**
+ *
+ * @author HP Casa
+ */
 public interface IGestorUsuarios {
-    public static final String EXITO = "Usuario creado/modificado con éxito";
+    public static final String EXITO = "Usuario creado/modificado con exito";
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
     public static final String ERROR_APELLIDO = "El apellido del usuario escincorrecto";
     public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";

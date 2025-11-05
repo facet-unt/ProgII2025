@@ -1,10 +1,11 @@
 package usuarios.modelos;
-
-import Interfaces.IGestorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
 
-public class GestorUsuarios implements IGestorUsuarios{
+
+public class GestorUsuarios implements IGestorUsuarios {
+
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
@@ -19,7 +20,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         return instancia;
     }
 
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil,String clave,  String claveRepetida){
         if(correo==null || !correo.contains("@")){
             return ERROR_CORREO;
         }
@@ -69,27 +70,6 @@ public class GestorUsuarios implements IGestorUsuarios{
         return uBusq;
     }
     
-    public String borrarUsuario(Usuario usuario) {
-        if (usuario == null) {
-            return "El usuario no existe";
-        }
-
-        if (usuario instanceof Cliente) {
-            Cliente cliente = (Cliente) usuario;
-            GestorPedidos gp = GestorPedidos.instanciar();
-
-            if (gp.hayPedidosConEsteCliente(cliente)) {
-                return "No se puede borrar el usuario, existen pedidos con el mismo.";
-            }
-        }
-
-        if (usuarios.remove(usuario)) {
-            return "Usuario borrado con éxito";
-        } else {
-            return "El usuario no estaba registrado";
-        }
-    }
-    
     public boolean existeEsteUsuario(Usuario usuario){
         for(Usuario u: usuarios){
             if(u.verCorreo().equals(usuario.verCorreo())){
@@ -107,4 +87,26 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
         return null;
     }
+
+    public String borrarUsuario(Usuario usuario) {
+    if (usuario == null) {
+        return "El usuario no existe";
+    }
+
+    GestorPedidos gp = GestorPedidos.instanciar();
+    if (usuario instanceof Cliente) {
+        Cliente cliente = (Cliente) usuario;
+        if (gp.hayPedidosConEsteCliente(cliente)) {
+            return "No se puede borrar el usuario, existen pedidos con el mismo.";
+        }
+    }
+
+    if (usuarios.remove(usuario)) {
+        return EXITO;
+    } else {
+        return "El usuario no existe";
+    }
+}
+
+
 }

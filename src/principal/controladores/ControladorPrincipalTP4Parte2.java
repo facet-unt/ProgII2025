@@ -1,9 +1,7 @@
 package principal.controladores;
 
 import java.util.ArrayList;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
-import productos.modelos.Producto;
+
 import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;

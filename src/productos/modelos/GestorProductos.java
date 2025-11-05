@@ -1,15 +1,15 @@
 package productos.modelos;
 
-import Interfaces.IGestorProductos;
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
+
 
 public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
+
 
     private GestorProductos() {
         
@@ -91,23 +91,6 @@ public class GestorProductos implements IGestorProductos{
         return pEncontrados;
     }
     
-    public String borrarProducto(Producto producto) {
-        if (producto == null) {
-            return PRODUCTO_INEXISTENTE;
-        }
-
-        GestorPedidos gp = GestorPedidos.instanciar();
-        if (gp.hayPedidosConEsteProducto(producto)) {
-            return "No se puede borrar el producto, existen pedidos con el mismo.";
-        }
-        
-        if (productos.remove(producto)) {
-            return "Producto borrado con éxito";
-        } else {
-            return PRODUCTO_INEXISTENTE;
-        }
-    }
-    
     public boolean existeEsteProducto(Producto producto) {
         for(Producto p : productos){
             if(p.verCodigo()== producto.verCodigo()){
@@ -135,4 +118,22 @@ public class GestorProductos implements IGestorProductos{
         }
         return null;
     }
+    public String borrarProducto(Producto producto) {
+    if (producto == null) {
+        return PRODUCTO_INEXISTENTE;
+    }
+    
+   
+    GestorPedidos gp = GestorPedidos.instanciar();
+    if (gp.hayPedidosConEsteProducto(producto)) {
+        return "No se puede borrar el producto, existen pedidos con el mismo.";
+    }
+    
+    if (productos.remove(producto)) {
+        return "Producto borrado con éxito.";
+    } else {
+        return PRODUCTO_INEXISTENTE;
+    }
+}
+
 }

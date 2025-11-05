@@ -1,6 +1,5 @@
 package pedidos.modelos;
-
-import Interfaces.IGestorPedidos;
+import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -51,7 +50,6 @@ public class GestorPedidos implements IGestorPedidos{
         cliente.agregarPedido(nuevoPedido);
         return EXITO;
     }
-    
     public String cambiarEstado(Pedido pedidoAModificar){
         if(pedidoAModificar == null){
             return PEDIDO_INEXISTENTE;
@@ -93,6 +91,24 @@ public class GestorPedidos implements IGestorPedidos{
         return false;
     }
     
+    public boolean existeEstePedido(Pedido pedido){
+        for(Pedido p : pedidos){
+            if(p.equals(pedido)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Pedido obtenerPedido(Integer numero){
+        for(Pedido p : pedidos){
+            if(p.verNumero() == numero){
+                return p;
+            }
+        }
+        return null;
+    }
+
     public String cancelarPedido(Pedido pedido) {
         if (pedido == null) {
             return PEDIDO_INEXISTENTE;
@@ -112,23 +128,5 @@ public class GestorPedidos implements IGestorPedidos{
         } else {
             return PEDIDO_INEXISTENTE;
         }
-    }
-    
-    public boolean existeEstePedido(Pedido pedido){
-        for(Pedido p : pedidos){
-            if(p.equals(pedido)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public Pedido obtenerPedido(Integer numero){
-        for(Pedido p : pedidos){
-            if(p.verNumero() == numero){
-                return p;
-            }
-        }
-        return null;
     }
 }
