@@ -29,14 +29,13 @@ public abstract class Usuario {
         this.perfil = perfil;
     }
     
-    //metodos
+    //Metodos
     public void mostrar(){
         System.out.println(this.verApellido() + ", " + this.verNombre());
     }
     
     public abstract ArrayList<Pedido> verPedidos();
     
-    //metodos get/set
     public String verCorreo() {
         return correo;
     }
@@ -107,6 +106,5 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
-    
+      
 }

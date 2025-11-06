@@ -2,6 +2,7 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos {
@@ -49,6 +50,10 @@ public class GestorProductos implements IGestorProductos {
         
         if (!validacion.equals(VALIDACION_EXITO)) {
             return validacion;
+        }
+        
+        if (this.obtenerProducto(codigo) != null) {
+            return PRODUCTOS_DUPLICADOS;
         }
         
         productoAModificar.asignarCodigo(codigo);
@@ -117,7 +122,14 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public String borrarProducto(Producto producto) {
-        return null;
+        GestorPedidos g = GestorPedidos.instanciar();
+        
+        if (!g.hayPedidosConEsteProducto(producto)) {
+            this.listaProductos.remove(producto);
+            return "Producto eliminado con exito";
+        }
+        
+        return "Hay pedidos con este producto, no es posible eliminarlo";
     }
     
     // Verificacion datos

@@ -25,6 +25,8 @@ public interface IGestorUsuarios {
     
     public Usuario ObtenerUsuario(String correo);
     
+    public String borrarUsuario(Usuario usuario);
+    
     // Constantes
     public static final String EXITO = "Usuario creado/modificado con exito";
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";

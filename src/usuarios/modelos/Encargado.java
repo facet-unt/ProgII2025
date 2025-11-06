@@ -20,8 +20,7 @@ public class Encargado extends Usuario{
         super(correo, clave, apellido, nombre, perfil);
     }
 
-   //Metodos
-
+    //Metodos
     @Override
     public String toString() {
         return "Encargado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';

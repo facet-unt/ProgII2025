@@ -84,8 +84,8 @@ public class GestorPedidos implements IGestorPedidos {
     @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
         for(Pedido p : this.listaPedidos){
-            for (ProductoDelPedido prod: p.verProductoPedido()){
-                if(prod.verProducto().equals(producto)){
+            for (ProductoDelPedido prod : p.verProductoPedido()){
+                if (prod.verProducto().equals(producto)){
                     return true;
                 }  
             }        
@@ -105,6 +105,10 @@ public class GestorPedidos implements IGestorPedidos {
                 return p;
             }
         } 
+        return null;
+    }
+    
+    public String cancelarPedido(Pedido pedido) {
         return null;
     }
     

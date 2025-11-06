@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
 /**
  *
@@ -100,6 +101,26 @@ public class GestorUsuarios implements IGestorUsuarios {
                 return u;
         }
         return null;
+    }
+    
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        GestorPedidos g = GestorPedidos.instanciar();
+        
+        if (usuario instanceof Cliente) {
+            Cliente c = (Cliente) usuario;
+            
+            if (g.hayPedidosConEsteCliente(c)) {
+                return "Error: el cliente seleccionado tiene pedidos y no puede ser eliminado";
+            }
+        }
+        
+        if (this.listaUsuarios.remove(usuario)) {
+            return "Usuario eliminado correctamente";
+        }
+        else {
+            return "Error: No se ha encontrado el usuario";
+        }
     }
     
     //Validacion datos

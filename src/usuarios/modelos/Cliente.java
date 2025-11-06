@@ -23,7 +23,6 @@ public class Cliente extends Usuario {
     }
     
     //Metodos
-
     @Override
     public String toString() {
         return "Cliente{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';

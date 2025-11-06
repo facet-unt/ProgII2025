@@ -17,12 +17,14 @@ import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
 public class Pedido {
+    //Atributos
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
     private ArrayList<ProductoDelPedido> listaProductosdelPedido = new ArrayList<>();
 
+    //Constructores
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
@@ -39,6 +41,7 @@ public class Pedido {
         this(numero, fechaYHora, lista, cliente, Estado.CREADO);
     }
 
+    //Metodos
     public int verNumero() {
         return numero;
     }

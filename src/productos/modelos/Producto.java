@@ -45,8 +45,6 @@ public class Producto {
         System.out.println("Categoria: " + unaCategoria);
         System.out.println("Estado: " + unEstado);
     }
-
-    
    
     public int verCodigo() {
         return codigo;

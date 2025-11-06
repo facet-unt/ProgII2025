@@ -33,6 +33,8 @@ public interface IGestorPedidos {
     
     public Pedido obtenerPedido(Integer numero);
     
+    public String cancelarPedido(Pedido pedido);
+    
     
     //Constantes
     public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
