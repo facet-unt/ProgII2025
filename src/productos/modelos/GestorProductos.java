@@ -10,7 +10,7 @@ import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
 import static interfaces.IGestorUsuarios.EXITO;
 import static interfaces.IGestorUsuarios.VALIDACION_EXITO;
 import java.util.ArrayList;
-import static pedidos.modelos.GestorPedidos.ERROR_ESTADO;
+import pedidos.modelos.GestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos {
@@ -146,7 +146,24 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public String borrarProducto(Producto producto) {
-        
+public String borrarProducto(Producto producto) {
+    if (producto == null) {
+        return "Error: el producto es nulo.";
     }
+
+    
+    if (!productos.contains(producto)) {
+        return "El producto no existe en el sistema.";
+    }
+
+    
+    GestorPedidos gp = GestorPedidos.getInstancia();
+    if (gp.hayPedidosConEsteProducto(producto)) {
+        return "No se puede eliminar el producto, hay pedidos asociados.";
+    }
+
+    
+    productos.remove(producto);
+    return "Producto eliminado con éxito.";
+}
 }

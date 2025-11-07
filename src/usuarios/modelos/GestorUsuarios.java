@@ -140,7 +140,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
             else {
             usuarios.remove(usuario);    
-                return "Usuario removido con exito";
+            return "Usuario removido con exito";
             }
         }
 
