@@ -1,5 +1,8 @@
 package principal.controladores;
 
+import interfaces.IGestorPedidos;
+import interfaces.IGestorProductos;
+import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,38 +25,54 @@ import usuarios.modelos.Perfil;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        GestorProductos gp = GestorProductos.instanciar();
+        IGestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
-                        
+         System.out.println("\nproductos almacenados\n: ");               
         for(Producto p : gp.menu()) {
             p.mostrar();
+            System.out.println(" ");
         }
 
         Producto unProducto = gp.obtenerProducto(1);
         System.out.println(gp.modificarProducto(unProducto, 1, "Producto3", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println("\nluego de la modificacion\n");
         for(Producto p : gp.menu()) {
             p.mostrar();
+           System.out.println(" ");
         }
         
         ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        System.out.println("\nproductos buscados por palabra\n");
         for(Producto p : productosBuscados) {
             p.mostrar();
+            System.out.println(" ");
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
         ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        System.out.println("\nproductos buscados por categoria\n");
         for(Producto p : productosEntrada) {
             p.mostrar();
+            System.out.println(" ");
         }
+        System.out.println("\n");
+        System.out.println(gp.crearProducto(4, "ProductoAborrar", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
+        Producto productoBorrar = gp.obtenerProducto(4);
+        System.out.println("existe el producto: "+gp.existeEsteProducto(productoBorrar));
+        System.out.println("elimanos el producto creado: "+gp.borrarProducto(productoBorrar));
+        System.out.println(gp.existeEsteProducto(productoBorrar));
         
+        
+        System.out.println("");
         // -------------------- GESTOR USUARIOS --------------------
         System.out.println("\n=== PRUEBA GESTOR USUARIOS ===");
-        GestorUsuarios gu = GestorUsuarios.instanciar();
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
 
         System.out.println(gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
+        System.out.println(gu.crearUsuario("cliente2@mail.com", "Alcaraz", "Daniel", Perfil.CLIENTE, "123", "123"));
         System.out.println(gu.crearUsuario("empleado1@mail.com", "Gomez", "Juan", Perfil.EMPLEADO, "123", "123"));
         System.out.println(gu.crearUsuario("encargado1@mail.com", "Sosa", "Maria", Perfil.ENCARGADO, "123", "123"));
         System.out.println("Intento duplicado: " + gu.crearUsuario("cliente1@mail.com", "Perez", "Ana", Perfil.CLIENTE, "123", "123"));
@@ -64,26 +83,34 @@ public class ControladorPrincipalTP5 {
         }
 
         Cliente cliente = (Cliente) gu.obtenerUsuario("cliente1@mail.com");
+        Cliente cliente2 = (Cliente) gu.obtenerUsuario("cliente2@mail.com");
         Empleado empleado = (Empleado) gu.obtenerUsuario("empleado1@mail.com");
         Encargado encargado = (Encargado) gu.obtenerUsuario("encargado1@mail.com");
+        
+        System.out.println("borro un usuario: "+gu.borrarUsuario(empleado));
 
         // -------------------- GESTOR PEDIDOS --------------------
         System.out.println("\n=== PRUEBA GESTOR PEDIDOS ===");
-        GestorPedidos gped = GestorPedidos.instanciar();
+        IGestorPedidos gped = GestorPedidos.instanciar();
 
         // Crear productos para usar en los pedidos
-        Producto p1 = new Producto(10, "Pizza", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 2500f);
-        Producto p2 = new Producto(11, "Flan", Categoria.POSTRE, Estado.DISPONIBLE, 1200f);
-
+        gp.crearProducto(10, "Pizza", 2500f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);
+        Producto p1 = gp.obtenerProducto(10);
+        gp.crearProducto(11, "Flan", 1200f, Categoria.POSTRE, Estado.DISPONIBLE);
+        Producto p2 = gp.obtenerProducto(11);
+        
         ArrayList<ProductoDelPedido> listaProductos = new ArrayList<>();
         listaProductos.add(new ProductoDelPedido(p1, 2));
         listaProductos.add(new ProductoDelPedido(p2, 1));
-
+        listaProductos.add(new ProductoDelPedido(unProducto,3));
         // Crear pedido correcto
         System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, cliente));
 
         // Crear pedido con cliente nulo (debe dar error)
         System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, null));
+        
+        //crear pedido para pruebas
+        System.out.println(gped.crearPedido(LocalDate.now(), LocalTime.now(), listaProductos, cliente2));
 
         System.out.println("\nLista de pedidos registrados:");
         for (Pedido p : gped.verPedidos()) {
@@ -92,6 +119,7 @@ public class ControladorPrincipalTP5 {
 
         // Cambiar estado de pedido 1 si existe
         Pedido primerPedido = gped.obtenerPedido(1);
+        Pedido segundoPedido = gped.obtenerPedido(2);
         if (primerPedido != null) {
             System.out.println("Estado actual: " + primerPedido.verEstado());
             System.out.println("Resultado cambiarEstado: " + gped.cambiarEstado(primerPedido));
@@ -110,6 +138,9 @@ public class ControladorPrincipalTP5 {
 
         System.out.println("\nHay pedidos con este cliente?: " + gped.hayPedidosConEsteCliente(cliente));
         System.out.println("Hay pedidos con este producto (Pizza)?: " + gped.hayPedidosConEsteProducto(p1));
+        System.out.println("Intento borrar producto en pedido: "+ gp.borrarProducto(p1));
+        System.out.println("Intento cliente en pedido: "+ gu.borrarUsuario(cliente));
+        System.out.println("cancelar un pedido: "+gped.cancelarPedido(segundoPedido));
     }
 
 }

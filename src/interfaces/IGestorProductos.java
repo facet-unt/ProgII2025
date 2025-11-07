@@ -16,6 +16,7 @@ import productos.modelos.Producto;
 public interface IGestorProductos {
 
     public static final String EXITO = "Producto creado/modificado con éxito";
+    public static final String EXITO_BORRADO = "Producto eliminado con éxito";
     public static final String ERROR_CODIGO = "El código del producto es incorrecto";
     public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto";

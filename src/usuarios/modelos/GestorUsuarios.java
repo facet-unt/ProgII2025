@@ -39,11 +39,14 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         //verifica si hay pedidos que contengan el producto
         GestorPedidos gpedidos = GestorPedidos.instanciar();
-        if (gpedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
+        if (usuario instanceof Cliente) {
+            if (gpedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
             return "no se puede borrar el usuario porque tiene un pedido asociado";
+            }
         }
+        
         usuarios.remove(usuario);
-        return EXITO;
+        return EXITO_BORRADO;
      }
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {

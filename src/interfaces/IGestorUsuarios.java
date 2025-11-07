@@ -15,6 +15,7 @@ import usuarios.modelos.Usuario;
 public interface IGestorUsuarios {
 
     public static final String EXITO = "Usuario creado/modificado con éxito";
+    public static final String EXITO_BORRADO = "Usuario Borrado con éxito";
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
     public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
     public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";

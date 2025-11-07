@@ -32,7 +32,7 @@ public class  GestorProductos implements IGestorProductos {
             return "no se puede borrar el producto porque tiene pedidos asociados";
         }
         productos.remove(producto);
-        return EXITO;
+        return EXITO_BORRADO;
     }
     
     @Override
