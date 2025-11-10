@@ -41,7 +41,7 @@ public class Cliente extends Usuario {
 
     public void agregarPedido(Pedido p) {
         int indice = listaPedidos.indexOf(p);
-        if(indice != -1){
+        if(indice != -1/*indexOf() devuelve -1 si p no está en listaPedidos*/){
             listaPedidos.set(indice, p);
         } else{
             listaPedidos.add(p);
