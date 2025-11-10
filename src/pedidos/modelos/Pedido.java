@@ -68,6 +68,10 @@ public class Pedido {
     public Estado verEstado() {
         return estado;
     }
+    
+    public ArrayList verlistaProductosdelPedido(){
+        return listaProductosdelPedido;
+    }
 
     public void asignarEstado(Estado estado) {
         this.estado = estado;

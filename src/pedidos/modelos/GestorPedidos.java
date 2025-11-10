@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 /**
@@ -29,7 +30,7 @@ public class GestorPedidos {
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     public static GestorPedidos instancia;
-    private static int contadorPedidos;
+    private static int contadorPedidos = 0;
     private GestorPedidos(){
     }
     
@@ -41,9 +42,45 @@ public class GestorPedidos {
     
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
         LocalDateTime fechaYHora = fecha.atTime(hora);
+        contadorPedidos++;
         Pedido p = new Pedido(contadorPedidos, fechaYHora, productosDelPedido, cliente);
-        return null; //terminar!!
+        cliente.agregarPedido(p);
+        return EXITO;
         
+    }
+    
+    public String cambiarEstado(Pedido pedidoAModificar){
+        if(pedidoAModificar.verEstado() == Estado.CREADO) pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+        if(pedidoAModificar.verEstado() == Estado.PROCESANDO) pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+        if(pedidoAModificar.verEstado() == Estado.ENTREGADO) return ERROR_ESTADO;
+        return EXITO;
+    }
+    
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
+    }
+    
+    public boolean hayPedidosConEsteCliente(Cliente cliente){
+        for(Pedido p : pedidos)
+            if (p.verCliente().equals(cliente)) return true;
+        return false; 
+    }
+    
+    public boolean hayPedidosConEsteProducto(Producto producto){
+        for(Pedido p : pedidos)
+            if (p.verlistaProductosdelPedido().contains(producto)) return true;
+        return false; 
+    }
+    
+    public boolean existeEstePedido(Pedido pedido){
+        if(pedidos.contains(pedido)) return true;
+        return false;
+    }
+    
+    public Pedido obtenerPedido(Integer numero){
+        for(Pedido p : pedidos)
+            if(numero != null && numero.equals(p.verNumero())) return p;
+        return null;
     }
     
     public String validacion(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
