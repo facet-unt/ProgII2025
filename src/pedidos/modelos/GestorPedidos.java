@@ -108,8 +108,25 @@ public class GestorPedidos implements IGestorPedidos {
         return null;
     }
     
+    @Override
     public String cancelarPedido(Pedido pedido) {
-        return null;
+        if (pedido == null) {
+            return "Error: No se ha podido leer el pedido que desea eliminar";
+        }
+        
+        if (!this.listaPedidos.contains(pedido)) {
+            return "Error: No se ha encontrado el pedido en el gestor";
+        }
+        
+        Cliente cliente = pedido.verCliente();
+        
+        if (cliente != null) {
+            cliente.cancelarPedido(pedido);
+        }
+        
+        this.listaPedidos.remove(pedido);
+        
+        return "Pedido " + pedido.verNumero() + " eliminado correctamente";
     }
     
     //Validacion de los datos del pedido
