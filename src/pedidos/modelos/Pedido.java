@@ -22,7 +22,7 @@ public class Pedido {
    private Cliente unCliente;
    private Estado unEstado;
    private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
- 
+   private static int contador=1;
    
    
    //CONSTRUCTORES
@@ -35,6 +35,10 @@ public class Pedido {
         this.unCliente.agregarPedido(this);
         this.productoPedido = unProductoDelPedido;
 
+    }
+    
+    public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
+        this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
     }
     
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
@@ -66,7 +70,10 @@ public class Pedido {
     }
 
     public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
-        this.productoPedido = productoPedido;
+        if(!(productoPedido.contains(this.productoPedido)))
+        {
+            this.productoPedido = productoPedido;
+       }
     }
     
     

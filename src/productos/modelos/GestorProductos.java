@@ -1,9 +1,11 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.*;
 
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
@@ -19,30 +21,133 @@ public class GestorProductos {
     }
     
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        Producto p = new Producto (codigo, descripcion, categoria, estado, precio);
+        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
+        {
+            productos.add(p);
+            return (EXITO); 
+            
+        }
+        else
+        {
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
+        }
+        
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        if (productos.contains(p))
+            {
+                productos.remove(p);
+            }
+        p.asignarCodigo(codigo);
+        p.asignarDescripcion(descripcion);
+        p.asignarPrecio(precio);
+        p.asignarCategoria(categoria);
+        p.asignarEstado(estado);
+        productos.add(p);
+        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
+        {
+            productos.add(p);
+            return (EXITO); 
+            
+        }
+        else
+        {
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
+        }
     }
     
     public ArrayList<Producto> menu() {
         return this.productos;
+        
     }
     
     public ArrayList<Producto> buscarProductos(String descripcion) {
-        return null;
+         
+        ArrayList<Producto> encontrados = new ArrayList<>();
+        for (Producto p : productos) {
+             
+            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
+                encontrados.add(p);
+            }
+                
+            }
+        return encontrados;
     }
     
     public boolean existeEsteProducto(Producto producto) {
-        return true;
+        if (productos.contains(producto))
+            return true;
+        else
+            return false;
     }
     
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        return null;
+         ArrayList<Producto> prodcat = new ArrayList<>();
+        for (Producto p : productos) {
+             
+            if (p.verCategoria()==(categoria)) {
+                prodcat.add(p);
+            }
+                
+            }
+        return prodcat;
     }
     
     public Producto obtenerProducto(Integer codigo) {
+        for (Producto p : productos) {
+             
+            if (p.verCodigo()==(codigo)) {
+                return p;
+            }
+                
+            }
         return null;
     }
-}
+    
+    @Override
+    public String borrarProducto(Producto producto)
+    {
+        if (productos.contains(producto)&&producto!=null)
+        {
+            GestorPedidos pedidos = GestorPedidos.instanciar();
+            for(Pedido unPedido: pedidos.verPedidos())
+            {
+                for (ProductoDelPedido unProducto: unPedido.verProductoPedido())
+                {
+                   if((unProducto.verUnProducto()).equals(producto))
+                   {
+                       return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
+                   }
+             
+                }
+               
+            }
+             productos.remove(producto);
+             return (OPERACION_EXITOSA);
+        }
+        else
+        {
+            return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
+        }
+    }
+    }
