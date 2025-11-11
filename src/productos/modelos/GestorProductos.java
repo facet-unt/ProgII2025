@@ -2,12 +2,15 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 
-public class GestorProductos implements IGestorProductos {
+public class GestorProductos implements IGestorProductos{
     
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
     
@@ -82,18 +85,20 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> menu() {
+    public List<Producto> menu() {
+        Collections.sort(productos);
         return this.productos;
     }
     
     @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> productosEncontrados = new ArrayList<>();
+    public List<Producto> buscarProductos(String descripcion) {
+        List<Producto> productosEncontrados = new ArrayList<>();
         for(Producto p: productos){
             if(p.verDescripcion().contains(descripcion)){
                 productosEncontrados.add(p);
             }
         }
+        Collections.sort(productos);
         return productosEncontrados;
     }
     
@@ -108,13 +113,14 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> productosPorCategoria = new ArrayList<>();
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
+        List<Producto> productosPorCategoria = new ArrayList<>();
         for(Producto p: productos){
             if(p.verCategoria()==categoria){
                 productosPorCategoria.add(p);
             }
         }
+        Collections.sort(productos);
         return productosPorCategoria;
     }
     

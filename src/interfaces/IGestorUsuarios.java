@@ -5,6 +5,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 

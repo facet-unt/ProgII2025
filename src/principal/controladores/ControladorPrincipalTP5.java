@@ -25,6 +25,7 @@ import usuarios.modelos.Usuario;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
+        /*
         IGestorProductos gp = GestorProductos.instanciar();
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         IGestorPedidos gpd = GestorPedidos.instanciar();
@@ -87,7 +88,7 @@ public class ControladorPrincipalTP5 {
         System.out.println(gu.modificarUsuario(u1, "correo@usuario2", "nuevoApellido", "nuevoNombre", Perfil.CLIENTE, "1234", "1234"));
         */
         //correo ya existente
-        
+        /*
         for(Usuario u: gu.verUsuarios()){
             u.mostrar();
         }
@@ -160,5 +161,6 @@ public class ControladorPrincipalTP5 {
         for(Pedido p: gpd.verPedidos()){
             p.mostrar();
         }
+        */
     }
 }

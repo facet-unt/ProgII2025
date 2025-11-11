@@ -1,7 +1,7 @@
 package productos.modelos;
 
 
-public class Producto{
+public class Producto implements Comparable<Producto> {
     private int codigo;
     private String descripcion;
     private Categoria categoria;
@@ -92,5 +92,13 @@ public class Producto{
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", categoria=" + categoria + ", estado=" + estado + ", precio=" + precio + '}';
+    }
+
+    @Override
+    public int compareTo(Producto p) {
+        if(this.categoria.compareTo(p.categoria)==0){
+            return this.descripcion.compareTo(p.descripcion);
+        }
+        return(this.categoria.compareTo(p.categoria));
     }
 }
