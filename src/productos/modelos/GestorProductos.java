@@ -97,12 +97,16 @@ public class GestorProductos {
             if (!(u.equals(producto))) {
                 return false;
             }
-            return true;
         }
         return true;
     }
 
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+        for (Producto u : productos) {
+            if (u.verCategoria() == categoria) {
+                return this.productos;
+            }
+        }
         return null;
     }
 
