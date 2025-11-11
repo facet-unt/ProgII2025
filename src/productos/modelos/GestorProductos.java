@@ -36,7 +36,7 @@ public class GestorProductos {
             return ERROR_DESCRIPCION;
         }
         if (!(precio > 0)) {
-            return ERROR_CODIGO;
+            return ERROR_PRECIO;
 
         }
         if (categoria == null) {
@@ -53,7 +53,30 @@ public class GestorProductos {
     }
 
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        return null;
+        
+                if (!(codigo > 0)) {
+            return ERROR_CODIGO;
+        }
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return ERROR_DESCRIPCION;
+        }
+        if (!(precio > 0)) {
+            return ERROR_PRECIO;
+
+        }
+        if (categoria == null) {
+            return ERROR_CATEGORIA;
+        }
+
+        if (estado == null) {
+            return ERROR_ESTADO;
+        }
+        p.asignarCodigo(codigo);
+        p.asignarDescripcion(descripcion);
+        p.asignarPrecio(precio);
+        p.asignarCategoria(categoria);
+        p.asignarEstado(estado);
+        return EXITO;
     }
 
     public ArrayList<Producto> menu() {
