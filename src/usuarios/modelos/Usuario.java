@@ -105,5 +105,10 @@ public abstract class Usuario {
     }
     
     public abstract ArrayList<Pedido> verPedido();
- 
+
+    public int compareTo(String anotherString) {
+        return (apellido.toLowerCase()).compareTo(anotherString.toLowerCase());
+    }
+    
+    
 }

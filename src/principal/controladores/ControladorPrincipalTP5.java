@@ -56,7 +56,7 @@ public class ControladorPrincipalTP5 {
         System.out.println(gu.crearUsuario("correo1@mail.com", "Apellido1", "Nombre1", Perfil.EMPLEADO, "clave1", "clave1")); 
         System.out.println(gu.crearUsuario("correo2@mail.com", "Apellido2", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
 
-        ArrayList<Usuario> usuariosBuscados = gu.buscarUsuarios("Apellido1"); 
+        List<Usuario> usuariosBuscados = gu.buscarUsuarios("Apellido1"); 
         System.out.println("Usuarios buscados por Apellido1:");
         for(Usuario u : usuariosBuscados) {
             System.out.println(u.toString()); 

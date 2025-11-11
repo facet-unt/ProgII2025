@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 
@@ -21,8 +21,8 @@ public interface IGestorUsuarios {
     
     
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
-    public ArrayList<Usuario> verUsuarios();
-    public ArrayList<Usuario> buscarUsuarios(String apellido);
+    public List<Usuario> verUsuarios();
+    public List<Usuario> buscarUsuarios(String apellido);
     public String borrarUsuario(Usuario usuario);
     public boolean existeEsteUsuario(Usuario usuario);
     public Usuario obtenerUsuario(String correo);
