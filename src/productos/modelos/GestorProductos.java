@@ -2,7 +2,9 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Comparator;
 import pedidos.modelos.*;
+import usuarios.modelos.Usuario;
 
 
 public class GestorProductos implements IGestorProductos{
@@ -77,7 +79,8 @@ public class GestorProductos implements IGestorProductos{
     }
     
     public ArrayList<Producto> menu() {
-        return this.productos;
+         productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
+         return this.productos;
         
     }
     
