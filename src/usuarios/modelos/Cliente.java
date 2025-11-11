@@ -10,11 +10,12 @@ package usuarios.modelos;
  * @author Esteban
  */
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 
 public class Cliente extends Usuario{
-    private ArrayList<Pedido> pedidos= new ArrayList<>();
+    private List<Pedido> pedidos= new ArrayList<>();
     private Perfil perfil;
     
     public void mostrar() {
@@ -44,7 +45,7 @@ public class Cliente extends Usuario{
    
 
     @Override
-    public ArrayList<Pedido> verPedido() {
+    public List<Pedido> verPedido() {
         return(pedidos);
     }
 

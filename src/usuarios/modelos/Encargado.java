@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 
@@ -25,8 +26,7 @@ public class Encargado extends Usuario{
     }
     
    @Override
-    public ArrayList<Pedido> verPedido() {
-        
+    public List<Pedido> verPedido() {        
         return vacio;
     }
     

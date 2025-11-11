@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
@@ -21,13 +22,13 @@ public class Pedido {
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
+    private List<ProductoDelPedido> listaProductosdelPedido;
 
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.listaProductosdelPedido = lista;
@@ -35,7 +36,7 @@ public class Pedido {
         this.estado = estado;
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente) {
         this(numero, fechaYHora, lista, cliente, Estado.CREADO);
     }
 
@@ -68,8 +69,8 @@ public class Pedido {
         this.listaProductosdelPedido.add(nuevoProducto);
     }
     
-    public ArrayList<ProductoDelPedido> verProductosDelPedido() {
-    return listaProductosdelPedido;
+    public List<ProductoDelPedido> verProductosDelPedido() {
+        return listaProductosdelPedido;
 }
     public void mostrar(){
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");

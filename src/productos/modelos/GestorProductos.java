@@ -10,6 +10,7 @@ import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
 import static interfaces.IGestorUsuarios.EXITO;
 import static interfaces.IGestorUsuarios.VALIDACION_EXITO;
 import java.util.ArrayList;
+import java.util.Collections;
 import pedidos.modelos.GestorPedidos;
 
 
@@ -95,6 +96,7 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public ArrayList<Producto> menu() {
+        Collections.sort(productos);
         return this.productos;
     }
     
@@ -107,7 +109,7 @@ public class GestorProductos implements IGestorProductos {
                 lista.add(p);
             }           
         }
-        
+        Collections.sort(lista);
         return lista;
     }
     
@@ -131,7 +133,7 @@ public class GestorProductos implements IGestorProductos {
                 categorias.add(pr);
             }
         }
-        
+        Collections.sort(productos);
         return categorias;
     }
     

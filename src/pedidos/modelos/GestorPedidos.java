@@ -8,13 +8,11 @@ import static interfaces.IGestorPedidos.ERROR_HORA;
 import static interfaces.IGestorPedidos.ERROR_PRODUCTOS_DEL_PEDIDO;
 import static interfaces.IGestorPedidos.PEDIDOS_DUPLICADOS;
 import static interfaces.IGestorPedidos.PEDIDO_INEXISTENTE;
-import static interfaces.IGestorProductos.ERROR_ESTADO;
-import static interfaces.IGestorProductos.EXITO;
-import static interfaces.IGestorProductos.VALIDACION_EXITO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 // Importaciones de clases de otros paquetes
 import usuarios.modelos.Cliente;
@@ -46,7 +44,7 @@ public class GestorPedidos implements IGestorPedidos{
     
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, 
-                             ArrayList<ProductoDelPedido> productosDelPedido, 
+                             List<ProductoDelPedido> productosDelPedido, 
                              Cliente cliente) {
         
        
@@ -72,6 +70,7 @@ public class GestorPedidos implements IGestorPedidos{
         
        
         cliente.agregarPedido(nuevoPedido);
+   
         
         return EXITO;
     }
@@ -145,7 +144,7 @@ public class GestorPedidos implements IGestorPedidos{
         }
         
         for (Pedido pedido : pedidos) {
-            ArrayList<ProductoDelPedido> productosDelPedido = pedido.verProductosDelPedido();
+            List<ProductoDelPedido> productosDelPedido = pedido.verProductosDelPedido();
             if (productosDelPedido != null) {
                 for (ProductoDelPedido pdp : productosDelPedido) {
                     if (pdp.verUnProducto() != null && pdp.verUnProducto().equals(producto)) {
@@ -188,7 +187,7 @@ public class GestorPedidos implements IGestorPedidos{
     
 
     private String validarDatosPedido(LocalDate fecha, LocalTime hora, 
-                                     ArrayList<ProductoDelPedido> productosDelPedido, 
+                                     List<ProductoDelPedido> productosDelPedido, 
                                      Cliente cliente) {
         
         // Validar fecha
