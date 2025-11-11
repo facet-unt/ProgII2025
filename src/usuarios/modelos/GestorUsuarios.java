@@ -49,10 +49,17 @@ public class GestorUsuarios {
         if (nombre == null || clave.trim().isEmpty()) {
             return ERROR_NOMBRE;
         }
-        Usuario neuvoUsuario = new Usuario(correo, clave, apellido, nombre);
+        Usuario neuvoUsuario = new Empleado(correo, clave, apellido, nombre);
         usuario.add(neuvoUsuario);
 
         return EXITO;
     }
-
+    public ArrayList<Usuario> buscarUsuarios(String apellido){
+        for (Usuario u : usuario) {
+            if (u.verApellido()== apellido){
+                return this.usuario;
+            }
+        }
+        return null;
+    }
 }
