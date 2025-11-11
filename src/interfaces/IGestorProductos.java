@@ -30,7 +30,7 @@ public interface IGestorProductos {
     
     public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
-    public abstract ArrayList<Producto> menu();
+    public abstract List<Producto> menu();
     public abstract List<Producto> buscarProductos(String descripcion);
     public abstract String borrarProducto(Producto producto);
     public abstract boolean existeEsteProducto(Producto producto);

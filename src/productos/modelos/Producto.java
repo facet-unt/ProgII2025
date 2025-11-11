@@ -124,5 +124,15 @@ public class Producto {
         return this.codigo == other.codigo;
     }
 
+    public int compareTo(String anotherString) {
+        return (descripcion.toLowerCase()).compareTo(anotherString.toLowerCase());
+    }
+
+    public final int compareTo(Categoria o) {
+        return unaCategoria.compareTo(o);
+    }
+    
+    
+
     
 }

@@ -2,12 +2,13 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.*;
 
 
 public class GestorProductos implements IGestorProductos{
-    private ArrayList<Producto> productos = new ArrayList<>();
+private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
     
@@ -45,6 +46,7 @@ public class GestorProductos implements IGestorProductos{
         
     }
     
+    @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (productos.contains(p))
             {
@@ -77,11 +79,16 @@ public class GestorProductos implements IGestorProductos{
         }
     }
     
-    public ArrayList<Producto> menu() {
-        return this.productos;
+    @Override
+    public List<Producto> menu() {
+         productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
+         return this.productos;
         
     }
     
+
+    @Override
+
     public List<Producto> buscarProductos(String descripcion) {
          
         List<Producto> encontrados = new ArrayList<>();
@@ -96,6 +103,7 @@ public class GestorProductos implements IGestorProductos{
         return encontrados;
     }
     
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         if (productos.contains(producto))
             return true;
@@ -103,7 +111,8 @@ public class GestorProductos implements IGestorProductos{
             return false;
     }
     
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+    @Override
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
          ArrayList<Producto> prodcat = new ArrayList<>();
         for (Producto p : productos) {
              
@@ -112,9 +121,11 @@ public class GestorProductos implements IGestorProductos{
             }
                 
             }
+        prodcat.sort(Comparator.comparing(Producto::verDescripcion));
         return prodcat;
     }
     
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         for (Producto p : productos) {
              

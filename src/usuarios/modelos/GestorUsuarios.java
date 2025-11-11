@@ -110,7 +110,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
                 
             }
-         encontrados.sort(Comparator.comparing(Usuario::verApellido).thenComparing(Usuario::verNombre));
+         encontrados.sort(Comparator.comparing(Usuario::verNombre));
         return encontrados;
     }
     
