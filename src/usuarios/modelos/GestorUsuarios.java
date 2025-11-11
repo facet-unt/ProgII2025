@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -14,7 +15,7 @@ import pedidos.modelos.GestorPedidos;
  */
 public class GestorUsuarios implements IGestorUsuarios{
 
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
     
@@ -108,7 +109,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     @Override
-    public ArrayList<Usuario> verUsuarios(){
+    public List<Usuario> verUsuarios(){
         return usuarios;
     }
     
