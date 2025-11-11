@@ -35,7 +35,7 @@ public class GestorUsuarios {
         return instancia;
     }
 
-    public String crearUsuario(String correo, String clave, String apellido, String nombre) {
+    public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
 
         if (correo == null || correo.trim().isEmpty()) {
             return ERROR_CORREO;
@@ -49,8 +49,21 @@ public class GestorUsuarios {
         if (nombre == null || clave.trim().isEmpty()) {
             return ERROR_NOMBRE;
         }
-        Usuario neuvoUsuario = new Empleado(correo, clave, apellido, nombre);
-        usuario.add(neuvoUsuario);
+        Usuario usuario;
+        switch (perfil) {
+            case CLIENTE:
+                 usuario = new Cliente(correo, clave, apellido, nombre, perfil);
+                break;
+            case EMPLEADO:
+                usuario = new Empleado(correo, clave, apellido, nombre, perfil);
+                break;
+            case ENCARGADO:
+                usuario = new Encargado(correo, clave, apellido, nombre, perfil);
+                break;
+
+        }
+        //Usuario neuvoUsuario = new(correo, clave, apellido, nombre, perfil);
+        //usuario.add(neuvoUsuario);
 
         return EXITO;
     }
@@ -79,6 +92,6 @@ public class GestorUsuarios {
                 return u;
             }
         }
-            return null;
+        return null;
     }
 }
