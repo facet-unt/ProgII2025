@@ -53,8 +53,8 @@ public class GestorProductos {
     }
 
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        
-                if (!(codigo > 0)) {
+
+        if (!(codigo > 0)) {
             return ERROR_CODIGO;
         }
         if (descripcion == null || descripcion.trim().isEmpty()) {
@@ -84,10 +84,21 @@ public class GestorProductos {
     }
 
     public ArrayList<Producto> buscarProductos(String descripcion) {
+        for (Producto u : productos) {
+            if (u.verDescripcion() == descripcion) {
+                return this.productos;
+            }
+        }
         return null;
     }
 
     public boolean existeEsteProducto(Producto producto) {
+        for (Producto u : productos) {
+            if (!(u.equals(producto))) {
+                return false;
+            }
+            return true;
+        }
         return true;
     }
 
