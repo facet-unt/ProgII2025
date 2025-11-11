@@ -4,14 +4,17 @@
  */
 package usuarios.modelos;
 
+import Interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
 
 
 /**
  *
  * @author Asus
  */
-public class GestorUsuarios { 
+public class GestorUsuarios implements IGestorUsuarios{ 
      private ArrayList<Usuario> usuarios = new ArrayList<>();
      private static GestorUsuarios instancia;
      public static GestorUsuarios instanciar() {
@@ -20,31 +23,23 @@ public class GestorUsuarios {
         return instancia;
     }
      
-     public static final String EXITO = "Usuario creado/modificado con éxito";
-public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
-public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
-public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
-public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
      
-     public String crearUsuario(String Correo, String Clave, String Nombre, String Apellido, String claveRepetida, Perfil perfil){
-         if (Correo == null || !Correo.contains("@") || Correo.trim().isEmpty()){
+     public String crearUsuario(String correo, String apellido, String nombre, String clave, String claveRepetida, Perfil perfil){
+         if (correo == null || !correo.contains("@") || correo.trim().isEmpty()){
              return ERROR_CORREO;
-         }else if (Apellido == null || Apellido.trim().isEmpty()){
+         }else if (apellido == null || apellido.trim().isEmpty()){
          return ERROR_APELLIDO;
-         }else if (Nombre == null || Nombre.trim().isEmpty()) {
+         }else if (nombre == null || nombre.trim().isEmpty()) {
          return ERROR_NOMBRE;
-         }else if (Clave == null || Clave.trim().isEmpty() ||claveRepetida == null || claveRepetida.trim().isEmpty()){
+         }else if (clave == null || clave.trim().isEmpty() ||claveRepetida == null || claveRepetida.trim().isEmpty()){
          return ERROR_CLAVES;
          }
          if (perfil == Perfil.CLIENTE){
-         Usuario u = new Cliente (Correo, Clave, Nombre, Apellido);
+         Usuario u = new Cliente (correo, clave, nombre, apellido);
          }else if (perfil == Perfil.EMPLEADO){
-         Usuario u = new Empleado (Correo, Clave, Nombre, Apellido);
+         Usuario u = new Empleado (correo, clave, nombre, apellido);
          }else if (perfil == Perfil.ENCARGADO){
-         Usuario u = new Encargado (Correo, Clave, Nombre, Apellido);
+         Usuario u = new Encargado (correo, clave, nombre, apellido);
          }
          return EXITO;
      }         
@@ -52,6 +47,28 @@ public static final String VALIDACION_EXITO = "Los datos del usuario son correct
      public ArrayList<Usuario> verUsuarios(){
          return this.usuarios;
          }
+     
+     public String borrarUsuario(Usuario usuario){
+         Usuario u;
+       GestorPedidos gp = GestorPedidos.instanciar();
+         if (usuarios.contains(usuario)){
+             if (usuario instanceof Cliente){
+         if (gp.hayPedidosConEsteCliente((Cliente)usuario))
+             for (Pedido p : usuario.verPedidos())
+                 if (p.verCliente().equals((Cliente)usuario))
+                     this.usuarios.remove(usuario);
+                     return EXITO;
+         }
+           System.out.println("Este usuario no es un cliente");
+           return ERROR;
+         }
+         System.out.println("No existe este usuario");
+         return ERROR;
+         
+     }
+     
+     
+     
      public boolean existeEsteUsuario(Usuario usuario){
          if (usuarios.contains(usuario))
               return true;

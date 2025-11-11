@@ -49,8 +49,9 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
     
+        
+        //implementacion del gestor de usuarios
     GestorUsuarios gu = GestorUsuarios.instanciar();
-    // 1. Probar creación de usuarios
         System.out.println(gu.crearUsuario("cliente1@mail.com", "123", "Perez", "Juan", "123", Perfil.CLIENTE));
         System.out.println(gu.crearUsuario("encargado@mail.com", "456", "Gomez", "Ana", "456", Perfil.ENCARGADO));
         System.out.println(gu.crearUsuario("error@mail.com", "789", "Test", "Error", "000", Perfil.CLIENTE)); // Error clave
@@ -65,7 +66,6 @@ public class ControladorPrincipalTP5 {
             for(Usuario u : usuario) {
             u.mostrar();
         }
-        
         }
     
     //a este main no le importa como se hace para crear un producto, o como se lo obtiene

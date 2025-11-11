@@ -92,7 +92,7 @@ public class Producto {
         precio = p;
     }
 
-    public String getNombre(){
+    public String verNombre(){
         return nombre;
     }
     

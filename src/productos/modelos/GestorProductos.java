@@ -1,10 +1,19 @@
 package productos.modelos;
 
+import Interfaces.IGestorProductos;
+import static Interfaces.IGestorProductos.ERROR_CATEGORIA;
+import static Interfaces.IGestorProductos.ERROR_CODIGO;
+import static Interfaces.IGestorProductos.ERROR_DESCRIPCION;
+import static Interfaces.IGestorProductos.ERROR_PRECIO;
+import static Interfaces.IGestorProductos.PRODUCTOS_DUPLICADOS;
+import static Interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
+import static Interfaces.IGestorProductos.ERROR_BORRADO;
+import static Interfaces.IGestorProductos.EXITO_BORRADO;
+import pedidos.modelos.GestorPedidos;
 import java.util.ArrayList;
-import usuarios.modelos.Usuario;
 
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia; //implementacion para se pueda instancias una vez
@@ -14,16 +23,7 @@ public class GestorProductos {
         return instancia;
     }
     
-public static final String EXITO = "Producto creado/modificado con éxito";
-public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
-public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-public static final String ERROR_ESTADO = "El estado del producto es incorrecto";
-public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
-public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
-   
+
     
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
                 
@@ -47,6 +47,7 @@ public static final String PRODUCTO_INEXISTENTE = "No existe el producto especif
                 }
     }
     
+    @Override
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
             this.obtenerProducto(codigo);
             if (!this.productos.contains(productoAModificar)){ //agrego un control para saber si el que quiero modificar existe
@@ -66,10 +67,12 @@ public static final String PRODUCTO_INEXISTENTE = "No existe el producto especif
                     return EXITO;
     }
     
+    @Override
     public ArrayList<Producto> menu() {
         return this.productos;
     }
     
+    @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList <Producto> productosEncontrados = new ArrayList<>();
         for (Producto p : productos){
@@ -77,6 +80,15 @@ public static final String PRODUCTO_INEXISTENTE = "No existe el producto especif
                 productosEncontrados.add(p);
         }
         return productosEncontrados;
+    }
+    
+    public String borrarProducto(Producto producto){
+        GestorPedidos gp = GestorPedidos.instanciar();  //uso el gestor de pedidos para obtener los podructos de cada pedido
+        if (gp.hayPedidosConEsteProducto(producto)){//controlo que haya pedidos con ese producto
+            return ERROR_BORRADO;
+        }
+        this.productos.remove(producto);
+        return EXITO_BORRADO;
     }
     
     public boolean existeEsteProducto(Producto producto) {
@@ -104,4 +116,6 @@ public static final String PRODUCTO_INEXISTENTE = "No existe el producto especif
             }
         return null;
     }
+    
+    
 }
