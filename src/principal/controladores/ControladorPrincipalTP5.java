@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -25,7 +26,7 @@ import usuarios.modelos.Usuario;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        /*
+        
         IGestorProductos gp = GestorProductos.instanciar();
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         IGestorPedidos gpd = GestorPedidos.instanciar();
@@ -45,14 +46,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("oducto");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
@@ -65,9 +66,9 @@ public class ControladorPrincipalTP5 {
         }
         
         
-        System.out.println(gu.crearUsuario("correo@usuario1", "a1", "n1", Perfil.CLIENTE, "1234", "1234"));
-        System.out.println(gu.crearUsuario("correo@usuario2", "a2", "n2", Perfil.ENCARGADO, "1234", "1234"));
-        System.out.println(gu.crearUsuario("correo@usuario3", "a3", "n3", Perfil.CLIENTE, "1234", "1234"));
+        System.out.println(gu.crearUsuario("correo@usuario1", "Cc", "Aa", Perfil.CLIENTE, "1234", "1234"));
+        System.out.println(gu.crearUsuario("correo@usuario2", "Aa", "Aa", Perfil.ENCARGADO, "1234", "1234"));
+        System.out.println(gu.crearUsuario("correo@usuario3", "Aa", "Bb", Perfil.CLIENTE, "1234", "1234"));
         
         System.out.println(gu.crearUsuario("correo@usuario1", "a1", "n1", Perfil.CLIENTE, "1234", "1234"));
         //correo repetido
@@ -83,15 +84,6 @@ public class ControladorPrincipalTP5 {
         }
         
         Usuario u1 = gu.obtenerUsuario("correo@usuario1");
-        /*
-        System.out.println(gu.modificarUsuario(u1, "correo@usuario1", "nuevoApellido", "nuevoNombre", Perfil.CLIENTE, "1234", "1234"));
-        System.out.println(gu.modificarUsuario(u1, "correo@usuario2", "nuevoApellido", "nuevoNombre", Perfil.CLIENTE, "1234", "1234"));
-        */
-        //correo ya existente
-        /*
-        for(Usuario u: gu.verUsuarios()){
-            u.mostrar();
-        }
         
         for(Usuario u: gu.buscarUsuarios("a")){
             u.mostrar();
@@ -107,8 +99,8 @@ public class ControladorPrincipalTP5 {
             u.mostrar();
         }
         
-        ArrayList<ProductoDelPedido> listapdp1 = new ArrayList<>();
-        ArrayList<ProductoDelPedido> listapdp2 = new ArrayList<>();
+        List<ProductoDelPedido> listapdp1 = new ArrayList<>();
+        List<ProductoDelPedido> listapdp2 = new ArrayList<>();
         //ArrayList vacío
         
         ProductoDelPedido pdp1 = new ProductoDelPedido(gp.menu().get(0), 100);
@@ -161,6 +153,6 @@ public class ControladorPrincipalTP5 {
         for(Pedido p: gpd.verPedidos()){
             p.mostrar();
         }
-        */
+        
     }
 }
