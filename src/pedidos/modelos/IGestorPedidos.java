@@ -6,7 +6,7 @@ package pedidos.modelos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
@@ -15,9 +15,9 @@ import usuarios.modelos.Cliente;
  * @author damia
  */
 public interface IGestorPedidos {
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
     public String cambiarEstado(Pedido pedidoAModificar);
-    public ArrayList<Pedido> verPedidos();
+    public List<Pedido> verPedidos();
     public boolean hayPedidosConEsteCliente(Cliente cliente);
     public boolean hayPedidosConEsteProducto(Producto producto);
     public String cancelarPedido(Pedido pedido);

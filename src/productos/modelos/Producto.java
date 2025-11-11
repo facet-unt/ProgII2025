@@ -1,6 +1,8 @@
 package productos.modelos;
 
-public class Producto {
+import java.util.Comparator;
+
+public class Producto implements Comparable<Producto> {
 
     private int codigo;
     private String descripcion;
@@ -83,7 +85,22 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
+    
+    static Comparator<Producto> categoriaComp = (Producto p1, Producto p2) -> p1.verCategoria().toString().compareTo(p2.verCategoria().toString());
 
+    static Comparator<Producto> descripcionComp = (Producto p1, Producto p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
+
+    @Override
+    public int compareTo(Producto o) {
+        int cmp = this.categoria.compareTo(o.verCategoria());
+        if (cmp == 0) {
+            cmp = this.descripcion.compareTo(o.verDescripcion());
+        }
+        return cmp;
+    }
+     
+    
+    
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;

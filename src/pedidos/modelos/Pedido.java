@@ -7,19 +7,19 @@ package pedidos.modelos;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import productos.modelos.Producto;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
 /**
  *
  * @author estudiante
  */
-public class Pedido {
+public class Pedido implements Comparable<Pedido> {
     private int numero;
     private LocalDateTime fechaYhora;
     private Estado estado;
     private Cliente unCliente;
-    private ArrayList<ProductoDelPedido> productosdelpedido;
+    private List<ProductoDelPedido> productosdelpedido = new ArrayList<>();
     
     public void mostrar(){
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -55,7 +55,7 @@ public class Pedido {
         return unCliente;
     }
 
-    public ArrayList<ProductoDelPedido> verProductosdelpedido() {
+    public List<ProductoDelPedido> verProductosdelpedido() {
         return productosdelpedido;
     }
     
@@ -75,7 +75,7 @@ public class Pedido {
         this.unCliente = unCliente;
     }
 
-    public void asignarProductosdelpedido(ArrayList<ProductoDelPedido> productosdelpedido) {
+    public void asignarProductosdelpedido(List<ProductoDelPedido> productosdelpedido) {
         this.productosdelpedido = productosdelpedido;
     }
 
@@ -101,13 +101,19 @@ public class Pedido {
         return this.numero == other.numero;
     }
     
-    public Pedido(int numero, LocalDateTime fechaYhora,ArrayList<ProductoDelPedido> productosdelpedido, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYhora,List<ProductoDelPedido> productosdelpedido, Cliente unCliente) {
         this.numero = numero + 1;
         this.fechaYhora = fechaYhora;
         this.unCliente = unCliente;
         this.productosdelpedido = productosdelpedido;
         this.estado = this.estado.CREADO;
     }
+
+    @Override
+    public int compareTo(Pedido p) {
+        return Integer.compare(numero, p.verNumero());
+    }
+    
     
 }
 

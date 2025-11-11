@@ -1,11 +1,11 @@
 package principal.controladores;
 
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
 
 /**
  *
@@ -15,9 +15,9 @@ public class ControladorPrincipalTP5 {
     public static void main(String[] args) {
         GestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
-        System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.NO_DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
-                        
+                         
         for(Producto p : gp.menu()) {
             p.mostrar();
         }
@@ -28,14 +28,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("oducto");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
         }

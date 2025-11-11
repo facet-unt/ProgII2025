@@ -8,7 +8,7 @@ package productos.modelos;
  *
  * @author estudiante
  */
-public enum Categoria {
+public enum Categoria{
     ENTRADA("Entrada"),
     PLATO_PRINCIPAL("Plato principal"),
     POSTRE("Postre");
@@ -18,6 +18,7 @@ public enum Categoria {
     private Categoria(String valor) {
         this.valor = valor;
     }
+    
     @Override
     public String toString() {
         return this.valor;

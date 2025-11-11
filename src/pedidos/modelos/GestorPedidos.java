@@ -1,13 +1,14 @@
 package pedidos.modelos;
 
 import java.time.LocalDate;
-import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GestorPedidos implements IGestorPedidos {
      private ArrayList<Pedido> pedidos = new ArrayList<>();
@@ -35,7 +36,7 @@ public class GestorPedidos implements IGestorPedidos {
      }
      
      @Override
-     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente){
          int i=0;
          if (fecha == null)
              return ERROR_FECHA;
@@ -76,7 +77,8 @@ public class GestorPedidos implements IGestorPedidos {
      }
      
      @Override
-     public ArrayList<Pedido> verPedidos(){
+     public List<Pedido> verPedidos(){
+         Collections.sort(pedidos);
          return pedidos;
      }
 

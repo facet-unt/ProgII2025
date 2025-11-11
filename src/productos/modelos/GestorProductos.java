@@ -1,12 +1,14 @@
 package productos.modelos;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.IGestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos{
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
     
@@ -75,14 +77,15 @@ public class GestorProductos implements IGestorProductos{
     }
     
     @Override
-    public ArrayList<Producto> menu() {
+    public List<Producto> menu() {
+        Collections.sort(productos);
         return this.productos;
     }
     
     @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    public List<Producto> buscarProductos(String descripcion) {
         int i=0;
-        ArrayList<Producto> productosPorDescripcion = new ArrayList<>();
+        List<Producto> productosPorDescripcion = new ArrayList<>();
         for(Producto p: productos){
             if(p.verDescripcion().equalsIgnoreCase(descripcion)){
                 productosPorDescripcion.add(p);
@@ -91,6 +94,8 @@ public class GestorProductos implements IGestorProductos{
         }
         if(i == 0)
             System.out.println(PRODUCTO_INEXISTENTE);
+        
+        Collections.sort(productos);
         return productosPorDescripcion;
     }
     
@@ -104,9 +109,9 @@ public class GestorProductos implements IGestorProductos{
     }
     
     @Override
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
         int i = 0;
-        ArrayList<Producto> productosPorCategoria = new ArrayList<>();
+        List<Producto> productosPorCategoria = new ArrayList<>();
         for(Producto p: productos){
             if(p.verCategoria() == categoria){
                 productosPorCategoria.add(p);
@@ -115,6 +120,8 @@ public class GestorProductos implements IGestorProductos{
         }
         if (i == 0)
             System.out.println(PRODUCTO_INEXISTENTE);
+        
+        Collections.sort(productos, Producto.descripcionComp);
         return productosPorCategoria;
     }
     

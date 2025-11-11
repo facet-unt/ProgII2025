@@ -1,9 +1,8 @@
 package usuarios.modelos;
 
-import productos.modelos.GestorProductos;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GestorUsuarios implements IGestorUsuarios{
     private ArrayList<Usuario> usuarios = new ArrayList();
@@ -32,13 +31,13 @@ public class GestorUsuarios implements IGestorUsuarios{
     public String crearUsuario(String correo, String apellido, String nombre,Perfil perfil, String clave, String claveRepetida){
         if (correo == null || !correo.contains("@") || correo.equals(""))
             return ERROR_CORREO;
-        if(apellido == null || apellido == "")
+        if(apellido == null || apellido.isEmpty())
             return ERROR_APELLIDO;
-        if (nombre == null || nombre == "")
+        if (nombre == null || nombre.isEmpty())
             return ERROR_NOMBRE;
-        if (clave == null || clave == "")
+        if (clave == null || clave.isEmpty())
             return ERROR_CLAVES;
-        if (claveRepetida == null || claveRepetida == "" || claveRepetida != clave)
+        if (claveRepetida == null || claveRepetida.isEmpty() || claveRepetida.equals(claveRepetida))
             return ERROR_CLAVES;
         if (perfil == null)
             return ERROR_PERFIL;
@@ -65,14 +64,16 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     @Override
-    public ArrayList<Usuario> verUsuarios(){
-        return this.usuarios;
+    public List<Usuario> verUsuarios(){
+        Collections.sort(usuarios, Usuario.apellidoComp);
+        Collections.sort(usuarios, Usuario.nombreComp);
+        return usuarios;
     }
 
     @Override
-    public ArrayList<Usuario> buscarUsuarios(String apellido){
+    public List<Usuario> buscarUsuarios(String apellido){
         int i=0;
-        ArrayList<Usuario> usuariosPorApellido = new ArrayList<>();
+        List<Usuario> usuariosPorApellido = new ArrayList<>();
         if(apellido != null && !apellido.equals("")){
             for (Usuario u: usuarios){
                 if (u.verApellido().equalsIgnoreCase(apellido)){
@@ -85,7 +86,10 @@ public class GestorUsuarios implements IGestorUsuarios{
         } else {
             System.out.println(ERROR_APELLIDO);
         }
-        return this.usuarios;
+        
+        Collections.sort(usuariosPorApellido, Usuario.apellidoComp);
+        Collections.sort(usuariosPorApellido, Usuario.nombreComp);
+        return usuariosPorApellido;
     }
 
     @Override
