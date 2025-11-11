@@ -54,12 +54,22 @@ public class GestorUsuarios {
 
         return EXITO;
     }
-    public ArrayList<Usuario> buscarUsuarios(String apellido){
+
+    public ArrayList<Usuario> buscarUsuarios(String apellido) {
         for (Usuario u : usuario) {
-            if (u.verApellido()== apellido){
+            if (u.verApellido() == apellido) {
                 return this.usuario;
             }
         }
         return null;
+    }
+
+    public boolean existeEsteUsuario(Usuario usuario) {
+        for (Usuario u : this.usuario) {
+            if (!(u.equals(usuario))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
