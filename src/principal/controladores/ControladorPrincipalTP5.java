@@ -67,7 +67,7 @@ public class ControladorPrincipalTP5 {
         
         
         System.out.println(gu.crearUsuario("correo@usuario1", "Cc", "Aa", Perfil.CLIENTE, "1234", "1234"));
-        System.out.println(gu.crearUsuario("correo@usuario2", "Aa", "Aa", Perfil.ENCARGADO, "1234", "1234"));
+        System.out.println(gu.crearUsuario("correo@usuario2", "Aa", "Aa", Perfil.CLIENTE, "1234", "1234"));
         System.out.println(gu.crearUsuario("correo@usuario3", "Aa", "Bb", Perfil.CLIENTE, "1234", "1234"));
         
         System.out.println(gu.crearUsuario("correo@usuario1", "a1", "n1", Perfil.CLIENTE, "1234", "1234"));
@@ -93,7 +93,7 @@ public class ControladorPrincipalTP5 {
         gu.obtenerUsuario("correo@usuario3").mostrar();
         
         Usuario usuarioEliminar = gu.obtenerUsuario("correo@usuario2");
-        gu.borrarUsuario(usuarioEliminar);
+        System.out.println(gu.borrarUsuario(usuarioEliminar));
         //borrar usuario 2
         for(Usuario u: gu.verUsuarios()){
             u.mostrar();
