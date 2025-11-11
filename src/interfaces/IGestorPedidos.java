@@ -4,9 +4,8 @@
  */
 package interfaces;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
+import java.time.*;
+import java.util.List;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
@@ -30,9 +29,9 @@ public interface IGestorPedidos {
     
     
     //METODOS A IMPLEMENTAR
-    public abstract String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public abstract String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
     public abstract String cambiarEstado(Pedido pedidoAModificar);
-    public abstract ArrayList<Pedido> verPedidos();
+    public abstract List<Pedido> verPedidos();
     public abstract boolean hayPedidosConEsteCliente(Cliente cliente);
     public abstract boolean hayPedidosConEsteProducto(Producto producto);
     public abstract String cancelarPedido(Pedido pedido);

@@ -4,6 +4,7 @@ import java.time.*;
 import usuarios.modelos.*;
 import java.util.ArrayList;
 import interfaces.*;
+import java.util.List;
 import productos.modelos.Producto;
 
 
@@ -11,7 +12,7 @@ import productos.modelos.Producto;
 
 public class GestorPedidos implements IGestorPedidos{
     
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
     
     private static GestorPedidos instancia;
     
@@ -28,7 +29,7 @@ public class GestorPedidos implements IGestorPedidos{
     }
     
     @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         Pedido p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
         if(fecha!=null&&hora!=null&&!productosDelPedido.isEmpty()&&cliente!=null)
         {   
@@ -68,7 +69,7 @@ public class GestorPedidos implements IGestorPedidos{
     }
     
     @Override
-    public ArrayList<Pedido> verPedidos(){
+    public List<Pedido> verPedidos(){
         return pedidos;
     }
     
