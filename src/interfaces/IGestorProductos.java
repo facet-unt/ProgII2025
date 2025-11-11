@@ -5,6 +5,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
@@ -30,10 +31,10 @@ public interface IGestorProductos {
     public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract ArrayList<Producto> menu();
-    public abstract ArrayList<Producto> buscarProductos(String descripcion);
+    public abstract List<Producto> buscarProductos(String descripcion);
     public abstract String borrarProducto(Producto producto);
     public abstract boolean existeEsteProducto(Producto producto);
-    public abstract ArrayList<Producto> verProductosPorCategoria(Categoria categoria);
+    public abstract List<Producto> verProductosPorCategoria(Categoria categoria);
     public abstract Producto obtenerProducto(Integer codigo);
 
 }

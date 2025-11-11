@@ -2,6 +2,7 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.*;
 
 
@@ -81,16 +82,17 @@ public class GestorProductos implements IGestorProductos{
         
     }
     
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    public List<Producto> buscarProductos(String descripcion) {
          
-        ArrayList<Producto> encontrados = new ArrayList<>();
-        for (Producto p : productos) {
+        List<Producto> encontrados = new ArrayList<>();
+        for (Producto p : this.menu()) {
              
             if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
                 encontrados.add(p);
             }
                 
             }
+
         return encontrados;
     }
     
