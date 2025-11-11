@@ -23,8 +23,8 @@ public class Cliente extends Usuario{
   
     }
 
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
+    public Cliente(String correo, String clave, String apellido, String nombre, Perfil perfil) {
+        super(correo,clave, apellido, nombre, perfil);
 
 
     }
