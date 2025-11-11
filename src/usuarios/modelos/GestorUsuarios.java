@@ -6,6 +6,8 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -13,7 +15,7 @@ import pedidos.modelos.GestorPedidos;
  * @author thoma
  */
 public class GestorUsuarios implements IGestorUsuarios {
-    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    private List<Usuario> listaUsuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
     
@@ -64,12 +66,13 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
     
     @Override
-    public ArrayList<Usuario> verUsuarios() {
+    public List<Usuario> verUsuarios() {
+        Collections.sort(this.listaUsuarios);
         return this.listaUsuarios;
     }
     
     @Override
-    public ArrayList<Usuario> buscarUsuarios(String apellido) {
+    public List<Usuario> buscarUsuarios(String apellido) {
         ArrayList <Usuario> usuariosEncontrados = new ArrayList<>();
         
         if (apellido == null || apellido.isBlank()) {
@@ -81,7 +84,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 usuariosEncontrados.add(u);
             }
         }
-        
+        Collections.sort(usuariosEncontrados);
         return usuariosEncontrados;
     }
     

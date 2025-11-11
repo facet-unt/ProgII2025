@@ -4,7 +4,7 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
@@ -12,7 +12,7 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
-public abstract class Usuario {
+public abstract class Usuario implements Comparable <Usuario> {
     //Atributos
     private String correo;
     private String clave;
@@ -34,7 +34,7 @@ public abstract class Usuario {
         System.out.println(this.verApellido() + ", " + this.verNombre());
     }
     
-    public abstract ArrayList<Pedido> verPedidos();
+    public abstract List<Pedido> verPedidos();
     
     public String verCorreo() {
         return correo;
@@ -106,5 +106,12 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-      
+    
+    @Override
+    public int compareTo(Usuario u){
+        if(this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase())==0)
+            return this.nombre.toLowerCase().compareTo(u.nombre.toLowerCase());
+        else 
+        return this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase());
+    }
 }

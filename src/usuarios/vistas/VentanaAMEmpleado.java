@@ -47,13 +47,12 @@ public class VentanaAMEmpleado extends JDialog {
 
         jLabel1.setText("Apellido:");
 
-        txtApellido.setToolTipText("Apellidos");
+        txtApellido.setToolTipText("Apellidos del Usuario");
 
         jLabel2.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombres");
+        txtNombre.setToolTipText("Nombres del Usuario");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +61,6 @@ public class VentanaAMEmpleado extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,12 +71,14 @@ public class VentanaAMEmpleado extends JDialog {
 
         jLabel4.setText("Correo:");
 
-        txtCorreo.setToolTipText("Documento");
+        txtCorreo.setToolTipText("Correo del Usuario");
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
+
+        passClave.setToolTipText("Contraseña del Usuario");
 
         jLabel6.setText("Clave:");
 
@@ -147,8 +147,8 @@ public class VentanaAMEmpleado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
-        this.empleados.add(unEmpleado);
+//        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
+//        this.empleados.add(unEmpleado);
         
         System.out.println("Empleados");
         System.out.println("========");

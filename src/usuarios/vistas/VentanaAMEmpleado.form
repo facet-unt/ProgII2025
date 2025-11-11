@@ -94,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Apellidos"/>
+        <Property name="toolTipText" type="java.lang.String" value="Apellidos del Usuario"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -104,7 +104,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Nombres"/>
+        <Property name="toolTipText" type="java.lang.String" value="Nombres del Usuario"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
@@ -134,13 +134,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Documento"/>
+        <Property name="toolTipText" type="java.lang.String" value="Correo del Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passClave">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Contrase&#xf1;a del Usuario"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>

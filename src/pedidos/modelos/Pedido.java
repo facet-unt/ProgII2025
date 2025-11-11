@@ -13,23 +13,24 @@ import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
-public class Pedido {
+public class Pedido implements Comparable <Pedido> {
     //Atributos
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> listaProductosdelPedido = new ArrayList<>();
+    private List<ProductoDelPedido> listaProductosdelPedido = new ArrayList();
 
     //Constructores
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.listaProductosdelPedido = lista;
@@ -44,6 +45,10 @@ public class Pedido {
     //Metodos
     public int verNumero() {
         return numero;
+    }
+    
+    public void asignarNumero(int i) {
+        this.numero = i;
     }
     
     public LocalDate verFecha() {
@@ -73,7 +78,7 @@ public class Pedido {
         }
     }
     
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
+    public List<ProductoDelPedido> verProductoPedido() {
         return listaProductosdelPedido;
     }
     
@@ -117,4 +122,11 @@ public class Pedido {
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
+
+    @Override
+    public int compareTo(Pedido o) {
+        return this.numero - o.numero;
+    }
+    
+    
 }

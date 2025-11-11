@@ -47,11 +47,11 @@ public class VentanaAMEncargado extends JDialog {
 
         jLabel1.setText("Apellido:");
 
-        txtApellido.setToolTipText("Apellidos");
+        txtApellido.setToolTipText("Apellidos del Usuario");
 
         jLabel2.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombres");
+        txtNombre.setToolTipText("Nombres del Usuario");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -62,7 +62,6 @@ public class VentanaAMEncargado extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,12 +72,14 @@ public class VentanaAMEncargado extends JDialog {
 
         jLabel4.setText("Correo:");
 
-        txtCorreo.setToolTipText("Documento");
+        txtCorreo.setToolTipText("Correo del Usuario");
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
+
+        passClave.setToolTipText("Contraseña del Usuario");
 
         jLabel6.setText("Clave:");
 
@@ -147,7 +148,7 @@ public class VentanaAMEncargado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
+        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre,);
         this.encargados.add(unEncargado);
         
         System.out.println("Clientes");

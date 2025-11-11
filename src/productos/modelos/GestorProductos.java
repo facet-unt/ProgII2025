@@ -2,11 +2,13 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos {
-    private ArrayList<Producto> listaProductos = new ArrayList<>();
+    private List<Producto> listaProductos = new ArrayList<>();
     
     private static GestorProductos instancia;
     
@@ -66,12 +68,14 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> menu() {
+    public List<Producto> menu() {
+//        Collections.sort(this.listaProductos, (o1,o2)->o1.verCategoria().compareTo(o2.verCategoria()));
+        Collections.sort(this.listaProductos);
         return this.listaProductos;
     }
     
     @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    public List<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> productosEncontrados = new ArrayList();
         
         //Devuelvo lista vacia si la descripcion no es valida
@@ -80,11 +84,11 @@ public class GestorProductos implements IGestorProductos {
         }
         
         for (Producto p : this.listaProductos) {
-            if (p.verDescripcion().toLowerCase().equals(descripcion.toLowerCase())) {
+            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
                 productosEncontrados.add(p);
             }
         }
-        
+        Collections.sort(productosEncontrados);
         return productosEncontrados;
     }
     
@@ -94,7 +98,7 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> productosPorCategoria = new ArrayList();
         
         if (categoria == null) {
@@ -104,9 +108,10 @@ public class GestorProductos implements IGestorProductos {
         for (Producto p : this.listaProductos) {
             if (p.verCategoria() == categoria) {
                 productosPorCategoria.add(p);
+                
             }
         }
-        
+        Collections.sort(productosPorCategoria);
         return productosPorCategoria;
     }
     

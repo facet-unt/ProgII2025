@@ -9,8 +9,8 @@ package productos.modelos;
  * @author Esteban
  */
 public enum Categoria {
-    PLATO_PRINCIPAL("Plato Principal"),
     ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato Principal"),
     POSTRE("Postre");
     
     private String valor;

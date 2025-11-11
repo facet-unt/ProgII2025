@@ -10,6 +10,7 @@ package usuarios.modelos;
  * @author Esteban
  */
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
@@ -29,7 +30,7 @@ public class Cliente extends Usuario {
     }
     
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
         return this.listaPedidos;
     }
 

@@ -47,11 +47,11 @@ public class VentanaAMCliente extends JDialog {
 
         jLabel1.setText("Apellido:");
 
-        txtApellido.setToolTipText("Apellidos");
+        txtApellido.setToolTipText(" Apellidos del Cliente");
 
         jLabel2.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombres ");
+        txtNombre.setToolTipText("Nombres del Cliente");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -79,6 +79,8 @@ public class VentanaAMCliente extends JDialog {
                 txtCorreoActionPerformed(evt);
             }
         });
+
+        passClave.setToolTipText("Contraseña del Cliente");
 
         jLabel6.setText("Clave:");
 

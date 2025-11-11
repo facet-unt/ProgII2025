@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
@@ -17,7 +19,7 @@ import usuarios.modelos.Cliente;
  * @author Esteban
  */
 public class GestorPedidos implements IGestorPedidos {
-    private ArrayList<Pedido> listaPedidos = new ArrayList<>();
+    private List<Pedido> listaPedidos = new ArrayList<>();
     private static int num = 1;
     private static GestorPedidos instancia;
     
@@ -33,7 +35,7 @@ public class GestorPedidos implements IGestorPedidos {
     
     //Metodos
     @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente){
         String validacion = this.validacionDatos(fecha, hora, productosDelPedido, cliente);
         
         if (!validacion.equals(VALIDACION_EXITO)) {
@@ -67,7 +69,8 @@ public class GestorPedidos implements IGestorPedidos {
     }
     
     @Override
-    public ArrayList<Pedido> verPedidos(){
+    public List<Pedido> verPedidos(){
+        Collections.sort(this.listaPedidos);
         return this.listaPedidos;
     }
     
@@ -130,7 +133,7 @@ public class GestorPedidos implements IGestorPedidos {
     }
     
     //Validacion de los datos del pedido
-    private String validacionDatos(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    private String validacionDatos(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         
 //        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
