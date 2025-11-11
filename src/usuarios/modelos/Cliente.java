@@ -5,11 +5,12 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
 
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList();
 
     public Cliente(String c, String cl, String a, String n) {
         super(c, cl, a, n);
@@ -17,7 +18,7 @@ public class Cliente extends Usuario {
     }
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
         return this.pedidos;
     }
 
@@ -50,11 +51,11 @@ public class Cliente extends Usuario {
         }
     }
 
-    public ArrayList<Pedido> getPedidos() {
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(ArrayList<Pedido> pedidos) {
+    public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 

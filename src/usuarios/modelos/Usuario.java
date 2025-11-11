@@ -4,7 +4,7 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
@@ -12,29 +12,38 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public abstract class Usuario {
+public abstract class Usuario implements Comparable<Usuario> {
+
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
 
-
-    
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
     }
-    
-    public abstract ArrayList<Pedido> verPedidos();
-    
-    public void mostrar(){
-        System.out.println("Nombre: "+ verNombre());
-        System.out.println("Apellido: "+ verApellido());
-        System.out.println("Correo: "+ verCorreo());
-        System.out.println("Clave: "+ verClave());
-        
+
+    public abstract List<Pedido> verPedidos();
+
+    public void mostrar() {
+        System.out.println("Nombre: " + verNombre());
+        System.out.println("Apellido: " + verApellido());
+        System.out.println("Correo: " + verCorreo());
+        System.out.println("Clave: " + verClave());
+
+    }
+
+    @Override
+    public int compareTo(Usuario u) {
+        if (this.apellido.compareTo(u.apellido) == 0) {
+            return this.nombre.compareTo(u.nombre);
+        }
+        else{
+        return this.apellido.compareTo(u.apellido);
+        }
     }
 
     public String verCorreo() {
@@ -90,6 +99,5 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
-    
+
 }

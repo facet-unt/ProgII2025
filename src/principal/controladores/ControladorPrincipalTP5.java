@@ -6,6 +6,7 @@ import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -38,14 +39,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("Producto1");
+        List<Producto> productosBuscados = gp.buscarProductos("Producto1");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
@@ -85,6 +86,13 @@ public class ControladorPrincipalTP5 {
         System.out.println(gu.borrarUsuario(gu.obtenerUsuario("correo@gmail")));
         
         System.out.println(gp.borrarProducto(gp.obtenerProducto(3)));
+        
+        System.out.println(gp.crearProducto(9, "AAsd", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(8, "ZZnm", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(5, "uio", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        for(Producto p: gp.menu()){
+            p.mostrar();
+        }
     }
     
     

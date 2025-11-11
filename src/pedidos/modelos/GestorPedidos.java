@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
@@ -41,7 +43,7 @@ public class GestorPedidos implements IGestorPedidos {
     }
 
     @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         if (fecha == null) {
             return ERROR_FECHA;
         }
@@ -80,9 +82,12 @@ public class GestorPedidos implements IGestorPedidos {
         }
         return ESTADO_EXITO;
     }
+   
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
+        
+        
         return pedidos;
     }
 

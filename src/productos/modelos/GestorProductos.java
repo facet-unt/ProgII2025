@@ -3,14 +3,15 @@ package productos.modelos;
 import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.Pedido;
+import pedidos.modelos.Pedido;import pedidos.modelos.ProductoDelPedido;
 import pedidos.modelos.ProductoDelPedido;
 
 public class GestorProductos implements IGestorProductos {
 
-    
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList();
 
     private static GestorProductos instancia;
 
@@ -26,16 +27,16 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public String borrarProducto(Producto producto){
+    public String borrarProducto(Producto producto) {
         IGestorPedidos gped = GestorPedidos.instanciar();
-        for(Pedido p:gped.verPedidos()){
-            for(ProductoDelPedido pdp:p.getCantidadProducto()){
-                if(pdp.getUnProducto().equals(producto)){
+        for (Pedido p : gped.verPedidos()) {
+            for (ProductoDelPedido pdp : p.getCantidadProducto()) {
+                if (pdp.getUnProducto().equals(producto)) {
                     return BORRADO_ERROR;
                 }
-                    
+
             }
-            
+
         }
         productos.remove(producto);
         return BORRADO_EXITO;
@@ -83,12 +84,14 @@ public class GestorProductos implements IGestorProductos {
         return EXITO;
     }
 
-    public ArrayList<Producto> menu() {
+    @Override
+    public List<Producto> menu() {
+        Collections.sort(productos);
         return this.productos;
     }
 
-    public ArrayList<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> prod = new ArrayList<>();
+    public List<Producto> buscarProductos(String descripcion) {
+        List<Producto> prod = new ArrayList();
 
         for (Producto p : productos) {
             if (p.verDescripcion().contains(descripcion)) {
@@ -96,6 +99,7 @@ public class GestorProductos implements IGestorProductos {
             }
 
         }
+        Collections.sort(prod);
         return prod;
     }
 
@@ -103,10 +107,11 @@ public class GestorProductos implements IGestorProductos {
         return productos.contains(producto);
     }
 
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> productosPorCategoria = new ArrayList<>();
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
+        List<Producto> productosPorCategoria = new ArrayList();
         for (Producto p : productos) {
             if (p.verCategoria() == categoria);
+            Collections.sort(productosPorCategoria);
             return productosPorCategoria;
         }
         return productosPorCategoria;

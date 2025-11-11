@@ -7,15 +7,16 @@ package pedidos.modelos;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
-public class Pedido {
+public class Pedido implements Comparable<Pedido> {
 
     private int numero;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> productos;
+    private List<ProductoDelPedido> productos;
 
     public void mostrar() {
         System.out.println("Numero: " + obtenerNumero());
@@ -24,22 +25,25 @@ public class Pedido {
         System.out.println("Estado: " + estado);
         System.out.println("Producto\tCantidad");
         System.out.println("========================");
-        for(ProductoDelPedido p: productos){
+        for (ProductoDelPedido p : productos) {
             p.mostrar();
         }
     }
 
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList cantidadProducto , Cliente cliente) {
-        ArrayList<Pedido> pedidosCliente = cliente.getPedidos();
+    public Pedido(int numero, LocalDateTime fechaYHora, List cantidadProducto, Cliente cliente) {
+        List<Pedido> pedidosCliente = cliente.getPedidos();
         pedidosCliente.add(this);
         cliente.setPedidos(pedidosCliente);
-   
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.estado=estado.CREADO;
+        this.estado = estado.CREADO;
         this.cliente = cliente;
-        this.productos=cantidadProducto;
-        
+        this.productos = cantidadProducto;
+    }
+
+    @Override
+    public int compareTo(Pedido p) {
+        return Integer.compare(this.numero, p.numero);
     }
 
     public int obtenerNumero() {
@@ -69,7 +73,7 @@ public class Pedido {
         return fechaYHora.format(formatoHora);
     }
 
-    public ArrayList<ProductoDelPedido> getCantidadProducto() {
+    public List<ProductoDelPedido> getCantidadProducto() {
         return productos;
     }
 
@@ -114,5 +118,5 @@ public class Pedido {
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
-    
+
 }

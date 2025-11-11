@@ -6,6 +6,8 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import static usuarios.modelos.Perfil.EMPLEADO;
 
 /**
@@ -87,17 +89,20 @@ public class GestorUsuarios implements IGestorUsuarios {
         return EXITO;
     }
 
-    public ArrayList<Usuario> verUsuarios() {
+    public List<Usuario> verUsuarios() {
+        
         return usuarios;
     }
 
-    public ArrayList<Usuario> buscarUsuarios(String apellido) {
-        ArrayList<Usuario> usuariosBuscados = new ArrayList<>();
+    public List<Usuario> buscarUsuarios(String apellido) {
+        List<Usuario> usuariosBuscados = new ArrayList();
         for (Usuario u : usuarios) {
             if (u.verApellido().contains(apellido)) {
+                
                 usuariosBuscados.add(u);
             }
         }
+        Collections.sort(usuariosBuscados);
         return usuariosBuscados;
     }
 

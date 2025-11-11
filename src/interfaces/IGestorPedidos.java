@@ -7,6 +7,7 @@ package interfaces;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
@@ -32,11 +33,10 @@ public interface IGestorPedidos {
     public static final String BORRADO_EXITO = "Se borro correctamente el pedido";
     public static final String BORRADO_ERROR = "Error al borrar el pedido";
 
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
 
     public String cambiarEstado(Pedido pedidoAModificar);
 
-    public ArrayList<Pedido> verPedidos();
 
     public boolean hayPedidosConEsteCliente(Cliente cliente);
 
@@ -47,4 +47,8 @@ public interface IGestorPedidos {
     public boolean existeEstePedido(Pedido pedido);
 
     public Pedido obtenerPedido(Integer numero);
+
+   
+
+    public List<Pedido> verPedidos();
 }
