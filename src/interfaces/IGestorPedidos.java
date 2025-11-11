@@ -28,9 +28,9 @@ public interface IGestorPedidos {
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
     
-    public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public List<Pedido> verPedidos();
     public String cambiarEstado(Pedido pedidoAModificar);
-    public ArrayList<Pedido> verPedidos();
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
     public boolean hayPedidosConEsteCliente(Cliente cliente);
     public boolean hayPedidosConEsteProducto(Producto producto);
     public String cancelarPedido(Pedido pedido);

@@ -26,10 +26,10 @@ public interface IGestorProductos {
     
     public String crearProducto(int codigo, String descripcion, float precio,Categoria categoria, Estado estado);
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
-    public ArrayList<Producto> menu();
-    public ArrayList<Producto> buscarProductos(String descripcion);
+    public List<Producto> menu();
+    public List<Producto> buscarProductos(String descripcion);
     public String borrarProducto(Producto producto);
     public boolean existeEsteProducto(Producto producto);
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria);
+    public List<Producto> verProductosPorCategoria(Categoria categoria);
     public Producto obtenerProducto(Integer codigo);
 }
