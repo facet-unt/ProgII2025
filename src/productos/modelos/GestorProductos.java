@@ -1,9 +1,11 @@
 package productos.modelos;
 
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.IGestorPedidos;
 
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
@@ -28,6 +30,7 @@ public class GestorProductos {
         return instancia;
     }
     
+    @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (!(codigo>0))
             return ERROR_CODIGO;
@@ -47,6 +50,7 @@ public class GestorProductos {
         return EXITO;
     }
     
+    @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if(!this.productos.contains(p))
             return PRODUCTO_INEXISTENTE;
@@ -70,10 +74,12 @@ public class GestorProductos {
         return EXITO;
     }
     
+    @Override
     public ArrayList<Producto> menu() {
         return this.productos;
     }
     
+    @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         int i=0;
         ArrayList<Producto> productosPorDescripcion = new ArrayList<>();
@@ -88,6 +94,7 @@ public class GestorProductos {
         return productosPorDescripcion;
     }
     
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         if(!productos.contains(producto)){
             System.out.println(PRODUCTO_INEXISTENTE);
@@ -96,6 +103,7 @@ public class GestorProductos {
         return true;
     }
     
+    @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         int i = 0;
         ArrayList<Producto> productosPorCategoria = new ArrayList<>();
@@ -110,6 +118,7 @@ public class GestorProductos {
         return productosPorCategoria;
     }
     
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         if(codigo>0){
             for(Producto p: productos){
@@ -123,4 +132,20 @@ public class GestorProductos {
         }
         return null;
     }
+
+    @Override
+    public String borrarProducto(Producto producto) {
+        IGestorPedidos gPed = GestorPedidos.instanciar();
+        if(producto != null && productos.contains(producto)){
+            if(!gPed.hayPedidosConEsteProducto(producto)){
+                productos.remove(producto);
+                return EXITO;
+            } else {
+                return "No se ha podido borrar este producto ya que hay un pedido que lo contiene \n";
+            }
+        } else {
+            return PRODUCTO_INEXISTENTE;
+        }
+    }
+    
 }

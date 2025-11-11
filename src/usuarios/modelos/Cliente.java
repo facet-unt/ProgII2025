@@ -26,23 +26,24 @@ public class Cliente extends Usuario {
     }
     
     public void agregarPedido(Pedido unpedido){
+        int i = 0;
         if(!pedidos.contains(unpedido)){
             pedidos.add(unpedido);
         }else{
             for(Pedido p: pedidos){
-                if(p.equals(unpedido))
+                if(p.equals(unpedido)){
                     p=unpedido;
-                }
+                    i++;
+                }    
+            }
         }
+        if (i != 0)
+            pedidos.add(unpedido);
     }    
     
     public void cancelarPedido(Pedido unpedido){
-        for(Pedido p: pedidos){
-            if(p.equals(unpedido)){
-                pedidos.remove(p);
-                break;
-            }
-        }    
+        if (pedidos.contains(unpedido))
+            pedidos.remove(unpedido);
     }
 
     public Cliente(String correo, String clave, String apellido, String nombre) {

@@ -1,5 +1,6 @@
 package pedidos.modelos;
 
+import java.time.LocalDate;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class GestorPedidos {
+public class GestorPedidos implements IGestorPedidos {
      private ArrayList<Pedido> pedidos = new ArrayList<>();
      private static GestorPedidos instancia;
 
@@ -32,8 +33,9 @@ public class GestorPedidos {
              instancia = new GestorPedidos();
          return instancia;
      }
-
-     public String crearPedido(LocalDateTime fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+     
+     @Override
+     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
          int i=0;
          if (fecha == null)
              return ERROR_FECHA;
@@ -43,7 +45,9 @@ public class GestorPedidos {
              return ERROR_PRODUCTOS_DEL_PEDIDO;
          if (cliente == null)
              return ERROR_CLIENTE;
-         Pedido p = new Pedido(i, fecha, productosDelPedido, cliente);
+         
+         LocalDateTime fechaYhora = fecha.atTime(hora);
+         Pedido p = new Pedido(i, fechaYhora, productosDelPedido, cliente);
          if (pedidos.contains(p))
              return PEDIDOS_DUPLICADOS;
 
@@ -52,6 +56,7 @@ public class GestorPedidos {
          return EXITO;
      }
 
+     @Override
      public String cambiarEstado(Pedido pedidoAModificar){
          if (pedidos.contains(pedidoAModificar)){
              if (pedidoAModificar.verEstado() == null)
@@ -69,17 +74,20 @@ public class GestorPedidos {
          }
          return PEDIDO_INEXISTENTE;
      }
-
+     
+     @Override
      public ArrayList<Pedido> verPedidos(){
          return pedidos;
      }
 
+     @Override
      public boolean hayPedidosConEsteCliente(Cliente cliente) {
          if (cliente != null)
             return cliente.verPedidos().isEmpty();
          return false;
      }
 
+     @Override
      public boolean hayPedidosConEsteProducto (Producto producto){
          int i=0;
          for (Pedido ped: pedidos){
@@ -91,12 +99,14 @@ public class GestorPedidos {
          return i!=0;
      }
 
+     @Override
      public boolean existeEstePedido(Pedido pedido){
          if (pedido != null)
             return pedidos.contains(pedido);
          return false;
      }
 
+     @Override
      public Pedido obtenerPedido(Integer numero){
          if (numero<=0){
              System.out.println("El numero ingresado es erroneo");
@@ -112,4 +122,17 @@ public class GestorPedidos {
          System.out.println("");
          return null;
      }
+
+    @Override
+    public String cancelarPedido(Pedido pedido) {
+        if (pedido != null && pedidos.contains(pedido)){
+            pedidos.remove(pedido);
+            pedido.verUnCliente().cancelarPedido(pedido);
+            return EXITO;
+        } else {
+            return PEDIDO_INEXISTENTE;
+        }
+    }
+     
+     
 }

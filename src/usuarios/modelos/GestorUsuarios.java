@@ -5,7 +5,7 @@ import productos.modelos.GestorProductos;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios{
     private ArrayList<Usuario> usuarios = new ArrayList();
     private static GestorUsuarios instancia;
 
@@ -28,7 +28,8 @@ public class GestorUsuarios {
     public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
     public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
 
-    public String crearUsuario(String correo, String apellido, String nombre, String clave, String claveRepetida){
+    @Override
+    public String crearUsuario(String correo, String apellido, String nombre,Perfil perfil, String clave, String claveRepetida){
         if (correo == null || !correo.contains("@") || correo.equals(""))
             return ERROR_CORREO;
         if(apellido == null || apellido == "")
@@ -39,18 +40,36 @@ public class GestorUsuarios {
             return ERROR_CLAVES;
         if (claveRepetida == null || claveRepetida == "" || claveRepetida != clave)
             return ERROR_CLAVES;
-
-        Usuario u = new Empleado(correo, clave, apellido, nombre);
+        if (perfil == null)
+            return ERROR_PERFIL;
+        
+        Usuario u;
+        switch(perfil){
+            case ENCARGADO:
+                u = new Encargado(correo, clave, apellido, nombre);
+                break;
+            case EMPLEADO:
+                u = new Empleado(correo, clave, apellido, nombre);
+                break;
+            case CLIENTE:
+                u = new Cliente(correo, clave, apellido, nombre);
+                break;
+            default:
+                return ERROR_PERFIL;
+        }
+        
         if (usuarios.contains(u))
             return USUARIOS_DUPLICADOS;
         usuarios.add(u);
         return EXITO;
     }
-
+    
+    @Override
     public ArrayList<Usuario> verUsuarios(){
         return this.usuarios;
     }
 
+    @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         int i=0;
         ArrayList<Usuario> usuariosPorApellido = new ArrayList<>();
@@ -69,6 +88,7 @@ public class GestorUsuarios {
         return this.usuarios;
     }
 
+    @Override
     public boolean existeEsteUsuario(Usuario usuario){
         if (usuarios.contains(usuario)){
             System.out.println(VALIDACION_EXITO);
@@ -79,6 +99,7 @@ public class GestorUsuarios {
         }
     }
 
+    @Override
     public Usuario obtenerUsuario(String correo){
         if (correo != null && !correo.equals("")){
             for(Usuario u: usuarios){
@@ -91,5 +112,18 @@ public class GestorUsuarios {
             System.out.println(ERROR_CORREO);
         }
         return null;
+    }
+
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        if (usuario != null && usuarios.contains(usuario)){
+            if(usuario.verPedidos().isEmpty()){
+                return EXITO;
+            } else {
+                return "No se puede borrar este usuario ya que tiene un pedido en marcha \n";
+            }
+        } else {
+            return "El usuario ingresado no es valido\n";
+        }
     }
 }
