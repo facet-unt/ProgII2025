@@ -1,9 +1,11 @@
 package pedidos.modelos;
+
 import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
@@ -22,18 +24,11 @@ public class GestorPedidos implements IGestorPedidos{
         return instancia;
     }
     
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
-        if(fecha == null){
-            return ERROR_FECHA;
-        }
-        if(hora == null){
-            return ERROR_HORA;
-        }
-        if(productosDelPedido == null || productosDelPedido.isEmpty()){
-            return ERROR_PRODUCTOS_DEL_PEDIDO;
-        }
-        if(cliente == null){
-            return ERROR_CLIENTE;
+    @Override
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente){
+        String error = validarDatosPedido(fecha, hora, productosDelPedido, cliente);
+        if (error != null) {
+            return error;
         }
         
         LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
@@ -50,6 +45,8 @@ public class GestorPedidos implements IGestorPedidos{
         cliente.agregarPedido(nuevoPedido);
         return EXITO;
     }
+    
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar){
         if(pedidoAModificar == null){
             return PEDIDO_INEXISTENTE;
@@ -67,10 +64,14 @@ public class GestorPedidos implements IGestorPedidos{
         return ERROR_ESTADO;
     }
     
-    public ArrayList<Pedido> verPedidos(){
-        return this.pedidos;
+    @Override
+    public List<Pedido> verPedidos(){
+        ArrayList<Pedido> pedidosOrdenados = new ArrayList<>(pedidos);
+        pedidosOrdenados.sort((p1, p2) -> Integer.compare(p1.verNumero(), p2.verNumero()));
+        return pedidosOrdenados;
     }
     
+    @Override
     public boolean hayPedidosConEsteCliente(Cliente cliente){
         for(Pedido p : pedidos){
             if(p.verCliente().equals(cliente)){
@@ -80,6 +81,7 @@ public class GestorPedidos implements IGestorPedidos{
         return false;
     }
     
+    @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
         for(Pedido p : pedidos){
             for(ProductoDelPedido pdp : p.verListaProductos()){
@@ -91,6 +93,7 @@ public class GestorPedidos implements IGestorPedidos{
         return false;
     }
     
+    @Override
     public boolean existeEstePedido(Pedido pedido){
         for(Pedido p : pedidos){
             if(p.equals(pedido)){
@@ -100,6 +103,7 @@ public class GestorPedidos implements IGestorPedidos{
         return false;
     }
     
+    @Override
     public Pedido obtenerPedido(Integer numero){
         for(Pedido p : pedidos){
             if(p.verNumero() == numero){
@@ -109,6 +113,7 @@ public class GestorPedidos implements IGestorPedidos{
         return null;
     }
 
+    @Override
     public String cancelarPedido(Pedido pedido) {
         if (pedido == null) {
             return PEDIDO_INEXISTENTE;
@@ -128,5 +133,21 @@ public class GestorPedidos implements IGestorPedidos{
         } else {
             return PEDIDO_INEXISTENTE;
         }
+    }
+    
+    private String validarDatosPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+        if (fecha == null) {
+            return ERROR_FECHA;
+        }
+        if (hora == null) {
+            return ERROR_HORA;
+        }
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
+            return ERROR_PRODUCTOS_DEL_PEDIDO;
+        }
+        if (cliente == null) {
+            return ERROR_CLIENTE;
+        }
+        return null;
     }
 }

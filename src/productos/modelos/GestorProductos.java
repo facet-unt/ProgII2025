@@ -2,6 +2,7 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 
@@ -21,23 +22,12 @@ public class GestorProductos implements IGestorProductos{
         return instancia;
     }
     
+    @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if(codigo<=0){
-            return ERROR_CODIGO;
-        }
-        if(descripcion==null || descripcion.trim().isEmpty()){
-            return ERROR_DESCRIPCION;
-        }
-        if(precio<=0){
-            return ERROR_PRECIO;
-        }
-        if(categoria==null){
-            return ERROR_CATEGORIA;
-        }
-        if(estado==null){
-            return ERROR_ESTADO;
-        }
-        Producto pNuevo =new Producto(codigo, descripcion, categoria, estado, precio);
+        String error = validarDatosProducto(codigo, descripcion, precio, categoria, estado);
+        if (error != null)
+            return error;
+        Producto pNuevo = new Producto(codigo, descripcion, categoria, estado, precio);
         
         if(existeEsteProducto(pNuevo))
             return PRODUCTOS_DUPLICADOS;
@@ -45,25 +35,14 @@ public class GestorProductos implements IGestorProductos{
         return EXITO;
     }
     
+    @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (p==null){
             return PRODUCTO_INEXISTENTE;
         }
-        if (codigo <= 0){
-            return ERROR_CODIGO;
-        }
-        if (descripcion == null || descripcion.trim().isEmpty()){
-            return ERROR_DESCRIPCION;
-        }
-        if (precio <= 0){
-            return ERROR_PRECIO;
-        }
-        if (categoria == null){
-            return ERROR_CATEGORIA;
-        }
-        if (estado == null){
-            return ERROR_ESTADO;
-        }
+        String error = validarDatosProducto(codigo, descripcion, precio, categoria, estado);
+        if (error != null)
+            return error;
         
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
@@ -73,13 +52,19 @@ public class GestorProductos implements IGestorProductos{
         
         return EXITO;
     }
-    
-    public ArrayList<Producto> menu() {
-        return this.productos;
+
+    @Override
+    public List<Producto> menu() {
+        ArrayList<Producto> productosOrdenados = new ArrayList<>(this.productos);
+        ordenarPorCategoriaYDescripcion(productosOrdenados);
+        
+        return productosOrdenados;
     }
     
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    @Override
+    public List<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> pEncontrados = new ArrayList<>();
+        
         if(descripcion==null || descripcion.trim().isEmpty()){
             return pEncontrados;
         }
@@ -88,9 +73,12 @@ public class GestorProductos implements IGestorProductos{
                 pEncontrados.add(p);
             }
         }
+        
+        ordenarPorCategoriaYDescripcion(pEncontrados);
         return pEncontrados;
     }
     
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         for(Producto p : productos){
             if(p.verCodigo()== producto.verCodigo()){
@@ -100,16 +88,21 @@ public class GestorProductos implements IGestorProductos{
         return false;
     }
     
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+    @Override
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> categoriaBusq = new ArrayList<>();
+        
         for (Producto p : productos) {
             if (p.verCategoria() == categoria) {
                 categoriaBusq.add(p);
             }
         }
+        
+        categoriaBusq.sort ((p1, p2) -> p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion()));
         return categoriaBusq;
     }
     
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         for (Producto p : productos) {
             if (p.verCodigo() == codigo) {
@@ -118,22 +111,51 @@ public class GestorProductos implements IGestorProductos{
         }
         return null;
     }
+    
+    @Override
     public String borrarProducto(Producto producto) {
-    if (producto == null) {
-        return PRODUCTO_INEXISTENTE;
-    }
-    
+        if (producto == null) {
+            return PRODUCTO_INEXISTENTE;
+        }
    
-    GestorPedidos gp = GestorPedidos.instanciar();
-    if (gp.hayPedidosConEsteProducto(producto)) {
-        return "No se puede borrar el producto, existen pedidos con el mismo.";
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if (gp.hayPedidosConEsteProducto(producto)) {
+            return "No se puede borrar el producto, existen pedidos con el mismo.";
+        }
+    
+        if (productos.remove(producto)) {
+            return "Producto borrado con éxito.";
+        } else {
+            return PRODUCTO_INEXISTENTE;
+        }
     }
     
-    if (productos.remove(producto)) {
-        return "Producto borrado con éxito.";
-    } else {
-        return PRODUCTO_INEXISTENTE;
+    private String validarDatosProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        if (codigo <= 0) {
+            return ERROR_CODIGO;
+        }
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return ERROR_DESCRIPCION;
+        }
+        if (precio <= 0) {
+            return ERROR_PRECIO;
+        }
+        if (categoria == null) {
+            return ERROR_CATEGORIA;
+        }
+        if (estado == null) {
+            return ERROR_ESTADO;
+        }
+        return null;
     }
-}
-
+    
+    private void ordenarPorCategoriaYDescripcion(List<Producto> lista) {
+        lista.sort((p1, p2) -> {
+            int comparacionCategoria = p1.verCategoria().toString().compareToIgnoreCase(p2.verCategoria().toString());
+            if (comparacionCategoria == 0) {
+                return p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion());
+            }
+            return comparacionCategoria;
+        });
+    }
 }
