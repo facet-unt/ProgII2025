@@ -77,7 +77,7 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gpe.crearPedido(LocalDate.now(), LocalTime.now(), productosDelPedido, unCliente));
         
-        ArrayList<Pedido> pedidosDelSistema = gpe.verPedidos(); 
+        ArrayList<Pedido> pedidosDelSistema = (ArrayList<Pedido>)gpe.verPedidos(); 
         System.out.println("Pedidos en el sistema: " + pedidosDelSistema.size());
         
         System.out.println("Hay pedidos con Producto 1: " + gpe.hayPedidosConEsteProducto(gp.obtenerProducto(1))); 

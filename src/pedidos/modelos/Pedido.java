@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import productos.modelos.Producto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
 /**
@@ -21,13 +22,13 @@ public class Pedido {
    private LocalDateTime fechaYHora;
    private Cliente unCliente;
    private Estado unEstado;
-   private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
+   private List <ProductoDelPedido> productoPedido = new ArrayList<>();
    private static int contador=1;
    
    
    //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
@@ -37,11 +38,11 @@ public class Pedido {
 
     }
     
-    public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
+    public Pedido(LocalDate fecha,LocalTime hora, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
         this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
         this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
     
@@ -65,16 +66,37 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
     }
 
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
+    public List<ProductoDelPedido> verProductoPedido() {
         return productoPedido;
     }
 
-    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
+    public void asignarProductoPedido(List<ProductoDelPedido> productoPedido) {
         if(!(productoPedido.contains(this.productoPedido)))
         {
             this.productoPedido = productoPedido;
        }
     }
+    
+    public LocalDate verFecha() {
+        return this.fechaYHora.toLocalDate();
+    }
+    
+    public LocalTime verHora() {
+        return this.fechaYHora.toLocalTime();
+    }
+
+    public Estado verEstado() {
+        return unEstado;
+    }
+
+    public void asignarEstado(Estado estado) {
+        this.unEstado = estado;
+    }
+
+    public Cliente verCliente() {
+        return unCliente;
+    }
+
     
     
     
@@ -110,30 +132,8 @@ public class Pedido {
         
     }
 
-   
-    
 
     
-    public LocalDate verFecha() {
-        return this.fechaYHora.toLocalDate();
-    }
-    
-    public LocalTime verHora() {
-        return this.fechaYHora.toLocalTime();
-    }
-
-    public Estado verEstado() {
-        return unEstado;
-    }
-
-    public void asignarEstado(Estado estado) {
-        this.unEstado = estado;
-    }
-
-    public Cliente verCliente() {
-        return unCliente;
-    }
-
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(produc, cantidad);
         if (!productoPedido.contains(unProductoDelPedido))
