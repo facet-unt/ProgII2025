@@ -111,6 +111,11 @@ public class GestorProductos {
     }
 
     public Producto obtenerProducto(Integer codigo) {
+         for (Producto u : productos) {
+            if (u.verCodigo()== codigo) {
+                return u;
+            }
+        }
         return null;
     }
 }
