@@ -2,11 +2,14 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 
 public class  GestorProductos implements IGestorProductos {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList();
     
 
     private static GestorProductos instancia;
@@ -94,7 +97,8 @@ public class  GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> menu() {
+    public List<Producto> menu() {
+        Collections.sort(productos);
         return this.productos;
     }
     
@@ -106,6 +110,7 @@ public class  GestorProductos implements IGestorProductos {
                 encontrados.add(p);
             }
         }
+        Collections.sort(encontrados);
         return encontrados;
     }
     
@@ -126,6 +131,8 @@ public class  GestorProductos implements IGestorProductos {
                 encontrados.add(p);
             }
         }
+        Comparator<Producto> descComp=(p1,p2)->p1.verDescripcion().compareTo(p2.verDescripcion());
+        Collections.sort(encontrados,descComp);
         return encontrados;
     }
     

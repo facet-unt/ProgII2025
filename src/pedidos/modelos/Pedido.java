@@ -6,24 +6,24 @@ package pedidos.modelos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import productos.modelos.Producto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
-public class Pedido {
+public class Pedido implements Comparable <Pedido>{
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
+    private List<ProductoDelPedido> listaProductosdelPedido;
 
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.listaProductosdelPedido = lista;
@@ -31,7 +31,7 @@ public class Pedido {
         this.estado = estado;
     }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente) {
         this(numero, fechaYHora, lista, cliente, Estado.CREADO);
     }
 
@@ -52,11 +52,11 @@ public class Pedido {
         this.fechaYHora = fechaYHora;
     }
 
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
+    public List<ProductoDelPedido> verProductoPedido() {
         return listaProductosdelPedido;
     }
 
-    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
+    public void asignarProductoPedido(List<ProductoDelPedido> productoPedido) {
         this.listaProductosdelPedido = productoPedido;
     }
     
@@ -143,6 +143,11 @@ public class Pedido {
         }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
+    }
+
+    @Override
+    public int compareTo(Pedido o) {
+        return o.verNumero()-verNumero();
     }
     
 }

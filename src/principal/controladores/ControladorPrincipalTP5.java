@@ -6,6 +6,7 @@ import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -43,7 +44,7 @@ public class ControladorPrincipalTP5 {
            System.out.println(" ");
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("oducto");
         System.out.println("\nproductos buscados por palabra\n");
         for(Producto p : productosBuscados) {
             p.mostrar();
@@ -52,7 +53,7 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         System.out.println("\nproductos buscados por categoria\n");
         for(Producto p : productosEntrada) {
             p.mostrar();
@@ -99,7 +100,7 @@ public class ControladorPrincipalTP5 {
         gp.crearProducto(11, "Flan", 1200f, Categoria.POSTRE, Estado.DISPONIBLE);
         Producto p2 = gp.obtenerProducto(11);
         
-        ArrayList<ProductoDelPedido> listaProductos = new ArrayList<>();
+        List<ProductoDelPedido> listaProductos = new ArrayList<>();
         listaProductos.add(new ProductoDelPedido(p1, 2));
         listaProductos.add(new ProductoDelPedido(p2, 1));
         listaProductos.add(new ProductoDelPedido(unProducto,3));
