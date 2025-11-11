@@ -9,6 +9,9 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import usuarios.modelos.Empleado;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 public class VentanaAMEmpleado extends JDialog {
     private ArrayList<Empleado> empleados = new ArrayList<>();
@@ -31,6 +34,7 @@ public class VentanaAMEmpleado extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -41,6 +45,19 @@ public class VentanaAMEmpleado extends JDialog {
         txtCorreo = new javax.swing.JTextField();
         passClave = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        passClave1 = new javax.swing.JPasswordField();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -82,6 +99,8 @@ public class VentanaAMEmpleado extends JDialog {
 
         jLabel6.setText("Clave:");
 
+        jLabel3.setText("ClaveRepetida:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,7 +109,7 @@ public class VentanaAMEmpleado extends JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 293, Short.MAX_VALUE)
+                        .addGap(0, 451, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar))
@@ -100,12 +119,16 @@ public class VentanaAMEmpleado extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                            .addComponent(txtCorreo)
+                            .addComponent(passClave, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passClave)
-                            .addComponent(txtApellido)
-                            .addComponent(txtNombre)
-                            .addComponent(txtCorreo))))
+                        .addComponent(passClave1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,7 +150,11 @@ public class VentanaAMEmpleado extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(78, 78, 78)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(passClave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -147,12 +174,14 @@ public class VentanaAMEmpleado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
-        this.empleados.add(unEmpleado);
-        
+        String claveRepetida = new String(this.passClave.getPassword());
+        GestorUsuarios gu = GestorUsuarios.instanciar();
+        gu.crearUsuario(correo,apellido,nombre,Perfil.EMPLEADO,clave,claveRepetida);
+  
         System.out.println("Empleados");
         System.out.println("========");
-        for (Empleado c : this.empleados) {
+        for (Usuario c : gu.verUsuarios()) {
+            Empleado unEmpleado=(Empleado)c;
             c.mostrar();
             System.out.println();
         }
@@ -170,9 +199,12 @@ public class VentanaAMEmpleado extends JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passClave;
+    private javax.swing.JPasswordField passClave1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;

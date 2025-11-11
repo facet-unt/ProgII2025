@@ -35,8 +35,8 @@ public class GestorUsuarios implements IGestorUsuarios {
             return ERROR_NOMBRE;
         if(clave.isEmpty()||clave.isBlank())
             return ERROR_CLAVES;
-        if(claveRepetida.isBlank()||claveRepetida.isEmpty()||!claveRepetida.contains(clave))
-            return ERROR_CLAVES;
+        if(!claveRepetida.contains(clave))
+            return ERROR_CLAVESREPETIDAS;
         if(usuarios.contains(usuario))
             return USUARIOS_DUPLICADOS;
         else

@@ -52,7 +52,7 @@ public class ControladorPrincipalTP5 {
     IGestorUsuarios gu = GestorUsuarios.instanciar();
         System.out.println(gu.crearUsuario("correo@UNO", "usuarioUNO", "nombreUNO",Perfil.CLIENTE, "1234","587357"));
         System.out.println(gu.crearUsuario("correo@DOS", "usuarioDOS", "nombreDOS", Perfil.ENCARGADO, "9876","34543"));
-        System.out.println(gu.crearUsuario("correo@DOS", "usuarioCUATRO", "nombreCUATRO", Perfil.EMPLEADO, "9999","5426425"));
+        System.out.println(gu.crearUsuario("correo@CUATRO", "usuarioCUATRO", "nombreCUATRO", Perfil.EMPLEADO, "9999","9999"));
         System.out.println(gu.crearUsuario("correoTRES", "usuarioTRES", "nombreTRES", Perfil.CLIENTE, "6666","80987725"));
         for(Usuario u : gu.verUsuarios()) {
             u.mostrar();
@@ -65,21 +65,21 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gu.existeEsteUsuario(unUsuario));
      
-//parte para probar gestospedidos
+//parte para probar gestospedidose
         
         IGestorPedidos gP = GestorPedidos.instanciar();
-        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(1),gu.obtenerUsuario("correo@DOS")));
-        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(2),gu.obtenerUsuario("correo@UNO")));
-        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(3),gu.obtenerUsuario("correo@TRES")));
-                        
-        for(Pedido P : gP.verPedidos()) {
-            P.mostrar();
-        }
-        
-        Pedido unPedido = gP.obtenerPedido(2);
-        System.out.println(gP.cambiarEstado(unPedido));
-        
-       
-        System.out.println(gP.existeEstePedido(unPedido));
+//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),,gu.obtenerUsuario("correo@DOS")));
+//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(2),gu.obtenerUsuario("correo@UNO")));
+//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(3),gu.obtenerUsuario("correo@TRES")));
+//                        
+//        for(Pedido P : gP.verPedidos()) {
+//            P.mostrar();
+//        }
+//        
+//        Pedido unPedido = gP.obtenerPedido(2);
+//        System.out.println(gP.cambiarEstado(unPedido));
+//        
+//       
+//        System.out.println(gP.existeEstePedido(unPedido));
 }
 }

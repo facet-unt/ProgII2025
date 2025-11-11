@@ -17,7 +17,8 @@ public interface IGestorUsuarios {
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
     public static final String ERROR_APELLIDO = "El apellido del usuario es incorrecto";
     public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
+    public static final String ERROR_CLAVESREPETIDAS = "Las claves repetidas especificadas no coinciden o son incorrectas";
+     public static final String ERROR_CLAVES = "Las claves especificadas no coinciden o son incorrectas";
     public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
     public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo";
     public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";

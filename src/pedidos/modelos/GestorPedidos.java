@@ -97,7 +97,7 @@ public class GestorPedidos implements IGestorPedidos {
         Cliente unCliente = pedido.verCliente();
         for(Pedido p: pedidos){
             if(p.verCliente() == unCliente){
-                pedidos.remove(pedido);
+                unCliente.cancelarPedido(pedido);
                 return PEDIDO_BORRADO;
             }
         }
