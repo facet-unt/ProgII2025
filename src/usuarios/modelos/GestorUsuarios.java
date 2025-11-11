@@ -5,6 +5,8 @@
 package usuarios.modelos;
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import static usuarios.modelos.Perfil.CLIENTE;
 import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
@@ -90,12 +92,15 @@ public class GestorUsuarios implements IGestorUsuarios{
            } 
         }
     
-   public ArrayList<Usuario> verUsuarios()
+ @Override
+   public List<Usuario> verUsuarios()
     {
-     return this.usuarios;  
+        usuarios.sort(Comparator.comparing(Usuario::verApellido).thenComparing(Usuario::verNombre));
+        return this.usuarios;
     }
     
-    public ArrayList<Usuario> buscarUsuarios(String apellido) {
+ @Override
+    public List<Usuario> buscarUsuarios(String apellido) {
          
         ArrayList<Usuario> encontrados = new ArrayList<>();
         for (Usuario u : usuarios) {
@@ -105,9 +110,11 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
                 
             }
+         encontrados.sort(Comparator.comparing(Usuario::verApellido).thenComparing(Usuario::verNombre));
         return encontrados;
     }
     
+ @Override
     public boolean existeEsteUsuario(Usuario usuario) {
         if (usuarios.contains(usuario))
             return true;
@@ -116,10 +123,11 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     
+ @Override
     public Usuario obtenerUsuario(String correo) {
         for (Usuario u : usuarios) {
              
-            if (u.verCorreo()==(correo)) {
+            if (u.verCorreo().equals(correo)) {
                 return u;
             }
                 
