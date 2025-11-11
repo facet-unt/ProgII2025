@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import usuarios.modelos.Cliente;
 
@@ -16,7 +17,7 @@ import usuarios.modelos.Cliente;
  *
  * @author salut
  */
-public class Pedido {
+public class Pedido implements Comparable<Pedido>{
     private int numero;
     private LocalDateTime fechaYhora;
     private Cliente unCliente;
@@ -112,5 +113,10 @@ public class Pedido {
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
-    
+
+    @Override
+    public int compareTo(Pedido p) {
+        return this.numero-p.numero;
+    }
+
 }
