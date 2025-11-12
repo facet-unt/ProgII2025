@@ -2,131 +2,162 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
-import pedidos.modelos.GestorPedidos;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import pedidos.modelos.*;
+
 
 public class GestorProductos implements IGestorProductos{
+    private List<Producto> productos = new ArrayList<>();
     
-    
-    private ArrayList<Producto> productos = new ArrayList<>();
-
     private static GestorProductos instancia;
-
+    
     private GestorProductos() {
-
+        
     }
-
+    
     public static GestorProductos instanciar() {
-        if (instancia == null) {
+        if (instancia == null)
             instancia = new GestorProductos();
-        }
         return instancia;
     }
-
+    
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (!(codigo > 0)) {
-            return ERROR_CODIGO;
+        Producto p = new Producto (codigo, descripcion, categoria, estado, precio);
+        if(codigo>0 && descripcion!=null && precio>0 && categoria!=null && estado!=null)
+        {
+            if(productos.contains(p)){
+                return PRODUCTOS_DUPLICADOS;
+            }else{
+                productos.add(p);
+                return (EXITO);
+            }
+             
+            
         }
-
-        if (!(descripcion != null && !descripcion.trim().isEmpty())) {
-            return ERROR_DESCRIPCION;
-        }
-
-        if (!(precio > 0)) {
-            return ERROR_PRECIO;
-        }
-
-        if (categoria == null) {
-            return ERROR_CATEGORIA;
-        }
-
-        if (estado == null) {
-            return ERROR_ESTADO;
+        else
+        {
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
         }
         
-        Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
-        productos.add(nuevoProducto);
-        
-
-        return EXITO;
     }
-
+    
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (!(codigo > 0)) {
-            return ERROR_CODIGO;
-        }
-
-        if (!(descripcion != null && !descripcion.trim().isEmpty())) {
-            return ERROR_DESCRIPCION;
-        }
-
-        if (!(precio > 0)) {
-            return ERROR_PRECIO;
-        }
-
-        if (categoria == null) {
-            return ERROR_CATEGORIA;
-        }
-
-        if (estado == null) {
-            return ERROR_ESTADO;
-        }
-
-        p.asignarCategoria(categoria);
+        if (productos.contains(p))
+            {
+                productos.remove(p);
+            }
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
-        p.asignarEstado(estado);
         p.asignarPrecio(precio);
-        
-        
-        return EXITO;
+        p.asignarCategoria(categoria);
+        p.asignarEstado(estado);
+        productos.add(p);
+        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
+        {
+            productos.add(p);
+            return (EXITO); 
+            
+        }
+        else
+        {
+            if (codigo<0)
+                return (ERROR_CODIGO);
+            else if (precio<0)
+                return (ERROR_PRECIO);
+            else if (descripcion==null)
+                return (ERROR_DESCRIPCION);
+            else if (categoria==null)
+                return (ERROR_CATEGORIA);
+            else
+                return(ERROR_ESTADO);
+        }
     }
-
-    public ArrayList<Producto> menu() {
+    
+    public List<Producto> menu() {
+        
+        Collections.sort(this.productos);
         return this.productos;
     }
-
+    
     public ArrayList<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> productosEncontrados = new ArrayList<>();
-        for(Producto u: productos)
-            if(u.verDescripcion().equalsIgnoreCase(descripcion)){
-                productosEncontrados.add(u);
+         
+        ArrayList<Producto> encontrados = new ArrayList<>();
+        for (Producto p : productos) {
+             
+            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
+                encontrados.add(p);
             }
-        return productosEncontrados;
+                
+            }
+        Collections.sort(encontrados);
+        return encontrados;
     }
-
+    
     public boolean existeEsteProducto(Producto producto) {
-         for(Producto u: productos)
-            if(u.equals(producto)){
-                return true;
-            }
-        return false;
+        if (productos.contains(producto))
+            return true;
+        else
+            return false;
     }
-
+    
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> productosMismaCategoria = new ArrayList<>();
-        for(Producto u: productos)
-            if(u.verCategoria().equals(categoria)){
-                productosMismaCategoria.add(u);
+         ArrayList<Producto> prodcat = new ArrayList<>();
+        for (Producto p : productos) {
+             
+            if (p.verCategoria()==(categoria)) {
+                prodcat.add(p);
             }
-        return productosMismaCategoria;
+            }
+        Collections.sort(prodcat); /* Se ordenan los productos con la misma categoria, por descripcion. */
+        return prodcat;
     }
-
+    
     public Producto obtenerProducto(Integer codigo) {
-          for(Producto u: productos)
-            if(u.verCodigo() == codigo){
-                return u;
+        for (Producto p : productos) {
+             
+            if (p.verCodigo()==(codigo)) {
+                return p;
+            }
+                
             }
         return null;
     }
     
-    public String borrarProducto(Producto producto){
-        GestorPedidos gp = GestorPedidos.instanciar();
-        for(Producto u: productos){
-            if(u.equals(producto) && !gp.hayPedidosConEsteProducto(producto)){
-                productos.remove(u);
+    @Override
+    public String borrarProducto(Producto producto)
+    {
+        if (productos.contains(producto)&&producto!=null)
+        {
+            GestorPedidos pedidos = GestorPedidos.instanciar();
+            for(Pedido unPedido: pedidos.verPedidos())
+            {
+                for (ProductoDelPedido unProducto: unPedido.verProductoPedido())
+                {
+                   if((unProducto.verUnProducto()).equals(producto))
+                   {
+                       return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
+                   }
+             
+                }
+               
             }
+             productos.remove(producto);
+             return (OPERACION_EXITOSA);
         }
-    
-        return EXITO2; 
+        else
+        {
+            return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
+        }
     }
-}
+    }

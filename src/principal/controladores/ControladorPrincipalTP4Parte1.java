@@ -1,3 +1,4 @@
+//
 //package principal.controladores;
 //
 //import java.time.LocalDateTime;
@@ -16,6 +17,8 @@
 //        INICIO Primera parte - comparación de objetos
 //        ***************************************************
 //    */
+// 
+//
 //    ArrayList<Producto> listaProductos = new ArrayList<>();
 //    ArrayList<Pedido> listaPedidos = new ArrayList<>();
 //    ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -29,39 +32,36 @@
 //    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
 //    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
 //    //no debe agregar a p5
-//    
+//
+//    if (!listaProductos.contains(p1))
+//        listaProductos.add(p1); 
 //    /*
 //        **************************************************
 //         * AGREGAR aqui las sentencias para completar el llenado de 
 //         * la lista de productos
 //        **************************************************
 //    */
-//    
-//    if (!listaProductos.contains(p1))
-//        listaProductos.add(p1); 
-//    
-//    if(!listaProductos.contains(p2))
+//    if (!listaProductos.contains(p2))
 //        listaProductos.add(p2);
-//    
-//    if(!listaProductos.contains(p3))
+//    if (!listaProductos.contains(p3))
 //        listaProductos.add(p3);
-//    
-//    if(!listaProductos.contains(p4))
+//    if (!listaProductos.contains(p4))
 //        listaProductos.add(p4);
-//      
-//    if(!listaProductos.contains(p5))
+//    if (!listaProductos.contains(p5))
 //        listaProductos.add(p5);
-//
 //    /*
 //        **************************************************
 //         * AGREGAR aqui las sentencias para mostrar la lista
 //         * de productos, deberían listarse 4
 //        **************************************************
-//    */
 //    
-//    for(Producto unProducto: listaProductos)
-//        unProducto.mostrar();
-//    /*--------------------------------------------------*/
+//    */
+//    for(Producto p : listaProductos)
+//        {
+//            p.mostrar();
+//        }
+//    {
+//    }
 //
 //    System.out.println();
 //    System.out.println("\n#################### ");
@@ -76,6 +76,7 @@
 //    /*
 //    Clientes, se crean 3 para crear los pedidos
 //    */
+//
 //    for (Cliente e: listaClientes)
 //        e.mostrar();
 //
@@ -92,8 +93,7 @@
 //        listapdp1.add(pdp2);
 //    if (!listapdp1.contains(pdp3))
 //        listapdp1.add(pdp3);
-//    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), pedidos.modelos.Estado.PROCESANDO, listapdp1, cliente1);
-//    
+//    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
 //
 //    ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
 //    ProductoDelPedido pdp4 = new ProductoDelPedido(listaProductos.get(2), 10);
@@ -106,7 +106,7 @@
 //        productosDelPedido2.add(pdp5);
 //    if (!productosDelPedido2.contains(pdp6))
 //        productosDelPedido2.add(pdp6);
-//    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.PROCESANDO, productosDelPedido2, cliente2);        
+//    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, cliente2);        
 //
 //    ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
 //    ProductoDelPedido pdp7 = new ProductoDelPedido(listaProductos.get(1), 100);
@@ -115,7 +115,7 @@
 //        productosDelPedido3.add(pdp7);
 //    if (!productosDelPedido3.contains(pdp8))
 //        productosDelPedido3.add(pdp8);
-//    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), pedidos.modelos.Estado.PROCESANDO, productosDelPedido3, cliente3);        
+//    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), productosDelPedido3, cliente3);        
 //    //pedido repetido no debe agregarse a la lista
 //
 //    if(!listaPedidos.contains(unPedido1))
@@ -132,9 +132,12 @@
 //        AGREGAR aqui la sentencia para mostrar la lista de pedidos
 //        *************************************************
 //    */
-//    for(Pedido unPedido: listaPedidos)
-//        unPedido.mostrar();
-//    
+//    for(Pedido p : listaPedidos)
+//        {
+//            p.mostrar();
+//        }
+//
+//
 //    System.out.println();        
 //
 //    /*
@@ -142,5 +145,6 @@
 //         FIN Primera parte - comparación de objetos
 //        ***************************************************
 //    */
+//
 //  }
 //}

@@ -6,8 +6,6 @@ package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
-
-
 /**
  *
  * @author estudiante
@@ -16,14 +14,11 @@ public class ProductoDelPedido {
     private int cantidad;
     private Producto unProducto;
 
-    public ProductoDelPedido(Producto unProducto, int cantidad) {
+    public ProductoDelPedido( Producto unProducto,int cantidad) {
         this.cantidad = cantidad;
         this.unProducto = unProducto;
     }
 
-    public ProductoDelPedido() {
-    }
-    
     public int verCantidad() {
         return cantidad;
     }
@@ -32,20 +27,25 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
+
     public Producto verUnProducto() {
         return unProducto;
     }
 
     public void asignarUnProducto(Producto unProducto) {
         this.unProducto = unProducto;
+        
     }
 
-     /* Agregado de equals y hashcode (para comparar si dos pedidos son iguales en base al producto) */
-    
+    public void mostrar(){
+        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
+
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.unProducto);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.unProducto);
         return hash;
     }
 
@@ -63,8 +63,5 @@ public class ProductoDelPedido {
         final ProductoDelPedido other = (ProductoDelPedido) obj;
         return Objects.equals(this.unProducto, other.unProducto);
     }
-
     
-    
-        
 }

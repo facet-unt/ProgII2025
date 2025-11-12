@@ -4,64 +4,61 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
-import pedidos.modelos.Pedido;
-
-
 
 /**
  *
- * @author
+ * @author Esteban
  */
 import java.util.ArrayList;
-import pedidos.modelos.GestorPedidos;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
-public class Cliente extends Usuario {
+public class Cliente extends Usuario{
+    private ArrayList<Pedido> pedidos= new ArrayList<>();
 
-
-   private ArrayList<Pedido> pedidos; /*implementacion de asociacion con clase pedido*/
-   private GestorPedidos gp = GestorPedidos.instanciar();
-   
     
-   /*Constructor*/
-   
-   public Cliente(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        super(correo, apellido, nombre, perfil, clave, claveRepetida);
-        this.pedidos = new ArrayList<>();
+    @Override
+    public void mostrar() {
+      super.mostrar();
+      for (Pedido p: pedidos)
+            System.out.println(p.verNumero());
+  
     }
-   
+
+    public Cliente(String correo, String clave, String apellido, String nombre) {
+        super(correo,clave, apellido, nombre);
+
+
+    }
     
+    //metodos get/set
     
 
-    public String toString(){
 
-        return verApellido() + ", " + verNombre();
-    }      
-    
-// 
-//   @Override /*Redifinicion del metodo verPedidos. Devuelve los pedidos del cliente*/
-//    public ArrayList<Pedido> verPedidos()
-//    {
-//        return this.pedidos;
-//    }
-//   
-     
-    /*Agrega pedidos, al conjunto de pedidos de un cliente.*/
-    public void agregarPedido(Pedido unPedido)
-    {
-        if(!pedidos.contains(unPedido)) /*Si no existe el pedido. Lo añade */
+    public void agregarPedido(Pedido unPedido) {
+        if(!pedidos.contains(unPedido))
         {
-           pedidos.add(unPedido);
-        } else /*Si ya existe lo reemplaza.*/
+            this.pedidos.add(unPedido);
+        }
+        else
         {
-           int indice = pedidos.indexOf(unPedido); /* Obtiene el indice(posicion) del pedido que esta en el ArrayList  pedidos */
-           pedidos.set(indice, unPedido); /* Reemplaza el pedido viejo por el nuevo pedido en esa misma posicion */
+            this.pedidos.remove(unPedido);
+            this.pedidos.add(unPedido);
         }
     }
-
-    public void cancelarPedido(Pedido unPedido)
-    {
-        pedidos.remove(unPedido); /*Metodo para remover un pedido*/
+    public void cancelarPedido(Pedido unPedido) {
+        if(pedidos.contains(unPedido)&&unPedido!=null)
+        this.pedidos.remove(unPedido);
     }
-}
+   
+
+    @Override
+    public List<Pedido> verPedido() {
+        return(pedidos);
+    }
+
+    
+    
+    
+    
+} 

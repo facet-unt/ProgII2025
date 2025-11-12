@@ -8,33 +8,61 @@ package productos.modelos;
  *
  * @author Esteban
  */
-public class Producto {
-
+public class Producto implements Comparable <Producto> {
+    //Atributos
     private int codigo;
     private String descripcion;
+    private Categoria unaCategoria;
+    private Estado unEstado;
     private float precio;
-    private Estado estado;
-    private Categoria categoria;
 
-    //Creacion del constructor
-    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.estado = estado;
-        this.precio = precio;
-        this.categoria = categoria;
-        this.estado = estado;
+
+    // Métodos
+    public void mostrar() {
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
+        System.out.println("Precio: " + precio);
+
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria='" + unaCategoria.verValor() + '\'' +
+                ", estado='" + unEstado.verValor() + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
+
+    
+    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado = estado;        
+        this.descripcion = descripcion;
+        this.unaCategoria = categoria;
+        this.precio = precio;
+    }
+    
+    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
+        this.codigo = codigo;
+        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.descripcion = descripcion;
+        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+    }
+
+    
+   
     public int verCodigo() {
         return codigo;
     }
 
     public void asignarCodigo(int c) {
-        if (c > 0) {
+        if (c > 0)
             codigo = c;
-        }
     }
 
     public String verDescripcion() {
@@ -42,26 +70,26 @@ public class Producto {
     }
 
     public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank()) {
+        if (d != null && !d.isBlank())
             descripcion = d;
-        }
     }
 
     public Categoria verCategoria() {
-        return categoria;
+
+        return unaCategoria;
     }
 
     public void asignarCategoria(Categoria c) {
-        categoria = c;
+        unaCategoria = c;
     }
 
     public Estado verEstado() {
-        return estado;
+        return unEstado;
     }
 
     public void asignarEstado(Estado e) {
+        unEstado = e;
 
-        estado = e;
     }
 
     public float verPrecio() {
@@ -69,37 +97,15 @@ public class Producto {
     }
 
     public void asignarPrecio(float p) {
-
-        precio = p;
-
+        if (p > 0){
+            precio = p;
+        }
     }
 
-    public void mostrar() {
-       /* System.out.println("Codigo: " + codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
-        System.out.println("Precio: " + precio);
-       */
-       
-        System.out.println("[" + codigo + "]"+ " Producto"+ codigo + " - " + categoria + " - " + estado + " - " + "$"+precio);
-        
-    }
-
-    
-    /* Modificacion del metodo toString() (correcion para que se vea mejor)*/
-    @Override
-    public String toString() {
-        System.out.println("===== PRODUCTOS CON METODO TOSTRING() =====");
-        return "Producto={" + "Codigo = " + codigo + ", Descripcion = " + descripcion + ", Precio = " + precio + ", Estado = " + estado + ", Categoria = " + categoria + '}';
-    }
-   
-    
-    /* Agregado de equals y hashcode (para comparar si dos productos son iguales en base al codigo ) */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + this.codigo;
+        int hash = 5;
+        hash = 59 * hash + this.codigo;
         return hash;
     }
 
@@ -117,8 +123,12 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-    
-    
-    
 
+    @Override
+    public int compareTo(Producto p) {
+         if(this.unaCategoria.compareTo(p.verCategoria()) == 0)
+             return this.descripcion.compareTo(p.verDescripcion());
+         else
+             return this.unaCategoria.compareTo(p.verCategoria());
+             } 
 }

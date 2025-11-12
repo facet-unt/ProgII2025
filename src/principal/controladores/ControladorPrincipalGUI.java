@@ -1,4 +1,5 @@
- /* To change this license header, choose License Headers in Project Properties.
+/*
+ * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,9 +11,6 @@ import usuarios.vistas.VentanaAMCliente;
 import usuarios.vistas.VentanaAMEmpleado;
 import usuarios.vistas.VentanaAMEncargado;
 
-import javax.swing.UIManager;
-
-
 /**
  *
  * @author mariana
@@ -23,30 +21,7 @@ public class ControladorPrincipalGUI {
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
         VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
-        ventanaProducto.setLocationRelativeTo(null);
-        ventanaProducto.setTitle("Nuevo producto");
-        ventanaProducto.setVisible(true);
         
-        //CLIENTE
-      
-        VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
-        ventanaCliente.setLocationRelativeTo(null);
-        ventanaCliente.setTitle("Nuevo cliente");
-        ventanaCliente.setVisible(true);
-               
-       //EMPLEADO 
-       
-        VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
-        ventanaEmpleado.setLocationRelativeTo(null);
-        ventanaEmpleado.setTitle("Nuevo empleado");
-        ventanaEmpleado.setVisible(true);
-        
-       //ENCARGADO
-       
-        VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
-        ventanaEncargado.setLocationRelativeTo(null);
-        ventanaEncargado.setTitle("Nuevo encargado");
-        ventanaEncargado.setVisible(true);
     }
     
     /**
@@ -62,7 +37,6 @@ public class ControladorPrincipalGUI {
             }
         } catch (Exception e) {
             try {
-
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } 
             catch (Exception e2) {

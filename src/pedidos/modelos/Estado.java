@@ -4,36 +4,28 @@
  */
 package pedidos.modelos;
 
+
 /**
  *
+ * @author estudiante
+    
+/**
 
- * @author rocio
  */
-
-/* Creacion de enumeracion Estado */
 public enum Estado {
     CREADO("Creado"),
-    SOLICITADO("Solicitando"),
+    SOLICITADO("Solicitado"),
     PROCESANDO("Procesando"),
     ENTREGADO("Entregado");
     
     private String valor;
 
-    /* Se crea constructor */
     private Estado(String valor) {
         this.valor = valor;
     }
-
-//    @Override
-//    public String toString() {
-//        return "{" + valor + '}';
-//    }
     
-    
-    
-    /* Modificacion del metodo toString() */
     @Override
     public String toString() {
-        return valor;
-    }
+        return this.valor;
+    } 
 }
