@@ -1,18 +1,13 @@
 package productos.modelos;
 
 import java.util.ArrayList;
+import interfaces.IGestorProductos;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 
-
-public class GestorProductos {
-    public static final String EXITO = "Producto creado/modificado con éxito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
-    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
-    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
+public class GestorProductos implements IGestorProductos{
+    
     
     private ArrayList<Producto> productos = new ArrayList<>();
     
@@ -28,6 +23,7 @@ public class GestorProductos {
         return instancia;
     }
     
+    @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String validacion = validarDatos(codigo, descripcion,precio,categoria,estado);
         if(!validacion.equals(VALIDACION_EXITO)) return validacion;
@@ -39,6 +35,7 @@ public class GestorProductos {
         return EXITO;
     }
     
+    @Override
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String validacion = validarDatos(codigo, descripcion,precio,categoria,estado);
         if(validacion.equals(VALIDACION_EXITO)){
@@ -55,10 +52,12 @@ public class GestorProductos {
         return validacion;
     }
     
+    @Override
     public ArrayList<Producto> menu() {
         return this.productos;
     }
     
+    @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> ps = new ArrayList<>();
         for (Producto p : productos){
@@ -67,11 +66,13 @@ public class GestorProductos {
         return ps;
     }
     
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         if(producto == null) return false;
         return productos.contains(producto);
     }
     
+    @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> ps = new ArrayList<>();
         for (Producto p : productos){
@@ -80,6 +81,7 @@ public class GestorProductos {
         return ps;
     }
     
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         for (Producto p : productos){
             if(p.verCodigo()==codigo) return p;
@@ -96,4 +98,13 @@ public class GestorProductos {
         return VALIDACION_EXITO;
     }
     
+    @Override
+    public String borrarProducto(Producto producto) {
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if(gp.hayPedidosConEsteProducto(producto))
+            return "El producto existe en un pedido";
+        if(productos.remove(producto))
+            return "Producto borrado con exito";  
+        else return "El producto no existe en productos";
+    }
 }
