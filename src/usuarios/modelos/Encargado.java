@@ -5,25 +5,34 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 /**
  *
- * @author Esteban
+ * @author Lyan
  */
 
 public class Encargado extends Usuario{
-    
-    //constructor
-    
-    public Encargado(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
+private GestorPedidos gp = GestorPedidos.instanciar();
+    /*Constructor*/
+    public Encargado(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+        super(correo, apellido, nombre, perfil, clave, claveRepetida);
     }
+         
+
+ public ArrayList<Pedido> p = new ArrayList<>();
     
- 
-    @Override
-    public ArrayList<Pedido> verPedido() {
-        throw new UnsupportedOperationException("Un Encargado no puede hacer un pedido"); 
+//    @Override
+//      public ArrayList<Pedido> verPedidos()
+//    {
+//        
+//        return new ArrayList<>(); /*Devuelve un arraylist vacio*/
+//    }
+      
+        public ArrayList<Pedido> verPedidos()
+    {
+        
+        return gp.verPedidos();
     }
-    
-}
+}    
