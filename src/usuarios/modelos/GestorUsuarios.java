@@ -4,25 +4,17 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 
 /**
  *
  * @author Lucas
  */
-public class GestorUsuarios {
+public class GestorUsuarios implements IGestorUsuarios {
 
     private ArrayList<Usuario> usuario = new ArrayList<>();
     private static GestorUsuarios instancia;
-
-    public static final String EXITO = "Usuario creado/modificado con éxito";
-    public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
-    public static final String ERROR_APELLIDO = "El apellido del usuario esincorrecto";
-    public static final String ERROR_NOMBRE = "El nombre del usuario es incorrecto";
-    public static final String ERROR_CLAVES = "Las claves especificadas no coinciden oson incorrectas";
-    public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
-    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con esecorreo";
-    public static final String VALIDACION_EXITO = "Los datos del usuario soncorrectos";
 
     private GestorUsuarios() {
 
@@ -52,7 +44,7 @@ public class GestorUsuarios {
         Usuario usuario;
         switch (perfil) {
             case CLIENTE:
-                 usuario = new Cliente(correo, clave, apellido, nombre, perfil);
+                usuario = new Cliente(correo, clave, apellido, nombre, perfil);
                 break;
             case EMPLEADO:
                 usuario = new Empleado(correo, clave, apellido, nombre, perfil);
@@ -93,5 +85,20 @@ public class GestorUsuarios {
             }
         }
         return null;
+    }
+
+    @Override
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Usuario> verUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String borrarUsuario(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
