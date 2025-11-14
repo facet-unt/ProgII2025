@@ -12,8 +12,8 @@ import static interfaces.IGestorUsuarios.ERROR_NOMBRE;
 import static interfaces.IGestorUsuarios.ERROR_PERFIL;
 import static interfaces.IGestorUsuarios.USUARIOS_DUPLICADOS;
 import java.util.ArrayList;
-import static productos.modelos.GestorProductos.EXITO;
-import static productos.modelos.GestorProductos.VALIDACION_EXITO;
+import java.util.Collections;
+import java.util.Comparator;
 import pedidos.modelos.GestorPedidos;
 
 public class GestorUsuarios implements IGestorUsuarios{
@@ -92,6 +92,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     @Override
     public ArrayList<Usuario> verUsuarios(){
+        Collections.sort(usuarios);
         return this.usuarios;
     }
     
@@ -104,7 +105,7 @@ public class GestorUsuarios implements IGestorUsuarios{
                 buscados.add(u);
             }
         }
-                
+        Collections.sort(buscados, compararApyNom);
         return buscados;
     }
     
@@ -148,5 +149,16 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     }
     
+    Comparator<Usuario> compararApyNom = new Comparator<Usuario>()
+    {  
+        @Override
+        public int compare(Usuario u1, Usuario u2) {
+            if(u1.verApellido().compareTo(u2.verApellido()) == 0)
+                return u1.verApellido().compareTo(u2.verApellido());
+            else
+                return u1.verApellido().compareTo(u2.verApellido());
+        }      
+    };
+            
 }
 

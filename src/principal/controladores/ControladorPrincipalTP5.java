@@ -29,22 +29,26 @@ public class ControladorPrincipalTP5 {
       
         IGestorProductos gp = GestorProductos.instanciar();
 
-        System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
-        System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
-        System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(1, "Empanadas", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(3, "Helado", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(2, "Pizza", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(4, "Fideos", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.crearProducto(5, "Tarta", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
 
+        
         for (Producto p : gp.menu()) {
             p.mostrar();
+            System.out.println("\n");
         }
 
         Producto unProducto = gp.obtenerProducto(1);
-        System.out.println(gp.modificarProducto(unProducto, 1, "Producto3", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.modificarProducto(unProducto, 1, "Milanesa", 2.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
 
         for (Producto p : gp.menu()) {
             p.mostrar();
         }
 
-        List<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("Pizza");
         for (Producto p : productosBuscados) {
             p.mostrar();
         }
@@ -67,19 +71,23 @@ public class ControladorPrincipalTP5 {
         IGestorUsuarios gu = GestorUsuarios.instanciarclase();
 
         System.out.println(gu.crearUsuario("cliente1@bar.com", "Toledo", "Juan", Perfil.CLIENTE, "holasi", "holasi"));
-        System.out.println(gu.crearUsuario("encargado2@bar.com", "Peréz", "Tomás", Perfil.ENCARGADO, "tegarcho", "tegarcho"));
-        System.out.println(gu.crearUsuario("empleado3@bar.com", "Callejas", "Tomas", Perfil.EMPLEADO, "killyou", "killyou"));
-        System.out.println(gu.crearUsuario("cliente2@bar.com", "Palavecino", "Juan", Perfil.CLIENTE, "holasi", "holasi"));
-        System.out.println(gu.crearUsuario("cliente4@bar.com", "Rush", "Juan", Perfil.CLIENTE, "holasi", "holasi"));
-        System.out.println(gu.crearUsuario("cliente5@bar.com", "Marsilli", "Juan", Perfil.CLIENTE, "holasi", "holasi"));
+        System.out.println(gu.crearUsuario("encargado2@bar.com", "Peréz", "Lucas", Perfil.ENCARGADO, "tegarcho", "tegarcho"));
+        System.out.println(gu.crearUsuario("empleado3@bar.com", "Callejas", "Raul", Perfil.EMPLEADO, "killyou", "killyou"));
+        System.out.println(gu.crearUsuario("cliente2@bar.com", "Palavecino", "Fernando", Perfil.CLIENTE, "holasi", "holasi"));
+        System.out.println(gu.crearUsuario("cliente4@bar.com", "Rush", "Santiago", Perfil.CLIENTE, "holasi", "holasi"));
+        System.out.println(gu.crearUsuario("cliente3@bar.com", "Marsilli", "Maxi", Perfil.CLIENTE, "holasi", "holasi"));
+        System.out.println(gu.crearUsuario("cliente6@bar.com", "Marsilli", "Jose", Perfil.CLIENTE, "holasi", "holasi"));
+        System.out.println(gu.crearUsuario("cliente7@bar.com", "Toledo", "Axel", Perfil.CLIENTE, "holasi", "holasi"));
 
+        
         for (Usuario u : gu.verUsuarios()) {
             u.mostrar();
+            System.out.println("\n");
         }
 
         Usuario unUsuario = gu.obtenerUsuario("cliente1@bar.com");
 
-        List<Usuario> usuariosBuscados = gu.buscarUsuarios("Toledo");
+        List<Usuario> usuariosBuscados = gu.buscarUsuarios("Marsilli");
         for (Usuario u : usuariosBuscados) {
             u.mostrar();
         }

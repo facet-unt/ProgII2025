@@ -170,10 +170,5 @@ public String borrarProducto(Producto producto) {
     return "Producto eliminado con éxito.";
     }
 
-    Comparator<Producto> dDesc = new Comparator<Producto>(){
-        @Override
-        public int compare(Producto p1, Producto p2){
-            return p1.verDescripcion().compareTo(p2.verDescripcion());
-        }
-    };
+    Comparator<Producto> dDesc = (Producto p1, Producto p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
 }

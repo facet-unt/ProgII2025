@@ -8,13 +8,14 @@ package principal.controladores;
 import javax.swing.UIManager;
 import productos.vistas.VentanaAMProducto;
 import usuarios.vistas.VentanaAMCliente;
-import usuarios.vistas.VentanaAMEmpleado;
+//import usuarios.vistas.VentanaAMEmpleado;
 import usuarios.vistas.VentanaAMEncargado;
 
 /**
  *
  * @author mariana
  */
+/*
 public class ControladorPrincipalGUI {
     public static void main(String[] args) {
         
@@ -28,7 +29,7 @@ public class ControladorPrincipalGUI {
      * Asigna el look and feel especificado a la ventana
      * @param laf cadena con el nombre del look and feel
      */
-    public static void establecerLookAndFeel(String laf) {
+    /*public static void establecerLookAndFeel(String laf) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if (laf.equals(info.getName())) {
@@ -42,5 +43,4 @@ public class ControladorPrincipalGUI {
             catch (Exception e2) {
             }
         }
-    }
-}
+    }*/

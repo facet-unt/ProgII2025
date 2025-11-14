@@ -146,8 +146,8 @@ public class VentanaAMCliente extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
-        this.clientes.add(unCliente);
+        //Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        //this.clientes.add(unCliente);
         
         System.out.println("Clientes");
         System.out.println("========");

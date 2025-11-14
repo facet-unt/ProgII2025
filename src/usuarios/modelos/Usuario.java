@@ -106,6 +106,16 @@ public abstract class Usuario implements Comparable<Usuario>{
     }
     
     public abstract List<Pedido> verPedido();
+
+    @Override
+    public int compareTo(Usuario t) {
+        if (this.apellido.compareTo(t.apellido) == 0){
+            return this.nombre.compareTo(t.nombre);
+        }
+        else
+            return apellido.compareTo(t.apellido);
+    }
  
+    
     
 }
