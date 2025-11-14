@@ -30,7 +30,7 @@ public class GestorPedidos implements IGestorPedidos {
 
     private GestorPedidos() {
     }
-
+    
     public static GestorPedidos instanciar() {
         if (instancia == null) {
             instancia = new GestorPedidos();

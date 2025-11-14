@@ -1,21 +1,14 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
 
-public class GestorProductos {
+public class GestorProductos implements IGestorProductos {
 
     private ArrayList<Producto> productos = new ArrayList<>();
 
     private static GestorProductos instancia;
-    public static final String EXITO = "Producto creado/modificado con éxito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto esincorrecta";
-    public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto esincorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con esecódigo";
-    public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
-    public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
 
     private GestorProductos() {
 
@@ -79,10 +72,12 @@ public class GestorProductos {
         return EXITO;
     }
 
+    @Override
     public ArrayList<Producto> menu() {
         return this.productos;
     }
 
+    @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         for (Producto u : productos) {
             if (u.verDescripcion() == descripcion) {
@@ -92,6 +87,7 @@ public class GestorProductos {
         return null;
     }
 
+    @Override
     public boolean existeEsteProducto(Producto producto) {
         for (Producto u : productos) {
             if (!(u.equals(producto))) {
@@ -101,6 +97,7 @@ public class GestorProductos {
         return true;
     }
 
+    @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         for (Producto u : productos) {
             if (u.verCategoria() == categoria) {
@@ -110,12 +107,24 @@ public class GestorProductos {
         return null;
     }
 
+    @Override
     public Producto obtenerProducto(Integer codigo) {
-         for (Producto u : productos) {
-            if (u.verCodigo()== codigo) {
+        for (Producto u : productos) {
+            if (u.verCodigo() == codigo) {
                 return u;
             }
         }
         return null;
+    }
+
+    @Override
+    public String borrarProducto(Producto producto) {
+        GestorPedidos gPedidos = GestorPedidos.instanciar();
+        if (gPedidos.hayPedidosConEsteProducto(producto) == true) {
+            return PRODUCTO_EN_PEDIDO;
+        } else {
+            productos.remove(producto);
+            return PRODUCTO_BORRADO;
+        }
     }
 }

@@ -4,8 +4,12 @@
  */
 package usuarios.modelos;
 
+import static interfaces.IGestorProductos.PRODUCTO_BORRADO;
+import static interfaces.IGestorProductos.PRODUCTO_EN_PEDIDO;
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import pedidos.modelos.GestorPedidos;
+import productos.modelos.Producto;
 
 /**
  *
@@ -86,7 +90,16 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
-
+    @Override
+    public String borrarProducto(Usuario usuarios) {
+        GestorPedidos gPedidos = GestorPedidos.instanciar();
+        if (gPedidos.hayPedidosConEsteProducto(usuarios) == true) {
+            return PRODUCTO_EN_PEDIDO;
+        } else {
+            usuario.remove(usuarios);
+            return PRODUCTO_BORRADO;
+        }
+    }
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -101,4 +114,6 @@ public class GestorUsuarios implements IGestorUsuarios {
     public String borrarUsuario(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
 }
