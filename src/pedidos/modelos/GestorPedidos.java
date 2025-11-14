@@ -23,7 +23,7 @@ public class GestorPedidos {
 
     private ArrayList<Pedido> pedidos = new ArrayList<>();
 
-    private static GestorPedidos intstancia;
+    private static GestorPedidos instancia;
     private int numnero;
     public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
     public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
@@ -37,6 +37,12 @@ public class GestorPedidos {
 
     private GestorPedidos() {
 
+    }
+     public static GestorPedidos instanciar() {
+        if (instancia == null) {
+            instancia = new GestorPedidos();
+        }
+        return instancia;
     }
 
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {

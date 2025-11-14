@@ -6,25 +6,25 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
+import pedidos.modelos.GestorPedidos;
 
 /**
  *
  * @author Esteban
  */
+public class Encargado extends Usuario {
 
-public class Encargado extends Usuario{
-    private ArrayList<Pedido> vacio= new ArrayList<>();
-    
+    private ArrayList<Pedido> vacio = new ArrayList<>();
+
     //constructor
-    
     public Encargado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
-        super(correo,clave, apellido, nombre, perfil);
+        super(correo, clave, apellido, nombre, perfil);
     }
-    
-   @Override
+
+    @Override
     public ArrayList<Pedido> verPedido() {
-        
-        return vacio;
+        GestorPedidos gestor = GestorPedidos.instanciar();
+        return gestor.verPedidos();
     }
-    
+
 }
