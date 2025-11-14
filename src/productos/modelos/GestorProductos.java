@@ -11,6 +11,7 @@ import static interfaces.IGestorUsuarios.EXITO;
 import static interfaces.IGestorUsuarios.VALIDACION_EXITO;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import pedidos.modelos.GestorPedidos;
 
 
@@ -109,7 +110,7 @@ public class GestorProductos implements IGestorProductos {
                 lista.add(p);
             }           
         }
-        Collections.sort(lista);
+        Collections.sort(productos);
         return lista;
     }
     
@@ -133,7 +134,7 @@ public class GestorProductos implements IGestorProductos {
                 categorias.add(pr);
             }
         }
-        Collections.sort(productos);
+        categorias.sort(dDesc);
         return categorias;
     }
     
@@ -167,5 +168,12 @@ public String borrarProducto(Producto producto) {
     
     productos.remove(producto);
     return "Producto eliminado con éxito.";
-}
+    }
+
+    Comparator<Producto> dDesc = new Comparator<Producto>(){
+        @Override
+        public int compare(Producto p1, Producto p2){
+            return p1.verDescripcion().compareTo(p2.verDescripcion());
+        }
+    };
 }

@@ -15,7 +15,7 @@ public class ControladorPrincipalTP4Parte2 {
         */
 
 
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+        /*ArrayList<Usuario> usuarios = new ArrayList<>();
 
         Usuario unCliente1 = new Cliente("cliente1@bar.com", "claveCliente1", "ApellidoCliente1", "NombreCliente1");        
         Usuario unCliente2 = new Cliente("cliente2@bar.com", "claveCliente2", "ApellidoCliente2", "NombreCliente2");       

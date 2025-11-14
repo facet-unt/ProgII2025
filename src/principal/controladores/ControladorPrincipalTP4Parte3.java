@@ -21,7 +21,7 @@ public class ControladorPrincipalTP4Parte3 {
             ***************************************************
         */
              
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+        /*ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         

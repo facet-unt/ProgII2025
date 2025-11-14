@@ -18,7 +18,7 @@ public static void main(String[] args) {
         ***************************************************
     */
  
-
+/*
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -41,7 +41,7 @@ public static void main(String[] args) {
          * la lista de productos
         **************************************************
     */
-    if (!listaProductos.contains(p2))
+    /*if (!listaProductos.contains(p2))
         listaProductos.add(p2);
     if (!listaProductos.contains(p3))
         listaProductos.add(p3);
@@ -56,7 +56,7 @@ public static void main(String[] args) {
         **************************************************
     
     */
-    for(Producto p : listaProductos)
+    /*for(Producto p : listaProductos)
         {
             p.mostrar();
         }
@@ -77,7 +77,7 @@ public static void main(String[] args) {
     Clientes, se crean 3 para crear los pedidos
     */
 
-    for (Cliente e: listaClientes)
+    /*for (Cliente e: listaClientes)
         e.mostrar();
 
     System.out.println();
@@ -132,14 +132,14 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
-    for(Pedido p : listaPedidos)
+    /*for(Pedido p : listaPedidos)
         {
             p.mostrar();
         }
 
 
     System.out.println();        
-
+*/
     /*
         *************************************************
          FIN Primera parte - comparación de objetos

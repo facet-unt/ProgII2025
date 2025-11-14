@@ -14,7 +14,7 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public abstract class Usuario {
+public abstract class Usuario implements Comparable<Usuario>{
     private String correo;
     private String clave;
     private String apellido;
@@ -107,4 +107,5 @@ public abstract class Usuario {
     
     public abstract List<Pedido> verPedido();
  
+    
 }

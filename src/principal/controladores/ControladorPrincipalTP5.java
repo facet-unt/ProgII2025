@@ -20,6 +20,7 @@ import pedidos.modelos.Pedido;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class ControladorPrincipalTP5 {
 
@@ -43,14 +44,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
 
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("oducto");
         for (Producto p : productosBuscados) {
             p.mostrar();
         }
 
         System.out.println(gp.existeEsteProducto(unProducto));
 
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for (Producto p : productosEntrada) {
             p.mostrar();
         }
@@ -78,7 +79,7 @@ public class ControladorPrincipalTP5 {
 
         Usuario unUsuario = gu.obtenerUsuario("cliente1@bar.com");
 
-        ArrayList<Usuario> usuariosBuscados = gu.buscarUsuarios("Toledo");
+        List<Usuario> usuariosBuscados = gu.buscarUsuarios("Toledo");
         for (Usuario u : usuariosBuscados) {
             u.mostrar();
         }
