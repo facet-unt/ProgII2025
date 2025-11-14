@@ -98,6 +98,14 @@ public class GestorPedidos {
         }
         return false;
     }
+    public Pedido obtenerPedido(Integer numero){
+        for (Pedido u : pedidos) {
+            if (u.verNumero() == numero) {
+                return u;
+            }
+        }
+        return null;
+    }
 }
 
 //public String crearPedido(LocalDate fecha, LocalTime hora,
