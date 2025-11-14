@@ -90,6 +90,14 @@ public class GestorPedidos {
         }
         return false;
     }
+    public boolean existeEstePedido(Pedido pedido){
+        for (Pedido u: pedidos) {
+            if(u.equals(pedido)){
+            return true;
+            }
+        }
+        return false;
+    }
 }
 
 //public String crearPedido(LocalDate fecha, LocalTime hora,
