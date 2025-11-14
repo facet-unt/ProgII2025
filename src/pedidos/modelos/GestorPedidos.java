@@ -7,7 +7,13 @@ package pedidos.modelos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
+import static usuarios.modelos.Perfil.CLIENTE;
+import static usuarios.modelos.Perfil.EMPLEADO;
+import static usuarios.modelos.Perfil.ENCARGADO;
 
 /**
  *
@@ -30,7 +36,7 @@ public class GestorPedidos {
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido";
 
     private GestorPedidos() {
-        
+
     }
 
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
@@ -40,14 +46,49 @@ public class GestorPedidos {
         if (hora == null) {
             return ERROR_HORA;
         }
-        if (productosDelPedido.isEmpty()){
+        if (productosDelPedido.isEmpty()) {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         }
         if (cliente == null) {
-            return ERROR_CLIENTE;      
+            return ERROR_CLIENTE;
         }
-        Pedido nuevoPedido = new Pedido(fecha, hora,productosDelPedido,  cliente);
+        Pedido nuevoPedido = new Pedido(fecha, hora, productosDelPedido, cliente);
         return null;
+    }
+
+    public String cambiarEstado(Pedido pedidoAModificar) {
+        switch (pedidoAModificar.verEstado()) {
+            case CREADO:
+                pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+            case PROCESANDO:
+                pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+            case ENTREGADO:
+                return "Pedido Entregado :D";
+
+        }
+        return null;
+    }
+
+    public ArrayList<Pedido> verPedidos() {
+        return this.pedidos;
+    }
+
+    public boolean hayPedidosConEsteCliente(Cliente cliente) {
+        for (Pedido u : pedidos) {
+            if (u.verCliente().equals(cliente)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hayPedidosConEsteProducto(Producto producto) {
+        for (Pedido u : pedidos) {
+            if (u.verProductoPedido().contains(producto)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
