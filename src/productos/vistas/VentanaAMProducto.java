@@ -14,25 +14,25 @@ import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 
-
 public class VentanaAMProducto extends JDialog {
+
     private ArrayList<Producto> productos = new ArrayList<>();
-    
+
     /**
      * Constructor
+     *
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
     public VentanaAMProducto(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
+        this.setTitle("Nuevo producto");
         this.comboCategorias1.setModel(new ModeloComboCategorias());
         this.comboEstado.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+        this.setVisible(true);
     }
-    
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,16 +168,17 @@ public class VentanaAMProducto extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
+        String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboEstado.getModel()).obtenerCategoria();
-                            
-        Producto unProducto; //= new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
-        //this.productos.add(unProducto);
-        
+        Categoria enumCategoria = ((ModeloComboCategorias) this.comboEstado.getModel()).obtenerCategoria();
+        Estado enumEstado = ((ModeloComboEstados) this.comboEstado.getModel()).obtenerEstado();
+
+        Producto unProducto = new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
+        this.productos.add(unProducto);
+
         System.out.println("Productos");
         System.out.println("=========");
-        for(Producto p : this.productos) {
+        for (Producto p : this.productos) {
             p.mostrar();
             System.out.println();
         }

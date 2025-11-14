@@ -5,7 +5,9 @@
 package pedidos.modelos;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
@@ -38,7 +40,8 @@ public class GestorPedidos {
     private GestorPedidos() {
 
     }
-     public static GestorPedidos instanciar() {
+
+    public static GestorPedidos instanciar() {
         if (instancia == null) {
             instancia = new GestorPedidos();
         }
@@ -58,7 +61,10 @@ public class GestorPedidos {
         if (cliente == null) {
             return ERROR_CLIENTE;
         }
-        Pedido nuevoPedido = new Pedido(fecha, hora, productosDelPedido, cliente);
+
+        LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
+        int numeroPedido = pedidos.size() + 1;
+        Pedido nuevoPedido = new Pedido(numeroPedido, fechaYHora, productosDelPedido, cliente);
         return null;
     }
 
@@ -96,15 +102,17 @@ public class GestorPedidos {
         }
         return false;
     }
-    public boolean existeEstePedido(Pedido pedido){
-        for (Pedido u: pedidos) {
-            if(u.equals(pedido)){
-            return true;
+
+    public boolean existeEstePedido(Pedido pedido) {
+        for (Pedido u : pedidos) {
+            if (u.equals(pedido)) {
+                return true;
             }
         }
         return false;
     }
-    public Pedido obtenerPedido(Integer numero){
+
+    public Pedido obtenerPedido(Integer numero) {
         for (Pedido u : pedidos) {
             if (u.verNumero() == numero) {
                 return u;
