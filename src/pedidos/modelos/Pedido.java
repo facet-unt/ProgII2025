@@ -11,7 +11,7 @@ public class Pedido {
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
-    private ArrayList<ProductoDelPedido> listaProductosdelPedido;
+    private ArrayList<ProductoDelPedido> listaProductosDelPedido;
 
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
@@ -20,7 +20,7 @@ public class Pedido {
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
-        this.listaProductosdelPedido = lista;
+        this.listaProductosDelPedido = lista;
         this.cliente = cliente;        
         this.estado = estado;
     }
@@ -69,8 +69,8 @@ public class Pedido {
         return estado;
     }
     
-    public ArrayList verlistaProductosdelPedido(){
-        return listaProductosdelPedido;
+    public ArrayList<ProductoDelPedido> verlistaProductosDelPedido(){
+        return listaProductosDelPedido;
     }
 
     public void asignarEstado(Estado estado) {
@@ -80,7 +80,7 @@ public class Pedido {
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
-        this.listaProductosdelPedido.add(nuevoProducto);
+        this.listaProductosDelPedido.add(nuevoProducto);
     }
     
     public void mostrar(){
@@ -97,7 +97,7 @@ public class Pedido {
         
         System.out.println("\t\tProducto " + "\t\tCantidad");
         System.out.println("\t\t=================================");
-        for(ProductoDelPedido p : listaProductosdelPedido)
+        for(ProductoDelPedido p : listaProductosDelPedido)
             p.mostrar();
         System.out.println("#################### ");
     } 

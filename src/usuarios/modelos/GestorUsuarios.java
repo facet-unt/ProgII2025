@@ -30,7 +30,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         if(obtenerUsuario(correo) != null) return USUARIOS_DUPLICADOS;
         Usuario nuevoUsuario;
         switch (perfil) {
-        case CLIENTE -> nuevoUsuario = new Cliente(correo, clave, apellido, nombre);
+        case CLIENTE -> nuevoUsuario = new Cliente(correo, clave, apellido, nombre );
         case ENCARGADO -> nuevoUsuario = new Encargado(correo, clave, apellido, nombre);
         case EMPLEADO -> nuevoUsuario = new Empleado(correo, clave, apellido, nombre);
         default -> {
@@ -48,7 +48,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
         for(Usuario u : usuarios)
-            if(u.verApellido().equals(apellido.toLowerCase())) usuariosEncontrados.add(u);
+            if(u.verApellido().equalsIgnoreCase(apellido)) usuariosEncontrados.add(u);
         return usuariosEncontrados;
     }
     @Override
@@ -60,7 +60,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     @Override
     public Usuario obtenerUsuario(String correo){
         for(Usuario u : usuarios)
-            if(u.verCorreo().equals(correo.toLowerCase())) return u;
+            if(u.verCorreo().equalsIgnoreCase(correo)) return u;
         return null;
     }
     private String validarDatos (String correo, String apellido, String nombre, String clave, String claveRepetida){
