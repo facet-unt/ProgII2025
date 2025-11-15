@@ -10,23 +10,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
+import interfaces.IGestorPedidos;
+import usuarios.modelos.GestorUsuarios;
 
 /**
  *
  * @author estudiante
  */
-public class GestorPedidos {
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
-    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
-    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
-    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
-    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
-    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
-    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
-    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
-    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
-    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
-    
+public class GestorPedidos implements IGestorPedidos{
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     
     public static GestorPedidos instancia;
@@ -40,15 +31,18 @@ public class GestorPedidos {
         return instancia;
     }
     
+    @Override
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
         LocalDateTime fechaYHora = fecha.atTime(hora);
         contadorPedidos++;
         Pedido p = new Pedido(contadorPedidos, fechaYHora, productosDelPedido, cliente);
         cliente.agregarPedido(p);
+        pedidos.add(p);
         return EXITO;
         
     }
     
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar){
         if(pedidoAModificar.verEstado() == Estado.CREADO) pedidoAModificar.asignarEstado(Estado.PROCESANDO);
         if(pedidoAModificar.verEstado() == Estado.PROCESANDO) pedidoAModificar.asignarEstado(Estado.ENTREGADO);
@@ -56,27 +50,31 @@ public class GestorPedidos {
         return EXITO;
     }
     
+    @Override
     public ArrayList<Pedido> verPedidos(){
         return pedidos;
     }
     
+    @Override
     public boolean hayPedidosConEsteCliente(Cliente cliente){
         for(Pedido p : pedidos)
             if (p.verCliente().equals(cliente)) return true;
         return false; 
     }
     
+    @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
         for(Pedido p : pedidos)
             if (p.verlistaProductosdelPedido().contains(producto)) return true;
         return false; 
     }
     
+    @Override
     public boolean existeEstePedido(Pedido pedido){
-        if(pedidos.contains(pedido)) return true;
-        return false;
+        return pedidos.contains(pedido);
     }
     
+    @Override
     public Pedido obtenerPedido(Integer numero){
         for(Pedido p : pedidos)
             if(numero != null && numero.equals(p.verNumero())) return p;
@@ -89,6 +87,17 @@ public class GestorPedidos {
         if(cliente == null) return ERROR_CLIENTE;
         if(productosDelPedido.isEmpty()) return ERROR_PRODUCTOS_DEL_PEDIDO;
         return VALIDACION_EXITO;
+    }
+
+    @Override
+    public String cancelarPedido(Pedido pedido) {
+        if(pedido == null) return PEDIDO_INEXISTENTE;
+        if(pedido.verEstado().equals(Estado.ENTREGADO)) return "Este pedido ya fué entregado";
+        Cliente clienteDelPedido = pedido.verCliente();
+        if(clienteDelPedido != null) clienteDelPedido.cancelarPedido(pedido);
+        if(pedidos.remove(pedido)){
+            return EXITO;
+        } else return PEDIDO_INEXISTENTE;
     }
     
 }

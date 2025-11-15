@@ -30,9 +30,9 @@ public class GestorUsuarios implements IGestorUsuarios{
         if(obtenerUsuario(correo) != null) return USUARIOS_DUPLICADOS;
         Usuario nuevoUsuario;
         switch (perfil) {
-        case CLIENTE -> nuevoUsuario = new Cliente(correo, apellido, nombre, clave);
-        case ENCARGADO -> nuevoUsuario = new Encargado(correo, apellido, nombre, clave);
-        case EMPLEADO -> nuevoUsuario = new Empleado(correo, apellido, nombre, clave);
+        case CLIENTE -> nuevoUsuario = new Cliente(correo, clave, apellido, nombre);
+        case ENCARGADO -> nuevoUsuario = new Encargado(correo, clave, apellido, nombre);
+        case EMPLEADO -> nuevoUsuario = new Empleado(correo, clave, apellido, nombre);
         default -> {
             return ERROR_PERFIL;
             }

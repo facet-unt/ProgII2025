@@ -7,8 +7,6 @@ import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 
 public class GestorProductos implements IGestorProductos{
-    
-    
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
