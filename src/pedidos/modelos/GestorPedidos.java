@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 import interfaces.IGestorPedidos;
-import usuarios.modelos.GestorUsuarios;
 
 /**
  *
@@ -33,21 +32,34 @@ public class GestorPedidos implements IGestorPedidos{
     
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
-        LocalDateTime fechaYHora = fecha.atTime(hora);
-        contadorPedidos++;
-        Pedido p = new Pedido(contadorPedidos, fechaYHora, productosDelPedido, cliente);
-        cliente.agregarPedido(p);
-        pedidos.add(p);
-        return EXITO;
-        
+        String validacion = validar(fecha, hora, productosDelPedido, cliente);
+        if(validacion.equals(VALIDACION_EXITO)){
+            LocalDateTime fechaYHora = fecha.atTime(hora);
+            contadorPedidos++;
+            Pedido p = new Pedido(contadorPedidos, fechaYHora, productosDelPedido, cliente);
+            cliente.agregarPedido(p);
+            pedidos.add(p);
+            return EXITO;
+        }
+        return validacion;
     }
     
     @Override
     public String cambiarEstado(Pedido pedidoAModificar){
-        if(pedidoAModificar.verEstado() == Estado.CREADO) pedidoAModificar.asignarEstado(Estado.PROCESANDO);
-        if(pedidoAModificar.verEstado() == Estado.PROCESANDO) pedidoAModificar.asignarEstado(Estado.ENTREGADO);
-        if(pedidoAModificar.verEstado() == Estado.ENTREGADO) return ERROR_ESTADO;
+        if(null != pedidoAModificar.verEstado()){
+            switch (pedidoAModificar.verEstado()){
+                case CREADO -> pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+                case PROCESANDO -> pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+                case ENTREGADO -> {
+                    return ERROR_ESTADO;
+                }
+                default -> {
+                    return ERROR_ESTADO;
+                }
+            }
         return EXITO;
+        }
+        return ERROR_ESTADO;
     }
     
     @Override
@@ -65,7 +77,10 @@ public class GestorPedidos implements IGestorPedidos{
     @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
         for(Pedido p : pedidos)
-            if (p.verlistaProductosdelPedido().contains(producto)) return true;
+            for(ProductoDelPedido pdp : p.verlistaProductosDelPedido()){
+                if(pdp.verProducto().equals(producto))
+                    return true;
+            } 
         return false; 
     }
     
@@ -81,7 +96,7 @@ public class GestorPedidos implements IGestorPedidos{
         return null;
     }
     
-    public String validacion(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+    public String validar(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
         if(fecha == null) return ERROR_FECHA;
         if(hora == null) return ERROR_HORA;
         if(cliente == null) return ERROR_CLIENTE;
@@ -92,7 +107,7 @@ public class GestorPedidos implements IGestorPedidos{
     @Override
     public String cancelarPedido(Pedido pedido) {
         if(pedido == null) return PEDIDO_INEXISTENTE;
-        if(pedido.verEstado().equals(Estado.ENTREGADO)) return "Este pedido ya fué entregado";
+        if(pedido.verEstado().equals(Estado.ENTREGADO)) return ERROR_CANCELAR;
         Cliente clienteDelPedido = pedido.verCliente();
         if(clienteDelPedido != null) clienteDelPedido.cancelarPedido(pedido);
         if(pedidos.remove(pedido)){
