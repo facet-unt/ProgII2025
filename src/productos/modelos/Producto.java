@@ -24,8 +24,6 @@ public class Producto {
         this.categoria = categoria;
         this.estado = estado;
         this.precio = precio;
-        this.categoria = categoria;
-        this.estado = estado;
     }
 
     @Override

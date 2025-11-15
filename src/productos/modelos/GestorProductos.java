@@ -38,6 +38,12 @@ public class GestorProductos implements IGestorProductos{
         String validacion = validarDatos(codigo, descripcion,precio,categoria,estado);
         if(validacion.equals(VALIDACION_EXITO)){
             if(existeEsteProducto(productoAModificar)){
+                if (productoAModificar.verCodigo() != codigo) { 
+                    Producto pConEseCodigo = obtenerProducto(codigo); 
+                    if (pConEseCodigo != null) {
+                        return PRODUCTOS_DUPLICADOS; 
+                    }
+                }
                 productoAModificar.asignarCodigo(codigo);
                 productoAModificar.asignarDescripcion(descripcion);
                 productoAModificar.asignarPrecio(precio);
