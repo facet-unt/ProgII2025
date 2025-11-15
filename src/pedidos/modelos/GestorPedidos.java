@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Importaciones de clases de otros paquetes
@@ -56,12 +57,7 @@ public class GestorPedidos implements IGestorPedidos{
         LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
         
         Pedido nuevoPedido = new Pedido(contadorNumero, fechaYHora, productosDelPedido, cliente);
-        
-        
-        if (existeEstePedido(nuevoPedido)) {
-            return PEDIDOS_DUPLICADOS;
-        }
-        
+       
        
         pedidos.add(nuevoPedido);
         
@@ -117,8 +113,10 @@ public class GestorPedidos implements IGestorPedidos{
     
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
-        return new ArrayList<>(pedidos); // Devuelve una copia para proteger la lista original
+    public List<Pedido> verPedidos() {
+        List<Pedido> lista = new ArrayList<>(pedidos);
+        lista.sort(new PedidoPorNumero());
+        return lista; 
     }
     
 
@@ -190,22 +188,22 @@ public class GestorPedidos implements IGestorPedidos{
                                      List<ProductoDelPedido> productosDelPedido, 
                                      Cliente cliente) {
         
-        // Validar fecha
+        
         if (fecha == null) {
             return ERROR_FECHA;
         }
         
-        // Validar hora
+       
         if (hora == null) {
             return ERROR_HORA;
         }
         
-        // Validar cliente
+       
         if (cliente == null) {
             return ERROR_CLIENTE;
         }
         
-        // Validar productos
+       
         if (productosDelPedido == null || productosDelPedido.isEmpty()) {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         }

@@ -17,7 +17,7 @@ import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
-public class Pedido {
+public class Pedido  {
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
