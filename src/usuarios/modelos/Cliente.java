@@ -46,9 +46,10 @@ public class Cliente extends Usuario{
             this.pedidos.add(unPedido);
         }
     }
+
     public void cancelarPedido(Pedido unPedido) {
         if(pedidos.contains(unPedido)&&unPedido!=null)
-        this.pedidos.remove(unPedido);
+            this.pedidos.remove(unPedido);
     }
    
 

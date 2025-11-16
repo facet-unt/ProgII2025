@@ -31,9 +31,17 @@ public class GestorPedidos implements IGestorPedidos{
     
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
-        Pedido p = new Pedido (fecha,  hora, productosDelPedido,  cliente); /*Agregar la validacion de datos*/
-        
-        if(fecha!=null && hora!=null && !productosDelPedido.isEmpty() && cliente!=null)
+        Pedido p = null;
+
+//        if(fecha != null && hora!= null && !productosDelPedido.isEmpty() && cliente != null){
+            p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
+            cliente.agregarPedido(p);
+//            return EXITO;
+//        }else{
+//            return VALIDACION_FRACASO;
+//        }
+
+        if(fecha != null && hora!=null && !productosDelPedido.isEmpty() && cliente != null)
         {   
             if (pedidos.contains(p)){
                 return PEDIDOS_DUPLICADOS;
@@ -124,15 +132,12 @@ public class GestorPedidos implements IGestorPedidos{
 
     @Override
     public String cancelarPedido(Pedido pedido) {
-        if(pedidos.contains(pedido)&&pedido!=null){
+        if(pedidos.contains(pedido) && pedido!=null){
            pedidos.remove(pedido);
            pedido.verCliente().cancelarPedido(pedido);
            return CANCELACION_EXITO;
         }
         return CANCELACION_FRACASO;
     }
-    
-    
-    
-    
+
     }
