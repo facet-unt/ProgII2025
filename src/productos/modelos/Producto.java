@@ -124,11 +124,18 @@ public class Producto implements Comparable <Producto> {
         return this.codigo == other.codigo;
     }
 
+    // Implementacion del metodo compareTo TP6 //
     @Override
     public int compareTo(Producto p) {
-         if(this.unaCategoria.compareTo(p.verCategoria()) == 0)
-             return this.descripcion.compareTo(p.verDescripcion());
-         else
-             return this.unaCategoria.compareTo(p.verCategoria());
-             } 
+      
+         if(this.unaCategoria.compareTo(p.verCategoria()) == 0){
+           
+             return this.descripcion.compareToIgnoreCase(p.verDescripcion());
+         
+         }
+         
+        return this.unaCategoria.compareTo(p.verCategoria());
+  
+    }
+    
 }

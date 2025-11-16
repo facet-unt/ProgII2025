@@ -107,6 +107,7 @@ public abstract class Usuario implements Comparable<Usuario> {
     
     public abstract List<Pedido> verPedido();
 
+    // Implementacion del metodo compareTo TP6 //
     @Override
     public int compareTo(Usuario u) {
         if(this.apellido.compareTo(u.verApellido()) == 0)

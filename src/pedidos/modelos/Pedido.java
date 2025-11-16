@@ -110,11 +110,8 @@ public class Pedido implements Comparable<Pedido>{
         System.out.println("#################### ");
         
     }
-
-   
     
 
-    
     public LocalDate verFecha() {
         return this.fechaYHora.toLocalDate();
     }
@@ -164,6 +161,8 @@ public class Pedido implements Comparable<Pedido>{
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
+    
+    // Implementacion del metodo compareTo TP6 //
 
     @Override
     public int compareTo(Pedido p) {

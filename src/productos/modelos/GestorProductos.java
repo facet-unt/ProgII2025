@@ -13,8 +13,7 @@ public class GestorProductos implements IGestorProductos{
     
     private static GestorProductos instancia;
     
-    private GestorProductos() {
-        
+    private GestorProductos() {   
     }
     
     public static GestorProductos instanciar() {
@@ -29,15 +28,15 @@ public class GestorProductos implements IGestorProductos{
         {
             if(productos.contains(p)){
                 return PRODUCTOS_DUPLICADOS;
-            }else{
+            }
+            else{
                 productos.add(p);
                 return (EXITO);
             }
              
             
         }
-        else
-        {
+        else{
             if (codigo<0)
                 return (ERROR_CODIGO);
             else if (precio<0)
@@ -53,19 +52,19 @@ public class GestorProductos implements IGestorProductos{
     }
     
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (productos.contains(p))
-            {
-                productos.remove(p);
-            }
+//        if (productos.contains(p))
+//            {
+//                productos.remove(p);
+//            }
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-        productos.add(p);
-        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
+//        productos.add(p);
+        if(codigo>0 && descripcion != null && precio>0 && categoria!= null && estado!=null)
         {
-            productos.add(p);
+//            productos.add(p);
             return (EXITO); 
             
         }
@@ -84,6 +83,7 @@ public class GestorProductos implements IGestorProductos{
         }
     }
     
+    // Modificacion del metodo menu (devuelve productos ordenados por descripcion y categoria)
     public List<Producto> menu() {
         
         Collections.sort(this.productos);
@@ -99,9 +99,10 @@ public class GestorProductos implements IGestorProductos{
                 encontrados.add(p);
             }
                 
-            }
-        Collections.sort(encontrados);
+        }
+        Collections.sort(encontrados); /* Se ordena la lista por categoria y descripcion TP6 */
         return encontrados;
+    
     }
     
     public boolean existeEsteProducto(Producto producto) {
@@ -119,7 +120,7 @@ public class GestorProductos implements IGestorProductos{
                 prodcat.add(p);
             }
             }
-        Collections.sort(prodcat); /* Se ordenan los productos con la misma categoria, por descripcion. */
+        Collections.sort(prodcat); /* Se ordenan los productos por categoria y descripcion TP6 */
         return prodcat;
     }
     

@@ -18,10 +18,10 @@ import usuarios.modelos.Cliente;
  */
 public interface IGestorPedidos {
     //MENSAJES
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+    public static final String EXITO = "Pedido creado/modificado/cancelado con exito";
     public static final String CAMBIO_ESTADO_FRACASO= "Al pedido no se le puede cambiar el estado";    
     public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
-    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
+    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese numero";
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
     public static final String VALIDACION_FRACASO = "El pedido tiene los datos incorrectos";
@@ -30,9 +30,9 @@ public interface IGestorPedidos {
     
     
     //METODOS A IMPLEMENTAR
-    public abstract String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public abstract List<Pedido> verPedidos(); // Metodo agregado TP6
+    public abstract String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente); // Metodo agregado TP6
     public abstract String cambiarEstado(Pedido pedidoAModificar);
-    public abstract List<Pedido> verPedidos();
     public abstract boolean hayPedidosConEsteCliente(Cliente cliente);
     public abstract boolean hayPedidosConEsteProducto(Producto producto);
     public abstract String cancelarPedido(Pedido pedido);
