@@ -9,7 +9,7 @@ package productos.modelos;
  *
  * @author estudiante
  */
-public class Producto {
+public class Producto implements Comparable<Producto> {
     //Atributos
     private int codigo;
     private String descripcion;
@@ -47,8 +47,10 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-    
-
+    @Override
+    public int compareTo(Producto p){
+        return descripcion.compareTo(p.descripcion);
+    }
     public void mostrar() {
         System.out.println("Codigo: "+ codigo +"\nDescripcion: "+ descripcion+"\nCategoria: "+categoria+"\nEstado: "+estado+"\nPrecio: "+precio);
     }

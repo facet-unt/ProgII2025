@@ -6,6 +6,7 @@ import interfaces.IGestorUsuarios;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -40,14 +41,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         System.out.println("\n--- Busco productos que contienen 'oducto' ---");
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("oducto");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         System.out.println("\n--- Busco si existe producto 1  ---");
         System.out.println(gp.existeEsteProducto(unProducto));
         System.out.println("\n--- Busco productos por Categoria: ENTRADA ---");
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
         }
