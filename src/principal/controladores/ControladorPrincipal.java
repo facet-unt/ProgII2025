@@ -11,7 +11,7 @@
 //import pedidos.modelos.Pedido;
 //import pedidos.modelos.ProductoDelPedido;
 //
-//public class ControladorPrincipal {
+//public class ControladorPrincipalGUI {
 //    public static void main(String[] args) {
 //
 //        ArrayList<Cliente> listaClientes = new ArrayList<>();

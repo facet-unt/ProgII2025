@@ -15,10 +15,6 @@ public class ControladorPrincipalGUI {
         
     }
     
-    /**
-     * Asigna el look and feel especificado a la ventana
-     * @param laf cadena con el nombre del look and feel
-     */
     public static void establecerLookAndFeel(String laf) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

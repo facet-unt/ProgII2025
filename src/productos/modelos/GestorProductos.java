@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
-
 public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
 
-
     private GestorProductos() {
-        
+
     }
     
     public static GestorProductos instanciar() {
