@@ -57,10 +57,6 @@ public class ControladorPrincipalTP5 {
         for(Usuario u : usuariosBuscados) {
             u.mostrar();
         }
-        
-//        System.out.println(gu.existeEsteUsuario(unUsuario));
-//     
-
        
                         
 //        for(Pedido P : gP.verPedidos()) {

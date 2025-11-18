@@ -53,8 +53,9 @@ public class GestorUsuarios implements IGestorUsuarios {
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosbuscados= new ArrayList<>();
         for(Usuario u: usuarios){
-            if(u.verApellido().toLowerCase().contains(apellido.toLowerCase()));
-            usuariosbuscados.add(u);
+            if(u.verApellido().toLowerCase().contains(apellido.toLowerCase())){
+                usuariosbuscados.add(u);
+            }
         }
         Collections.sort(usuariosbuscados);
         return usuariosbuscados;

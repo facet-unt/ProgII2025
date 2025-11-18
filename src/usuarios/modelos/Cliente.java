@@ -17,6 +17,7 @@ public class Cliente extends Usuario{
     private ArrayList<Pedido> pedidos= new ArrayList<>();
 
     
+    @Override
     public void mostrar() {
       super.mostrar();
       for (Pedido p: pedidos)
