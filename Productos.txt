@@ -1,0 +1,51 @@
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0
+1-Empanadas-Entrada-Disponible-1.0
+2-Bife con arroz-Plato principal-Disponible-2.0
+3-Copa helada-Postre-Disponible-3.0
+3-Producto4-Postre-Disponible-4.0
+4--Postre-Disponible-4.0
+5-Queso y dulce-Postre-Disponible-3.0
+6-Ensalada-Entrada-Disponible-3.0
+7-Suprema con pure-Plato principal-Disponible-3.0
+9-Suprema con ensalada-Plato principal-Disponible-2.8
+1-Producto3-Entrada-Disponible-1.0
+3-Producto1-Postre-Disponible-3.0
+2-Producto2-Plato principal-Disponible-2.0
+4-Producto4-Entrada-Disponible-4.0
+5-Producto5-Postre-Disponible-5.0
+6-Producto6-Plato principal-Disponible-6.0

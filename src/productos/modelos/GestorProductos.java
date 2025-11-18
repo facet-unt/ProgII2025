@@ -1,10 +1,18 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pedidos.modelos.*;
 
 
@@ -12,6 +20,8 @@ public class GestorProductos implements IGestorProductos{
     private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
+    private final String NOMBREARCHIVO = "Productos.txt";
+    private final String SEPARADOR = "-";
     
     private GestorProductos() {   
     }
@@ -22,10 +32,17 @@ public class GestorProductos implements IGestorProductos{
         return instancia;
     }
     
+    
+    
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        Producto p = new Producto (codigo, descripcion, categoria, estado, precio);
+        
+        
         if(codigo>0 && descripcion!=null && precio>0 && categoria!=null && estado!=null)
         {
+            Producto p = new Producto (codigo, descripcion, categoria, estado, precio);
+            
+            this.escribirArchivo(NOMBREARCHIVO, p);
+
             if(productos.contains(p)){
                 return PRODUCTOS_DUPLICADOS;
             }
@@ -33,8 +50,7 @@ public class GestorProductos implements IGestorProductos{
                 productos.add(p);
                 return (EXITO);
             }
-             
-            
+        
         }
         else{
             if (codigo<0)
@@ -85,7 +101,7 @@ public class GestorProductos implements IGestorProductos{
     
     // Modificacion del metodo menu (devuelve productos ordenados por descripcion y categoria)
     public List<Producto> menu() {
-        
+        this.leerArchivo(NOMBREARCHIVO);
         Collections.sort(this.productos);
         return this.productos;
     }
@@ -161,4 +177,88 @@ public class GestorProductos implements IGestorProductos{
             return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
         }
     }
+    
+    private String escribirArchivo(String NOMBREARCHIVO, Producto p)
+    {
+        
+        
+        try( FileWriter fw = new FileWriter(NOMBREARCHIVO, true))
+        {
+            fw.write(deProductoaString(p));
+            return ESCRITURA_OK;
+            
+        } catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }   
+    }
+    
+    private String deProductoaString(Producto p){
+        StringBuilder linea = new StringBuilder();
+        linea.append(p.verCodigo());
+        linea.append(SEPARADOR);
+        linea.append(p.verDescripcion());
+        linea.append(SEPARADOR);
+        linea.append(p.verCategoria().toString());
+        linea.append(SEPARADOR);
+        linea.append(p.verEstado().toString());
+        linea.append(SEPARADOR);
+        linea.append(Float.toString(p.verPrecio()));
+        linea.append("\n");
+        return linea.toString();
+  
+    }
+    
+    private String leerArchivo(String NOMBREARCHIVO){
+        
+        try(FileReader fr = new FileReader(NOMBREARCHIVO))
+        {
+            BufferedReader bw = new BufferedReader(fr);
+            String linea = "";
+            while((linea = bw.readLine()) != null){
+            Producto p = this.deStringaProducto(linea);
+            this.productos.add(p);
+            }
+                 
+            return LECTURA_OK;
+            
+        } catch (IOException ex) {
+            return LECTURA_ERROR;
+        }   
+    }
+    
+    private Producto deStringaProducto(String linea){
+        int codigo;
+        String descripcion;
+        Categoria unaCategoria;
+        Estado unEstado;
+        float precio;
+        
+        String[] cadenas = linea.split("-");
+        codigo = Integer.parseInt(cadenas[0]);
+        descripcion = cadenas[1];
+        if(cadenas[2] == "Entrada"){
+            unaCategoria = Categoria.ENTRADA;
+        }else if(cadenas[2] == "Plato principal"){
+            unaCategoria = Categoria.PLATO_PRINCIPAL;
+        }else{
+            unaCategoria = Categoria.POSTRE;
+        }
+        if(cadenas[3] == "Disponible"){
+            unEstado = Estado.DISPONIBLE;
+        }else{
+            unEstado = Estado.NO_DISPONIBLE;
+        }
+        precio = Float.parseFloat(cadenas[4]);
+        
+        Producto p = new Producto (codigo, descripcion, unaCategoria, unEstado, precio);
+        
+        return p;
+            
+    }
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="nombre">
+    
+    // </editor-fold>
+    
     }
