@@ -6,7 +6,9 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -14,7 +16,7 @@ import pedidos.modelos.GestorPedidos;
  * @author Gaston
  */
 public class GestorUsuarios implements IGestorUsuarios{
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
     private GestorUsuarios(){
@@ -24,7 +26,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             instancia = new GestorUsuarios();
         return instancia;
     }
-    private Comparator<Usuario> compU = (u1,u2) -> {
+    private Comparator<Usuario> compUs = (u1,u2) -> {
         if(u1 == null && u2 == null) return 0;
         if(u1 == null) return 1;
         if(u2 == null) return 2;
@@ -51,14 +53,16 @@ public class GestorUsuarios implements IGestorUsuarios{
         return EXITO;
     }
     @Override
-    public ArrayList<Usuario> verUsuarios(){
+    public List<Usuario> verUsuarios(){
+        Collections.sort(usuarios, compUs);
         return usuarios;
     }
     @Override
-    public ArrayList<Usuario> buscarUsuarios(String apellido){
+    public List<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
         for(Usuario u : usuarios)
             if(u.verApellido().equalsIgnoreCase(apellido)) usuariosEncontrados.add(u);
+        Collections.sort(usuariosEncontrados, compUs);
         return usuariosEncontrados;
     }
     @Override
