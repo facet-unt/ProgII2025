@@ -26,11 +26,10 @@ public class GestorPedidos implements IGestorPedidos {
 
     private ArrayList<Pedido> pedidos = new ArrayList<>();
     private static GestorPedidos instancia;
-    private int numnero;
 
     private GestorPedidos() {
     }
-    
+
     public static GestorPedidos instanciar() {
         if (instancia == null) {
             instancia = new GestorPedidos();
@@ -38,6 +37,7 @@ public class GestorPedidos implements IGestorPedidos {
         return instancia;
     }
 
+    @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         if (fecha == null) {
             return ERROR_FECHA;
@@ -58,6 +58,7 @@ public class GestorPedidos implements IGestorPedidos {
         return null;
     }
 
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar) {
         switch (pedidoAModificar.verEstado()) {
             case CREADO:
@@ -71,10 +72,12 @@ public class GestorPedidos implements IGestorPedidos {
         return null;
     }
 
+    @Override
     public ArrayList<Pedido> verPedidos() {
         return this.pedidos;
     }
 
+    @Override
     public boolean hayPedidosConEsteCliente(Cliente cliente) {
         for (Pedido u : pedidos) {
             if (u.verCliente().equals(cliente)) {
@@ -84,6 +87,7 @@ public class GestorPedidos implements IGestorPedidos {
         return false;
     }
 
+    @Override
     public boolean hayPedidosConEsteProducto(Producto producto) {
         for (Pedido u : pedidos) {
             if (u.verProductoPedido().contains(producto)) {
@@ -93,6 +97,7 @@ public class GestorPedidos implements IGestorPedidos {
         return false;
     }
 
+    @Override
     public boolean existeEstePedido(Pedido pedido) {
         for (Pedido u : pedidos) {
             if (u.equals(pedido)) {
@@ -113,6 +118,14 @@ public class GestorPedidos implements IGestorPedidos {
 
     @Override
     public String cancelarPedido(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Pedido pedidoEncontrado = obtenerPedido(pedido.verNumero());
+        if (pedidoEncontrado == null) {
+            return PEDIDO_INEXISTENTE;
+        } else {
+            pedidos.remove(pedido);
+            return PEDIDO_CANCELADO;
+        }
+
     }
+
 }

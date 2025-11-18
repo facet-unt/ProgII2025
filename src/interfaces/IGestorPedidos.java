@@ -27,6 +27,7 @@ public interface IGestorPedidos {
     public static final String ERROR_CANCELAR = "No se puede cancelar el pedido eneste estado";
     public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con esehjnúmero";
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido";
+    public static final String PEDIDO_CANCELADO = "Pedido cancelado con exito";
 
     public String crearPedido(LocalDate fecha, LocalTime hora,
             ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
