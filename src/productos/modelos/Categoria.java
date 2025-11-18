@@ -19,6 +19,16 @@ public enum Categoria {
         this.valor = valor;
     }
     
+    public static Categoria compararValor(String categoria){
+        Categoria[] valores=Categoria.values();
+        for(Categoria unaCategoria: valores){
+            if(unaCategoria.equals(categoria))
+                return unaCategoria;
+        }
+        return null;
+    }
+    
+    
     @Override
     public String toString() {
         return this.valor;

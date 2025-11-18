@@ -1,30 +1,35 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.*;
 
+public class GestorProductos implements IGestorProductos {
 
-public class GestorProductos implements IGestorProductos{
-private List<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
     
-    private GestorProductos() {
-        
-    }
+    //<editor-fold defaultstate="collapsed" desc="subtitulo">
     
+    //</editor-fold>
+
+    private GestorProductos() {
+
+    }
+
     public static GestorProductos instanciar() {
-        if (instancia == null)
+        if (instancia == null) {
             instancia = new GestorProductos();
+        }
         return instancia;
     }
+
     
     
     public String guardarEnArchivo (Producto unProducto) 
@@ -76,19 +81,49 @@ private List<Producto> productos = new ArrayList<>();
         else
         {
             if (codigo<0)
+
+
+    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
+        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) {
+            productos.add(p);
+            return (EXITO);
+
+        } else {
+            if (codigo < 0) {
                 return (ERROR_CODIGO);
-            else if (precio<0)
+            } else if (precio < 0) {
                 return (ERROR_PRECIO);
-            else if (descripcion==null)
+            } else if (descripcion == null) {
                 return (ERROR_DESCRIPCION);
-            else if (categoria==null)
+            } else if (categoria == null) {
                 return (ERROR_CATEGORIA);
-            else
-                return(ERROR_ESTADO);
+            } else {
+                return (ERROR_ESTADO);
+            }
         }
-        
+
+    }
+
+    @Override
+    public Boolean crearArchivo() {
+        File archivo = new File(NOMBRE_ARCHIVO_P);
+        try {
+            if (archivo.createNewFile()) {
+                System.out.println("Archivo creado exitosamente.");
+            } else {
+                System.out.println("El archivo ya existe.");
+            }
+            return true;
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error");
+            return false;
+        }
     }
     
+    
+    
+
     private String borrarArchivo()
     {
         File f =null;
@@ -131,15 +166,46 @@ private List<Producto> productos = new ArrayList<>();
         if (productos.contains(p))
             {
                 productos.remove(p);
+
+
+    @Override
+    public List<Producto> verProductos() {
+        List<Producto> productos = new ArrayList<Producto>();
+        if(!crearArchivo()) return null;
+        File f = new File(NOMBRE_ARCHIVO_P);
+        try (FileReader fr = new FileReader(f);) {
+            BufferedReader br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] cadenas = linea.split(SEPARADOR);
+                int codigo=Integer.parseInt(cadenas[0]);
+                String descripcion=cadenas[1];
+                Categoria categoria=Categoria.compararValor(cadenas[2]);
+                Estado estado=Estado.compararValor(cadenas[3]);
+                float precio=Float.parseFloat(cadenas[4]);
+                Producto unProducto= new Producto(codigo,descripcion,categoria,estado,precio);
+                productos.add(unProducto);
+                
+
             }
+        } catch (IOException e1) {
+            System.out.println(LECTURA_ERROR);
+        }
+        return productos;
+    }
+
+    @Override
+    public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        if (productos.contains(p)) {
+            productos.remove(p);
+        }
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
         productos.add(p);
-        if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
-        {
+        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) {
             productos.add(p);
             resultadoArchivo= borrarArchivo();
             if (resultadoArchivo.equals(ARCHIVO_BORRADO))
@@ -162,77 +228,81 @@ private List<Producto> productos = new ArrayList<>();
         else
         {
             if (codigo<0)
+            return (EXITO);
+
+        } else {
+            if (codigo < 0) {
                 return (ERROR_CODIGO);
-            else if (precio<0)
+            } else if (precio < 0) {
                 return (ERROR_PRECIO);
-            else if (descripcion==null)
+            } else if (descripcion == null) {
                 return (ERROR_DESCRIPCION);
-            else if (categoria==null)
+            } else if (categoria == null) {
                 return (ERROR_CATEGORIA);
-            else
-                return(ERROR_ESTADO);
+            } else {
+                return (ERROR_ESTADO);
+            }
         }
     }
-    
+
     @Override
     public List<Producto> menu() {
-         productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
-         return this.productos;
-        
+        productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
+        return this.productos;
+
     }
-    
 
     @Override
 
     public List<Producto> buscarProductos(String descripcion) {
-         
+
         List<Producto> encontrados = new ArrayList<>();
         for (Producto p : this.menu()) {
-             
+
             if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
                 encontrados.add(p);
             }
-                
-            }
+
+        }
 
         return encontrados;
     }
-    
+
     @Override
     public boolean existeEsteProducto(Producto producto) {
-        if (productos.contains(producto))
+        if (productos.contains(producto)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
-    
+
     @Override
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
-         ArrayList<Producto> prodcat = new ArrayList<>();
+        ArrayList<Producto> prodcat = new ArrayList<>();
         for (Producto p : productos) {
-             
-            if (p.verCategoria()==(categoria)) {
+
+            if (p.verCategoria() == (categoria)) {
                 prodcat.add(p);
             }
-                
-            }
+
+        }
         prodcat.sort(Comparator.comparing(Producto::verDescripcion));
         return prodcat;
     }
-    
+
     @Override
     public Producto obtenerProducto(Integer codigo) {
         for (Producto p : productos) {
-             
-            if (p.verCodigo()==(codigo)) {
+
+            if (p.verCodigo() == (codigo)) {
                 return p;
             }
-                
-            }
+
+        }
         return null;
     }
-    
-    
+
     
     @Override
     public String borrarProducto(Producto producto)
@@ -250,9 +320,22 @@ private List<Producto> productos = new ArrayList<>();
                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
                    }
              
+
+    @Override
+    public String borrarProducto(Producto producto) {
+        if (productos.contains(producto) && producto != null) {
+            GestorPedidos pedidos = GestorPedidos.instanciar();
+            for (Pedido unPedido : pedidos.verPedidos()) {
+                for (ProductoDelPedido unProducto : unPedido.verProductoPedido()) {
+                    if ((unProducto.verUnProducto()).equals(producto)) {
+                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
+                    }
+
+
                 }
-               
+
             }
+
              productos.remove(producto);
              resultadoArchivo = borrarArchivo();
              if (resultadoArchivo.equals(ARCHIVO_BORRADO))
@@ -273,6 +356,9 @@ private List<Producto> productos = new ArrayList<>();
         }
         else
         {
+            productos.remove(producto);
+            return (OPERACION_EXITOSA);
+        } else {
             return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
         }
     }

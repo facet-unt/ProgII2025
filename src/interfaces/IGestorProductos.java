@@ -27,6 +27,8 @@ public interface IGestorProductos {
     public static final String BORRADO_FALLIDO = "No se pudo borrar el producto ";
     public static final String OPERACION_EXITOSA = "Operación exitosa ";
     public static final String PRODUCTO_EN_PEDIDO = "El producto se encuentra en un pedido ";
+    public static final String SEPARADOR = ";";
+    public static final String ARCHIVO_INEXISTENTE = "El archivo no existe, se procedera a crearlo";
     public static final String LECTURA_ERROR = "Error al leer los productos";
     public static final String CREACION_ERROR = "Error al crear el archivo de productos";
     public static final String LECTURA_OK = "Se pudieron leer los productos";
@@ -36,9 +38,10 @@ public interface IGestorProductos {
     public static final String NOMBRE_ARCHIVO_P = "Productos.txt";
     public static final String ARCHIVO_ERROR = "No se pudo acceder al archivo";
     public static final String ARCHIVO_BORRADO = "El archivo se borró exitosamente";
-    
-    
+
     public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
+    public abstract Boolean crearArchivo();
+    public abstract List<Producto> verProductos();
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract List<Producto> menu();
     public abstract List<Producto> buscarProductos(String descripcion);
