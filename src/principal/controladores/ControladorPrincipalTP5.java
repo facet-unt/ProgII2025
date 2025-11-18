@@ -1,19 +1,14 @@
 package principal.controladores;
 
-import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import interfaces.IGestorUsuarios;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import pedidos.modelos.Pedido;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Usuario;
-import pedidos.modelos.GestorPedidos;
 import usuarios.modelos.Perfil;
 /**
  *
@@ -36,14 +31,14 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oductos");
+        List<Producto> productosBuscados = gp.buscarProductos("oductos");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
        }
@@ -58,20 +53,16 @@ public class ControladorPrincipalTP5 {
             u.mostrar();
         }
         Usuario unUsuario = gu.obtenerUsuario("correo@UNO");
-        ArrayList<Usuario> usuariosBuscados = gu.buscarUsuarios("usuarioTRES");
+        List<Usuario> usuariosBuscados = gu.buscarUsuarios("usuarioTRES");
         for(Usuario u : usuariosBuscados) {
             u.mostrar();
         }
         
-        System.out.println(gu.existeEsteUsuario(unUsuario));
-     
-//parte para probar gestospedidose
-        
-        IGestorPedidos gP = GestorPedidos.instanciar();
-//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),,gu.obtenerUsuario("correo@DOS")));
-//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(2),gu.obtenerUsuario("correo@UNO")));
-//        System.out.println(gP.crearPedido(LocalDate.now(),LocalTime.now(),gp.obtenerProducto(3),gu.obtenerUsuario("correo@TRES")));
-//                        
+//        System.out.println(gu.existeEsteUsuario(unUsuario));
+//     
+
+       
+                        
 //        for(Pedido P : gP.verPedidos()) {
 //            P.mostrar();
 //        }

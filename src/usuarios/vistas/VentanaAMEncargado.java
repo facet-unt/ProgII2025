@@ -8,7 +8,11 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 public class VentanaAMEncargado extends JDialog {
     private ArrayList<Encargado> encargados = new ArrayList<>();
@@ -147,12 +151,20 @@ public class VentanaAMEncargado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
-        this.encargados.add(unEncargado);
+        String claveRepetida = new String(this.passClave.getPassword());
+         GestorUsuarios gu = GestorUsuarios.instanciar();
+        gu.crearUsuario(correo,apellido,nombre,Perfil.EMPLEADO,clave,claveRepetida);
+//        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
+//        this.encargados.add(unEncargado);
         
-        System.out.println("Clientes");
-        System.out.println("========");
-        for(Encargado c : this.encargados) {
+//        System.out.println("Clientes");
+//        System.out.println("========");
+//        for(Encargado c : this.encargados) {
+//            c.mostrar();
+//            System.out.println();
+//        }
+           for (Usuario c : gu.verUsuarios()) {
+            Encargado unEncargado=(Encargado)c;
             c.mostrar();
             System.out.println();
         }

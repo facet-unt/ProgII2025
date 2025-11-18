@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Collections;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -45,6 +46,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
     @Override
     public ArrayList<Usuario> verUsuarios(){
+        Collections.sort(usuarios);
         return usuarios;
     }
     @Override
@@ -54,6 +56,7 @@ public class GestorUsuarios implements IGestorUsuarios {
             if(u.verApellido().toLowerCase().contains(apellido.toLowerCase()));
             usuariosbuscados.add(u);
         }
+        Collections.sort(usuariosbuscados);
         return usuariosbuscados;
     }
     @Override

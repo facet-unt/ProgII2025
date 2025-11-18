@@ -7,28 +7,28 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import productos.modelos.Producto;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
 /**
  *
  * @author estudiante
  */
-public class Pedido {
+public class Pedido implements Comparable<Pedido>{
     
    private int numero;
    private LocalDate fecha;
    private LocalTime hora;
    private Cliente unCliente;
    private Estado unEstado;
-   private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
+   private List <ProductoDelPedido> productoPedido = new ArrayList<>();
  
    
    
    //CONSTRUCTORES
 
-    public Pedido(LocalDate fecha, LocalTime hora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+    public Pedido(LocalDate fecha, LocalTime hora, Estado unEstado, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.fecha = fecha;
         this.hora=hora;
         this.unCliente = unCliente;
@@ -38,7 +38,7 @@ public class Pedido {
 
     }
     
-    public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
+    public Pedido(LocalDate fecha,LocalTime hora, List<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
         this(fecha,hora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
     
@@ -62,7 +62,7 @@ public class Pedido {
 //        this.fechaYHora = fechaYHora;
 //    }
 
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
+    public List<ProductoDelPedido> verProductoPedido() {
         return productoPedido;
     }
 
@@ -156,6 +156,16 @@ public class Pedido {
         }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
+    }
+
+    @Override
+    public int compareTo(Pedido o) {
+        if(this.numero<o.verNumero())
+           return -1;
+        if(this.numero>o.verNumero())
+            return 1;
+        else
+            return 0;
     }
     
     

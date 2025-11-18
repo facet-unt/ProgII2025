@@ -9,6 +9,10 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 public class VentanaAMCliente extends JDialog {
     private ArrayList<Cliente> clientes = new ArrayList<>();
@@ -146,12 +150,20 @@ public class VentanaAMCliente extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
-        this.clientes.add(unCliente);
+        String claveRepetida = new String(this.passClave.getPassword());
+        GestorUsuarios gu = GestorUsuarios.instanciar();
+        gu.crearUsuario(correo,apellido,nombre,Perfil.EMPLEADO,clave,claveRepetida);
+        //Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        //this.clientes.add(unCliente);
         
         System.out.println("Clientes");
         System.out.println("========");
-        for(Cliente c : this.clientes) {
+//        for(Cliente c : this.clientes) {
+//            c.mostrar();
+//            System.out.println();
+//        }
+        for (Usuario c : gu.verUsuarios()) {
+            Cliente unCliente=(Cliente)c;
             c.mostrar();
             System.out.println();
         }

@@ -8,6 +8,8 @@ import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
@@ -16,7 +18,7 @@ import usuarios.modelos.Cliente;
  * @author octav
  */
 public class GestorPedidos implements IGestorPedidos {
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
     private static GestorPedidos instancia;
     private GestorPedidos() {
 
@@ -29,7 +31,7 @@ public class GestorPedidos implements IGestorPedidos {
         return instancia;
     }
     @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+    public String crearPedido(LocalDate fecha, LocalTime hora,List<ProductoDelPedido> productosDelPedido, Cliente cliente){
         Pedido pedido= new Pedido(fecha,hora,productosDelPedido,cliente);
         if(cliente==null)
             return ERROR_CLIENTE;
@@ -37,8 +39,11 @@ public class GestorPedidos implements IGestorPedidos {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         if(pedidos.contains(pedido))
             return PEDIDOS_DUPLICADOS;
-        else
+        else{
+            int numero=pedidos.size()+1;
+            pedido.asignarNumero(numero);
             pedidos.add(pedido);
+        }
         cliente.agregarPedido(pedido);
         return EXITO;
     }
@@ -53,7 +58,8 @@ public class GestorPedidos implements IGestorPedidos {
         return EXITO;
     }
     @Override
-    public ArrayList<Pedido> verPedidos(){
+    public List<Pedido> verPedidos(){
+        Collections.sort(pedidos);
         return pedidos;
     }
     @Override
