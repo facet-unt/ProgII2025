@@ -1,12 +1,20 @@
 package principal.controladores;
 
+import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import interfaces.IGestorUsuarios;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Usuario;
 import usuarios.modelos.Perfil;
@@ -44,7 +52,7 @@ public class ControladorPrincipalTP5 {
        }
     
     //parte para probar gestor usuarios
-    IGestorUsuarios gu = GestorUsuarios.instanciar();
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
         System.out.println(gu.crearUsuario("correo@UNO", "usuarioUNO", "nombreUNO",Perfil.CLIENTE, "1234","587357"));
         System.out.println(gu.crearUsuario("correo@DOS", "usuarioDOS", "nombreDOS", Perfil.ENCARGADO, "9876","34543"));
         System.out.println(gu.crearUsuario("correo@CUATRO", "usuarioCUATRO", "nombreCUATRO", Perfil.EMPLEADO, "9999","9999"));
@@ -58,15 +66,21 @@ public class ControladorPrincipalTP5 {
             u.mostrar();
         }
        
-                        
-//        for(Pedido P : gP.verPedidos()) {
-//            P.mostrar();
-//        }
-//        
+        
+        List<ProductoDelPedido> pdp = new ArrayList();
+        Cliente unCliente = (Cliente)gu.obtenerUsuario("correo@CUATRO");
+        IGestorPedidos gpedidos = GestorPedidos.instanciar();
+        ProductoDelPedido pdp1 = new ProductoDelPedido(gp.obtenerProducto(2),3);
+        pdp.add(pdp1);
+        gpedidos.crearPedido(LocalDate.now(), LocalTime.now(), pdp,unCliente);
+        for(Pedido P : gpedidos.verPedidos()) {
+            P.mostrar();
+        }
+        
 //        Pedido unPedido = gP.obtenerPedido(2);
 //        System.out.println(gP.cambiarEstado(unPedido));
 //        
 //       
 //        System.out.println(gP.existeEstePedido(unPedido));
-}
+    }
 }
