@@ -4,7 +4,6 @@
  */
 package interfaces;
 
-import java.util.ArrayList;
 import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -16,6 +15,7 @@ import productos.modelos.Producto;
  */
 public interface IGestorProductos {
     public static final String EXITO = "Producto creado/modificado con éxito ";
+    public static final String FRACASO = "No se pudo crear/modificar el producto ";
     public static final String ERROR_CODIGO = "El código del producto es incorrecto ";
     public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta ";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto ";
@@ -33,6 +33,10 @@ public interface IGestorProductos {
     public static final String CREACION_OK = "Se pudo crear el archivo de productos";
     public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
+    public static final String NOMBRE_ARCHIVO_P = "Productos.txt";
+    public static final String ARCHIVO_ERROR = "No se pudo acceder al archivo";
+    public static final String ARCHIVO_BORRADO = "El archivo se borró exitosamente";
+    
     
     public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
