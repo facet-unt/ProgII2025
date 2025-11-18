@@ -6,6 +6,7 @@ package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Comparator;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -23,6 +24,15 @@ public class GestorUsuarios implements IGestorUsuarios{
             instancia = new GestorUsuarios();
         return instancia;
     }
+    private Comparator<Usuario> compU = (u1,u2) -> {
+        if(u1 == null && u2 == null) return 0;
+        if(u1 == null) return 1;
+        if(u2 == null) return 2;
+        int compAp = u1.verApellido().compareTo(u2.verApellido());
+        if(compAp != 0)
+            return compAp;
+        return u1.verNombre().compareTo(u2.verNombre());
+    };
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         String validacion = validarDatos(correo.toLowerCase(), apellido, nombre, clave, claveRepetida);
