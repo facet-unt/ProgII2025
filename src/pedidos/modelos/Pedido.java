@@ -7,13 +7,19 @@ import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
-public class Pedido {
+public class Pedido implements Comparable<Pedido>{
     private int numero = 0;
     private LocalDateTime fechaYHora;
     private Estado estado;
     private Cliente cliente;
     private List<ProductoDelPedido> listaProductosDelPedido = new ArrayList();
-
+    
+    @Override
+    public int compareTo(Pedido p) {
+    if (p == null) return 1;
+    return Integer.compare(numero, p.verNumero());
+    }
+    
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
