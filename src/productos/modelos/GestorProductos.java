@@ -7,8 +7,8 @@ import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
 import static interfaces.IGestorProductos.ERROR_PRECIO;
 import static interfaces.IGestorProductos.PRODUCTOS_DUPLICADOS;
 import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
-import static interfaces.IGestorUsuarios.EXITO;
-import static interfaces.IGestorUsuarios.VALIDACION_EXITO;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,6 +17,10 @@ import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos {
     private ArrayList<Producto> productos = new ArrayList<>();
+    
+    private static final String SEPARADOR = "-";
+    
+    private static final String NOMBREARCHIVO = "Productos.txt";
     
     private static GestorProductos instancia;
                 
@@ -57,6 +61,7 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {        
         String resultado = validarInfo(codigo, descripcion, precio, categoria, estado);
+        String resultado2;
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
@@ -67,8 +72,11 @@ public class GestorProductos implements IGestorProductos {
         
         Producto nuevo = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(nuevo);
+        resultado2 = this.registrarProductos(nuevo);
         
-        return EXITO;
+        if(!resultado2.equals(ESCRITURA_ERROR)){
+            return EXITO;        
+        }
     }
     
     @Override
@@ -149,7 +157,7 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-public String borrarProducto(Producto producto) {
+    public String borrarProducto(Producto producto) {
     if (producto == null) {
         return "Error: el producto es nulo.";
     }
@@ -166,9 +174,32 @@ public String borrarProducto(Producto producto) {
     }
 
     
-    productos.remove(producto);
-    return "Producto eliminado con éxito.";
+        productos.remove(producto);
+        
+        return "Producto eliminado con éxito.";
     }
 
     Comparator<Producto> dDesc = (Producto p1, Producto p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
+    
+    private String registrarProductos(Producto p){       
+        try(FileWriter fw = new FileWriter(NOMBREARCHIVO, true);){
+            fw.write(p.verDescripcion());
+            fw.write(SEPARADOR);
+            fw.write(Integer.toString(p.verCodigo()));
+            fw.write(SEPARADOR);
+            fw.write(p.verCategoria().toString());
+            fw.write(SEPARADOR);
+            fw.write(p.verEstado().toString());
+            fw.write(SEPARADOR);
+            fw.write(Float.toString(p.verPrecio()));
+            fw.write("\n");
+            fw.close();
+            return ESCRITURA_OK;
+        }
+        catch(IOException e){
+            return ESCRITURA_ERROR;
+        }
+    }
+        
+    
 }

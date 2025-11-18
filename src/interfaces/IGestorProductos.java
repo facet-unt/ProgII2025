@@ -49,4 +49,17 @@ public interface IGestorProductos {
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
+    
+    public static final String LECTURA_ERROR = "Error al leer los productos";
+    
+    public static final String CREACION_ERROR = "Error al crear el archivo de productos";
+    
+    public static final String LECTURA_OK = "Se pudieron leer los productos";
+    
+    public static final String CREACION_OK = "Se pudo crear el archivo de productos";
+    
+    public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
+    
+    public static final String ESCRITURA_ERROR = "Error al guardar los productos";
+    
 }
