@@ -6,6 +6,8 @@ package usuarios.modelos;
 
 import Interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
@@ -44,8 +46,22 @@ public class GestorUsuarios implements IGestorUsuarios{
          return EXITO;
      }         
 
-     public ArrayList<Usuario> verUsuarios(){
-         return this.usuarios;
+     public List<Usuario> verUsuarios(){
+            Comparator <Usuario> nComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verNombre().compareTo(u2.verNombre());
+               }
+           };
+            Comparator <Usuario> aComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verApellido().compareTo(u2.verApellido());
+               }
+           };
+            Comparator <Usuario> combinado = aComp.thenComparing(aComp);
+            usuarios.sort(combinado);
+            return usuarios;
          }
      
      public String borrarUsuario(Usuario usuario){
@@ -77,12 +93,26 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
 
 
-     public ArrayList<Usuario> buscarUsuarios(String apellido){
+     public List<Usuario> buscarUsuarios(String apellido){
          ArrayList <Usuario> encontrados = new ArrayList<>();
          for (Usuario u : usuarios){
              if (u.verApellido().toLowerCase().contains(apellido.toLowerCase()))
                  encontrados.add(u);
-         }
+         }  
+         Comparator <Usuario> nComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verNombre().compareTo(u2.verNombre());
+               }
+           };
+            Comparator <Usuario> aComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verApellido().compareTo(u2.verApellido());
+               }
+           };
+            Comparator <Usuario> combinado = aComp.thenComparing(aComp);
+            encontrados.sort(combinado);
          return encontrados;
      }
      public Usuario obtenerUsuario(String correo){

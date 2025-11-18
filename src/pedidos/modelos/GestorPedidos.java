@@ -13,7 +13,7 @@ import static Interfaces.IGestorPedidos.PEDIDO_INEXISTENTE;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import static productos.modelos.GestorProductos.EXITO;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 import usuarios.modelos.GestorUsuarios;
@@ -23,16 +23,16 @@ import usuarios.modelos.GestorUsuarios;
  * @author Asus
  */
 public class GestorPedidos implements IGestorPedidos{
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
      private static GestorPedidos instancia;
-     public static GestorPedidos instanciar() {
+     public static GestorPedidos instanciar(){
         if (instancia == null)
             instancia = new GestorPedidos();
         return instancia;
     }
 
 
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente){
         if (fecha == null){
         return ERROR_FECHA;
         }else if (hora == null){
@@ -43,8 +43,9 @@ public class GestorPedidos implements IGestorPedidos{
         return ERROR_PRODUCTOS_DEL_PEDIDO;
         }
         int numero = this.pedidos.size() + 1;
-        Pedido p = new Pedido (numero, fecha, hora, productosDelPedido, cliente);
+        Pedido p = new Pedido (numero, fecha, hora, (List<ProductoDelPedido>) productosDelPedido, cliente);
         pedidos.add(p);
+        cliente.agregarPedido(p);
         return EXITO;
    }
 
@@ -57,7 +58,7 @@ public class GestorPedidos implements IGestorPedidos{
             return null;
     }
 
-        public ArrayList<Pedido> verPedidos(){
+        public List<Pedido> verPedidos(){
         return pedidos;
          }
 
@@ -72,7 +73,7 @@ public class GestorPedidos implements IGestorPedidos{
 
     public boolean hayPedidosConEsteProducto(Producto producto) {
             for (Pedido ped : this.pedidos) {
-            ArrayList<ProductoDelPedido> productosEnElPedido = ped.verProductosDelPedido();
+            List<ProductoDelPedido> productosEnElPedido = ped.verProductosDelPedido();
             for (ProductoDelPedido p : productosEnElPedido) {
                 if (p.verProducto().equals(producto)) {
 

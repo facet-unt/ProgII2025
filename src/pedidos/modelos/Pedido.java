@@ -5,16 +5,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
+
 public class Pedido {
-     
 
     private int numero;
 private LocalDateTime fechaHora;
 private Cliente cliente;
 private Estado estado;
-private ArrayList<ProductoDelPedido> productosDelPedido;
+private List<ProductoDelPedido> productosDelPedido;
 private static int contador = 1;
 
 public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente) {
@@ -24,7 +25,7 @@ public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente) {
     this.productosDelPedido = new ArrayList<>();
 }
 
-public Pedido(int numero, LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+public Pedido(int numero, LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
     this.numero = numero;
     this.fechaHora = LocalDateTime.of(fecha, hora);
     this.cliente = cliente;
@@ -86,11 +87,11 @@ public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente, Esta
         return fechaHora.toLocalTime();
     }
 
-    public ArrayList<ProductoDelPedido> verProductosDelPedido() {
+    public List<ProductoDelPedido> verProductosDelPedido() {
         return productosDelPedido;
     }
 
-    public void setProductosDelPedido(ArrayList<ProductoDelPedido> productosDelPedido) {
+    public void AsignarProductosDelPedido(List<ProductoDelPedido> productosDelPedido) {
         this.productosDelPedido = productosDelPedido;
     }
     

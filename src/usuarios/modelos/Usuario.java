@@ -54,7 +54,7 @@ public abstract class Usuario {
     
      
     
-    //declaro el metodo toString() (borrado para que no genere conflictos
+    //declaro el metodo toString() (borrado para que no genere conflictos)
 
 //    @Override
 //    public String toString() {
@@ -104,5 +104,5 @@ public abstract class Usuario {
     
     
     //agrego el metodo abstracto verPedidos();
-    public abstract ArrayList<Pedido> verPedidos();
+    public abstract List<Pedido> verPedidos();
 }

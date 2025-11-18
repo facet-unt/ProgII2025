@@ -1,17 +1,11 @@
 package principal.controladores;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
-import usuarios.modelos.Encargado;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
@@ -37,7 +31,7 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("producto");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
@@ -62,7 +56,7 @@ public class ControladorPrincipalTP5 {
             u.mostrar();
         }
 
-        ArrayList<Usuario> usuario = gu.buscarUsuarios("perez");
+        List<Usuario> usuario = gu.buscarUsuarios("perez");
             for(Usuario u : usuario) {
             u.mostrar();
         }

@@ -11,6 +11,9 @@ import static Interfaces.IGestorProductos.ERROR_BORRADO;
 import static Interfaces.IGestorProductos.EXITO_BORRADO;
 import pedidos.modelos.GestorPedidos;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class GestorProductos implements IGestorProductos{
@@ -68,19 +71,56 @@ public class GestorProductos implements IGestorProductos{
     }
     
     @Override
-    public ArrayList<Producto> menu() {
-        return this.productos;
+    public List<Producto> menu() {
+        Comparator<Producto> cComp = new Comparator<Producto>(){//va sin las <> al final pues da error
+         @Override
+         public int compare(Producto p1, Producto p2) {
+         return p1.verCategoria().compareTo(p2.verCategoria());
+                }
+         };//fin  del primer criterio de comparacion
+         Comparator<Producto> dComp = new Comparator<Producto>(){
+         @Override
+         public int compare(Producto p1, Producto p2) {
+         return p1.verDescripcion().compareTo(p2.verDescripcion()); 
+         }
+         };//fin  del segundo criterio de comparacion
+                Comparator<Producto> combinado = cComp.thenComparing (dComp); //combina ambos criterios de comparacion
+               productos.sort(combinado); //recibe la lista y la compara
+               return productos; //devuelve la lista ordenada
     }
     
-    @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    
+    public List<Producto> buscarProductos(String descripcion) {
+            if (descripcion == null){
+                System.out.println("erro en la descripcion");
+            return null;
+        }
         ArrayList <Producto> productosEncontrados = new ArrayList<>();
         for (Producto p : productos){
             if (p.verDescripcion().equals(descripcion))
                 productosEncontrados.add(p);
         }
+         Comparator<Producto> cComp = new Comparator<Producto>(){//va sin las <> al final pues da error
+         @Override
+         public int compare(Producto p1, Producto p2) {
+         return p1.verCategoria().compareTo(p2.verCategoria());
+                }
+         };//fin  del primer criterio de comparacion
+         Comparator<Producto> dComp = new Comparator<Producto>(){
+         @Override
+         public int compare(Producto p1, Producto p2) {
+         return p1.verDescripcion().compareTo(p2.verDescripcion()); 
+         }
+         };//fin del segundo criterio de comparacion
+        Comparator<Producto> combinado = cComp.thenComparing(dComp);
+        productosEncontrados.sort(combinado);
         return productosEncontrados;
     }
+    
+    
+    
+    
+    
     
     public String borrarProducto(Producto producto){
         GestorPedidos gp = GestorPedidos.instanciar();  //uso el gestor de pedidos para obtener los podructos de cada pedido
@@ -102,9 +142,15 @@ public class GestorProductos implements IGestorProductos{
         ArrayList <Producto> Encontrados = new ArrayList<>();
         for (Producto p : productos){
          if ( p.verCategoria().equals(categoria))
-             Encontrados.add(p);
-            
+             Encontrados.add(p);   
         }
+        Comparator<Producto> dComp = new Comparator<Producto>(){//va sin las <> al final pues da error
+         @Override
+         public int compare(Producto p1, Producto p2) {
+         return p1.verDescripcion().compareTo(p2.verDescripcion());
+                }
+         };//fin del criterio de comparacion
+        Encontrados.sort(dComp);
         return Encontrados;
     }
     

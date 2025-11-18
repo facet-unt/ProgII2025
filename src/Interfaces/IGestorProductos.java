@@ -5,6 +5,7 @@
 package Interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
@@ -16,11 +17,11 @@ import productos.modelos.Producto;
     public interface IGestorProductos {
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
-    public ArrayList<Producto> menu();
-    public ArrayList<Producto> buscarProductos(String descripcion);
+    public List<Producto> menu();
+    public List<Producto> buscarProductos(String descripcion);
     public String borrarProducto(Producto producto);
     public boolean existeEsteProducto(Producto producto);
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria);
+    public List<Producto> verProductosPorCategoria(Categoria categoria); 
     public Producto obtenerProducto(Integer codigo);
 
     public static final String EXITO = "Producto creado/modificado con éxito";
@@ -34,4 +35,6 @@ import productos.modelos.Producto;
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
     public static final String ERROR_BORRADO = "Hay un pedido con este producto";
     public static final String EXITO_BORRADO = "se borro el producto con exito";
+    
+    
 }

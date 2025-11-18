@@ -37,7 +37,7 @@ public class Cliente extends Usuario {
     
     //redefino el metodo verPedidos();
     @Override
-     public ArrayList<Pedido> verPedidos() {
+     public List<Pedido> verPedidos() {
         return pedidos; //devuelve pedidos por que es el arraylist que declaramos al inicio
      }
      
