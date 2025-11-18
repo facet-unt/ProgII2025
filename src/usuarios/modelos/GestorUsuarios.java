@@ -4,12 +4,11 @@
  */
 package usuarios.modelos;
 
-import static interfaces.IGestorProductos.PRODUCTO_BORRADO;
-import static interfaces.IGestorProductos.PRODUCTO_EN_PEDIDO;
+
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
-import productos.modelos.Producto;
+
 
 /**
  *
@@ -30,7 +29,6 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return instancia;
     }
-
     public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
 
         if (correo == null || correo.trim().isEmpty()) {
@@ -64,6 +62,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return EXITO;
     }
 
+    @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido) {
         for (Usuario u : usuario) {
             if (u.verApellido() == apellido) {
@@ -73,6 +72,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return null;
     }
 
+    @Override
     public boolean existeEsteUsuario(Usuario usuario) {
         for (Usuario u : this.usuario) {
             if (!(u.equals(usuario))) {
@@ -82,6 +82,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return true;
     }
 
+    @Override
     public Usuario obtenerUsuario(String correo) {
         for (Usuario u : usuario) {
             if (u.verCorreo() == correo) {
@@ -90,20 +91,18 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
+    
     @Override
-    public String borrarProducto(Usuario usuarios) {
+    public String borrarUsuario(Usuario usuarios) {
         GestorPedidos gPedidos = GestorPedidos.instanciar();
-        if (gPedidos.hayPedidosConEsteProducto(usuarios) == true) {
-            return PRODUCTO_EN_PEDIDO;
+        if (usuarios instanceof Cliente && gPedidos.hayPedidosConEsteCliente((Cliente) usuarios) == true) {
+            return ERROR_BORRAR_USUARIO;
         } else {
             usuario.remove(usuarios);
-            return PRODUCTO_BORRADO;
+            return USUARIO_BORRADO;
         }
     }
-    @Override
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public ArrayList<Usuario> verUsuarios() {
@@ -111,9 +110,9 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
     @Override
-    public String borrarUsuario(Usuario usuario) {
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
+
 }

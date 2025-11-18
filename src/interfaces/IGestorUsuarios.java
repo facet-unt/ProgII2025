@@ -22,8 +22,12 @@ public interface IGestorUsuarios {
     public static final String ERROR_PERFIL = "El perfil del usuario es incorrecto";
     public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con esecorreo";
     public static final String VALIDACION_EXITO = "Los datos del usuario soncorrectos";
+    public static final String ERROR_BORRAR_USUARIO = "No se pudo borrar el usuario por que hay un pedido asocidado";
+    public static final String USUARIO_BORRADO = "Usuario Borrado";
+    
 
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
+    
     public ArrayList<Usuario> verUsuarios();
 
     public ArrayList<Usuario> buscarUsuarios(String apellido);
