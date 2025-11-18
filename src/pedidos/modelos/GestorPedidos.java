@@ -17,7 +17,7 @@ import interfaces.IGestorPedidos;
  * @author estudiante
  */
 public class GestorPedidos implements IGestorPedidos{
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private ArrayList<Pedido> pedidos = new ArrayList();
     
     public static GestorPedidos instancia;
     private static int contadorPedidos = 0;

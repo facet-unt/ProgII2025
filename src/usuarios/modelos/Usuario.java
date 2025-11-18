@@ -4,7 +4,7 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 /**
@@ -83,5 +83,5 @@ public abstract class Usuario {
         return Objects.equals(this.correo, other.correo);
     }
         
-    public abstract ArrayList<Pedido> verPedidos();
+    public abstract List<Pedido> verPedidos();
 }

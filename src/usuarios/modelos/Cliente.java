@@ -9,11 +9,12 @@ package usuarios.modelos;
  * @author estudiante
  */
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
     
-    private ArrayList<Pedido> listaPedidos;
+    private List<Pedido> listaPedidos;
     
     //Metodos
     @Override
@@ -35,7 +36,7 @@ public class Cliente extends Usuario {
     
     
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
         return this.listaPedidos;
     }
 
