@@ -20,6 +20,9 @@ public class GestorProductos implements IGestorProductos{
         return instancia;
     }
     private Comparator<Producto> compProd = (pr1, pr2) -> {
+        if (pr1 == null && pr2 == null) return 0;
+        if (pr1 == null) return 1;
+        if (pr2 == null) return -1;
         int compCat = pr1.verCategoria().compareTo(pr2.verCategoria());
         if (compCat != 0) {
             return compCat;
@@ -66,7 +69,7 @@ public class GestorProductos implements IGestorProductos{
     public List<Producto> buscarProductos(String descripcion) {
         List<Producto> ps = new ArrayList<>();
         for (Producto p : productos)
-            if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) ps.add(p);
+            if(p.verDescripcion().contains(descripcion)) ps.add(p);
         Collections.sort(ps, compProd);
         return ps;
     }
@@ -79,7 +82,7 @@ public class GestorProductos implements IGestorProductos{
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
         List<Producto> ps = new ArrayList<>();
         for (Producto p : productos){
-            if(p.verCategoria() == categoria) ps.add(p);
+            if(p.verCategoria().equals(categoria)) ps.add(p);
         }
         Collections.sort(ps);
         return ps;
