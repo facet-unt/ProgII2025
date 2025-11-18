@@ -32,4 +32,5 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
+    
 }

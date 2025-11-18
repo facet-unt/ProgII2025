@@ -1,6 +1,12 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,6 +44,7 @@ public class GestorProductos implements IGestorProductos {
         
         Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         this.listaProductos.add(nuevoProducto);
+        this.escribirArchivo();
         
         return EXITO;
     }
@@ -69,7 +76,6 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public List<Producto> menu() {
-//        Collections.sort(this.listaProductos, (o1,o2)->o1.verCategoria().compareTo(o2.verCategoria()));
         Collections.sort(this.listaProductos);
         return this.listaProductos;
     }
@@ -137,6 +143,91 @@ public class GestorProductos implements IGestorProductos {
         return "Hay pedidos con este producto, no es posible eliminarlo";
     }
     
+    /**
+    * Se encarga de leer el archivo donde se guarda la lista de productos
+    * Si no existe lo crea, si ya existe lo lee.
+    */
+    public String leerArchivo(){
+        String resultado = crearArchivo();
+        if (resultado == CREACION_ERROR) {
+            return LECTURA_ERROR;
+        }
+            try (BufferedReader br = new BufferedReader(new FileReader(NOMBREARCHIVO))){
+                String cadena;
+                while((cadena = br.readLine()) != null) {
+                    String[] vectorCadenas = cadena.split(SEPARADOR);
+                    
+                    int codigo = Integer.parseInt(vectorCadenas[0]);
+                    String descripcion = vectorCadenas[1];
+                    Categoria categoria=null;
+                    for (Categoria c : Categoria.values()){
+                        if(vectorCadenas[2].equals(c.verValor()))
+                            categoria = c;
+                    }
+                    if (categoria == null)
+                        return LECTURA_ERROR;
+                    Estado estado=null;
+                    for (Estado e : Estado.values()){
+                        if(vectorCadenas[3].equals(e.verValor()))
+                            estado = e;
+                    }
+                    if (estado == null)
+                        return LECTURA_ERROR;
+                    float precio = Float.parseFloat(vectorCadenas[4]);
+                    
+                    Producto productoLeido = new Producto(codigo, descripcion, categoria, estado, precio);
+                    if (!this.listaProductos.contains(productoLeido))
+                        this.listaProductos.add(productoLeido); 
+                }
+            }
+            catch (IllegalArgumentException | IOException ex) {
+                return LECTURA_ERROR;
+                //ex.printStackTrace();
+            }
+        return LECTURA_OK;
+    }
+    
+    /**
+     * Se encarga de la escritura y modificación del archivo donde se guarda la lista de productos.
+     */
+    public String escribirArchivo(){
+        String resultado = crearArchivo();
+        if (resultado == CREACION_ERROR) {
+            return ESCRITURA_ERROR;
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))){
+            for (Producto producto : this.listaProductos) {
+                String linea;
+                linea = Integer.toString(producto.verCodigo()) + SEPARADOR;
+                linea += producto.verDescripcion() + SEPARADOR;
+                linea += producto.verCategoria()+ SEPARADOR;     
+                linea += producto.verEstado() + SEPARADOR;
+                linea +=Float.toString(producto.verPrecio()) ;
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException ioe) {
+            return ESCRITURA_ERROR;
+            //ioe.printStackTrace();
+        }
+        return ESCRITURA_OK;
+    }  
+    
+    private String crearArchivo(){
+        
+        File file = new File(NOMBREARCHIVO);
+        try {
+            if (file.createNewFile()) {
+                return CREACION_OK;
+            } else {
+                return ARCHIVO_EXISTENTE;
+            }
+        } 
+        catch (IOException e) {
+            return CREACION_ERROR;
+        }
+    }
+    
     // Verificacion datos
     private String validacionDatos (int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (codigo <= 0) {
@@ -154,7 +245,6 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
-        
         return VALIDACION_EXITO;
     }
 }

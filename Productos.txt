@@ -1,0 +1,5 @@
+1/Producto3/Entrada/Disponible/177777.0
+3/Producto1/Postre/Disponible/3.0
+5/Producto5/Plato Principal/Disponible/24564.0
+2/Producto2/Entrada/No disponible/2.0
+4/Producto6/Plato Principal/Disponible/2000.0
