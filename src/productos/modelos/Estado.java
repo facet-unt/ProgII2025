@@ -18,6 +18,16 @@ public enum Estado {
         this.valor = valor;
     }
     
+    
+    public static Estado compararValor(String estado){
+        Estado[] valores=Estado.values();
+        for(Estado unEstado: valores){
+            if(unEstado.equals(estado))
+                return unEstado;
+        }
+        return null;
+    }
+    
     public String verValor() {
         return valor;
     }
