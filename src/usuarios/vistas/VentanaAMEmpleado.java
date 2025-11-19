@@ -9,6 +9,7 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import usuarios.modelos.Empleado;
+import usuarios.modelos.Perfil;
 
 public class VentanaAMEmpleado extends JDialog {
     private ArrayList<Empleado> empleados = new ArrayList<>();
@@ -147,7 +148,8 @@ public class VentanaAMEmpleado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Empleado unEmpleado = new Empleado(correo, clave, apellido, nombre);
+        Perfil perfil = null;
+        Empleado unEmpleado = new Empleado(correo,clave, apellido, nombre, perfil);
         this.empleados.add(unEmpleado);
         
         System.out.println("Empleados");

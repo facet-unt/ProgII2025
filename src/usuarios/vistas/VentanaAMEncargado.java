@@ -9,6 +9,7 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import usuarios.modelos.Encargado;
+import usuarios.modelos.Perfil;
 
 public class VentanaAMEncargado extends JDialog {
     private ArrayList<Encargado> encargados = new ArrayList<>();
@@ -147,7 +148,8 @@ public class VentanaAMEncargado extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
+        Perfil perfil = null;
+        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre, perfil);
         this.encargados.add(unEncargado);
         
         System.out.println("Clientes");
