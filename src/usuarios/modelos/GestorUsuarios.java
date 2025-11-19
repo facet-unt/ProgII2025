@@ -112,6 +112,14 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     @Override
     public ArrayList<Usuario> verUsuarios() {
-        return this.usuario;
+         ArrayList<Usuario> copia = new ArrayList<>(usuario);
+           copia.sort((p1, p2) -> {
+            int copararApellido = p1.verApellido().compareTo(p2.verApellido());
+            if (copararApellido != 0) {
+                return copararApellido;
+            }
+            return p1.verNombre().compareToIgnoreCase(p2.verNombre());
+        });
+        return copia;
     }
 }
