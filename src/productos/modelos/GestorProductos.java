@@ -17,14 +17,6 @@ import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos{
     
-    public static final String CREACION_OK = "Se pudo crear el archivo de productos";
-    public static final String CREACION_ERROR = "Error al crear el archivo de productos";
-    public static final String ESCRITURA_ERROR = "Error al guardar los productos";
-    public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
-    public static final String LECTURA_ERROR = "Error al leer los productos";
-    public static final String LECTURA_OK = "Se pudieron leer los productos";
-    public static final String SEPARADOR = ";";
-    private static String NOMBRE_ARCHIVO = "Productos.txt";
     private List<Producto> productos = new ArrayList<>();
     
     private static GestorProductos instancia;
@@ -42,6 +34,7 @@ public class GestorProductos implements IGestorProductos{
     
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        this.productos = this.leerArchivo();
         if(codigo<=0){
             return ERROR_CODIGO ;
         }
@@ -97,31 +90,39 @@ public class GestorProductos implements IGestorProductos{
         }
         Producto productoModificado = new Producto(codigo,descripcion,categoria,estado,precio);
         productos.set(productos.indexOf(p), productoModificado);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, false))) {
+            for(Producto p1: productos){
+                this.agregarProducto(p1);
+            }
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
+        }
         return EXITO;
     }
     
     @Override
     public List<Producto> menu() {
-        List<Producto> productosMenu = new ArrayList<>();
-        productosMenu = this.leerArchivo();
-        Collections.sort(productosMenu);
-        return productosMenu;
+        this.productos = this.leerArchivo();
+        Collections.sort(productos);
+        return productos;
     }
     
     @Override
     public List<Producto> buscarProductos(String descripcion) {
+        this.productos = this.leerArchivo();
         List<Producto> productosEncontrados = new ArrayList<>();
         for(Producto p: productos){
             if(p.verDescripcion().contains(descripcion)){
                 productosEncontrados.add(p);
             }
         }
-        Collections.sort(productos);
+        Collections.sort(productosEncontrados);
         return productosEncontrados;
     }
     
     @Override
     public boolean existeEsteProducto(Producto producto) {
+        this.productos = this.leerArchivo();
         for(Producto p: productos){
             if(producto.equals(p)){
                 return true;
@@ -132,18 +133,20 @@ public class GestorProductos implements IGestorProductos{
     
     @Override
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
+        this.productos = this.leerArchivo();
         List<Producto> productosPorCategoria = new ArrayList<>();
         for(Producto p: productos){
-            if(p.verCategoria()==categoria){
+            if(p.verCategoria().equals(categoria)){
                 productosPorCategoria.add(p);
             }
         }
-        Collections.sort(productos);
+        Collections.sort(productosPorCategoria);
         return productosPorCategoria;
     }
     
     @Override
     public Producto obtenerProducto(Integer codigo) {
+        this.productos = this.leerArchivo();
         for(Producto p: productos){
             if(p.verCodigo()==codigo){
                 return p;
@@ -154,12 +157,20 @@ public class GestorProductos implements IGestorProductos{
 
     @Override
     public String borrarProducto(Producto producto) {
+        this.productos = this.leerArchivo();
         if(producto==null){
             return PRODUCTO_INEXISTENTE;
         }
         GestorPedidos gp = GestorPedidos.instanciar();
         if(!(gp.hayPedidosConEsteProducto(producto))){
             productos.remove(producto);
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, false))) {
+            for(Producto p: productos){
+                this.agregarProducto(p);
+            }
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
         }
         return EXITO;
     }
@@ -190,37 +201,20 @@ public class GestorProductos implements IGestorProductos{
         }
     }
     
-    private Producto leerUnProducto() {
-        File f = new File(NOMBRE_ARCHIVO);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
-            String linea = br.readLine();
-            String[] cadenas = linea.split(SEPARADOR);
-            Producto p = new Producto();
-            p.asignarCodigo(Integer.parseInt(cadenas[0]));
-            p.asignarDescripcion(cadenas[1]);
-            p.asignarCategoria(this.convertirCategoria(cadenas[2]));
-            p.asignarEstado(this.convertirEstado(cadenas[3]));
-            p.asignarPrecio(Float.parseFloat(cadenas[4]));
-            return p;
-        } catch (FileNotFoundException ex) {
-            System.out.println(LECTURA_ERROR);
-            return null;
-        } catch (IOException ex) {
-            System.out.println(LECTURA_ERROR);
-            return null;
-        }
-    }
-    
     private List<Producto> leerArchivo(){
-        BufferedReader br = null;
-        try {
-            File f = new File(NOMBRE_ARCHIVO);
-            br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
+        File f = new File(NOMBRE_ARCHIVO);
+        try(BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))){
             List<Producto> listaProductos = new ArrayList<>();
             String linea;
             while((linea = br.readLine())!=null){
-                listaProductos.add(this.leerUnProducto());
+                String[] cadenas = linea.split(SEPARADOR);
+                Producto p = new Producto();
+                p.asignarCodigo(Integer.parseInt(cadenas[0]));
+                p.asignarDescripcion(cadenas[1]);
+                p.asignarCategoria(this.convertirCategoria(cadenas[2]));
+                p.asignarEstado(this.convertirEstado(cadenas[3]));
+                p.asignarPrecio(Float.parseFloat(cadenas[4]));
+                listaProductos.add(p);
             }
             return listaProductos;
         } catch (FileNotFoundException ex) {
