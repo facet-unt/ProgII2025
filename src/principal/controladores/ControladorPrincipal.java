@@ -1,17 +1,15 @@
-/*
+
 package principal.controladores;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import pedidos.modelos.*;
-import productos.modelos.*;
 
 import productos.modelos.Categoria;
-import productos.modelos.Estado;
 import productos.modelos.Producto;
 
 import usuarios.modelos.*;
-import pedidos.modelos.*;
 
 
 public class ControladorPrincipal {
@@ -20,19 +18,19 @@ public class ControladorPrincipal {
          /*
         Definir un ArrayList para cada una de las clases Cliente, 
         Empleado, Encargado y Producto  (realizar las importaciones correspondientes).*/
-        /*
+        
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         ArrayList<Encargado> listaEncargados = new ArrayList<>();
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
-        ArrayList<ProductoDelPedido> listaProductosPedidos1 = new ArrayList<>();
-        ArrayList<ProductoDelPedido> listaProductosPedidos2 = new ArrayList<>();
-        ArrayList<ProductoDelPedido> listaProductosPedidos3 = new ArrayList<>();
-         /*
+        //ArrayList<ProductoDelPedido> listaProductosPedidos1 = new ArrayList<>();
+        //ArrayList<ProductoDelPedido> listaProductosPedidos2 = new ArrayList<>();
+        //ArrayList<ProductoDelPedido> listaProductosPedidos3 = new ArrayList<>();
+         
         
         /*Instanciar 3 objetos de cada clase y guardarlos en su correspondiente ArrayList. */
-        /*
+        
         Empleado e1=new Empleado("empleado1@mail.com", "123", "ApellidoEmpleado1", "NombreEmpleado1");
         Empleado e2 = new Empleado("empleado2@mail.com", "123", "ApellidoEmpleado2", "NombreEmpleado2");
         Empleado e3= new Empleado("empleado3@mail.com", "123", "ApellidoEmpleado3", "NombreEmpleado3");
@@ -43,21 +41,21 @@ public class ControladorPrincipal {
         
         System.out.println("#################### ");
         System.out.println("EMPLEADOS ");
-        */
+        
         /*Recorrer cada ArrayList y mostrar su contenido por pantalla. */
-        /*
+        
         for (Empleado e: listaEmpleados)
             e.mostrar();
-        */
+        
         
         /*Realizar algunas modificaciones a algunos de los objetos antes creados, */
         //DEBO usar los métodos para ese fin
-/*
+
         e1.asignarApellido("APELLIDOEmpleado11");
         listaEmpleados.get(1).asignarNombre("NOMBREEMPLEADO11");
         
         /*y volver a recorrer los ArrayLists verificando que se hicieron los cambios. */
-/*
+
          for (Empleado e: listaEmpleados)
             e.mostrar();
          
@@ -111,26 +109,25 @@ public class ControladorPrincipal {
         //SEGUNDA PARTE
         System.out.println("#################### ");
         System.out.println("PEDIDOS");
-        ProductoDelPedido pdp1 = new ProductoDelPedido(2, p1); 
-        ProductoDelPedido pdp2 = new ProductoDelPedido(1, p2); 
+        //ProductoDelPedido pdp1 = new ProductoDelPedido(2, p1);
+        //ProductoDelPedido pdp2 = new ProductoDelPedido(1, p2);
         
-        listaProductosPedidos1.add(pdp1);
-        listaProductosPedidos1.add(pdp2);
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1,listaProductosPedidos1); 
+        //listaProductosPedidos1.add(pdp1);
+        //listaProductosPedidos1.add(pdp2);
+        //Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), cliente1,listaProductosPedidos1); 
         
-        ProductoDelPedido pdp3 = new ProductoDelPedido(3, p3);
-        ProductoDelPedido pdp4 = new ProductoDelPedido(4, p2); 
+        //ProductoDelPedido pdp3 = new ProductoDelPedido(3, p3);
+        //ProductoDelPedido pdp4 = new ProductoDelPedido(4, p2); 
         
-        listaProductosPedidos2.add(pdp3);
-        listaProductosPedidos2.add(pdp4);
+        //listaProductosPedidos2.add(pdp3);
+        //listaProductosPedidos2.add(pdp4);
         
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(1),listaProductosPedidos2); 
+        //Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listaClientes.get(1),listaProductosPedidos2); 
         
-        ProductoDelPedido pdp5 = new ProductoDelPedido(1, p1);
-        listaProductosPedidos3.add(pdp5);
+        //ProductoDelPedido pdp5 = new ProductoDelPedido(1, p1);
+        //listaProductosPedidos3.add(pdp5);
         
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2,listaProductosPedidos3); 
-=======
+        //Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), cliente2,listaProductosPedidos3); 
         ArrayList<ProductoDelPedido> pido1 = new ArrayList<>();
         pido1.add(new ProductoDelPedido(p1, 1));
         pido1.add(new ProductoDelPedido(p2, 2));
@@ -144,8 +141,7 @@ public class ControladorPrincipal {
         ArrayList<ProductoDelPedido> pido3 = new ArrayList<>();
         pido3.add(new ProductoDelPedido(p1, 1));
         pido3.add(new ProductoDelPedido(p3, 2));
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
->>>>>>> desarrollo
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2);
         
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);
@@ -160,4 +156,4 @@ public class ControladorPrincipal {
         
         
     }
-}*/
+}
