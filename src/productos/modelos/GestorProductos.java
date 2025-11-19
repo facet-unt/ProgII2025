@@ -9,7 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.*;
 
-public class GestorProductos implements IGestorProductos {
+public class GestorProductos implements IGestorProductos 
+{
 
     private List<Producto> productos = new ArrayList<>();
     
@@ -19,18 +20,20 @@ public class GestorProductos implements IGestorProductos {
     
     //</editor-fold>
 
-    private GestorProductos() {
+    private GestorProductos() 
+    {
 
     }
 
-    public static GestorProductos instanciar() {
+    public static GestorProductos instanciar()
+    {
         if (instancia == null) {
             instancia = new GestorProductos();
         }
         return instancia;
     }
 
-    
+    //Métodos con archivos
     
     public String guardarEnArchivo (Producto unProducto) 
     {
@@ -63,9 +66,58 @@ public class GestorProductos implements IGestorProductos {
     }
     
     
+    @Override
+    public Boolean crearArchivo() 
+    {
+        File archivo = new File(NOMBRE_ARCHIVO_P);
+        try 
+        {
+            if (archivo.createNewFile()) 
+            {
+                System.out.println("Archivo creado exitosamente.");
+            } else 
+            {
+                System.out.println("El archivo ya existe.");
+            }
+            return true;
+        } catch (IOException e) 
+            {
+                System.out.println("Ocurrió un error");
+                return false;
+            }
+    }
     
+    
+    
+
+    private String borrarArchivo()
+    {
+        File f;
+        f= new File(NOMBRE_ARCHIVO_P);
+        f.delete();
+        if(f!=null)
+        {
+            try
+            {
+                FileWriter fw= new FileWriter (f);
+                fw.close();
+            }
+            catch (IOException ex)
+            {
+
+            }
+            return (ARCHIVO_ERROR);
+        }
+        else
+        {
+            return(ARCHIVO_BORRADO);
+        }
+    }
+    
+    // Métodos para la gestión de Productos
 @Override
-    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado)
+    {
         String resultadoArchivo;
         Producto p = new Producto (codigo, descripcion, categoria, estado, precio);
         if(codigo>0&&descripcion!=null&&precio>0&&categoria!=null&&estado!=null)
@@ -80,132 +132,44 @@ public class GestorProductos implements IGestorProductos {
         }
         else
         {
-            if (codigo<0)
-
-
-    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) {
-            productos.add(p);
-            return (EXITO);
-
-        } else {
-            if (codigo < 0) {
+            if (codigo < 0) 
+            {
                 return (ERROR_CODIGO);
-            } else if (precio < 0) {
+            } else if (precio < 0)
+            {
                 return (ERROR_PRECIO);
-            } else if (descripcion == null) {
+            } else if (descripcion == null)
+            {
                 return (ERROR_DESCRIPCION);
-            } else if (categoria == null) {
+            } else if (categoria == null)
+            {
                 return (ERROR_CATEGORIA);
-            } else {
+            } else
+            {
                 return (ERROR_ESTADO);
             }
         }
 
     }
 
+    
+    
     @Override
-    public Boolean crearArchivo() {
-        File archivo = new File(NOMBRE_ARCHIVO_P);
-        try {
-            if (archivo.createNewFile()) {
-                System.out.println("Archivo creado exitosamente.");
-            } else {
-                System.out.println("El archivo ya existe.");
-            }
-            return true;
-        } catch (IOException e) {
-            System.out.println("Ocurrió un error");
-            return false;
-        }
-    }
-    
-    
-    
-
-    private String borrarArchivo()
+    public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) 
     {
-        File f =null;
-        FileWriter fw = null;
-        try
-            {
-                f= new File(NOMBRE_ARCHIVO_P);
-                fw = new FileWriter (f);
-                f.delete();
-                
-            }
-        catch (IOException ioe)
-            {
-                return (ARCHIVO_ERROR);
-            }
-       finally
-            {
-                if(fw!=null)
-                {
-                    try
-                    {
-                        fw.close();
-                    }
-                    catch (IOException ex)
-                    {
-                        
-                    }
-                    return (ARCHIVO_ERROR);
-                }
-                else
-                {
-                    return(ARCHIVO_BORRADO);
-                }
-            }
-    }
-    
-    @Override
-    public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String resultadoArchivo;
         if (productos.contains(p))
             {
                 productos.remove(p);
-
-
-    @Override
-    public List<Producto> verProductos() {
-        List<Producto> productos = new ArrayList<Producto>();
-        if(!crearArchivo()) return null;
-        File f = new File(NOMBRE_ARCHIVO_P);
-        try (FileReader fr = new FileReader(f);) {
-            BufferedReader br = new BufferedReader(fr);
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] cadenas = linea.split(SEPARADOR);
-                int codigo=Integer.parseInt(cadenas[0]);
-                String descripcion=cadenas[1];
-                Categoria categoria=Categoria.compararValor(cadenas[2]);
-                Estado estado=Estado.compararValor(cadenas[3]);
-                float precio=Float.parseFloat(cadenas[4]);
-                Producto unProducto= new Producto(codigo,descripcion,categoria,estado,precio);
-                productos.add(unProducto);
-                
-
             }
-        } catch (IOException e1) {
-            System.out.println(LECTURA_ERROR);
-        }
-        return productos;
-    }
-
-    @Override
-    public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (productos.contains(p)) {
-            productos.remove(p);
-        }
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
         productos.add(p);
-        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) {
+        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) 
+        {
             productos.add(p);
             resultadoArchivo= borrarArchivo();
             if (resultadoArchivo.equals(ARCHIVO_BORRADO))
@@ -230,20 +194,54 @@ public class GestorProductos implements IGestorProductos {
             if (codigo<0)
             return (EXITO);
 
-        } else {
-            if (codigo < 0) {
+       else {
+            if (codigo < 0) 
+            {
                 return (ERROR_CODIGO);
-            } else if (precio < 0) {
+            } else if (precio < 0) 
+            {
                 return (ERROR_PRECIO);
-            } else if (descripcion == null) {
+            } else if (descripcion == null) 
+            {
                 return (ERROR_DESCRIPCION);
-            } else if (categoria == null) {
+            } else if (categoria == null) 
+            {
                 return (ERROR_CATEGORIA);
             } else {
                 return (ERROR_ESTADO);
             }
+         }
         }
     }
+
+
+    
+    @Override
+    public List<Producto> verProductos() {
+        if(!crearArchivo()) return null;
+        File f = new File(NOMBRE_ARCHIVO_P);
+        try (FileReader fr = new FileReader(f);) {
+            BufferedReader br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] cadenas = linea.split(SEPARADOR);
+                int codigo=Integer.parseInt(cadenas[0]);
+                String descripcion=cadenas[1];
+                Categoria categoria=Categoria.compararValor(cadenas[2]);
+                Estado estado=Estado.compararValor(cadenas[3]);
+                float precio=Float.parseFloat(cadenas[4]);
+                Producto unProducto= new Producto(codigo,descripcion,categoria,estado,precio);
+                productos.add(unProducto);
+                
+
+            }
+        } catch (IOException e1) 
+        {
+            System.out.println(LECTURA_ERROR);
+        }
+        return productos;
+    }
+
 
     @Override
     public List<Producto> menu() {
@@ -269,20 +267,26 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public boolean existeEsteProducto(Producto producto) {
-        if (productos.contains(producto)) {
+    public boolean existeEsteProducto(Producto producto) 
+    {
+        if (productos.contains(producto)) 
+        {
             return true;
-        } else {
+        } else 
+        {
             return false;
         }
     }
 
     @Override
-    public List<Producto> verProductosPorCategoria(Categoria categoria) {
+    public List<Producto> verProductosPorCategoria(Categoria categoria) 
+    {
         ArrayList<Producto> prodcat = new ArrayList<>();
-        for (Producto p : productos) {
+        for (Producto p : productos) 
+        {
 
-            if (p.verCategoria() == (categoria)) {
+            if (p.verCategoria() == (categoria)) 
+            {
                 prodcat.add(p);
             }
 
@@ -292,10 +296,13 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public Producto obtenerProducto(Integer codigo) {
-        for (Producto p : productos) {
+    public Producto obtenerProducto(Integer codigo) 
+    {
+        for (Producto p : productos) 
+        {
 
-            if (p.verCodigo() == (codigo)) {
+            if (p.verCodigo() == (codigo)) 
+            {
                 return p;
             }
 
@@ -319,18 +326,6 @@ public class GestorProductos implements IGestorProductos {
                    {
                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
                    }
-             
-
-    @Override
-    public String borrarProducto(Producto producto) {
-        if (productos.contains(producto) && producto != null) {
-            GestorPedidos pedidos = GestorPedidos.instanciar();
-            for (Pedido unPedido : pedidos.verPedidos()) {
-                for (ProductoDelPedido unProducto : unPedido.verProductoPedido()) {
-                    if ((unProducto.verUnProducto()).equals(producto)) {
-                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
-                    }
-
 
                 }
 
@@ -358,8 +353,6 @@ public class GestorProductos implements IGestorProductos {
         {
             productos.remove(producto);
             return (OPERACION_EXITOSA);
-        } else {
-            return (BORRADO_FALLIDO + PRODUCTO_INEXISTENTE);
         }
     }
 }
