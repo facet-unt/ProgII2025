@@ -38,7 +38,7 @@ public class GestorPedidos implements IGestorPedidos {
         if (!resultado.equals(VALIDACION_EXITO)) {
             return resultado;
         }
-
+        
         LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
         int numeroPedido = pedidos.size() + 1;
         Pedido nuevoPedido = new Pedido(numeroPedido, fechaYHora, productosDelPedido, cliente);
@@ -63,8 +63,10 @@ public class GestorPedidos implements IGestorPedidos {
     }
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
-        return this.pedidos;
+    public List<Pedido> verPedidos() {
+     ArrayList<Pedido> copia = new ArrayList<>(pedidos);
+        copia.sort((p1, p2) -> Integer.compare(p1.verNumero(), p2.verNumero()));
+        return copia;
     }
 
     @Override
