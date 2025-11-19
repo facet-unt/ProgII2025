@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
-
 
 /**
  *
@@ -34,17 +34,9 @@ public class GestorPedidos implements IGestorPedidos {
 
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
-        if (fecha == null) {
-            return ERROR_FECHA;
-        }
-        if (hora == null) {
-            return ERROR_HORA;
-        }
-        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
-            return ERROR_PRODUCTOS_DEL_PEDIDO;
-        }
-        if (cliente == null) {
-            return ERROR_CLIENTE;
+        String resultado = validarDatosPedidos(fecha, hora, productosDelPedido, cliente);
+        if (!resultado.equals(VALIDACION_EXITO)) {
+            return resultado;
         }
 
         LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
@@ -88,7 +80,7 @@ public class GestorPedidos implements IGestorPedidos {
     @Override
     public boolean hayPedidosConEsteProducto(Producto producto) {
         for (Pedido u : pedidos) {
-            ArrayList<ProductoDelPedido> productosDelPedido = u.verProductoPedido();
+            List<ProductoDelPedido> productosDelPedido = u.verProductoPedido();
             for (ProductoDelPedido pdp : productosDelPedido) {
                 if (pdp.verUnProducto().equals(producto)) {
                     return true;
@@ -127,5 +119,21 @@ public class GestorPedidos implements IGestorPedidos {
             pedidos.remove(pedidoEncontrado);
             return PEDIDO_CANCELADO;
         }
+    }
+
+    private String validarDatosPedidos(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+        if (fecha == null) {
+            return ERROR_FECHA;
+        }
+        if (hora == null) {
+            return ERROR_HORA;
+        }
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
+            return ERROR_PRODUCTOS_DEL_PEDIDO;
+        }
+        if (cliente == null) {
+            return ERROR_CLIENTE;
+        }
+        return VALIDACION_EXITO;
     }
 }
