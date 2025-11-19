@@ -7,6 +7,7 @@ package interfaces;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
@@ -34,7 +35,7 @@ public interface IGestorPedidos {
 
     public String cambiarEstado(Pedido pedidoAModificar);
 
-    public ArrayList<Pedido> verPedidos();
+    public List<Pedido> verPedidos();
 
     public boolean hayPedidosConEsteCliente(Cliente cliente);
 
