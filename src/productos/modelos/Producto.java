@@ -15,7 +15,10 @@ public class Producto implements Comparable<Producto> {
         estado=e;
         precio=p;
     }
-    
+
+    Producto() {
+    }
+
     public int verCodigo() {
         return codigo;
     }
