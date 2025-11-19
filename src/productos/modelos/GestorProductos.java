@@ -89,18 +89,25 @@ public class GestorProductos implements IGestorProductos {
             return p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion());
         });
 
-        return null;
+        return copia;
 
     }
 
     @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
+    public List<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
-            if (u.verDescripcion().equals(descripcion)) {
+            if (u.verDescripcion().toUpperCase().contains(descripcion.toUpperCase())) { //Se Empleo el toUpperCase y toUpperCase para permitir la busqueda parcial 
                 resultados.add(u);
             }
         }
+        resultados.sort((p1, p2) -> {
+            int copararCategoria = p1.verCategoria().compareTo(p2.verCategoria());
+            if (copararCategoria != 0) {
+                return copararCategoria;
+            }
+            return p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion());
+        });
         return resultados;
     }
 
