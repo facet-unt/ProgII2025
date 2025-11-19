@@ -1,6 +1,10 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,7 +43,9 @@ public class GestorProductos implements IGestorProductos  {
         else
             productos.add(producto);
         String cadena= "Se creo el Producto con exito";
+        GuardarProductos(Producto producto);
         return cadena;
+        
     }
     
     @Override
@@ -121,4 +127,42 @@ public class GestorProductos implements IGestorProductos  {
             return PRODUCTO_BORRADO;
         }
     }
+
+    private String CrearArchivo(){
+        File f =  new File(NOMBRE_ARCHIVO);
+        try{
+            f.createNewFile();
+            return CREACION_OK;
+        }
+        catch(IOException ioe){
+            return CREACION_ERROR;
+        }
     }
+    public String GuardarProductos(Producto producto){
+        String[] cadena = null;
+        StringBuilder cadena1 = null;
+        try {
+            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            cadena[0] = Integer.toString(producto.verCodigo());
+            cadena1.append(cadena[0]);
+            cadena1.append(SEPARADOR);
+            cadena[1] = producto.verDescripcion();
+            cadena1.append(cadena[1]);
+            cadena1.append(SEPARADOR);
+            cadena[2] = Float.toString(producto.verPrecio());
+            cadena1.append(cadena[2]);
+            cadena1.append(SEPARADOR);
+            cadena[3] = producto.verCategoria().toString();
+            cadena1.append(cadena[3]);
+            cadena[4] = producto.verEstado().toString();
+            bw.write(cadena1.toString());
+            bw.newLine();
+            fw.close();
+        } 
+        catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }
+        
+    }
+}
