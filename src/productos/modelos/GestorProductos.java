@@ -2,6 +2,7 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos {
@@ -78,8 +79,18 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public ArrayList<Producto> menu() {
-        return this.productos;
+    public List<Producto> menu() {
+        ArrayList<Producto> copia = new ArrayList<>(productos);
+        copia.sort((p1, p2) -> {
+            int copararCategoria = p1.verCategoria().compareTo(p2.verCategoria());
+            if (copararCategoria != 0) {
+                return copararCategoria;
+            }
+            return p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion());
+        });
+
+        return null;
+
     }
 
     @Override
