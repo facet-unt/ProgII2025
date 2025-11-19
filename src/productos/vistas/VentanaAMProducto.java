@@ -170,7 +170,7 @@ public class VentanaAMProducto extends JDialog {
         int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
         String descripcion = this.txtDescripcion.getText().trim();
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria enumCategoria = ((ModeloComboCategorias) this.comboEstado.getModel()).obtenerCategoria();
+        Categoria enumCategoria = ((ModeloComboCategorias) this.comboCategorias1.getModel()).obtenerCategoria();
         Estado enumEstado = ((ModeloComboEstados) this.comboEstado.getModel()).obtenerEstado();
 
         Producto unProducto = new Producto(codigo, descripcion, enumCategoria, enumEstado, precio);
