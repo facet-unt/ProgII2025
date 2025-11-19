@@ -25,7 +25,16 @@ public enum Estado {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-   
+
+    public static Estado convertirEstado(String nombre){ /*Metodo que devuelve el estado especificado por el nombre */
+        Estado[] valores = Estado.values();
+        for(Estado c: valores){
+            if(c.toString().equals(nombre))
+                return c;
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {

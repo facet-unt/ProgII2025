@@ -33,29 +33,19 @@ public class GestorPedidos implements IGestorPedidos{
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         Pedido p = null;
 
-//        if(fecha != null && hora!= null && !productosDelPedido.isEmpty() && cliente != null){
+       if(fecha != null && hora!= null && productosDelPedido != null  && !productosDelPedido.isEmpty() && cliente != null){
             p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
-            cliente.agregarPedido(p);
-//            return EXITO;
-//        }else{
-//            return VALIDACION_FRACASO;
-//        }
-
-        if(fecha != null && hora!=null && !productosDelPedido.isEmpty() && cliente != null)
-        {   
-            if (pedidos.contains(p)){
-                return PEDIDOS_DUPLICADOS;
-            }
-            cliente.agregarPedido(p);
-            pedidos.add(p);
-            return VALIDACION_EXITO; 
-            
-        }
-        else
-        {
+               if (pedidos.contains(p)){
+                   return PEDIDOS_DUPLICADOS;
+               }
+               cliente.agregarPedido(p);
+               pedidos.add(p);
+           return VALIDACION_EXITO;
+            //return EXITO;
+       }else{
             return VALIDACION_FRACASO;
         }
-        
+
     }
     
     @Override

@@ -23,7 +23,16 @@ public enum Categoria {
     public String toString() {
         return this.valor;
     }
-    
+
+    public static Categoria convertir(String nombre){ /*Metodo que devuelve la categoria especificada por el nombre */
+        Categoria[] valores = Categoria.values();
+        for(Categoria e: valores){
+            if(e.toString().equals(nombre))
+                return e;
+        }
+        return null;
+    }
+
     
     public String verValor() {
         return valor;
