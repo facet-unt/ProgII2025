@@ -39,6 +39,11 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
+        for (Producto p : productos) {
+            if (p.verCodigo() == codigo) {
+                return PRODUCTOS_DUPLICADOS;
+            }
+        }
         Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(nuevoProducto);
 
@@ -79,32 +84,29 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
+        ArrayList<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
-            if (u.verDescripcion() == descripcion) {
-                return this.productos;
+            if (u.verDescripcion().equals(descripcion)) {
+                resultados.add(u);
             }
         }
-        return null;
+        return resultados;
     }
 
     @Override
     public boolean existeEsteProducto(Producto producto) {
-        for (Producto u : productos) {
-            if (!(u.equals(producto))) {
-                return false;
-            }
-        }
-        return true;
+        return productos.contains(producto);
     }
 
     @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+        ArrayList<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
-            if (u.verCategoria() == categoria) {
-                return this.productos;
+            if (u.verCategoria().equals(categoria)) {
+                resultados.add(u);
             }
         }
-        return null;
+        return resultados;
     }
 
     @Override

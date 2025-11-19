@@ -8,15 +8,10 @@ import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
-import usuarios.modelos.Empleado;
-import usuarios.modelos.Encargado;
-import static usuarios.modelos.Perfil.CLIENTE;
-import static usuarios.modelos.Perfil.EMPLEADO;
-import static usuarios.modelos.Perfil.ENCARGADO;
+
 
 /**
  *
@@ -45,7 +40,7 @@ public class GestorPedidos implements IGestorPedidos {
         if (hora == null) {
             return ERROR_HORA;
         }
-        if (productosDelPedido.isEmpty()) {
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         }
         if (cliente == null) {
@@ -55,7 +50,8 @@ public class GestorPedidos implements IGestorPedidos {
         LocalDateTime fechaYHora = LocalDateTime.of(fecha, hora);
         int numeroPedido = pedidos.size() + 1;
         Pedido nuevoPedido = new Pedido(numeroPedido, fechaYHora, productosDelPedido, cliente);
-        return null;
+        pedidos.add(nuevoPedido);
+        return EXITO;
     }
 
     @Override
@@ -63,13 +59,15 @@ public class GestorPedidos implements IGestorPedidos {
         switch (pedidoAModificar.verEstado()) {
             case CREADO:
                 pedidoAModificar.asignarEstado(Estado.PROCESANDO);
+                return "Pedido en procesamiento";
             case PROCESANDO:
                 pedidoAModificar.asignarEstado(Estado.ENTREGADO);
+                return "Pedido entregado";
             case ENTREGADO:
-                return "Pedido Entregado :D";
-
+                return "Pedido ya entregado";
+            default:
+                return "Estado inválido";
         }
-        return null;
     }
 
     @Override
@@ -90,8 +88,11 @@ public class GestorPedidos implements IGestorPedidos {
     @Override
     public boolean hayPedidosConEsteProducto(Producto producto) {
         for (Pedido u : pedidos) {
-            if (u.verProductoPedido().contains(producto)) {
-                return true;
+            ArrayList<ProductoDelPedido> productosDelPedido = u.verProductoPedido();
+            for (ProductoDelPedido pdp : productosDelPedido) {
+                if (pdp.verUnProducto().equals(producto)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -122,10 +123,9 @@ public class GestorPedidos implements IGestorPedidos {
         if (pedidoEncontrado == null) {
             return PEDIDO_INEXISTENTE;
         } else {
-            pedidos.remove(pedido);
+            pedidoEncontrado.verCliente().cancelarPedido(pedidoEncontrado);
+            pedidos.remove(pedidoEncontrado);
             return PEDIDO_CANCELADO;
         }
-
     }
-
 }

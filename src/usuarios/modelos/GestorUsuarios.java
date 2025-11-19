@@ -29,63 +29,70 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return instancia;
     }
-    public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
+
+    @Override
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
 
         if (correo == null || correo.trim().isEmpty()) {
             return ERROR_CORREO;
         }
-        if (clave == null || clave.trim().isEmpty()) {
-            return ERROR_CLAVES;
-        }
-        if (apellido == null || clave.trim().isEmpty()) {
+        if (apellido == null || apellido.trim().isEmpty()) {
             return ERROR_APELLIDO;
         }
-        if (nombre == null || clave.trim().isEmpty()) {
+        if (nombre == null || nombre.trim().isEmpty()) {
             return ERROR_NOMBRE;
         }
-        Usuario usuario;
+        if (clave == null || clave.trim().isEmpty() || !clave.equals(claveRepetida)) {
+            return ERROR_CLAVES;
+        }
+        if (perfil == null) {
+            return ERROR_PERFIL;
+        }
+        // Validar que no exista usuario duplicado
+        for (Usuario u : usuario) {
+            if (u.verCorreo().equals(correo)) {
+                return USUARIOS_DUPLICADOS;
+            }
+        }
+        
+        Usuario nuevoUsuario;
         switch (perfil) {
             case CLIENTE:
-                usuario = new Cliente(correo, clave, apellido, nombre, perfil);
+                nuevoUsuario = new Cliente(correo, clave, apellido, nombre, perfil);
                 break;
             case EMPLEADO:
-                usuario = new Empleado(correo, clave, apellido, nombre, perfil);
+                nuevoUsuario = new Empleado(correo, clave, apellido, nombre, perfil);
                 break;
             case ENCARGADO:
-                usuario = new Encargado(correo, clave, apellido, nombre, perfil);
+                nuevoUsuario = new Encargado(correo, clave, apellido, nombre, perfil);
                 break;
-
+            default:
+                return ERROR_PERFIL;
         }
-        //Usuario neuvoUsuario = new(correo, clave, apellido, nombre, perfil);
-        //usuario.add(neuvoUsuario);
-
+        usuario.add(nuevoUsuario);
         return EXITO;
     }
 
     @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido) {
+        ArrayList<Usuario> resultados = new ArrayList<>();
         for (Usuario u : usuario) {
-            if (u.verApellido() == apellido) {
-                return this.usuario;
+            if (u.verApellido().equals(apellido)) {
+                resultados.add(u);
             }
         }
-        return null;
+        return resultados;
     }
 
     @Override
     public boolean existeEsteUsuario(Usuario usuario) {
-        for (Usuario u : this.usuario) {
-            if (!(u.equals(usuario))) {
-                return false;
-            }
-        }
-        return true;
+        return this.usuario.contains(usuario);
     }
 
     @Override
     public Usuario obtenerUsuario(String correo) {
         for (Usuario u : usuario) {
-            if (u.verCorreo() == correo) {
+            if (u.verCorreo().equals(correo)) {
                 return u;
             }
         }
@@ -103,16 +110,8 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
     }
 
-
     @Override
     public ArrayList<Usuario> verUsuarios() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.usuario;
     }
-
-    @Override
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
 }
