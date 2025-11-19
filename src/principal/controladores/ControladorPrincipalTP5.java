@@ -6,6 +6,7 @@ import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
@@ -43,7 +44,7 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("Producto3");
+        List<Producto> productosBuscados = gp.buscarProductos("Producto3");
         System.out.println("Productos encontrados: " + productosBuscados.size());
         for(Producto p : productosBuscados) {
             p.mostrar();
@@ -51,7 +52,7 @@ public class ControladorPrincipalTP5 {
         
         System.out.println("¿Existe el producto?: " + gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+        List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         System.out.println("Productos ENTRADA: " + productosEntrada.size());
         for(Producto p : productosEntrada) {
             p.mostrar();
@@ -62,13 +63,13 @@ public class ControladorPrincipalTP5 {
         System.out.println(gu.crearUsuario("Lucas@mail.com", "Arroyo", "Lucas", Perfil.CLIENTE, "clave456", "clave456"));
         System.out.println(gu.crearUsuario("carlos@mail.com", "López", "Carlos", Perfil.EMPLEADO, "clave789", "clave789"));
         
-        ArrayList<Usuario> usuarios = gu.verUsuarios();
+        List<Usuario> usuarios = gu.verUsuarios();
         System.out.println("Total de usuarios: " + usuarios.size());
         for(Usuario u : usuarios) {
             u.mostrar();
         }
         
-        ArrayList<Usuario> usuariosPérez = gu.buscarUsuarios("Arroyo");
+        List<Usuario> usuariosPérez = gu.buscarUsuarios("Arroyo");
         System.out.println("Usuarios apellido Arroyo: " + usuariosPérez.size());
         for(Usuario u : usuariosPérez) {
             u.mostrar();
@@ -87,7 +88,7 @@ public class ControladorPrincipalTP5 {
         String resultadoPedido = gped.crearPedido(LocalDate.of(2025, 1, 15), LocalTime.of(12, 30), productosDelPedido1, clienteJuan);
         System.out.println("Crear pedido: " + resultadoPedido);
         
-        ArrayList<Pedido> todosLosPedidos = gped.verPedidos();
+        List<Pedido> todosLosPedidos = gped.verPedidos();
         System.out.println("Total de pedidos: " + todosLosPedidos.size());
         if (!todosLosPedidos.isEmpty()) {
             todosLosPedidos.get(0).mostrar();
