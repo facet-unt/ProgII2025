@@ -31,22 +31,10 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
 
-        if (correo == null || correo.trim().isEmpty()) {
-            return ERROR_CORREO;
+        String resultado = validarDatosUsusario(correo, apellido, nombre, perfil, clave, claveRepetida);
+        if (!resultado.equals(VALIDACION_EXITO)) {
+            return resultado;
         }
-        if (apellido == null || apellido.trim().isEmpty()) {
-            return ERROR_APELLIDO;
-        }
-        if (nombre == null || nombre.trim().isEmpty()) {
-            return ERROR_NOMBRE;
-        }
-        if (clave == null || clave.trim().isEmpty() || !clave.equals(claveRepetida)) {
-            return ERROR_CLAVES;
-        }
-        if (perfil == null) {
-            return ERROR_PERFIL;
-        }
-        // Validar que no exista usuario duplicado
         for (Usuario u : usuario) {
             if (u.verCorreo().equals(correo)) {
                 return USUARIOS_DUPLICADOS;
@@ -78,15 +66,15 @@ public class GestorUsuarios implements IGestorUsuarios {
             if (u.verApellido().equals(apellido)) {
                 resultados.add(u);
             }
-            resultados.sort((p1, p2) -> {
-                int copararApellido = p1.verApellido().compareTo(p2.verApellido());
+            resultados.sort((u1, u2) -> {
+                int copararApellido = u1.verApellido().compareTo(u2.verApellido());
                 if (copararApellido != 0) {
                     return copararApellido;
                 }
-                return p1.verNombre().compareToIgnoreCase(p2.verNombre());
+                return u1.verNombre().compareToIgnoreCase(u2.verNombre());
             });
-            return resultados;
         }
+        return resultados;
     }
 
     @Override
@@ -118,13 +106,32 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public ArrayList<Usuario> verUsuarios() {
         ArrayList<Usuario> copia = new ArrayList<>(usuario);
-        copia.sort((p1, p2) -> {
-            int copararApellido = p1.verApellido().compareTo(p2.verApellido());
+        copia.sort((u1, u2) -> {
+            int copararApellido = u1.verApellido().compareTo(u2.verApellido());
             if (copararApellido != 0) {
                 return copararApellido;
             }
-            return p1.verNombre().compareToIgnoreCase(p2.verNombre());
+            return u1.verNombre().compareToIgnoreCase(u2.verNombre());
         });
         return copia;
+    }
+
+    private String validarDatosUsusario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+        if (correo == null || correo.trim().isEmpty()) {
+            return ERROR_CORREO;
+        }
+        if (apellido == null || apellido.trim().isEmpty()) {
+            return ERROR_APELLIDO;
+        }
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return ERROR_NOMBRE;
+        }
+        if (clave == null || clave.trim().isEmpty() || !clave.equals(claveRepetida)) {
+            return ERROR_CLAVES;
+        }
+        if (perfil == null) {
+            return ERROR_PERFIL;
+        }
+        return VALIDACION_EXITO;
     }
 }
