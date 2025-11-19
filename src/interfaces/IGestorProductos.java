@@ -5,6 +5,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
