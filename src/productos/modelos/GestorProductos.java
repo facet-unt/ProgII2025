@@ -117,13 +117,14 @@ public class GestorProductos implements IGestorProductos {
     }
 
     @Override
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
             if (u.verCategoria().equals(categoria)) {
                 resultados.add(u);
             }
         }
+        resultados.sort((p1, p2) -> p1.verDescripcion().compareToIgnoreCase(p2.verDescripcion()));
         return resultados;
     }
 
