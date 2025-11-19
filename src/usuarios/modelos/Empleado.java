@@ -5,6 +5,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
@@ -12,22 +13,19 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
+public class Empleado extends Usuario {
 
-public class Empleado extends Usuario{
-
-    private ArrayList<Pedido> vacio= new ArrayList<>();
+    private ArrayList<Pedido> vacio = new ArrayList<>();
     //constructor
 
     public Empleado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
-        super(correo,clave, apellido, nombre, perfil);
+        super(correo, clave, apellido, nombre, perfil);
     }
 
     @Override
-    public ArrayList<Pedido> verPedido() {
+    public List<Pedido> verPedido() {
         GestorPedidos gestor = GestorPedidos.instanciar();
         return gestor.verPedidos();
     }
-    
-    
-}
 
+}
