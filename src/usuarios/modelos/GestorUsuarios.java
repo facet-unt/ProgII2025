@@ -4,11 +4,9 @@
  */
 package usuarios.modelos;
 
-
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
-
 
 /**
  *
@@ -54,7 +52,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 return USUARIOS_DUPLICADOS;
             }
         }
-        
+
         Usuario nuevoUsuario;
         switch (perfil) {
             case CLIENTE:
@@ -80,8 +78,15 @@ public class GestorUsuarios implements IGestorUsuarios {
             if (u.verApellido().equals(apellido)) {
                 resultados.add(u);
             }
+            resultados.sort((p1, p2) -> {
+                int copararApellido = p1.verApellido().compareTo(p2.verApellido());
+                if (copararApellido != 0) {
+                    return copararApellido;
+                }
+                return p1.verNombre().compareToIgnoreCase(p2.verNombre());
+            });
+            return resultados;
         }
-        return resultados;
     }
 
     @Override
@@ -98,7 +103,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
-    
+
     @Override
     public String borrarUsuario(Usuario usuarios) {
         GestorPedidos gPedidos = GestorPedidos.instanciar();
@@ -112,8 +117,8 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     @Override
     public ArrayList<Usuario> verUsuarios() {
-         ArrayList<Usuario> copia = new ArrayList<>(usuario);
-           copia.sort((p1, p2) -> {
+        ArrayList<Usuario> copia = new ArrayList<>(usuario);
+        copia.sort((p1, p2) -> {
             int copararApellido = p1.verApellido().compareTo(p2.verApellido());
             if (copararApellido != 0) {
                 return copararApellido;
