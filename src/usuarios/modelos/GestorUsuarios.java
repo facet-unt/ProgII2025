@@ -37,10 +37,11 @@ public class GestorUsuarios implements IGestorUsuarios{
     };
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        String validacion = validarDatos(correo.toLowerCase(), apellido, nombre, clave, claveRepetida);
+        String validacion = validarDatos(correo, apellido, nombre, clave, claveRepetida);
         if(!validacion.equals(VALIDACION_EXITO)) return validacion;
         if(obtenerUsuario(correo) != null) return USUARIOS_DUPLICADOS;
         Usuario nuevoUsuario;
+        if(perfil == null) return ERROR_PERFIL;
         switch (perfil) {
         case CLIENTE -> nuevoUsuario = new Cliente(correo, clave, apellido, nombre );
         case ENCARGADO -> nuevoUsuario = new Encargado(correo, clave, apellido, nombre);

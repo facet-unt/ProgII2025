@@ -100,6 +100,7 @@ public class GestorPedidos implements IGestorPedidos{
         if(fecha == null) return ERROR_FECHA;
         if(hora == null) return ERROR_HORA;
         if(cliente == null) return ERROR_CLIENTE;
+        if(productosDelPedido == null) return ERROR_PRODUCTOS_DEL_PEDIDO;
         if(productosDelPedido.isEmpty()) return ERROR_PRODUCTOS_DEL_PEDIDO;
         return VALIDACION_EXITO;
     }
