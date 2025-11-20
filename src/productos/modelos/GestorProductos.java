@@ -62,6 +62,7 @@ public class GestorProductos implements IGestorProductos{
     
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        this.productos = this.leerArchivo();
         if(p==null){
             return PRODUCTO_INEXISTENTE;
         }
