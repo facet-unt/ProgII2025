@@ -4,6 +4,9 @@
  */
 package productos.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
 
  * @author estudiante
@@ -30,6 +33,14 @@ public enum Estado {
     @Override
     public String toString() {
         return this.valor;
+    }
+    
+    public static Estado verEstado(String estado) {
+        Map<String, Estado> mapeo = new HashMap<>();
+        for (Estado e : Estado.values()) {
+            mapeo.put(e.toString(), e);
+        }
+        return mapeo.get(estado);
     }
 
 }

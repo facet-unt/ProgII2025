@@ -4,6 +4,9 @@
  */
 package productos.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author estudiante
@@ -33,5 +36,11 @@ public enum Categoria {
         this.valor = valor;
     }
       
-    
+    public static Categoria verCategoria(String categoria) {
+        Map<String, Categoria> mapeo = new HashMap<>();
+        for (Categoria c : Categoria.values()) {
+            mapeo.put(c.toString(), c);
+        }
+        return mapeo.get(categoria);
+    }
 }
