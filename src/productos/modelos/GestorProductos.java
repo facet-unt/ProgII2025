@@ -66,9 +66,10 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_CODIGO;
         }
         if (descripcion == null || descripcion.isEmpty()) {
+            System.out.println("NULA ");
             return ERROR_DESCRIPCION;
         }
-        if (precio < 0) {
+        if (precio <= 0) {
             return ERROR_PRECIO;
         }
         if (categoria == null) {
@@ -80,7 +81,16 @@ public class GestorProductos implements IGestorProductos {
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(p);
         if (productos.contains(p)) {
-            cargarProductoEnArchivo(p);
+            FileWriter fw;
+            try {
+                fw = new FileWriter(ARCHIVO, true);
+                 fw.write("lo cargué");
+                 cargarProductoEnArchivo(p);
+            } catch (IOException ex) {
+                
+            }
+           
+            
         }
         return VALIDACION_EXITO;
 
