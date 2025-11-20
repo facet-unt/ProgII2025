@@ -105,13 +105,17 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo < 0) {
+        if (codigo <= 0 ) {
             return ERROR_CODIGO;
+        }
+        for(Producto p: productos){
+            if(p.verCodigo()==codigo)
+                return PRODUCTOS_DUPLICADOS;
         }
         if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
         }
-        if (precio < 0) {
+        if (precio <= 0) {
             return ERROR_PRECIO;
         }
         if (categoria == null) {
@@ -131,7 +135,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo < 0) {
+        if (codigo <= 0) {
             return ERROR_CODIGO;
         } else {
             for (Producto producto : productos) {
@@ -143,7 +147,7 @@ public class GestorProductos implements IGestorProductos {
         if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
         }
-        if (precio < 0) {
+        if (precio <= 0) {
             return ERROR_PRECIO;
         }
         if (categoria == null) {

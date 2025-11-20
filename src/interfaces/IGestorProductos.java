@@ -26,7 +26,6 @@ public interface IGestorProductos {
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
-    
     public static final String LECTURA_ERROR = "Error al leer los productos";
     public static final String CREACION_ERROR = "Error al crear el archivo de productos";
     public static final String LECTURA_OK = "Se pudieron leer los productos";
@@ -43,7 +42,7 @@ public interface IGestorProductos {
     public boolean existeEsteProducto(Producto producto);
 
     public Producto obtenerProducto(Integer codigo);
-
+    
     public List<Producto> menu();
 
     public List<Producto> buscarProductos(String descripcion);
