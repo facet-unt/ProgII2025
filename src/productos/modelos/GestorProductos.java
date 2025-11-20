@@ -1,8 +1,10 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class GestorProductos implements IGestorProductos {
 
     private void guardarArchivo(Producto unProducto) {
         creacionArchivo();
-        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos,true))) {
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos, true))) {
             escritura.write(Integer.toString(unProducto.verCodigo()));
             escritura.write(SEPARADOR);
             escritura.write(unProducto.verDescripcion());
@@ -48,12 +50,35 @@ public class GestorProductos implements IGestorProductos {
             escritura.write(SEPARADOR);
             escritura.write(Float.toString(unProducto.verPrecio()));
             escritura.newLine();
-            
+
             System.out.println(ESCRITURA_OK);
         } catch (IOException e) {
             System.out.println(ESCRITURA_ERROR);
         }
 
+    }
+
+    private void reescribirArchivo() {
+        creacionArchivo();
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
+
+            for (Producto p : productos) {
+
+                escritura.write(Integer.toString(p.verCodigo()));
+                escritura.write(SEPARADOR);
+                escritura.write(p.verDescripcion());
+                escritura.write(SEPARADOR);
+                escritura.write(p.verCategoria().toString());
+                escritura.write(SEPARADOR);
+                escritura.write(p.verEstado().toString());
+                escritura.write(SEPARADOR);
+                escritura.write(Float.toString(p.verPrecio()));
+                escritura.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
+        }
     }
 
     public static GestorProductos instanciar() {
@@ -74,6 +99,7 @@ public class GestorProductos implements IGestorProductos {
             return "no se puede borrar el producto porque tiene pedidos asociados";
         }
         productos.remove(producto);
+        reescribirArchivo();
         return EXITO_BORRADO;
     }
 
@@ -132,6 +158,7 @@ public class GestorProductos implements IGestorProductos {
         p.asignarDescripcion(descripcion);
         p.asignarEstado(estado);
         p.asignarCategoria(categoria);
+        reescribirArchivo();
 
         return EXITO;
     }
@@ -139,6 +166,7 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public List<Producto> menu() {
         Collections.sort(productos);
+        reescribirArchivo();
         return this.productos;
     }
 
