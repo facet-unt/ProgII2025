@@ -1,15 +1,21 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
-    
+   
     private static GestorProductos instancia;
-
+//Agrego las constantes de archivo
+    private static final String NOMBRE_ARCHIVO= "Archivo.txt";
+    private static final String SEPARADOR_ARCHIVO= ";";
     private GestorProductos() {
 
     }
@@ -30,6 +36,9 @@ public class GestorProductos implements IGestorProductos{
         if(existeEsteProducto(pNuevo))
             return PRODUCTOS_DUPLICADOS;
         productos.add(pNuevo);
+        //Agregamos el producto en el archivo
+        this.cargarProdEnArchivo();
+        
         return EXITO;
     }
     
@@ -155,5 +164,39 @@ public class GestorProductos implements IGestorProductos{
             }
             return comparacionCategoria;
         });
+    }
+    //Hacemos las validaciones de los datos del producto
+    
+    //Implementacion de los metodos agregados en IGestorProductos
+    public String leerProductoConArchivo(){
+        File prodArchivo = new File(NOMBRE_ARCHIVO);
+        if(!prodArchivo.exists()){
+            try{
+                if(prodArchivo.createNewFile()){
+                    return CREACION_OK; //Si el archivo se creo correctamente
+                }
+                else {
+                    return CREACION_ERROR;
+                }
+            } catch(IOException e){
+                return CREACION_ERROR;
+            }
+        }
+        // Hago un try con argumento
+        try(BufferedReader br = new BuffereadRead(new FileReader(prodArchivo))){
+            productos.clear(); //Evitamos que se dupliquen los productos si se vuelve a leer
+            String linea;
+            
+            while((linea = br.readLine())!=null){
+                linea=linea.trim();
+              Producto p = convertirLineaAProducto(linea);
+              if(p!=null && !productos.contains(p)){
+                  productos.add(p);
+              return LECTURA_OK;
+            }
+        }  
+        } catch(IOException | IllegalArgumentException e){
+            return LECTURA_ERROR;
+        }
     }
 }

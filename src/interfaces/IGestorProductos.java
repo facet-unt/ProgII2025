@@ -11,11 +11,11 @@ public interface IGestorProductos {
     public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
     public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
+    public static final String ERROR_ESTADO = "El estado del producto es incorrecto";
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
-    
+    //Agrego las constantes del enunciado.
     public static final String LECTURA_ERROR = "Error al leer los productos";
     public static final String CREACION_ERROR = "Error al crear el archivo de productos";
     public static final String LECTURA_OK = "Se pudieron leer los productos";
@@ -31,4 +31,8 @@ public interface IGestorProductos {
     boolean existeEsteProducto(Producto producto);
     List<Producto> verProductosPorCategoria(Categoria categoria);
     Producto obtenerProducto(Integer codigo); 
+    
+    //Agrego dos metodos, uno para leer el archivo y otro para cargarlo
+    String leerProdEnArchivo();
+    String cargarProdEnArchivo();
 }
