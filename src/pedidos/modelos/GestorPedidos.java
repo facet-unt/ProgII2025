@@ -1,5 +1,6 @@
 package pedidos.modelos;
 
+import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;

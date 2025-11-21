@@ -1,5 +1,6 @@
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.IGestorPedidos;
+import interfaces.IGestorPedidos;
+import java.io.FileNotFoundException;
 
 
 public class GestorProductos implements IGestorProductos{
@@ -86,6 +88,7 @@ public class GestorProductos implements IGestorProductos{
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
+        System.out.println(actualizarArchivo());
 
         return EXITO;
     }
@@ -94,6 +97,7 @@ public class GestorProductos implements IGestorProductos{
     public List<Producto> menu() {
         Collections.sort(productos, Producto.categoriaComp);
         Collections.sort(productos, Producto.descripcionComp);
+        System.out.println(actualizarArchivo());
         return this.productos;
     }
     
@@ -102,7 +106,7 @@ public class GestorProductos implements IGestorProductos{
         int i=0;
         List<Producto> productosPorDescripcion = new ArrayList<>();
         for(Producto p: productos){
-            if(p.verDescripcion().equalsIgnoreCase(descripcion)){
+            if(p.verDescripcion().equalsIgnoreCase(descripcion) && p.verDescripcion().contains(descripcion)){
                 productosPorDescripcion.add(p);
                 i++;
             }
@@ -110,7 +114,7 @@ public class GestorProductos implements IGestorProductos{
         if(i == 0)
             System.out.println(PRODUCTO_INEXISTENTE);
         
-        Collections.sort(productos);
+        Collections.sort(productosPorDescripcion);
         return productosPorDescripcion;
     }
     
@@ -120,6 +124,7 @@ public class GestorProductos implements IGestorProductos{
             System.out.println(PRODUCTO_INEXISTENTE);
             return false;
         }
+        System.out.println("El producto especificado existe");
         return true;
     }
     
@@ -136,7 +141,7 @@ public class GestorProductos implements IGestorProductos{
         if (i == 0)
             System.out.println(PRODUCTO_INEXISTENTE);
         
-        Collections.sort(productos, Producto.descripcionComp);
+        Collections.sort(productosPorCategoria, Producto.descripcionComp);
         return productosPorCategoria;
     }
     
@@ -160,8 +165,9 @@ public class GestorProductos implements IGestorProductos{
         IGestorPedidos gPed = GestorPedidos.instanciar();
         if(producto != null && productos.contains(producto)){
             if(!gPed.hayPedidosConEsteProducto(producto)){
+                borrarProductoDelArchivo(producto);
                 productos.remove(producto);
-                return EXITO;
+                return "El Producto se ha borrado definitivamente";
             } else {
                 return "No se ha podido borrar este producto ya que hay un pedido que lo contiene \n";
             }
@@ -170,11 +176,25 @@ public class GestorProductos implements IGestorProductos{
         }
     }
 
+    private String verificarArchivo(File archivo){
+        if(!archivo.exists()){
+            try {
+                archivo.createNewFile();
+                return "El archivo no existia, por ende fue creado";
+            } catch (IOException e){
+                return "No se ha podido crear el archivo";
+            } catch (Exception e){
+                return e.getMessage();
+            }
+        }
+        return "";
+    }
+    
     private String guardarProducto(Producto p) {
         String atributosProducto;
         atributosProducto = "," + p.verCodigo() + "," + p.verDescripcion() + "," + p.verCategoria() + "," + p.verEstado() + "," 
-                            + p.verPrecio() + "," +"\n";
-        if (!existeEsteProducto(p)){
+                            + p.verPrecio() + "," + "\n";
+        if (!this.productos.contains(p)){
             File archivo = new File("Productos.txt");
             try (FileWriter fw = new FileWriter(archivo, true)){
                 try(BufferedWriter bw = new BufferedWriter(fw)){
@@ -193,20 +213,12 @@ public class GestorProductos implements IGestorProductos{
         return ESCRITURA_OK;
     }
     
-    private List<Producto> leerProductos(){
-        int caracter, i = 1;
+    private List<Producto> costruirProducto(String[] cadenas){
+        int i = 1;
         Producto p;
-        String productos = "";
-        String[] cadenas;
-        List<Producto> productosArchivo= new ArrayList<>();
-        File archivo = new File("Productos.txt");
-        try (FileReader fr = new FileReader(archivo)){
-            while ((caracter = fr.read()) != -1){
-                productos += ((char) caracter );
-            }
-            
-            cadenas = productos.split(",");
-            while (i < cadenas.length){
+        List<Producto> productosArchivo = new ArrayList<>();
+        
+        while (i < cadenas.length){
                 int codigo = Integer.parseInt(cadenas[i]);
                 if(codigo <= 0){
                     System.out.println(ERROR_CODIGO);
@@ -253,11 +265,69 @@ public class GestorProductos implements IGestorProductos{
                 p = new Producto(codigo, descripcion, categoria, estado, precio);
                 productosArchivo.add(p);
             }
-        } catch (Exception e) {
+        return productosArchivo;
+    }
+    
+    private List<Producto> leerProductos(){
+        int caracter;
+        String productos = "";
+        String[] cadenas;
+        List<Producto> productosArchivo= new ArrayList<>();
+        File archivo = new File("Productos.txt");
+        System.out.println(verificarArchivo(archivo));
+        
+        try (FileReader fr = new FileReader(archivo)){
+            while ((caracter = fr.read()) != -1){
+                productos += ((char) caracter );
+            }
+            cadenas = productos.split(",");
+            productosArchivo = costruirProducto(cadenas);
+        } catch (FileNotFoundException e) {
             System.out.println(LECTURA_ERROR);
+            return null;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
             return null;
         }
         System.out.println(LECTURA_OK);
         return productosArchivo;
     }
+    
+    private String borrarProductoDelArchivo (Producto p) {
+        List<Producto> temporal = new ArrayList<>(this.productos);
+        temporal.remove(p);
+        this.productos.clear();
+        File archivo = new File("Productos.txt");
+        try (FileWriter fw = new FileWriter(archivo)){
+            fw.write("");
+            for(Producto p2: temporal){
+                guardarProducto(p2);
+            }
+            this.productos = temporal;
+        } catch (IOException e){
+            return ESCRITURA_ERROR;
+        } catch (Exception e){
+            return e.getMessage();
+        }
+        return "El producto fue borrado del archivo";
+    }
+    
+    private String actualizarArchivo(){
+        List<Producto> temporal = new ArrayList<>(this.productos);
+        this.productos.clear();
+        File archivo = new File("Productos.txt");
+        try (FileWriter fw = new FileWriter(archivo)){
+            fw.write("");
+            for(Producto p2: temporal){
+                guardarProducto(p2);
+            }
+            this.productos = temporal;
+        } catch (IOException e){
+            return ESCRITURA_ERROR;
+        } catch (Exception e){
+            return e.getMessage();
+        }
+        return "El Archivo fue actualizado correctamente";
+    }
+    
 }

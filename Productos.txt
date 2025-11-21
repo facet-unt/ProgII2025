@@ -1,5 +1,3 @@
-asdfh asd,asd fasdjkfasd,fasdjflk as,asdlfka
-
-
-
-
+,3,Producto1,Postre,No disponible,3.0,
+,2,Producto2,Plato principal,Disponible,2.0,
+,4,niggers,Plato principal,Disponible,2.0,

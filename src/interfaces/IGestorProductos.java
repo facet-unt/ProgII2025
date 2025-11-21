@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package productos.modelos;
+package interfaces;
 
 import java.util.List;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
+import productos.modelos.Producto;
 
 /**
  *
