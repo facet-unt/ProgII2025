@@ -189,8 +189,8 @@ public class ControladorPrincipalTP7 {
         //sin coincidir las claves
 
 
-      //  System.out.println("Obtener usuarios y productos");
-       // System.out.println("=========");
+        System.out.println("Obtener usuarios y productos");
+        System.out.println("=========");
         Usuario unCliente1 = gu.obtenerUsuario("cliente1@bar.com");
         Producto prod1 = gp.obtenerProducto(1);
         Producto prod2 = gp.obtenerProducto(2);
@@ -250,8 +250,8 @@ public class ControladorPrincipalTP7 {
         }
         System.out.println();
         
-//        System.out.println(gp.borrarProducto(gp.menu().get(4)));
-//        System.out.println(gp.borrarProducto(gp.menu().get(0)));
+        System.out.println(gp.borrarProducto(gp.menu().get(4)));
+        System.out.println(gp.borrarProducto(gp.menu().get(0)));
         
         System.out.println("Productos");
         System.out.println("==================");
