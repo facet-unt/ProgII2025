@@ -1,5 +1,10 @@
 package productos.modelos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +13,7 @@ import pedidos.modelos.IGestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos{
-    private List<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = leerProductos();
     
     private static GestorProductos instancia;
     
@@ -21,6 +26,13 @@ public class GestorProductos implements IGestorProductos{
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
+    
+    public static final String LECTURA_ERROR = "Error al leer los productos";
+    public static final String CREACION_ERROR = "Error al crear el archivo de productos";
+    public static final String LECTURA_OK = "Se pudieron leer los productos";
+    public static final String CREACION_OK = "Se pudo crear el archivo de productos";
+    public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
+    public static final String ESCRITURA_ERROR = "Error al guardar los productos";
     
     private GestorProductos() {
         
@@ -47,7 +59,9 @@ public class GestorProductos implements IGestorProductos{
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
         if(productos.contains(p))
             return PRODUCTOS_DUPLICADOS;
-
+        
+        guardarProducto(p);
+        
         productos.add(p);
         return EXITO;
     }
@@ -78,7 +92,8 @@ public class GestorProductos implements IGestorProductos{
     
     @Override
     public List<Producto> menu() {
-        Collections.sort(productos);
+        Collections.sort(productos, Producto.categoriaComp);
+        Collections.sort(productos, Producto.descripcionComp);
         return this.productos;
     }
     
@@ -154,5 +169,95 @@ public class GestorProductos implements IGestorProductos{
             return PRODUCTO_INEXISTENTE;
         }
     }
+
+    private String guardarProducto(Producto p) {
+        String atributosProducto;
+        atributosProducto = "," + p.verCodigo() + "," + p.verDescripcion() + "," + p.verCategoria() + "," + p.verEstado() + "," 
+                            + p.verPrecio() + "," +"\n";
+        if (!existeEsteProducto(p)){
+            File archivo = new File("Productos.txt");
+            try (FileWriter fw = new FileWriter(archivo, true)){
+                try(BufferedWriter bw = new BufferedWriter(fw)){
+                    bw.write(atributosProducto);
+                } catch (IOException e) {
+                    return ESCRITURA_ERROR;
+                }
+            } catch (IOException e){
+                return CREACION_ERROR;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        } else {
+            return PRODUCTOS_DUPLICADOS;
+        }      
+        return ESCRITURA_OK;
+    }
     
+    private List<Producto> leerProductos(){
+        int caracter, i = 1;
+        Producto p;
+        String productos = "";
+        String[] cadenas;
+        List<Producto> productosArchivo= new ArrayList<>();
+        File archivo = new File("Productos.txt");
+        try (FileReader fr = new FileReader(archivo)){
+            while ((caracter = fr.read()) != -1){
+                productos += ((char) caracter );
+            }
+            
+            cadenas = productos.split(",");
+            while (i < cadenas.length){
+                int codigo = Integer.parseInt(cadenas[i]);
+                if(codigo <= 0){
+                    System.out.println(ERROR_CODIGO);
+                    return null;
+                }
+                i++;
+                String descripcion = cadenas[i];
+                if (descripcion == null || descripcion.equals("")){
+                    System.out.println(ERROR_DESCRIPCION);
+                    return null;
+                }
+                i++;
+
+                Categoria categoria;
+                if(cadenas[i].equals(Categoria.ENTRADA.toString())){
+                    categoria = Categoria.ENTRADA;
+                } else if(cadenas[i].equals(Categoria.PLATO_PRINCIPAL.toString())) {
+                    categoria = Categoria.PLATO_PRINCIPAL;
+                } else if(cadenas[i].equals(Categoria.POSTRE.toString())) {
+                    categoria = Categoria.POSTRE;
+                } else {
+                    System.out.println(ERROR_CATEGORIA);
+                    return null;
+                }
+                i++;
+
+                Estado estado;
+                if(cadenas[i].equals(Estado.DISPONIBLE.toString())){
+                    estado = Estado.DISPONIBLE;
+                } else if (cadenas[i].equals(Estado.NO_DISPONIBLE.toString())){
+                    estado = Estado.NO_DISPONIBLE;
+                } else {
+                    System.out.println(ERROR_ESTADO);
+                    return null;
+                }
+                i++;
+
+                float precio = Float.parseFloat(cadenas[i]);
+                if (precio <= 0){
+                    System.out.println(ERROR_PRECIO);
+                    return null;
+                }
+                i = i+2;
+                p = new Producto(codigo, descripcion, categoria, estado, precio);
+                productosArchivo.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println(LECTURA_ERROR);
+            return null;
+        }
+        System.out.println(LECTURA_OK);
+        return productosArchivo;
+    }
 }

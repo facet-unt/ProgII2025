@@ -8,8 +8,6 @@ public class Producto implements Comparable<Producto> {
     private String descripcion;
     private Categoria categoria;
     private Estado estado;
-    private String categoriagui;
-    private String estadogui;
     private float precio;
     
     
@@ -109,11 +107,4 @@ public class Producto implements Comparable<Producto> {
         this.precio = precio;
     }
 
-    public Producto(int codigo, String descripcion, String categoriagui, String estadogui, float precio) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.categoriagui = categoriagui;
-        this.estadogui = estadogui;
-        this.precio = precio;
-    }
 }

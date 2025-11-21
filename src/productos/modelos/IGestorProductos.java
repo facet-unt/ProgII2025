@@ -20,5 +20,4 @@ public interface IGestorProductos {
     public boolean existeEsteProducto(Producto producto);
     public List<Producto> verProductosPorCategoria(Categoria categoria);
     public Producto obtenerProducto(Integer codigo);
-    
 }
