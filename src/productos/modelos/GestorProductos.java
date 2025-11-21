@@ -7,6 +7,8 @@ import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
 import static interfaces.IGestorProductos.ERROR_PRECIO;
 import static interfaces.IGestorProductos.PRODUCTOS_DUPLICADOS;
 import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,7 +63,6 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {        
         String resultado = validarInfo(codigo, descripcion, precio, categoria, estado);
-        String resultado2;
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
@@ -71,12 +72,8 @@ public class GestorProductos implements IGestorProductos {
         }
         
         Producto nuevo = new Producto(codigo, descripcion, categoria, estado, precio);
-        productos.add(nuevo);
-        resultado2 = this.registrarProductos(nuevo);
-        
-        if(!resultado2.equals(ESCRITURA_ERROR)){
-            return EXITO;        
-        }
+        this.registrarProductos(nuevo);
+        return EXITO;
     }
     
     @Override
@@ -181,17 +178,20 @@ public class GestorProductos implements IGestorProductos {
 
     Comparator<Producto> dDesc = (Producto p1, Producto p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
     
-    private String registrarProductos(Producto p){       
-        try(FileWriter fw = new FileWriter(NOMBREARCHIVO, true);){
-            fw.write(p.verDescripcion());
-            fw.write(SEPARADOR);
-            fw.write(Integer.toString(p.verCodigo()));
-            fw.write(SEPARADOR);
-            fw.write(p.verCategoria().toString());
-            fw.write(SEPARADOR);
-            fw.write(p.verEstado().toString());
-            fw.write(SEPARADOR);
-            fw.write(Float.toString(p.verPrecio()));
+    private String registrarProductos(Producto p){    
+        String resultado = this.crearArchivo();
+        if(resultado.equals(CREACION_ERROR)){
+            return CREACION_ERROR;
+        }
+        
+        try(BufferedWriter fw = new BufferedWriter(new FileWriter(NOMBREARCHIVO, true));){
+            String linea;
+            linea = Integer.toString(p.verCodigo()) + SEPARADOR;
+            linea += p.verDescripcion() + SEPARADOR;
+            linea += p.verCategoria().toString() + SEPARADOR;
+            linea += p.verEstado().toString() + SEPARADOR;
+            linea += Float.toString(p.verPrecio());
+            fw.write(linea);
             fw.write("\n");
             fw.close();
             return ESCRITURA_OK;
@@ -201,5 +201,20 @@ public class GestorProductos implements IGestorProductos {
         }
     }
         
+    private String crearArchivo(){
+        File f = new File(NOMBREARCHIVO);
+        
+        try{
+            f.createNewFile();
+        }
+        catch(IOException e){
+            return CREACION_ERROR;  
+        }      
+        
+        return CREACION_OK;
+    }
     
+    private String leerProductos(){
+        
+    }
 }
