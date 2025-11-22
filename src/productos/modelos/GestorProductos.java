@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
@@ -18,7 +16,7 @@ public class GestorProductos implements IGestorProductos {
     public static final String ARCHIVO = "Productos.txt";
     public static final String SEPARADOR = "*";
 
-    private List<Producto> productos = new ArrayList();
+    private final List<Producto> productos = new ArrayList();
 
     private static GestorProductos instancia;
 
@@ -47,26 +45,25 @@ public class GestorProductos implements IGestorProductos {
             }
         }
         productos.remove(producto);
-//        try {
-//            FileWriter fw = new FileWriter(ARCHIVO);
-//            for (Producto p : productos) {
-//                cargarProductoEnArchivo(p);
-//            }
-//        } catch (IOException ex) {
-//            System.out.println("IOException");
-//
-//        }
+        try {
+            FileWriter fw = new FileWriter(ARCHIVO);
+            for (Producto p : productos) {
+                cargarProductoEnArchivo(p);
+            }
+        } catch (IOException ex) {
+            System.out.println("IOException");
+
+        }
         return BORRADO_EXITO;
     }
 
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
 
-        if (codigo < 0) {
+        if (codigo <= 0) {
             return ERROR_CODIGO;
         }
         if (descripcion == null || descripcion.isEmpty()) {
-            System.out.println("NULA ");
             return ERROR_DESCRIPCION;
         }
         if (precio <= 0) {
@@ -79,18 +76,10 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_ESTADO;
         }
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-        productos.add(p);
-        if (productos.contains(p)) {
-            FileWriter fw;
-            try {
-                fw = new FileWriter(ARCHIVO, true);
-                 fw.write("lo cargué");
-                 cargarProductoEnArchivo(p);
-            } catch (IOException ex) {
-                
-            }
-           
-            
+
+        if (!productos.contains(p)) {
+            productos.add(p);
+            cargarProductoEnArchivo(p);
         }
         return VALIDACION_EXITO;
 
@@ -114,9 +103,7 @@ public class GestorProductos implements IGestorProductos {
 
         } catch (IOException ex) {
             System.out.println("IOException");
-
         }
-
     }
 
     @Override
@@ -136,25 +123,25 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
-//        int posicion=productos.indexOf(p);
-//        p.asignarCodigo(codigo);
-//        p.asignarDescripcion(descripcion);
-//        p.asignarPrecio(precio);
-//        p.asignarCategoria(categoria);
-//        p.asignarEstado(estado);
-//        productos.remove(posicion);
-//        productos.add(posicion,p );
-//        
-//        try {
-//            FileWriter fw = new FileWriter(ARCHIVO);
-//            for (Producto pro : productos) {
-//                cargarProductoEnArchivo(pro);
-//            }
-//        } catch (IOException ex) {
-//            System.out.println("IOException");
-//
-//        }
-//        
+        int posicion=productos.indexOf(p);
+        p.asignarCodigo(codigo);
+        p.asignarDescripcion(descripcion);
+        p.asignarPrecio(precio);
+        p.asignarCategoria(categoria);
+        p.asignarEstado(estado);
+        productos.remove(posicion);
+        productos.add(posicion,p );
+        
+        try {
+            FileWriter fw = new FileWriter(ARCHIVO);
+            for (Producto pro : productos) {
+                cargarProductoEnArchivo(pro);
+            }
+        } catch (IOException ex) {
+            System.out.println("IOException");
+
+        }
+        
         return EXITO;
     }
 
