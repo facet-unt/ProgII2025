@@ -59,7 +59,8 @@ public class ControladorPrincipalTP7 {
         System.out.println(gp.crearProducto(7, "Suprema con pure", 3.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(9, "Suprema con ensalada", 2.8f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
         
-     // gp.modificarProducto(gp.obtenerProducto(2), 100, "Testeo", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
+//     gp.modificarProducto(gp.obtenerProducto(2), 100, "Testeo", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
+//      gp.borrarProducto(gp.obtenerProducto(3));
         
         /*RECUPERAR LOS PRODUCTOS CON EL METODO MENU*/
         System.out.println("######## PRODUCTOS CON MENU (ordena por categ y luego desc ########");

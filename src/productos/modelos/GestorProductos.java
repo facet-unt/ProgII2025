@@ -48,7 +48,7 @@ public class GestorProductos implements IGestorProductos {
         try {
             FileWriter fw = new FileWriter(ARCHIVO);
             for (Producto p : productos) {
-                cargarProductoEnArchivo(p);
+                cargarProductoEnArchivo(p,false);
             }
         } catch (IOException ex) {
             System.out.println("IOException");
@@ -76,18 +76,23 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_ESTADO;
         }
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-
+        
+        if(productos.isEmpty()){
+            productos.add(p);
+            cargarProductoEnArchivo(p,false);
+        }else{
         if (!productos.contains(p)) {
             productos.add(p);
-            cargarProductoEnArchivo(p);
+            cargarProductoEnArchivo(p,true);
+        }
         }
         return VALIDACION_EXITO;
 
     }
 
-    private void cargarProductoEnArchivo(Producto p) {
+    private void cargarProductoEnArchivo(Producto p,boolean valor) {
         try {
-            FileWriter fw = new FileWriter(ARCHIVO, true);
+            FileWriter fw = new FileWriter(ARCHIVO, valor);
             fw.write(Integer.toString(p.verCodigo()));
             fw.write(SEPARADOR);
             fw.write(p.verDescripcion());
@@ -108,13 +113,13 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo < 0) {
+        if (codigo <= 0) {
             return ERROR_CODIGO;
         }
         if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
         }
-        if (precio < 0) {
+        if (precio <= 0) {
             return ERROR_PRECIO;
         }
         if (categoria == null) {
@@ -129,19 +134,16 @@ public class GestorProductos implements IGestorProductos {
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-        productos.remove(posicion);
         productos.add(posicion,p );
         
         try {
             FileWriter fw = new FileWriter(ARCHIVO);
             for (Producto pro : productos) {
-                cargarProductoEnArchivo(pro);
+                cargarProductoEnArchivo(pro,false);
             }
         } catch (IOException ex) {
             System.out.println("IOException");
-
         }
-        
         return EXITO;
     }
 

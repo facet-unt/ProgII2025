@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
@@ -53,7 +52,7 @@ public class GestorPedidos implements IGestorPedidos {
         if (cliente == null) {
             return ERROR_CLIENTE;
         }
-        if (productosDelPedido==null||productosDelPedido.isEmpty()) {
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         }
 
@@ -82,12 +81,10 @@ public class GestorPedidos implements IGestorPedidos {
         }
         return ESTADO_EXITO;
     }
-   
 
     @Override
     public List<Pedido> verPedidos() {
-        
-        
+
         return pedidos;
     }
 
