@@ -31,7 +31,7 @@ public class ControladorPrincipalTP5 {
 //        System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.ENTRADA, Estado.NO_DISPONIBLE));
 //        System.out.println(gp.crearProducto(4, "Producto6", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
         
-        System.out.println(gp.leerArchivo());
+        // Los productos se cargan automáticamente al instanciar el gestor
 //        List<Producto> productosBuscados = gp.buscarProductos("2");                
         for(Producto p : gp.menu()) {
             p.mostrar();

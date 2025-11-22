@@ -19,7 +19,7 @@ public class GestorProductos implements IGestorProductos {
     private static GestorProductos instancia;
     
     private GestorProductos() {
-        
+        this.leerArchivo();
     }
     
     public static GestorProductos instanciar() {
@@ -61,8 +61,11 @@ public class GestorProductos implements IGestorProductos {
             return validacion;
         }
         
-        if (this.obtenerProducto(codigo) != null) {
-            return PRODUCTOS_DUPLICADOS;
+        // Solo verificar duplicados si el código cambió
+        if (productoAModificar.verCodigo() != codigo) {
+            if (this.obtenerProducto(codigo) != null) {
+                return PRODUCTOS_DUPLICADOS;
+            }
         }
         
         productoAModificar.asignarCodigo(codigo);
@@ -70,6 +73,8 @@ public class GestorProductos implements IGestorProductos {
         productoAModificar.asignarPrecio(precio);
         productoAModificar.asignarCategoria(categoria);
         productoAModificar.asignarEstado(estado);
+        
+        this.escribirArchivo();
         
         return EXITO;
     }
@@ -137,6 +142,7 @@ public class GestorProductos implements IGestorProductos {
         
         if (!g.hayPedidosConEsteProducto(producto)) {
             this.listaProductos.remove(producto);
+            this.escribirArchivo();
             return "Producto eliminado con exito";
         }
         
@@ -147,7 +153,7 @@ public class GestorProductos implements IGestorProductos {
     * Se encarga de leer el archivo donde se guarda la lista de productos
     * Si no existe lo crea, si ya existe lo lee.
     */
-    public String leerArchivo(){
+    private String leerArchivo(){
         String resultado = crearArchivo();
         if (resultado == CREACION_ERROR) {
             return LECTURA_ERROR;
@@ -190,7 +196,7 @@ public class GestorProductos implements IGestorProductos {
     /**
      * Se encarga de la escritura y modificación del archivo donde se guarda la lista de productos.
      */
-    public String escribirArchivo(){
+    private String escribirArchivo(){
         String resultado = crearArchivo();
         if (resultado == CREACION_ERROR) {
             return ESCRITURA_ERROR;
