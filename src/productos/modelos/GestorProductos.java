@@ -128,18 +128,18 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
-        int posicion=productos.indexOf(p);
+        
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-        productos.add(posicion,p );
+       
         
         try {
             FileWriter fw = new FileWriter(ARCHIVO);
             for (Producto pro : productos) {
-                cargarProductoEnArchivo(pro,false);
+                cargarProductoEnArchivo(pro,true);
             }
         } catch (IOException ex) {
             System.out.println("IOException");
@@ -153,18 +153,36 @@ public class GestorProductos implements IGestorProductos {
         return this.productos;
     }
 
+    @Override
     public List<Producto> buscarProductos(String descripcion) {
-        List<Producto> prod = new ArrayList();
+//        List<Producto> prod = new ArrayList();
+//
+//        for (Producto p : productos) {
+//            if (p.verDescripcion().contains(descripcion)) {
+//                prod.add(p);
+//            }
+//
+//        }
+//        Collections.sort(prod);
+//        return prod;
+ 
+    List<Producto> prod = new ArrayList<>();
 
-        for (Producto p : productos) {
-            if (p.verDescripcion().contains(descripcion)) {
-                prod.add(p);
-            }
+    String buscada = descripcion.toLowerCase();
 
+    for (Producto p : productos) {
+        String desc = p.verDescripcion();
+        if (desc != null && desc.toLowerCase().contains(buscada)) {
+            //aca creo q no es necesario el null xq no se crearia sino pero por las dudas
+            prod.add(p);
         }
-        Collections.sort(prod);
-        return prod;
     }
+
+    Collections.sort(prod);
+    return prod;
+}
+
+    
 
     public boolean existeEsteProducto(Producto producto) {
         return productos.contains(producto);
@@ -173,10 +191,11 @@ public class GestorProductos implements IGestorProductos {
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
         List<Producto> productosPorCategoria = new ArrayList();
         for (Producto p : productos) {
-            if (p.verCategoria() == categoria);
-            Collections.sort(productosPorCategoria);
-            return productosPorCategoria;
+            if (p.verCategoria() == categoria){
+                productosPorCategoria.add(p);   
+            }     
         }
+        Collections.sort(productosPorCategoria);
         return productosPorCategoria;
     }
 

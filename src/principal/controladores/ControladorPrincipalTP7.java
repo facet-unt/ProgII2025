@@ -75,7 +75,9 @@ public class ControladorPrincipalTP7 {
         System.out.println("######## PRODUCTOS POR CODIGO ########");
         /*OBTENER UN PRODUCTO MEDIANTE EL CODIGO*/
         Producto unProducto1 = gp.obtenerProducto(1);
+        System.out.println(unProducto1);
         Producto unProducto2 = gp.obtenerProducto(2);
+        System.out.println(unProducto2);
 
         System.out.println("######## PRODUCTOS DE UNA CATEGORIA ordena por la desc ########");
         /*SUBCONJUNTO DE PRODUCTOS DE UNA CATEGORIA*/
@@ -84,13 +86,13 @@ public class ControladorPrincipalTP7 {
         System.out.println("===================");
         for (Producto p : productosBuscados) {
             p.mostrar();
-            System.out.println();
+            
         }
         System.out.println();
 
         System.out.println("######## PRODUCTOS POR DESCRIPCION ordena por categ y luego por desc########");
         /*BUSCAR PRODUCTO POR DESCRIPCION*/
-        productosBuscados = gp.buscarProductos("Prod");
+        productosBuscados = gp.buscarProductos("cop");
         System.out.println("Productos buscados por descripcion");
         System.out.println("==================");
         for (Producto p : productosBuscados) {
@@ -190,10 +192,17 @@ public class ControladorPrincipalTP7 {
         //clave repetida inválida
         gu.crearUsuario("encargado3@bar.com", "ApellidoEncargado4", "NombreEncargado4", Perfil.ENCARGADO, "claveEncargado4", "claveEncargado44");
         //sin coincidir las claves
+        System.out.println("VEO SI ANDAN LOS CONTROLES PARA USUARIO");
+        for(Usuario u: gu.verUsuarios())
+        {
+            u.mostrar();
+        }
+        
 
-        //  System.out.println("Obtener usuarios y productos");
-        // System.out.println("=========");
+          System.out.println("Obtener usuarios y productos");
+         System.out.println("=========");
         Usuario unCliente1 = gu.obtenerUsuario("cliente1@bar.com");
+        System.out.println(unCliente1);
         Producto prod1 = gp.obtenerProducto(1);
         Producto prod2 = gp.obtenerProducto(2);
 
@@ -267,5 +276,13 @@ public class ControladorPrincipalTP7 {
         }
         System.out.println();
 
+        gp.modificarProducto(unProducto2, 10, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
+        System.out.println(gp.obtenerProducto(10));
+        
+//        gp.borrarProducto(unProducto2);
+//        System.out.println(gp.obtenerProducto(10));
+                
+        
+        
     }
 }
