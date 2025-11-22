@@ -16,6 +16,7 @@ public class GestorProductos implements IGestorProductos {
     private static GestorProductos instancia;
 
     private final String NOMBRE_ARCHIVO = "productos.txt";
+
     private GestorProductos() {
 
     }
@@ -163,15 +164,18 @@ public class GestorProductos implements IGestorProductos {
         return VALIDACION_EXITO;
     }
 
+    public String escribirArchivo() {
+        File archivo = new File(NOMBRE_ARCHIVO);
+        try (FileWriter fw = new FileWriter(archivo)) {
+            BufferedWriter bw = new BufferedWriter(fw);
 
-    public void escribirArchivo() throws IOException {
-        File f = new File(NOMBRE_ARCHIVO);
-    FileWriter fw = new FileWriter(f);
-        try (BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(2);
+            for (Producto producto : productos) {
+                bw.write(producto.toString());
+                bw.newLine();
+            }
+            return ESCRITURA_OK;
+        } catch (IOException ioe) {
+            return ESCRITURA_ERROR;
         }
-        }
-        catch(IOException ioe ){
-        
-        }
+    }
 }
