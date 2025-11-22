@@ -192,16 +192,18 @@ public class GestorProductos implements IGestorProductos {
     }
 
     public String crearArchivo() {
-        File archivo = new File(NOMBRE_ARCHIVO);
-        if (archivo.exists()) {
-            return CREACION_OK;
+        File file = new File(NOMBRE_ARCHIVO);
+        try(BufferedWriter Bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))){
+            System.out.println(CREACION_OK);
+        }catch (IOException ex) {
+            System.out.println(CREACION_ERROR);
         }
-        return CREACION_ERROR;
+        return null;
     }
 
     public String escribirArchivo() {
-        File archivo = new File(NOMBRE_ARCHIVO);
-        try (FileWriter fw = new FileWriter(archivo)) {
+        File file = new File(NOMBRE_ARCHIVO);
+        try (FileWriter fw = new FileWriter(file)) {
             BufferedWriter bw = new BufferedWriter(fw);
 
             for (Producto producto : productos) {
