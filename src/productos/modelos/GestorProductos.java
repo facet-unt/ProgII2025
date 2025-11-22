@@ -191,4 +191,27 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
+    public String crearArchivo() {
+        File archivo = new File(NOMBRE_ARCHIVO);
+        if (archivo.exists()) {
+            return CREACION_OK;
+        }
+        return CREACION_ERROR;
+    }
+
+    public String escribirArchivo() {
+        File archivo = new File(NOMBRE_ARCHIVO);
+        try (FileWriter fw = new FileWriter(archivo)) {
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Producto producto : productos) {
+                bw.write(producto.toString());
+                bw.newLine();
+            }
+            return ESCRITURA_OK;
+        } catch (IOException ioe) {
+            return ESCRITURA_ERROR;
+        }
+    }
+
 }
