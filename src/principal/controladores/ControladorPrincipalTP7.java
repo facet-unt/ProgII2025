@@ -75,7 +75,7 @@ public class ControladorPrincipalTP7 {
         
         System.out.println("######## PRODUCTOS DE UNA CATEGORIA ordena por la desc ########");
         /*SUBCONJUNTO DE PRODUCTOS DE UNA CATEGORIA*/
-        List<Producto> productosBuscados = gp.verProductosPorCategoria(Categoria.POSTRE);
+        List productosBuscados = gp.verProductosPorCategoria(Categoria.POSTRE);
         System.out.println("Productos filtrados por categoría");
         System.out.println("===================");
         for(Producto p : productosBuscados) {
@@ -197,7 +197,7 @@ public class ControladorPrincipalTP7 {
         
         System.out.println("=========");
         System.out.println("Crear pedidos");
-        List<ProductoDelPedido> productosDelPedido1 = new ArrayList<>();
+        List productosDelPedido1 = new ArrayList<>();
         ProductoDelPedido pdp1 = new ProductoDelPedido(unProducto1, 1);
         ProductoDelPedido pdp2 = new ProductoDelPedido(unProducto2, 2); 
         LocalDateTime fechaYHora = LocalDateTime.now();
@@ -210,7 +210,7 @@ public class ControladorPrincipalTP7 {
         gPed.crearPedido(fecha, hora, productosDelPedido1, (Cliente)unCliente1);
         
         Usuario unCliente2 = gu.obtenerUsuario("cliente2@bar.com");
-        List<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
+        List productosDelPedido2 = new ArrayList<>();
         ProductoDelPedido pdp3 = new ProductoDelPedido(unProducto1, 10);
         ProductoDelPedido pdp4 = new ProductoDelPedido(unProducto2, 20);
         ProductoDelPedido pdp5 = new ProductoDelPedido(unProducto1, 30);
@@ -227,7 +227,7 @@ public class ControladorPrincipalTP7 {
         //sin fecha
         gPed.crearPedido(fecha, null, productosDelPedido2, (Cliente)unCliente1);
         //sin hora
-       ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
+       ArrayList productosDelPedido3 = new ArrayList<>();
         gPed.crearPedido(fecha, hora, null, (Cliente)unCliente1);
         //sin productos
         gPed.crearPedido(fecha, hora, productosDelPedido3, (Cliente)unCliente1);
