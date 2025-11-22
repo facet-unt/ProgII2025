@@ -42,6 +42,6 @@ public interface IGestorProductos {
     public Producto obtenerProducto(Integer codigo);
     public String CrearArchivo();
     public String EscribirArchivo(Producto producto);
-    //public String LeerArchivo();
+    public List<Producto> LeerArchivo();
     
 }

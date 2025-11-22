@@ -58,16 +58,16 @@ public class ControladorPrincipalTP7 {
         System.out.println(gp.crearProducto(7, "Suprema con pure", 3.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(9, "Suprema con ensalada", 2.8f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
 
-//        /*RECUPERAR LOS PRODUCTOS CON EL METODO MENU*/
-//        System.out.println("######## PRODUCTOS CON MENU (ordena por categ y luego desc ########");
-//        System.out.println("Productos");
-//        System.out.println("=========");
-//        for(Producto p : gp.menu()) {
-//            p.mostrar();
-//            System.out.println();
-//        }
-//        System.out.println();
-//        
+        /*RECUPERAR LOS PRODUCTOS CON EL METODO MENU*/
+        System.out.println("######## PRODUCTOS CON MENU (ordena por categ y luego desc ########");
+        System.out.println("Productos");
+        System.out.println("=========");
+        for(Producto p : gp.menu()) {
+            p.mostrar();
+            System.out.println();
+        }
+        System.out.println();
+        
 //        System.out.println("######## PRODUCTOS POR CODIGO ########");
 //        /*OBTENER UN PRODUCTO MEDIANTE EL CODIGO*/
 //        Producto unProducto1 = gp.obtenerProducto(1);

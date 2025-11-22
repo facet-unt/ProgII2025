@@ -1,8 +1,10 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos  {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
     private static GestorProductos instancia;
     
     private GestorProductos() {
@@ -71,6 +73,7 @@ public class GestorProductos implements IGestorProductos  {
     
     @Override
     public List<Producto> menu() {
+        this.productos = LeerArchivo();
         Collections.sort(productos);
         return this.productos;
     }
@@ -166,5 +169,34 @@ public class GestorProductos implements IGestorProductos  {
             return ESCRITURA_ERROR;
         }
         
+    }
+    @Override
+    public List<Producto> LeerArchivo(){
+        List<Producto> productos = new ArrayList<>();
+        File f = new File(NOMBRE_ARCHIVO);
+        if(!f.exists()){
+            return productos;
+        }
+        try(BufferedReader br = new BufferedReader(new FileReader(f))){
+            String linea;
+            while((linea = br.readLine()) != null){
+                String[] atributos = linea.split(SEPARADOR);
+                if(atributos.length >= 5){
+                    int codigo = Integer.parseInt(atributos[0]);
+                    String descripcion = atributos[1];
+                    Categoria categoria = Categoria.valueOf(atributos[2]);
+                    Estado estado = Estado.valueOf(atributos[3]);
+                    Float precio = Float.parseFloat(atributos[4]);
+                    Producto producto = new Producto(codigo,descripcion,precio,categoria,estado);
+                    productos.add(producto);
+                }
+        }
+            br.close();
+            return productos;
+        }
+        catch(IOException ioe){
+            System.out.println(LECTURA_ERROR);
+            return productos;
+        }
     }
 }

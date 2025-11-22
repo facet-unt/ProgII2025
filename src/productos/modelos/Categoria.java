@@ -32,6 +32,23 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-      
-    
+//    public static Categoria desdeString(String texto) {
+//        for (Categoria c : Categoria.values()) {
+//            if (c.valor.equalsIgnoreCase(texto.trim())) {
+//                return c;
+//            }
+//        }
+//        throw new IllegalArgumentException("Estado inválido: " + texto);
+   public static Categoria fromString(String texto) {
+        if (texto == null) 
+        return null;
+        texto = texto.toUpperCase();
+        if(texto.compareTo(ENTRADA.toString()) == 0){
+            return ENTRADA;
+        }
+        else if(texto.compareTo(PLATO_PRINCIPAL.toString()) == 0)
+            return PLATO_PRINCIPAL;
+        else
+            return POSTRE;
+        }
 }
