@@ -1,8 +1,10 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -164,18 +166,29 @@ public class GestorProductos implements IGestorProductos {
         return VALIDACION_EXITO;
     }
 
-    public String escribirArchivo() {
-        File archivo = new File(NOMBRE_ARCHIVO);
-        try (FileWriter fw = new FileWriter(archivo)) {
-            BufferedWriter bw = new BufferedWriter(fw);
+    public void leerArchivo() {
+        File file = new File(NOMBRE_ARCHIVO);
 
-            for (Producto producto : productos) {
-                bw.write(producto.toString());
-                bw.newLine();
+        if (!file.exists()) {
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] v = linea.split(",");
+
+                Producto prod = new Producto(Integer.parseInt(v[0]), v[1], Categoria.valueOf(v[3]), Estado.valueOf(v[4]), Float.parseFloat(v[2]));
+                productos.add(prod);
             }
-            return ESCRITURA_OK;
-        } catch (IOException ioe) {
-            return ESCRITURA_ERROR;
+
+            System.out.println(LECTURA_OK);
+
+        } catch (IOException ex) {
+            System.out.println(LECTURA_ERROR);
+            System.out.println(ex.getMessage());
         }
     }
+
 }
