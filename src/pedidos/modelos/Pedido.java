@@ -26,7 +26,7 @@ public class Pedido {
     private List<ProductoDelPedido> productoPedido = new ArrayList<>();
 
     //CONSTRUCTORES
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
@@ -36,7 +36,7 @@ public class Pedido {
 
     }
 
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this(numero, fechaYHora, Estado.CREADO, unProductoDelPedido, unCliente);
     }
 
@@ -60,7 +60,7 @@ public class Pedido {
         return productoPedido;
     }
 
-    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
+    public void asignarProductoPedido(List<ProductoDelPedido> productoPedido) {
         this.productoPedido = productoPedido;
     }
 

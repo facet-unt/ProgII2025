@@ -7,7 +7,7 @@ import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos {
 
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
 
     private static GestorProductos instancia;
 
@@ -80,7 +80,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> menu() {
-        ArrayList<Producto> copia = new ArrayList<>(productos);
+        List<Producto> copia = new ArrayList<>(productos);
         copia.sort((p1, p2) -> {
             int copararCategoria = p1.verCategoria().compareTo(p2.verCategoria());
             if (copararCategoria != 0) {
@@ -95,7 +95,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> resultados = new ArrayList<>();
+        List<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
             if (u.verDescripcion().toUpperCase().contains(descripcion.toUpperCase())) { //Se Empleo el toUpperCase y toUpperCase para permitir la busqueda parcial 
                 resultados.add(u);
@@ -118,7 +118,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> resultados = new ArrayList<>();
+        List<Producto> resultados = new ArrayList<>();
         for (Producto u : productos) {
             if (u.verCategoria().equals(categoria)) {
                 resultados.add(u);

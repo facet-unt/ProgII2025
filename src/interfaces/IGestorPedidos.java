@@ -32,7 +32,7 @@ public interface IGestorPedidos {
     public static final String VALIDACION_EXITO = "Los datos del pedido soncorrectos";
 
     public String crearPedido(LocalDate fecha, LocalTime hora,
-            ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+            List<ProductoDelPedido> productosDelPedido, Cliente cliente);
 
     public String cambiarEstado(Pedido pedidoAModificar);
 

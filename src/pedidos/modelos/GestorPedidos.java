@@ -19,7 +19,7 @@ import usuarios.modelos.Cliente;
  */
 public class GestorPedidos implements IGestorPedidos {
 
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
     private static GestorPedidos instancia;
 
     private GestorPedidos() {
@@ -33,7 +33,7 @@ public class GestorPedidos implements IGestorPedidos {
     }
 
     @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         String resultado = validarDatosPedidos(fecha, hora, productosDelPedido, cliente);
         if (!resultado.equals(VALIDACION_EXITO)) {
             return resultado;
@@ -64,7 +64,7 @@ public class GestorPedidos implements IGestorPedidos {
 
     @Override
     public List<Pedido> verPedidos() {
-     ArrayList<Pedido> copia = new ArrayList<>(pedidos);
+     List<Pedido> copia = new ArrayList<>(pedidos);
         copia.sort((p1, p2) -> Integer.compare(p1.verNumero(), p2.verNumero()));
         return copia;
     }
@@ -123,7 +123,7 @@ public class GestorPedidos implements IGestorPedidos {
         }
     }
 
-    private String validarDatosPedidos(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    private String validarDatosPedidos(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         if (fecha == null) {
             return ERROR_FECHA;
         }
