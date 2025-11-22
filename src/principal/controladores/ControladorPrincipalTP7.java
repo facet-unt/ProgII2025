@@ -85,7 +85,7 @@ public class ControladorPrincipalTP7 {
 
         System.out.println("######## PRODUCTOS POR DESCRIPCION ordena por categ y luego por desc########");
         /*BUSCAR PRODUCTO POR DESCRIPCION*/
-        productosBuscados = gp.buscarProductos("Empanada");
+        productosBuscados = gp.buscarProductos("Empanada"); //se agrego Empanada para control 
         System.out.println("Productos buscados por descripcion");
         System.out.println("==================");
         for (Producto p : productosBuscados) {
