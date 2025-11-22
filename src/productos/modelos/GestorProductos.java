@@ -1,6 +1,10 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
@@ -11,6 +15,7 @@ public class GestorProductos implements IGestorProductos {
 
     private static GestorProductos instancia;
 
+    private final String NOMBRE_ARCHIVO = "productos.txt";
     private GestorProductos() {
 
     }
@@ -158,6 +163,15 @@ public class GestorProductos implements IGestorProductos {
         return VALIDACION_EXITO;
     }
 
-    private void leerProductos() {
-    }
+
+    public void escribirArchivo() throws IOException {
+        File f = new File(NOMBRE_ARCHIVO);
+    FileWriter fw = new FileWriter(f);
+        try (BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(2);
+        }
+        }
+        catch(IOException ioe ){
+        
+        }
 }
