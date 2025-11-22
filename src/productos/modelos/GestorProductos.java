@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
-
 public class GestorProductos implements IGestorProductos  {
     private ArrayList<Producto> productos = new ArrayList<>();
     private static GestorProductos instancia;
@@ -30,7 +29,7 @@ public class GestorProductos implements IGestorProductos  {
         Producto producto= new Producto(codigo,descripcion,precio,categoria,estado);
         if(codigo<=0)
             return ERROR_CODIGO;
-        if(descripcion.isEmpty()||descripcion.isBlank())
+        if(descripcion==null||descripcion.isBlank())
         return ERROR_DESCRIPCION;
         if(precio<=0)
             return ERROR_PRECIO;
@@ -40,11 +39,10 @@ public class GestorProductos implements IGestorProductos  {
             return ERROR_ESTADO;
         if(productos.contains(producto))
             return PRODUCTOS_DUPLICADOS;
-        else
+        else{
             productos.add(producto);
-        String cadena= "Se creo el Producto con exito";
-        GuardarProductos(Producto producto);
-        return cadena;
+            return EscribirArchivo(producto);
+        }
         
     }
     
@@ -55,7 +53,7 @@ public class GestorProductos implements IGestorProductos  {
         if(codigo<=0)
             return ERROR_CODIGO;
         productoAModificar.asignarCodigo(codigo);
-        if(descripcion.isEmpty()||descripcion.isBlank())
+        if(descripcion==null||descripcion.isBlank())
         return ERROR_DESCRIPCION;
         productoAModificar.asignarDescripcion(descripcion);
         if(precio<=0)
@@ -128,7 +126,8 @@ public class GestorProductos implements IGestorProductos  {
         }
     }
 
-    private String CrearArchivo(){
+    @Override
+    public String CrearArchivo(){
         File f =  new File(NOMBRE_ARCHIVO);
         try{
             f.createNewFile();
@@ -138,27 +137,30 @@ public class GestorProductos implements IGestorProductos  {
             return CREACION_ERROR;
         }
     }
-    public String GuardarProductos(Producto producto){
-        String[] cadena = null;
-        StringBuilder cadena1 = null;
+    @Override
+    public String EscribirArchivo(Producto producto){
+        StringBuilder cadena1 = new StringBuilder();
+        File f =  new File(NOMBRE_ARCHIVO);
         try {
+            if(!f.exists()){    
+                CrearArchivo();
+            }
             FileWriter fw = new FileWriter(NOMBRE_ARCHIVO,true);
             BufferedWriter bw = new BufferedWriter(fw);
-            cadena[0] = Integer.toString(producto.verCodigo());
-            cadena1.append(cadena[0]);
+            cadena1.append(producto.verCodigo());
             cadena1.append(SEPARADOR);
-            cadena[1] = producto.verDescripcion();
-            cadena1.append(cadena[1]);
+            cadena1.append(producto.verDescripcion());
             cadena1.append(SEPARADOR);
-            cadena[2] = Float.toString(producto.verPrecio());
-            cadena1.append(cadena[2]);
+            cadena1.append(producto.verCategoria());
             cadena1.append(SEPARADOR);
-            cadena[3] = producto.verCategoria().toString();
-            cadena1.append(cadena[3]);
-            cadena[4] = producto.verEstado().toString();
+            cadena1.append(producto.verEstado());
+            cadena1.append(SEPARADOR);
+            cadena1.append(producto.verPrecio());
             bw.write(cadena1.toString());
             bw.newLine();
+            bw.close();
             fw.close();
+            return ESCRITURA_OK;
         } 
         catch (IOException ex) {
             return ESCRITURA_ERROR;

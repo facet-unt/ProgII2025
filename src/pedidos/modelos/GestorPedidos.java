@@ -40,7 +40,7 @@ public class GestorPedidos implements IGestorPedidos {
         if(pedidos.contains(pedido))
             return PEDIDOS_DUPLICADOS;
         else{
-            int numero=pedidos.size()+1;
+            int numero = pedidos.size()+1;
             pedido.asignarNumero(numero);
             pedidos.add(pedido);
         }

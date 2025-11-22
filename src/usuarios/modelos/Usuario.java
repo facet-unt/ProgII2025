@@ -117,5 +117,4 @@ public abstract class Usuario implements Comparable<Usuario> {
         }
     }
     
-    
 }
