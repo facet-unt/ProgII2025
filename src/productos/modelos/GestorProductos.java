@@ -23,31 +23,12 @@ public class GestorProductos implements IGestorProductos {
     }
 
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (!(codigo > 0)) {
-            return ERROR_CODIGO;
-        }
-        if (descripcion == null || descripcion.trim().isEmpty()) {
-            return ERROR_DESCRIPCION;
-        }
-        if (!(precio > 0)) {
-            return ERROR_PRECIO;
-
-        }
-        if (categoria == null) {
-            return ERROR_CATEGORIA;
-        }
-
-        if (estado == null) {
-            return ERROR_ESTADO;
-        }
-        for (Producto p : productos) {
-            if (p.verCodigo() == codigo) {
-                return PRODUCTOS_DUPLICADOS;
-            }
+        String resultado = validarDatosProducto(codigo, descripcion, precio, categoria, estado);
+        if (!resultado.equals(VALIDACION_EXITO)) {
+            return resultado;
         }
         Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(nuevoProducto);
-
         return EXITO;
     }
 
@@ -56,12 +37,14 @@ public class GestorProductos implements IGestorProductos {
         if (!(codigo > 0)) {
             return ERROR_CODIGO;
         }
-        if (descripcion == null || descripcion.trim().isEmpty()) {
+        if (descripcion == null) {
+            return ERROR_DESCRIPCION;
+        }
+        if (descripcion.trim().isEmpty()) {
             return ERROR_DESCRIPCION;
         }
         if (!(precio > 0)) {
             return ERROR_PRECIO;
-
         }
         if (categoria == null) {
             return ERROR_CATEGORIA;
@@ -147,5 +130,34 @@ public class GestorProductos implements IGestorProductos {
             productos.remove(producto);
             return PRODUCTO_BORRADO;
         }
+    }
+
+    private String validarDatosProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        if (!(codigo > 0)) {
+            return ERROR_CODIGO;
+        }
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return ERROR_DESCRIPCION;
+        }
+        if (!(precio > 0)) {
+            return ERROR_PRECIO;
+
+        }
+        if (categoria == null) {
+            return ERROR_CATEGORIA;
+        }
+
+        if (estado == null) {
+            return ERROR_ESTADO;
+        }
+        for (Producto p : productos) {
+            if (p.verCodigo() == codigo) {
+                return PRODUCTOS_DUPLICADOS;
+            }
+        }
+        return VALIDACION_EXITO;
+    }
+
+    private void leerProductos() {
     }
 }
