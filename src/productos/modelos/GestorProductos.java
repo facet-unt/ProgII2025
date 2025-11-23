@@ -7,18 +7,22 @@ import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
 import static interfaces.IGestorProductos.ERROR_PRECIO;
 import static interfaces.IGestorProductos.PRODUCTOS_DUPLICADOS;
 import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 
 public class GestorProductos implements IGestorProductos {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
     
     private static final String SEPARADOR = "-";
     
@@ -101,7 +105,8 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> menu() {
+    public List<Producto> menu() {
+        this.productos = this.leerProductos();
         Collections.sort(productos);
         return this.productos;
     }
@@ -109,7 +114,7 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> lista = new ArrayList<>();
-                
+        this.productos = this.leerProductos();
         for (Producto p : productos){            
             if(p.verDescripcion().equals(descripcion)){
                 lista.add(p);
@@ -214,7 +219,52 @@ public class GestorProductos implements IGestorProductos {
         return CREACION_OK;
     }
     
-    private String leerProductos(){
-        
+    private List<Producto> leerProductos(){      
+        File f = new File(NOMBREARCHIVO);
+        try(BufferedReader fr = new BufferedReader(new FileReader(NOMBREARCHIVO)))
+        {
+            String linea;
+            List<Producto> listado = new ArrayList<>();
+            while((linea = fr.readLine()) != null){
+                String[] cadenas = linea.split(SEPARADOR);
+                int codigo = Integer.parseInt(cadenas[0]);
+                String descripcion = cadenas[1];
+                Categoria categoria = this.convertirCategoria(cadenas[2]);
+                Estado estado = this.convertirEstado(cadenas[3]);
+                float precio = Float.parseFloat(cadenas[4]);
+                Producto prod = new Producto();
+                prod.asignarCodigo(codigo);
+                prod.asignarDescripcion(descripcion);
+                prod.asignarEstado(estado);
+                prod.asignarPrecio(precio);
+                prod.asignarEstado(estado);
+                listado.add(prod);
+            }  
+            return listado;
+        }
+        catch(IOException e){
+            System.out.println(ERROR_LECTURA);
+            return null;
+        }    
+          
     }
+        
+    private Categoria convertirCategoria(String valor){
+        Categoria[] valores = Categoria.values();
+        for(Categoria c: valores){
+            if(c.toString().equals(valor))
+                return c;
+        }
+        return null;
+    }
+ 
+    private Estado convertirEstado(String c){
+        for(Estado e : Estado.values()){
+            if(e.toString().equals(c))
+                return e;
+        }
+        return null;
+    }
+    
+    
 }
