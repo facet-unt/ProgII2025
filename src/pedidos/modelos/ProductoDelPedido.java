@@ -6,19 +6,18 @@ package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
-/**
- *
- * @author estudiante
- */
+
 public class ProductoDelPedido {
     private int cantidad;
     private Producto unProducto;
-
+    
+    /* Constructor */
     public ProductoDelPedido( Producto unProducto,int cantidad) {
         this.cantidad = cantidad;
         this.unProducto = unProducto;
     }
-
+    
+    /* Metodos get/set */
     public int verCantidad() {
         return cantidad;
     }
@@ -26,7 +25,6 @@ public class ProductoDelPedido {
     public void asignarCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
 
     public Producto verUnProducto() {
         return unProducto;
@@ -36,12 +34,14 @@ public class ProductoDelPedido {
         this.unProducto = unProducto;
         
     }
-
+    
+    /* Muestra un producto con descripcion-cantidad */
     public void mostrar(){
         System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
 
     }
-
+    
+    /* Implementacion del metodo equals/hashcode (compara productos) */
     @Override
     public int hashCode() {
         int hash = 7;

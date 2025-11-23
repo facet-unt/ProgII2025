@@ -17,7 +17,7 @@ import usuarios.modelos.Cliente;
  * @author estudiante
  */
 public interface IGestorPedidos {
-    //MENSAJES
+    /* Mensajes */
     public static final String EXITO = "Pedido creado/modificado/cancelado con exito";
     public static final String CAMBIO_ESTADO_FRACASO= "Al pedido no se le puede cambiar el estado";    
     public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
@@ -29,7 +29,7 @@ public interface IGestorPedidos {
     public static final String CANCELACION_FRACASO = "El pedido no pudo ser cancelado";
     
     
-    //METODOS A IMPLEMENTAR
+    /* Metodos a implementar */
     public abstract List<Pedido> verPedidos(); // Metodo agregado TP6
     public abstract String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente); // Metodo agregado TP6
     public abstract String cambiarEstado(Pedido pedidoAModificar);

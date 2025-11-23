@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import usuarios.modelos.Cliente;
 
-/**
- *
- * @author estudiante
- */
+
 public class Pedido implements Comparable<Pedido>{
     
    private int numero;
@@ -23,11 +20,10 @@ public class Pedido implements Comparable<Pedido>{
    private Cliente unCliente;
    private Estado unEstado;
    private List <ProductoDelPedido> productoPedido = new ArrayList<>();
-   private static int contador=1;
+   private static int contador = 1;
    
    
-   //CONSTRUCTORES
-
+   /* Constructores */ 
     public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
@@ -35,24 +31,16 @@ public class Pedido implements Comparable<Pedido>{
         this.unEstado = unEstado;
         this.unCliente.agregarPedido(this);
         this.productoPedido = unProductoDelPedido;
-
     }
     
     public Pedido(LocalDate fecha,LocalTime hora, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
         this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
     }
     
-//    public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
-//        this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
-//    }
-    
-
-  
-
+    /* Metodos get/set */ 
     public int verNumero() {
         return numero;
     }
-
 
     public void asignarNumero(int numero) {
         this.numero = numero;
@@ -77,9 +65,27 @@ public class Pedido implements Comparable<Pedido>{
        }
     }
     
+     public LocalDate verFecha() {
+        return this.fechaYHora.toLocalDate();
+    }
     
+    public LocalTime verHora() {
+        return this.fechaYHora.toLocalTime();
+    }
+
+    public Estado verEstado() {
+        return unEstado;
+    }
+
+    public void asignarEstado(Estado estado) {
+        this.unEstado = estado;
+    }
+
+    public Cliente verCliente() {
+        return unCliente;
+    }
     
-    //METODS toString
+    /*Metodo toString */
 
     @Override
     public String toString() {
@@ -87,10 +93,7 @@ public class Pedido implements Comparable<Pedido>{
     }
 
     
-    
-    
-    //OTROS METODOS
-   //MOSTRAR
+   /* Metodo mostrar */
     public void mostrar(){
         System.out.println("Nro: " + numero);
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -111,27 +114,7 @@ public class Pedido implements Comparable<Pedido>{
         
     }
     
-
-    public LocalDate verFecha() {
-        return this.fechaYHora.toLocalDate();
-    }
-    
-    public LocalTime verHora() {
-        return this.fechaYHora.toLocalTime();
-    }
-
-    public Estado verEstado() {
-        return unEstado;
-    }
-
-    public void asignarEstado(Estado estado) {
-        this.unEstado = estado;
-    }
-
-    public Cliente verCliente() {
-        return unCliente;
-    }
-
+    /* Metodo que controla que no se agreguen productos repetidos */
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(produc, cantidad);
         if (!productoPedido.contains(unProductoDelPedido))
@@ -139,7 +122,8 @@ public class Pedido implements Comparable<Pedido>{
             productoPedido.add(unProductoDelPedido);
         }
     }
-
+    
+    /* Implementacion del metodo equals-hashcode */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -162,15 +146,11 @@ public class Pedido implements Comparable<Pedido>{
         return this.numero == other.numero;
     }
     
-    // Implementacion del metodo compareTo TP6 //
+    /* Implementacion del metodo compareTo TP6 */
 
     @Override
     public int compareTo(Pedido p) {
          return this.numero - p.verNumero();
-    }
-    
-    
-    
-    
+    }  
 
 }

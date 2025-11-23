@@ -4,10 +4,7 @@
  */
 package usuarios.modelos;
 
-/**
- *
- * @author estudiante
- */
+
 public enum Perfil {
     CLIENTE ("Cliente"),
     EMPLEADO ("Emleado"),

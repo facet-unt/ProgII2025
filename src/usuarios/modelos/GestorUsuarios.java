@@ -12,87 +12,150 @@ import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
 import pedidos.modelos.*;
 
-/**
- *
- * @author estudiante
- */
+
 public class GestorUsuarios implements IGestorUsuarios{
- private List<Usuario> usuarios = new ArrayList<>();
     
+    private List<Usuario> usuarios = new ArrayList<>();
     private static GestorUsuarios instancia;
     
-    private GestorUsuarios() {
-        
+    /* Constructor predeterminado */
+    private GestorUsuarios() { 
     }
     
+    /* Metodo que devuelve una referencia a GestorUsuarios (se asegura de que exista un solo GestorUsuarios) */
     public static GestorUsuarios instanciar() {
         if (instancia == null)
             instancia = new GestorUsuarios();
         return instancia;
     }
     
-   public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        
-        if(perfil == CLIENTE)
-        {
-           Cliente c;
-           if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-           {
-               c=new Cliente(correo, clave, apellido, nombre);
-               c.asignarApellido(apellido);
-               c.asignarClave(clave);
-               c.asignarCorreo(correo);
-               c.asignarNombre(nombre);
-               usuarios.add(c);
-               return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-           }
-           else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-           }
-           else
-           {
-                if(perfil == EMPLEADO)
-            {
-                Empleado em;
-                if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-                {
-                    em=new Empleado(correo, clave, apellido, nombre);
-                    em.asignarApellido(apellido);
-                    em.asignarClave(clave);
-                    em.asignarCorreo(correo);
-                    em.asignarNombre(nombre);
-                    usuarios.add(em);
-                    return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-                }
-                else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-            } 
-            else
-            {
-                if(perfil == ENCARGADO)
-                {
-                    Encargado en;
-                    if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-                    {
-                        en=new Encargado(correo, clave, apellido, nombre);
-                        en.asignarApellido(apellido);
-                        en.asignarClave(clave);
-                        en.asignarCorreo(correo);
-                        en.asignarNombre(nombre);
-                        usuarios.add(en);
-                        return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-                    }
-                    else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-                    } 
-                else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-            } 
+//    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+//        
+//        if(perfil == CLIENTE)
+//        {
+//           Cliente c;
+//           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida==clave)
+//           {
+//               c = new Cliente(correo, clave, apellido, nombre);
+//               c.asignarApellido(apellido);
+//               c.asignarClave(clave);
+//               c.asignarCorreo(correo);
+//               c.asignarNombre(nombre);
+//               usuarios.add(c);
+//               
+//            return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+//           }
+//            else
+//                {
+//                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+//                }
+//        }
+//        else if(perfil == EMPLEADO)
+//        {
+//           Empleado em;
+//           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida==clave)
+//           {
+//                em = new Empleado(correo, clave, apellido, nombre);
+//                em.asignarApellido(apellido);
+//                em.asignarClave(clave);
+//                em.asignarCorreo(correo);
+//                em.asignarNombre(nombre);
+//                usuarios.add(em);
+//                    
+//                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+//                }
+//            else
+//                {
+//                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+//                }
+//        } 
+//        else if(perfil == ENCARGADO)
+//        {
+//           Encargado en;
+//           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida==clave)
+//           {
+//                en = new Encargado(correo, clave, apellido, nombre);
+//                en.asignarApellido(apellido);
+//                en.asignarClave(clave);
+//                en.asignarCorreo(correo);
+//                en.asignarNombre(nombre);
+//                usuarios.add(en);
+//                 
+//                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+//                }
+//            else
+//                {
+//                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+//                }
+//        } 
+//        else
+//        {
+//            return ("No se pudo realizar la Operación, ingrese valores válidos");
+//        }
+//     } 
             
-           } 
+    public String crearUsuario(String correo, String apellido, String nombre, 
+                           Perfil perfil, String clave, String claveRepetida) {
+
+    if (perfil == CLIENTE) {
+
+        Cliente c;
+        if (correo != null && correo.contains("@") &&
+            clave != null && claveRepetida != null && claveRepetida==clave) {
+
+            c = new Cliente(correo, clave, apellido, nombre);
+            usuarios.add(c);
+
+            return "Operación exitosa: El usuario " + apellido + nombre +
+                   " con correo " + correo + " clave " + clave + " se guardó correctamente";
+        } 
+        else {
+            return "No se pudo realizar la Operación, ingrese valores válidos";
         }
-    
-   public List<Usuario> verUsuarios()
+    } 
+    else {
+
+        if (perfil == EMPLEADO) {
+
+            Empleado em;
+            if (correo != null && correo.contains("@") &&
+                clave != null && claveRepetida != null && claveRepetida==clave) {
+
+                em = new Empleado(correo, clave, apellido, nombre);
+                usuarios.add(em);
+
+                return "Operación exitosa: El usuario " + apellido + nombre +
+                       " con correo " + correo + " clave " + clave + " se guardó correctamente";
+            } 
+            else {
+                return "No se pudo realizar la Operación, ingrese valores válidos";
+            }
+        } 
+        else {
+
+            if (perfil == ENCARGADO) {
+
+                Encargado en;
+                if (correo != null && correo.contains("@") &&
+                    clave != null && claveRepetida != null && claveRepetida==clave) {
+
+                    en = new Encargado(correo, clave, apellido, nombre);
+                    usuarios.add(en);
+
+                    return "Operación exitosa: El usuario " + apellido + nombre +
+                           " con correo " + correo + " clave " + clave + " se guardó correctamente";
+                } 
+                else {
+                    return "No se pudo realizar la Operación, ingrese valores válidos";
+                }
+            } 
+            else {
+                return "No se pudo realizar la Operación, ingrese valores válidos";
+            }
+        }
+    }
+}
+    public List<Usuario> verUsuarios()
     {
      Collections.sort(this.usuarios);
      return this.usuarios;  
@@ -100,7 +163,8 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     public List<Usuario> buscarUsuarios(String apellido) {
          
-        ArrayList<Usuario> encontrados = new ArrayList<>();
+      ArrayList<Usuario> encontrados = new ArrayList<>();
+      
         for (Usuario u : usuarios) {
              
             if (u.verApellido().toLowerCase().contains(apellido.toLowerCase())) {
@@ -133,7 +197,7 @@ public class GestorUsuarios implements IGestorUsuarios{
 
     @Override
     public String borrarUsuario(Usuario usuario) {
-        if(usuarios.contains(usuario)&&usuario!=null)
+        if(usuarios.contains(usuario) && usuario!=null)
         {
             if (usuario instanceof Cliente)
             {
@@ -154,7 +218,6 @@ public class GestorUsuarios implements IGestorUsuarios{
         
     }
     
-    
-    }
+}
     
     

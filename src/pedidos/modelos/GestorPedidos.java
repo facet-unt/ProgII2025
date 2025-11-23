@@ -9,20 +9,16 @@ import java.util.List;
 import productos.modelos.Producto;
 
 
-
-
 public class GestorPedidos implements IGestorPedidos{
     
     private List<Pedido> pedidos = new ArrayList<>();
-    
     private static GestorPedidos instancia;
     
-    
-    private GestorPedidos() {
-        
+    /* Constructor */
+    private GestorPedidos() {   
     }
     
-    
+    /* Metodo que devuelve una unica referencia a GestorPedidos */
     public static GestorPedidos instanciar() {
         if (instancia == null)
             instancia = new GestorPedidos();
@@ -33,7 +29,8 @@ public class GestorPedidos implements IGestorPedidos{
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         Pedido p = null;
 
-       if(fecha != null && hora!= null && productosDelPedido != null  && !productosDelPedido.isEmpty() && cliente != null){
+       if(fecha != null && hora!= null && productosDelPedido != null  && !productosDelPedido.isEmpty() && cliente != null)
+       {
             p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
                if (pedidos.contains(p)){
                    return PEDIDOS_DUPLICADOS;
@@ -41,11 +38,12 @@ public class GestorPedidos implements IGestorPedidos{
                cliente.agregarPedido(p);
                pedidos.add(p);
            return VALIDACION_EXITO;
-            //return EXITO;
-       }else{
+           
+       }
+       else
+       {
             return VALIDACION_FRACASO;
         }
-
     }
     
     @Override
@@ -77,7 +75,7 @@ public class GestorPedidos implements IGestorPedidos{
     
     @Override
     public boolean hayPedidosConEsteProducto(Producto producto){
-        boolean bandera=false; 
+        boolean bandera = false; 
         for (Pedido unPedido: pedidos){
             if (unPedido.verProductoPedido().contains(producto)){
                     bandera=true;

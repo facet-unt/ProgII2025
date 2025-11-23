@@ -9,40 +9,35 @@ import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
-/**
- *
- * @author estudiante
- */
+
 public abstract class Usuario implements Comparable<Usuario> {
+    
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
     
     
-    
-    //CONSTRUCTOR
+    /* Constructor */ 
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
     }
     
-    //MOSTRAR
     public void mostrar(){
         System.out.println( apellido + ", " + nombre);
     }
     
-    //TOString
+    /* Metodo tostring */
     @Override
     public String toString() {
         return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
     
     
-    //METODOS GET/SET
+    /*Metodos get/set */
     public String verCorreo() {
         return correo;
     }
@@ -89,7 +84,8 @@ public abstract class Usuario implements Comparable<Usuario> {
         hash = 59 * hash + Objects.hashCode(this.correo);
         return hash;
     }
-
+    
+    /* Implemtnacion del metodo equals (compara correos) */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -107,7 +103,7 @@ public abstract class Usuario implements Comparable<Usuario> {
     
     public abstract List<Pedido> verPedido();
 
-    // Implementacion del metodo compareTo TP6 //
+    /* Implementacion del metodo compareTo TP6 */
     @Override
     public int compareTo(Usuario u) {
         if(this.apellido.compareTo(u.verApellido()) == 0)

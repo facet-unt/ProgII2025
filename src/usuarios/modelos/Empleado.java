@@ -8,21 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.Pedido;
 
-/**
- *
- * @author Esteban
- */
 
 public class Empleado extends Usuario{
 
     private ArrayList<Pedido> vacio= new ArrayList<>();
-    //constructor
-
+    
+    /* Constructor */
     public Empleado(String correo, String clave, String apellido, String nombre) {
         super(correo,clave, apellido, nombre);
     }
 
-    @Override
+    @Override /* Metodo redefinido devuelve ArrayList vacio TP4 */
     public List<Pedido> verPedido() {
         
         return vacio;

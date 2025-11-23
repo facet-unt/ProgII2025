@@ -9,7 +9,7 @@ package productos.modelos;
  * @author Esteban
  */
 public class Producto implements Comparable <Producto> {
-    //Atributos
+    /* Atributos */
     private int codigo;
     private String descripcion;
     private Categoria unaCategoria;
@@ -17,7 +17,7 @@ public class Producto implements Comparable <Producto> {
     private float precio;
 
 
-    // Métodos
+    /* Métodos */
     public void mostrar() {
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
@@ -38,7 +38,7 @@ public class Producto implements Comparable <Producto> {
                 '}';
     }
 
-    
+    /* Constructor */
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
         this.unEstado = estado;        
@@ -47,6 +47,7 @@ public class Producto implements Comparable <Producto> {
         this.precio = precio;
     }
     
+    /* Constructor */ 
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.codigo = codigo;
         this.unEstado =  Estado.valueOf(estado.toUpperCase());        
@@ -55,7 +56,7 @@ public class Producto implements Comparable <Producto> {
     }
 
     
-   
+    /* Metodos get/set */
     public int verCodigo() {
         return codigo;
     }
@@ -108,7 +109,7 @@ public class Producto implements Comparable <Producto> {
         hash = 59 * hash + this.codigo;
         return hash;
     }
-
+    /* Implementacion del metodo equals - Compara productos por codigo */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -124,7 +125,7 @@ public class Producto implements Comparable <Producto> {
         return this.codigo == other.codigo;
     }
 
-    // Implementacion del metodo compareTo TP6 //
+    /* Implementacion del metodo compareTo TP6 */
     @Override
     public int compareTo(Producto p) {
       

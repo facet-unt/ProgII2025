@@ -10,11 +10,10 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 
-/**
- *
- * @author estudiante
- */
+
 public interface IGestorProductos {
+    
+    /* Mensajes */
     public static final String EXITO = "Producto creado/modificado con exito ";
     public static final String ERROR_CODIGO = "El codigo del producto es incorrecto ";
     public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta ";
@@ -33,7 +32,9 @@ public interface IGestorProductos {
     public static final String CREACION_OK = "Se pudo crear el archivo de productos";
     public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
+    public static final String ERROR_ARCHIVO = "El archivo no existe";
     
+    /* Metodos a implementar */
     public abstract List<Producto> menu(); // Metodo agregado TP6
     public abstract List<Producto> buscarProductos(String descripcion); // Metodo agregado TP6
     public abstract List<Producto> verProductosPorCategoria(Categoria categoria); // Metodo agregado TP6

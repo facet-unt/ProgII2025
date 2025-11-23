@@ -8,23 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.Pedido;
 
-/**
- *
- * @author Esteban
- */
 
 public class Encargado extends Usuario{
     
-    //constructor
+    private ArrayList<Pedido> vacio= new ArrayList<>();
     
+    /* Constructor */
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo,clave, apellido, nombre);
     }
     
  
-    @Override
+    @Override /* Metodo redefinido devuelve ArrayList vacio TP4 */
     public List<Pedido> verPedido() {
-        throw new UnsupportedOperationException("Un Encargado no puede hacer un pedido"); 
+        
+        return vacio;
     }
     
 }
