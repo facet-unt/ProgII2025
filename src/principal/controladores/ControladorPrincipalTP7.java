@@ -58,10 +58,9 @@ public class ControladorPrincipalTP7 {
         System.out.println(gp.crearProducto(6, "Ensalada", 3.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(7, "Suprema con pure", 3.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(9, "Suprema con ensalada", 2.8f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
-        
+
 //     gp.modificarProducto(gp.obtenerProducto(2), 100, "Testeo", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
 //      gp.borrarProducto(gp.obtenerProducto(3));
-        
         /*RECUPERAR LOS PRODUCTOS CON EL METODO MENU*/
         System.out.println("######## PRODUCTOS CON MENU (ordena por categ y luego desc ########");
         System.out.println("Productos");
@@ -86,7 +85,7 @@ public class ControladorPrincipalTP7 {
         System.out.println("===================");
         for (Producto p : productosBuscados) {
             p.mostrar();
-            
+
         }
         System.out.println();
 
@@ -193,14 +192,12 @@ public class ControladorPrincipalTP7 {
         gu.crearUsuario("encargado3@bar.com", "ApellidoEncargado4", "NombreEncargado4", Perfil.ENCARGADO, "claveEncargado4", "claveEncargado44");
         //sin coincidir las claves
         System.out.println("VEO SI ANDAN LOS CONTROLES PARA USUARIO");
-        for(Usuario u: gu.verUsuarios())
-        {
+        for (Usuario u : gu.verUsuarios()) {
             u.mostrar();
         }
-        
 
-          System.out.println("Obtener usuarios y productos");
-         System.out.println("=========");
+        System.out.println("Obtener usuarios y productos");
+        System.out.println("=========");
         Usuario unCliente1 = gu.obtenerUsuario("cliente1@bar.com");
         System.out.println(unCliente1);
         Producto prod1 = gp.obtenerProducto(1);
@@ -278,11 +275,13 @@ public class ControladorPrincipalTP7 {
 
         gp.modificarProducto(unProducto2, 10, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
         System.out.println(gp.obtenerProducto(10));
-        
+
+//        gp.modificarProducto(gp.obtenerProducto(3), 40, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
+//        System.out.println(gp.borrarProducto(gp.obtenerProducto(7)));
+//        System.out.println(gp.borrarProducto(gp.obtenerProducto(10)));
+//        System.out.println(gp.borrarProducto(gp.obtenerProducto(6)));
+
 //        gp.borrarProducto(unProducto2);
 //        System.out.println(gp.obtenerProducto(10));
-                
-        
-        
     }
 }

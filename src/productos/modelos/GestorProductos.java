@@ -48,7 +48,8 @@ public class GestorProductos implements IGestorProductos {
         try {
             FileWriter fw = new FileWriter(ARCHIVO);
             for (Producto p : productos) {
-                cargarProductoEnArchivo(p,false);
+                System.out.println("cargue");
+                cargarProductoEnArchivo(p, true);
             }
         } catch (IOException ex) {
             System.out.println("IOException");
@@ -76,21 +77,21 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_ESTADO;
         }
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-        
-        if(productos.isEmpty()){
+
+        if (productos.isEmpty()) {
             productos.add(p);
-            cargarProductoEnArchivo(p,false);
-        }else{
-        if (!productos.contains(p)) {
-            productos.add(p);
-            cargarProductoEnArchivo(p,true);
-        }
+            cargarProductoEnArchivo(p, false);
+        } else {
+            if (!productos.contains(p)) {
+                productos.add(p);
+                cargarProductoEnArchivo(p, true);
+            }
         }
         return VALIDACION_EXITO;
 
     }
 
-    private void cargarProductoEnArchivo(Producto p,boolean valor) {
+    private void cargarProductoEnArchivo(Producto p, boolean valor) {
         try {
             FileWriter fw = new FileWriter(ARCHIVO, valor);
             fw.write(Integer.toString(p.verCodigo()));
@@ -128,18 +129,17 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
-        
+
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-       
-        
+
         try {
             FileWriter fw = new FileWriter(ARCHIVO);
             for (Producto pro : productos) {
-                cargarProductoEnArchivo(pro,true);
+                cargarProductoEnArchivo(pro, true);
             }
         } catch (IOException ex) {
             System.out.println("IOException");
@@ -165,24 +165,22 @@ public class GestorProductos implements IGestorProductos {
 //        }
 //        Collections.sort(prod);
 //        return prod;
- 
-    List<Producto> prod = new ArrayList<>();
 
-    String buscada = descripcion.toLowerCase();
+        List<Producto> prod = new ArrayList<>();
 
-    for (Producto p : productos) {
-        String desc = p.verDescripcion();
-        if (desc != null && desc.toLowerCase().contains(buscada)) {
-            //aca creo q no es necesario el null xq no se crearia sino pero por las dudas
-            prod.add(p);
+        String buscada = descripcion.toLowerCase();
+
+        for (Producto p : productos) {
+            String desc = p.verDescripcion();
+            if (desc != null && desc.toLowerCase().contains(buscada)) {
+                //aca creo q no es necesario el null xq no se crearia sino pero por las dudas
+                prod.add(p);
+            }
         }
+
+        Collections.sort(prod);
+        return prod;
     }
-
-    Collections.sort(prod);
-    return prod;
-}
-
-    
 
     public boolean existeEsteProducto(Producto producto) {
         return productos.contains(producto);
@@ -191,9 +189,9 @@ public class GestorProductos implements IGestorProductos {
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
         List<Producto> productosPorCategoria = new ArrayList();
         for (Producto p : productos) {
-            if (p.verCategoria() == categoria){
-                productosPorCategoria.add(p);   
-            }     
+            if (p.verCategoria() == categoria) {
+                productosPorCategoria.add(p);
+            }
         }
         Collections.sort(productosPorCategoria);
         return productosPorCategoria;
