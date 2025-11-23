@@ -2,6 +2,12 @@ package productos.modelos;
 
 import java.util.ArrayList;
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +15,9 @@ import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos{
     private List<Producto> productos = new ArrayList<>();
+    
+    private static final String ARCHIVO_PRODUCTOS = "productos.txt";
+    private static final String SEPARADOR = ";";
     
     private static GestorProductos instancia;
     
@@ -110,5 +119,49 @@ public class GestorProductos implements IGestorProductos{
         if(productos.remove(producto))
             return "Producto borrado con exito";  
         else return "El producto no existe en productos";
+    }
+    @Override
+    public String guardarProductos() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_PRODUCTOS))) {
+            for (Producto prod : this.productos) {
+                String linea = prod.verCodigo() + SEPARADOR + prod.verDescripcion() + SEPARADOR + prod.verPrecio() + SEPARADOR  + prod.verCategoria().name() + SEPARADOR + prod.verEstado().name();
+                bw.write(linea);
+                bw.newLine();
+            }
+            return ESCRITURA_OK; 
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
+        }
+    }
+    @Override
+    public String cargarProductos() {
+        File archivo = new File(ARCHIVO_PRODUCTOS);
+        if (!archivo.exists()) {
+            return LECTURA_ERROR;
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            this.productos.clear();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(SEPARADOR);
+                System.out.println(datos[0]);
+                System.out.println(datos[1]);
+                System.out.println(datos[2]);
+                System.out.println(datos[3]);
+                System.out.println(datos[4]);
+                int codigo = Integer.parseInt(datos[0]);
+                String descripcion = datos[1];
+                float precio = Float.parseFloat(datos[2]);
+                Categoria categoria = Categoria.valueOf(datos[3]);
+                Estado estado = Estado.valueOf(datos[4]);
+                Producto nuevoProd = new Producto(codigo, descripcion, categoria, estado, precio);
+                //Producto prod = new Producto(Integer.parseInt(v[0]), v[1], Categoria.valueOf(v[3]), Estado.valueOf(v[4]), Float.parseFloat(v[2]));
+                this.productos.add(nuevoProd);
+            }
+            return LECTURA_OK;
+
+        } catch (IOException e) {
+            return LECTURA_ERROR;
+        }
     }
 }
