@@ -270,11 +270,4 @@ public class GestorProductos implements IGestorProductos{
         return p;    
     }
     
-
-
-
-    // <editor-fold defaultstate="collapsed" desc="nombre">
-    
-    // </editor-fold>
-    
  }
