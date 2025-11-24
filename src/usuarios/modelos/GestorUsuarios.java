@@ -67,15 +67,15 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     private String validarValores(String correo, String apellido, String nombre, Perfil perfil, String clave, String claverepetida){
-        if (correo.isEmpty() || !correo.contains("@")){
+        if (correo == null || correo.isEmpty() ){
             return ERROR_CORREO;
         }
         
-        if (apellido.isEmpty() || apellido == null){
+        if (apellido == null || apellido.isEmpty()){
             return ERROR_APELLIDO;
         }
         
-        if (nombre.isEmpty() || nombre == null){
+        if (nombre == null || nombre.isEmpty()){
             return ERROR_NOMBRE;
         }
         
@@ -111,11 +111,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     @Override
     public boolean existeEsteUsuario(Usuario usuario){
-        if (usuarios.contains(usuario)){
-            return true;
-        }
-        else
-            return false;
+        return usuarios.contains(usuario);
     }
     
     @Override
@@ -132,8 +128,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     public String borrarUsuario(Usuario usuario) {
         
         
-        if (usuario instanceof Cliente) {
-            Cliente cliente = (Cliente) usuario;
+        if (usuario instanceof Cliente cliente) {
             GestorPedidos gp = GestorPedidos.getInstancia();
 
             if (gp.hayPedidosConEsteCliente(cliente)) {
@@ -149,15 +144,11 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     }
     
-    Comparator<Usuario> compararApyNom = new Comparator<Usuario>()
-    {  
-        @Override
-        public int compare(Usuario u1, Usuario u2) {
-            if(u1.verApellido().compareTo(u2.verApellido()) == 0)
-                return u1.verApellido().compareTo(u2.verApellido());
-            else
-                return u1.verApellido().compareTo(u2.verApellido());
-        }      
+    Comparator<Usuario> compararApyNom = (Usuario u1, Usuario u2) -> {
+        if(u1.verApellido().compareTo(u2.verApellido()) == 0)
+            return u1.verApellido().compareTo(u2.verApellido());
+        else
+            return u1.verApellido().compareTo(u2.verApellido());      
     };
             
 }

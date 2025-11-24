@@ -62,4 +62,5 @@ public interface IGestorProductos {
     
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
     
+    public static final String ERROR_LECTURA = "No se pudieron leer los productos";
 }

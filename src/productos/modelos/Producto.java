@@ -38,6 +38,9 @@ public class Producto implements Comparable<Producto>{
                 '}';
     }
 
+    public Producto() {
+    }
+
     
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;

@@ -198,7 +198,6 @@ public class GestorProductos implements IGestorProductos {
             linea += Float.toString(p.verPrecio());
             fw.write(linea);
             fw.write("\n");
-            fw.close();
             return ESCRITURA_OK;
         }
         catch(IOException e){
@@ -233,11 +232,11 @@ public class GestorProductos implements IGestorProductos {
                 Estado estado = this.convertirEstado(cadenas[3]);
                 float precio = Float.parseFloat(cadenas[4]);
                 Producto prod = new Producto();
+                prod.asignarCategoria(categoria);
                 prod.asignarCodigo(codigo);
                 prod.asignarDescripcion(descripcion);
                 prod.asignarEstado(estado);
                 prod.asignarPrecio(precio);
-                prod.asignarEstado(estado);
                 listado.add(prod);
             }  
             return listado;
