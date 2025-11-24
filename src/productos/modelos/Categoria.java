@@ -39,9 +39,9 @@ public enum Categoria {
 //            }
 //        }
 //        throw new IllegalArgumentException("Estado inválido: " + texto);
-   public static Categoria fromString(String texto) {
+   public static Categoria leerValor(String texto) {
         if (texto == null) 
-        return null;
+            return null;
         texto = texto.toUpperCase();
         if(texto.compareTo(ENTRADA.toString()) == 0){
             return ENTRADA;

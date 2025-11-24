@@ -37,7 +37,7 @@ public enum Estado {
 //        }
 //        throw new IllegalArgumentException("Estado inválido: " + texto);
 //    }
-    public static Estado fromString(String texto) {
+    public static Estado leerValor(String texto) {
         if (texto == null) return null;
 
         texto = texto.trim().toUpperCase();

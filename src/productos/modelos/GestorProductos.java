@@ -184,8 +184,8 @@ public class GestorProductos implements IGestorProductos  {
                 if(atributos.length >= 5){
                     int codigo = Integer.parseInt(atributos[0]);
                     String descripcion = atributos[1];
-                    Categoria categoria = Categoria.valueOf(atributos[2]);
-                    Estado estado = Estado.valueOf(atributos[3]);
+                    Categoria categoria = Categoria.leerValor(atributos[2]);
+                    Estado estado = Estado.leerValor(atributos[3]);
                     Float precio = Float.parseFloat(atributos[4]);
                     Producto producto = new Producto(codigo,descripcion,precio,categoria,estado);
                     productos.add(producto);
