@@ -167,53 +167,63 @@ public class GestorProductos implements IGestorProductos {
     }
 
     public void leerArchivo() {
-        File file = new File(NOMBRE_ARCHIVO);
-
-        if (!file.exists()) {
-            return;
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
+        try (BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
+            productos.clear();
             String linea;
+
             while ((linea = br.readLine()) != null) {
                 String[] v = linea.split(",");
 
-                Producto prod = new Producto(Integer.parseInt(v[0]), v[1], Categoria.valueOf(v[3]), Estado.valueOf(v[4]), Float.parseFloat(v[2]));
-                productos.add(prod);
+                productos.add(new Producto(
+                        Integer.parseInt(v[0].trim()), 
+                        v[1].trim(), 
+                        Categoria.valueOf(v[3].trim().toUpperCase().replace(" ", "_")),
+                        Estado.valueOf(v[4].trim().toUpperCase().replace(" ", "_")),
+                        Float.parseFloat(v[2].trim())
+                ));
             }
-
             System.out.println(LECTURA_OK);
 
-        } catch (IOException ex) {
+        } catch (Exception e) {
             System.out.println(LECTURA_ERROR);
-            System.out.println(ex.getMessage());
+            e.printStackTrace();
         }
     }
 
     public String crearArchivo() {
         File file = new File(NOMBRE_ARCHIVO);
-        try(BufferedWriter Bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))){
-            System.out.println(CREACION_OK);
-        }catch (IOException ex) {
+        try {
+            if (file.createNewFile()) {
+                return CREACION_OK;
+            } else {
+                return CREACION_OK;
+            }
+        } catch (IOException ex) {
             System.out.println(CREACION_ERROR);
+            System.err.println(ex.getMessage());
+            return CREACION_ERROR;
         }
-        return null;
     }
 
     public String escribirArchivo() {
-        File file = new File(NOMBRE_ARCHIVO);
-        try (FileWriter fw = new FileWriter(file)) {
-            BufferedWriter bw = new BufferedWriter(fw);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
 
             for (Producto producto : productos) {
-                bw.write(producto.toString());
+                String lineaCSV = producto.verCodigo() + ","
+                        + producto.verDescripcion() + ","
+                        + producto.verPrecio() + ","
+                        + producto.verCategoria() + ","
+                        + producto.verEstado();
+
+                bw.write(lineaCSV);
                 bw.newLine();
             }
             return ESCRITURA_OK;
         } catch (IOException ioe) {
+            System.out.println(ESCRITURA_ERROR);
+            System.err.println(ioe.getMessage());
             return ESCRITURA_ERROR;
         }
-    }
 
+    }
 }

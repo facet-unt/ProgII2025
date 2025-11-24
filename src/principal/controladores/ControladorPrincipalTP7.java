@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package principal.controladores;
 
 import interfaces.IGestorPedidos;
@@ -68,10 +72,8 @@ public class ControladorPrincipalTP7 {
         System.out.println("######## PRODUCTOS POR CODIGO ########");
         /*OBTENER UN PRODUCTO MEDIANTE EL CODIGO*/
         Producto unProducto1 = gp.obtenerProducto(1);
-        //unProducto1.mostrar();
         Producto unProducto2 = gp.obtenerProducto(2);
-        //unProducto2.mostrar();
-        
+
         System.out.println("######## PRODUCTOS DE UNA CATEGORIA ordena por la desc ########");
         /*SUBCONJUNTO DE PRODUCTOS DE UNA CATEGORIA*/
         List<Producto> productosBuscados = gp.verProductosPorCategoria(Categoria.POSTRE);
@@ -85,7 +87,7 @@ public class ControladorPrincipalTP7 {
 
         System.out.println("######## PRODUCTOS POR DESCRIPCION ordena por categ y luego por desc########");
         /*BUSCAR PRODUCTO POR DESCRIPCION*/
-        productosBuscados = gp.buscarProductos("Empanada"); //se agrego Empanada para control 
+        productosBuscados = gp.buscarProductos("Prod");
         System.out.println("Productos buscados por descripcion");
         System.out.println("==================");
         for (Producto p : productosBuscados) {
@@ -261,6 +263,10 @@ public class ControladorPrincipalTP7 {
             System.out.println();
         }
         System.out.println();
-
+        
+        gp.crearArchivo();
+        gp.escribirArchivo();
+        gp.leerArchivo();
+        
     }
 }

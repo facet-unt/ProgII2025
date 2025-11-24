@@ -51,4 +51,10 @@ public interface IGestorProductos {
     public List<Producto> verProductosPorCategoria(Categoria categoria);
 
     public Producto obtenerProducto(Integer codigo);
+    
+    public String crearArchivo();
+    
+    public String escribirArchivo();
+    
+    public void leerArchivo();
 }
