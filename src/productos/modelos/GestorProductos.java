@@ -2,8 +2,10 @@ package productos.modelos;
 
 import interfaces.IGestorProductos;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +15,13 @@ public class GestorProductos implements IGestorProductos{
     private ArrayList<Producto> productos = new ArrayList<>();
    
     private static GestorProductos instancia;
-//Agrego las constantes de archivo
+    
+    //Agrego las constantes de archivo
     private static final String NOMBRE_ARCHIVO= "Archivo.txt";
     private static final String SEPARADOR_ARCHIVO= ";";
+    
     private GestorProductos() {
-
+        this.leerProductoConArchivo();
     }
     
     public static GestorProductos instanciar() {
@@ -31,11 +35,14 @@ public class GestorProductos implements IGestorProductos{
         String error = validarDatosProducto(codigo, descripcion, precio, categoria, estado);
         if (error != null)
             return error;
+        
         Producto pNuevo = new Producto(codigo, descripcion, categoria, estado, precio);
         
         if(existeEsteProducto(pNuevo))
             return PRODUCTOS_DUPLICADOS;
+        
         productos.add(pNuevo);
+        
         //Agregamos el producto en el archivo
         this.cargarProdEnArchivo();
         
@@ -57,6 +64,7 @@ public class GestorProductos implements IGestorProductos{
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
         
+        this.cargarProdEnArchivo();
         return EXITO;
     }
 
@@ -131,6 +139,7 @@ public class GestorProductos implements IGestorProductos{
         }
     
         if (productos.remove(producto)) {
+            this.cargarProdEnArchivo();
             return "Producto borrado con éxito.";
         } else {
             return PRODUCTO_INEXISTENTE;
@@ -183,20 +192,74 @@ public class GestorProductos implements IGestorProductos{
             }
         }
         // Hago un try con argumento
-        try(BufferedReader br = new BuffereadRead(new FileReader(prodArchivo))){
+        try(BufferedReader br = new BufferedReader (new FileReader(prodArchivo))){
             productos.clear(); //Evitamos que se dupliquen los productos si se vuelve a leer
             String linea;
             
             while((linea = br.readLine())!=null){
                 linea=linea.trim();
-              Producto p = convertirLineaAProducto(linea);
-              if(p!=null && !productos.contains(p)){
-                  productos.add(p);
-              return LECTURA_OK;
+                Producto p = convertirLineaAProducto(linea);
+                if(p!=null && !productos.contains(p)){
+                    productos.add(p);
+                }
             }
-        }  
-        } catch(IOException | IllegalArgumentException e){
-            return LECTURA_ERROR;
+            return LECTURA_OK;
         }
+        catch(IOException | IllegalArgumentException e){
+            return LECTURA_ERROR;
+        } 
+    }
+    
+    public String cargarProdEnArchivo(){
+        File prodArchivo = new File(NOMBRE_ARCHIVO);
+        if(!prodArchivo.exists()){
+            try{
+                if(prodArchivo.createNewFile()){
+                    return CREACION_OK; //Si el archivo se creo correctamente
+                }
+                else {
+                    return CREACION_ERROR;
+                }
+            } catch(IOException e){
+                return CREACION_ERROR;
+            }
+        }
+        // Si existe, se crea la lista de Productos
+        try(BufferedWriter bw = new BufferedWriter (new FileWriter(prodArchivo))){
+            for (Producto p : productos) {
+                String linea = convertirProductoALinea(p);
+                bw.write(linea);
+                bw.newLine();
+            }
+            return ESCRITURA_OK;
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
+        }
+    }
+    
+    private String convertirProductoALinea(Producto p) {
+        return p.verCodigo() + SEPARADOR_ARCHIVO
+             + p.verDescripcion() + SEPARADOR_ARCHIVO
+             + p.verPrecio() + SEPARADOR_ARCHIVO
+             + p.verCategoria().name() + SEPARADOR_ARCHIVO
+             + p.verEstado().name();
+    }
+    
+    private Producto convertirLineaAProducto(String linea) throws IllegalArgumentException {
+        if (linea == null || linea.isBlank())
+            return null;
+
+        String[] partes = linea.split(SEPARADOR_ARCHIVO);
+
+        if (partes.length != 5)
+            throw new IllegalArgumentException("Formato inválido en la línea del archivo");
+
+        int codigo = Integer.parseInt(partes[0].trim());
+        String descripcion = partes[1].trim();
+        float precio = Float.parseFloat(partes[2].trim());
+        Categoria categoria = Categoria.valueOf(partes[3].trim());
+        Estado estado = Estado.valueOf(partes[4].trim());
+
+        return new Producto(codigo, descripcion, categoria, estado, precio);
     }
 }
