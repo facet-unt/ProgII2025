@@ -15,8 +15,8 @@ import usuarios.modelos.Usuario;
 public interface IGestorUsuarios {
     //<editor-fold defaultstate="collapsed" desc="Constantes">
     public static final String USUARIO_TIENE_PEDIDO = "El usuario tiene un pedido en curso ";
-    public static final String OPERACION_FALLIDA = "No pudo realizarse la operación ";
-    public static final String OPERACION_EXITOSA = "Operación exitosa ";
+    public static final String OPERACION_FALLIDA = "No pudo realizarse la operacion ";
+    public static final String OPERACION_EXITOSA = "Operacion exitosa ";
     public static final String USUARIO_INEX = "El usuario no existe ";
     //</editor-fold>
     
