@@ -24,4 +24,12 @@ public enum Categoria {
         return this.valor;
     }
     
+    public static Categoria verCategoria(String p){
+        for(Categoria e:Categoria.values()){
+            if (p.equals(e.valor)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

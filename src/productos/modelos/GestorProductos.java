@@ -212,8 +212,8 @@ public class GestorProductos implements IGestorProductos{
                 Producto p = new Producto();
                 p.asignarCodigo(Integer.parseInt(cadenas[0]));
                 p.asignarDescripcion(cadenas[1]);
-                p.asignarCategoria(this.convertirCategoria(cadenas[2]));
-                p.asignarEstado(this.convertirEstado(cadenas[3]));
+                p.asignarCategoria(Categoria.verCategoria(cadenas[2]));
+                p.asignarEstado(Estado.verEstado(cadenas[3]));
                 p.asignarPrecio(Float.parseFloat(cadenas[4]));
                 listaProductos.add(p);
             }
@@ -226,24 +226,5 @@ public class GestorProductos implements IGestorProductos{
             return null;
         }
     }
-    
-    
-    
-    private Categoria convertirCategoria(String valor){
-        Categoria[] valores = Categoria.values();
-        for(Categoria c: valores){
-            if(c.toString().equals(valor))
-                return c;
-        }
-        return null;
-    }
-    
-    private Estado convertirEstado(String valor){
-        Estado[] valores = Estado.values();
-        for(Estado e: valores){
-            if(e.toString().equals(valor))
-                return e;
-        }
-        return null;
-    }
+   
 }

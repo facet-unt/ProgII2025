@@ -22,4 +22,13 @@ public enum Estado {
     public String toString() {
         return this.valor;
     }
+    
+    public static Estado verEstado(String p){
+        for(Estado e:Estado.values()){
+            if (p.equals(e.valor)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }
