@@ -7,6 +7,7 @@ package principal.controladores;
 import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import interfaces.IGestorUsuarios;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,6 +19,7 @@ import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
+import static productos.modelos.GestorProductos.ARCHIVO;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 import usuarios.modelos.GestorUsuarios;
@@ -273,14 +275,17 @@ public class ControladorPrincipalTP7 {
         }
         System.out.println();
 
-        gp.modificarProducto(unProducto2, 10, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
-        System.out.println(gp.obtenerProducto(10));
+        System.out.println(unProducto2);
+        System.out.println(gp.modificarProducto(unProducto2, 10, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE));
+        System.out.println(gp.modificarProducto(gp.obtenerProducto(13), 10222, "asdasdasd", 1000220, Categoria.ENTRADA, Estado.DISPONIBLE));
+                System.out.println(gp.borrarProducto(gp.obtenerProducto(5)));
+                                System.out.println(gp.borrarProducto(gp.obtenerProducto(15)));
+
 
 //        gp.modificarProducto(gp.obtenerProducto(3), 40, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
 //        System.out.println(gp.borrarProducto(gp.obtenerProducto(7)));
 //        System.out.println(gp.borrarProducto(gp.obtenerProducto(10)));
 //        System.out.println(gp.borrarProducto(gp.obtenerProducto(6)));
-
 //        gp.borrarProducto(unProducto2);
 //        System.out.println(gp.obtenerProducto(10));
     }

@@ -2,6 +2,10 @@ package productos.modelos;
 
 import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +18,7 @@ import pedidos.modelos.ProductoDelPedido;
 public class GestorProductos implements IGestorProductos {
 
     public static final String ARCHIVO = "Productos.txt";
+
     public static final String SEPARADOR = "*";
 
     private final List<Producto> productos = new ArrayList();
@@ -21,7 +26,7 @@ public class GestorProductos implements IGestorProductos {
     private static GestorProductos instancia;
 
     private GestorProductos() {
-
+        cargarArchivoEnLista();
     }
 
     public static GestorProductos instanciar() {
@@ -44,23 +49,18 @@ public class GestorProductos implements IGestorProductos {
                 }
             }
         }
-        productos.remove(producto);
-        try {
-            FileWriter fw = new FileWriter(ARCHIVO);
-            for (Producto p : productos) {
-                System.out.println("cargue");
-                cargarProductoEnArchivo(p, true);
-            }
-        } catch (IOException ex) {
-            System.out.println("IOException");
-
+        if(!productos.contains(producto)){
+            return PRODUCTO_INEXISTENTE;
         }
+        productos.remove(producto);
+
+        cargarListaProductosEnArchivo();
+
         return BORRADO_EXITO;
     }
 
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-
         if (codigo <= 0) {
             return ERROR_CODIGO;
         }
@@ -77,43 +77,77 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_ESTADO;
         }
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-
-        if (productos.isEmpty()) {
-            productos.add(p);
-            cargarProductoEnArchivo(p, false);
+        if (productos.contains(p)) {
+            return PRODUCTOS_DUPLICADOS;
         } else {
-            if (!productos.contains(p)) {
-                productos.add(p);
-                cargarProductoEnArchivo(p, true);
-            }
+
+            productos.add(p);
+            cargarListaProductosEnArchivo();
         }
         return VALIDACION_EXITO;
 
     }
 
-    private void cargarProductoEnArchivo(Producto p, boolean valor) {
-        try {
-            FileWriter fw = new FileWriter(ARCHIVO, valor);
-            fw.write(Integer.toString(p.verCodigo()));
-            fw.write(SEPARADOR);
-            fw.write(p.verDescripcion());
-            fw.write(SEPARADOR);
-            fw.write(Float.toString(p.verPrecio()));
-            fw.write(SEPARADOR);
-            fw.write(p.verCategoria().toString());
-            fw.write(SEPARADOR);
-            fw.write(p.verEstado().toString());
-            fw.write(SEPARADOR);
-            fw.write("\n");
-            fw.flush();
+    private void cargarArchivoEnLista() {
+        productos.clear();
+        File archivo = new File(ARCHIVO);
 
-        } catch (IOException ex) {
-            System.out.println("IOException");
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();
+                System.out.println(CREACION_OK);
+            } catch (IOException e) {
+                System.out.println(CREACION_ERROR);
+            }
+            return;
         }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.isBlank()) {
+                    continue;
+                }
+                String[] partes = linea.split("\\*");
+                if (partes.length != 5) {
+                    continue;
+                }
+                int codigo = Integer.parseInt(partes[0]);
+                String desc = partes[1];
+                float precio = Float.parseFloat(partes[2]);
+                Categoria cat = Categoria.valueOf(partes[3]);
+                Estado est = Estado.valueOf(partes[4]);
+                productos.add(new Producto(codigo, desc, cat, est, precio));
+            }
+            System.out.println(LECTURA_OK);
+
+        } catch (Exception e) {
+            System.out.println(LECTURA_ERROR);
+        }
+    }
+
+    private void cargarListaProductosEnArchivo() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, false))) {
+
+            for (Producto p : productos) {
+                bw.write(p.verCodigo() + SEPARADOR
+                        + p.verDescripcion() + SEPARADOR
+                        + p.verPrecio() + SEPARADOR
+                        + p.verCategoria() + SEPARADOR
+                        + p.verEstado());
+                bw.newLine();
+            }
+
+            System.out.println(ESCRITURA_OK);
+        } catch (IOException ex) {
+            System.out.println(ESCRITURA_ERROR);
+        }
+
     }
 
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+
         if (codigo <= 0) {
             return ERROR_CODIGO;
         }
@@ -129,21 +163,20 @@ public class GestorProductos implements IGestorProductos {
         if (estado == null) {
             return ERROR_ESTADO;
         }
-
+        if (!productos.contains(p)) {
+            return PRODUCTO_INEXISTENTE;
+        }
+        productos.remove(p);
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-
-        try {
-            FileWriter fw = new FileWriter(ARCHIVO);
-            for (Producto pro : productos) {
-                cargarProductoEnArchivo(pro, true);
-            }
-        } catch (IOException ex) {
-            System.out.println("IOException");
+        if (productos.contains(p)) {
+            return PRODUCTOS_DUPLICADOS;
         }
+        productos.add(p);
+        cargarListaProductosEnArchivo();
         return EXITO;
     }
 
