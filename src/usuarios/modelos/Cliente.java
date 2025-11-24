@@ -4,7 +4,6 @@
  */
 package usuarios.modelos;
 
-
 /**
  *
  * @author Esteban
@@ -12,52 +11,42 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
-public class Cliente extends Usuario{
-    private ArrayList<Pedido> pedidos= new ArrayList<>();
+public class Cliente extends Usuario {
 
-    
-    @Override
-    public void mostrar() {
-      super.mostrar();
-      for (Pedido p: pedidos)
-            System.out.println(p.verNumero());
-  
-    }
+    private ArrayList<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
-
+        super(correo, clave, apellido, nombre);
 
     }
-    
-    //metodos get/set
-    
-
 
     public void agregarPedido(Pedido unPedido) {
-        if(!pedidos.contains(unPedido))
-        {
+        if (!pedidos.contains(unPedido)) {
             this.pedidos.add(unPedido);
-        }
-        else
-        {
+        } else {
             this.pedidos.remove(unPedido);
             this.pedidos.add(unPedido);
         }
     }
+
     public void cancelarPedido(Pedido unPedido) {
-        if(pedidos.contains(unPedido)&&unPedido!=null)
-        this.pedidos.remove(unPedido);
+        if (pedidos.contains(unPedido) && unPedido != null) {
+            this.pedidos.remove(unPedido);
+        }
     }
-   
+
+    @Override
+    public void mostrar() {
+        super.mostrar();
+        for (Pedido p : pedidos) {
+            System.out.println(p.verNumero());
+        }
+
+    }
 
     @Override
     public ArrayList<Pedido> verPedido() {
-        return(pedidos);
+        return (pedidos);
     }
 
-    
-    
-    
-    
-} 
+}

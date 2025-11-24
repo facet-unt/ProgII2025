@@ -14,12 +14,13 @@ import productos.modelos.Producto;
  * @author estudiante
  */
 public interface IGestorProductos {
-    public static final String EXITO = "Producto creado/modificado con éxito ";
+    //<editor-fold defaultstate="collapsed" desc="Constantes">
+    public static final String EXITO = "Producto creado/modificado con exito ";
     public static final String FRACASO = "No se pudo crear/modificar el producto ";
     public static final String ERROR_CODIGO = "El código del producto es incorrecto ";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta ";
+    public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta ";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto ";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta ";
+    public static final String ERROR_CATEGORIA = "La categoria del producto es incorrecta ";
     public static final String ERROR_ESTADO = "El precio del producto es incorrecto ";
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código ";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos ";
@@ -38,9 +39,12 @@ public interface IGestorProductos {
     public static final String NOMBRE_ARCHIVO_P = "Productos.txt";
     public static final String ARCHIVO_ERROR = "No se pudo acceder al archivo";
     public static final String ARCHIVO_BORRADO = "El archivo se borró exitosamente";
-
-    public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Metodos">
     public abstract Boolean crearArchivo();
+    public String guardarEnArchivo(Producto unProducto);
+    public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract List<Producto> verProductos();
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract List<Producto> menu();
@@ -49,5 +53,6 @@ public interface IGestorProductos {
     public abstract boolean existeEsteProducto(Producto producto);
     public abstract List<Producto> verProductosPorCategoria(Categoria categoria);
     public abstract Producto obtenerProducto(Integer codigo);
+    //</editor-fold>
 
 }

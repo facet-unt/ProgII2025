@@ -9,32 +9,16 @@ package productos.modelos;
  * @author estudiante
  */
 public enum Categoria {
-    ENTRADA ("Entrada"),
-    PLATO_PRINCIPAL ("Plato principal"),
-    POSTRE ("Postre");
-    
+    ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato principal"),
+    POSTRE("Postre");
+
     private String valor;
 
     private Categoria(String valor) {
         this.valor = valor;
     }
-    
-    public static Categoria compararValor(String categoria){
-        Categoria[] valores=Categoria.values();
-        for(Categoria unaCategoria: valores){
-            if(unaCategoria.equals(categoria))
-                return unaCategoria;
-        }
-        return null;
-    }
-    
-    
-    @Override
-    public String toString() {
-        return this.valor;
-    }
-    
-    
+
     public String verValor() {
         return valor;
     }
@@ -42,6 +26,20 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-      
-    
+
+    public static Categoria compararValor(String categoria) {
+        Categoria[] valores = Categoria.values();
+        for (Categoria unaCategoria : valores) {
+            if (unaCategoria.equals(categoria)) {
+                return unaCategoria;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return this.valor;
+    }
+
 }

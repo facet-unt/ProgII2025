@@ -13,41 +13,26 @@ import pedidos.modelos.Pedido;
  * @author estudiante
  */
 public abstract class Usuario {
+
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-    
-    
-    
-    //CONSTRUCTOR
+
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
+
     }
-    
-    //MOSTRAR
-    public void mostrar(){
-        System.out.println( apellido + ", " + nombre);
-    }
-    
-    //TOString
-    @Override
-    public String toString() {
-        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-    
-    
-    //METODOS GET/SET
+
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
+        if (correo != null && !correo.isBlank()) {
             this.correo = correo;
         }
     }
@@ -57,7 +42,7 @@ public abstract class Usuario {
     }
 
     public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
+        if (clave != null && !clave.isBlank()) {
             this.clave = clave;
         }
     }
@@ -67,7 +52,7 @@ public abstract class Usuario {
     }
 
     public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
+        if (apellido != null && !apellido.isBlank()) {
             this.apellido = apellido;
         }
     }
@@ -77,9 +62,18 @@ public abstract class Usuario {
     }
 
     public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
+        if (nombre != null && !nombre.isBlank()) {
             this.nombre = nombre;
         }
+    }
+
+    public void mostrar() {
+        System.out.println(apellido + ", " + nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
     }
 
     @Override
@@ -103,12 +97,11 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
+
     public abstract ArrayList<Pedido> verPedido();
 
     public int compareTo(String anotherString) {
         return (apellido.toLowerCase()).compareTo(anotherString.toLowerCase());
     }
-    
-    
+
 }

@@ -6,15 +6,17 @@ package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
+
 /**
  *
  * @author estudiante
  */
 public class ProductoDelPedido {
+
     private int cantidad;
     private Producto unProducto;
 
-    public ProductoDelPedido( Producto unProducto,int cantidad) {
+    public ProductoDelPedido(Producto unProducto, int cantidad) {
         this.cantidad = cantidad;
         this.unProducto = unProducto;
     }
@@ -27,18 +29,17 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-
     public Producto verUnProducto() {
         return unProducto;
     }
 
     public void asignarUnProducto(Producto unProducto) {
         this.unProducto = unProducto;
-        
+
     }
 
-    public void mostrar(){
-        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
+    public void mostrar() {
+        System.out.println("\t\t" + verUnProducto().verDescripcion() + "\t\t" + verCantidad());
 
     }
 
@@ -63,5 +64,5 @@ public class ProductoDelPedido {
         final ProductoDelPedido other = (ProductoDelPedido) obj;
         return Objects.equals(this.unProducto, other.unProducto);
     }
-    
+
 }

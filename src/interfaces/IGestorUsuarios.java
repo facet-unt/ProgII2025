@@ -13,17 +13,21 @@ import usuarios.modelos.Usuario;
  * @author estudiante
  */
 public interface IGestorUsuarios {
-    
+    //<editor-fold defaultstate="collapsed" desc="Constantes">
     public static final String USUARIO_TIENE_PEDIDO = "El usuario tiene un pedido en curso ";
     public static final String OPERACION_FALLIDA = "No pudo realizarse la operación ";
     public static final String OPERACION_EXITOSA = "Operación exitosa ";
     public static final String USUARIO_INEX = "El usuario no existe ";
+    //</editor-fold>
     
     
+    //<editor-fold defaultstate="collapsed" desc="Metodos">
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
     public List<Usuario> verUsuarios();
     public List<Usuario> buscarUsuarios(String apellido);
     public String borrarUsuario(Usuario usuario);
     public boolean existeEsteUsuario(Usuario usuario);
     public Usuario obtenerUsuario(String correo);
+    //</editor-fold>
+    
 }
