@@ -17,7 +17,7 @@ import usuarios.modelos.Cliente;
  */
 public interface IGestorPedidos {
     //<editor-fold defaultstate="collapsed" desc="Constantes">
-    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+    public static final String EXITO = "Pedido creado/modificado/cancelado con exito";
     public static final String CAMBIO_ESTADO_FRACASO= "Al pedido no se le puede cambiar el estado";    
     public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
     public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
