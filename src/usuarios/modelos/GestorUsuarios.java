@@ -34,51 +34,96 @@ public class GestorUsuarios implements IGestorUsuarios {
         return instancia;
     }
 
+    @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
 
         if (perfil == CLIENTE) {
             Cliente c;
-            if (correo != null && correo.contains("@") && clave != null && claveRepetida == clave) {
-                c = new Cliente(correo, clave, apellido, nombre);
-                c.asignarApellido(apellido);
-                c.asignarClave(clave);
-                c.asignarCorreo(correo);
-                c.asignarNombre(nombre);
-                usuarios.add(c);
-                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo " + correo + " clave " + clave + " se guardó correctamente");
-            } else {
-                return ("No se pudo realizar la Operación, ingrese valores válidos");
+            if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null)
+            {
+                if (clave.equals(claveRepetida))
+                {
+                    for (Usuario u: usuarios)
+                    {
+                        if (u.verCorreo().equals(correo))
+                        {
+                            return (OPERACION_FALLIDA + ": el usuario ya existe");
+                        }
+                    }
+                    c = new Cliente(correo, clave, apellido, nombre);
+                    c.asignarApellido(apellido);
+                    c.asignarClave(clave);
+                    c.asignarCorreo(correo);
+                    c.asignarNombre(nombre);
+                    usuarios.add(c);
+                    return ("Operacion exitosa: El usuario " + apellido + " " +nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
+                }
+                else {
+                            return("No se pudo realizar la Operacion, ingrese valores validos");
+                        }
+            } else 
+            {
+                return ("No se pudo realizar la Operacion, ingrese valores validos");
             }
-        } else {
-            if (perfil == EMPLEADO) {
+        } else 
+        {
+            if (perfil == EMPLEADO) 
+            {
                 Empleado em;
-                if (correo != null && correo.contains("@") && clave != null && claveRepetida == clave) {
-                    em = new Empleado(correo, clave, apellido, nombre);
-                    em.asignarApellido(apellido);
-                    em.asignarClave(clave);
-                    em.asignarCorreo(correo);
-                    em.asignarNombre(nombre);
-                    usuarios.add(em);
-                    return ("Operación exitosa: El usuario " + apellido + nombre + " con correo " + correo + " clave " + clave + " se guardó correctamente");
+                if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null) 
+                {
+                    if(clave.equals(claveRepetida))
+                    {
+                        for (Usuario u: usuarios)
+                        {
+                            if (u.verCorreo().equals(correo))
+                            {
+                                return (OPERACION_FALLIDA + ": el usuario ya existe");
+                            }
+                        }
+                        em = new Empleado(correo, clave, apellido, nombre);
+                        em.asignarApellido(apellido);
+                        em.asignarClave(clave);
+                        em.asignarCorreo(correo);
+                        em.asignarNombre(nombre);
+                        usuarios.add(em);
+                        return ("Operacion exitosa: El usuario " + apellido +" "+ nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
+                    }
+                    else {
+                            return("No se pudo realizar la Operacion, ingrese valores validos");
+                        }
                 } else {
-                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+                return ("No se pudo realizar la Operacion, ingrese valores validos");
                 }
             } else {
                 if (perfil == ENCARGADO) {
                     Encargado en;
-                    if (correo != null && correo.contains("@") && clave != null && claveRepetida == clave) {
-                        en = new Encargado(correo, clave, apellido, nombre);
-                        en.asignarApellido(apellido);
-                        en.asignarClave(clave);
-                        en.asignarCorreo(correo);
-                        en.asignarNombre(nombre);
-                        usuarios.add(en);
-                        return ("Operación exitosa: El usuario " + apellido + nombre + " con correo " + correo + " clave " + clave + " se guardó correctamente");
+                    if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null) {
+                        if(claveRepetida.equals(clave))
+                        {
+                            for (Usuario u: usuarios)
+                            {
+                                if (u.verCorreo().equals(correo))
+                                {
+                                    return (OPERACION_FALLIDA + ": el usuario ya existe");
+                                }
+                            }
+                            en = new Encargado(correo, clave, apellido, nombre);
+                            en.asignarApellido(apellido);
+                            en.asignarClave(clave);
+                            en.asignarCorreo(correo);
+                            en.asignarNombre(nombre);
+                            usuarios.add(en);
+                            return ("Operacion exitosa: El usuario " + apellido +" " + nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
+                        }
+                        else {
+                            return("No se pudo realizar la Operacion, ingrese valores validos");
+                        }
                     } else {
-                        return ("No se pudo realizar la Operación, ingrese valores válidos");
+                        return ("No se pudo realizar la Operacion, ingrese valores validos");
                     }
                 } else {
-                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+                    return ("No se pudo realizar la Operacion, ingrese valores validos");
                 }
             }
 
