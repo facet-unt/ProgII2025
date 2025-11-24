@@ -36,10 +36,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-
-        if (perfil == CLIENTE) {
-            Cliente c;
-            if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null && apellido!=null && !apellido.isEmpty() && nombre!=null && !nombre.isEmpty())
+        if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null && apellido!=null && !apellido.isEmpty() && nombre!=null && !nombre.isEmpty())
             {
                 if (clave.equals(claveRepetida))
                 {
@@ -48,39 +45,24 @@ public class GestorUsuarios implements IGestorUsuarios {
                         if (u.verCorreo().equals(correo))
                         {
                             return (OPERACION_FALLIDA + ": el usuario ya existe");
-                        }
+                        } 
                     }
-                    c = new Cliente(correo, clave, apellido, nombre);
-                    c.asignarApellido(apellido);
-                    c.asignarClave(clave);
-                    c.asignarCorreo(correo);
-                    c.asignarNombre(nombre);
-                    usuarios.add(c);
-                    return ("Operacion exitosa: El usuario " + apellido + " " +nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
-                }
-                else {
-                            return("No se pudo realizar la Operacion, ingrese valores validos");
-                        }
-            } else 
-            {
-                return ("No se pudo realizar la Operacion, ingrese valores validos");
-            }
-        } else 
-        {
-            if (perfil == EMPLEADO) 
-            {
-                Empleado em;
-                if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null && apellido!=null && !apellido.isEmpty() && nombre!=null && !nombre.isEmpty()) 
-                {
-                    if(clave.equals(claveRepetida))
+                    if (perfil == CLIENTE) {
+                        Cliente c;
+
+                        c = new Cliente(correo, clave, apellido, nombre);
+                        c.asignarApellido(apellido);
+                        c.asignarClave(clave);
+                        c.asignarCorreo(correo);
+                        c.asignarNombre(nombre);
+                        usuarios.add(c);
+                        return ("Operacion exitosa: El usuario " + apellido + " " +nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
+                    }
+                    else 
                     {
-                        for (Usuario u: usuarios)
-                        {
-                            if (u.verCorreo().equals(correo))
-                            {
-                                return (OPERACION_FALLIDA + ": el usuario ya existe");
-                            }
-                        }
+                    if (perfil == EMPLEADO) 
+                    {
+                        Empleado em;
                         em = new Empleado(correo, clave, apellido, nombre);
                         em.asignarApellido(apellido);
                         em.asignarClave(clave);
@@ -89,25 +71,10 @@ public class GestorUsuarios implements IGestorUsuarios {
                         usuarios.add(em);
                         return ("Operacion exitosa: El usuario " + apellido +" "+ nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
                     }
+           
                     else {
-                            return("No se pudo realizar la Operacion, ingrese valores validos");
-                        }
-                } else {
-                return ("No se pudo realizar la Operacion, ingrese valores validos");
-                }
-            } else {
-                if (perfil == ENCARGADO) {
-                    Encargado en;
-                    if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null && apellido!=null && !apellido.isEmpty() && nombre!=null && !nombre.isEmpty()) {
-                        if(claveRepetida.equals(clave))
-                        {
-                            for (Usuario u: usuarios)
-                            {
-                                if (u.verCorreo().equals(correo))
-                                {
-                                    return (OPERACION_FALLIDA + ": el usuario ya existe");
-                                }
-                            }
+                        if (perfil == ENCARGADO) {
+                            Encargado en;
                             en = new Encargado(correo, clave, apellido, nombre);
                             en.asignarApellido(apellido);
                             en.asignarClave(clave);
@@ -117,16 +84,21 @@ public class GestorUsuarios implements IGestorUsuarios {
                             return ("Operacion exitosa: El usuario " + apellido +" " + nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
                         }
                         else {
-                            return("No se pudo realizar la Operacion, ingrese valores validos");
+                            return ("No se pudo realizar la Operacion, ingrese valores validos");
                         }
-                    } else {
-                        return ("No se pudo realizar la Operacion, ingrese valores validos");
                     }
-                } else {
-                    return ("No se pudo realizar la Operacion, ingrese valores validos");
-                }
+                    }
+                
             }
-
+            else 
+            {
+                return ("No se pudo realizar la Operacion, ingrese valores validos");
+            }
+        
+        }
+        else 
+        {
+            return("No se pudo realizar la Operacion, ingrese valores validos");
         }
     }
 
