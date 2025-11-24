@@ -13,23 +13,21 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
+public class Empleado extends Usuario {
 
-public class Empleado extends Usuario{
-    
     //constructor
-
     public Empleado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
-  }
+    }
+
     //metodos
     @Override
-    public List<Pedido> verPedidos(){
+    public List<Pedido> verPedidos() {
         return GestorPedidos.instanciar().verPedidos();
     }
-    //Atributos
-    
+
     @Override
     public String toString() {
         return super.toString();
-    }   
+    }
 }

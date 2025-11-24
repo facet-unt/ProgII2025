@@ -32,7 +32,7 @@ public interface IGestorUsuarios {
     public boolean existeEsteUsuario(Usuario usuario);
 
     public Usuario obtenerUsuario(String correo);
-    
+
     public List<Usuario> verUsuarios();
 
     public List<Usuario> buscarUsuarios(String apellido);

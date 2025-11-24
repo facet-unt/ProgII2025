@@ -10,15 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
-/**
- *
- * @author karen
- */
 public class GestorUsuarios implements IGestorUsuarios {
 
     List<Usuario> usuarios = new ArrayList();
 
-  
     private static GestorUsuarios instancia;
 
     private GestorUsuarios() {
@@ -32,24 +27,24 @@ public class GestorUsuarios implements IGestorUsuarios {
         return instancia;
     }
 
-    
     @Override
-     public String borrarUsuario(Usuario usuario){
-         
-         if (usuario==null|| !usuarios.contains(usuario)) {
+    public String borrarUsuario(Usuario usuario) {
+
+        if (usuario == null || !usuarios.contains(usuario)) {
             return "usuario inexistente";
         }
         //verifica si hay pedidos que contengan el producto
         GestorPedidos gpedidos = GestorPedidos.instanciar();
-        if (usuario instanceof Cliente) {
-            if (gpedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
-            return "no se puede borrar el usuario porque tiene un pedido asociado";
+        if (usuario instanceof Cliente cliente) {
+            if (gpedidos.hayPedidosConEsteCliente(cliente)) {
+                return "no se puede borrar el usuario porque tiene un pedido asociado";
             }
         }
-        
+
         usuarios.remove(usuario);
         return EXITO_BORRADO;
-     }
+    }
+
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         if (correo == null || correo.isEmpty() || !correo.contains("@")) {
@@ -125,8 +120,8 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (usuarios.contains(usuario)) {
             return usuarios.contains(usuario);
         }
-        
-         return false;
+
+        return false;
     }
 
     @Override

@@ -30,8 +30,6 @@ public interface IGestorPedidos {
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
 
-    
-
     public String cambiarEstado(Pedido pedidoAModificar);
 
     public boolean hayPedidosConEsteCliente(Cliente cliente);
@@ -43,7 +41,7 @@ public interface IGestorPedidos {
     public boolean existeEstePedido(Pedido pedido);
 
     public Pedido obtenerPedido(Integer numero);
-    
+
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
 
     public List<Pedido> verPedidos();

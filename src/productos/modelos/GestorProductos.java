@@ -26,61 +26,6 @@ public class GestorProductos implements IGestorProductos {
 
     }
 
-    private void creacionArchivo() {
-        if (!archivoProductos.exists()) {
-            try {
-                archivoProductos.createNewFile();
-                System.out.println(CREACION_OK);
-            } catch (IOException e) {
-                System.out.println(CREACION_ERROR);
-            }
-        }
-    }
-
-    private void guardarArchivo(Producto unProducto) {
-        creacionArchivo();
-        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos, true))) {
-            escritura.write(Integer.toString(unProducto.verCodigo()));
-            escritura.write(SEPARADOR);
-            escritura.write(unProducto.verDescripcion());
-            escritura.write(SEPARADOR);
-            escritura.write(unProducto.verCategoria().toString());
-            escritura.write(SEPARADOR);
-            escritura.write(unProducto.verEstado().toString());
-            escritura.write(SEPARADOR);
-            escritura.write(Float.toString(unProducto.verPrecio()));
-            escritura.newLine();
-
-            System.out.println(ESCRITURA_OK);
-        } catch (IOException e) {
-            System.out.println(ESCRITURA_ERROR);
-        }
-
-    }
-
-    private void reescribirArchivo() {
-        creacionArchivo();
-        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
-
-            for (Producto p : productos) {
-
-                escritura.write(Integer.toString(p.verCodigo()));
-                escritura.write(SEPARADOR);
-                escritura.write(p.verDescripcion());
-                escritura.write(SEPARADOR);
-                escritura.write(p.verCategoria().toString());
-                escritura.write(SEPARADOR);
-                escritura.write(p.verEstado().toString());
-                escritura.write(SEPARADOR);
-                escritura.write(Float.toString(p.verPrecio()));
-                escritura.newLine();
-            }
-
-        } catch (IOException e) {
-            System.out.println(ESCRITURA_ERROR);
-        }
-    }
-
     public static GestorProductos instanciar() {
         if (instancia == null) {
             instancia = new GestorProductos();
@@ -105,12 +50,13 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        if (codigo <= 0 ) {
+        if (codigo <= 0) {
             return ERROR_CODIGO;
         }
-        for(Producto p: productos){
-            if(p.verCodigo()==codigo)
+        for (Producto p : productos) {
+            if (p.verCodigo() == codigo) {
                 return PRODUCTOS_DUPLICADOS;
+            }
         }
         if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
@@ -217,5 +163,60 @@ public class GestorProductos implements IGestorProductos {
         }
         System.out.println(PRODUCTO_INEXISTENTE);
         return null;
+    }
+
+    private void creacionArchivo() {
+        if (!archivoProductos.exists()) {
+            try {
+                archivoProductos.createNewFile();
+                System.out.println(CREACION_OK);
+            } catch (IOException e) {
+                System.out.println(CREACION_ERROR);
+            }
+        }
+    }
+
+    private void guardarArchivo(Producto unProducto) {
+        creacionArchivo();
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos, true))) {
+            escritura.write(Integer.toString(unProducto.verCodigo()));
+            escritura.write(SEPARADOR);
+            escritura.write(unProducto.verDescripcion());
+            escritura.write(SEPARADOR);
+            escritura.write(unProducto.verCategoria().toString());
+            escritura.write(SEPARADOR);
+            escritura.write(unProducto.verEstado().toString());
+            escritura.write(SEPARADOR);
+            escritura.write(Float.toString(unProducto.verPrecio()));
+            escritura.newLine();
+
+            System.out.println(ESCRITURA_OK);
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
+        }
+
+    }
+
+    private void reescribirArchivo() {
+        creacionArchivo();
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
+
+            for (Producto p : productos) {
+
+                escritura.write(Integer.toString(p.verCodigo()));
+                escritura.write(SEPARADOR);
+                escritura.write(p.verDescripcion());
+                escritura.write(SEPARADOR);
+                escritura.write(p.verCategoria().toString());
+                escritura.write(SEPARADOR);
+                escritura.write(p.verEstado().toString());
+                escritura.write(SEPARADOR);
+                escritura.write(Float.toString(p.verPrecio()));
+                escritura.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
+        }
     }
 }

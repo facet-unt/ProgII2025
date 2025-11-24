@@ -42,7 +42,7 @@ public interface IGestorProductos {
     public boolean existeEsteProducto(Producto producto);
 
     public Producto obtenerProducto(Integer codigo);
-    
+
     public List<Producto> menu();
 
     public List<Producto> buscarProductos(String descripcion);

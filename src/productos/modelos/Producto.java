@@ -4,11 +4,9 @@
  */
 package productos.modelos;
 
-/**
- *
- * @author Esteban
- */
-public class Producto implements Comparable <Producto> {
+
+public class Producto implements Comparable<Producto> {
+
     //Atributos
     private int codigo;
     private String descripcion;
@@ -16,53 +14,30 @@ public class Producto implements Comparable <Producto> {
     private Estado unEstado;
     private float precio;
 
-
-    // Métodos
-    public void mostrar() {
-        System.out.println("Codigo: " + codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + unaCategoria.verValor());
-        System.out.println("Estado: " + unEstado.verValor());
-        System.out.println("Precio: " + precio);
-
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "codigo=" + codigo +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + unaCategoria.verValor() + '\'' +
-                ", estado='" + unEstado.verValor() + '\'' +
-                ", precio=" + precio +
-                '}';
-    }
-
-    
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
-        this.unEstado = estado;        
+        this.unEstado = estado;
         this.descripcion = descripcion;
         this.unaCategoria = categoria;
         this.precio = precio;
     }
-    
+
     public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
         this.codigo = codigo;
-        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
+        this.unEstado = Estado.valueOf(estado.toUpperCase());
         this.descripcion = descripcion;
-        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+        this.unaCategoria = Categoria.valueOf(categoria.toUpperCase());
+        this.precio = precio;
     }
 
-    
-   
     public int verCodigo() {
         return codigo;
     }
 
     public void asignarCodigo(int c) {
-        if (c > 0)
+        if (c > 0) {
             codigo = c;
+        }
     }
 
     public String verDescripcion() {
@@ -70,8 +45,9 @@ public class Producto implements Comparable <Producto> {
     }
 
     public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank())
+        if (d != null && !d.isBlank()) {
             descripcion = d;
+        }
     }
 
     public Categoria verCategoria() {
@@ -97,9 +73,29 @@ public class Producto implements Comparable <Producto> {
     }
 
     public void asignarPrecio(float p) {
-        if (p > 0){
+        if (p > 0) {
             precio = p;
         }
+    }
+
+    public void mostrar() {
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + unaCategoria.verValor());
+        System.out.println("Estado: " + unEstado.verValor());
+        System.out.println("Precio: " + precio);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{"
+                + "codigo=" + codigo
+                + ", descripcion='" + descripcion + '\''
+                + ", categoria='" + unaCategoria.verValor() + '\''
+                + ", estado='" + unEstado.verValor() + '\''
+                + ", precio=" + precio
+                + '}';
     }
 
     @Override
