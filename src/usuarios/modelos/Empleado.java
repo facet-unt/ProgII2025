@@ -12,7 +12,7 @@ import pedidos.modelos.Pedido;
 
 public class Empleado extends Usuario{
 
-    private ArrayList<Pedido> vacio= new ArrayList<>();
+    private ArrayList<Pedido> vacio = new ArrayList<>();
     private Perfil perfil;
     //constructor
 

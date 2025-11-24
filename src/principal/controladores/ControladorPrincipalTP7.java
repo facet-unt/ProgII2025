@@ -34,8 +34,8 @@ public class ControladorPrincipalTP7 {
         IGestorProductos gp = GestorProductos.instanciar();
         IGestorUsuarios gu = GestorUsuarios.instanciarclase();
         IGestorPedidos gPed = GestorPedidos.getInstancia();
-//            
-//        System.out.println("#####PRODUCTOS#####");
+
+        System.out.println("#####PRODUCTOS#####");
 //        /*CREAR PRODUCTO*/
         System.out.println(gp.crearProducto(1, "Empanadas", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Bife con arroz", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
@@ -190,8 +190,8 @@ public class ControladorPrincipalTP7 {
         //sin coincidir las claves
 
 
-      //  System.out.println("Obtener usuarios y productos");
-       // System.out.println("=========");
+        System.out.println("Obtener usuarios y productos");
+        System.out.println("=========");
         Usuario unCliente1 = gu.obtenerUsuario("cliente1@bar.com");
         Producto prod1 = gp.obtenerProducto(1);
         Producto prod2 = gp.obtenerProducto(2);

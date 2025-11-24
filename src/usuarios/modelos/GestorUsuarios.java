@@ -79,7 +79,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             return ERROR_NOMBRE;
         }
         
-        if (clave == null && clave.isEmpty() && claverepetida.isEmpty() && !claverepetida.equals(clave)){
+        if (clave == null || clave.isEmpty() && claverepetida.isEmpty() && !claverepetida.equals(clave)){
             return ERROR_CLAVES;
         }
         

@@ -42,7 +42,7 @@ public interface IGestorProductos {
     
     public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
     
-    public static final String ERROR_ESTADO = "El precio del producto es incorrecto";
+    public static final String ERROR_ESTADO = "El estado del producto es incorrecto";
     
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     

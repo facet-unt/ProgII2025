@@ -18,6 +18,7 @@ public class Cliente extends Usuario{
     private List<Pedido> pedidos= new ArrayList<>();
     private Perfil perfil;
     
+    @Override
     public void mostrar() {
       super.mostrar();
       for (Pedido p: pedidos)

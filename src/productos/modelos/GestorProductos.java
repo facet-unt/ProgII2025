@@ -35,7 +35,7 @@ public class GestorProductos implements IGestorProductos {
     }
     
     private String validarInfo(int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
-        if(codigo < 0){
+        if(codigo <= 0){
             return ERROR_CODIGO;
         }
         
@@ -43,7 +43,7 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_DESCRIPCION;
         }
         
-        if (precio < 0){
+        if (precio <= 0){
             return ERROR_PRECIO;
         }
         
@@ -112,8 +112,8 @@ public class GestorProductos implements IGestorProductos {
     }
     
     @Override
-    public ArrayList<Producto> buscarProductos(String descripcion) {
-        ArrayList<Producto> lista = new ArrayList<>();
+    public List<Producto> buscarProductos(String descripcion) {
+        List<Producto> lista = new ArrayList<>();
         this.productos = this.leerProductos();
         for (Producto p : productos){            
             if(p.verDescripcion().equals(descripcion)){
@@ -126,18 +126,13 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public boolean existeEsteProducto(Producto producto) {
-        if(this.productos.contains(producto)){
-            return true;
-        }
-        else{
-           return false; 
-        }
+        return this.productos.contains(producto);
     }
     
     
     @Override
-    public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
-        ArrayList<Producto> categorias = new ArrayList<>();
+    public List<Producto> verProductosPorCategoria(Categoria categoria) {
+        List<Producto> categorias = new ArrayList<>();
         
         for(Producto pr : productos){
             if(pr.verCategoria().equals(categoria)){
