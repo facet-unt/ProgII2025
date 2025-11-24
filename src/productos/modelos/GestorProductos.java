@@ -144,18 +144,12 @@ public class GestorProductos implements IGestorProductos{
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(SEPARADOR);
-                System.out.println(datos[0]);
-                System.out.println(datos[1]);
-                System.out.println(datos[2]);
-                System.out.println(datos[3]);
-                System.out.println(datos[4]);
                 int codigo = Integer.parseInt(datos[0]);
                 String descripcion = datos[1];
                 float precio = Float.parseFloat(datos[2]);
                 Categoria categoria = Categoria.valueOf(datos[3]);
                 Estado estado = Estado.valueOf(datos[4]);
                 Producto nuevoProd = new Producto(codigo, descripcion, categoria, estado, precio);
-                //Producto prod = new Producto(Integer.parseInt(v[0]), v[1], Categoria.valueOf(v[3]), Estado.valueOf(v[4]), Float.parseFloat(v[2]));
                 this.productos.add(nuevoProd);
             }
             return LECTURA_OK;
