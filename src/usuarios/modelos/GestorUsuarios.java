@@ -39,7 +39,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
         if (perfil == CLIENTE) {
             Cliente c;
-            if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null)
+            if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null && apellido!=null && !apellido.isEmpty())
             {
                 if (clave.equals(claveRepetida))
                 {
@@ -70,7 +70,7 @@ public class GestorUsuarios implements IGestorUsuarios {
             if (perfil == EMPLEADO) 
             {
                 Empleado em;
-                if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null) 
+                if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null && apellido!=null && !apellido.isEmpty()) 
                 {
                     if(clave.equals(claveRepetida))
                     {
@@ -98,7 +98,7 @@ public class GestorUsuarios implements IGestorUsuarios {
             } else {
                 if (perfil == ENCARGADO) {
                     Encargado en;
-                    if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null) {
+                    if (correo != null && correo.contains("@") && clave != null && claveRepetida!=null && apellido!=null && !apellido.isEmpty()) {
                         if(claveRepetida.equals(clave))
                         {
                             for (Usuario u: usuarios)
