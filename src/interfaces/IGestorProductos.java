@@ -17,16 +17,16 @@ public interface IGestorProductos {
     //<editor-fold defaultstate="collapsed" desc="Constantes">
     public static final String EXITO = "Producto creado/modificado con exito ";
     public static final String FRACASO = "No se pudo crear/modificar el producto ";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto ";
+    public static final String ERROR_CODIGO = "El codigo del producto es incorrecto ";
     public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta ";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto ";
     public static final String ERROR_CATEGORIA = "La categoria del producto es incorrecta ";
     public static final String ERROR_ESTADO = "El precio del producto es incorrecto ";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código ";
+    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese codigo ";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos ";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado ";
     public static final String BORRADO_FALLIDO = "No se pudo borrar el producto ";
-    public static final String OPERACION_EXITOSA = "Operación exitosa ";
+    public static final String OPERACION_EXITOSA = "Operacion exitosa ";
     public static final String PRODUCTO_EN_PEDIDO = "El producto se encuentra en un pedido ";
     public static final String SEPARADOR = ";";
     public static final String ARCHIVO_INEXISTENTE = "El archivo no existe, se procedera a crearlo";
@@ -38,7 +38,7 @@ public interface IGestorProductos {
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
     public static final String NOMBRE_ARCHIVO_P = "Productos.txt";
     public static final String ARCHIVO_ERROR = "No se pudo acceder al archivo";
-    public static final String ARCHIVO_BORRADO = "El archivo se borró exitosamente";
+    public static final String ARCHIVO_BORRADO = "El archivo se borro exitosamente";
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Metodos">
