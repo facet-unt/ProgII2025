@@ -29,14 +29,6 @@ public enum Estado {
     public String toString() {
          return this.valor;
     }
-//    public static Estado desdeString(String texto) {
-//        for (Estado e : Estado.values()) {
-//            if (e.valor.equalsIgnoreCase(texto.trim())) {
-//                return e;
-//            }
-//        }
-//        throw new IllegalArgumentException("Estado inválido: " + texto);
-//    }
     public static Estado leerValor(String texto) {
         if (texto == null) return null;
 

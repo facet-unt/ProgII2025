@@ -33,7 +33,7 @@ public class GestorProductos implements IGestorProductos  {
             return ERROR_CODIGO;
         if(descripcion==null||descripcion.isBlank())
         return ERROR_DESCRIPCION;
-        if(precio<=0)
+            if(precio<=0)
             return ERROR_PRECIO;
         if(categoria==null)
             return ERROR_CATEGORIA;
@@ -50,25 +50,31 @@ public class GestorProductos implements IGestorProductos  {
     
     @Override
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        this.productos = LeerArchivo();
         if(productoAModificar==null)
             return PRODUCTO_INEXISTENTE;
-        if(codigo<=0)
-            return ERROR_CODIGO;
-        productoAModificar.asignarCodigo(codigo);
-        if(descripcion==null||descripcion.isBlank())
-        return ERROR_DESCRIPCION;
-        productoAModificar.asignarDescripcion(descripcion);
-        if(precio<=0)
-            return ERROR_PRECIO;
-        productoAModificar.asignarPrecio(precio);
-        if(categoria==null)
-            return ERROR_CATEGORIA;
-        productoAModificar.asignarCategoria(categoria);
-        if(estado==null)
-            return ERROR_ESTADO;
-        productoAModificar.asignarEstado(estado);
-        String cadena="Se modificó el Producto con exito";
-        return cadena;
+        for(Producto p : productos){
+            if(p.equals(productoAModificar)){
+                if(codigo<=0)
+                    return ERROR_CODIGO;
+                productoAModificar.asignarCodigo(codigo);
+                if(descripcion==null||descripcion.isBlank())
+                    return ERROR_DESCRIPCION;
+                productoAModificar.asignarDescripcion(descripcion);
+                if(precio<=0)
+                    return ERROR_PRECIO;
+                productoAModificar.asignarPrecio(precio);
+                if(categoria==null)
+                    return ERROR_CATEGORIA;
+                productoAModificar.asignarCategoria(categoria);
+                if(estado==null)
+                    return ERROR_ESTADO;
+                productoAModificar.asignarEstado(estado);
+                EscribirArchivo(productoAModificar);
+                    return CADENA;
+            }
+        }
+        return PRODUCTO_INEXISTENTE;
     }
     
     @Override
@@ -81,16 +87,18 @@ public class GestorProductos implements IGestorProductos  {
     @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList <Producto>productosbuscados =new ArrayList<>();
+        this.productos=LeerArchivo();
         for (Producto p : productos) {
             if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
                 productosbuscados.add(p);
-                Collections.sort(productosbuscados);
       }
+        Collections.sort(productosbuscados);
         return productosbuscados;
     }
     
     @Override
     public boolean existeEsteProducto(Producto producto) {
+        this.productos = LeerArchivo();
         for (Producto p: productos) {
             if(p.verCodigo()==producto.verCodigo())
             return true;
@@ -101,16 +109,18 @@ public class GestorProductos implements IGestorProductos  {
     @Override
     public ArrayList<Producto> verProductosPorCategoria(Categoria categoria) {
         ArrayList<Producto>productoDelaCategoria=new ArrayList<>();
+        this.productos=LeerArchivo();
         for(Producto p: productos){
             if(p.verCategoria()==categoria)
                 productoDelaCategoria.add(p);
-            Collections.sort(productoDelaCategoria);
         }
+        Collections.sort(productoDelaCategoria);
         return productoDelaCategoria;
     }
     
     @Override
     public Producto obtenerProducto(Integer codigo) {
+        this.productos=LeerArchivo();
         for(Producto p: productos){
             if(p.verCodigo()==codigo)
                 return p;
@@ -120,6 +130,7 @@ public class GestorProductos implements IGestorProductos  {
     @Override
     public String borrarProducto(Producto producto){
         GestorPedidos gPedidos= GestorPedidos.instanciar();
+        this.productos=LeerArchivo();
         if(gPedidos.hayPedidosConEsteProducto(producto)== true){
             return PRODUCTO_EN_PEDIDO;
         }

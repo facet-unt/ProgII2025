@@ -32,13 +32,7 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-//    public static Categoria desdeString(String texto) {
-//        for (Categoria c : Categoria.values()) {
-//            if (c.valor.equalsIgnoreCase(texto.trim())) {
-//                return c;
-//            }
-//        }
-//        throw new IllegalArgumentException("Estado inválido: " + texto);
+
    public static Categoria leerValor(String texto) {
         if (texto == null) 
             return null;
