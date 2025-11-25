@@ -1,7 +1,0 @@
-1,Empanadas,1.0,Entrada,Disponible
-2,Bife con arroz,2.0,Plato principal,Disponible
-3,Copa helada,3.0,Postre,Disponible
-5,Queso y dulce,3.0,Postre,Disponible
-6,Ensalada,3.0,Entrada,Disponible
-7,Suprema con pure,3.0,Plato principal,Disponible
-9,Suprema con ensalada,2.8,Plato principal,Disponible

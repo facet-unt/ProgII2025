@@ -52,9 +52,9 @@ public interface IGestorProductos {
 
     public Producto obtenerProducto(Integer codigo);
     
-    public String crearArchivo();
+//    public String crearArchivo();
     
-    public String escribirArchivo();
+    public String crearYescribirArchivo();
     
     public void leerArchivo();
 }

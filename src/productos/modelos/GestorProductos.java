@@ -204,7 +204,7 @@ public class GestorProductos implements IGestorProductos {
 //            return CREACION_ERROR;
 //        }
 //    }
-    public String escribirArchivo() {
+    public String crearYescribirArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
 
             for (Producto producto : productos) {
