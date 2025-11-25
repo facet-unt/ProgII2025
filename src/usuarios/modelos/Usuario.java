@@ -109,10 +109,10 @@ public abstract class Usuario implements Comparable<Usuario> {
 
     @Override
     public int compareTo(Usuario u) {
-        if (this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase()) == 0) {
-            return this.nombre.toLowerCase().compareTo(u.nombre.toLowerCase());
+        if (this.apellido.trim().toLowerCase().compareTo(u.apellido.trim().toLowerCase()) == 0) {
+            return this.nombre.trim().toLowerCase().compareTo(u.nombre.trim().toLowerCase());
         } else {
-            return this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase());
+            return this.apellido.trim().toLowerCase().compareTo(u.apellido.trim().toLowerCase());
         }
     }
 }

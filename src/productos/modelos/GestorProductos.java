@@ -93,9 +93,11 @@ public class GestorProductos implements IGestorProductos {
         if (descripcion == null || descripcion.isEmpty()) {
             return productosEncontrados;
         }
+        
+        String descripcionFormateada = descripcion.toLowerCase().trim();
 
         for (Producto p : this.listaProductos) {
-            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
+            if (p.verDescripcion().toLowerCase().trim().contains(descripcionFormateada)) {
                 productosEncontrados.add(p);
             }
         }

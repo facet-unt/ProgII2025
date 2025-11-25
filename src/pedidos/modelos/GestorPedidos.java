@@ -148,7 +148,7 @@ public class GestorPedidos implements IGestorPedidos {
             return ERROR_CLIENTE;
         }
 
-        if (productosDelPedido == null) {
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
             return ERROR_PRODUCTOS_DEL_PEDIDO;
         }
 
