@@ -1,5 +1,8 @@
 package productos.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Estado {
     DISPONIBLE ("disponible"),
     NO_DISPONIBLE("No disponible");
@@ -21,5 +24,13 @@ public enum Estado {
     @Override
     public String toString() {
         return this.valor;
+    }
+    
+    public static Estado verEstado (String estado){
+        Map<String, Estado> mapeo = new HashMap<>();
+        for (Estado e : Estado.values()){
+            mapeo.put(e.toString(), e);
+        }
+        return mapeo.get(estado);
     }
 }

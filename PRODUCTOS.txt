@@ -1,0 +1,7 @@
+1 , Empanadas , 1.0 , Entrada , disponible
+2 , Bife con arroz , 2.0 , Plato Principal , disponible
+3 , Copa helada , 3.0 , Postre , disponible
+5 , Queso y dulce , 3.0 , Postre , disponible
+6 , Ensalada , 3.0 , Entrada , disponible
+7 , Suprema con pure , 3.0 , Plato Principal , disponible
+9 , Suprema con ensalada , 2.8 , Plato Principal , disponible

@@ -38,19 +38,19 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
-        for(Producto p : productosEntrada) {
-            p.mostrar();
-        }
+//        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+//        for(Producto p : productosEntrada) {
+//            p.mostrar();
+//        }
     
         
         //implementacion del gestor de usuarios
     GestorUsuarios gu = GestorUsuarios.instanciar();
-        System.out.println(gu.crearUsuario("cliente1@mail.com", "123", "Perez", "Juan", "123", Perfil.CLIENTE));
-        System.out.println(gu.crearUsuario("encargado@mail.com", "456", "Gomez", "Ana", "456", Perfil.ENCARGADO));
-        System.out.println(gu.crearUsuario("error@mail.com", "789", "Test", "Error", "000", Perfil.CLIENTE)); // Error clave
-        System.out.println(gu.crearUsuario("cliente1@mail.com", "111", "Test", "Duplicado", "111", Perfil.CLIENTE)); // Error duplicado
-        System.out.println(gu.crearUsuario("correo-invalido", "111", "Test", "Error", "111", Perfil.CLIENTE)); // Error correo
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "123", "Perez", Perfil.CLIENTE, "Juan", "123"));
+        System.out.println(gu.crearUsuario("encargado@mail.com", "456", "Gomez", Perfil.ENCARGADO, "Ana", "456"));
+        System.out.println(gu.crearUsuario("error@mail.com", "789", "Test", Perfil.CLIENTE, "Error", "000")); // Error clave
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "111", "Test", Perfil.CLIENTE, "Duplicado", "111")); // Error duplicado
+        System.out.println(gu.crearUsuario("correo-invalido", "111", "Test", Perfil.CLIENTE, "Error", "111")); // Error correo
 
         for(Usuario u : gu.verUsuarios()) {
             u.mostrar();

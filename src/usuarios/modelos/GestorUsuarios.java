@@ -4,12 +4,12 @@
  */
 package usuarios.modelos;
 
-import Interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
+import Interfaces.IGestorUsuarios;
 
 
 /**
@@ -26,7 +26,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
      
      
-     public String crearUsuario(String correo, String apellido, String nombre, String clave, String claveRepetida, Perfil perfil){
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
          if (correo == null || !correo.contains("@") || correo.trim().isEmpty()){
              return ERROR_CORREO;
          }else if (apellido == null || apellido.trim().isEmpty()){

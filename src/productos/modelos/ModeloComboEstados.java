@@ -30,10 +30,10 @@ public class ModeloComboEstados extends DefaultComboBoxModel{  //debe ser extens
      * @param estado
     */
     
-
-    private void addElement(Estado estado) {
-       this.setSelectedItem(estado);
-    }
+//
+//    private void addElement(Estado estado) {
+//       this.setSelectedItem(estado);
+//    }
 
     
     

@@ -1,5 +1,8 @@
 package productos.modelos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Categoria {
     ENTRADA,   //cambiar el switch
     PLATO_PRINCIPAL,
@@ -17,5 +20,13 @@ public enum Categoria {
             default:
                 return super.toString();
         }
+    }
+    
+    public static Categoria verCategoria (String categoria){
+        Map<String, Categoria> mapeo = new HashMap<>();
+        for (Categoria c : Categoria.values()){
+            mapeo.put(c.toString(), c);
+        }
+        return mapeo.get(categoria);
     }
 }
