@@ -17,7 +17,7 @@ public class GestorProductos implements IGestorProductos{
     private static GestorProductos instancia;
     
     //Agrego las constantes de archivo
-    private static final String NOMBRE_ARCHIVO= "Archivo.txt";
+    private static final String NOMBRE_ARCHIVO= "productos.txt";
     private static final String SEPARADOR_ARCHIVO= ";";
     
     private GestorProductos() {
@@ -260,13 +260,8 @@ public class GestorProductos implements IGestorProductos{
         String descripcion = partes[1].trim();
         float precio = Float.parseFloat(partes[2].trim());
         
-        //Debemos pasar Categoria y Estado a mayuscula para que coincida con la enumeracion
-         String categoriaTexto = partes[3].trim().toUpperCase().replace(" ", "");
-        //replace Remplaza el espacio para que quede el texto todo junto
-         Categoria categoria = Categoria.valueOf(categoriaTexto);
-         String estadoTexto = partes[3].trim().toUpperCase().replace(" ", "");
-        //replace Remplaza el espacio para que quede el texto todo junto
-         Estado estado = Estado.valueOf(estadoTexto);
+        Categoria categoria = Categoria.desdeTexto(partes[3].trim());
+        Estado estado = Estado.desdeTexto(partes[4].trim());
 
         return new Producto(codigo, descripcion, categoria, estado, precio);
     }
