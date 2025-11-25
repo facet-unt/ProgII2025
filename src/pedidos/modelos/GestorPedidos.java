@@ -43,7 +43,7 @@ public class GestorPedidos implements IGestorPedidos{
             if(hora==null){
                 return ERROR_HORA ;
             }
-            if(productosDelPedido.isEmpty()){
+            if(productosDelPedido==null||productosDelPedido.isEmpty()){
                 return ERROR_PRODUCTOS_DEL_PEDIDO ;
             }
             if(cliente==null){

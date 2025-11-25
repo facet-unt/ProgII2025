@@ -32,51 +32,51 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        try{
-            if((!correo.contains("@"))||correo==null){
-                return ERROR_CORREO;
-            }
-            for(Usuario u1: usuarios){
-                if(u1.verCorreo()==correo){
-                    return USUARIOS_DUPLICADOS;
-                }
-            }
-            if(apellido==null||apellido.isBlank()){
-                return ERROR_APELLIDO;
-            }
-            if(nombre==null||nombre.isBlank()){
-                return ERROR_NOMBRE;
-            }
-            if(clave==null||clave.isBlank()){
-                return ERROR_CLAVES;
-            }
-            if(!(claveRepetida.equals(clave))){
-                return ERROR_CLAVES;
-            }
-            if(perfil==null){
-                return ERROR_PERFIL;
-            }
-            if(perfil==Perfil.CLIENTE){
-                Usuario u = new Cliente(correo,clave,apellido,nombre);
-                usuarios.add(u);
-            }
-            if(perfil==Perfil.EMPLEADO){
-                Usuario u = new Empleado(correo,clave,apellido,nombre);
-                usuarios.add(u);
-            }
-            if(perfil==Perfil.ENCARGADO){
-                Usuario u = new Encargado(correo,clave,apellido,nombre);
-                usuarios.add(u);
-            }
-            return EXITO;
-        }
-        catch(NullPointerException e){
+        
+        if((correo==null||!correo.contains("@"))){
             return ERROR_CORREO;
         }
+        for(Usuario u1: usuarios){
+            if(u1.verCorreo()==correo){
+                return USUARIOS_DUPLICADOS;
+            }
+        }
+        if(apellido==null||apellido.isBlank()){
+            return ERROR_APELLIDO;
+        }
+        if(nombre==null||nombre.isBlank()){
+            return ERROR_NOMBRE;
+        }
+        if(clave==null||clave.isBlank()){
+            return ERROR_CLAVES;
+        }
+        if(claveRepetida==null){
+            return ERROR_PERFIL;
+        }
+        if(!(claveRepetida.equals(clave))){
+            return ERROR_CLAVES;
+        }
+        if(perfil==null){
+            return ERROR_PERFIL;
+        }
+        if(perfil==Perfil.CLIENTE){
+            Usuario u = new Cliente(correo,clave,apellido,nombre);
+            usuarios.add(u);
+        }
+        if(perfil==Perfil.EMPLEADO){
+            Usuario u = new Empleado(correo,clave,apellido,nombre);
+            usuarios.add(u);
+        }
+        if(perfil==Perfil.ENCARGADO){
+            Usuario u = new Encargado(correo,clave,apellido,nombre);
+            usuarios.add(u);
+        }
+        return EXITO;
+        
     }
     
     public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        if(!(correo.contains("@"))||correo.equals(null)){
+        if(correo == null||!(correo.contains("@"))){
             return ERROR_CORREO;
         }
         for(Usuario u1: usuarios){
