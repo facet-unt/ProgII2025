@@ -32,20 +32,21 @@ public class GestorPedidos implements IGestorPedidos {
     }
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora,List<ProductoDelPedido> productosDelPedido, Cliente cliente){
-        Pedido pedido= new Pedido(fecha,hora,productosDelPedido,cliente);
         if(cliente==null)
             return ERROR_CLIENTE;
         if(productosDelPedido==null)
             return ERROR_PRODUCTOS_DEL_PEDIDO;
+        Pedido pedido= new Pedido(fecha,hora,productosDelPedido,cliente);
         if(pedidos.contains(pedido))
             return PEDIDOS_DUPLICADOS;
         else{
             int numero = pedidos.size()+1;
             pedido.asignarNumero(numero);
             pedidos.add(pedido);
+            cliente.agregarPedido(pedido);
+            return EXITO;
         }
-        cliente.agregarPedido(pedido);
-        return EXITO;
+        
     }
     @Override
     public String cambiarEstado(Pedido pedidoAModificar){

@@ -28,15 +28,15 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         Usuario usuario= new Cliente(correo,apellido,nombre,perfil,clave,claveRepetida);
-        if(correo.isEmpty()||!correo.contains("@"))
+        if(correo == null||correo.isEmpty()||!correo.contains("@"))
             return ERROR_CORREO;
-        if(apellido.isBlank()||apellido.isEmpty())
+        if(apellido == null||apellido.isBlank()||apellido.isEmpty())
             return ERROR_APELLIDO;
-        if(nombre.isBlank()||nombre.isEmpty())
+        if(nombre == null||nombre.isBlank()||nombre.isEmpty())
             return ERROR_NOMBRE;
-        if(clave.isEmpty()||clave.isBlank())
+        if(clave == null||clave.isEmpty()||clave.isBlank())
             return ERROR_CLAVES;
-        if(!claveRepetida.contains(clave))
+        if(claveRepetida == null||!claveRepetida.contains(clave))
             return ERROR_CLAVESREPETIDAS;
         if(usuarios.contains(usuario))
             return USUARIOS_DUPLICADOS;
