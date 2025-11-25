@@ -177,6 +177,7 @@ public class GestorProductos implements IGestorProductos{
     //Hacemos las validaciones de los datos del producto
     
     //Implementacion de los metodos agregados en IGestorProductos
+    @Override
     public String leerProductoConArchivo(){
         File prodArchivo = new File(NOMBRE_ARCHIVO);
         if(!prodArchivo.exists()){
@@ -210,6 +211,7 @@ public class GestorProductos implements IGestorProductos{
         } 
     }
     
+    @Override
     public String cargarProdEnArchivo(){
         File prodArchivo = new File(NOMBRE_ARCHIVO);
         if(!prodArchivo.exists()){
@@ -241,8 +243,8 @@ public class GestorProductos implements IGestorProductos{
         return p.verCodigo() + SEPARADOR_ARCHIVO
              + p.verDescripcion() + SEPARADOR_ARCHIVO
              + p.verPrecio() + SEPARADOR_ARCHIVO
-             + p.verCategoria().name() + SEPARADOR_ARCHIVO
-             + p.verEstado().name();
+             + p.verCategoria().toString() + SEPARADOR_ARCHIVO
+             + p.verEstado().toString();
     }
     
     private Producto convertirLineaAProducto(String linea) throws IllegalArgumentException {
@@ -257,8 +259,14 @@ public class GestorProductos implements IGestorProductos{
         int codigo = Integer.parseInt(partes[0].trim());
         String descripcion = partes[1].trim();
         float precio = Float.parseFloat(partes[2].trim());
-        Categoria categoria = Categoria.valueOf(partes[3].trim());
-        Estado estado = Estado.valueOf(partes[4].trim());
+        
+        //Debemos pasar Categoria y Estado a mayuscula para que coincida con la enumeracion
+         String categoriaTexto = partes[3].trim().toUpperCase().replace(" ", "");
+        //replace Remplaza el espacio para que quede el texto todo junto
+         Categoria categoria = Categoria.valueOf(categoriaTexto);
+         String estadoTexto = partes[3].trim().toUpperCase().replace(" ", "");
+        //replace Remplaza el espacio para que quede el texto todo junto
+         Estado estado = Estado.valueOf(estadoTexto);
 
         return new Producto(codigo, descripcion, categoria, estado, precio);
     }

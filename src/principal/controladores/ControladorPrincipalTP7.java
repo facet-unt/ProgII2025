@@ -25,6 +25,7 @@ public class ControladorPrincipalTP7 {
         IGestorProductos gp = GestorProductos.instanciar();
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         IGestorPedidos gPed = GestorPedidos.instanciar();
+
 //            
 //        System.out.println("#####PRODUCTOS#####");
 //        /*CREAR PRODUCTO*/
@@ -183,8 +184,8 @@ public class ControladorPrincipalTP7 {
         //  System.out.println("Obtener usuarios y productos");
         // System.out.println("=========");
         Usuario unCliente1 = gu.obtenerUsuario("cliente1@bar.com");
-        Producto prod1 = gp.obtenerProducto(1);
-        Producto prod2 = gp.obtenerProducto(2);
+//        Producto prod1 = gp.obtenerProducto(1);
+//        Producto prod2 = gp.obtenerProducto(2);
         
         System.out.println("=========");
         System.out.println("Crear pedidos");

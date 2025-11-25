@@ -7,12 +7,12 @@ import productos.modelos.Producto;
 
 public interface IGestorProductos {
     public static final String EXITO = "Producto creado/modificado con exito";
-    public static final String ERROR_CODIGO = "El código del producto es incorrecto";
-    public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
+    public static final String ERROR_CODIGO = "El codigo del producto es incorrecto";
+    public static final String ERROR_DESCRIPCION = "La descripcion del producto es incorrecta";
     public static final String ERROR_PRECIO = "El precio del producto es incorrecto";
-    public static final String ERROR_CATEGORIA = "La categoría del producto es incorrecta";
+    public static final String ERROR_CATEGORIA = "La categoria del producto es incorrecta";
     public static final String ERROR_ESTADO = "El estado del producto es incorrecto";
-    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
+    public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese codigo";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
     //Agrego las constantes del enunciado.
@@ -33,6 +33,6 @@ public interface IGestorProductos {
     Producto obtenerProducto(Integer codigo); 
     
     //Agrego dos metodos, uno para leer el archivo y otro para cargarlo
-    String leerProdEnArchivo();
+    String leerProductoConArchivo();
     String cargarProdEnArchivo();
 }

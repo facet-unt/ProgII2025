@@ -79,15 +79,15 @@ public class Producto {
         return this.codigo == other.codigo;
     }
 
-    public void mostrar() {
+ public void mostrar() {
 
-        System.out.println("-- PRODUCTO --");
-        System.out.println("Codigo: " + codigo);
-        System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
-        System.out.println("Precio: " + precio);
-    }
+    System.out.println("-- PRODUCTO --");
+    System.out.println("Codigo: " + codigo);
+    System.out.println("Descripcion: " + descripcion);
+    System.out.println("Categoria: " + categoria.toString());
+    System.out.println("Estado: " + estado.toString());
+    System.out.println("Precio: " + precio);
+}
     
     @Override
     public String toString() {
