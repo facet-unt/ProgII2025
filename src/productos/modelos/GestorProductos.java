@@ -29,6 +29,7 @@ public class GestorProductos implements IGestorProductos  {
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         Producto producto= new Producto(codigo,descripcion,precio,categoria,estado);
+        File f =  new File(NOMBRE_ARCHIVO);
         if(codigo<=0)
             return ERROR_CODIGO;
         if(descripcion==null||descripcion.isBlank())
@@ -39,13 +40,19 @@ public class GestorProductos implements IGestorProductos  {
             return ERROR_CATEGORIA;
         if(estado==null)
             return ERROR_ESTADO;
-        if(productos.contains(producto))
-            return PRODUCTOS_DUPLICADOS;
-        else{
+        if(!f.exists()){    
             productos.add(producto);
             return EscribirArchivo(producto);
         }
-        
+        else{
+            if(productos.contains(producto))
+                return PRODUCTOS_DUPLICADOS;
+            else{
+                this.productos= LeerArchivo();
+                productos.add(producto);
+                return EscribirArchivo(producto);
+            }
+        }
     }
     
     @Override
