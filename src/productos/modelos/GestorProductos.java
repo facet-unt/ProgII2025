@@ -140,6 +140,7 @@ public class GestorProductos implements IGestorProductos  {
             return PRODUCTO_EN_PEDIDO;
         }
         else{
+            reescribirArchivo();
             productos.remove(producto);
             for(Producto p: productos){
                 EscribirArchivo(p);
@@ -216,6 +217,18 @@ public class GestorProductos implements IGestorProductos  {
         catch(IOException ioe){
             System.out.println(LECTURA_ERROR);
             return productos;
+        }
+    }
+    public String reescribirArchivo(){
+        File f = new File(NOMBRE_ARCHIVO);
+        try{
+            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, false); // false = sobrescribir
+            fw.write("");
+            fw.close();
+            return ESCRITURA_OK;
+        }
+        catch (IOException ex) {
+            return ESCRITURA_ERROR;
         }
     }
 }
