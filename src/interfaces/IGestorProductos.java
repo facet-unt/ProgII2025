@@ -40,9 +40,5 @@ public interface IGestorProductos {
     public String borrarProducto(Producto producto);
     public boolean existeEsteProducto(Producto producto);
     public List<Producto> verProductosPorCategoria(Categoria categoria);
-    public Producto obtenerProducto(Integer codigo);
-    public String CrearArchivo();
-    public String EscribirArchivo(Producto producto);
-    public List<Producto> LeerArchivo();
-    
+    public Producto obtenerProducto(Integer codigo);    
 }

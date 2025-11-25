@@ -149,8 +149,7 @@ public class GestorProductos implements IGestorProductos  {
         }
     }
 
-    @Override
-    public String CrearArchivo(){
+    private String CrearArchivo(){
         File f =  new File(NOMBRE_ARCHIVO);
         try{
             f.createNewFile();
@@ -160,8 +159,8 @@ public class GestorProductos implements IGestorProductos  {
             return CREACION_ERROR;
         }
     }
-    @Override
-    public String EscribirArchivo(Producto producto){
+
+    private String EscribirArchivo(Producto producto){
         StringBuilder cadena1 = new StringBuilder();
         File f =  new File(NOMBRE_ARCHIVO);
         try {
@@ -190,8 +189,8 @@ public class GestorProductos implements IGestorProductos  {
         }
         
     }
-    @Override
-    public List<Producto> LeerArchivo(){
+
+    private List<Producto> LeerArchivo(){
         List<Producto> productos = new ArrayList<>();
         File f = new File(NOMBRE_ARCHIVO);
         if(!f.exists()){
