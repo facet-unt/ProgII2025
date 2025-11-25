@@ -115,8 +115,9 @@ public class GestorProductos implements IGestorProductos {
                 int codigo = Integer.parseInt(partes[0]);
                 String desc = partes[1];
                 float precio = Float.parseFloat(partes[2]);
-                Categoria cat = Categoria.valueOf(partes[3]);
-                Estado est = Estado.valueOf(partes[4]);
+                Categoria cat = Categoria.valueOf(nombreEnMayuscula(partes[3]));
+                
+                Estado est = Estado.valueOf(nombreEnMayuscula(partes[4]));
                 productos.add(new Producto(codigo, desc, cat, est, precio));
             }
             System.out.println(LECTURA_OK);
@@ -126,6 +127,9 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
+    public String nombreEnMayuscula(String nombre){
+        return nombre.toUpperCase();
+    }
     private void cargarListaProductosEnArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, false))) {
 

@@ -6,7 +6,7 @@ package productos.modelos;
 
 public enum Categoria {
     ENTRADA("Entrada"),
-    PLATO_PRINCIPAL("Plato principal"),
+    PLATO_PRINCIPAL("Plato_Principal"),
     POSTRE("Postre");
 
     private final String nombre;
@@ -19,4 +19,6 @@ public enum Categoria {
     public String toString() {
         return nombre;
     }
+    
+   
 }

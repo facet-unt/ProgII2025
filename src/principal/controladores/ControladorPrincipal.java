@@ -15,6 +15,6 @@ public class ControladorPrincipal {
         System.out.println(gp.crearProducto(12, "Testeo de archivo2", 102, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(13, "Testeo de archivo3", 102, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(12, "Testeo de archivo40", 102, Categoria.ENTRADA, Estado.DISPONIBLE));
-System.out.println("Archivo real: " + new File(ARCHIVO).getAbsolutePath());
+
     }
 }

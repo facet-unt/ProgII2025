@@ -281,7 +281,7 @@ public class ControladorPrincipalTP7 {
                 System.out.println(gp.borrarProducto(gp.obtenerProducto(5)));
                                 System.out.println(gp.borrarProducto(gp.obtenerProducto(15)));
 
-
+gp.menu();
 //        gp.modificarProducto(gp.obtenerProducto(3), 40, "descripcion", 10000, Categoria.ENTRADA, Estado.DISPONIBLE);
 //        System.out.println(gp.borrarProducto(gp.obtenerProducto(7)));
 //        System.out.println(gp.borrarProducto(gp.obtenerProducto(10)));

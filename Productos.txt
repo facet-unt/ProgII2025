@@ -1,6 +1,9 @@
 1*Empanadas*1.0*Entrada*Disponible
 6*Ensalada*3.0*Entrada*Disponible
-9*Suprema con ensalada*2.8*Plato principal*Disponible
-7*Suprema con pure*3.0*Plato principal*Disponible
-3*Copa helada*3.0*Postre*Disponible
+12343*asdasdasdas*2342.0*Entrada*Disponible
 10*descripcion*10000.0*Entrada*Disponible
+9*Suprema con ensalada*2.8*Plato_Principal*Disponible
+7*Suprema con pure*3.0*Plato_Principal*Disponible
+3*Copa helada*3.0*Postre*Disponible
+12*Testeo de archivo2*102.0*Entrada*Disponible
+13*Testeo de archivo3*102.0*Entrada*Disponible

@@ -8,7 +8,7 @@ public enum Estado {
     
     
     DISPONIBLE("Disponible"),
-    NO_DISPONIBLE("No disponible");
+    NO_DISPONIBLE("No_Disponible");
 
     private final String nombre;
 
