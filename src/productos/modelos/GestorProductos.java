@@ -45,10 +45,10 @@ public class GestorProductos implements IGestorProductos  {
             return EscribirArchivo(producto);
         }
         else{
+            this.productos= LeerArchivo();
             if(productos.contains(producto))
                 return PRODUCTOS_DUPLICADOS;
-            else{
-                this.productos= LeerArchivo();
+            else{ 
                 productos.add(producto);
                 return EscribirArchivo(producto);
             }
@@ -96,7 +96,7 @@ public class GestorProductos implements IGestorProductos  {
         for (Producto p : productos) {
             if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
                 productosbuscados.add(p);
-      }
+        }
         Collections.sort(productosbuscados);
         return productosbuscados;
     }

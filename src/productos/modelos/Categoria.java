@@ -37,12 +37,10 @@ public enum Categoria {
         if (texto == null) 
             return null;
         texto = texto.toUpperCase();
-        if(texto.compareTo(ENTRADA.toString()) == 0){
-            return ENTRADA;
+        for (Categoria c : Categoria.values()) {
+            if (c.name().equals(texto) || c.valor.toUpperCase().equals(texto))
+                return c;
         }
-        else if(texto.compareTo(PLATO_PRINCIPAL.toString()) == 0)
-            return PLATO_PRINCIPAL;
-        else
-            return POSTRE;
+        return null;
         }
 }
