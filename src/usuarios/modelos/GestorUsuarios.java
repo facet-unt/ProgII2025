@@ -126,7 +126,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     public Usuario obtenerUsuario(String correo) {
         for (Usuario u : usuarios) {
              
-            if (u.verCorreo()==(correo)) {
+            if (u.verCorreo().equals(correo)) {
                 return u;
             }
                 
