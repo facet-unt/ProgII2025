@@ -143,6 +143,9 @@ public class GestorProductos implements IGestorProductos  {
         }
         else{
             productos.remove(producto);
+            for(Producto p: productos){
+                EscribirArchivo(p);
+            }
             return PRODUCTO_BORRADO;
         }
     }
