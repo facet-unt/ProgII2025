@@ -13,20 +13,20 @@ import usuarios.modelos.Usuario;
  * @author thoma
  */
 public interface IGestorUsuarios {
-    
+
     // Metodos
     public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida);
-    
+
     public List<Usuario> verUsuarios();
-    
+
     public List<Usuario> buscarUsuarios(String apellido);
-    
+
     public boolean existeEsteUsuario(Usuario usuario);
-    
-    public Usuario ObtenerUsuario(String correo);
-    
+
+    public Usuario obtenerUsuario(String correo);
+
     public String borrarUsuario(Usuario usuario);
-    
+
     // Constantes
     public static final String EXITO = "Usuario creado/modificado con exito";
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";

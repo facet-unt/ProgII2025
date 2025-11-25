@@ -12,36 +12,37 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
-public abstract class Usuario implements Comparable <Usuario> {
+public abstract class Usuario implements Comparable<Usuario> {
+
     //Atributos
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
     private Perfil perfil;
-    
+
     //Constructor de la Super Clase
-    public Usuario (String correo, String clave, String apellido, String nombre, Perfil perfil) {
+    public Usuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
         this.perfil = perfil;
     }
-    
+
     //Metodos
-    public void mostrar(){
+    public void mostrar() {
         System.out.println(this.verApellido() + ", " + this.verNombre());
     }
-    
+
     public abstract List<Pedido> verPedidos();
-    
+
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
+        if (correo != null && !correo.isBlank()) {
             this.correo = correo;
         }
     }
@@ -51,7 +52,7 @@ public abstract class Usuario implements Comparable <Usuario> {
     }
 
     public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
+        if (clave != null && !clave.isBlank()) {
             this.clave = clave;
         }
     }
@@ -61,7 +62,7 @@ public abstract class Usuario implements Comparable <Usuario> {
     }
 
     public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
+        if (apellido != null && !apellido.isBlank()) {
             this.apellido = apellido;
         }
     }
@@ -71,7 +72,7 @@ public abstract class Usuario implements Comparable <Usuario> {
     }
 
     public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
+        if (nombre != null && !nombre.isBlank()) {
             this.nombre = nombre;
         }
     }
@@ -83,8 +84,7 @@ public abstract class Usuario implements Comparable <Usuario> {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
-      
-  
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -106,12 +106,13 @@ public abstract class Usuario implements Comparable <Usuario> {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
+
     @Override
-    public int compareTo(Usuario u){
-        if(this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase())==0)
+    public int compareTo(Usuario u) {
+        if (this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase()) == 0) {
             return this.nombre.toLowerCase().compareTo(u.nombre.toLowerCase());
-        else 
-        return this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase());
+        } else {
+            return this.apellido.toLowerCase().compareTo(u.apellido.toLowerCase());
+        }
     }
 }

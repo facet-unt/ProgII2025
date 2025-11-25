@@ -6,11 +6,13 @@ package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
+
 /**
  *
  * @author Esteban
  */
 public class ProductoDelPedido {
+
     private int cantidad;
     private Producto producto;
 
@@ -35,8 +37,8 @@ public class ProductoDelPedido {
         this.producto = producto;
     }
 
-    public void mostrar(){
-        System.out.println("\t\t" + verProducto().verDescripcion()+ "\t\t" + verCantidad());
+    public void mostrar() {
+        System.out.println("\t\t" + verProducto().verDescripcion() + "\t\t" + verCantidad());
     }
 
     @Override
@@ -60,6 +62,5 @@ public class ProductoDelPedido {
         final ProductoDelPedido other = (ProductoDelPedido) obj;
         return Objects.equals(this.producto, other.producto);
     }
-    
-    
+
 }

@@ -17,7 +17,8 @@ import java.util.List;
 import usuarios.modelos.Cliente;
 import productos.modelos.Producto;
 
-public class Pedido implements Comparable <Pedido> {
+public class Pedido implements Comparable<Pedido> {
+
     //Atributos
     private int numero = 0;
     private LocalDateTime fechaYHora;
@@ -29,15 +30,15 @@ public class Pedido implements Comparable <Pedido> {
     public Pedido(int numero, LocalDateTime fechaYHora, Cliente cliente, Estado estado) {
         this(numero, fechaYHora, new ArrayList<>(), cliente, estado);
     }
-    
+
     public Pedido(int numero, LocalDateTime fechaYHora, List<ProductoDelPedido> lista, Cliente cliente, Estado estado) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.listaProductosdelPedido = lista;
-        this.cliente = cliente;        
+        this.cliente = cliente;
         this.estado = estado;
     }
-    
+
     public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> lista, Cliente cliente) {
         this(numero, fechaYHora, lista, cliente, Estado.CREADO);
     }
@@ -46,15 +47,15 @@ public class Pedido implements Comparable <Pedido> {
     public int verNumero() {
         return numero;
     }
-    
+
     public void asignarNumero(int i) {
         this.numero = i;
     }
-    
+
     public LocalDate verFecha() {
         return this.fechaYHora.toLocalDate();
     }
-    
+
     public LocalTime verHora() {
         return this.fechaYHora.toLocalTime();
     }
@@ -73,33 +74,34 @@ public class Pedido implements Comparable <Pedido> {
 
     public void agregarProductodelPedido(Producto produc, int cantidad) {
         ProductoDelPedido nuevoProducto = new ProductoDelPedido(produc, cantidad);
-        if (!listaProductosdelPedido.contains(nuevoProducto)){
+        if (!listaProductosdelPedido.contains(nuevoProducto)) {
             this.listaProductosdelPedido.add(nuevoProducto);
         }
     }
-    
+
     public List<ProductoDelPedido> verProductoPedido() {
         return listaProductosdelPedido;
     }
-    
-    public void mostrar(){
+
+    public void mostrar() {
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-        
+
         String fechaFormateada = this.fechaYHora.format(Fecha);
         String horaFormateada = this.fechaYHora.format(Hora);
-        
+
         System.out.println("Nro: " + this.numero);
         System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
         System.out.println("Cliente: " + this.cliente.verApellido() + ", " + this.cliente.verNombre());
         System.out.println("Estado: " + this.estado);
-        
+
         System.out.println("\t\tProducto " + "\t\tCantidad");
         System.out.println("\t\t=================================");
-        for(ProductoDelPedido p : listaProductosdelPedido)
+        for (ProductoDelPedido p : listaProductosdelPedido) {
             p.mostrar();
+        }
         System.out.println("\n####################");
-    } 
+    }
 
     @Override
     public int hashCode() {
@@ -127,6 +129,5 @@ public class Pedido implements Comparable <Pedido> {
     public int compareTo(Pedido o) {
         return this.numero - o.numero;
     }
-    
-    
+
 }

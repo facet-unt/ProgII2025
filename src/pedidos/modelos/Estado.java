@@ -13,18 +13,18 @@ public enum Estado {
     SOLICITADO("Solicitado"),
     PROCESANDO("Procesando"),
     ENTREGADO("Entregado");
-    
+
     private String valor;
 
     private Estado(String valor) {
         this.valor = valor;
     }
-    
+
     @Override
     public String toString() {
         return this.valor;
     }
-    
+
     public String verValor() {
         return valor;
     }

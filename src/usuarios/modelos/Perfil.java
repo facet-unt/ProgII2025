@@ -12,9 +12,9 @@ public enum Perfil {
     CLIENTE("Cliente"),
     EMPLEADO("Empleado"),
     ENCARGADO("Encargado");
-    
+
     private String valor;
-    
+
     private Perfil(String valor) {
         this.valor = valor;
     }
@@ -23,5 +23,5 @@ public enum Perfil {
     public String toString() {
         return this.valor;
     }
- 
+
 }

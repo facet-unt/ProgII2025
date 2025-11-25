@@ -12,9 +12,8 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteba
  */
+public class Encargado extends Usuario {
 
-public class Encargado extends Usuario{
-    
     //Constructor
     public Encargado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         super(correo, clave, apellido, nombre, perfil);

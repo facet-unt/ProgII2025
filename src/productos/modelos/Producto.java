@@ -8,14 +8,14 @@ package productos.modelos;
  *
  * @author Esteban
  */
-public class Producto implements Comparable <Producto>{
+public class Producto implements Comparable<Producto> {
+
     //Atributos
     private int codigo;
     private String descripcion;
     private Categoria unaCategoria;
     private Estado unEstado;
     private float precio;
-
 
     //Constructor
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
@@ -25,19 +25,19 @@ public class Producto implements Comparable <Producto>{
         this.unaCategoria = categoria;
         this.unEstado = estado;
     }
-    
+
     // Métodos
     @Override
     public String toString() {
-        return "Producto{" +
-                "codigo=" + codigo +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + unaCategoria.verValor() + '\'' +
-                ", estado='" + unEstado.verValor() + '\'' +
-                ", precio=" + precio +
-                '}';
+        return "Producto{"
+                + "codigo=" + codigo
+                + ", descripcion='" + descripcion + '\''
+                + ", categoria='" + unaCategoria.verValor() + '\''
+                + ", estado='" + unEstado.verValor() + '\''
+                + ", precio=" + precio
+                + '}';
     }
-    
+
     public void mostrar() {
         System.out.println("Codigo: " + codigo);
         System.out.println("Descripcion: " + descripcion);
@@ -45,14 +45,15 @@ public class Producto implements Comparable <Producto>{
         System.out.println("Categoria: " + unaCategoria);
         System.out.println("Estado: " + unEstado);
     }
-   
+
     public int verCodigo() {
         return codigo;
     }
 
     public void asignarCodigo(int c) {
-        if (c > 0)
+        if (c > 0) {
             codigo = c;
+        }
     }
 
     public String verDescripcion() {
@@ -60,8 +61,9 @@ public class Producto implements Comparable <Producto>{
     }
 
     public void asignarDescripcion(String d) {
-        if (d != null && !d.isBlank())
+        if (d != null && !d.isBlank()) {
             descripcion = d;
+        }
     }
 
     public Categoria verCategoria() {
@@ -86,7 +88,7 @@ public class Producto implements Comparable <Producto>{
     }
 
     public void asignarPrecio(float p) {
-        if (p > 0){
+        if (p > 0) {
             precio = p;
         }
     }
@@ -112,13 +114,14 @@ public class Producto implements Comparable <Producto>{
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-    
+
     @Override
-    public int compareTo(Producto p){
-        if(this.unaCategoria.compareTo(p.unaCategoria)==0)
+    public int compareTo(Producto p) {
+        if (this.unaCategoria.compareTo(p.unaCategoria) == 0) {
             return this.descripcion.toLowerCase().compareTo(p.descripcion.toLowerCase());
-        else 
-        return this.unaCategoria.compareTo(p.unaCategoria);
+        } else {
+            return this.unaCategoria.compareTo(p.unaCategoria);
+        }
     }
-    
+
 }

@@ -12,14 +12,13 @@ import pedidos.modelos.Pedido;
  *
  * @author Esteban
  */
-
 public class Empleado extends Usuario {
-        
+
     //Constructor
     public Empleado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         super(correo, clave, apellido, nombre, perfil);
     }
-    
+
     //Metodos
     @Override
     public String toString() {
@@ -31,12 +30,10 @@ public class Empleado extends Usuario {
         System.out.print("Empleado: ");
         super.mostrar();
     }
-    
+
     @Override
     public List<Pedido> verPedidos() {
-        GestorPedidos i= GestorPedidos.instanciar();
+        GestorPedidos i = GestorPedidos.instanciar();
         return i.verPedidos();
     }
 }
-
-

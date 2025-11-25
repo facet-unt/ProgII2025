@@ -18,25 +18,24 @@ import usuarios.modelos.Cliente;
  * @author thoma
  */
 public interface IGestorPedidos {
-    
+
     //Metodos
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
-    
+
     public String cambiarEstado(Pedido pedidoAModificar);
-    
+
     public List<Pedido> verPedidos();
-    
+
     public boolean hayPedidosConEsteCliente(Cliente cliente);
-    
+
     public boolean hayPedidosConEsteProducto(Producto producto);
-    
+
     public boolean existeEstePedido(Pedido pedido);
-    
+
     public Pedido obtenerPedido(Integer numero);
-    
+
     public String cancelarPedido(Pedido pedido);
-    
-    
+
     //Constantes
     public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
     public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";

@@ -12,19 +12,19 @@ public enum Categoria {
     ENTRADA("Entrada"),
     PLATO_PRINCIPAL("Plato Principal"),
     POSTRE("Postre");
-    
+
     private String valor;
-    
+
     //Constructor
-    private Categoria(String valor){
-        this.valor=valor;
+    private Categoria(String valor) {
+        this.valor = valor;
     }
 
     @Override
     public String toString() {
         return this.valor;
     }
-    
+
     public String verValor() {
         return valor;
     }
@@ -32,5 +32,5 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-    
+
 }
