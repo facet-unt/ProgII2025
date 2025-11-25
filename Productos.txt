@@ -6,3 +6,4 @@
 7;Suprema con pure;Plato principal;Disponible;3.0
 9;Suprema con ensalada;Plato principal;Disponible;2.8
 1;Empanadas;Entrada;Disponible;1.0
+1;Empanadas;Entrada;Disponible;1.0

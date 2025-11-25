@@ -58,30 +58,28 @@ public class GestorProductos implements IGestorProductos  {
     @Override
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         this.productos = LeerArchivo();
-        if(productoAModificar==null)
-            return PRODUCTO_INEXISTENTE;
-        for(Producto p : productos){
-            if(p.equals(productoAModificar)){
-                if(codigo<=0)
-                    return ERROR_CODIGO;
-                productoAModificar.asignarCodigo(codigo);
-                if(descripcion==null||descripcion.isBlank())
-                    return ERROR_DESCRIPCION;
-                productoAModificar.asignarDescripcion(descripcion);
-                if(precio<=0)
-                    return ERROR_PRECIO;
-                productoAModificar.asignarPrecio(precio);
-                if(categoria==null)
-                    return ERROR_CATEGORIA;
-                productoAModificar.asignarCategoria(categoria);
-                if(estado==null)
-                    return ERROR_ESTADO;
-                productoAModificar.asignarEstado(estado);
-                EscribirArchivo(productoAModificar);
-                    return CADENA;
-            }
+        if(existeEsteProducto(productoAModificar)== true){
+            if(codigo<=0)
+                return ERROR_CODIGO;
+            if(descripcion==null||descripcion.isBlank())
+                return ERROR_DESCRIPCION;
+            if(precio<=0)
+                return ERROR_PRECIO;
+            if(categoria==null)
+                return ERROR_CATEGORIA;
+            if(estado==null)
+                return ERROR_ESTADO;
+            borrarProducto(productoAModificar);
+            productoAModificar.asignarCodigo(codigo);
+            productoAModificar.asignarDescripcion(descripcion);
+            productoAModificar.asignarPrecio(precio);
+            productoAModificar.asignarCategoria(categoria);
+            productoAModificar.asignarEstado(estado);
+            EscribirArchivo(productoAModificar);
+            return PRODUCTO_MODIFICADO;
         }
-        return PRODUCTO_INEXISTENTE;
+        else
+            return PRODUCTO_INEXISTENTE;
     }
     
     @Override
