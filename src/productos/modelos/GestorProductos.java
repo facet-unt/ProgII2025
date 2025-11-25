@@ -175,8 +175,8 @@ public class GestorProductos implements IGestorProductos {
                 String[] v = linea.split(",");
 
                 productos.add(new Producto(
-                        Integer.parseInt(v[0].trim()), 
-                        v[1].trim(), 
+                        Integer.parseInt(v[0].trim()),
+                        v[1].trim(),
                         Categoria.valueOf(v[3].trim().toUpperCase().replace(" ", "_")),
                         Estado.valueOf(v[4].trim().toUpperCase().replace(" ", "_")),
                         Float.parseFloat(v[2].trim())
@@ -190,21 +190,20 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
-    public String crearArchivo() {
-        File file = new File(NOMBRE_ARCHIVO);
-        try {
-            if (file.createNewFile()) {
-                return CREACION_OK;
-            } else {
-                return CREACION_OK;
-            }
-        } catch (IOException ex) {
-            System.out.println(CREACION_ERROR);
-            System.err.println(ex.getMessage());
-            return CREACION_ERROR;
-        }
-    }
-
+//    public String crearArchivo() {
+//        File file = new File(NOMBRE_ARCHIVO);
+//        try {
+//            if (file.createNewFile()) {
+//                return CREACION_OK;
+//            } else {
+//                return CREACION_OK;
+//            }
+//        } catch (IOException ex) {
+//            System.out.println(CREACION_ERROR);
+//            System.err.println(ex.getMessage());
+//            return CREACION_ERROR;
+//        }
+//    }
     public String escribirArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
 
@@ -218,11 +217,11 @@ public class GestorProductos implements IGestorProductos {
                 bw.write(lineaCSV);
                 bw.newLine();
             }
-            return ESCRITURA_OK;
+            return CREACION_OK + ESCRITURA_OK;
         } catch (IOException ioe) {
             System.out.println(ESCRITURA_ERROR);
             System.err.println(ioe.getMessage());
-            return ESCRITURA_ERROR;
+            return CREACION_ERROR + ESCRITURA_ERROR;
         }
 
     }
