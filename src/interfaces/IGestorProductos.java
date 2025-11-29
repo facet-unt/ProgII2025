@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
@@ -39,11 +40,13 @@ public interface IGestorProductos {
     public static final String NOMBRE_ARCHIVO_P = "Productos.txt";
     public static final String ARCHIVO_ERROR = "No se pudo acceder al archivo";
     public static final String ARCHIVO_BORRADO = "El archivo se borro exitosamente";
+    public static final String SEPARADOR_ARCHIVO = ";";
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Metodos">
     public abstract Boolean crearArchivo();
-    public String guardarEnArchivo(Producto unProducto);
+    public abstract String guardarEnArchivo(Producto unProducto);
+    public abstract String guardarEnArchivoAgregar(Producto unProducto);
     public abstract String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public abstract List<Producto> verProductos();
     public abstract String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
@@ -53,6 +56,8 @@ public interface IGestorProductos {
     public abstract boolean existeEsteProducto(Producto producto);
     public abstract List<Producto> verProductosPorCategoria(Categoria categoria);
     public abstract Producto obtenerProducto(Integer codigo);
+    //Agrego dos metodos, uno para leer el archivo y otro para cargarlo
+    public abstract String leerProductoConArchivo();
     //</editor-fold>
 
 }
