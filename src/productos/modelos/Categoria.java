@@ -36,6 +36,15 @@ public enum Categoria {
         }
         return null;
     }
+    
+    public static Categoria desdeTexto(String texto) {
+        for (Categoria c : Categoria.values()) {
+            if (c.toString().equalsIgnoreCase(texto.trim())) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException("Categoría inválida: " + texto);
+    }
 
     @Override
     public String toString() {
