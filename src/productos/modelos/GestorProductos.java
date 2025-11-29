@@ -1,3 +1,4 @@
+
 package productos.modelos;
 
 import interfaces.IGestorProductos;
@@ -14,9 +15,66 @@ public class GestorProductos implements IGestorProductos {
     private List<Producto> productos = new ArrayList<>();
 
     private static GestorProductos instancia;
+    
+    
+     private Producto convertirLineaAProducto(String linea) throws IllegalArgumentException {
+        if (linea == null || linea.isBlank())
+            return null;
+
+        String[] partes = linea.split(SEPARADOR_ARCHIVO);
+
+        if (partes.length != 5)
+            throw new IllegalArgumentException("Formato inválido en la línea del archivo");
+
+        int codigo = Integer.parseInt(partes[0].trim());
+        String descripcion = partes[1].trim();
+        float precio = Float.parseFloat(partes[2].trim());
+        
+        Categoria categoria = Categoria.desdeTexto(partes[3].trim());
+        Estado estado = Estado.desdeTexto(partes[4].trim());
+
+        return new Producto(codigo, descripcion, categoria, estado, precio);
+    }
+    
+    
+    @Override
+    public String leerProductoConArchivo(){
+        File prodArchivo = new File(NOMBRE_ARCHIVO_P);
+        if(!prodArchivo.exists()){
+            try{
+                if(prodArchivo.createNewFile()){
+                    return CREACION_OK; //Si el archivo se creo correctamente
+                }
+                else {
+                    return CREACION_ERROR;
+                }
+            } catch(IOException e){
+                return CREACION_ERROR;
+            }
+        }
+        // Hago un try con argumento
+        try(BufferedReader br = new BufferedReader (new FileReader(prodArchivo))){
+            productos.clear(); //Evitamos que se dupliquen los productos si se vuelve a leer
+            String linea;
+            
+            while((linea = br.readLine())!=null){
+                linea=linea.trim();
+                Producto p = convertirLineaAProducto(linea);
+                if(p!=null && !productos.contains(p)){
+                    productos.add(p);
+                }
+            }
+            return LECTURA_OK;
+        }
+        catch(IOException | IllegalArgumentException e){
+            return LECTURA_ERROR;
+        } 
+    }
+   
 
     private GestorProductos() {
-
+        
+        this.leerProductoConArchivo();
     }
 
     public static GestorProductos instanciar() {
@@ -43,24 +101,33 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
-    private String borrarArchivo() {
-        File f;
-        f = new File(NOMBRE_ARCHIVO_P);
-        f.delete();
-        if (f != null) {
-            try {
-                FileWriter fw = new FileWriter(f);
-                fw.close();
-            } catch (IOException ex) {
+    @Override
+    public String guardarEnArchivo(Producto unProducto) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(NOMBRE_ARCHIVO_P);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(unProducto.verCodigo() + ";" + unProducto.verDescripcion() + ";" + unProducto.verCategoria() + ";" + unProducto.verEstado() + ";" + unProducto.verPrecio());
+            bw.newLine();
+            bw.flush();
+            return (ESCRITURA_OK);
+        } catch (IOException ioe) {
+            return (ESCRITURA_ERROR);
+        } finally {
+            if (fw != null) {
+                try {
+                    fw.close();
+
+                } catch (IOException e) {
+                    return (ESCRITURA_ERROR);
+                }
 
             }
-            return (ARCHIVO_ERROR);
-        } else {
-            return (ARCHIVO_BORRADO);
         }
     }
-
-    public String guardarEnArchivo(Producto unProducto) {
+    
+    @Override
+    public String guardarEnArchivoAgregar (Producto unProducto) {
         FileWriter fw = null;
         try {
             fw = new FileWriter(NOMBRE_ARCHIVO_P, true);
@@ -91,7 +158,7 @@ public class GestorProductos implements IGestorProductos {
         if (codigo > 0 && descripcion != null && !descripcion.isEmpty() && precio > 0 && categoria != null && estado != null) {
             if (!productos.contains(p)) {
                 productos.add(p);
-                resultadoArchivo = guardarEnArchivo(p);
+                resultadoArchivo = guardarEnArchivoAgregar(p);
                 if (resultadoArchivo.equals(ESCRITURA_OK)) {
                     return (EXITO);
                 } else {
@@ -115,52 +182,49 @@ public class GestorProductos implements IGestorProductos {
         }
 
     }
+    
+    private String validarDatosProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        if (codigo <= 0) {
+            return ERROR_CODIGO;
+        }
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return ERROR_DESCRIPCION;
+        }
+        if (precio <= 0) {
+            return ERROR_PRECIO;
+        }
+        if (categoria == null) {
+            return ERROR_CATEGORIA;
+        }
+        if (estado == null) {
+            return ERROR_ESTADO;
+        }
+        return null;
+    }
 
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String resultadoArchivo;
-        if (productos.contains(p)) {
-            productos.remove(p);
+        if (p==null){
+            return PRODUCTO_INEXISTENTE;
         }
+        String error = validarDatosProducto(codigo, descripcion, precio, categoria, estado);
+        if (error != null)
+            return error;
+        
         p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-        productos.add(p);
-        if (codigo > 0 && descripcion != null && precio > 0 && categoria != null && estado != null) {
-            productos.add(p);
-            resultadoArchivo = borrarArchivo();
-            if (resultadoArchivo.equals(ARCHIVO_BORRADO)) {
-                for (Producto unProducto : productos) {
-                    resultadoArchivo = guardarEnArchivo(unProducto);
-                    if (!(resultadoArchivo.equals(ESCRITURA_OK))) {
-                        return (FRACASO);
-                    }
-                }
-                return (EXITO);
-            } else {
-                return (FRACASO);
-            }
-
-        } else {
-            if (codigo < 0) {
-                return (EXITO);
-            } else {
-                if (codigo < 0) {
-                    return (ERROR_CODIGO);
-                } else if (precio < 0) {
-                    return (ERROR_PRECIO);
-                } else if (descripcion == null) {
-                    return (ERROR_DESCRIPCION);
-                } else if (categoria == null) {
-                    return (ERROR_CATEGORIA);
-                } else {
-                    return (ERROR_ESTADO);
-                }
-            }
-        }
+        
+        resultadoArchivo = guardarEnArchivo(p);
+        if (resultadoArchivo.equals(ESCRITURA_OK))
+            return EXITO;
+        else
+            return FRACASO;
     }
+    
 
     @Override
     public List<Producto> verProductos() {
@@ -190,9 +254,18 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> menu() {
+        String resultadoArchivo;
         productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
+        for (Producto p: productos)
+        {
+            resultadoArchivo= guardarEnArchivo(p);
+            if (resultadoArchivo.equals (ESCRITURA_ERROR))
+            {
+                System.out.println("No se pudieron ordenar los productos en el archivo");
+                break;
+            }
+        }
         return this.productos;
-
     }
 
     @Override
@@ -248,37 +321,24 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public String borrarProducto(Producto producto) {
-        String resultadoArchivo;
-        if (productos.contains(producto) && producto != null) {
-            GestorPedidos pedidos = GestorPedidos.instanciar();
-            for (Pedido unPedido : pedidos.verPedidos()) {
-                for (ProductoDelPedido unProducto : unPedido.verProductoPedido()) {
-                    if ((unProducto.verUnProducto()).equals(producto)) // si el producto se encuentra en un pedido
-                    {
-                        return (BORRADO_FALLIDO + PRODUCTO_EN_PEDIDO);
-                    }
-
-                }
-
+        if (producto == null) {
+            return PRODUCTO_INEXISTENTE;
+        }
+   
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if (gp.hayPedidosConEsteProducto(producto)) {
+            return "No se puede borrar el producto, existen pedidos con el mismo.";
+        }
+    
+        if (productos.remove(producto)) {
+            for (Producto p: productos)
+            {
+            guardarEnArchivo(p);
             }
-
-            productos.remove(producto);
-            resultadoArchivo = borrarArchivo();
-            if (resultadoArchivo.equals(ARCHIVO_BORRADO)) {
-                for (Producto unProducto : productos) {
-                    resultadoArchivo = guardarEnArchivo(unProducto);
-                    if (!(resultadoArchivo.equals(ESCRITURA_OK))) {
-                        return (BORRADO_FALLIDO);
-                    }
-                }
-                return (OPERACION_EXITOSA);
-            } else {
-                return (BORRADO_FALLIDO);
-            }
-
+            return "Producto borrado con éxito.";
         } else {
-            productos.remove(producto);
-            return (OPERACION_EXITOSA);
+            return PRODUCTO_INEXISTENTE;
         }
     }
 }
+ 
