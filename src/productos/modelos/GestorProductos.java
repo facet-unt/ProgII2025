@@ -16,10 +16,6 @@ public class GestorProductos implements IGestorProductos{
    
     private static GestorProductos instancia;
     
-    //Agrego las constantes de archivo
-    private static final String NOMBRE_ARCHIVO= "productos.txt";
-    private static final String SEPARADOR_ARCHIVO= ";";
-    
     private GestorProductos() {
         this.leerProductoConArchivo();
     }

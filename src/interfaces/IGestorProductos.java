@@ -22,6 +22,10 @@ public interface IGestorProductos {
     public static final String CREACION_OK = "Se pudo crear el archivo de productos";
     public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
+    
+    //Agrego las constantes de archivo
+    public static final String NOMBRE_ARCHIVO= "productos.txt";
+    public static final String SEPARADOR_ARCHIVO= ";";
 
     String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
