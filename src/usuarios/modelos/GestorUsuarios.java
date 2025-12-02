@@ -4,6 +4,11 @@
  */
 package usuarios.modelos;
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +25,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     /* Constructor predeterminado */
     private GestorUsuarios() { 
+        this.leerArchivo(NOMBRE_ARCHIVO);
     }
     
     /* Metodo que devuelve una referencia a GestorUsuarios (se asegura de que exista un solo GestorUsuarios) */
@@ -31,16 +37,26 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         
+        /*Controla que no haya usuarios con el mismo correo */
+        if (this.obtenerUsuario(correo) != null)
+         {
+             
+         return ("No se pudo realizar la operación: el correo " + correo + " ya está registrado.");
+         
+         }
+        
+        
         if(perfil == CLIENTE)
         {
            Cliente c;
-           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
+           if(nombre!= null && !nombre.isBlank() && apellido!= null && !apellido.isBlank() && correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
            {
                c = new Cliente(correo, clave, apellido, nombre);
                c.asignarApellido(apellido);
                c.asignarClave(clave);
                c.asignarCorreo(correo);
                c.asignarNombre(nombre);
+               this.escribirArchivo(NOMBRE_ARCHIVO, c);
                usuarios.add(c);
                
             return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
@@ -53,13 +69,14 @@ public class GestorUsuarios implements IGestorUsuarios{
         else if(perfil == EMPLEADO)
         {
            Empleado em;
-           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
+           if(nombre!= null && !nombre.isBlank() && apellido!= null && !apellido.isBlank() && correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
            {
                 em = new Empleado(correo, clave, apellido, nombre);
                 em.asignarApellido(apellido);
                 em.asignarClave(clave);
                 em.asignarCorreo(correo);
                 em.asignarNombre(nombre);
+                this.escribirArchivo(NOMBRE_ARCHIVO, em);
                 usuarios.add(em);
                     
                 return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
@@ -72,13 +89,14 @@ public class GestorUsuarios implements IGestorUsuarios{
         else if(perfil == ENCARGADO)
         {
            Encargado en;
-           if(correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
+           if(nombre!= null && !nombre.isBlank() && apellido!= null && !apellido.isBlank() && correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave))
            {
                 en = new Encargado(correo, clave, apellido, nombre);
                 en.asignarApellido(apellido);
                 en.asignarClave(clave);
                 en.asignarCorreo(correo);
                 en.asignarNombre(nombre);
+                this.escribirArchivo(NOMBRE_ARCHIVO, en);
                 usuarios.add(en);
                  
                 return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
@@ -93,13 +111,15 @@ public class GestorUsuarios implements IGestorUsuarios{
             return ("No se pudo realizar la Operación, ingrese valores válidos");
         }
      } 
-            
+         
+    /* Devuelve los usuarios ordenados por Apellido y Nombre */
     public List<Usuario> verUsuarios()
     {
      Collections.sort(this.usuarios);
      return this.usuarios;  
     }
     
+    /* Busca usuarios por Apellido */ 
     public List<Usuario> buscarUsuarios(String apellido) {
          
       ArrayList<Usuario> encontrados = new ArrayList<>();
@@ -122,11 +142,11 @@ public class GestorUsuarios implements IGestorUsuarios{
             return false;
     }
     
-    
+    /* Metodo para comparar correo de usuarios */
     public Usuario obtenerUsuario(String correo) {
         for (Usuario u : usuarios) {
              
-            if (u.verCorreo()==(correo)) {
+            if (u.verCorreo().equals(correo)) {
                 return u;
             }
                 
@@ -150,11 +170,109 @@ public class GestorUsuarios implements IGestorUsuarios{
                 }
             }
             usuarios.remove(usuario);
+            this.modificarArchivo(NOMBRE_ARCHIVO);
             return(OPERACION_EXITOSA);
         }
        
             return(OPERACION_FALLIDA + USUARIO_INEX);
         
+    }
+    
+            /* Metodo para escribir en un archivo */
+    private String escribirArchivo(String NOMBRE_ARCHIVO, Usuario u)
+    {
+        
+        try( FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, true))
+        {
+            fw.write(deUsuarioaString(u));
+            return ESCRITURA_OK;
+            
+        } catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }   
+    }
+    
+    private String deUsuarioaString(Usuario u){
+        StringBuilder linea = new StringBuilder();
+        linea.append(u.verPerfil());  
+        linea.append(SEPARADOR);
+        linea.append(u.verApellido());
+        linea.append(SEPARADOR);
+        linea.append(u.verNombre());
+        linea.append(SEPARADOR);
+        linea.append(u.verCorreo());
+        linea.append(SEPARADOR);
+        linea.append(u.verClave());
+        linea.append("\n");
+        return linea.toString();
+    }
+    
+    private Usuario deStringaUsuario(String linea){
+        
+        String correo;
+        String clave;
+        String apellido;
+        String nombre;
+        String perfil;
+        
+        String[] cadenas = linea.split("-");
+        perfil = cadenas[0];
+        apellido = cadenas[1];
+        nombre = cadenas[2];
+        correo = cadenas[3];
+        clave = cadenas[4];
+        
+        Usuario u; 
+        
+        if (perfil.equals("Cliente")) {
+            u = new Cliente(correo, clave, apellido, nombre);
+        } else if (perfil.equals("Empleado")) {
+            u = new Empleado(correo, clave, apellido, nombre);
+        } else if (perfil.equals("Encargado")) {
+            u = new Encargado(correo, clave, apellido, nombre);
+        } else {
+            return null;
+        }
+        return u;
+    }
+    
+    private String leerArchivo(String NOMBRE_ARCHIVO){
+        
+        File f = new File(NOMBRE_ARCHIVO);
+        if (f.exists())
+        {
+        try(FileReader fr = new FileReader(NOMBRE_ARCHIVO))
+        {
+            BufferedReader bw = new BufferedReader(fr);
+            String linea = "";
+            while((linea = bw.readLine()) != null)
+            {
+            Usuario u = this.deStringaUsuario(linea);
+            if (!usuarios.contains(u)) {  /* Controla que no haya usuarios  duplicados en el archivo */
+               this.usuarios.add(u);
+            }
+            }
+                 
+            return LECTURA_OK;
+            
+        }
+        catch (IOException ex) {
+            return LECTURA_ERROR;
+          }   
+        }
+        return ERROR_ARCHIVO;
+    }
+    
+       private String modificarArchivo(String NOMBRE_ARCHIVO){ 
+        try( FileWriter fw = new FileWriter(NOMBRE_ARCHIVO))
+        {
+            for(Usuario u : this.usuarios){
+                fw.write(deUsuarioaString(u));
+            }
+            return ESCRITURA_OK;
+        } catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }
     }
     
 }

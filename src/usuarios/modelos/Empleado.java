@@ -24,6 +24,9 @@ public class Empleado extends Usuario{
         return vacio;
     }
     
-    
+    @Override 
+    public String verPerfil() {
+       return "Empleado";
+    }
 }
 

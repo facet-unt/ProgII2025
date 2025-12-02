@@ -55,5 +55,8 @@ public class Cliente extends Usuario{
         return(pedidos);
     }
 
-    
+    @Override 
+    public String verPerfil() {
+       return "Cliente";
+    }
 } 
