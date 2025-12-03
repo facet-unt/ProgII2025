@@ -9,6 +9,7 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import usuarios.modelos.Cliente;
+import usuarios.modelos.Perfil;
 
 public class VentanaAMCliente extends JDialog {
     private ArrayList<Cliente> clientes = new ArrayList<>();
@@ -148,7 +149,7 @@ public class VentanaAMCliente extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(correo, clave, apellido, nombre);
+        Cliente unCliente = new Cliente(correo, clave, apellido, nombre, Perfil.CLIENTE);
         this.clientes.add(unCliente);
         
         System.out.println("Clientes");
