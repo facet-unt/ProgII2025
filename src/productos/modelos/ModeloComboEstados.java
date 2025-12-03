@@ -20,6 +20,7 @@ public class ModeloComboEstados extends DefaultComboBoxModel{
         this.setSelectedItem(estado);
     }
     
+        // Constructor
     public ModeloComboEstados(){
         for (Estado estado : Estado.values()) {
             this.addElement(estado); 

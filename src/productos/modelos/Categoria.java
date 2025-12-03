@@ -15,6 +15,7 @@ public enum Categoria{
     
     private String valor;
 
+        // Constructor
     private Categoria(String valor) {
         this.valor = valor;
     }

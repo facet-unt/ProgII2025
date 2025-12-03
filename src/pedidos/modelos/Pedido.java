@@ -101,6 +101,7 @@ public class Pedido implements Comparable<Pedido> {
         return this.numero == other.numero;
     }
     
+        //Constructor
     public Pedido(int numero, LocalDateTime fechaYhora,List<ProductoDelPedido> productosdelpedido, Cliente unCliente) {
         this.numero = numero + 1;
         this.fechaYhora = fechaYhora;

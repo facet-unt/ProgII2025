@@ -24,6 +24,7 @@ public class Encargado extends Usuario {
         return null;
     } 
     
+        // Constructor
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
     }

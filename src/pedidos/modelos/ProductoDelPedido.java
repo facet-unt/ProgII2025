@@ -57,6 +57,7 @@ public class ProductoDelPedido {
         return Objects.equals(this.unproducto, other.unproducto);
     }
      
+        // Constructor
     public ProductoDelPedido(Producto unproducto, int cantidad) {
         this.cantidad = cantidad;
         this.unproducto = unproducto;

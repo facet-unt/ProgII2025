@@ -14,6 +14,7 @@ public enum Estado {
 
     private String valor;
 
+        // Constructor    
     private Estado(String valor) {
         this.valor = valor;
     }

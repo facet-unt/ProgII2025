@@ -96,9 +96,8 @@ public class Producto implements Comparable<Producto> {
         }
         return cmp;
     }
-     
     
-    
+        // Constructor
     public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
         this.codigo = codigo;
         this.descripcion = descripcion;

@@ -15,6 +15,7 @@ public enum Perfil {
     
     private String valor;
 
+        // Constructor
     private Perfil(String valor) {
         this.valor = valor;
     }

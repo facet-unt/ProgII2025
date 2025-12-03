@@ -20,6 +20,9 @@ public abstract class Usuario implements Comparable<Usuario>{
     private String apellido;
     private String nombre;
     
+    /**
+     * Muestra los datos del usuario
+     */
     public void mostrar(){
         System.out.println("Apellido: " + apellido);
         System.out.println("Nombre: "+nombre);
@@ -67,6 +70,10 @@ public abstract class Usuario implements Comparable<Usuario>{
         }
     }
     
+    /**
+     * 
+     * @return Devuelve una lista de los pedidos que tiene un usuario
+     */
     public abstract List<Pedido> verPedidos();
 
     @Override
@@ -91,8 +98,14 @@ public abstract class Usuario implements Comparable<Usuario>{
         return Objects.equals(this.correo, other.correo);
     }
 
+    /**
+     * Compara los usuarios por apellido
+     */
     static Comparator<Usuario> apellidoComp = (Usuario u1, Usuario u2) -> u1.verApellido().compareTo(u2.verApellido());
     
+    /**
+     * Compara los usuarios por nombre
+     */
     static Comparator<Usuario> nombreComp = (Usuario u1, Usuario u2) -> u1.verNombre().compareTo(u2.verApellido());
 
     @Override
@@ -104,6 +117,7 @@ public abstract class Usuario implements Comparable<Usuario>{
         return cmp;
     }
    
+        // Constructor
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
