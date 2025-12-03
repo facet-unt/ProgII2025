@@ -5,6 +5,7 @@
  */
 package productos.vistas;
 
+import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
@@ -14,20 +15,21 @@ import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 
-public class VentanaAMProducto extends JDialog {
+public class VentanaCrearProductos extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
+    public VentanaCrearProductos(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
+        this.setTitle(TITULO_NUEVO);        
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstados.setModel(new ModeloComboEstados());
+        this.setSize(300, 400);
         this.setVisible(true); 
     }
     
