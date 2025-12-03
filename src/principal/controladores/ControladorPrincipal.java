@@ -11,7 +11,7 @@ import productos.modelos.Estado;
 import productos.modelos.Producto;
 
 import usuarios.modelos.*;
-import pedidos.modelos.*;
+import productos.modelos.Producto;
 
 
 public class ControladorPrincipal {
@@ -73,10 +73,13 @@ public class ControladorPrincipal {
         
         for (Producto p: listaProductos)
             p.mostrar();
+         
+        listaProductos.get(2).asignarDescripcion("Producto 3");
+        System.out.println("\nEl precio del producto 3 es :" +  listaProductos.get(2).verPrecio());
+        listaProductos.get(2).asignarPrecio(1898.98f);
+        System.out.println("El nuevo precio del producto 3 es :" +  listaProductos.get(2).verPrecio());
         
-        p1.asignarDescripcion("Milanesa con puré");
-        p1.asignarPrecio(250.0f);
-        
+        System.out.println("\nPRODUCTOS usando toString()");
         for (Producto p: listaProductos)
             System.out.println(p);
          
@@ -146,10 +149,10 @@ public class ControladorPrincipal {
         pido3.add(new ProductoDelPedido(p3, 2));
         Pedido unPedido3 = new Pedido(3, LocalDateTime.now(),pido3, cliente2); 
 >>>>>>> desarrollo
-        
         listaPedidos.add(unPedido1);
         listaPedidos.add(unPedido2);
         listaPedidos.add(unPedido3);
+        System.out.println("#################### ");
         
         for (Pedido p: listaPedidos)
             p.mostrar();

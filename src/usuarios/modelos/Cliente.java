@@ -10,6 +10,7 @@ package usuarios.modelos;
  * @author Esteban
  */
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario{
@@ -24,8 +25,8 @@ public class Cliente extends Usuario{
   
     }
 
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
+    public Cliente(String correo, String apellido, String nombre,Perfil perfil ,String clave,String claveRepetida) {
+        super(correo,apellido,nombre,perfil,clave,claveRepetida);
 
 
     }
@@ -35,15 +36,7 @@ public class Cliente extends Usuario{
 
 
     public void agregarPedido(Pedido unPedido) {
-        if(!pedidos.contains(unPedido))
-        {
-            this.pedidos.add(unPedido);
-        }
-        else
-        {
-            this.pedidos.remove(unPedido);
-            this.pedidos.add(unPedido);
-        }
+        this.pedidos.add(unPedido);
     }
     public void cancelarPedido(Pedido unPedido) {
         if(pedidos.contains(unPedido)&&unPedido!=null)
@@ -52,7 +45,7 @@ public class Cliente extends Usuario{
    
 
     @Override
-    public ArrayList<Pedido> verPedido() {
+    public List<Pedido> verPedidos() {
         return(pedidos);
     }
 

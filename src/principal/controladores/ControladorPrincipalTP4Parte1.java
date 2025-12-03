@@ -93,7 +93,7 @@ public static void main(String[] args) {
         listapdp1.add(pdp2);
     if (!listapdp1.contains(pdp3))
         listapdp1.add(pdp3);
-    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
+    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(),listapdp1,cliente1);        
 
     ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
     ProductoDelPedido pdp4 = new ProductoDelPedido(listaProductos.get(2), 10);
@@ -106,7 +106,7 @@ public static void main(String[] args) {
         productosDelPedido2.add(pdp5);
     if (!productosDelPedido2.contains(pdp6))
         productosDelPedido2.add(pdp6);
-    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, cliente2);        
+    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(),productosDelPedido2,cliente2);        
 
     ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
     ProductoDelPedido pdp7 = new ProductoDelPedido(listaProductos.get(1), 100);
@@ -115,7 +115,7 @@ public static void main(String[] args) {
         productosDelPedido3.add(pdp7);
     if (!productosDelPedido3.contains(pdp8))
         productosDelPedido3.add(pdp8);
-    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), productosDelPedido3, cliente3);        
+    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(),productosDelPedido3,cliente3);        
     //pedido repetido no debe agregarse a la lista
 
     if(!listaPedidos.contains(unPedido1))

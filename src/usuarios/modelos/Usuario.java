@@ -4,7 +4,7 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
@@ -12,21 +12,22 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public abstract class Usuario {
+public abstract class Usuario implements Comparable<Usuario> {
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
-    
-    
+    private String claveRepetida;
+    private Perfil perfil;
     
     //CONSTRUCTOR
-    public Usuario(String correo, String clave, String apellido, String nombre) {
+    public Usuario(String correo, String apellido, String nombre ,Perfil perfil,String clave,String claveRepetida) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
+        this.claveRepetida=claveRepetida;
+        this.perfil=perfil;
     }
     
     //MOSTRAR
@@ -104,6 +105,16 @@ public abstract class Usuario {
         return Objects.equals(this.correo, other.correo);
     }
     
-    public abstract ArrayList<Pedido> verPedido();
- 
+    public abstract List<Pedido> verPedidos();
+
+    @Override
+    public int compareTo(Usuario o) {
+        if(this.apellido.compareTo(o.apellido)==0){
+            return nombre.compareTo(o.nombre);
+        }
+        else{
+            return apellido.compareTo(o.apellido);
+        }
+    }
+    
 }

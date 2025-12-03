@@ -6,13 +6,12 @@ package usuarios.modelos;
 
 /**
  *
- * @author estudiante
+ * @author octav
  */
 public enum Perfil {
     CLIENTE ("Cliente"),
-    EMPLEADO ("Emleado"),
+    EMPLEADO ("Empleado"),
     ENCARGADO ("Encargado");
-    
     private String valor;
 
     private Perfil(String valor) {
@@ -20,7 +19,7 @@ public enum Perfil {
     }
     
     @Override
-    public String toString() {
+    public String toString(){
         return this.valor;
     }
     

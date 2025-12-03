@@ -7,29 +7,30 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import productos.modelos.Producto;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
 /**
  *
  * @author estudiante
  */
-public class Pedido {
+public class Pedido implements Comparable<Pedido>{
     
    private int numero;
-   private LocalDateTime fechaYHora;
+   private LocalDate fecha;
+   private LocalTime hora;
    private Cliente unCliente;
    private Estado unEstado;
-   private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
-   private static int contador=1;
+   private List <ProductoDelPedido> productoPedido = new ArrayList<>();
+ 
    
    
    //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
-        this.numero = numero;
-        this.fechaYHora = fechaYHora;
+    public Pedido(LocalDate fecha, LocalTime hora, Estado unEstado, List<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
+        this.fecha = fecha;
+        this.hora=hora;
         this.unCliente = unCliente;
         this.unEstado = unEstado;
         this.unCliente.agregarPedido(this);
@@ -37,12 +38,8 @@ public class Pedido {
 
     }
     
-    public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
-        this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
-    }
-    
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
-        this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
+    public Pedido(LocalDate fecha,LocalTime hora, List<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
+        this(fecha,hora,Estado.CREADO,unProductoDelPedido, unCliente);
     }
     
 
@@ -57,33 +54,30 @@ public class Pedido {
         this.numero = numero;
     }
 
-    public LocalDateTime verFechaYHora() {
-        return fechaYHora;
-    }
+//    public LocalDateTime verFechaYHora() {
+//        return fechaYHora;
+//    }
 
-    public void asignarFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
-    }
+//    public void asignarFechaYHora(LocalDateTime fechaYHora) {
+//        this.fechaYHora = fechaYHora;
+//    }
 
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
+    public List<ProductoDelPedido> verProductoPedido() {
         return productoPedido;
     }
 
     public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
-        if(!(productoPedido.contains(this.productoPedido)))
-        {
-            this.productoPedido = productoPedido;
-       }
+        this.productoPedido = productoPedido;
     }
     
     
     
     //METODS toString
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + unCliente + ", unEstado=" + unEstado + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + unCliente + ", unEstado=" + unEstado + '}';
+//    }
 
     
     
@@ -94,9 +88,9 @@ public class Pedido {
         System.out.println("Nro: " + numero);
         DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-        String fechaFormateada = this.fechaYHora.format(Fecha);
-        String horaFormateada = this.fechaYHora.format(Hora);
-        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
+//        String fechaFormateada = this.fechaYHora.format(Fecha);
+//        String horaFormateada = this.fechaYHora.format(Hora);
+//        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
         System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
         System.out.println("Estado: " + unEstado);
         System.out.println("\t\t Producto\t\t Cantidad");
@@ -114,13 +108,13 @@ public class Pedido {
     
 
     
-    public LocalDate verFecha() {
-        return this.fechaYHora.toLocalDate();
-    }
+//    public LocalDate verFecha() {
+//        return this.fecha.toLocalTime();
+//    }
     
-    public LocalTime verHora() {
-        return this.fechaYHora.toLocalTime();
-    }
+//    public LocalTime verHora() {
+//        return this.fechaYHora.toLocalTime();
+//    }
 
     public Estado verEstado() {
         return unEstado;
@@ -162,6 +156,16 @@ public class Pedido {
         }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
+    }
+
+    @Override
+    public int compareTo(Pedido o) {
+        if(this.numero<o.verNumero())
+           return -1;
+        if(this.numero>o.verNumero())
+            return 1;
+        else
+            return 0;
     }
     
     

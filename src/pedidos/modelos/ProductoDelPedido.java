@@ -4,7 +4,6 @@
  */
 package pedidos.modelos;
 
-import java.util.Objects;
 import productos.modelos.Producto;
 /**
  *
@@ -34,34 +33,11 @@ public class ProductoDelPedido {
 
     public void asignarUnProducto(Producto unProducto) {
         this.unProducto = unProducto;
-        
     }
 
     public void mostrar(){
         System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
 
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.unProducto);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ProductoDelPedido other = (ProductoDelPedido) obj;
-        return Objects.equals(this.unProducto, other.unProducto);
     }
     
 }

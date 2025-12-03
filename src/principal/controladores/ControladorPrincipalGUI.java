@@ -16,6 +16,7 @@ import usuarios.vistas.VentanaAMEncargado;
  * @author mariana
  */
 public class ControladorPrincipalGUI {
+
     public static void main(String[] args) {
         
         establecerLookAndFeel("Nimbus"); 
@@ -23,9 +24,10 @@ public class ControladorPrincipalGUI {
         VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
         
     }
-    
+
     /**
      * Asigna el look and feel especificado a la ventana
+     *
      * @param laf cadena con el nombre del look and feel
      */
     public static void establecerLookAndFeel(String laf) {
@@ -38,8 +40,7 @@ public class ControladorPrincipalGUI {
         } catch (Exception e) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } 
-            catch (Exception e2) {
+            } catch (Exception e2) {
             }
         }
     }

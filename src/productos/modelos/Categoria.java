@@ -20,7 +20,7 @@ public enum Categoria {
     }
     
     @Override
-    public String toString() {
+    public String toString(){
         return this.valor;
     }
     
@@ -32,6 +32,15 @@ public enum Categoria {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
-      
-    
+
+   public static Categoria leerValor(String texto) {
+        if (texto == null) 
+            return null;
+        texto = texto.toUpperCase();
+        for (Categoria c : Categoria.values()) {
+            if (c.name().equals(texto) || c.valor.toUpperCase().equals(texto))
+                return c;
+        }
+        return null;
+        }
 }
