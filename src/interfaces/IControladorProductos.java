@@ -21,13 +21,13 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando la ventana obtenga el foco
      * @param evt evento
      */
-    public void ventanaObtenerFoco(WindowEvent evt);
+    //public void ventanaObtenerFoco(WindowEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Volver
      * @param evt evento
     */                        
-    public void btnVolverClic(ActionEvent evt);
+    //public void btnVolverClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Buscar
@@ -48,24 +48,24 @@ public interface IControladorProductos {
      *      El botón Buscar puede quedar oculto
      * @param evt evento
     */
-    public void txtDescripcionPresionarTecla(KeyEvent evt);
+    //public void txtDescripcionPresionarTecla(KeyEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Nuevo
      * @param evt evento
      */                        
-    public void btnNuevoClic(ActionEvent evt);
+    //public void btnNuevoClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Modificar
      * @param evt evento
      */                        
-    public void btnModificarClic(ActionEvent evt);
+    //public void btnModificarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Borrar
      * @param evt evento
      */                        
-    public void btnBorrarClic(ActionEvent evt);
+    //public void btnBorrarClic(ActionEvent evt);
     
 }
