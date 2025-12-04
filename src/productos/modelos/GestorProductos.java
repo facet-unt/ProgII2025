@@ -274,6 +274,7 @@ public class GestorProductos implements IGestorProductos{
     
     
     
+    @Override
     public String borrarProducto(Producto producto){
          String resultadoArchivo;
         GestorPedidos gp = GestorPedidos.instanciar();  //uso el gestor de pedidos para obtener los podructos de cada pedido

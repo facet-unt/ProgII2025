@@ -6,10 +6,7 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.Producto;
 
-/**
- *
- * @author Asus
- */
+
     public interface IGestorProductos {
         
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
