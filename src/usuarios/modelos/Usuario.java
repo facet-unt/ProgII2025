@@ -83,6 +83,14 @@ public abstract class Usuario implements Comparable<Usuario> {
         }
     }
 
+    public Perfil verPerfil() {
+        return perfil;
+    }
+
+    public void asignarPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

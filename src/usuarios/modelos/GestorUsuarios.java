@@ -5,8 +5,15 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 /**
@@ -14,7 +21,7 @@ import pedidos.modelos.GestorPedidos;
  * @author octav
  */
 public class GestorUsuarios implements IGestorUsuarios {
-    private ArrayList<Usuario> usuarios=new ArrayList<>();
+    private List<Usuario> usuarios=new ArrayList<>();
     private static GestorUsuarios instancia;
     private GestorUsuarios() {
         
@@ -28,6 +35,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
         Usuario usuario= new Cliente(correo,apellido,nombre,perfil,clave,claveRepetida);
+        File f =  new File(NOMBRE_ARCHIVO);
         if(correo == null||correo.isEmpty()||!correo.contains("@"))
             return ERROR_CORREO;
         if(apellido == null||apellido.isBlank()||apellido.isEmpty())
@@ -38,20 +46,32 @@ public class GestorUsuarios implements IGestorUsuarios {
             return ERROR_CLAVES;
         if(claveRepetida == null||!claveRepetida.contains(clave))
             return ERROR_CLAVESREPETIDAS;
-        if(usuarios.contains(usuario))
-            return USUARIOS_DUPLICADOS;
-        else
+        if(perfil == null||perfil.toString().isBlank()||perfil.toString().isBlank())
+            return ERROR_NOMBRE;
+        if(!f.exists()){    
             usuarios.add(usuario);
-        return EXITO;
+            return EscribirArchivo(usuario);
+        }
+        else{
+            this.usuarios= LeerArchivo();
+            if(usuarios.contains(usuario))
+                return USUARIOS_DUPLICADOS;
+            else{ 
+                usuarios.add(usuario);
+                return EscribirArchivo(usuario);
+            }
+        }
     }
     @Override
-    public ArrayList<Usuario> verUsuarios(){
+    public List<Usuario> verUsuarios(){
+        this.usuarios = LeerArchivo();
         Collections.sort(usuarios);
         return usuarios;
     }
     @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosbuscados= new ArrayList<>();
+        this.usuarios = LeerArchivo();
         for(Usuario u: usuarios){
             if(u.verApellido().toLowerCase().contains(apellido.toLowerCase())){
                 usuariosbuscados.add(u);
@@ -62,6 +82,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
     @Override
     public boolean existeEsteUsuario(Usuario usuario){
+        this.usuarios = LeerArchivo();
         for(Usuario u: usuarios){
             if(u.verApellido().contentEquals(usuario.verApellido()))
              return true;       
@@ -70,6 +91,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
     @Override
     public Usuario obtenerUsuario(String correo){
+        this.usuarios = LeerArchivo();
         for(Usuario u: usuarios){
             if(u.verCorreo().contentEquals(correo))
                 return u;
@@ -79,13 +101,108 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String borrarUsuario(Usuario usuario){
         GestorPedidos gPedidos= GestorPedidos.instanciar();
-        if(usuario instanceof Cliente){
-            Cliente unCliente = (Cliente)usuario;
-            if(gPedidos.hayPedidosConEsteCliente(unCliente) == true){
-                return ERROR_USUARIO;
-            }
+        this.usuarios = LeerArchivo();
+        if(usuario instanceof Cliente unCliente && gPedidos.hayPedidosConEsteCliente(unCliente) == true){
+            return ERROR_USUARIO;
         }
-        usuarios.remove(usuario);
-        return USUARIO_BORRADO;
+        else{
+            reescribirArchivo();
+            usuarios.remove(usuario);
+            for(Usuario u: usuarios){
+                EscribirArchivo(u);
+            }
+            return USUARIO_BORRADO;
+        }
+    }
+    private String CrearArchivo(){
+        File f =  new File(NOMBRE_ARCHIVO);
+        try{
+            f.createNewFile();
+            return CREACION_OK;
+        }
+        catch(IOException ioe){
+            return CREACION_ERROR;
+        }
+    }
+    private String EscribirArchivo(Usuario usuarios){
+        StringBuilder cadena1 = new StringBuilder();
+        File f =  new File(NOMBRE_ARCHIVO);
+        try {
+            if(!f.exists()){    
+                CrearArchivo();
+            }
+            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            cadena1.append(usuarios.verApellido());
+            cadena1.append(SEPARADOR);
+            cadena1.append(usuarios.verClave());
+            cadena1.append(SEPARADOR);
+            cadena1.append(usuarios.verCorreo());
+            cadena1.append(SEPARADOR);
+            cadena1.append(usuarios.verNombre());
+            cadena1.append(SEPARADOR);
+            cadena1.append(usuarios.verPerfil());
+            bw.write(cadena1.toString());
+            bw.newLine();
+            bw.close();
+            fw.close();
+            return ESCRITURA_OK;
+        } 
+        catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }
+    }
+    private List<Usuario> LeerArchivo(){
+        List<Usuario> usuarios = new ArrayList<>();
+        Usuario usuario;
+        File f = new File(NOMBRE_ARCHIVO);
+        if(!f.exists()){
+            return usuarios;
+        }
+        try(BufferedReader br = new BufferedReader(new FileReader(f))){
+            String linea;
+            while((linea = br.readLine()) != null){
+                String[] atributos = linea.split(SEPARADOR);
+                if(atributos.length >= 5){
+                    String apellido = atributos[0];
+                    String clave = atributos[1];
+                    String correo= atributos[2];
+                    String nombre= atributos[3];
+                    Perfil perfil= Perfil.leerValor(atributos[4]);
+                    switch(perfil) {
+                        case CLIENTE:
+                            usuario = new Cliente(correo,apellido,nombre,perfil ,clave,clave);
+                            usuarios.add(usuario);
+                            break;
+                        case EMPLEADO:
+                            usuario = new Empleado(correo,apellido,nombre,perfil ,clave,clave);
+                            usuarios.add(usuario);
+                            break;
+                        case ENCARGADO:
+                            usuario = new Encargado(correo,apellido,nombre,perfil ,clave,clave);
+                            usuarios.add(usuario);
+                            break;
+                    }
+                }
+        }
+            br.close();
+            return usuarios;
+        }
+        catch(IOException ioe){
+            System.out.println(LECTURA_ERROR);
+            return usuarios;
+        }
+    }
+    public String reescribirArchivo(){
+        File f = new File(NOMBRE_ARCHIVO);
+        try{
+            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, false); // false = sobrescribir
+            fw.write("");
+            fw.close();
+            return ESCRITURA_OK;
+        }
+        catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }
     }
 }

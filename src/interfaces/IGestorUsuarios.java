@@ -24,6 +24,13 @@ public interface IGestorUsuarios {
     public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
     public static final String ERROR_USUARIO = "No es posible borrar el usuario";
     public static final String USUARIO_BORRADO = "Se borro el usuario";
+    public static final String NOMBRE_ARCHIVO = "Usuarios.txt";
+    public static final String SEPARADOR = ";";
+    public static final String CREACION_OK = "Se pudo crear el archivo";
+    public static final String ESCRITURA_OK = "Se pudieron guardar los usuarios";
+    public static final String ESCRITURA_ERROR = "Error al guardar los usuarios";
+    public static final String CREACION_ERROR = "Error al crear el archivo";
+    public static final String LECTURA_ERROR = "Error al leer los usuarios";
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
     public List<Usuario> verUsuarios();
     public List<Usuario> buscarUsuarios(String apellido);

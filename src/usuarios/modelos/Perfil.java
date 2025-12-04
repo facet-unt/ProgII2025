@@ -31,4 +31,14 @@ public enum Perfil {
     public void asignarValor(String valor) {
         this.valor = valor;
     }
+    public static Perfil leerValor(String texto) {
+        if (texto == null) 
+            return null;
+        texto = texto.toUpperCase();
+        for (Perfil p : Perfil.values()) {
+            if (p.name().equals(texto) || p.valor.toUpperCase().equals(texto))
+                return p;
+        }
+        return null;
+    }
 }
