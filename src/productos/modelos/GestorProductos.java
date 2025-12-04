@@ -153,7 +153,7 @@ public class GestorProductos implements IGestorProductos{
                 if (datos.length >0 ){
                     try {
                         int codigoDeArchivo = Integer.parseInt (datos[0].trim()); //accede al primer dato de la linea
-                                              //convierte ese dato en int         //y luego lo combierte en un numero int
+                                              //convierte ese dato en int         //y luego lo convierte en un número int
                                                                                   //trim hace que se borre cada espacio vacio
                         if (codigoDeArchivo == producto.verCodigo());
                         System.out.println(producto);

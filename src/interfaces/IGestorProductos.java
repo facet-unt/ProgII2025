@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -13,9 +10,8 @@ import productos.modelos.Producto;
  *
  * @author Asus
  */
-public interface IGestorProductos {
-    
-    
+    public interface IGestorProductos {
+        
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
     public List<Producto> menu();
@@ -34,12 +30,13 @@ public interface IGestorProductos {
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
+    public static final String ERROR_BORRADO = "Hay un pedido con este producto";
+    public static final String EXITO_BORRADO = "se borro el producto con exito";
+    
     public static final String LECTURA_ERROR = "Error al leer los productos";
     public static final String CREACION_ERROR = "Error al crear el archivo de productos";
     public static final String LECTURA_OK = "Se pudieron leer los productos";
     public static final String CREACION_OK = "Se pudo crear el archivo de productos";
     public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
-    public static final String ERROR_BORRADO = "Error en el borrado del archivo";
-    public static final String EXITO_BORRADO = "Exito en el borrado";
 }
