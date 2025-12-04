@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package Interfaces;
 
 import java.util.ArrayList;
@@ -11,7 +15,7 @@ import usuarios.modelos.Usuario;
  */
 public interface IGestorUsuarios {
     
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
+    public String crearUsuario(String correo, String apellido, String nombre, String clave, String claveRepetida, Perfil perfil);
     public List<Usuario> verUsuarios();
     public List<Usuario> buscarUsuarios(String apellido);
     public String borrarUsuario(Usuario usuario);

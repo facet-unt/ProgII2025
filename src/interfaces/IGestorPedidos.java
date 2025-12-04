@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package Interfaces;
 
 import java.time.LocalDate;
@@ -9,7 +13,10 @@ import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
-//asus
+/**
+ *
+ * @author Asus
+ */
 public interface IGestorPedidos {
     
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente);
