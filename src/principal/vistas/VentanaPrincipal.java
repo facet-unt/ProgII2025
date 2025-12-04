@@ -5,26 +5,24 @@
 package principal.vistas;
 
 import interfaces.IControladorPrincipal;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import usuarios.vistas.VentanaCrearUsuarios;
+import principal.controladores.ControladorVentanaPrincipal;
 
 /**
  *
  * @author octav
  */
-public class VentanaPrincipal extends javax.swing.JFrame implements IControladorPrincipal {
-    JFrame ventana = new JFrame(TITULO);
+public class VentanaPrincipal extends javax.swing.JFrame implements IControladorPrincipal  {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
-
+    private ControladorVentanaPrincipal controlador = new ControladorVentanaPrincipal(this);
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
-        ventana.setSize(300, 400);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+        this.setTitle("Bar"); 
+        this.setSize(500,500);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -46,7 +44,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
         jButton1.setText("Productos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductosClic(evt);
+                EventoClicProductos(evt);
             }
         });
 
@@ -62,7 +60,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirClic(evt);
+                botonClic(evt);
             }
         });
 
@@ -99,21 +97,20 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
+    //@Override
     private void btnUsuariosClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosClic
-        VentanaCrearUsuarios ventanausuraios = new VentanaCrearUsuarios();
+    //VentanaCrearUsuarios ventanausuraios = new VentanaCrearUsuarios();
     }//GEN-LAST:event_btnUsuariosClic
 
-    @Override
-    private void btnProductosClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosClic
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProductosClic
+    //@Override
+    private void EventoClicProductos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventoClicProductos
+        //btnProductosClic(evt);
+    }//GEN-LAST:event_EventoClicProductos
 
-    @Override
-    private void btnSalirClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirClic
-    int opcion = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea salir del programa?","Salir del programa",JOptionPane.YES_NO_OPTION);
-    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }//GEN-LAST:event_btnSalirClic
+    //@Override
+    private void botonClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClic
+          controlador.btnSalirClic(evt); 
+    }//GEN-LAST:event_botonClic
 
     /**
      * @param args the command line arguments
