@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 
 /**
  *

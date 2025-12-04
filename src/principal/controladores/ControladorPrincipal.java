@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -17,11 +18,12 @@ public class ControladorPrincipal implements IControladorPrincipal {
     private VentanaPrincipal ventana;
     private static ControladorPrincipal instancia;
     
-    public ControladorPrincipal() {
+    private ControladorPrincipal() {
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
+        this.ventana.setResizable(false);
     }
     
     public static ControladorPrincipal instanciar() {
@@ -33,7 +35,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorProductos cprod = ControladorProductos.instanciar();
     }
 
     @Override

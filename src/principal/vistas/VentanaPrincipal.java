@@ -42,6 +42,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnUsuarios.setText("Usuarios");
 
         btnProductos.setText("Productos");
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
 
         btnPedidos.setText("Pedidos");
 
@@ -87,6 +92,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.controlador.btnSalirClic(evt);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        this.controlador.btnProductosClic(evt);
+    }//GEN-LAST:event_btnProductosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPedidos;
