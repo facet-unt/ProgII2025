@@ -15,7 +15,7 @@ import usuarios.modelos.Usuario;
  */
 public interface IGestorUsuarios {
     
-    public String crearUsuario(String correo, String apellido, String nombre, String clave, String claveRepetida, Perfil perfil);
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
     public List<Usuario> verUsuarios();
     public List<Usuario> buscarUsuarios(String apellido);
     public String borrarUsuario(Usuario usuario);

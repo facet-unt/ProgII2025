@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
 import java.util.ArrayList;
@@ -20,7 +16,7 @@ import productos.modelos.Producto;
     public List<Producto> menu();
     public List<Producto> buscarProductos(String descripcion);
     public String borrarProducto(Producto producto);
-    public boolean existeEsteProducto(Producto producto);
+    public String existeEsteProducto(Producto producto);
     public List<Producto> verProductosPorCategoria(Categoria categoria); 
     public Producto obtenerProducto(Integer codigo);
 
@@ -36,5 +32,10 @@ import productos.modelos.Producto;
     public static final String ERROR_BORRADO = "Hay un pedido con este producto";
     public static final String EXITO_BORRADO = "se borro el producto con exito";
     
-    
+    public static final String LECTURA_ERROR = "Error al leer los productos";
+    public static final String CREACION_ERROR = "Error al crear el archivo de productos";
+    public static final String LECTURA_OK = "Se pudieron leer los productos";
+    public static final String CREACION_OK = "Se pudo crear el archivo de productos";
+    public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
+    public static final String ESCRITURA_ERROR = "Error al guardar los productos";
 }
