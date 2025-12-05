@@ -63,6 +63,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         btnNuevoClic = new javax.swing.JButton();
         btnModificarClic = new javax.swing.JButton();
         btnBorrarClic = new javax.swing.JButton();
+        btnVolverClic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,6 +97,13 @@ public class VentanaProductos extends javax.swing.JDialog {
 
         btnBorrarClic.setText("Borrar");
 
+        btnVolverClic.setText("Volver");
+        btnVolverClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverClicActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,15 +118,17 @@ public class VentanaProductos extends javax.swing.JDialog {
                         .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscarClic))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnNuevoClic))
-                            .addComponent(btnBorrarClic)
-                            .addComponent(btnModificarClic))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnVolverClic)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnNuevoClic))
+                                .addComponent(btnBorrarClic)
+                                .addComponent(btnModificarClic)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,7 +152,9 @@ public class VentanaProductos extends javax.swing.JDialog {
                         .addComponent(btnModificarClic)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBorrarClic)
-                        .addContainerGap(240, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                        .addComponent(btnVolverClic)
+                        .addGap(60, 60, 60))))
         );
 
         pack();
@@ -157,9 +169,14 @@ public class VentanaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarClicActionPerformed
 
     private void btnNuevoClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClicActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoClicActionPerformed
 
+    private void btnVolverClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverClicActionPerformed
+        this.controlador.btnVolverClic(evt);
+    }//GEN-LAST:event_btnVolverClicActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -170,6 +187,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarClic;
     private javax.swing.JButton btnModificarClic;
     private javax.swing.JButton btnNuevoClic;
+    private javax.swing.JButton btnVolverClic;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

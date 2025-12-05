@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -19,9 +20,12 @@ import productos.vistas.VentanaProductos;
  */
 public class ControladorProductos implements IControladorProductos{
     private VentanaProductos ventana;
+    private IControladorAMProducto controlador;
+    private VentanaPrincipal ventanaPadre;
 
-    public ControladorProductos() {
-        System.out.println("HOLA MUNDO DESDE CONTROLADOR"); // <--- AQUI
+    public ControladorProductos(VentanaPrincipal ventanaPadre) {
+        this.ventanaPadre= ventanaPadre;
+        System.out.println("SE INICIA CONTROLADOR DE PRODUCTOS"); 
         this.ventana = new VentanaProductos(null, true, this);        
         this.ventana.setLocationRelativeTo(null);
         this.btnBuscarClic(null);
@@ -49,5 +53,25 @@ public class ControladorProductos implements IControladorProductos{
         nuevoModelo.setProductos(resultado);
         this.ventana.actualizarTabla(nuevoModelo);        
     }
+
+    /*Metodo que destruye la ventana cuando se apreta el boton Volver */
+    @Override
+    public void btnVolverClic(ActionEvent evt) {
+        this.ventana.dispose(); 
+    }
+    
+    
+    /* cuando se hace clic el controladorProducto instancia IControladorAMProducto para que este se haga cargo */
+    @Override
+    public void btnNuevoClic(ActionEvent evt) {
+        IControladorAMProducto controlador = new ControladorAMProductos(this.ventanaPadre, null);
+    }
+
+    
+    
+    
+    
+    
+    
     
 }

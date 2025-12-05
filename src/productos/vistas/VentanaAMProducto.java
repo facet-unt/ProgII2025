@@ -4,32 +4,71 @@
  * and open the template in the editor.
  */
 package productos.vistas;
-
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
+import principal.vistas.VentanaPrincipal;
 import productos.modelos.*;
 
 
 
 public class VentanaAMProducto extends JDialog {
+    private IControladorAMProducto controlador;
+    private VentanaPrincipal ventanaPadre;
     private ArrayList<Producto> productos = new ArrayList<>();
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
+    public VentanaAMProducto(VentanaPrincipal ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+        this.ventanaPadre = ventanaPadre;
+        this.controlador = controlador; 
+  
     }
     
-      
+    /*Metodo se va encargar de recibir el modelo de categorias desde el ControladorAMProductos*/ 
+    public void configurarCategorias(ModeloComboCategorias modelo) {
+       this.comboCategorias.setModel(modelo);
+    }
+    
+    /*Metodo se va encargar de recibir el modelo de estado desde el ControladorAMProductos*/
+    public void configurarEstados(ModeloComboEstados modelo) {
+       this.comboEstados.setModel(modelo);
+    }
+    
+        /*Recupera la opcion que el usuario seleccionó en la lista
+      y lo convierte (castea) al tipo de dato Categoria*/
+   
+    public Categoria comboCategoria() {
+      return (Categoria) this.comboCategorias.getSelectedItem();
+    }
+    /*Recupera la opcion que el usuario seleccionó en la lista
+     y lo convierte (castea) al tipo de dato Estado*/
+    public Estado comboEstado() {
+      return (Estado) this.comboEstados.getSelectedItem();
+    }
+    
+     /* Ventana se encarga de pedir los campos de texto de cada atributo de Producto */
+           /*Si lo ponia privado no me deja llamrlo dsde el controlador */
+    public JTextField obtenerCodigo()
+    {
+        return this.txtCodigo;
+    }
+    
+    public JTextField obtenerDescripcion()
+    {
+        return this.txtDescripcion;
+    }
+    public JTextField obtenerPrecio()
+    {
+        return this.txtPrecio;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,14 +128,12 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel3.setText("Categoría");
 
-        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCategoriasActionPerformed(evt);
             }
         });
 
-        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadosActionPerformed(evt);
@@ -165,25 +202,29 @@ public class VentanaAMProducto extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
+        this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
+                 
+//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
+//        String descripcion = this.txtDescripcion.getText().trim();        
+//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
+//        Categoria categoria = (Categoria) this.comboCategorias.getSelectedItem();
+//        Estado estado = (Estado) this.comboEstados.getSelectedItem();
                             
-        Producto unProducto= new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
+//        IGestorProductos gp = new GestorProductos(codigo, descripcion, categoria, estado, precio);
+//        this.productos.add(unProducto);
+//        
+//        System.out.println("Productos");
+//        System.out.println("=========");
+//        for(Producto p : this.productos) {
+//            p.mostrar();
+//            System.out.println();
+//        }
+
+            this.controlador.btnGuardarClic(evt);
         
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
@@ -198,8 +239,8 @@ public class VentanaAMProducto extends JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> comboCategorias;
-    private javax.swing.JComboBox<String> comboEstados;
+    private javax.swing.JComboBox<Categoria> comboCategorias;
+    private javax.swing.JComboBox<Estado> comboEstados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

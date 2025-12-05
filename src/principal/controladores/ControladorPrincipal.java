@@ -27,7 +27,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorP = new ControladorProductos();
+        IControladorProductos controladorP = new ControladorProductos(ventana);
     }
 
     @Override

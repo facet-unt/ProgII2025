@@ -27,7 +27,7 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Volver
      * @param evt evento
     */                        
-    //public void btnVolverClic(ActionEvent evt);
+    public void btnVolverClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Buscar
@@ -54,7 +54,7 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Nuevo
      * @param evt evento
      */                        
-    //public void btnNuevoClic(ActionEvent evt);
+    public void btnNuevoClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Modificar
