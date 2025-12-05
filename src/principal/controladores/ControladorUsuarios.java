@@ -4,56 +4,50 @@
  */
 package principal.controladores;
 
-import interfaces.IControladorProductos;
+import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
-import productos.vistas.VentanaProductos;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.ModeloTablaUsuarios;
+import usuarios.vistas.VentanaUsuarios;
 
 /**
  *
  * @author thoma
  */
-public class ControladorProductos implements IControladorProductos {
-    private VentanaProductos ventana;
-    private static ControladorProductos instancia;
+public class ControladorUsuarios implements IControladorUsuarios{
+    private static ControladorUsuarios instancia;
+    private VentanaUsuarios ventana;
+    private ModeloTablaUsuarios modeloTabla;
     
-    private ControladorProductos() {
-        this.ventana = new VentanaProductos(this);
+    private ControladorUsuarios() {
+        this.ventana = new VentanaUsuarios(this);
         this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setResizable(false);
+        
+        this.modeloTabla = new ModeloTablaUsuarios();
+        this.actualizarTabla();
+        this.ventana.definirModeloTabla(this.modeloTabla);
     }
     
-    public static ControladorProductos instanciar() {
+    public static ControladorUsuarios instanciar() {
         if (instancia == null) {
-            instancia = new ControladorProductos();
+            instancia = new ControladorUsuarios();
         }
         
         instancia.ventana.setVisible(true);
-       
+        
         return instancia;
     }
-
-    @Override
-    public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    private void actualizarTabla() {
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        this.modeloTabla.dibujarTabla(gu.verUsuarios());
     }
-
-    @Override
-    public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
@@ -67,6 +61,26 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void btnVolverClic(ActionEvent evt) {
+        this.ventana.dispose();
+    }
+
+    @Override
+    public void txtApellidoPresionarTecla(KeyEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void btnBuscarClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
