@@ -18,9 +18,9 @@ public class tmp {
         GestorUsuarios gu = null;
         gu = gu.instanciar();
         
-        Usuario u = new Cliente("cliente3@bar.com", "claveCliente3" ,"ApellidoCliente3", "NombreCliente3");
+        System.out.println(gu.crearUsuario("cliente3@bar.com", "ApellidoCliente3", "NombreCliente3", 
+                                            Perfil.CLIENTE, "claveCliente3", "claveCliente3"));
         
-        
-        gu.leerArchivo();
+        System.out.println(gu.borrarUsuario(gu.verUsuarios().get(0)));
     }
 }

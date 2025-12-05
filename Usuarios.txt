@@ -1,1 +1,0 @@
-,cliente3@bar.com,claveCliente3,ApellidoCliente3,NombreCliente3,

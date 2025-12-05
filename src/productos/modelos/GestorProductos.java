@@ -160,6 +160,11 @@ public class GestorProductos implements IGestorProductos{
         }
     }
     
+    /**
+     * Verifica si el archivo ya existe, si no es asi, se crea.
+     * @param archivo
+     * @return Devuelve un String con el resultado de la operacion
+     */
     private String verificarArchivo(File archivo){
         if(!archivo.exists()){
             try {
@@ -174,6 +179,11 @@ public class GestorProductos implements IGestorProductos{
         return "";
     }
     
+    /**
+     * Guarda un producto en el archivo de texto
+     * @param p
+     * @return Devuelve un String con el resultado de la operacion
+     */
     private String guardarProducto(Producto p) {
         String atributosProducto;
         atributosProducto = "," + p.verCodigo() + "," + p.verDescripcion() + "," + p.verCategoria() + "," + p.verEstado() + "," 
@@ -197,6 +207,11 @@ public class GestorProductos implements IGestorProductos{
         return ESCRITURA_OK;
     }
     
+    /**
+     * Construye un objeto tipo Producto segun los datos contenidos en el archivo de texto
+     * @param cadenas
+     * @return Devuelve una lista con todos los productos contenidos en el archivo de texto
+     */
     private List<Producto> costruirProducto(String[] cadenas){
         int i = 1;
         Producto p;
@@ -252,6 +267,10 @@ public class GestorProductos implements IGestorProductos{
         return productosArchivo;
     }
     
+    /**
+     * Lee el archivo y guarda sus contenidos en la lista de GestorProductos
+     * @return Devuelve una lista con todos los productos contenidos en el archivo de texto
+     */
     private List<Producto> leerProductos(){
         int caracter;
         String productos = "";
@@ -277,6 +296,11 @@ public class GestorProductos implements IGestorProductos{
         return productosArchivo;
     }
     
+    /**
+     * Borra un producto en el archivo de texto
+     * @param p
+     * @return Devuelve un String con el resultado de la operacion
+     */
     private String borrarProductoDelArchivo (Producto p) {
         List<Producto> temporal = new ArrayList<>(this.productos);
         temporal.remove(p);
@@ -296,6 +320,11 @@ public class GestorProductos implements IGestorProductos{
         return "El producto fue borrado del archivo";
     }
     
+    /**
+     * Actualiza el archivo de texto segun el orden en el que se encuentren en la lista 
+     * de GestorProductos
+     * @return 
+     */
     private String actualizarArchivo(){
         List<Producto> temporal = new ArrayList<>(this.productos);
         this.productos.clear();
