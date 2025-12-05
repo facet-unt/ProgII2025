@@ -4,11 +4,13 @@
  */
 package usuarios.modelos;
 
+import interfaces.IControladorPrincipal;
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
+import principal.controladores.ControladorVentanaPrincipal;
 
 /**
  *
@@ -27,6 +29,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     public static GestorUsuarios instanciar() {
         if (instancia == null)
             instancia = new GestorUsuarios();
+        IControladorPrincipal controlador = new ControladorVentanaPrincipal();
         return instancia;
     }
     
