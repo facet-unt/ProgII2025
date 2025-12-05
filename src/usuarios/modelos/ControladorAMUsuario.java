@@ -4,10 +4,48 @@
  */
 package usuarios.modelos;
 
+import interfaces.IControladorAMUsuario;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author damia
  */
-public class ControladorAMUsuario {
-    
+public class ControladorAMUsuario implements IControladorAMUsuario {
+
+    @Override
+    public void btnGuardarClic(ActionEvent evt) {
+        
+    }
+
+    @Override
+    public void btnCancelarClic(ActionEvent evt) {
+        
+    }
+
+    @Override
+    public void txtApellidoPresionarTecla(KeyEvent evt) {
+        
+    }
+
+    @Override
+    public void txtNombrePresionarTecla(KeyEvent evt) {
+        
+    }
+
+    @Override
+    public void txtCorreoPresionarTecla(KeyEvent evt) {
+        
+    }
+
+    @Override
+    public void passClavePresionarTecla(KeyEvent evt) {
+        
+    }
+
+    @Override
+    public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
+        
+    }
 }

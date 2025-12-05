@@ -1,6 +1,12 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -122,5 +128,101 @@ public class GestorUsuarios implements IGestorUsuarios{
         } else {
             return "El usuario ingresado no es valido\n";
         }
+    }
+    
+    private String verificarArchivo(File archivo){
+        if(!archivo.exists()){
+            try {
+                archivo.createNewFile();
+                return "El archivo no existia, por ende fue creado";
+            } catch (IOException e){
+                return "No se ha podido crear el archivo";
+            } catch (Exception e){
+                return e.getMessage();
+            }
+        }
+        return "";
+    }
+    
+    public String guardarUsuario(Usuario u){
+        String usuariostxt = SEPARADOR + u.verCorreo() + SEPARADOR + u.verClave() + SEPARADOR + u.verApellido()
+                            + SEPARADOR + u.verNombre() + SEPARADOR + "\n";
+        File archivo = new File("Usuarios.txt");
+        System.out.println(verificarArchivo(archivo));
+        try(FileWriter fw = new FileWriter(archivo, true)){
+            try(BufferedWriter bw = new BufferedWriter(fw)){
+                bw.write(usuariostxt);
+            }
+        } catch (IOException e){
+            return "No se ha podido guardar el usuario";
+        } catch (Exception e){
+            return e.getMessage();
+        }
+        return EXITO;
+    }
+    
+    public List<Usuario> leerArchivo(){
+        int caracter;
+        String usuarios = "";
+        String[] cadenas;
+        List<Usuario> usuariosArchivo = new ArrayList<>();
+        File archivo = new File("Usuarios.txt");
+        System.out.println(verificarArchivo(archivo));
+        
+        try (FileReader fr = new FileReader(archivo)){
+            while((caracter = fr.read()) != -1){
+                usuarios += ((char) caracter);
+            }
+            cadenas = usuarios.split(SEPARADOR);
+            construirUsuario(cadenas);
+            
+        } catch (FileNotFoundException e){
+            System.out.println("No se pudo encontrar el archivo especificado");
+            return null;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return usuariosArchivo;
+    }
+    
+    public List<Usuario> construirUsuario(String[] cadenas){
+        List<Usuario> usuariosArchivo = new ArrayList<>();
+        int i = 1;
+        Usuario u;
+        System.out.println(cadenas.length);
+        while(i < cadenas.length){
+            String correo = cadenas[i];
+            if(correo.equals("") || correo == null){
+                System.out.println(ERROR_CORREO);
+                return null;
+            }
+            i++;
+            
+            String clave = cadenas[i];
+            if(clave.equals("") || clave == null){
+                System.out.println(ERROR_CLAVES);
+                return null;
+            }
+            i++;
+            
+            String apellido = cadenas[i];
+            if (apellido.equals("") || apellido == null) {
+                System.out.println(ERROR_APELLIDO);
+                return null;
+            }
+            i++;
+                    
+            String nombre = cadenas[i];
+            if(nombre.equals("") || nombre == null){
+                System.out.println(ERROR_NOMBRE);
+                return null;
+            }
+            i = i + 2;
+            
+            
+            
+        }
+        return null;
     }
 }

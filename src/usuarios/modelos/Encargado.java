@@ -27,5 +27,6 @@ public class Encargado extends Usuario {
         // Constructor
     public Encargado(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
+        asignarPerfil(Perfil.ENCARGADO);
     }
 }

@@ -19,6 +19,7 @@ public abstract class Usuario implements Comparable<Usuario>{
     private String clave;
     private String apellido;
     private String nombre;
+    private Perfil perfil;
     
     /**
      * Muestra los datos del usuario
@@ -68,6 +69,14 @@ public abstract class Usuario implements Comparable<Usuario>{
         if (a != null && !a.isBlank()){
             apellido = a;
         }
+    }
+
+    public Perfil verPerfil() {
+        return perfil;
+    }
+
+    public void asignarPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
     
     /**

@@ -159,7 +159,7 @@ public class GestorProductos implements IGestorProductos{
             return PRODUCTO_INEXISTENTE;
         }
     }
-
+    
     private String verificarArchivo(File archivo){
         if(!archivo.exists()){
             try {
@@ -203,52 +203,52 @@ public class GestorProductos implements IGestorProductos{
         List<Producto> productosArchivo = new ArrayList<>();
         
         while (i < cadenas.length){
-                int codigo = Integer.parseInt(cadenas[i]);
-                if(codigo <= 0){
-                    System.out.println(ERROR_CODIGO);
-                    return null;
-                }
-                i++;
-                String descripcion = cadenas[i];
-                if (descripcion == null || descripcion.equals("")){
-                    System.out.println(ERROR_DESCRIPCION);
-                    return null;
-                }
-                i++;
-
-                Categoria categoria;
-                if(cadenas[i].equals(Categoria.ENTRADA.toString())){
-                    categoria = Categoria.ENTRADA;
-                } else if(cadenas[i].equals(Categoria.PLATO_PRINCIPAL.toString())) {
-                    categoria = Categoria.PLATO_PRINCIPAL;
-                } else if(cadenas[i].equals(Categoria.POSTRE.toString())) {
-                    categoria = Categoria.POSTRE;
-                } else {
-                    System.out.println(ERROR_CATEGORIA);
-                    return null;
-                }
-                i++;
-
-                Estado estado;
-                if(cadenas[i].equals(Estado.DISPONIBLE.toString())){
-                    estado = Estado.DISPONIBLE;
-                } else if (cadenas[i].equals(Estado.NO_DISPONIBLE.toString())){
-                    estado = Estado.NO_DISPONIBLE;
-                } else {
-                    System.out.println(ERROR_ESTADO);
-                    return null;
-                }
-                i++;
-
-                float precio = Float.parseFloat(cadenas[i]);
-                if (precio <= 0){
-                    System.out.println(ERROR_PRECIO);
-                    return null;
-                }
-                i = i+2;
-                p = new Producto(codigo, descripcion, categoria, estado, precio);
-                productosArchivo.add(p);
+            int codigo = Integer.parseInt(cadenas[i]);
+            if(codigo <= 0){
+                System.out.println(ERROR_CODIGO);
+                return null;
             }
+            i++;
+            String descripcion = cadenas[i];
+            if (descripcion == null || descripcion.equals("")){
+                System.out.println(ERROR_DESCRIPCION);
+                return null;
+            }
+            i++;
+
+            Categoria categoria;
+            if(cadenas[i].equals(Categoria.ENTRADA.toString())){
+                categoria = Categoria.ENTRADA;
+            } else if(cadenas[i].equals(Categoria.PLATO_PRINCIPAL.toString())) {
+                categoria = Categoria.PLATO_PRINCIPAL;
+            } else if(cadenas[i].equals(Categoria.POSTRE.toString())) {
+                categoria = Categoria.POSTRE;
+            } else {
+                System.out.println(ERROR_CATEGORIA);
+                return null;
+            }
+            i++;
+
+            Estado estado;
+            if(cadenas[i].equals(Estado.DISPONIBLE.toString())){
+                estado = Estado.DISPONIBLE;
+            } else if (cadenas[i].equals(Estado.NO_DISPONIBLE.toString())){
+                estado = Estado.NO_DISPONIBLE;
+            } else {
+                System.out.println(ERROR_ESTADO);
+                return null;
+            }
+            i++;
+
+            float precio = Float.parseFloat(cadenas[i]);
+            if (precio <= 0){
+                System.out.println(ERROR_PRECIO);
+                return null;
+            }
+            i = i+2;
+            p = new Producto(codigo, descripcion, categoria, estado, precio);
+            productosArchivo.add(p);
+        }
         return productosArchivo;
     }
     

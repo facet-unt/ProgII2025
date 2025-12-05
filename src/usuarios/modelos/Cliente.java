@@ -50,6 +50,7 @@ public class Cliente extends Usuario {
         // Constructor
     public Cliente(String correo, String clave, String apellido, String nombre) {
        super(correo, clave, apellido, nombre);
+       asignarPerfil(Perfil.CLIENTE);
        this.pedidos = new ArrayList<>();
     }
 }
