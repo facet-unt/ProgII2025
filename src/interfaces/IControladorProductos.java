@@ -66,5 +66,7 @@ public interface IControladorProductos {
      * @param evt evento
      */                        
     public void btnBorrarClic(ActionEvent evt);
+
+    public void buscarProductos(Object object);
     
 }
