@@ -29,7 +29,6 @@ public class GestorUsuarios implements IGestorUsuarios{
     public static GestorUsuarios instanciar() {
         if (instancia == null)
             instancia = new GestorUsuarios();
-        IControladorPrincipal controlador = new ControladorVentanaPrincipal();
         return instancia;
     }
     
