@@ -99,7 +99,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
 
     //@Override
     private void btnUsuariosClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosClic
-    //VentanaCrearUsuarios ventanausuraios = new VentanaCrearUsuarios();
+        controlador.btnUsuariosClic(evt);
     }//GEN-LAST:event_btnUsuariosClic
 
     //@Override

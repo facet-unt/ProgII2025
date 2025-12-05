@@ -16,7 +16,6 @@ import productos.vistas.VentanaProductos;
  * @author ortiz
  */
 public class ControladorProductos implements IControladorProductos {
-//    private static VentanaProductos ventanaProductos;
     private static ControladorProductos instancia;
     private VentanaPrincipal ventanaPrincipal;
     
@@ -24,13 +23,13 @@ public class ControladorProductos implements IControladorProductos {
     public ControladorProductos() {
         VentanaProductos ventanaProductos = new VentanaProductos(ventanaPrincipal,true); 
         ventanaProductos.setTitle("Productos");
+        ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
         ventanaProductos.setVisible(true);
     }
     
     public static ControladorProductos instanciar() {
         if (instancia == null) {
             instancia = new ControladorProductos();
-            
         }
         return instancia;
 }

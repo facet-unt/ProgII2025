@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
 
-import usuarios.modelos.ControladorUsuarios;
 
 /**
  *
@@ -39,7 +38,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
 
     //@Override
     public void btnUsuariosClic(ActionEvent evt) {
-        IControladorUsuarios controladorusuarios = new ControladorUsuarios();
+        IControladorUsuarios controladorusuarios = ControladorUsuarios.instanciar();
     }
 
     //@Override
