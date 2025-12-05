@@ -4,6 +4,10 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorProductos;
+import principal.controladores.ControladorProductos;
+import principal.vistas.VentanaPrincipal;
+
 /**
  *
  * @author ortiz
@@ -11,13 +15,14 @@ package productos.vistas;
 public class VentanaProductos extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
-
+    
     /**
      * Creates new form VentanaProductos
      */
     public VentanaProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(parent);
     }
 
     /**

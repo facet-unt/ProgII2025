@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
-import productos.modelos.ControladorProductos;
+
 import usuarios.modelos.ControladorUsuarios;
 
 /**
@@ -34,7 +34,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
 //    }
     //@Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorproductos = new ControladorProductos(); 
+        IControladorProductos controladorproductos = ControladorProductos.instanciar(); 
     }
 
     //@Override

@@ -104,7 +104,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
 
     //@Override
     private void EventoClicProductos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventoClicProductos
-        //btnProductosClic(evt);
+        controlador.btnProductosClic(evt);
     }//GEN-LAST:event_EventoClicProductos
 
     //@Override
