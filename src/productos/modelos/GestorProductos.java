@@ -17,13 +17,11 @@ public class GestorProductos implements IGestorProductos {
 
     private List<Producto> productos = new ArrayList();
     File archivoProductos = new File(NOMBREARCHIVO);
-    public static final String NOMBREARCHIVO = "productos.txt";
-    public static final String SEPARADOR = "_";
 
     private static GestorProductos instancia;
 
     private GestorProductos() {
-
+        cargarArchivo();
     }
 
     public static GestorProductos instanciar() {
@@ -219,4 +217,54 @@ public class GestorProductos implements IGestorProductos {
             System.out.println(ESCRITURA_ERROR);
         }
     }
+
+    private void cargarArchivo() {
+        creacionArchivo();
+        productos.clear();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoProductos))) {
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(SEPARADOR);
+
+                int codigo = Integer.parseInt(partes[0]);
+                String descripcion = partes[1];
+                
+                String catString=partes[2];
+                Categoria categoria = null;
+                for (Categoria c : Categoria.values() ) {
+                    if (catString.equals(c.verValor())) {
+                        categoria = c;
+                    }
+                }
+//                if (categoria==null) {
+//                    System.out.println(LECTURA_ERROR);
+//                    continue;
+//                }
+                
+                
+                String EstString = partes[3];
+                Estado estado = null;
+                for (Estado e : Estado.values()) {
+                    if (EstString.equals(e.verValor())) {
+                        estado = e;
+                    }
+                    
+                }
+//                if (estado==null) {
+//                    System.out.println(LECTURA_ERROR);
+//                    continue;
+//                }
+                
+                float precio = Float.parseFloat(partes[4]);
+
+                productos.add(new Producto(codigo, descripcion, categoria, estado, precio));
+                System.out.println(LECTURA_OK);
+            }
+        } catch (IOException e) {
+            System.out.println(LECTURA_ERROR);
+        }
+    }
+
 }
