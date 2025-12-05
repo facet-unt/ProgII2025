@@ -23,5 +23,8 @@ public enum Perfil {
     public String toString() {
         return this.valor;
     }
-
+    
+    public String verValor() {
+        return valor;
+    }
 }

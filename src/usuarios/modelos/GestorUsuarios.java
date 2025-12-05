@@ -5,6 +5,12 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +27,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     private static GestorUsuarios instancia;
 
     private GestorUsuarios() {
-
+        this.leerArchivo();
     }
 
     public static GestorUsuarios instanciar() {
@@ -62,8 +68,9 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
 
         this.listaUsuarios.add(nuevoUsuario);
+        this.escribirArchivo();
 
-        return null;
+        return EXITO;
     }
 
     @Override
@@ -121,12 +128,106 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
 
         if (this.listaUsuarios.remove(usuario)) {
+            this.escribirArchivo();
             return "Usuario eliminado correctamente";
         } else {
             return "Error: No se ha encontrado el usuario";
         }
     }
 
+    // Persistencia en archivo
+    private String crearArchivo() {
+        File file = new File(NOMBREARCHIVO);
+        
+        try {
+            if (file.createNewFile()) {
+                return CREACION_OK;
+            }
+            else {
+                return ARCHIVO_EXISTENTE;
+            }
+        } catch (IOException e) {
+            return CREACION_ERROR;
+        }
+    }
+    
+    private String leerArchivo() {
+        String resultado = crearArchivo();
+        if (resultado == CREACION_ERROR) {
+            return LECTURA_ERROR;
+        }
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
+            String cadena;
+            while ((cadena = br.readLine()) != null) {
+                String[] vectorCadenas = cadena.split(SEPARADOR);
+                
+                String correo = vectorCadenas[0];
+                String clave = vectorCadenas[1];
+                String apellido = vectorCadenas[2];
+                String nombre = vectorCadenas[3];
+                
+                Perfil perfil = null;
+                for (Perfil p : Perfil.values()) {
+                    if (vectorCadenas[4].equals(p.verValor())) {
+                        perfil = p;
+                    }
+                }
+                
+                if (perfil == null) {
+                    return LECTURA_ERROR;
+                }
+                
+                Usuario usuarioLeido;
+                
+                switch (perfil) {
+                    case CLIENTE:
+                        usuarioLeido = new Cliente(correo, clave, apellido, nombre, perfil);
+                        break;
+                    case EMPLEADO:
+                        usuarioLeido = new Empleado(correo, clave, apellido, nombre, perfil);
+                        break;
+                    case ENCARGADO:
+                        usuarioLeido = new Encargado(correo, clave, apellido, nombre, perfil);
+                        break;
+                    default:
+                        return LECTURA_ERROR;
+                }
+                
+                if (!this.listaUsuarios.contains(usuarioLeido)) {
+                    this.listaUsuarios.add(usuarioLeido);
+                }
+            } 
+        } catch (IllegalArgumentException | IOException ex) {
+            return LECTURA_ERROR;
+        }
+        return LECTURA_OK;
+    }
+    
+    private String escribirArchivo() {
+        String resultado = crearArchivo();
+        if (resultado == CREACION_ERROR) {
+            return ESCRITURA_ERROR;
+        }
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
+            for (Usuario u : this.listaUsuarios) {
+                String linea;
+                linea = u.verCorreo() + SEPARADOR;
+                linea += u.verClave() + SEPARADOR;
+                linea += u.verApellido() + SEPARADOR;
+                linea += u.verNombre() + SEPARADOR;
+                linea += u.getPerfil();
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException ioe) {
+            return ESCRITURA_ERROR;
+        }
+        
+        return ESCRITURA_OK;
+    }
+    
     //Validacion datos
     private String validacionDatos(String correo, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida) {
         if (correo == null || correo.isBlank()) {

@@ -1,0 +1,4 @@
+cliente2@bar.com/claveCliente3/Perez/NombreCliente3/Cliente
+cliente3@bar.com/claveCliente4/Hernan/Jose/Cliente
+cliente1@bar.com/claveCliente1/Almendra/NombreCliente1/Cliente
+cliente4@bar.com/claveCliente1/Hernan/Zadkiel/Cliente
