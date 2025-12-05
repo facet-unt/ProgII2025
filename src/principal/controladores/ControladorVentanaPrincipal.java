@@ -8,6 +8,7 @@ import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;
 import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
 
 /**
@@ -21,6 +22,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
+        this.ventana.setTitle(TITULO);
     }
 
     @Override
@@ -35,7 +37,10 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     
     @Override
     public void btnSalirClic(ActionEvent evt) {
-        this.ventana.dispose(); 
+        int opcion = JOptionPane.showOptionDialog(null,"¿Desea salir del programa?","Salir",
+        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+        if(opcion==0)
+            this.ventana.dispose();
     }
     
 }
