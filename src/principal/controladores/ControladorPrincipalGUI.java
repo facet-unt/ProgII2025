@@ -7,9 +7,6 @@ package principal.controladores;
 
 import javax.swing.UIManager;
 import productos.vistas.VentanaAMProducto;
-import usuarios.vistas.VentanaAMCliente;
-import usuarios.vistas.VentanaAMEmpleado;
-import usuarios.vistas.VentanaAMEncargado;
 
 /**
  *
@@ -28,6 +25,7 @@ public class ControladorPrincipalGUI {
      * Asigna el look and feel especificado a la ventana
      * @param laf cadena con el nombre del look and feel
      */
+
     public static void establecerLookAndFeel(String laf) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
