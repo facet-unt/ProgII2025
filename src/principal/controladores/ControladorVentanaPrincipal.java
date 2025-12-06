@@ -4,7 +4,10 @@
  */
 package principal.controladores;
 
+import productos.modelos.GestorProductos;
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
+import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -33,17 +36,17 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        
+        IControladorProductos controladorVentanaProductos = ControladorVentanaProductos();
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       IControladorUsuarios controladorUsuarios = ControladorVentanaUsuarios();
     }
 
     @Override
     public void btnSalirClic(ActionEvent evt) {
-        int accion = JOptionPane.showConfirmDialog(this.ventana, "Esta Seguro que quiere salir?", "Salir", JOptionPane.YES_NO_OPTION);
+        int accion = JOptionPane.showConfirmDialog(this.ventana, "Esta seguro que quiere salir?", "Salir", JOptionPane.YES_NO_OPTION);
         
         if(accion == 0){
             this.ventana.dispose();
