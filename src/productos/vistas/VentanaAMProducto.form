@@ -101,7 +101,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDescripcion">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Apellidos del profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="Descripcion"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -111,7 +111,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecio">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Nombres del profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="Precio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
@@ -141,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Documento del profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="Codigo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

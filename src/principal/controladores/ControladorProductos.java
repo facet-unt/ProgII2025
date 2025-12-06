@@ -66,6 +66,8 @@ public class ControladorProductos implements IControladorProductos {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         ControladorAMProducto cvprod = new ControladorAMProducto();
+        cvprod.mostrarVentanaProducto();
+        this.modelo.actualizarTabla();
     }
 
     @Override
