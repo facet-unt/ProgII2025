@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import principal.vistas.VentanaPrincipal;
+import javax.swing.JTable;
+import productos.modelos.ModeloTablaProductos;
 import productos.vistas.VentanaDeProductos;
 
 /**
@@ -29,17 +30,31 @@ public class ControladorProductos implements IControladorProductos{
     
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTable tablaProductos = this.ventanaDp.verTabla();
+        ModeloTablaProductos mtp = new ModeloTablaProductos();
+        tablaProductos.setModel(mtp);
     }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.ventanaDp.dispose();
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ModeloTablaProductos mtp;
+        String cadenaBusqueda = this.ventanaDp.verDescripcion().getText().trim();
+        JTable tablaProductos = this.ventanaDp.verTabla();
+        
+        if (cadenaBusqueda.isEmpty()) {
+            mtp = new ModeloTablaProductos();
+            tablaProductos.setModel(mtp);
+        }
+        else{
+            
+            mtp = new ModeloTablaProductos(cadenaBusqueda);
+            tablaProductos.setModel(mtp);
+        }
     }
 
     @Override

@@ -121,8 +121,9 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public ArrayList<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> encontrados = new ArrayList<>();
+        descripcion = descripcion.toLowerCase();
         for (Producto p : productos) {
-            if (p.verDescripcion().contains(descripcion)) {
+            if (p.verDescripcion().toLowerCase().contains(descripcion)) {
                 encontrados.add(p);
             }
         }
