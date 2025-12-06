@@ -28,17 +28,17 @@ public interface IControladorAMProducto {
      * Acción a ejecutar cuando se presiona una tecla en el campo txtCodigo
      * @param evt evento
      */
-//    public void txtCodigoPresionarTecla(KeyEvent evt);
+    public void txtCodigoPresionarTecla(KeyEvent evt);
     
     /**
      * Acción a ejecutar cuando se presiona una tecla en el campo txtDescripcion
      * @param evt evento
      */
-//    public void txtDescripcionPresionarTecla(KeyEvent evt);
+    public void txtDescripcionPresionarTecla(KeyEvent evt);
     
     /**
      * Acción a ejecutar cuando se presiona una tecla en el campo txtPrecio
      * @param evt evento
      */
-//    public void txtPrecioPresionarTecla(KeyEvent evt);              
+    public void txtPrecioPresionarTecla(KeyEvent evt);              
 }

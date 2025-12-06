@@ -6,6 +6,7 @@ package productos.vistas;
 
 import interfaces.IControladorProductos;
 import java.util.List;
+import javax.swing.JTable;
 import productos.modelos.ModeloTablaProductos;
 import productos.modelos.Producto;
 
@@ -28,38 +29,34 @@ public class VentanaProductos extends javax.swing.JDialog {
         initComponents();
         configurarTabla();
     }
+    
     /*Metodo auxiliar que me permite asignarle un modelo a la tabla */
     private void configurarTabla(){
         this.modeloTabla = new ModeloTablaProductos();
         this.tablaProductos.setModel(modeloTabla);
     }
     
-    /*Metodo que actualiza la tabla con los productos*/
-    public void actualizarTabla(ModeloTablaProductos modelo) {
- 
-        this.tablaProductos.setModel(modelo);
-        this.modeloTabla = modelo;
+    public JTable obtenerTabla() {
+        return this.tablaProductos;
     }
+    
+    public void actualizarTabla(List<Producto> productos) {
+        this.modeloTabla = new ModeloTablaProductos();
+    
+        this.modeloTabla.setProductos(productos);
+    
+        this.tablaProductos.setModel(this.modeloTabla);
+    }
+    
+    public ModeloTablaProductos obtenerModeloTabla() {
+        return (ModeloTablaProductos) this.tablaProductos.getModel();
+    }
+    
     
     /*Metodo para conseguir el texto de txtDescripcion */
     public String conseguirTxt(){
         return this.txtDescripcion.getText().trim();
     }
-    
-    public Producto conseguirProductoSeleccionado() {
-        /*Cuando el usuario seleccione una fila, este metodo devolvera el numero de fila seleccionada*/
-        int filaSeleccionada = this.tablaProductos.getSelectedRow();
-    
-    /* Si getSelectedRow devuelve -1, significa que no hay nada seleccionado */
-        if (filaSeleccionada == -1) {
-            return null;
-    }
-    
-    /* Le pido a la tabla que me devuelva el producto de la fila seleccionada */
-        return this.modeloTabla.getProductoEnFila(filaSeleccionada);
-}
-    
-    
     
     
     
@@ -126,6 +123,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         btnBorrarClic.setText("Borrar");
+        btnBorrarClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClic(evt);
+            }
+        });
 
         btnVolverClic.setText("Volver");
         btnVolverClic.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +215,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void ventanaObtenerFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaObtenerFoco
         this.controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaObtenerFoco
+
+    private void btnBorrarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClic
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarClic
 
     
     /**

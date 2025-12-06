@@ -8,6 +8,7 @@ import interfaces.IControladorAMProducto;
 import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.Categoria;
@@ -77,21 +78,13 @@ public class ControladorAMProductos implements IControladorAMProducto {
     @Override
     public void btnGuardarClic(ActionEvent evt) {
             String resultado; 
-//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-//        String descripcion = this.txtDescripcion.getText().trim();        
-//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-//        Categoria categoria = (Categoria) this.comboCategorias.getSelectedItem();
-//        Estado estado = (Estado) this.comboEstados.getSelectedItem();
-         
-//        int codigo = this.ventanaAMProductos.obtenerCodigo();
-//        String descripcion = this.ventanaAMProductos.obtenerDescripcion();
-//        float precio = this.ventanaAMProductos.obtenerPrecio();
         
         JTextField txtCod = this.ventanaAMProductos.obtenerCodigo();
         JTextField txtDesc = this.ventanaAMProductos.obtenerDescripcion();
         JTextField txtPrec = this.ventanaAMProductos.obtenerPrecio();
         
-        /*Como la ventana me entrega todos los datos de tipo String se lo convierte en sus respectivos tipos*/
+        /*Como la ventana me entrega todos los datos de tipo String se lo convierte 
+                              en sus respectivos tipos*/
         int codigo = Integer.parseInt(txtCod.getText().trim());
         String descripcion = txtDesc.getText().trim();
         float precio = Float.parseFloat(txtPrec.getText().trim());
@@ -120,5 +113,40 @@ public class ControladorAMProductos implements IControladorAMProducto {
 
     
     }
+
+    
+    /* Metodos que permiten que el usuario cambie de manera rapida al presionar la tecla ENTER */
+      /* Se podria haber usado tambien KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT para cambiarlo
+        con las teclas flechas (documentacion profe) 
+    */
+    @Override
+    public void txtCodigoPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+  
+        this.ventanaAMProductos.obtenerDescripcion().requestFocus();
+        
+       }
+    }
+
+    @Override
+    public void txtDescripcionPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        
+        this.ventanaAMProductos.obtenerPrecio().requestFocus();
+        
+       }
+    }
+
+    @Override
+    public void txtPrecioPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+       
+        this.ventanaAMProductos.obtenerCategoria().requestFocus();
+        
+       }
+    }
+    
+    
+    
     
 }

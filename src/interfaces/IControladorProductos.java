@@ -16,6 +16,12 @@ import java.awt.event.WindowEvent;
 public interface IControladorProductos {
     public static final String TITULO = "Productos";
     public static final String CONFIRMACION = "¿Desea borrar el producto especificado?";
+    public static final String BORRAR_PRODUCTO = "Borrar Producto";
+    public static final String ERROR_BORRAR = "No se pudo borrar el producto";
+    public static final String NO_PRODUCTOS = "No hay producto seleccionado para borrar";
+    public static final String OPERACION_EXITOSA = "Producto borrado";
+    public static final String ADVERTENCIA = "No ha seleccionado ningun producto de la lista. Intente nuevamente.";
+    public static final String ATENCION = "Atención";
     
     /**
      * Acción a ejecutar cuando la ventana obtenga el foco
@@ -66,6 +72,6 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Borrar
      * @param evt evento
      */                        
-    //public void btnBorrarClic(ActionEvent evt);
+    public void btnBorrarClic(ActionEvent evt);
     
 }

@@ -23,6 +23,7 @@ public class VentanaAMProducto extends JDialog {
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
+    
     public VentanaAMProducto(VentanaPrincipal ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
@@ -59,7 +60,15 @@ public class VentanaAMProducto extends JDialog {
         this.setTitle(titulo);
     }
     
+    /*Metodo me devuelve JcomboBox de categoria */
+    public javax.swing.JComboBox obtenerCategoria() {
+        return this.comboCategorias;
+    }
     
+    /*Metodo me devuelve JcomboBox de estado */
+    public javax.swing.JComboBox obtenerEstado() {
+        return this.comboEstados;
+    }
     
     /*Metodo se va encargar de recibir el modelo de categorias desde el ControladorAMProductos*/ 
     public void configurarCategorias(ModeloComboCategorias modelo) {
@@ -71,7 +80,7 @@ public class VentanaAMProducto extends JDialog {
        this.comboEstados.setModel(modelo);
     }
     
-        /*Recupera la opcion que el usuario seleccionó en la lista
+    /*Recupera la opcion que el usuario seleccionó en la lista
       y lo convierte (castea) al tipo de dato Categoria*/
    
     public Categoria comboCategoria() {
@@ -127,10 +136,20 @@ public class VentanaAMProducto extends JDialog {
         jLabel1.setText("Descripción:");
 
         txtDescripcion.setToolTipText("Descripción");
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescripcionPresionarTecla(evt);
+            }
+        });
 
         jLabel2.setText("Precio:");
 
         txtPrecio.setToolTipText("Precio");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioPresionarTecla(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -153,6 +172,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel4.setText("Código:");
 
         txtCodigo.setToolTipText("Codigo");
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoPresionarTecla(evt);
+            }
+        });
 
         jLabel6.setText("Estado:");
 
@@ -238,24 +262,7 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-                 
-//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-//        String descripcion = this.txtDescripcion.getText().trim();        
-//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-//        Categoria categoria = (Categoria) this.comboCategorias.getSelectedItem();
-//        Estado estado = (Estado) this.comboEstados.getSelectedItem();
-                            
-//        IGestorProductos gp = new GestorProductos(codigo, descripcion, categoria, estado, precio);
-//        this.productos.add(unProducto);
-//        
-//        System.out.println("Productos");
-//        System.out.println("=========");
-//        for(Producto p : this.productos) {
-//            p.mostrar();
-//            System.out.println();
-//        }
-
-            this.controlador.btnGuardarClic(evt);
+        this.controlador.btnGuardarClic(evt);
         
     }//GEN-LAST:event_btnGuardarClic
 
@@ -266,6 +273,18 @@ public class VentanaAMProducto extends JDialog {
     private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboEstadosActionPerformed
+
+    private void txtCodigoPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoPresionarTecla
+        this.controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoPresionarTecla
+
+    private void txtDescripcionPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionPresionarTecla
+        this.controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionPresionarTecla
+
+    private void txtPrecioPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioPresionarTecla
+        this.controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioPresionarTecla
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
