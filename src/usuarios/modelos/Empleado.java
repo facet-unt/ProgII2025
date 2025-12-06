@@ -4,29 +4,26 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
+import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
 
 /**
  *
- * @author Esteban
+ * @author estudiante
  */
+public class Empleado extends Usuario {
 
-public class Empleado extends Usuario{
+ GestorPedidos gp = GestorPedidos.instanciar();
 
-    private ArrayList<Pedido> vacio= new ArrayList<>();
-    //constructor
 
-    public Empleado(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
-    }
-
-    @Override
-    public ArrayList<Pedido> verPedido() {
-        
-        return vacio;
+    public Empleado(String c, String cl, String a, String n) {
+        super(c, cl, a, n);
     }
     
-    
+@Override
+    public List<Pedido> verPedidos()
+    {
+      return gp.verPedidos();
+     }
 }
-

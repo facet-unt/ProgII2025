@@ -1,133 +1,139 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package pedidos.modelos;
 
-import java.time.*;
-import usuarios.modelos.*;
+import interfaces.IGestorPedidos;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import interfaces.*;
+import java.util.List;
 import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
 
+/**
+ *
+ * @author sofia
+ */
+public class GestorPedidos implements IGestorPedidos {
 
-
-
-public class GestorPedidos implements IGestorPedidos{
-    
     private ArrayList<Pedido> pedidos = new ArrayList<>();
-    
-    private static GestorPedidos instancia;
-    
-    
+
+    private static GestorPedidos gestor;
+    private static int numero = 1;
+
     private GestorPedidos() {
-        
+
     }
-    
-    
+
     public static GestorPedidos instanciar() {
-        if (instancia == null)
-            instancia = new GestorPedidos();
-        return instancia;
-    }
-    
-    @Override
-    public String crearPedido(LocalDate fecha, LocalTime hora,ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
-        Pedido p = new Pedido (fecha,  hora, productosDelPedido,  cliente);
-        if(fecha!=null&&hora!=null&&!productosDelPedido.isEmpty()&&cliente!=null)
-        {   
-            if (pedidos.contains(p)){
-                return PEDIDOS_DUPLICADOS;
-            }
-            cliente.agregarPedido(p);
-            pedidos.add(p);
-            return VALIDACION_EXITO; 
-            
+        if (gestor == null) {
+            gestor = new GestorPedidos();
         }
-        else
-        {
-            return VALIDACION_FRACASO;
-        }
-        
-    }
-    
-    @Override
-    public String cambiarEstado(Pedido pedidoAmodificar){
-        switch (pedidoAmodificar.verEstado()) {
-            case CREADO -> {
-                pedidoAmodificar.asignarEstado(Estado.PROCESANDO);
-                return "Procesando Pedido";
-            }
-
-            case PROCESANDO -> {
-                pedidoAmodificar.asignarEstado(Estado.ENTREGADO);
-                return "Pedido entregado";
-            }
-
-            default -> {
-                return CAMBIO_ESTADO_FRACASO;
-            }
-        }
-      
-    }
-    
-    @Override
-    public ArrayList<Pedido> verPedidos(){
-        return pedidos;
-    }
-    
-    @Override
-    public boolean hayPedidosConEsteProducto(Producto producto){
-        boolean bandera=false; 
-        for (Pedido unPedido: pedidos){
-            if (unPedido.verProductoPedido().contains(producto)){
-                    bandera=true;
-                    break;
-            }
-        }
-        return bandera;
-    }
-    
-    @Override
-    public boolean existeEstePedido(Pedido pedido){
-        boolean bandera = false;    
-        if (pedidos.contains(pedido)){
-            bandera=true;
-            System.out.println("Pedido encontrado");
-        }
-        else System.out.println(PEDIDO_INEXISTENTE);
-        return bandera;    
-    }
-    
-    @Override
-    public Pedido obtenerPedido(Integer numero){
-        for (Pedido unPedido : pedidos){
-            if (unPedido.verNumero()==numero)
-                return unPedido;
-        
-        }
-        System.out.println(PEDIDO_INEXISTENTE);
-        return null;
-    }
-
-    @Override
-    public boolean hayPedidosConEsteCliente(Cliente cliente) {
-        for (Pedido unPedido : pedidos){
-            if (unPedido.verCliente()==cliente)
-                return true;
-        
-        }
-        System.out.println(PEDIDO_INEXISTENTE);
-        return false;
+        return gestor;
     }
 
     @Override
     public String cancelarPedido(Pedido pedido) {
-        if(pedidos.contains(pedido)&&pedido!=null){
-           pedidos.remove(pedido);
-           pedido.verCliente().cancelarPedido(pedido);
-           return CANCELACION_EXITO;
+        pedido.getCliente().cancelarPedido(pedido);
+        return BORRADO_EXITO;
+    }
+
+    @Override
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+        if (fecha == null) {
+            return ERROR_FECHA;
         }
-        return CANCELACION_FRACASO;
+        if (hora == null) {
+            return ERROR_HORA;
+        }
+        if (cliente == null) {
+            return ERROR_CLIENTE;
+        }
+        if (productosDelPedido == null || productosDelPedido.isEmpty()) {
+            return ERROR_PRODUCTOS_DEL_PEDIDO;
+        }
+
+        LocalDateTime fechayhora = LocalDateTime.of(fecha, hora);
+
+        Pedido p = new Pedido(numero, fechayhora, productosDelPedido, cliente);
+        numero++;
+        cliente.agregarPedido(p);
+        pedidos.add(p);
+        return VALIDACION_EXITO;
     }
-    
-    
-    
-    
+
+    @Override
+    public String cambiarEstado(Pedido pedidoAModificar) {
+        if (pedidoAModificar.getEstado() == null) {
+            return ERROR_ESTADO;
+        }
+        if (pedidoAModificar.getEstado() == Estado.CREADO) {
+            pedidoAModificar.setEstado(Estado.PROCESANDO);
+
+        }
+
+        if (pedidoAModificar.getEstado() == Estado.PROCESANDO) {
+            pedidoAModificar.setEstado(Estado.ENTREGADO);
+
+        }
+        return ESTADO_EXITO;
     }
+
+    @Override
+    public List<Pedido> verPedidos() {
+
+        return pedidos;
+    }
+
+    @Override
+    public boolean hayPedidosConEsteCliente(Cliente cliente) {
+        for (Pedido p : pedidos) {
+
+            if (p.getCliente() == cliente) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean hayPedidosConEsteProducto(Producto producto) {
+        for (Pedido p : pedidos) {
+
+            for (ProductoDelPedido prod : p.getCantidadProducto()) {
+                if (prod.getUnProducto() == producto) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean existeEstePedido(Pedido pedido) {
+        for (Pedido p : pedidos) {
+            if (p == pedido) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Pedido obtenerPedido(Integer numero) {
+        for (Pedido p : pedidos) {
+            if (p.obtenerNumero() == numero) {
+                return p;
+            }
+
+        }
+        return null;
+    }
+}

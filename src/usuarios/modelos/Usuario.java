@@ -4,7 +4,7 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
 
@@ -12,44 +12,47 @@ import pedidos.modelos.Pedido;
  *
  * @author estudiante
  */
-public abstract class Usuario {
+public abstract class Usuario implements Comparable<Usuario> {
+
     private String correo;
     private String clave;
     private String apellido;
     private String nombre;
+    private Perfil perfil;
     
-    
-    
-    //CONSTRUCTOR
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-    
     }
-    
-    //MOSTRAR
-    public void mostrar(){
-        System.out.println( apellido + ", " + nombre);
+
+    public abstract List<Pedido> verPedidos();
+
+    public void mostrar() {
+        System.out.println("Nombre: " + verNombre());
+        System.out.println("Apellido: " + verApellido());
+        System.out.println("Correo: " + verCorreo());
+        System.out.println("Clave: " + verClave());
+
     }
-    
-    //TOString
+
     @Override
-    public String toString() {
-        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
+    public int compareTo(Usuario u) {
+        if (this.apellido.compareTo(u.apellido) == 0) {
+            return this.nombre.compareTo(u.nombre);
+        }
+        else{
+        return this.apellido.compareTo(u.apellido);
+        }
     }
-    
-    
-    //METODOS GET/SET
+
     public String verCorreo() {
         return correo;
     }
 
     public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
+        this.correo = correo;
     }
 
     public String verClave() {
@@ -57,9 +60,7 @@ public abstract class Usuario {
     }
 
     public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
+        this.clave = clave;
     }
 
     public String verApellido() {
@@ -67,9 +68,15 @@ public abstract class Usuario {
     }
 
     public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
+        this.apellido = apellido;
+    }
+
+    public Perfil verPerfil() {
+        return perfil;
+    }
+
+    public void asignarPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public String verNombre() {
@@ -77,15 +84,13 @@ public abstract class Usuario {
     }
 
     public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
+        this.nombre = nombre;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.correo);
+        hash = 29 * hash + Objects.hashCode(this.correo);
         return hash;
     }
 
@@ -103,7 +108,5 @@ public abstract class Usuario {
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
-    public abstract ArrayList<Pedido> verPedido();
- 
+
 }

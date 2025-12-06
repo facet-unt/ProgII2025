@@ -19,7 +19,7 @@ public class ControladorAMProducto implements IControladorAMProducto {
     private VentanaAMProducto vp; //se instancia en constructor
     
     public ControladorAMProducto() {
-        this.vp = new VentanaAMProducto(); //cada controlador crea su ventana
+        this.vp = new VentanaAMProducto(null); //cada controlador crea su ventana
     }
     
     public void mostrarVentanaProducto(){

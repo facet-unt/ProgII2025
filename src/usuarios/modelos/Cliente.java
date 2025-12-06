@@ -4,60 +4,64 @@
  */
 package usuarios.modelos;
 
-
-/**
- *
- * @author Esteban
- */
 import java.util.ArrayList;
+import java.util.List;
 import pedidos.modelos.Pedido;
 
-public class Cliente extends Usuario{
-    private ArrayList<Pedido> pedidos= new ArrayList<>();
+public class Cliente extends Usuario {
 
-    
+    private List<Pedido> pedidos = new ArrayList();
+
+    public Cliente(String c, String cl, String a, String n) {
+        super(c, cl, a, n);
+
+    }
+
+    @Override
+    public List<Pedido> verPedidos() {
+        return this.pedidos;
+    }
+
+    public void agregarPedido(Pedido p) {
+        if (!pedidos.contains(p)) {
+            pedidos.add(p);
+        } else {
+            int indice = pedidos.indexOf(p);
+            pedidos.set(indice, p);
+        }
+
+    }
+
+    public void cancelarPedido(Pedido pedido) {
+        pedidos.remove(pedido);
+
+    }
+
+    /**
+     *
+     */
     @Override
     public void mostrar() {
-      super.mostrar();
-      for (Pedido p: pedidos)
-            System.out.println(p.verNumero());
-  
-    }
+        super.mostrar();
+        for (Pedido p : pedidos) {
+            System.out.println("pedido numero:" + p.obtenerNumero());
+            p.mostrar();
+            System.out.println("========================");
 
-    public Cliente(String correo, String clave, String apellido, String nombre) {
-        super(correo,clave, apellido, nombre);
-
-
-    }
-    
-    //metodos get/set
-    
-
-
-    public void agregarPedido(Pedido unPedido) {
-        if(!pedidos.contains(unPedido))
-        {
-            this.pedidos.add(unPedido);
-        }
-        else
-        {
-            this.pedidos.remove(unPedido);
-            this.pedidos.add(unPedido);
         }
     }
-    public void cancelarPedido(Pedido unPedido) {
-        if(pedidos.contains(unPedido)&&unPedido!=null)
-        this.pedidos.remove(unPedido);
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
-   
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 
     @Override
-    public ArrayList<Pedido> verPedido() {
-        return(pedidos);
+    public String toString() {
+        return "Cliente{" + "correo=" + verCorreo() + ", clave=" + verClave() + ", apellido=" + verApellido() + ", nombre=" + verNombre() + '}';
     }
 
-    
-    
-    
-    
-} 
+}

@@ -8,28 +8,32 @@ package productos.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import principal.controladores.ControladorAMProducto;
 import productos.modelos.*;
 
-
+import productos.modelos.Producto;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 
 public class VentanaAMProducto extends JDialog {
-    private ControladorAMProducto controlador;
 
-    
+    private ArrayList<Producto> productos = new ArrayList<>();
+
     /**
      * Constructor
+     *
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto() {
+    public VentanaAMProducto(Dialog ventanaPadre) {
+        super(ventanaPadre, true);
         initComponents();
-            
+        this.setLocationRelativeTo(null);
+        this.setTitle("Nuevo producto");
+        this.comboCategorias.setModel(new ModeloComboCategorias());
+        this.comboEstado.setModel(new ModeloComboEstados());
+
+        this.setVisible(true);
     }
-    public VentanaAMProducto(ControladorAMProducto controlador) {
-        this.controlador=controlador;
-        initComponents();
-    }
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +54,7 @@ public class VentanaAMProducto extends JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox<>();
-        comboEstados = new javax.swing.JComboBox<>();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -90,18 +94,8 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriasActionPerformed(evt);
-            }
-        });
 
-        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboEstados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEstadosActionPerformed(evt);
-            }
-        });
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,7 +122,7 @@ public class VentanaAMProducto extends JDialog {
                             .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)
                             .addComponent(comboCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,7 +147,7 @@ public class VentanaAMProducto extends JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -169,23 +163,30 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
+        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
+        String descripcion = this.txtDescripcion.getText().trim();
+        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
+        Categoria categoria = ((ModeloComboCategorias) this.comboCategorias.getModel()).obtenerCategoria();
+        Estado estado = ((ModeloComboEstados) this.comboEstado.getModel()).obtenerEstado();
         
+        
+        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
+        this.productos.add(unProducto);
+
+        System.out.println("Productos");
+        System.out.println("=========");
+        for (Producto p : this.productos) {
+            p.mostrar();
+            System.out.println();
+        }
     }//GEN-LAST:event_btnGuardarClic
-
-    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboCategoriasActionPerformed
-
-    private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboEstadosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> comboCategorias;
-    private javax.swing.JComboBox<String> comboEstados;
+    private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

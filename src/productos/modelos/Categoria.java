@@ -4,34 +4,21 @@
  */
 package productos.modelos;
 
-/**
- *
- * @author estudiante
- */
 public enum Categoria {
-    ENTRADA ("Entrada"),
-    PLATO_PRINCIPAL ("Plato principal"),
-    POSTRE ("Postre");
-    
-    private String valor;
+    ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato_Principal"),
+    POSTRE("Postre");
 
-    private Categoria(String valor) {
-        this.valor = valor;
+    private final String nombre;
+
+    private Categoria(String nombre) {
+        this.nombre = nombre;
     }
-    
+
     @Override
     public String toString() {
-        return this.valor;
+        return nombre;
     }
     
-    
-    public String verValor() {
-        return valor;
-    }
-
-    public void asignarValor(String valor) {
-        this.valor = valor;
-    }
-      
-    
+   
 }

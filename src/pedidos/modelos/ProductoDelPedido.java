@@ -6,46 +6,36 @@ package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
+
 /**
  *
  * @author estudiante
  */
 public class ProductoDelPedido {
+
     private int cantidad;
     private Producto unProducto;
-
-    public ProductoDelPedido( Producto unProducto,int cantidad) {
+    
+    public ProductoDelPedido(Producto unProducto, int cantidad) {
         this.cantidad = cantidad;
-        this.unProducto = unProducto;
-    }
-
-    public int verCantidad() {
-        return cantidad;
-    }
-
-    public void asignarCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-
-    public Producto verUnProducto() {
-        return unProducto;
-    }
-
-    public void asignarUnProducto(Producto unProducto) {
-        this.unProducto = unProducto;
-        
+        this.unProducto=unProducto;
     }
 
     public void mostrar(){
-        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
+        System.out.println(unProducto.verDescripcion()+"\t"+ cantidad);
+    }
+    public Producto getUnProducto() {
+        return unProducto;
+    }
 
+    public void setUnProducto(Producto unProducto) {
+        this.unProducto = unProducto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.unProducto);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.unProducto);
         return hash;
     }
 
@@ -63,5 +53,15 @@ public class ProductoDelPedido {
         final ProductoDelPedido other = (ProductoDelPedido) obj;
         return Objects.equals(this.unProducto, other.unProducto);
     }
+    
+    
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     
 }
