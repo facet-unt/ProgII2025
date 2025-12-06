@@ -10,8 +10,12 @@ import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
+import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -22,6 +26,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
     private VentanaUsuarios ventana;
     private ModeloTablaUsuarios modeloTabla;
+    private int filaSeleccionada;
     
     private ControladorUsuarios() {
         this.ventana = new VentanaUsuarios(this);
@@ -32,6 +37,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         this.modeloTabla = new ModeloTablaUsuarios();
         this.actualizarTabla();
         this.ventana.definirModeloTabla(this.modeloTabla);
+        this.agregarListenerATabla(this.ventana.verJtableUsuarios());
     }
     
     public static ControladorUsuarios instanciar() {
@@ -49,10 +55,22 @@ public class ControladorUsuarios implements IControladorUsuarios{
         this.modeloTabla.dibujarTabla(gu.verUsuarios());
     }
     
+    // Metodo listener para tabla
+     private void agregarListenerATabla(JTable tabla) {
+         tabla.getSelectionModel().addListSelectionListener((e) -> {
+             if (!e.getValueIsAdjusting()) {
+                 if (tabla.getSelectedRow() != -1) {
+                     this.filaSeleccionada = tabla.getSelectedRow();
+                 }
+             }
+         });
+     }
+    
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMUsuario controladorNuevoUsuario = ControladorAMUsuario.instanciar();
+        this.actualizarTabla();
     }
 
     @Override
@@ -62,7 +80,22 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Usuario usuarioABorrar = this.modeloTabla.obtenerUsuarioEnFila(filaSeleccionada);
+        
+        int opcion = JOptionPane.showConfirmDialog(this.ventana, CONFIRMACION, "Borrar usuario", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == 0) {
+            IGestorUsuarios gu = GestorUsuarios.instanciar();
+            String resultado = gu.borrarUsuario(usuarioABorrar);
+            
+            if (!resultado.equals("Usuario eliminado correctamente")) {
+                JOptionPane.showMessageDialog(this.ventana, resultado, "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(this.ventana, resultado, "EXITO   ", JOptionPane.INFORMATION_MESSAGE);
+                this.actualizarTabla();
+            }
+        }
     }
 
     @Override
@@ -82,7 +115,18 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String apellidoBuscado = this.ventana.verTxtApellido().getText().trim();
+        
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        List<Usuario> listaUsuariosEncontrados;
+        
+        if (apellidoBuscado == null || apellidoBuscado.isBlank()) {
+            listaUsuariosEncontrados = gu.verUsuarios();
+        }
+        else {
+            listaUsuariosEncontrados = gu.buscarUsuarios(apellidoBuscado);
+        }
+        
+        this.modeloTabla.dibujarTabla(listaUsuariosEncontrados);
     }
-    
 }

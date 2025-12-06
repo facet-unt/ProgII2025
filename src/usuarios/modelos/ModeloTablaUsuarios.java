@@ -52,4 +52,12 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         this.listaUsuarios = usuarios;
         fireTableDataChanged();
     }
+    
+    //Metodo para obtener el usuario en una fila seleccionada
+    public Usuario obtenerUsuarioEnFila(int fila) {
+        if (fila < 0 || fila >= listaUsuarios.size()) {
+            return null;
+        }
+        return listaUsuarios.get(fila);
+    }
 }

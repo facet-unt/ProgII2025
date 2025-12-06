@@ -84,7 +84,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
 
         if (apellido == null || apellido.isBlank()) {
-            return usuariosEncontrados; //Devuelvo el array vacio si no es valido el apellido
+            return null;
         }
 
         for (Usuario u : this.listaUsuarios) {

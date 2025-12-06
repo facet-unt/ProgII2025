@@ -6,6 +6,8 @@ package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
 import java.awt.Frame;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 
 /**
@@ -28,6 +30,15 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     
     public void definirModeloTabla(TableModel modelo) {
         this.jtableUsuarios.setModel(modelo);
+    }
+    
+    // Getters para pasar las variables de instancia al controlador
+    public JTextField verTxtApellido() {
+        return txtApellido;
+    }
+
+    public JTable verJtableUsuarios() {
+        return jtableUsuarios;
     }
     
     /**
@@ -53,6 +64,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +80,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jLabel1.setText("Buscar por apellido:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jtableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,6 +170,14 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        this.controlador.btnBuscarClic(evt);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
