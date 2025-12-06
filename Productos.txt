@@ -9,3 +9,5 @@
 7-Suprema con pure-Plato principal-Disponible-3.0
 3-Copa helada-Postre-Disponible-3.0
 5-Queso y dulce-Postre-Disponible-3.0
+9999-PruebaVentanaObtenerFoco-Entrada-Disponible-1200000.0
+12494-Prueba2-Entrada-Disponible-1241.0

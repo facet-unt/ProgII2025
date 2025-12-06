@@ -84,6 +84,13 @@ public class VentanaProductos extends javax.swing.JDialog {
         btnVolverClic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                ventanaObtenerFoco(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Descripcion:");
 
@@ -202,6 +209,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnModificarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClicActionPerformed
         this.controlador.btnModificarClic(evt);
     }//GEN-LAST:event_btnModificarClicActionPerformed
+
+    private void ventanaObtenerFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaObtenerFoco
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_ventanaObtenerFoco
 
     
     /**
