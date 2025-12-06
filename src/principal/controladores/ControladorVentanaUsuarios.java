@@ -9,6 +9,7 @@ import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import principal.vistas.VentanaPrincipal;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -19,9 +20,10 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
     
-    public ControladorVentanaUsuarios() {
-        this.ventana = new VentanaUsuarios(this);
+    public ControladorVentanaUsuarios(JFrame ventanaPadre) {
+        this.ventana = new VentanaUsuarios(ventanaPadre , this);
         this.ventana.setLocationRelativeTo(null);
+        this.ventana.setTitle(TITULO);
         this.ventana.setVisible(true);
     }
 
