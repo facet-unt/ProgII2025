@@ -35,8 +35,10 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     public static GestorUsuarios instanciar() {
-        if (instancia == null)
+        if (instancia == null){
             instancia = new GestorUsuarios();
+        }
+        System.out.println(crearArchivo());
         return instancia;
     }
     
@@ -155,7 +157,7 @@ public class GestorUsuarios implements IGestorUsuarios{
                 usuariosEncontrados.add(u);
             }
         }
-        Collections.sort(usuarios);
+        Collections.sort(usuariosEncontrados);
         return usuariosEncontrados;
     }
     
@@ -247,16 +249,16 @@ public class GestorUsuarios implements IGestorUsuarios{
             String linea;
             while((linea = br.readLine())!=null){
                 String[] cadenas = linea.split(SEPARADOR);
-                if(cadenas[0]==Perfil.CLIENTE.toString()){
-                    Usuario u = new Cliente(cadenas[1],cadenas[4],cadenas[2],cadenas[1]);
+                if(cadenas[0].equals(Perfil.CLIENTE.toString())){
+                    Usuario u = new Cliente(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
                     listaUsuarios.add(u);
                 }
-                if(cadenas[0]==Perfil.EMPLEADO.toString()){
-                    Usuario u = new Empleado(cadenas[1],cadenas[4],cadenas[2],cadenas[1]);
+                if(cadenas[0].equals(Perfil.EMPLEADO.toString())){
+                    Usuario u = new Empleado(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
                     listaUsuarios.add(u);
                 }
-                if(cadenas[0]==Perfil.ENCARGADO.toString()){
-                    Usuario u = new Encargado(cadenas[1],cadenas[4],cadenas[2],cadenas[1]);
+                if(cadenas[0].equals(Perfil.ENCARGADO.toString())){
+                    Usuario u = new Encargado(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
                     listaUsuarios.add(u);
                 }
             }
