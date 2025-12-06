@@ -4,26 +4,49 @@
  */
 package principal.controladores;
 
-import interfaces.IControladorUsuarios;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import usuarios.vistas.VentanaDeUsuarios;
+import principal.vistas.VentanaPrincipal;
+import productos.vistas.VentanaDeProductos;
 
 /**
  *
  * @author karen
  */
-public class ControladorUsuarios implements IControladorUsuarios{
-    private VentanaDeUsuarios ventanaUser;
+public class ControladorProductos implements IControladorProductos{
+    private VentanaDeProductos ventanaDp;
     
-    public ControladorUsuarios(JFrame VentanaPrincipal){
-        this.ventanaUser=new VentanaDeUsuarios(VentanaPrincipal,this);
-        this.ventanaUser.setLocationRelativeTo(null);
-        this.ventanaUser.setTitle(TITULO);
-        this.ventanaUser.setVisible(true);
+    public ControladorProductos(JFrame VentanaPrincipal){
+        this.ventanaDp=new VentanaDeProductos(VentanaPrincipal,this);
+        this.ventanaDp.setLocationRelativeTo(null);
+        this.ventanaDp.setTitle(TITULO);
+        this.ventanaDp.setVisible(true);
     }
+    
+    
+    @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void btnVolverClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void btnBuscarClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void txtDescripcionPresionarTecla(KeyEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -36,26 +59,6 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void btnBuscarClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

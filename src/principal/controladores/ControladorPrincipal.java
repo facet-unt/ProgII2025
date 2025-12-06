@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -27,12 +28,12 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-
+        IControladorProductos cpr = new ControladorProductos(this.VentanaPrincipal);
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        IControladorUsuarios cu = new ControladorUsuarios();
+        IControladorUsuarios cu = new ControladorUsuarios(this.VentanaPrincipal);
     }
 
     @Override

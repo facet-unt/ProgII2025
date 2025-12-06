@@ -1,27 +1,34 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
-import principal.controladores.ControladorUsuarios;
 
 /**
  *
  * @author karen
  */
-public class VentanaDeUsuarios extends javax.swing.JFrame {
+public class VentanaDeUsuarios extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaDeUsuarios.class.getName());
-    private IControladorUsuarios ControladorUsuarios;
+private IControladorUsuarios controladorUsuarios;
+
     /**
-     * Creates new form VentanaDeUsuarios
+     * Creates new form VentanaDeProductos
      */
-    public VentanaDeUsuarios(IControladorUsuarios controladorUsuarios) {
+    /**
+     * Creates new form VentanaDeProductos
+     * @param parent
+     * @param controladorUsuarios
+     */
+    public VentanaDeUsuarios(java.awt.Frame parent,IControladorUsuarios controladorUsuarios) {
+        super(parent, true);
         initComponents();
-        this.ControladorUsuarios = controladorUsuarios;
+        this.controladorUsuarios = controladorUsuarios;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +39,7 @@ public class VentanaDeUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,8 +76,20 @@ public class VentanaDeUsuarios extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-       // java.awt.EventQueue.invokeLater(() -> new VentanaDeUsuarios().setVisible(true));
+        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                VentanaDeUsuarios dialog = new VentanaDeUsuarios(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
