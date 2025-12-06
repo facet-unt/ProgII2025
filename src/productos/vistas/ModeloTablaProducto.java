@@ -4,7 +4,8 @@
  */
 package productos.vistas;
 
-import productos.modelos.Producto;
+import interfaces.IGestorProductos;
+import productos.modelos.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,49 +14,73 @@ import java.util.List;
  * Modelo para JTable de Productos (View Helper).
  */
 public class ModeloTablaProducto extends AbstractTableModel {
+    
+    private List<String> nombreColumnas = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
+    private List<Producto> listaProductos = new ArrayList<>();
+    
+    /*public ModeloTablaProductos() {
+        actualizarTabla();
+    }*/
 
-    private static final String[] NOMBRES_COLUMNAS = 
+    private static final String[] columnas = 
         {"Categoría", "Código", "Descripción", "Precio", "Estado"};
     
-    private List<Producto> productos = new ArrayList<>();
+    
 
     public void setProductos(List<Producto> productos) {
         this.productos = (productos != null) ? productos : new ArrayList<>();
         this.fireTableDataChanged();
     }
     
-    public Producto obtenerProducto(int fila) {
-        if (fila >= 0 && fila < productos.size()) {
-            return productos.get(fila);
-        }
-        return null;
+    public void actualizarTabla() {
+        IGestorProductos gestor = GestorProductos.instanciar();
+        this.listaProductos = gestor.menu();
+        this.fireTableDataChanged();
     }
 
-    @Override
+     @Override
     public int getRowCount() {
-        return productos.size();
+        return listaProductos.size();
     }
 
     @Override
     public int getColumnCount() {
-        return NOMBRES_COLUMNAS.length;
-    }
-
-    @Override
-    public String getColumnName(int columna) {
-        return NOMBRES_COLUMNAS[columna];
+        return columnas.length;
     }
 
     @Override
     public Object getValueAt(int fila, int columna) {
-        Producto p = productos.get(fila);
+        Producto p = listaProductos.get(fila);
+
         switch (columna) {
-            case 0: return p.verCategoria().verValor(); 
-            case 1: return p.verCodigo();
-            case 2: return p.verDescripcion();
-            case 3: return String.format("%.2f", p.verPrecio()); // Formato de precio
-            case 4: return p.verEstado().verValor(); 
-            default: return null;
+            case 0:
+                return p.verCategoria();   
+            case 1:
+                return p.verDescripcion(); 
+            case 2:
+                return p.verPrecio();     
+            default:
+                return null;
         }
+    }
+
+    @Override
+    public String getColumnName(int i) {
+        return columnas[i];
+    }
+
+    public void actualizarTabla(List<Producto> listaFiltrada) {
+        this.listaProductos = listaFiltrada;
+        this.fireTableDataChanged();
+    }
+
+    public Producto obtenerProducto(int fila) {
+        return listaProductos.get(fila);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        return false;
     }
 }
