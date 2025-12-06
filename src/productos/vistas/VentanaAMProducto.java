@@ -6,11 +6,11 @@
 package productos.vistas;
 
 import java.awt.Dialog;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import principal.controladores.ControladorAMProducto;
 import productos.modelos.*;
-
 
 public class VentanaAMProducto extends JDialog {
 
@@ -25,11 +25,10 @@ public class VentanaAMProducto extends JDialog {
         super(ventanaPadre, true);
         this.controlador = controlador;
         initComponents();
-        this.setLocationRelativeTo(null);   
-        this.setTitle("Nuevo producto");   
+        this.setLocationRelativeTo(null);
+        this.setTitle("Nuevo producto");
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstado.setModel(new ModeloComboEstados());
-
     }
 
     /**
@@ -183,6 +182,22 @@ public class VentanaAMProducto extends JDialog {
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
+
+    public JComboBox<String> verComboEstado() {
+        return comboEstado;
+    }
+
+    public void asignarComboEstado(JComboBox<String> comboEstado) {
+        this.comboEstado = comboEstado;
+    }
+
+    public JComboBox<String> verComboCategorias() {
+        return comboCategorias;
+    }
+
+    public void asignarComboCategorias(JComboBox<String> comboCategorias) {
+        this.comboCategorias = comboCategorias;
+    }
 
     public Object getCategoriaSeleccionada() {
         return comboCategorias.getSelectedItem();

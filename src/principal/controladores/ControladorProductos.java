@@ -72,6 +72,22 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
+        int fila = vp.getTableMenu().getSelectedRow();
+
+        if (fila == -1) {
+            javax.swing.JOptionPane.showMessageDialog(vp, "Seleccione un producto para modificar.");
+            return;
+        }
+
+        Producto productoSeleccionado = modelo.obtenerProducto(fila);
+
+        ControladorAMProducto controladorAM = new ControladorAMProducto();
+
+        controladorAM.inicializarModificacion(productoSeleccionado);
+
+        controladorAM.mostrarVentanaProducto();
+
+        this.modelo.actualizarTabla();
     }
 
     @Override
@@ -94,7 +110,6 @@ public class ControladorProductos implements IControladorProductos {
             IGestorProductos gestor = GestorProductos.instanciar();
             String resultado = gestor.borrarProducto(p);
 
-          
             javax.swing.JOptionPane.showMessageDialog(vp, resultado);
             modelo.actualizarTabla();
         }
