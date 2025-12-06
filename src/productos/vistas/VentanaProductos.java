@@ -4,14 +4,15 @@
  */
 package productos.vistas;
 
+import javax.swing.JDialog;
 import principal.controladores.ControladorVentanaProducto;
 
 /**
  *
  * @author sofia
  */
-public class VentanaProductos extends javax.swing.JFrame {
-private ControladorVentanaProducto cvp;
+public class VentanaProductos extends JDialog {
+private ControladorVentanaProducto controlador;
     /**
      * Creates new form VentanaProductos
      */
@@ -19,8 +20,8 @@ private ControladorVentanaProducto cvp;
         
         initComponents();
     }
-        public VentanaProductos(ControladorVentanaProducto cvp) {
-        this.cvp=cvp;
+        public VentanaProductos(ControladorVentanaProducto controlador) {
+        this.controlador=controlador;
         initComponents();
     }
 
@@ -56,7 +57,8 @@ private ControladorVentanaProducto cvp;
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Descripción:");
 
@@ -183,32 +185,32 @@ private ControladorVentanaProducto cvp;
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        cvp.btnNuevoClic(evt);
+        controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        cvp.btnBuscarClic(evt);
+        controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        cvp.btnModificarClic(evt);
+        controlador.btnModificarClic(evt);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        cvp.btnBorrarClic(evt);
+        controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        cvp.btnVolverClic(evt);
+        controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void fieldDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDescripcionKeyPressed
         // TODO add your handling code here:
-        cvp.txtDescripcionPresionarTecla(evt);
+        controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_fieldDescripcionKeyPressed
 
     /**

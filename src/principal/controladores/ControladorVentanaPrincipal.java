@@ -6,7 +6,7 @@ package principal.controladores;
 
 import interfaces.IControladorPrincipal;
 import java.awt.event.ActionEvent;
-import principal.vistas.Bar;
+import principal.vistas.VentanaPrincipal;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -14,18 +14,20 @@ import productos.vistas.VentanaProductos;
  * @author sofia
  */
 public class ControladorVentanaPrincipal implements IControladorPrincipal {
-    private Bar bar;
+    private VentanaPrincipal ventana;
 
     public ControladorVentanaPrincipal() {
-        
-        this.bar = new Bar(this) ;
+        this.ventana = new VentanaPrincipal(this);
+        this.ventana.setLocationRelativeTo(null); /* Centra la ventana */
+        this.ventana.setVisible(true); /* La hace visible */
+        this.ventana.setTitle(TITULO);
     }
     
     
     
     
     public void mostrarVentanaPrincipal(){
-        bar.setVisible(true);
+        ventana.setVisible(true);
     }
     
     

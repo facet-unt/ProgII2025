@@ -19,11 +19,13 @@ public class ControladorVentanaProducto implements IControladorProductos{
     private VentanaProductos vp; //se instancia en constructor
     
     public ControladorVentanaProducto() {
-        this.vp = new VentanaProductos(this); //cadacontrolador crea su ventana
+        this.vp = new VentanaProductos(this); //cada controlador crea su ventana
     }
     
     public void mostrarVentanaProducto(){
         vp.setVisible(true);
+        vp.setLocationRelativeTo(null);
+        vp.setResizable(false);
     }
     
     @Override

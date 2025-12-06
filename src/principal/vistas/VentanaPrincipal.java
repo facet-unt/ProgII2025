@@ -10,18 +10,18 @@ import principal.controladores.ControladorVentanaPrincipal;
  *
  * @author sofia
  */
-public class Bar extends javax.swing.JFrame {
-    private ControladorVentanaPrincipal cvp;
+public class VentanaPrincipal extends javax.swing.JFrame {
+    private ControladorVentanaPrincipal controlador;
     /**
      * Creates new form Bar
      */
-    public Bar() {
+    public VentanaPrincipal() {
        
         initComponents();
         
     }
-       public Bar(ControladorVentanaPrincipal cvp) {
-       this.cvp=cvp;
+       public VentanaPrincipal(ControladorVentanaPrincipal controlador) {
+       this.controlador=controlador;
         initComponents();
         
     }
@@ -44,6 +44,7 @@ public class Bar extends javax.swing.JFrame {
         btnProductos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -109,13 +110,13 @@ public class Bar extends javax.swing.JFrame {
 
     private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
         // TODO add your handling code here:
-        cvp.btnUsuariosClic(evt);
+        controlador.btnUsuariosClic(evt);
         
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
-        cvp.btnProductosClic(evt);
+        controlador.btnProductosClic(evt);
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
@@ -124,7 +125,7 @@ public class Bar extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        cvp.btnSalirClic(evt);
+        controlador.btnSalirClic(evt);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
