@@ -81,6 +81,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jLabel2.setText("Usuarios:");
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -140,6 +145,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.controlador.btnNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

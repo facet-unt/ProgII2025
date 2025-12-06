@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMUsuario;
 import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
@@ -51,7 +52,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorAMUsuario controladorNuevoUsuario = ControladorAMUsuario.instanciar();
     }
 
     @Override

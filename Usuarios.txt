@@ -1,4 +1,7 @@
-cliente2@bar.com/claveCliente3/Perez/NombreCliente3/Cliente
-cliente3@bar.com/claveCliente4/Hernan/Jose/Cliente
 cliente1@bar.com/claveCliente1/Almendra/NombreCliente1/Cliente
+encargado1@gmail.com/12345g/diaz/thomas/Encargado
+aledominguez@gmail.com/1234/dominguez/alejandro/Empleado
+cliente3@bar.com/claveCliente4/Hernan/Jose/Cliente
 cliente4@bar.com/claveCliente1/Hernan/Zadkiel/Cliente
+cliente2@bar.com/claveCliente3/Perez/NombreCliente3/Cliente
+correo2@gmail.com/atf123_/Yahir/Ernesto/Empleado
