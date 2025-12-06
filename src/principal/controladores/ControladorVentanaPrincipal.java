@@ -21,16 +21,19 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     private static ControladorVentanaPrincipal instancia;
     private VentanaPrincipal ventana;
     
-    public ControladorVentanaPrincipal(VentanaPrincipal vista) {
-    
-        this.ventana = vista;
-    
+    public ControladorVentanaPrincipal() {
+        ventana = new VentanaPrincipal(this);
+        ventana.setTitle("Bar"); 
+        ventana.setSize(500,500);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
     }
-//    public static ControladorVentanaPrincipal instanciar() {
-//        if (instancia == null)
-//            //instancia = new ControladorVentanaPrincipal();
-//        return instancia;
-//    }
+    
+    public static ControladorVentanaPrincipal instanciar() {
+        if (instancia == null)
+            instancia = new ControladorVentanaPrincipal();
+        return instancia;
+    }
     //@Override
     public void btnProductosClic(ActionEvent evt) {
         IControladorProductos controladorproductos = ControladorProductos.instanciar(); 

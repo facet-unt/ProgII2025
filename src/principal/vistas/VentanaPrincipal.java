@@ -4,25 +4,22 @@
  */
 package principal.vistas;
 
-import interfaces.IControladorPrincipal;
 import principal.controladores.ControladorVentanaPrincipal;
 
 /**
  *
  * @author octav
  */
-public class VentanaPrincipal extends javax.swing.JFrame implements IControladorPrincipal  {
+public class VentanaPrincipal extends javax.swing.JFrame{
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
-    private ControladorVentanaPrincipal controlador = new ControladorVentanaPrincipal(this);
+    private static ControladorVentanaPrincipal controlador;
+
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal(ControladorVentanaPrincipal controlador) {
         initComponents();
-        this.setTitle("Bar"); 
-        this.setSize(500,500);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.controlador = controlador;
     }
 
     /**
@@ -109,7 +106,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
 
     //@Override
     private void botonClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClic
-          controlador.btnSalirClic(evt); 
+        controlador.btnSalirClic(evt); 
     }//GEN-LAST:event_botonClic
 
     /**
@@ -134,7 +131,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IControlador
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal(controlador).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
