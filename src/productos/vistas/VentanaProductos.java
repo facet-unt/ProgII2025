@@ -5,14 +5,14 @@
 package productos.vistas;
 
 import javax.swing.JDialog;
-import principal.controladores.ControladorVentanaProducto;
+import principal.controladores.ControladorProductos;
 
 /**
  *
  * @author sofia
  */
 public class VentanaProductos extends JDialog {
-private ControladorVentanaProducto controlador;
+private ControladorProductos controlador;
     /**
      * Creates new form VentanaProductos
      */
@@ -20,7 +20,7 @@ private ControladorVentanaProducto controlador;
         
         initComponents();
     }
-        public VentanaProductos(ControladorVentanaProducto controlador) {
+        public VentanaProductos(ControladorProductos controlador) {
         this.controlador=controlador;
         initComponents();
     }
@@ -121,6 +121,7 @@ private ControladorVentanaProducto controlador;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableMenu.setFocusable(false);
         jScrollPane1.setViewportView(tableMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +207,7 @@ private ControladorVentanaProducto controlador;
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
         controlador.btnVolverClic(evt);
+        
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void fieldDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDescripcionKeyPressed

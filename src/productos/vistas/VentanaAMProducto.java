@@ -8,27 +8,27 @@ package productos.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import principal.controladores.ControladorAMProducto;
 import productos.modelos.*;
 
 
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ControladorAMProducto controlador;
+
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    public VentanaAMProducto() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+            
     }
-    
+    public VentanaAMProducto(ControladorAMProducto controlador) {
+        this.controlador=controlador;
+        initComponents();
+    }
       
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,21 +169,7 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-                            
-        Producto unProducto= new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
         
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed

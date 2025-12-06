@@ -14,11 +14,11 @@ import productos.vistas.VentanaProductos;
  *
  * @author sofia
  */
-public class ControladorVentanaProducto implements IControladorProductos{
+public class ControladorProductos implements IControladorProductos{
     
     private VentanaProductos vp; //se instancia en constructor
     
-    public ControladorVentanaProducto() {
+    public ControladorProductos() {
         this.vp = new VentanaProductos(this); //cada controlador crea su ventana
     }
     
@@ -35,7 +35,7 @@ public class ControladorVentanaProducto implements IControladorProductos{
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        
+        this.vp.dispose();
     }
 
     @Override
@@ -50,12 +50,14 @@ public class ControladorVentanaProducto implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        
+        ControladorAMProducto cvprod =new ControladorAMProducto();
+        cvprod.mostrarVentanaProducto();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        
+        ControladorAMProducto cvprod =new ControladorAMProducto();
+        cvprod.mostrarVentanaProducto();
     }
 
     @Override

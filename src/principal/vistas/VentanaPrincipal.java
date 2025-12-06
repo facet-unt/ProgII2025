@@ -4,14 +4,14 @@
  */
 package principal.vistas;
 
-import principal.controladores.ControladorVentanaPrincipal;
+import principal.controladores.ControladorPrincipal;
 
 /**
  *
  * @author sofia
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    private ControladorVentanaPrincipal controlador;
+    private ControladorPrincipal controlador;
     /**
      * Creates new form Bar
      */
@@ -20,7 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         
     }
-       public VentanaPrincipal(ControladorVentanaPrincipal controlador) {
+       public VentanaPrincipal(ControladorPrincipal controlador) {
        this.controlador=controlador;
         initComponents();
         
