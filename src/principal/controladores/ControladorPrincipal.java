@@ -13,6 +13,7 @@ import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
+import principal.vistas.VentanaPrincipal;
 
 public class ControladorPrincipal {
     public static void main(String[] args) {
@@ -136,4 +137,6 @@ public class ControladorPrincipal {
 
         System.out.println("#################### ");
     }
+
+    
 }
