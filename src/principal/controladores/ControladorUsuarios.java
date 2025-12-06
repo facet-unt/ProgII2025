@@ -26,7 +26,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
     private VentanaUsuarios ventana;
     private ModeloTablaUsuarios modeloTabla;
-    private int filaSeleccionada;
+    private int filaSeleccionada = -1;
     
     private ControladorUsuarios() {
         this.ventana = new VentanaUsuarios(this);
@@ -53,6 +53,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private void actualizarTabla() {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         this.modeloTabla.dibujarTabla(gu.verUsuarios());
+        this.filaSeleccionada = -1;
     }
     
     // Metodo listener para tabla
@@ -62,11 +63,13 @@ public class ControladorUsuarios implements IControladorUsuarios{
                  if (tabla.getSelectedRow() != -1) {
                      this.filaSeleccionada = tabla.getSelectedRow();
                  }
+                 else {
+                     this.filaSeleccionada = -1; // Vuelve a hacer -1 la variable si se deselecciona en la tabla
+                 }
              }
          });
      }
     
-
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMUsuario controladorNuevoUsuario = ControladorAMUsuario.instanciar();
@@ -80,6 +83,11 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
+        if (this.filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this.ventana, "Seleccione un usuario en la tabla para borrar", "Atencion", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         Usuario usuarioABorrar = this.modeloTabla.obtenerUsuarioEnFila(filaSeleccionada);
         
         int opcion = JOptionPane.showConfirmDialog(this.ventana, CONFIRMACION, "Borrar usuario", JOptionPane.YES_NO_OPTION);

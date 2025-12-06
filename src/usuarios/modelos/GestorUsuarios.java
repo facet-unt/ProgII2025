@@ -84,7 +84,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
 
         if (apellido == null || apellido.isBlank()) {
-            return null;
+            return usuariosEncontrados; //Correccion del commit anterior, donde se devolvia null, devuelvo el array vacio 
         }
 
         for (Usuario u : this.listaUsuarios) {
