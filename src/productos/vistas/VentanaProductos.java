@@ -4,11 +4,11 @@
  */
 package productos.vistas;
 
+import interfaces.*;
 import productos.modelos.Producto;
-import productos.modelos.GestorProductos; // Para usar constantes
 import javax.swing.*;
-import interfaces.IControladorProductos;
 import java.util.List;
+import principal.controladores.ControladorProductos;
 
 /**
  *
@@ -17,55 +17,75 @@ import java.util.List;
 public class VentanaProductos extends javax.swing.JDialog {
     
     private IControladorProductos controlador;
-    private JFrame principal;
     private ModeloTablaProducto modeloTabla;
-    private Producto productoSeleccionado;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
     
     /**
      * Creates new form VentanaProductos
-     * @param parent
-     * @param modal
+ 
      */
-    public VentanaProductos(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public VentanaProductos() {
+        
         initComponents();
-             
+    }
+    
+    public VentanaProductos(ControladorProductos controlador) {
+        this.controlador=controlador;
+        initComponents();
+    }
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
         this.setTitle("Gestión de Productos");
         
-        // 1. Inicializar componentes y layout
-        initComponents();
+        campoDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDescripcionActionPerformed(evt);
+            }
+        });
+        campoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoDescripcionKeyPressed(evt);
+            }
+        });
         
-        // 2. Inicializar Modelo de Tabla
-        modeloTabla = new ModeloTablaProducto();
-        tablaMenu.setModel(modeloTabla);
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevoActionPerformed(evt);
+            }
         
+        });
         
-        // 4. Inicializar Controlador
-        GestorProductos.instanciar();
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
         
-        // 5. Configuración final
-        this.setLocationRelativeTo(parent);
-        this.setVisible(true);
-        
-        // 6. Cargar datos iniciales al abrir (debe ir después de setVisible si se quiere cargar inmediatamente)
-        controlador.buscarProductos(null); 
-        
-        // 7. Listener para Modificación/Borrado
-        tablaMenu.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting() && tablaMenu.getSelectedRow() != -1) {
-                int fila = tablaMenu.convertRowIndexToModel(tablaMenu.getSelectedRow());
-                productoSeleccionado = modeloTabla.obtenerProducto(fila);
-                botonEditar.setEnabled(true);
-                botonBorrar.setEnabled(true);
-            } else {
-                productoSeleccionado = null;
-                botonEditar.setEnabled(false);
-                botonBorrar.setEnabled(false);
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
             }
         });
     }
-    
 
     // --- Métodos de la Vista llamados por el Controlador ---
     
@@ -76,6 +96,39 @@ public class VentanaProductos extends javax.swing.JDialog {
     public void mostrarMensaje(String titulo, String mensaje, int tipo) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
     }
+    
+
+    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+        controlador.botonNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        controlador.botonBuscarClic(evt);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        controlador.botonBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        controlador.botonVolverClic(evt);
+        
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void campoDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDescripcionKeyPressed
+        // TODO add your handling code here:
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_fieldDescripcionKeyPressed
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,27 +142,27 @@ public class VentanaProductos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Descripción = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        campoDescripcion = new javax.swing.JTextField();
+        labelDescripcion = new javax.swing.JLabel();
         etiquetaMenu = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaMenu = new javax.swing.JTable();
         botonBuscar = new javax.swing.JButton();
-        botomNuevo = new javax.swing.JButton();
-        botonEditar = new javax.swing.JButton();
+        botonNuevo = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
         botonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Descripción.addActionListener(new java.awt.event.ActionListener() {
+        campoDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DescripciónActionPerformed(evt);
+                campoDescripcionActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Descripción:");
+        labelDescripcion.setText("Descripción:");
 
         etiquetaMenu.setText("Menú");
 
@@ -162,26 +215,24 @@ public class VentanaProductos extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
         );
 
         botonBuscar.setText("Buscar");
 
-        botomNuevo.setText("Nuevo");
+        botonNuevo.setText("Nuevo");
 
-        botonEditar.setText("Editar");
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setText("Editar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
 
@@ -197,9 +248,9 @@ public class VentanaProductos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
+                        .addComponent(labelDescripcion)
                         .addGap(18, 18, 18)
-                        .addComponent(Descripción, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -209,8 +260,8 @@ public class VentanaProductos extends javax.swing.JDialog {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botomNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,8 +275,8 @@ public class VentanaProductos extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Descripción, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDescripcion)
                     .addComponent(botonBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(etiquetaMenu)
@@ -233,12 +284,12 @@ public class VentanaProductos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botomNuevo)
+                        .addComponent(botonNuevo)
                         .addGap(77, 77, 77)
-                        .addComponent(botonEditar)
+                        .addComponent(botonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonBorrar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(botonVolver)
                 .addContainerGap())
         );
@@ -246,13 +297,13 @@ public class VentanaProductos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DescripciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescripciónActionPerformed
+    private void campoDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DescripciónActionPerformed
+    }//GEN-LAST:event_campoDescripcionActionPerformed
 
-    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEditarActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        controlador.botonModificarClic(evt);
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,38 +326,62 @@ public class VentanaProductos extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Descripción;
-    private javax.swing.JButton botomNuevo;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonNuevo;
     private javax.swing.JButton botonVolver;
+    private javax.swing.JTextField campoDescripcion;
     private javax.swing.JLabel etiquetaMenu;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelDescripcion;
     private javax.swing.JTable tablaMenu;
     // End of variables declaration//GEN-END:variables
 
     
+     public javax.swing.JButton getBotonBorrar() {
+        return botonBorrar;
     }
+
+    public javax.swing.JButton getBotonBuscar() {
+        return botonBuscar;
+    }
+
+    public javax.swing.JButton getBotonModificar() {
+        return botonModificar;
+    }
+
+    public javax.swing.JButton getBotonNuevo() {
+        return botonNuevo;
+    }
+
+    public javax.swing.JButton getBotonVolver() {
+        return botonVolver;
+    }
+
+    public javax.swing.JTextField getCampoDescripcion() {
+        return campoDescripcion;
+    }
+
+
+    public javax.swing.JLabel getLabelDescripcion() {
+        return labelDescripcion;
+    }
+
+    public javax.swing.JLabel getetiquetaMenu() {
+        return etiquetaMenu;
+    }
+
+    public javax.swing.JTable getTablaMenu() {
+        return tablaMenu;
+    }
+}
+    
+
     
     
     
