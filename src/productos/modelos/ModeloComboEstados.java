@@ -21,7 +21,7 @@ public class ModeloComboEstados extends DefaultComboBoxModel {
         return (Estado)this.getSelectedItem();
     }
     
-    public void seleccionarCategoria(Estado estado) {
+    public void seleccionarEstado(Estado estado) {
         this.setSelectedItem(estado);
     }
 }
