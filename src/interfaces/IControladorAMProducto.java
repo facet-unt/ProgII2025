@@ -6,6 +6,7 @@ package interfaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JTable;
 
 public interface IControladorAMProducto {
     public static final String TITULO_NUEVO = "Nuevo producto"; 
@@ -15,13 +16,13 @@ public interface IControladorAMProducto {
      * Acción a ejecutar cuando se selecciona el botón Cancelar
      * @param evt evento
     */                        
-    public void btnCancelarClic(ActionEvent evt);
+    public void botonCancelarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Guardar
      * @param evt evento
-    */                        
-    public void btnGuardarClic(ActionEvent evt);
+    */                 
+    public void botonGuardarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se presiona una tecla en el campo txtCodigo
@@ -39,5 +40,5 @@ public interface IControladorAMProducto {
      * Acción a ejecutar cuando se presiona una tecla en el campo txtPrecio
      * @param evt evento
      */
-    public void txtPrecioPresionarTecla(KeyEvent evt);              
+    public void txtPrecioPresionarTecla(KeyEvent evt);
 }
