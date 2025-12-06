@@ -4,20 +4,24 @@
  */
 package usuarios.vistas;
 
+import java.awt.event.WindowEvent;
+import principal.controladores.ControladorUsuarios;
+
 /**
  *
  * @author ortiz
  */
 public class VentanaUsuarios extends javax.swing.JDialog {
-    
+    private static ControladorUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
 
     /**
      * Creates new form VentanaUsuarios
      */
-    public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
+    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorUsuarios controlador) {
         super(parent, modal);
         initComponents();
+        this.controlador = controlador;
     }
 
     /**
@@ -41,6 +45,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Descripción:");
 
@@ -147,9 +158,16 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        controlador.btnVolverClic(evt);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowGainedFocus
+
+   
+                                
+    
     /**
      * @param args the command line arguments
      */
@@ -175,7 +193,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true);
+                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true,controlador);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

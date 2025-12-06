@@ -18,9 +18,9 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
     private VentanaPrincipal ventanaPrincipal;
-
+    private VentanaUsuarios ventanaUsuarios; 
     public ControladorUsuarios() {
-        VentanaUsuarios ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true);
+        ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this);
         ventanaUsuarios.setTitle("Usuarios");
         ventanaUsuarios.setLocationRelativeTo(ventanaPrincipal);
         ventanaUsuarios.setVisible(true);
@@ -32,7 +32,16 @@ public class ControladorUsuarios implements IControladorUsuarios{
         }
         return instancia;
 }
-
+    
+    @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        ventanaUsuarios.requestFocusInWindow();
+    }
+    @Override
+    public void btnVolverClic(ActionEvent evt) {
+        ventanaUsuarios.dispose();
+    }
+    
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -47,17 +56,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     public void btnBorrarClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
