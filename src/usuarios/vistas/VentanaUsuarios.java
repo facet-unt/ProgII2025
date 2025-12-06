@@ -4,19 +4,19 @@
  */
 package usuarios.vistas;
 
-import interfaces.IControladorPrincipal;
 import interfaces.IControladorUsuarios;
 import principal.controladores.ControladorVentanaUsuarios;
 
 /**
  *
- * @author lazar
+ * @author salut
  */
 public class VentanaUsuarios extends javax.swing.JFrame {
     
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private IControladorUsuarios controlador;
     /**
-     * Creates new form VentanaPrincipal
+     * Creates new form VentanaAMUsuarios
      */
     public VentanaUsuarios(ControladorVentanaUsuarios controlador) {
         initComponents();
@@ -48,6 +48,9 @@ public class VentanaUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
