@@ -18,7 +18,7 @@ public abstract class Usuario implements Comparable<Usuario> {
     private String clave;
     private String apellido;
     private String nombre;
-
+    
     public Usuario(String correo, String clave, String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
