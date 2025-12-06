@@ -5,9 +5,13 @@
 package principal.controladores;
 
 import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import productos.modelos.GestorProductos;
+import productos.modelos.Producto;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -16,13 +20,15 @@ import productos.vistas.VentanaProductos;
  */
 public class ControladorVentanaProductos implements IControladorProductos{
     private VentanaProductos ventana;
+    IGestorProductos gp = GestorProductos.instanciar();
     
     public ControladorVentanaProductos() {
-        this.ventana = new VentanaProductos(this);
+        this.ventana = new VentanaProductos(this.ventana, this.gp.menu());
+        this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
     }
-
+    
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
     }

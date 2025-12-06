@@ -4,12 +4,12 @@
  */
 package principal.controladores;
 
-import interfaces.IControladorPrincipal;
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
-import principal.vistas.VentanaPrincipal;
+import usuarios.modelos.GestorUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -18,9 +18,11 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
+    IGestorUsuarios gp = GestorUsuarios.instanciar();
     
     public ControladorVentanaUsuarios() {
-        this.ventana = new VentanaUsuarios(this);
+        this.ventana = new VentanaUsuarios(ventana,gp.verUsuarios());
+        this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
     }
