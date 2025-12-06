@@ -8,14 +8,14 @@ import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 
-public class VentanaAMProducto extends JDialog {
+public class VentanaAMProductos extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
+    public VentanaAMProductos(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -85,6 +85,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
 
         comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -170,6 +175,10 @@ public class VentanaAMProducto extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

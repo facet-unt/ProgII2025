@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
@@ -9,10 +5,6 @@ import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import principal.vistas.VentanaPrincipal;
 
-/**
- *
- * @author pedri
- */
 public class ControladorPrincipal implements IControladorPrincipal {
     
     private VentanaPrincipal ventanaPrincipal;
@@ -46,5 +38,4 @@ public class ControladorPrincipal implements IControladorPrincipal {
     public void btnSalirClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }
