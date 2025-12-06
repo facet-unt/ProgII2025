@@ -4,7 +4,6 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
@@ -17,6 +16,9 @@ public class Encargado extends Usuario {
     
     public Encargado(String c,String cl,String a,String n){
         super(c,cl,a,n);
+    }
+
+    Encargado() {
     }
 
     @Override

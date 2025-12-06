@@ -19,6 +19,9 @@ public class Empleado extends Usuario{
         super(c,cl,a,n);
     }
 
+    Empleado() {
+    }
+
     @Override
     public String toString() {
         return "Empleado{" + "correo=" + this.verCorreo() + ", clave=" + this.verClave() + ", apellido=" + this.verApellido() + ", nombre=" + this.verNombre() + '}';
