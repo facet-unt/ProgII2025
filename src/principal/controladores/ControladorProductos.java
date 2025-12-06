@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -64,7 +65,7 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorAMProducto camp = new ControladorAMProducto(ventanaDp);
     }
 
     @Override

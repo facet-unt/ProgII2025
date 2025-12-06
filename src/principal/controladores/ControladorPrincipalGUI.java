@@ -20,7 +20,7 @@ public class ControladorPrincipalGUI {
         
         establecerLookAndFeel("Nimbus"); 
         // PRODUCTO
-        VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
+       // VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
         
     }
     

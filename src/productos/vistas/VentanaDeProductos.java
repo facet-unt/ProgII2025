@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  * @author karen
  */
 public class VentanaDeProductos extends javax.swing.JDialog {
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaDeProductos.class.getName());
     private IControladorProductos controladorProductos;
 
@@ -33,7 +33,7 @@ public class VentanaDeProductos extends javax.swing.JDialog {
                 ventanaGanarFoco(evt);
             }
         });
-
+        
         this.controladorProductos = controladorProductos;
     }
 
@@ -192,7 +192,7 @@ public class VentanaDeProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
+        this.controladorProductos.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -202,16 +202,16 @@ public class VentanaDeProductos extends javax.swing.JDialog {
     private void tablaProductosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaProductosFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaProductosFocusGained
-
+    
     private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
         this.controladorProductos.ventanaObtenerFoco(evt);
     }
-
+    
     public JTable verTabla() {
         return this.tablaProductos;
     }
     
-    public JTextField verDescripcion(){
+    public JTextField verDescripcion() {
         return this.txtDescripcion;
     }
     /**
