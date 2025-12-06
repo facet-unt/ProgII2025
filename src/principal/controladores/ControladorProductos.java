@@ -7,6 +7,7 @@ package principal.controladores;
 import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
@@ -67,11 +68,39 @@ public class ControladorProductos implements IControladorProductos{
         IControladorAMProducto controlador = new ControladorAMProductos(this.ventanaPadre, null);
     }
 
+    @Override
+    public void btnModificarClic(ActionEvent evt) {
+        /*Con este metodo encuentro el producto seleccionado por el usuario*/
+        Producto productoSeleccionado = this.ventana.conseguirProductoSeleccionado();
+        
+        if(productoSeleccionado == null){
+            javax.swing.JOptionPane.showMessageDialog(this.ventana, 
+            "No ha seleccionado ningun pruducto de la lista. Intente nuevamente.", 
+            "Atención", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        }else{
+            IControladorAMProducto controlador = new ControladorAMProductos(this.ventanaPadre, productoSeleccionado);
+            this.btnBuscarClic(null); /*Para actualizar la tabla vieja*/
+        } 
+    }
+
     
     
     
-    
-    
+    /*Metodo que se llama cuando la ventanaProductos se abra*/
+     /*Lo que hace es que pide la tabla, instancia el modeloTablaProductos y le avisa al gestor que debe
+    dar todos los productos, el gestor trae todos los productos y se lo asigno a la tabla */
+    //De esta forma cuando cree/modifique un producto la tabla se actualizara/
+    /*Mencionado en clase */
+    @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        System.out.println("VENTANA GANA FOCO");
+        GestorProductos gp = GestorProductos.instanciar();
+        List<Producto> listaProductosActualizada = gp.menu();
+        ModeloTablaProductos nuevoModelo = new ModeloTablaProductos();
+        nuevoModelo.setProductos(listaProductosActualizada);
+        this.ventana.actualizarTabla(nuevoModelo); 
+    }
     
     
 }

@@ -49,7 +49,17 @@ public class ControladorAMProductos implements IControladorAMProducto {
         } 
          
         else {
-           this.ventanaAMProductos.setTitle(TITULO_MODIFICAR);
+        /*En caso de que la ventana sea para modificar, el controlador hace esto*/
+            this.ventanaAMProductos.setTitle(TITULO_MODIFICAR);
+            this.ventanaAMProductos.setCodigo(producto.verCodigo());
+            this.ventanaAMProductos.setDescripcion(producto.verDescripcion());
+            this.ventanaAMProductos.setPrecio(producto.verPrecio());
+
+            // Seleccionamos los items correctos en los combos
+            this.ventanaAMProductos.setCategoria(producto.verCategoria());
+            this.ventanaAMProductos.setEstado(producto.verEstado());
+        
+            //this.ventanaAMProductos.deshabilitarCampoCodigo();
         }
 
         this.ventanaAMProductos.setLocationRelativeTo(null); /* Centra la ventana */
@@ -84,7 +94,7 @@ public class ControladorAMProductos implements IControladorAMProducto {
         /*Como la ventana me entrega todos los datos de tipo String se lo convierte en sus respectivos tipos*/
         int codigo = Integer.parseInt(txtCod.getText().trim());
         String descripcion = txtDesc.getText().trim();
-         float precio = Float.parseFloat(txtPrec.getText().trim());
+        float precio = Float.parseFloat(txtPrec.getText().trim());
         Categoria categoria = this.ventanaAMProductos.comboCategoria();
         Estado estado = this.ventanaAMProductos.comboEstado();
         

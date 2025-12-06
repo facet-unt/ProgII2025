@@ -38,12 +38,30 @@ public class VentanaProductos extends javax.swing.JDialog {
     public void actualizarTabla(ModeloTablaProductos modelo) {
  
         this.tablaProductos.setModel(modelo);
+        this.modeloTabla = modelo;
     }
     
     /*Metodo para conseguir el texto de txtDescripcion */
     public String conseguirTxt(){
         return this.txtDescripcion.getText().trim();
     }
+    
+    public Producto conseguirProductoSeleccionado() {
+        /*Cuando el usuario seleccione una fila, este metodo devolvera el numero de fila seleccionada*/
+        int filaSeleccionada = this.tablaProductos.getSelectedRow();
+    
+    /* Si getSelectedRow devuelve -1, significa que no hay nada seleccionado */
+        if (filaSeleccionada == -1) {
+            return null;
+    }
+    
+    /* Le pido a la tabla que me devuelva el producto de la fila seleccionada */
+        return this.modeloTabla.getProductoEnFila(filaSeleccionada);
+}
+    
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,6 +112,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         btnModificarClic.setText("Modificar");
+        btnModificarClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarClicActionPerformed(evt);
+            }
+        });
 
         btnBorrarClic.setText("Borrar");
 
@@ -175,6 +198,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnVolverClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverClicActionPerformed
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverClicActionPerformed
+
+    private void btnModificarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClicActionPerformed
+        this.controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificarClicActionPerformed
 
     
     /**

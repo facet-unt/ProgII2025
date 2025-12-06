@@ -21,7 +21,7 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando la ventana obtenga el foco
      * @param evt evento
      */
-    //public void ventanaObtenerFoco(WindowEvent evt);
+    public void ventanaObtenerFoco(WindowEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Volver
@@ -60,7 +60,7 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Modificar
      * @param evt evento
      */                        
-    //public void btnModificarClic(ActionEvent evt);
+    public void btnModificarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Borrar

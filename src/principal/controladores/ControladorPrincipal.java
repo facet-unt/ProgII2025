@@ -47,7 +47,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
         /* Muestra un cuadro de dialogo con botones de confirmacion, /ventana sobre la aparece el dialogo/
         mensaje/titulo de la ventana/ 0 indica los botones si/no 
         */
-    if(javax.swing.JOptionPane.showConfirmDialog(ventana,"¿Seguro que quieres salir?", "Confirmar salida", 0) == 0);
+    if(javax.swing.JOptionPane.showConfirmDialog(ventana,"¿Seguro que quieres salir?", "Confirmar salida", 0) == 0)
     System.exit(0);
 
     }

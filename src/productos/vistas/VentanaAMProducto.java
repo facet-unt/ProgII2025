@@ -31,6 +31,36 @@ public class VentanaAMProducto extends JDialog {
   
     }
     
+    /* Metodos para cuando la ventana va a modificar un producto */
+    public void setCodigo(int codigo) {
+        this.txtCodigo.setText(String.valueOf(codigo));
+        /* Si es modificar, el código no se toca */
+        this.txtCodigo.setEditable(false); 
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.txtDescripcion.setText(descripcion);
+    }
+
+    public void setPrecio(float precio) {
+        this.txtPrecio.setText(String.valueOf(precio));
+    }
+
+    public void setCategoria(Categoria c) {
+        this.comboCategorias.setSelectedItem(c);
+    }
+
+    public void setEstado(Estado e) {
+        this.comboEstados.setSelectedItem(e);
+    }
+
+    /* Método para cambiar el título de la ventana cuando se esta por modificar un producto */
+    public void setTituloVentana(String titulo) {
+        this.setTitle(titulo);
+    }
+    
+    
+    
     /*Metodo se va encargar de recibir el modelo de categorias desde el ControladorAMProductos*/ 
     public void configurarCategorias(ModeloComboCategorias modelo) {
        this.comboCategorias.setModel(modelo);
@@ -96,11 +126,11 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel1.setText("Descripción:");
 
-        txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.setToolTipText("Descripción");
 
         jLabel2.setText("Precio:");
 
-        txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.setToolTipText("Precio");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -122,18 +152,20 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel4.setText("Código:");
 
-        txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.setToolTipText("Codigo");
 
         jLabel6.setText("Estado:");
 
         jLabel3.setText("Categoría");
 
+        comboCategorias.setToolTipText("Categoría");
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCategoriasActionPerformed(evt);
             }
         });
 
+        comboEstados.setToolTipText("Estado");
         comboEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadosActionPerformed(evt);

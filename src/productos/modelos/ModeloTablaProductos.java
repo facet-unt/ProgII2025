@@ -51,6 +51,13 @@ public class ModeloTablaProductos extends AbstractTableModel{
         }
     }
     
-    
+    /*Este metodo devuelve un Producto que este en la fila seleccionada*/
+    public Producto getProductoEnFila(int fila) {
+    /*Verificamos que la lista de productos no este vacia*/
+    if (fila < 0 || fila >= this.productos.size()) {
+        return null;
+    }
+    return this.productos.get(fila);
+}
     
 }
