@@ -7,28 +7,86 @@ package productos.vistas;
 
 import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
+import principal.controladores.ControladorAMProducto;
 import productos.modelos.*;
 
 
 
 public class VentanaAMProducto extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
+    private ControladorAMProducto controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
+    public VentanaAMProducto(Dialog ventanaPadre, ControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+        this.setVisible(true);
+        this.controlador = controlador;
+        initComponents();
     }
-    
+    public JTextField verTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public void asignarTxtCodigo(JTextField txtCodigo) {
+        this.txtCodigo = txtCodigo;
+    }
+
+    public JTextField verTxtDescripcion() {
+        return txtDescripcion;
+    }
+
+    public void asignarTxtDescripcion(JTextField txtDescripcion) {
+        this.txtDescripcion = txtDescripcion;
+    }
+
+    public JTextField verTxtPrecio() {
+        return txtPrecio;
+    }
+
+    public void asignarTxtPrecio(JTextField txtPrecio) {
+        this.txtPrecio = txtPrecio;
+    }
+
+  
+
+   /* private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
+        controlador.btnGuardarClic(evt);
+    }//GEN-LAST:event_btnGuardarClic*/
+
+    public JComboBox<String> verComboEstado() {
+        return comboEstados;
+    }
+
+    public void asignarComboEstado(JComboBox<String> comboEstado) {
+        this.comboEstados = comboEstado;
+    }
+
+    public JComboBox<String> verComboCategorias() {
+        return comboCategorias;
+    }
+
+    public void asignarComboCategorias(JComboBox<String> comboCategorias) {
+        this.comboCategorias = comboCategorias;
+    }
+
+    public Object getCategoriaSeleccionada() {
+        return comboCategorias.getSelectedItem();
+    }
+
+    public Object getEstadoSeleccionado() {
+        return comboEstados.getSelectedItem();
+    }
       
     /**
      * This method is called from within the constructor to initialize the form.
