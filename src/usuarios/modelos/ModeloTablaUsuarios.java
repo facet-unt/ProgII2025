@@ -13,14 +13,14 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTablaUsuarios extends AbstractTableModel {
     private String[] columnas = {"Apellido/s", "Nombre/s", "Correo"};
-    private ArrayList<Usuario> listaProductos;
+    private ArrayList<Usuario> listaUsuarios;
     
     public ModeloTablaUsuarios(ArrayList<Usuario> lista){
-        this.listaProductos=lista;
+        this.listaUsuarios=lista;
     }
     @Override
     public int getRowCount() {
-        return listaProductos.size();
+        return listaUsuarios.size();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int fila, int columna) {
-        Usuario u = listaProductos.get(fila);
+        Usuario u = listaUsuarios.get(fila);
             switch(columna) {
             case 0: return u.verApellido();
             case 1: return u.verNombre();

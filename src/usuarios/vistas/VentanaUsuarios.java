@@ -25,9 +25,6 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         super(ventana, true);
         initComponents();
         this.tablaUsuarios.setModel(new ModeloTablaUsuarios((ArrayList)listaUsuarios));
-//        this.setTitle(Titulo);
-//        this.comboCategorias.setModel(new ModeloComboCategorias());
-//        this.comboEstados.setModel(new ModeloComboEstados());
     }
 
     /**
@@ -51,7 +48,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Apellido: ");
+        jLabel1.setText("Apellido/s: ");
 
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
