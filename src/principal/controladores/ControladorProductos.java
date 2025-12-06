@@ -18,10 +18,10 @@ import productos.vistas.VentanaProductos;
 public class ControladorProductos implements IControladorProductos {
     private static ControladorProductos instancia;
     private VentanaPrincipal ventanaPrincipal;
-    
+    private VentanaProductos ventanaProductos;
 
     public ControladorProductos() {
-        VentanaProductos ventanaProductos = new VentanaProductos(ventanaPrincipal,true); 
+        ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this); 
         ventanaProductos.setTitle("Productos");
         ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
         ventanaProductos.setVisible(true);
@@ -36,12 +36,12 @@ public class ControladorProductos implements IControladorProductos {
     
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        
+        ventanaProductos.requestFocusInWindow();
     }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ventanaProductos.dispose();
     }
 
     @Override

@@ -15,13 +15,14 @@ import principal.vistas.VentanaPrincipal;
 public class VentanaProductos extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
-    
+    private static ControladorProductos controlador;
     /**
      * Creates new form VentanaProductos
      */
-    public VentanaProductos(java.awt.Frame parent, boolean modal) {
+    public VentanaProductos(java.awt.Frame parent, boolean modal,ControladorProductos controlador) {
         super(parent, modal);
         initComponents();
+        this.controlador = controlador;
     }
 
     /**
@@ -45,6 +46,15 @@ public class VentanaProductos extends javax.swing.JDialog {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setModal(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                ventanaGanafoco(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Descripción:");
 
@@ -68,7 +78,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscar(evt);
             }
         });
 
@@ -79,6 +89,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         jButton4.setText("Borrar");
 
         jButton5.setText("Volver");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,9 +146,17 @@ public class VentanaProductos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnBuscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar
+        System.out.println("hola");
+    }//GEN-LAST:event_btnBuscar
+
+    private void btnVolver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver
+        controlador.btnVolverClic(evt);
+    }//GEN-LAST:event_btnVolver
+
+    private void ventanaGanafoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaGanafoco
+       controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_ventanaGanafoco
 
     /**
      * @param args the command line arguments
@@ -160,7 +183,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true);
+                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true,controlador);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
