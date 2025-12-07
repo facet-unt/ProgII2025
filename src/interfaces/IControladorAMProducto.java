@@ -6,7 +6,6 @@ package interfaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.JTable;
 
 public interface IControladorAMProducto {
     public static final String TITULO_NUEVO = "Nuevo producto"; 
