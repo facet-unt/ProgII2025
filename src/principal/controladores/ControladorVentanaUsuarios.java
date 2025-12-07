@@ -69,8 +69,8 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
         JTable tablaUsuarios = this.ventana.verTabla();
-	ModeloTablaUsuarios mtp = new ModeloTablaUsuarios();
-	tablaUsuarios.setModel(mtp);
+	ModeloTablaUsuarios mtu = new ModeloTablaUsuarios();
+	tablaUsuarios.setModel(mtu);
         if (tablaUsuarios.getRowCount() > 0) {
             tablaUsuarios.setRowSelectionInterval(0, 0);
         }
@@ -86,16 +86,16 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         JTable tablaUsuarios = this.ventana.verTabla();
         char caracter = evt.getKeyChar();
         if(Character.isLetter(caracter) || Character.isDigit(caracter)){
-            ModeloTablaUsuarios mtp1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
-            tablaUsuarios.setModel(mtp1);
+            ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+            tablaUsuarios.setModel(mtu1);
                 if (tablaUsuarios.getRowCount() > 0) {
                     tablaUsuarios.setRowSelectionInterval(0, 0);
                 }
         }else{
             int codigoTecla = evt.getKeyCode();
             if(codigoTecla==VK_BACK_SPACE || codigoTecla==VK_DELETE){
-                ModeloTablaUsuarios mtp1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
-                tablaUsuarios.setModel(mtp1);
+                ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+                tablaUsuarios.setModel(mtu1);
                 if (tablaUsuarios.getRowCount() > 0) {
                     tablaUsuarios.setRowSelectionInterval(0, 0);
                 }
@@ -106,8 +106,8 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         JTable tablaUsuarios = this.ventana.verTabla();
-	ModeloTablaUsuarios mtp1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
-	tablaUsuarios.setModel(mtp1);
+	ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+	tablaUsuarios.setModel(mtu1);
         if (tablaUsuarios.getRowCount() > 0) {
             tablaUsuarios.setRowSelectionInterval(0, 0);
         }

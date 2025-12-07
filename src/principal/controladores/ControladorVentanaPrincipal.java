@@ -32,7 +32,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorProductos = new ControladorVentanaProductos();
+        IControladorProductos controladorProductos = new ControladorVentanaProductos(this.ventana);
     }
     
     @Override

@@ -24,10 +24,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
      * @param ventanaPadre
      * @param controlador
      */
-    public VentanaUsuarios(JFrame ventanaPadre, ControladorVentanaUsuarios controlador) {
+    public VentanaUsuarios(JFrame ventanaPadre, IControladorUsuarios controlador) {
         super(ventanaPadre,true);
-        initComponents();
         this.controlador = controlador;
+        initComponents();
     }
 
     /**
@@ -41,7 +41,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         btnBuscar = new javax.swing.JButton();
         textFieldBuscar = new javax.swing.JTextField();
-        labelMenu = new javax.swing.JLabel();
+        labelUsuarios = new javax.swing.JLabel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -72,7 +72,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             }
         });
 
-        labelMenu.setText("Menú");
+        labelUsuarios.setText("Usuarios");
 
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -124,15 +124,15 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelDescripcion)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textFieldBuscar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(labelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(277, 277, 277)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelDescripcion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelUsuarios))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +140,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +151,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                     .addComponent(btnBuscar)
                     .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(labelMenu)
+                .addComponent(labelUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -219,7 +219,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDescripcion;
-    private javax.swing.JLabel labelMenu;
+    private javax.swing.JLabel labelUsuarios;
     private javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField textFieldBuscar;
     // End of variables declaration//GEN-END:variables
