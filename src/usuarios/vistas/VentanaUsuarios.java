@@ -8,14 +8,14 @@ package usuarios.vistas;
  *
  * @author Fernando
  */
-public class VentanaBuscarUsuario extends  javax.swing.JDialog {
+public class VentanaUsuarios extends  javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaBuscarUsuario.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
 
     /**
      * Creates new form VentanaBuscarUsuario
      */
-    public VentanaBuscarUsuario(java.awt.Frame parent, boolean modal) {
+    public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -97,7 +97,6 @@ public class VentanaBuscarUsuario extends  javax.swing.JDialog {
         );
 
         btnBorrar.setText("Borrar");
-        btnBorrar.setActionCommand("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -190,7 +189,7 @@ public class VentanaBuscarUsuario extends  javax.swing.JDialog {
                 java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaBuscarUsuario dialog = new VentanaBuscarUsuario(new javax.swing.JFrame(), true);
+                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

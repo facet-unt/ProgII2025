@@ -8,14 +8,14 @@ package productos.vistas;
  *
  * @author Fernando
  */
-public class VentanaBuscarProducto extends javax.swing.JDialog {
+public class VentanaProductos extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaBuscarProducto.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
 
     /**
      * Creates new form VentanaBuscarProducto
      */
-    public VentanaBuscarProducto(java.awt.Frame parent, boolean modal) {
+    public VentanaProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -216,7 +216,7 @@ public class VentanaBuscarProducto extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaBuscarProducto dialog = new VentanaBuscarProducto(new javax.swing.JFrame(), true);
+                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
