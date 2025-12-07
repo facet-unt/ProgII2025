@@ -7,7 +7,6 @@ package productos.modelos;
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.plugins.tiff.ExifGPSTagSet;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -21,7 +20,6 @@ public class ModeloTablaProductos extends AbstractTableModel {
     public static final String COLUMNA_PRECIO = "Precio";
 
     private List<Producto> productos = new ArrayList<>();
-    private List<String> nombresColumnas = new ArrayList<>();
     
     public ModeloTablaProductos() {
         IGestorProductos gp = GestorProductos.instanciar();
@@ -67,6 +65,10 @@ public class ModeloTablaProductos extends AbstractTableModel {
                 return producto.verPrecio();
 
         }
+    }
+    
+    public Producto productoAsignado(int fila){
+        return productos.get(fila);
     }
 
 }

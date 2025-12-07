@@ -84,7 +84,11 @@ public class GestorProductos implements IGestorProductos {
         } else {
             for (Producto producto : productos) {
                 if (producto.verCodigo() == codigo) {
-                    return PRODUCTOS_DUPLICADOS;
+                    //return PRODUCTOS_DUPLICADOS;
+                    
+                }
+                else{
+                     
                 }
             }
         }
