@@ -14,11 +14,13 @@ import usuarios.modelos.Perfil;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author elame
  */
 public class ControladorAMUsuario implements IControladorAMUsuario {
+
     private VentanaAMUsuario vista;
     private IGestorUsuarios gestor;
     private Usuario usuarioEdicion;
@@ -26,14 +28,18 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
     public ControladorAMUsuario(Usuario usuarioEdicion, VentanaUsuarios padre) {
         this.gestor = GestorUsuarios.instanciar();
         this.usuarioEdicion = usuarioEdicion;
+
         this.vista = new VentanaAMUsuario(this, padre, true);
-        
+
         if (usuarioEdicion != null) {
             this.vista.setTitle(TITULO_MODIFICAR);
             cargarDatos();
         } else {
             this.vista.setTitle(TITULO_NUEVO);
         }
+
+        this.vista.setLocationRelativeTo(padre);
+        this.vista.setVisible(true);
     }
 
     private void cargarDatos() {
@@ -46,12 +52,18 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        String apellido = vista.getApellido().trim();
-        String nombre = vista.getNombre().trim();
+
         String correo = vista.getCorreo().trim();
         String clave = vista.getClave().trim();
         String claveRepetida = vista.getClaveRepetida().trim();
         Perfil perfil = vista.getPerfil();
+
+        // System.out.println("DEBUG:");
+        // System.out.println("Apellido: '" + vista.getApellido() + "'");
+        // System.out.println("Nombre:   '" + vista.getNombre() + "'");
+        // System.out.println("Correo:   '" + vista.getCorreo() + "'");
+        String apellido = vista.getApellido().trim();
+        String nombre = vista.getNombre().trim();
 
         if (apellido.isEmpty() || nombre.isEmpty() || correo.isEmpty()) {
             JOptionPane.showMessageDialog(vista, "Los campos apellido, nombre y correo son obligatorios");
@@ -65,13 +77,15 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
             }
             String resultado = gestor.crearUsuario(correo, apellido, nombre, perfil, clave, claveRepetida);
             JOptionPane.showMessageDialog(vista, resultado);
+
             if (resultado.equals(IGestorUsuarios.EXITO)) {
                 vista.dispose();
             }
         } else {
+            usuarioEdicion.asignarApellido(apellido);
+            usuarioEdicion.asignarNombre(nombre);
+
             if (clave.isEmpty() && claveRepetida.isEmpty()) {
-                usuarioEdicion.asignarApellido(apellido);
-                usuarioEdicion.asignarNombre(nombre);
                 gestor.guardarArchivo();
                 JOptionPane.showMessageDialog(vista, "Usuario modificado exitosamente");
                 vista.dispose();
@@ -80,11 +94,11 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
                     JOptionPane.showMessageDialog(vista, IGestorUsuarios.ERROR_CLAVES);
                     return;
                 }
-                usuarioEdicion.asignarApellido(apellido);
-                usuarioEdicion.asignarNombre(nombre);
+
                 usuarioEdicion.asignarClave(clave);
+
                 gestor.guardarArchivo();
-                JOptionPane.showMessageDialog(vista, "Usuario modificado exitosamente");
+                JOptionPane.showMessageDialog(vista, "Usuario modificado exitosamente (con clave)");
                 vista.dispose();
             }
         }

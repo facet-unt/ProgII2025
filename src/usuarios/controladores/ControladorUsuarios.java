@@ -9,11 +9,9 @@ import interfaces.IControladorUsuarios;
 import static interfaces.IControladorUsuarios.CONFIRMACION;
 import static interfaces.IControladorUsuarios.TITULO;
 import usuarios.vistas.VentanaUsuarios;
-import usuarios.vistas.VentanaAMUsuario;
 import usuarios.modelos.Usuario;
 import usuarios.modelos.GestorUsuarios;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -83,8 +81,9 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        VentanaAMUsuario vAMU = new VentanaAMUsuario(new ControladorAMUsuario(null, vista), vista, true);
-        vAMU.setVisible(true);
+     
+        new ControladorAMUsuario(null, vista);
+        
         cargarDatos(vista.getTextApellido());
     }
 
@@ -96,8 +95,9 @@ public class ControladorUsuarios implements IControladorUsuarios {
         }
         String correo = (String) vista.getTabla().getValueAt(filaSeleccionada, 2);
         Usuario usuario = gestor.obtenerUsuario(correo);
-        VentanaAMUsuario vAMU = new VentanaAMUsuario(new ControladorAMUsuario(usuario, vista), vista, true);
-        vAMU.setVisible(true);
+        
+        new ControladorAMUsuario(usuario, vista);
+        
         cargarDatos(vista.getTextApellido());
     }
 

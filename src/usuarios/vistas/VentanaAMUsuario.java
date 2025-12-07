@@ -270,25 +270,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         txtCorreo.setEnabled(editable);
     }
 
-    public void llenar(Usuario usuarios) {
-        txtCorreo.setText(usuarios.verCorreo());
-        txtApellido.setText(usuarios.verApellido());
-        txtNombre.setText(usuarios.verNombre());
-        switch (usuarios.getClass().getSimpleName()) {
-            case "Cliente":
-                ComboBoxPerfil.setSelectedIndex(0);
-                break;
-            case "Encargado":
-                ComboBoxPerfil.setSelectedIndex(1);
-                break;
-            case "Empleado":
-                ComboBoxPerfil.setSelectedIndex(2);
-                break;
-            default:
-                throw new AssertionError();
-        }
-
-    }
     private void BtnGuardarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarClicActionPerformed
         this.Controlador.btnGuardarClic(evt);
 
