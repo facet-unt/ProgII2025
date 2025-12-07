@@ -44,4 +44,6 @@ public interface IGestorUsuarios {
     public List<Usuario> verUsuarios();
 
     public List<Usuario> buscarUsuarios(String apellido);
+    
+    public String modificarUsuarios(Usuario u,String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
 }

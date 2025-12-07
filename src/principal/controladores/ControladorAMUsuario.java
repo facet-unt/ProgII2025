@@ -37,7 +37,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         this.ventanaU.setLocationRelativeTo(null);
         this.amUsuario=amUsuario;
         this.ventanaU.setTitle(TITULO_MODIFICAR);
-       // this.configurarCampos();
+        this.configurarCampos();
         this.ventanaU.setVisible(true);
     }
     
@@ -62,7 +62,12 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
             }
         }
         else{
-            //resultado = gu. implementar modificarUsuario
+            resultado = gu.modificarUsuarios(amUsuario, correo, apellido, nombre, perfil, clave, confirmacionClave);
+            if (!resultado.equals(IGestorUsuarios.EXITO)) {
+                JOptionPane.showMessageDialog(null, resultado, TITULO_NUEVO, JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.ventanaU.dispose();
+            }
         }
     }
 
@@ -103,10 +108,20 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         boolean correoV = this.ventanaU.verTxtCorreo().getText().trim().isEmpty();
         boolean confClaveV = this.ventanaU.verTxtConfirmacionClave().getText().trim().isEmpty();
         boolean claveV = this.ventanaU.verTxtClave().getText().trim().isEmpty();
-
         this.ventanaU.verBotonG().setEnabled(!(apellidoV || nombreV || correoV||confClaveV||claveV));
+    }
+    
+     private void configurarCampos() {
+        if (this.amUsuario != null) {
+            this.ventanaU.verTxtCorreo().setText(amUsuario.verCorreo());
+            this.ventanaU.verTxtCorreo().setEnabled(false);
+            this.ventanaU.verTxtApellido().setText(amUsuario.verApellido());
+            this.ventanaU.verTxtNombre().setText(amUsuario.verNombre());
+            this.ventanaU.verTxtClave().setText(amUsuario.verClave());
+            this.ventanaU.verTxtConfirmacionClave().setText(amUsuario.verClave());
+            ((ModeloComboPerfil) this.ventanaU.verComboPerfil().getModel()).seleccionarPerfil(amUsuario.verPerfil());
 
-
+        }
     }
     
 }

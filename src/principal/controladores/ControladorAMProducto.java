@@ -68,13 +68,13 @@ public class ControladorAMProducto implements IControladorAMProducto {
             }
         } else {
             resultado = gp.modificarProducto(amProducto, codigo, descripcion, precio, categoria, estado);
-            System.out.println(resultado);
+            //System.out.println(resultado);
             if (!resultado.equals(IGestorProductos.EXITO)) {
                 JOptionPane.showMessageDialog(null, resultado, TITULO_NUEVO, JOptionPane.ERROR_MESSAGE);
             } else {
                 this.Ventana.dispose();
             }
-            System.out.println(resultado);
+            //System.out.println(resultado);
         }
 
     }

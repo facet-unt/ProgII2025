@@ -112,7 +112,38 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return EXITO;
     }
-
+    
+    @Override
+    public String modificarUsuarios(Usuario u,String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        if (correo == null || correo.isEmpty() || !correo.contains("@")) {
+            return ERROR_CORREO;
+        }
+        if (nombre == null || nombre.isEmpty()) {
+            return ERROR_NOMBRE;
+        }
+        if (apellido == null || apellido.isEmpty()) {
+            return ERROR_APELLIDO;
+        }
+        if (clave == null || clave.isEmpty() || claveRepetida == null || claveRepetida.isEmpty() || !clave.equals(claveRepetida)) {
+            return ERROR_CLAVES;
+        }
+        if (perfil == null) {
+            return ERROR_PERFIL;
+        }
+        
+        System.out.println(VALIDACION_EXITO);
+        u.asignarApellido(apellido);
+        u.asignarNombre(nombre);
+        u.asignarCorreo(correo);
+        u.asignarClave(clave);
+        u.asignarPerfil(perfil);
+        reescribirArchivo();
+        
+        return EXITO;
+    }
+    
+    
+    
     @Override
     public List<Usuario> verUsuarios() {
         Collections.sort(usuarios);

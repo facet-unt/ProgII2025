@@ -22,17 +22,19 @@ import usuarios.vistas.VentanaDeUsuarios;
  *
  * @author karen
  */
-public class ControladorUsuarios implements IControladorUsuarios{
+public class ControladorUsuarios implements IControladorUsuarios {
+
     private VentanaDeUsuarios ventanaUser;
-    private int filaSeleccionada=-1;
-    
-    public ControladorUsuarios(JFrame VentanaPrincipal){
-        this.ventanaUser=new VentanaDeUsuarios(VentanaPrincipal,this);
+    private int filaSeleccionada = -1;
+
+    public ControladorUsuarios(JFrame VentanaPrincipal) {
+        this.ventanaUser = new VentanaDeUsuarios(VentanaPrincipal, this);
         this.ventanaUser.setLocationRelativeTo(null);
         this.ventanaUser.setTitle(TITULO);
         this.agregarListenerATabla(this.ventanaUser.verTabla());
         this.ventanaUser.setVisible(true);
     }
+
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMUsuario camu = new ControladorAMUsuario(this.ventanaUser);
@@ -40,30 +42,35 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTable tablaUsuarios = this.ventanaUser.verTabla();
+        ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaUsuarios.getModel();
+        Usuario u = mtp.usuarioAsignado(filaSeleccionada);
+        IControladorAMUsuario camu = new ControladorAMUsuario(ventanaUser, u);
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         JTable tablaProductos = this.ventanaUser.verTabla();
         this.filaSeleccionada = tablaProductos.getSelectedRow();
-        if (this.filaSeleccionada!=1) {
-            int opcion = JOptionPane.showOptionDialog(null, CONFIRMACION, TITULO, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null,null);
-            if (opcion==JOptionPane.YES_OPTION) {
-                ModeloTablaUsuarios mtp=(ModeloTablaUsuarios)tablaProductos.getModel();
+        if (this.filaSeleccionada != 1) {
+            int opcion = JOptionPane.showOptionDialog(null, CONFIRMACION, TITULO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
+            if (opcion == JOptionPane.YES_OPTION) {
+                ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaProductos.getModel();
                 Usuario usuarioSele = mtp.usuarioAsignado(filaSeleccionada);
                 if (usuarioSele != null) {
                     IGestorUsuarios gu = GestorUsuarios.instanciar();
                     String resultado = gu.borrarUsuario(usuarioSele);
                     if (resultado.equals(IGestorUsuarios.EXITO_BORRADO)) {
                         mtp = new ModeloTablaUsuarios();
-                        if (mtp.getRowCount()>0) {
-                            this.filaSeleccionada =0;
+                        if (mtp.getRowCount() > 0) {
+                            this.filaSeleccionada = 0;
                             tablaProductos.setRowSelectionInterval(0, 0);
+                        } else {
+                            this.filaSeleccionada = -1;
                         }
-                        else this.filaSeleccionada=-1;
+                    } else {
+                        JOptionPane.showMessageDialog(null, resultado, TITULO, JOptionPane.ERROR_MESSAGE);
                     }
-                    else JOptionPane.showMessageDialog(null, resultado, TITULO, JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -74,9 +81,9 @@ public class ControladorUsuarios implements IControladorUsuarios{
         JTable tablaUsuario = this.ventanaUser.verTabla();
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios();
         tablaUsuario.setModel(mtu);
-        if (mtu.getRowCount()>0) {
+        if (mtu.getRowCount() > 0) {
             if (this.filaSeleccionada == -1) {
-                this.filaSeleccionada =0;
+                this.filaSeleccionada = 0;
             }
             tablaUsuario.setRowSelectionInterval(0, 0);
         }
@@ -107,7 +114,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
             tablaUsuarios.setModel(mtu);
         }
     }
-    
+
     private void agregarListenerATabla(JTable tabla) {
         tabla.getSelectionModel().addListSelectionListener((e) -> {
             if (!e.getValueIsAdjusting()) {
@@ -117,5 +124,5 @@ public class ControladorUsuarios implements IControladorUsuarios{
             }
         });
     }
-    
+
 }
