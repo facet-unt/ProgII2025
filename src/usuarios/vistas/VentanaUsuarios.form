@@ -96,6 +96,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldBuscar">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldBuscarKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelMenu">
       <Properties>

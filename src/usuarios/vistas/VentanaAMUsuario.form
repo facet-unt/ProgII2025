@@ -39,7 +39,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="comboBoxPerfil" pref="303" max="32767" attributes="0"/>
+                          <Component id="comboBoxPerfil" max="32767" attributes="0"/>
                           <Component id="campoClave1" max="32767" attributes="0"/>
                           <Component id="campoClave2" max="32767" attributes="0"/>
                           <Component id="campoTextoNombre" alignment="0" max="32767" attributes="0"/>
@@ -48,9 +48,9 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="222" max="32767" attributes="0"/>
                       <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -77,26 +77,26 @@
                   <Component id="campoTextoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoTextoNombre" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelClave" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoClave2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelRepetirClave" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoClave1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoTextoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoClave2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelClave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoClave1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelRepetirClave" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

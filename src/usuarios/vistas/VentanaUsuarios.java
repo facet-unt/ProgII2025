@@ -66,6 +66,12 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             }
         });
 
+        textFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFieldBuscarKeyReleased(evt);
+            }
+        });
+
         labelMenu.setText("Menú");
 
         btnNuevo.setText("Nuevo");
@@ -188,6 +194,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         this.controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void textFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldBuscarKeyReleased
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_textFieldBuscarKeyReleased
 
     /**
      * @param args the command line arguments

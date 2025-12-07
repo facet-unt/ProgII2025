@@ -10,6 +10,8 @@ import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_BACK_SPACE;
+import static java.awt.event.KeyEvent.VK_DELETE;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -47,7 +49,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         if (this.ventana.verTabla().getRowCount() > 0){
             IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,gu.verUsuarios().get(filaSeleccionada));
         }else{
-            IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,null);
+            JOptionPane.showMessageDialog(this.ventana,"No hay Usuarios","Error al modificar un Usuario",JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -81,6 +83,24 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
+        JTable tablaUsuarios = this.ventana.verTabla();
+        char caracter = evt.getKeyChar();
+        if(Character.isLetter(caracter) || Character.isDigit(caracter)){
+            ModeloTablaUsuarios mtp1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+            tablaUsuarios.setModel(mtp1);
+                if (tablaUsuarios.getRowCount() > 0) {
+                    tablaUsuarios.setRowSelectionInterval(0, 0);
+                }
+        }else{
+            int codigoTecla = evt.getKeyCode();
+            if(codigoTecla==VK_BACK_SPACE || codigoTecla==VK_DELETE){
+                ModeloTablaUsuarios mtp1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+                tablaUsuarios.setModel(mtp1);
+                if (tablaUsuarios.getRowCount() > 0) {
+                    tablaUsuarios.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
     }
 
     @Override

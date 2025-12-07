@@ -73,10 +73,6 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
                 this.ventana.dispose();
             }
         }
-        if(usuarioAModificar==null&& !nuevoUsuario){
-            JOptionPane.showMessageDialog(this.ventana,"No hay Usuarios","Error al modificar un Usuario",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         if(!nuevoUsuario){
             char[] clave1Char = this.ventana.verCampoClave1().getPassword();
             String clave1 = new String(clave1Char);
