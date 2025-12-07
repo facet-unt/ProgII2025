@@ -74,6 +74,49 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
     @Override
+    public String modificarUsuario(Usuario usuario, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida) {
+        String validacion = this.validacionDatos(usuario.verCorreo(), clave, apellido, nombre, perfil, claveRepetida);
+        
+        if (!validacion.equals(VALIDACION_EXITO)) {
+            return validacion;
+        }
+        
+        if (usuario.getPerfil() != perfil) {
+            String resultado = this.borrarUsuario(usuario);
+            
+            if (!resultado.equals("Usuario eliminado correctamente")) {
+                return "El usuario que intenta modificar es un cliente y aun tiene pedidos";
+            }
+            
+            Usuario usuarioModificado;
+            
+            switch (perfil) {
+                case CLIENTE:
+                    usuarioModificado = new Cliente(usuario.verCorreo(), clave, apellido, nombre, perfil);
+                    break;
+                case EMPLEADO:
+                    usuarioModificado = new Empleado(usuario.verCorreo(), clave, apellido, nombre, perfil);
+                    break;
+                case ENCARGADO:
+                    usuarioModificado = new Encargado(usuario.verCorreo(), clave, apellido, nombre, perfil);
+                    break;
+                default:
+                    return ERROR_PERFIL;
+            }       
+            this.listaUsuarios.add(usuarioModificado);
+        }
+        else {
+            usuario.asignarClave(clave);
+            usuario.asignarApellido(apellido);
+            usuario.asignarNombre(nombre);
+        }
+        
+        this.escribirArchivo();
+        
+        return EXITO;
+    }
+    
+    @Override
     public List<Usuario> verUsuarios() {
         Collections.sort(this.listaUsuarios);
         return this.listaUsuarios;

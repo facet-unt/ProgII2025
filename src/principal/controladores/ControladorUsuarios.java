@@ -86,6 +86,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         Usuario usuarioAModificar = this.modeloTabla.obtenerUsuarioEnFila(filaSeleccionada);
         
         IControladorAMUsuario controladorModificarUsuario = ControladorAMUsuario.instanciar(usuarioAModificar);
+        this.actualizarTabla();
     }
 
     @Override

@@ -76,8 +76,14 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         Perfil perfil = ((ModeloComboPerfil)this.ventana.verComboPerfiles().getModel()).obetenerPerfil();
         
         IGestorUsuarios gu = GestorUsuarios.instanciar();
+        String resultado;
         
-        String resultado = gu.crearUsuario(correo, clave, apellido, nombre, perfil, claveRepetida);
+        if (this.usuarioModificar == null) {
+           resultado = gu.crearUsuario(correo, clave, apellido, nombre, perfil, claveRepetida);
+        }
+        else {
+            resultado = gu.modificarUsuario(usuarioModificar, clave, apellido, nombre, perfil, claveRepetida);
+        }
         
         if (!resultado.equals(IGestorUsuarios.EXITO)){
             JOptionPane.showMessageDialog(this.ventana, resultado, "Error", JOptionPane.ERROR_MESSAGE);

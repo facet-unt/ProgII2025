@@ -17,6 +17,8 @@ public interface IGestorUsuarios {
     // Metodos
     public String crearUsuario(String correo, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida);
 
+    public String modificarUsuario(Usuario usuario, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida);
+    
     public List<Usuario> verUsuarios();
 
     public List<Usuario> buscarUsuarios(String apellido);
