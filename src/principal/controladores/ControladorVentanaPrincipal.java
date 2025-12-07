@@ -18,7 +18,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     private VentanaPrincipal ventana;
 
     public ControladorVentanaPrincipal() {
-        this.ventana = new VentanaPrincipal(this);
+        this.ventana = new VentanaPrincipal();
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
         this.ventana.setTitle(TITULO);
@@ -26,19 +26,19 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     }
 
     @Override
-    public void btnProductosClic(ActionEvent evt) {
+    public void botonProductosClic(ActionEvent evt) {
         System.out.println("Boton productos Clic");
         //IControladorProductos controladorProductos= new ControladorVentanaProductos();
     }
 
     @Override
-    public void btnUsuariosClic(ActionEvent evt) {
+    public void botonUsuariosClic(ActionEvent evt) {
         System.out.println("Boton usuarios Clic");
         //IControladorUsuarios controladorUsuarios= new ControladorVentanaUsuarios();
     }
 
     @Override
-    public void btnSalirClic(ActionEvent evt) {
+    public void botonSalirClic(ActionEvent evt) {
         System.out.println("Boton salir Clic");
         int respuesta = JOptionPane.showConfirmDialog(
                 null,
