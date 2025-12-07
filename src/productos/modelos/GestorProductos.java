@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
-public class GestorProductos implements IGestorProductos{
+public final class GestorProductos implements IGestorProductos{
     private List<Producto> productos = new ArrayList<>();
     
     private static final String ARCHIVO_PRODUCTOS = "productos.txt";
@@ -22,6 +22,7 @@ public class GestorProductos implements IGestorProductos{
     private static GestorProductos instancia;
     
     private GestorProductos() {
+        this.cargarProductos();
     }
     public static GestorProductos instanciar() {
         if (instancia == null)
@@ -45,6 +46,7 @@ public class GestorProductos implements IGestorProductos{
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
         if(existeEsteProducto(p)) return PRODUCTOS_DUPLICADOS;
         productos.add(p);
+        this.guardarProductos();
         return EXITO;
     }
     @Override
@@ -63,6 +65,7 @@ public class GestorProductos implements IGestorProductos{
                 productoAModificar.asignarPrecio(precio);
                 productoAModificar.asignarCategoria(categoria);
                 productoAModificar.asignarEstado(estado);
+                this.guardarProductos();
                 return EXITO;
         }
         return PRODUCTO_INEXISTENTE;
@@ -116,8 +119,10 @@ public class GestorProductos implements IGestorProductos{
         GestorPedidos gp = GestorPedidos.instanciar();
         if(gp.hayPedidosConEsteProducto(producto))
             return "El producto existe en un pedido";
-        if(productos.remove(producto))
-            return "Producto borrado con exito";  
+        if(productos.remove(producto)){
+            this.guardarProductos();
+            return "Producto borrado con exito";
+        }
         else return "El producto no existe en productos";
     }
     @Override

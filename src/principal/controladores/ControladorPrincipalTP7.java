@@ -260,15 +260,6 @@ public class ControladorPrincipalTP7 {
             System.out.println();
         }
         System.out.println();
-        
-        System.out.println("Guardo archivo Productos.txt");
-        System.out.println("==================");
-        System.out.println(gp.guardarProductos());
-        System.out.println();
-        System.out.println("Cargo archivo Productos.txt");
-        System.out.println("==================");
-        System.out.println(gp.cargarProductos());
-        gp.menu();
     }
     
 }
