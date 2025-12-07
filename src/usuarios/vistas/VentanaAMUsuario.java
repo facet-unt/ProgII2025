@@ -8,6 +8,7 @@ import interfaces.IControladorAMUsuario;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import productos.modelos.ModeloComboPerfil;
 
@@ -51,8 +52,8 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         txtApellido = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
-        txtPassclave = new javax.swing.JTextField();
+        passClave = new javax.swing.JPasswordField();
+        passConfirmarClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,20 +103,20 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
             }
         });
 
-        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+        passClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passClaveActionPerformed(evt);
+            }
+        });
+        passClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtClaveKeyReleased(evt);
+                passClaveKeyReleased(evt);
             }
         });
 
-        txtPassclave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassclaveActionPerformed(evt);
-            }
-        });
-        txtPassclave.addKeyListener(new java.awt.event.KeyAdapter() {
+        passConfirmarClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPassclaveKeyReleased(evt);
+                passConfirmarClaveKeyReleased(evt);
             }
         });
 
@@ -126,10 +127,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -145,9 +142,13 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
                             .addComponent(txtApellido)
                             .addComponent(txtNombre)
                             .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtPassclave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(comboPerfil, 0, 295, Short.MAX_VALUE))))
+                            .addComponent(comboPerfil, 0, 295, Short.MAX_VALUE)
+                            .addComponent(passClave)
+                            .addComponent(passConfirmarClave)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)))
                 .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
@@ -168,11 +169,11 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(txtPassclave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passConfirmarClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -186,10 +187,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPassclaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassclaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassclaveActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.controlador.btnCancelarClic(evt);
@@ -207,17 +204,22 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         this.controlador.txtCorreoPresionarTecla(evt);
     }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txtClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyReleased
-        this.controlador.passClavePresionarTecla(evt);
-    }//GEN-LAST:event_txtClaveKeyReleased
-
-    private void txtPassclaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassclaveKeyReleased
-      this.controlador.passClaveRepetidaPresionarTecla(evt);
-    }//GEN-LAST:event_txtPassclaveKeyReleased
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void passClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passClaveActionPerformed
+
+    private void passClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyReleased
+
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClaveKeyReleased
+
+    private void passConfirmarClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passConfirmarClaveKeyReleased
+        this.controlador.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_passConfirmarClaveKeyReleased
 
     public JButton verBotonG(){
         return this.btnGuardar;
@@ -228,14 +230,14 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public JTextField verTxtNombre(){
         return this.txtNombre;
     }
-    public JTextField verTxtClave(){
-        return this.txtClave;
+    public JPasswordField verTxtClave(){
+        return this.passClave;
     }
     public JTextField verTxtCorreo(){
         return this.txtCorreo;
     }
-    public JTextField verTxtConfirmacionClave(){
-        return this.txtPassclave;
+    public JPasswordField verTxtConfirmacionClave(){
+        return this.passConfirmarClave;
     }
     public JComboBox verComboPerfil(){
         return this.comboPerfil;
@@ -255,10 +257,10 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPasswordField passClave;
+    private javax.swing.JPasswordField passConfirmarClave;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPassclave;
     // End of variables declaration//GEN-END:variables
 }
