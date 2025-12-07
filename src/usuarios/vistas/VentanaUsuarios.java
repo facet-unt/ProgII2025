@@ -4,12 +4,17 @@
  */
 package usuarios.vistas;
 
+import javax.swing.table.DefaultTableModel;
+import usuarios.controladores.ControladorUsuarios;
+
+
 /**
  *
  * @author Fernando
  */
 public class VentanaUsuarios extends  javax.swing.JDialog {
     
+    private ControladorUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
 
     /**
@@ -18,6 +23,7 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
     public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador = new ControladorUsuarios(this);
     }
 
     /**
@@ -44,7 +50,11 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
 
         jLabel1.setText("Apellido");
 
-        textApellido.setText("jTextField1");
+        textApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textApellidoActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -54,8 +64,18 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
         });
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -153,27 +173,44 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+                this.controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.dispose();
+        this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.controlador.btnNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        this.controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void textApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textApellidoActionPerformed
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_textApellidoActionPerformed
+    public javax.swing.JTable getTabla() {
+        return jTable1;
+    }
+
+    public void setModeloTabla(DefaultTableModel modelo) {
+        jTable1.setModel(modelo);
+    }
+
+    public String getTextApellido() {
+        return textApellido.getText();
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
+     try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -183,10 +220,8 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true);

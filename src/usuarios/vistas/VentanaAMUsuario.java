@@ -7,11 +7,12 @@ package usuarios.vistas;
 import interfaces.IControladorAMUsuario;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 
 /**
  *
- * @author  
+ * @author
  */
 public class VentanaAMUsuario extends javax.swing.JDialog {
 
@@ -24,10 +25,14 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
      * @param Controlador
      */
     public VentanaAMUsuario(IControladorAMUsuario Controlador, javax.swing.JDialog padre, boolean modal) {
-        super(padre, true);
+        super(padre, modal);
         initComponents();
         this.Controlador = Controlador;
 
+        ComboBoxPerfil.removeAllItems();
+        for (Perfil p : Perfil.values()) {
+            ComboBoxPerfil.addItem(p.toString());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -204,32 +209,65 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public JTextField getTxtUsuarioCorreo() {
-        return txtCorreo;
+     public String getApellido() {
+        return txtApellido.getText();
     }
 
-    public JTextField getTxtUsuarioApellidos() {
-        return txtApellido;
+    public void setApellido(String apellido) {
+        txtApellido.setText(apellido);
     }
 
-    public JTextField getTxtUsuarioNombres() {
-        return txtNombre;
+    public String getNombre() {
+        return txtNombre.getText();
     }
 
-    public JComboBox getComboPerfil() {
-        return ComboBoxPerfil;
+    public void setNombre(String nombre) {
+        txtNombre.setText(nombre);
     }
 
-    public JTextField getTxtUsuarioClave() {
-        return passClave;
+    public String getCorreo() {
+        return txtCorreo.getText();
     }
 
-    public JTextField getTxtUsuarioRepetirClave() {
-        return passClaveRepetida;
+    public void setCorreo(String correo) {
+        txtCorreo.setText(correo);
     }
 
-    public void bloquearOpciones() {
-        txtCorreo.enable(false);
+    public String getClave() {
+        return passClave.getText();
+    }
+
+    public void setClave(String clave) {
+        passClave.setText(clave);
+    }
+
+    public String getClaveRepetida() {
+        return passClaveRepetida.getText();
+    }
+
+    public void setClaveRepetida(String clave) {
+        passClaveRepetida.setText(clave);
+    }
+
+    public Perfil getPerfil() {
+        int index = ComboBoxPerfil.getSelectedIndex();
+        if (index >= 0 && index < Perfil.values().length) {
+            return Perfil.values()[index];
+        }
+        return Perfil.values()[0];
+    }
+
+    public void setPerfil(Perfil perfil) {
+        for (int i = 0; i < Perfil.values().length; i++) {
+            if (Perfil.values()[i].equals(perfil)) {
+                ComboBoxPerfil.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+    public void setCorreoEditable(boolean editable) {
+        txtCorreo.setEnabled(editable);
     }
 
     public void llenar(Usuario usuarios) {
