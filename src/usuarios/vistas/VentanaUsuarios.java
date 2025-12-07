@@ -21,6 +21,8 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     
     /**
      * Creates new form VentanaAMUsuarios
+     * @param ventanaPadre
+     * @param controlador
      */
     public VentanaUsuarios(JFrame ventanaPadre, ControladorVentanaUsuarios controlador) {
         super(ventanaPadre,true);
@@ -67,6 +69,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         labelMenu.setText("Menú");
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +91,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             }
         });
 
-        labelDescripcion.setText("Descripción:");
+        labelDescripcion.setText("Apellido:");
 
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,6 +175,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.controlador.btnNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     /**
      * @param args the command line arguments

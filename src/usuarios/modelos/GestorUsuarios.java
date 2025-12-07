@@ -49,7 +49,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             return ERROR_CORREO;
         }
         for(Usuario u1: usuarios){
-            if(u1.verCorreo()==correo){
+            if(u1.verCorreo().equals(correo)){
                 return USUARIOS_DUPLICADOS;
             }
         }

@@ -37,8 +37,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     
     @Override
     public void btnSalirClic(ActionEvent evt) {
-        int opcion = JOptionPane.showOptionDialog(null,"¿Desea salir del programa?","Salir",
-        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+        int opcion = JOptionPane.showOptionDialog(null,"¿Desea salir del programa?","Salir",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
         if(opcion==0)
             this.ventana.dispose();
     }

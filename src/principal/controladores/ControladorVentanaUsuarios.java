@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMUsuario;
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
@@ -31,6 +32,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
+        IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,true);
     }
 
     @Override
