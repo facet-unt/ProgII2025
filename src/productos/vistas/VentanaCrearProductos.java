@@ -9,6 +9,7 @@ import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import principal.controladores.ControladorCrearProductos;
 import productos.modelos.*;
 
 import productos.modelos.Producto;
@@ -17,18 +18,19 @@ import productos.modelos.Estado;
 
 public class VentanaCrearProductos extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
+    private static ControladorCrearProductos controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaCrearProductos(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    public VentanaCrearProductos(JDialog parent,ControladorCrearProductos controlador ) {
+        super(parent, true);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(parent);
         this.setTitle(TITULO_NUEVO);        
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
+//        this.comboCategorias.setModel(new ModeloComboCategorias());
+//        this.comboEstados.setModel(new ModeloComboEstados());
         this.setSize(300, 400);
         this.setVisible(true); 
     }
@@ -62,6 +64,13 @@ public class VentanaCrearProductos extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                ventanGanaFoco(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Descripción:");
 
@@ -177,20 +186,20 @@ public class VentanaCrearProductos extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
+//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
+//        String descripcion = this.txtDescripcion.getText().trim();        
+//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
+//        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
+//        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
+//        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
+//        this.productos.add(unProducto);
+//        
+//        System.out.println("Productos");
+//        System.out.println("=========");
+//        for(Producto p : this.productos) {
+//            p.mostrar();
+//            System.out.println();
+//        }
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
@@ -200,6 +209,10 @@ public class VentanaCrearProductos extends JDialog {
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCategoriasActionPerformed
+
+    private void ventanGanaFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanGanaFoco
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_ventanGanaFoco
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

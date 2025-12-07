@@ -83,6 +83,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -147,17 +152,19 @@ public class VentanaProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar
-        System.out.println("hola");
+//        System.out.println("hola");
     }//GEN-LAST:event_btnBuscar
 
     private void btnVolver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver
         controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolver
-
     private void ventanaGanafoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaGanafoco
        controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaGanafoco
 
+    private void btnNuevo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo
+       controlador.btnNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevo
     /**
      * @param args the command line arguments
      */

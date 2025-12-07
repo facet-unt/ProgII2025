@@ -5,48 +5,43 @@
 package principal.controladores;
 
 import interfaces.IControladorAMProducto;
-import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import principal.vistas.VentanaPrincipal;
+import productos.vistas.VentanaCrearProductos;
 import productos.vistas.VentanaProductos;
 
 /**
  *
  * @author ortiz
  */
-public class ControladorProductos implements IControladorProductos {
-    private static ControladorProductos instancia;
-    private VentanaPrincipal ventanaPrincipal;
+public class ControladorCrearProductos implements IControladorAMProducto {
+    private static ControladorCrearProductos instancia;
     private VentanaProductos ventanaProductos;
+    private VentanaCrearProductos ventanaCrearProductos;
 
-    public ControladorProductos() {
-        ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this); 
-        ventanaProductos.setTitle("Productos");
-        ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
-        ventanaProductos.setVisible(true);
+    public ControladorCrearProductos() {
+        ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
     }
     
-    public static ControladorProductos instanciar() {
+    public static ControladorCrearProductos instanciar() {
         if (instancia == null) {
-            instancia = new ControladorProductos();
+            instancia = new ControladorCrearProductos();
         }
         return instancia;
-}
+    }    
     
     @Override
-    public void ventanaObtenerFoco(WindowEvent evt) {
-        ventanaProductos.requestFocusInWindow();
+    public void btnCancelarClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void btnVolverClic(ActionEvent evt) {
-        ventanaProductos.dispose();
+    public void btnGuardarClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void btnBuscarClic(ActionEvent evt) {
+    public void txtCodigoPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -56,18 +51,8 @@ public class ControladorProductos implements IControladorProductos {
     }
 
     @Override
-    public void btnNuevoClic(ActionEvent evt) {
-        System.out.println("hola");
-        IControladorAMProducto controladorProducto = ControladorCrearProductos.instanciar();
-    }
-
-    @Override
-    public void btnModificarClic(ActionEvent evt) {
+    public void txtPrecioPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }
