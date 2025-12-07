@@ -9,8 +9,11 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloTablaProductos;
+import productos.modelos.Producto;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -20,6 +23,7 @@ import productos.vistas.VentanaProductos;
 public class ControladorVentanaProductos implements IControladorProductos {
 
     private VentanaProductos ventana;
+    
     
     public ControladorVentanaProductos() {
         
@@ -44,7 +48,7 @@ public class ControladorVentanaProductos implements IControladorProductos {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        
+    
     }
 
     @Override

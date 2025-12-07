@@ -19,6 +19,14 @@ public class ModeloTablaProductos extends AbstractTableModel {
     public ModeloTablaProductos() {
     }
      
+    
+    
+    public void setTablaProductos (List <Producto> pr) {
+        this.listaproductos = pr;
+        
+    }
+            
+            
     @Override
     public int getRowCount() {
         return listaproductos.size();
@@ -31,7 +39,12 @@ public class ModeloTablaProductos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        
+       Producto pr = listaproductos.get(rowIndex);
+        switch(columnIndex) {
+            case 0: return pr.verCategoria();
+            case 1: return pr.verDescripcion();
+            case 2: return pr.verPrecio();
+            default: return null; 
     }
-    
+    }
 }

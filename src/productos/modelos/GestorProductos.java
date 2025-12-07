@@ -24,12 +24,12 @@ public class GestorProductos implements IGestorProductos {
     
     private List<Producto> productos = new ArrayList<>();
     
-    private static final String SEPARADOR = "-";
-    private static final String NOMBREARCHIVO = "Productos.txt";
     
     private static GestorProductos instancia;
     
-    private GestorProductos() { }
+    private GestorProductos() { 
+    this.productos = leerProductos();
+    }
     
     public static GestorProductos instanciar() {
         if (instancia == null)
@@ -111,20 +111,21 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public String borrarProducto(Producto producto) {
-        
+
         if (producto == null)
             return "Error: el producto es nulo.";
-        
+
         if (!productos.contains(producto))
             return "El producto no existe en el sistema.";
-        
+
         GestorPedidos gp = GestorPedidos.getInstancia();
         if (gp.hayPedidosConEsteProducto(producto))
             return "No se puede eliminar el producto, hay pedidos asociados.";
-        
+
         productos.remove(producto);
+
         guardarListaEnArchivo();
-        
+
         return "Producto eliminado con éxito.";
     }
     

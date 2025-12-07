@@ -30,6 +30,8 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         
+        
+        
     }
 
     @Override
