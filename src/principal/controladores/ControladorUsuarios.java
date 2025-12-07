@@ -68,7 +68,18 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ModeloTablaUsuarios mtu;
+        String cadenaApellido = this.ventanaUser.verTxtapellido().getText().trim();
+        JTable tablaUsuarios = this.ventanaUser.verTabla();
+
+        if (cadenaApellido.isEmpty()) {
+            mtu = new ModeloTablaUsuarios();
+            tablaUsuarios.setModel(mtu);
+        } else {
+
+            mtu = new ModeloTablaUsuarios(cadenaApellido);
+            tablaUsuarios.setModel(mtu);
+        }
     }
     
 }

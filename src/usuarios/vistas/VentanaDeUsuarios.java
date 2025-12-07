@@ -187,7 +187,7 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        this.controladorUsuarios.btnModificarClic(evt);
+        this.controladorUsuarios.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
      private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
         this.controladorUsuarios.ventanaObtenerFoco(evt);
