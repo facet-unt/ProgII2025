@@ -19,6 +19,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
     private VentanaPrincipal ventanaPrincipal;
     private VentanaUsuarios ventanaUsuarios; 
+    
     public ControladorUsuarios() {
         ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this);
         ventanaUsuarios.setTitle("Usuarios");

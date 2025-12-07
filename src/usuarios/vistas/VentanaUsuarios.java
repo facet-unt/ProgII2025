@@ -12,9 +12,8 @@ import principal.controladores.ControladorUsuarios;
  * @author ortiz
  */
 public class VentanaUsuarios extends javax.swing.JDialog {
-    private static ControladorUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
-
+    private static ControladorUsuarios controlador;
     /**
      * Creates new form VentanaUsuarios
      */
@@ -45,9 +44,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setModal(true);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                formWindowGainedFocus(evt);
+                VentanaGanaFoco(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
@@ -91,7 +92,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jButton5.setText("Volver");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botonVolver(evt);
             }
         });
 
@@ -157,13 +158,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void botonVolver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolver
         controlador.btnVolverClic(evt);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_botonVolver
 
-    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+    private void VentanaGanaFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_VentanaGanaFoco
         controlador.ventanaObtenerFoco(evt);
-    }//GEN-LAST:event_formWindowGainedFocus
+    }//GEN-LAST:event_VentanaGanaFoco
 
    
                                 
