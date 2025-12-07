@@ -25,8 +25,6 @@ public class Cliente extends Usuario {
         this.listaPedidos=listaPedidos;
     }
 
-    Cliente() {
-    }
 
     public void asignarListaPedidos(ArrayList<Pedido> listaPedidos) {
         this.listaPedidos = listaPedidos;

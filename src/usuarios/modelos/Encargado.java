@@ -18,8 +18,6 @@ public class Encargado extends Usuario {
         super(c,cl,a,n);
     }
 
-    Encargado() {
-    }
 
     @Override
     public String toString() {

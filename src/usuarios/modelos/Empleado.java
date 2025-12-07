@@ -19,8 +19,6 @@ public class Empleado extends Usuario{
         super(c,cl,a,n);
     }
 
-    Empleado() {
-    }
 
     @Override
     public String toString() {
