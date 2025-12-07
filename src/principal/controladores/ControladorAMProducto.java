@@ -26,7 +26,9 @@ public class ControladorAMProducto implements IControladorAMProducto {
         this.Ventana = new VentanaAMProducto(padre, this);
         this.Ventana.setLocationRelativeTo(null);
         this.Ventana.setTitle(TITULO_NUEVO);
+        this.Ventana.verBotonG().setEnabled(false);
         this.Ventana.setVisible(true);
+        
 
     }
 
@@ -88,6 +90,10 @@ public class ControladorAMProducto implements IControladorAMProducto {
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c)) {
+            evt.consume();
+        }
         validarCampos();
     }
 
@@ -106,22 +112,20 @@ public class ControladorAMProducto implements IControladorAMProducto {
         boolean descripcionVacia = this.Ventana.verTxtDescripcion().getText().trim().isEmpty();
         boolean precioVacio = this.Ventana.verTxtprecio().getText().trim().isEmpty();
 
-        this.Ventana.verBotonG().setEnabled(
-                !(codigoVacio || descripcionVacia || precioVacio)
-        );
+        this.Ventana.verBotonG().setEnabled(!(codigoVacio || descripcionVacia || precioVacio));
 
 //        pintarCampo(this.Ventana.verTxtcodigo(), codigoVacio);
 //        pintarCampo(this.Ventana.verTxtDescripcion(), descripcionVacia);
 //        pintarCampo(this.Ventana.verTxtprecio(), precioVacio);
     }
 
-    private void pintarCampo(javax.swing.JTextField campo, boolean vacio) {
-        if (vacio) {
-            campo.setBackground(new java.awt.Color(255, 180, 180)); // rojo claro
-        } else {
-            campo.setBackground(java.awt.Color.WHITE);
-        }
-    }
+//    private void pintarCampo(javax.swing.JTextField campo, boolean vacio) {
+//        if (vacio) {
+//            campo.setBackground(new java.awt.Color(255, 180, 180)); // rojo claro
+//        } else {
+//            campo.setBackground(java.awt.Color.WHITE);
+//        }
+//    }
 
     private void configurarCampos() {
         if (this.amProducto != null) {

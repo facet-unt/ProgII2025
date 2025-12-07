@@ -5,6 +5,7 @@
 package productos.vistas;
 
 import interfaces.IControladorProductos;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -96,9 +97,9 @@ public class VentanaDeProductos extends javax.swing.JDialog {
 
         label1.setText("Descripción");
 
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
             }
         });
 
@@ -175,12 +176,8 @@ public class VentanaDeProductos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        this.controladorProductos.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -202,6 +199,10 @@ public class VentanaDeProductos extends javax.swing.JDialog {
     private void tablaProductosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaProductosFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaProductosFocusGained
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+        this.controladorProductos.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
     
     private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
         this.controladorProductos.ventanaObtenerFoco(evt);
@@ -213,6 +214,10 @@ public class VentanaDeProductos extends javax.swing.JDialog {
     
     public JTextField verDescripcion() {
         return this.txtDescripcion;
+    }
+    
+    public JButton verBotonB(){
+        return this.btnBuscar;
     }
     /**
      * @param args the command line arguments

@@ -6,24 +6,21 @@
 package productos.vistas;
 
 import interfaces.IControladorAMProducto;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import productos.modelos.*;
 
-import productos.modelos.Producto;
 
 
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
     private IControladorAMProducto controlador;
     
     /**
      * Constructor
-     * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
+     * @param ventanaPadre ventana padre 
      * @param controlador
      */
     public VentanaAMProducto(JDialog ventanaPadre, IControladorAMProducto controlador){
@@ -62,25 +59,25 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel1.setText("Descripción:");
 
-        txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.setToolTipText("Descripción del producto");
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDescripcionKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
             }
         });
 
         jLabel2.setText("Precio:");
 
-        txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.setToolTipText("Precio del producto");
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
             }
         });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
-        btnGuardar.setToolTipText("Guarda el profesor");
+        btnGuardar.setToolTipText("Guarda el producto");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarClic(evt);
@@ -98,10 +95,10 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel4.setText("Código:");
 
-        txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.setToolTipText("Código del producto");
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
             }
         });
 
@@ -183,17 +180,17 @@ public class VentanaAMProducto extends JDialog {
        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-        this.controlador.txtCodigoPresionarTecla(evt);
-    }//GEN-LAST:event_txtCodigoKeyTyped
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+         this.controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
 
-    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         this.controlador.txtDescripcionPresionarTecla(evt);
-    }//GEN-LAST:event_txtDescripcionKeyTyped
+    }//GEN-LAST:event_txtDescripcionKeyReleased
 
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
         this.controlador.txtPrecioPresionarTecla(evt);
-    }//GEN-LAST:event_txtPrecioKeyTyped
+    }//GEN-LAST:event_txtPrecioKeyReleased
      
     public JTextField verTxtcodigo(){
         return this.txtCodigo;

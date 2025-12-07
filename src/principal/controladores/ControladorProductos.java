@@ -6,11 +6,14 @@ package principal.controladores;
 
 import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
 import productos.modelos.Producto;
 import productos.vistas.VentanaDeProductos;
@@ -29,6 +32,7 @@ public class ControladorProductos implements IControladorProductos {
         this.ventanaDp.setLocationRelativeTo(null);
         this.ventanaDp.setTitle(TITULO);
         this.agregarListenerATabla(this.ventanaDp.verTabla());
+//        this.ventanaDp.verBotonB().setEnabled(false);
         this.ventanaDp.setVisible(true);
     }
 
@@ -41,7 +45,7 @@ public class ControladorProductos implements IControladorProductos {
             if (this.filaSeleccionada == -1) {
                 this.filaSeleccionada =0;
             }
-            tablaProductos.setRowSelectionInterval(this.filaSeleccionada, 0);
+            tablaProductos.setRowSelectionInterval(0, 0);
         }
     }
 
@@ -68,7 +72,11 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        char c = evt.getKeyChar();
+//        if (!Character.isLetter(c)) {
+//            evt.consume();
+//        }
+//        this.ventanaDp.verBotonB().setEnabled(!this.ventanaDp.verDescripcion().getText().trim().isEmpty());
     }
 
     @Override
@@ -86,16 +94,35 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTable tablaProductos = this.ventanaDp.verTabla();
+        this.filaSeleccionada = tablaProductos.getSelectedRow();
+        if (this.filaSeleccionada!=1) {
+            int opcion = JOptionPane.showOptionDialog(null, CONFIRMACION, TITULO, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null,null);
+            if (opcion==JOptionPane.YES_OPTION) {
+                ModeloTablaProductos mtp=(ModeloTablaProductos)tablaProductos.getModel();
+                Producto productoSele = mtp.productoAsignado(filaSeleccionada);
+                if (productoSele != null) {
+                    IGestorProductos gPro = GestorProductos.instanciar();
+                    String resultado = gPro.borrarProducto(productoSele);
+                    if (resultado.equals(IGestorProductos.EXITO_BORRADO)) {
+                        mtp = new ModeloTablaProductos();
+                        if (mtp.getRowCount()>0) {
+                            this.filaSeleccionada =0;
+                            tablaProductos.setRowSelectionInterval(0, 0);
+                        }
+                        else this.filaSeleccionada=-1;
+                    }
+                    else JOptionPane.showMessageDialog(null, resultado, TITULO, JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }
 
     private void agregarListenerATabla(JTable tabla) {
         tabla.getSelectionModel().addListSelectionListener((e) -> {
             if (!e.getValueIsAdjusting()) {
-                System.out.println("apreto");
                 if (tabla.getSelectedRow() != -1) {
                     this.filaSeleccionada = tabla.getSelectedRow();
-                    System.out.println(filaSeleccionada);
                 }
             }
         });
