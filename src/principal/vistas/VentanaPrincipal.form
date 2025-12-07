@@ -58,16 +58,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Usuarios"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProductos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Productos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPedidos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pedidos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPedidosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
