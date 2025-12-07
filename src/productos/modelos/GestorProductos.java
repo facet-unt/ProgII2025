@@ -88,7 +88,8 @@ public class GestorProductos implements IGestorProductos {
 
     }
 
-    private void cargarArchivoEnLista() {
+    private void cargarArchivoEnLista() 
+    {
         productos.clear();
         File archivo = new File(ARCHIVO);
 
@@ -180,7 +181,7 @@ public class GestorProductos implements IGestorProductos {
             return PRODUCTOS_DUPLICADOS;
         }
         productos.add(p);
-        cargarListaProductosEnArchivo();
+        cargarListaProductosEnArchivo();   //tiene que ser sin codigo 
         return EXITO;
     }
 
@@ -192,17 +193,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> buscarProductos(String descripcion) {
-//        List<Producto> prod = new ArrayList();
-//
-//        for (Producto p : productos) {
-//            if (p.verDescripcion().contains(descripcion)) {
-//                prod.add(p);
-//            }
-//
-//        }
-//        Collections.sort(prod);
-//        return prod;
-
+        
         List<Producto> prod = new ArrayList<>();
 
         String buscada = descripcion.toLowerCase();

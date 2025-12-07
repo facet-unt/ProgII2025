@@ -1,0 +1,2 @@
+correo1@mail.com*Apellido1*Nombre1*null*clave1*clave1
+correo2@mail.com*Apellido3*Nombre2*null*clave2*clave2

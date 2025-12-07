@@ -86,6 +86,8 @@ public abstract class Usuario implements Comparable<Usuario> {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    
 
     @Override
     public int hashCode() {
