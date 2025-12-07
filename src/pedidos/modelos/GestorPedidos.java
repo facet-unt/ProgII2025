@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
-import usuarios.modelos.GestorUsuarios;
 import Interfaces.IGestorPedidos;
 
 /**
@@ -23,7 +22,7 @@ import Interfaces.IGestorPedidos;
  * @author Asus
  */
 public class GestorPedidos implements IGestorPedidos{
-    private List<Pedido> pedidos = new ArrayList<>();
+    private final List<Pedido> pedidos = new ArrayList<>();
      private static GestorPedidos instancia;
      public static GestorPedidos instanciar(){
         if (instancia == null)
@@ -32,6 +31,7 @@ public class GestorPedidos implements IGestorPedidos{
     }
 
 
+    @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente){
         if (fecha == null){
         return ERROR_FECHA;
@@ -49,19 +49,20 @@ public class GestorPedidos implements IGestorPedidos{
         return EXITO;
    }
 
+    @Override
     public String cambiarEstado(Pedido pedidoAModificar){
         if (pedidoAModificar == null){
         return PEDIDO_INEXISTENTE;
                 }
-        Estado estadoActual = pedidoAModificar.verEstado();
-        Estado nuevoEstado;
             return null;
     }
 
+    @Override
         public List<Pedido> verPedidos(){
         return pedidos;
          }
 
+    @Override
         public boolean hayPedidosConEsteCliente(Cliente cliente){
         for (Pedido p : pedidos){
          if (p.verCliente() == cliente){
@@ -71,6 +72,7 @@ public class GestorPedidos implements IGestorPedidos{
         return false;
         }
 
+    @Override
     public boolean hayPedidosConEsteProducto(Producto producto) {
             for (Pedido ped : this.pedidos) {
             List<ProductoDelPedido> productosEnElPedido = ped.verProductosDelPedido();
@@ -87,8 +89,8 @@ public class GestorPedidos implements IGestorPedidos{
     }
 
 
+    @Override
     public String cancelarPedido(Pedido pedido){
-       GestorUsuarios gu = GestorUsuarios.instanciar();
        Cliente cliente = pedido.verCliente();
        if (!this.pedidos.contains(pedido)){
            return PEDIDO_INEXISTENTE;
@@ -102,6 +104,7 @@ public class GestorPedidos implements IGestorPedidos{
     } 
 
 
+    @Override
         public boolean existeEstePedido(Pedido pedido){
          for (Pedido p : pedidos){
           if (p.equals(pedido))
@@ -112,6 +115,7 @@ public class GestorPedidos implements IGestorPedidos{
            return false;
         }
 
+    @Override
     public Pedido obtenerPedido(Integer numero){
      for (Pedido p : pedidos){
          if (p.verNumero() == numero)

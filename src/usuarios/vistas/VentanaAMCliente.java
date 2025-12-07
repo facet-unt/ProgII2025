@@ -15,7 +15,20 @@ public class VentanaAMCliente extends JDialog {
     public VentanaAMCliente(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
+    
+    
+    //constructor para poder iniciar desde elk JFrame
+    public VentanaAMCliente(java.awt.Frame ventanaPadre, boolean modal) {
+        super(ventanaPadre, modal);
+        initComponents();
+    }
+    
+    
+    
+    
               
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

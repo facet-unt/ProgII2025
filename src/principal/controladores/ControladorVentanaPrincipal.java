@@ -30,8 +30,11 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        new VentanaUsuarios().setVisible(true);
-    }
+        VentanaUsuarios vUsuarios = new VentanaUsuarios();
+        new ControladorUsuarios(vUsuarios); 
+        
+        vUsuarios.setVisible(true);
+    }    
 
     @Override
     public void btnSalirClic(ActionEvent evt) {

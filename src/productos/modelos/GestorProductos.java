@@ -10,6 +10,10 @@ import static Interfaces.IGestorProductos.EXITO_BORRADO;
 import static Interfaces.IGestorProductos.ESCRITURA_ERROR;
 import static Interfaces.IGestorProductos.CREACION_ERROR;
 import static Interfaces.IGestorProductos.CREACION_OK;
+import static Interfaces.IGestorProductos.CREACION_OK;
+import static Interfaces.IGestorProductos.LECTURA_ERROR;
+import static Interfaces.IGestorProductos.LECTURA_OK;
+                
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

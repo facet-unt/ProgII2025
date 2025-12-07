@@ -2,6 +2,7 @@ package principal.vistas;
 
 import javax.swing.*;
 import java.awt.*;
+import usuarios.vistas.VentanaUsuarios;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -14,8 +15,21 @@ public class VentanaPrincipal extends JFrame {
         setTitle("Bar"); // 
         setSize(400, 250);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+         
+        //mensaje de botones
+        btnUsuarios.setToolTipText("Crear usuario"); 
+        btnProductos.setToolTipText("Administrar lista de productos");
+        btnPedidos.setToolTipText("Gestionar los pedidos activos");
+        btnSalir.setToolTipText("Cerrar la aplicación");
+        
+        //subrrayar primer letra
+        btnUsuarios.setMnemonic('U');
+        btnProductos.setMnemonic('P');
+        btnPedidos.setMnemonic('P');
+        btnSalir.setMnemonic('S');
+        
         // Panel principal con GridLayout
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2, 2, 15, 15));
@@ -27,6 +41,8 @@ public class VentanaPrincipal extends JFrame {
         panel.add(btnSalir);
 
         add(panel);
+        
+        
     }
 
     // Métodos getter para respetar encapsulación
