@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JTable;
+import productos.modelos.ModeloTablaUsuarios;
 import usuarios.vistas.VentanaDeUsuarios;
 
 /**
@@ -17,11 +19,13 @@ import usuarios.vistas.VentanaDeUsuarios;
  */
 public class ControladorUsuarios implements IControladorUsuarios{
     private VentanaDeUsuarios ventanaUser;
+    private int filaSeleccionada=-1;
     
     public ControladorUsuarios(JFrame VentanaPrincipal){
         this.ventanaUser=new VentanaDeUsuarios(VentanaPrincipal,this);
         this.ventanaUser.setLocationRelativeTo(null);
         this.ventanaUser.setTitle(TITULO);
+        
         this.ventanaUser.setVisible(true);
     }
     @Override
@@ -41,12 +45,20 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTable tablaUsuario = this.ventanaUser.verTabla();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios();
+        tablaUsuario.setModel(mtu);
+        if (mtu.getRowCount()>0) {
+            if (this.filaSeleccionada == -1) {
+                this.filaSeleccionada =0;
+            }
+            tablaUsuario.setRowSelectionInterval(0, 0);
+        }
     }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.ventanaUser.dispose();
     }
 
     @Override
