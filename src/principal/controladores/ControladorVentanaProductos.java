@@ -4,14 +4,18 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DELETE;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
 import productos.vistas.VentanaProductos;
 
@@ -81,14 +85,30 @@ public class ControladorVentanaProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
+        IControladorAMProducto controladorAMProducto = new ControladorAMProducto(this.ventana);
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
+        IGestorProductos gp = GestorProductos.instanciar();
+        if (this.ventana.verTabla().getRowCount() > 0){
+            IControladorAMProducto controladorAMProducto = new ControladorAMProducto(this.ventana,gp.menu().get(filaSeleccionada));
+        }else{
+            JOptionPane.showMessageDialog(this.ventana,"No hay Productos","Error al modificar un Producto",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
+        IGestorProductos gp = GestorProductos.instanciar();
+        if (this.ventana.verTabla().getRowCount() > 0){
+            int opcion = JOptionPane.showOptionDialog(null,"¿Esta seguro de eliminar este Producto?","Si",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+            if(opcion==0){
+                gp.borrarProducto(gp.menu().get(filaSeleccionada));
+            }
+        }else{
+            JOptionPane.showMessageDialog(this.ventana,"No hay Productos","Error al borrar un Producto",JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void agregarListenerATabla(JTable tablaProductos) {

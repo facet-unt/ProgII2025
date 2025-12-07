@@ -80,10 +80,25 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +183,18 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void textFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldBuscarKeyReleased
         this.controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_textFieldBuscarKeyReleased
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.controlador.btnNuevoClic(evt);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        this.controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarActionPerformed
     
     public JTable verTabla(){
         return this.tablaProductos;
