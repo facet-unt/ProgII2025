@@ -5,9 +5,13 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
+import productos.modelos.GestorProductos;
+import productos.modelos.ModeloTablaProductos;
+import productos.vistas.VentanaProductos;
 
 /**
  *
@@ -15,6 +19,8 @@ import principal.vistas.VentanaPrincipal;
  */
 public class ControladorPrincipal implements IControladorPrincipal{
     static VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+    private GestorProductos gp = GestorProductos.instanciar();
+    
     public static void main(String[] args) {
         ventanaPrincipal.setLocationRelativeTo(null);
         ventanaPrincipal.setTitle(TITULO);
@@ -22,7 +28,11 @@ public class ControladorPrincipal implements IControladorPrincipal{
     }
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        
+        VentanaProductos ventanaProductos = new VentanaProductos(ventanaPrincipal, true);
+        ventanaProductos.setLocationRelativeTo(null);
+        ventanaProductos.setTitle(IControladorProductos.TITULO);
+        ventanaProductos.verTablaProductos().setModel(new ModeloTablaProductos(gp.menu()));
+        ventanaProductos.setVisible(true);
     }
 
     @Override

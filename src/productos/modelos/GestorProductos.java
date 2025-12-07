@@ -72,7 +72,7 @@ public class GestorProductos implements IGestorProductos{
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
-        System.out.println(actualizarArchivo());
+        actualizarArchivo();
 
         return EXITO;
     }
@@ -81,7 +81,7 @@ public class GestorProductos implements IGestorProductos{
     public List<Producto> menu() {
         Collections.sort(productos, Producto.categoriaComp);
         Collections.sort(productos, Producto.descripcionComp);
-        System.out.println(actualizarArchivo());
+        actualizarArchivo();
         return this.productos;
     }
     
@@ -90,7 +90,7 @@ public class GestorProductos implements IGestorProductos{
         int i=0;
         List<Producto> productosPorDescripcion = new ArrayList<>();
         for(Producto p: productos){
-            if(p.verDescripcion().equalsIgnoreCase(descripcion) && p.verDescripcion().contains(descripcion)){
+            if(p.verDescripcion().equalsIgnoreCase(descripcion) || p.verDescripcion().contains(descripcion) || p.verDescripcion().toLowerCase().contains(descripcion)){
                 productosPorDescripcion.add(p);
                 i++;
             }
@@ -342,5 +342,4 @@ public class GestorProductos implements IGestorProductos{
         }
         return "El Archivo fue actualizado correctamente";
     }
-    
 }

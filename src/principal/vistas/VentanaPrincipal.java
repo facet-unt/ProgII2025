@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.border.BevelBorder;
 import principal.controladores.ControladorPrincipal;
 
 /**
@@ -52,6 +53,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("VentanaPrincipal"); // NOI18N
 
+        btnUsuario.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnUsuario.setText("Usuarios");
         btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +62,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnProductos.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnPedidos.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnPedidos.setText("Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +78,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +127,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnProductosClic(evt);
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -144,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn.setBackground(fondo);
         btn.setForeground(texto);
         btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createLineBorder(acento, 1));
+        btn.setBorder(new javax.swing.border.LineBorder(acento.darker(), 2, true));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setOpaque(true);
     }

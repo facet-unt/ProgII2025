@@ -5,9 +5,14 @@
  */
 package productos.vistas;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import productos.modelos.*;
 
 import productos.modelos.Producto;
@@ -24,12 +29,8 @@ public class VentanaAMProducto extends JDialog {
      */
     public VentanaAMProducto(Dialog ventanaPadre) {
         super(ventanaPadre, true);
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+        initComponents(); 
+        ajustarVista();
     }
     
     
@@ -180,6 +181,56 @@ public class VentanaAMProducto extends JDialog {
         }
     }//GEN-LAST:event_btnGuardarClic
 
+    public JComboBox<String> verComboCategorias() {
+        return comboCategorias;
+    }
+
+    public JComboBox<String> verComboEstados() {
+        return comboEstados;
+    }
+
+    public void asignarComboCategorias(JComboBox<String> comboCategorias) {
+        this.comboCategorias = comboCategorias;
+    }
+
+    public void asignarComboEstados(JComboBox<String> comboEstados) {
+        this.comboEstados = comboEstados;
+    }
+    
+    private Color BTN = Color.WHITE; 
+    private Color TEXTO = new Color(0x21,0x42,0x3D); 
+    private Color ACENTO = new Color(0x26,0xA6,0x9A);
+    
+    /**
+     * Metodo para cambiar la vista de los componentes en la ventana
+     */
+    private void ajustarVista(){
+        getContentPane().setBackground(new java.awt.Color(0xF1, 0xF8, 0xF6));
+        configurarBoton(btnCancelar, BTN, TEXTO, ACENTO);
+        configurarBoton(btnGuardar, BTN, TEXTO, ACENTO);
+        comboCategorias.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        comboEstados.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        comboCategorias.setBorder(new javax.swing.border.LineBorder(ACENTO.darker(), 2, true));
+        comboEstados.setBorder(new javax.swing.border.LineBorder(ACENTO.darker(), 2, true));
+        comboCategorias.setUI(new BasicComboBoxUI());
+        comboEstados.setUI(new BasicComboBoxUI());
+    }
+
+    /**
+     * Metodo para cambiar los colores del boton
+     * @param btn
+     * @param fondo
+     * @param texto
+     * @param acento 
+     */
+    private void configurarBoton(JButton btn, Color fondo, Color texto, Color acento) {
+        btn.setBackground(fondo);
+        btn.setForeground(texto);
+        btn.setFocusPainted(false);
+        btn.setBorder(new javax.swing.border.LineBorder(acento.darker(), 2, true));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setOpaque(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
