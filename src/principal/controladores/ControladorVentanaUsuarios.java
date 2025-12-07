@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.GestorUsuarios;
@@ -43,11 +44,24 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void btnModificarClic(ActionEvent evt) {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
-        IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,gu.verUsuarios().get(filaSeleccionada));
+        if (this.ventana.verTabla().getRowCount() > 0){
+            IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,gu.verUsuarios().get(filaSeleccionada));
+        }else{
+            IControladorAMUsuario controladorAMUsuario = new ControladorAMUsuario(this.ventana,null);
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        if (this.ventana.verTabla().getRowCount() > 0){
+            int opcion = JOptionPane.showOptionDialog(null,"¿Esta seguro de eliminar este Usuario?","Si",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+            if(opcion==0){
+                gu.borrarUsuario(gu.verUsuarios().get(filaSeleccionada));
+            }
+        }else{
+            JOptionPane.showMessageDialog(this.ventana,"No hay Usuarios","Error al borrar un Usuario",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
