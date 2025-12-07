@@ -20,7 +20,7 @@ import productos.modelos.Producto;
     public List<Producto> menu();
     public List<Producto> buscarProductos(String descripcion);
     public String borrarProducto(Producto producto);
-    public String existeEsteProducto(Producto producto);
+    public boolean existeEsteProducto(Producto producto);
     public List<Producto> verProductosPorCategoria(Categoria categoria); 
     public Producto obtenerProducto(Integer codigo);
 
