@@ -84,6 +84,10 @@ public abstract class Usuario {
             this.nombre = nombre;
         }
     }
+   
+    public Perfil obtenerPerfil() {
+        return perfil;
+    }
 
     @Override
     public int hashCode() {

@@ -55,6 +55,11 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
                 textApellidoActionPerformed(evt);
             }
         });
+        textApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textApellidoKeyTyped(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +200,10 @@ public class VentanaUsuarios extends  javax.swing.JDialog {
     private void textApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textApellidoActionPerformed
         this.controlador.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_textApellidoActionPerformed
+
+    private void textApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textApellidoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textApellidoKeyTyped
     public javax.swing.JTable getTabla() {
         return jTable1;
     }

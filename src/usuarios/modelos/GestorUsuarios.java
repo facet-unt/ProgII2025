@@ -5,6 +5,9 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
 
@@ -16,6 +19,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     private ArrayList<Usuario> usuario = new ArrayList<>();
     private static GestorUsuarios instancia;
+    private final String NOMBRE_ARCHIVO = "usuarios.txt";
 
     private GestorUsuarios() {
 
@@ -133,5 +137,19 @@ public class GestorUsuarios implements IGestorUsuarios {
             return ERROR_PERFIL;
         }
         return VALIDACION_EXITO;
+    }
+
+    @Override
+    public void guardarArchivo() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
+            for (Usuario u : usuario) {
+                String linea = u.verCorreo() + "," + u.verClave() + ","
+                        + u.verApellido() + "," + u.verNombre() + "," + u.obtenerPerfil().toString();
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar archivo de usuarios");
+        }
     }
 }

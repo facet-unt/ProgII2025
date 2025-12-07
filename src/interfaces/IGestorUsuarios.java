@@ -25,10 +25,9 @@ public interface IGestorUsuarios {
     public static final String VALIDACION_EXITO = "Los datos del usuario soncorrectos";
     public static final String ERROR_BORRAR_USUARIO = "No se pudo borrar el usuario por que hay un pedido asocidado";
     public static final String USUARIO_BORRADO = "Usuario Borrado";
-    
 
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
-    
+
     public List<Usuario> verUsuarios();
 
     public List<Usuario> buscarUsuarios(String apellido);
@@ -38,4 +37,7 @@ public interface IGestorUsuarios {
     public boolean existeEsteUsuario(Usuario usuario);
 
     public Usuario obtenerUsuario(String correo);
+
+    public void guardarArchivo();
+
 }
