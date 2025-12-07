@@ -21,6 +21,8 @@ public class ControladorCrearProductos implements IControladorAMProducto {
 
     public ControladorCrearProductos() {
         ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
+        ventanaProductos.setAlwaysOnTop(false);
+        ventanaProductos.toBack();
     }
     
     public static ControladorCrearProductos instanciar() {

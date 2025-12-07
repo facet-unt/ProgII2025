@@ -28,11 +28,15 @@ public class VentanaCrearProductos extends JDialog {
         super(parent, true);
         initComponents();
         this.setLocationRelativeTo(parent);
-        this.setTitle(TITULO_NUEVO);        
+        this.setTitle(TITULO_NUEVO);    
+        this.setVisible(true); 
+        this.toFront();
+        this.requestFocus();
+        this.requestFocusInWindow();
 //        this.comboCategorias.setModel(new ModeloComboCategorias());
 //        this.comboEstados.setModel(new ModeloComboEstados());
         this.setSize(300, 400);
-        this.setVisible(true); 
+
     }
     
       
@@ -211,6 +215,7 @@ public class VentanaCrearProductos extends JDialog {
     }//GEN-LAST:event_comboCategoriasActionPerformed
 
     private void ventanGanaFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanGanaFoco
+        this.setAlwaysOnTop(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_ventanGanaFoco
 

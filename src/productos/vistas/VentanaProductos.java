@@ -164,6 +164,7 @@ public class VentanaProductos extends javax.swing.JDialog {
 
     private void btnNuevo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo
        controlador.btnNuevoClic(evt);
+       
     }//GEN-LAST:event_btnNuevo
     /**
      * @param args the command line arguments
