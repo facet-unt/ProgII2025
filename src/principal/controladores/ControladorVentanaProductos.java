@@ -9,6 +9,7 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
 import productos.vistas.VentanaProductos;
 
@@ -26,7 +27,6 @@ public class ControladorVentanaProductos implements IControladorProductos {
         this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
-        
         
     }
 

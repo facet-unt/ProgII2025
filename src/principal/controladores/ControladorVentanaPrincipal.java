@@ -38,7 +38,6 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     public void btnProductosClic(ActionEvent evt) {
         IControladorProductos controladorVentanaProductos = new ControladorVentanaProductos();
     }
-
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
        IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios();
