@@ -53,7 +53,6 @@ public class VentanaAMCliente extends JDialog {
 
         txtNombre.setToolTipText("Nombres ");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el cliente");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +61,6 @@ public class VentanaAMCliente extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {

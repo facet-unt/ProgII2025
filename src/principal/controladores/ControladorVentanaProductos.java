@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package principal.controladores;
+import static interfaces.IControladorPrincipal.TITULO;
 import interfaces.IControladorProductos;
 import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
@@ -18,12 +19,11 @@ import productos.vistas.VentanaProductos;
 public class ControladorVentanaProductos implements IControladorProductos {
 
     private VentanaProductos ventana;
-    IGestorProductos gestorproductos = GestorProductos.instanciar();
-    
     
     public ControladorVentanaProductos() {
         
-        this.ventana = new VentanaProductos(this);
+        this.ventana = new VentanaProductos(null, true,this);
+        this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
         
@@ -39,7 +39,7 @@ public class ControladorVentanaProductos implements IControladorProductos {
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        
+        this.ventana.dispose();
     }
 
     @Override
@@ -63,5 +63,7 @@ public class ControladorVentanaProductos implements IControladorProductos {
     }
 
     @Override
-    public void btnBorrarClic(ActionEvent evt) {         
+    public void btnBorrarClic(ActionEvent evt) { 
+        
+    }
 }
