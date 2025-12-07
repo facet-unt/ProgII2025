@@ -102,15 +102,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-this.controlador.btnSalirClic(evt);
+        this.controlador.btnSalirClic(evt);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-this.controlador.btnUsuariosClic(evt);
+        this.controlador.btnUsuariosClic(evt);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-this.controlador.btnProductosClic(evt);
+        this.controlador.btnProductosClic(evt);
 
     }//GEN-LAST:event_btnProductosActionPerformed
 
