@@ -41,7 +41,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         if (this.obtenerUsuario(correo) != null)
          {
              
-         return ("No se pudo realizar la operación: el correo " + correo + " ya está registrado.");
+         return USUARIO_EXISTENTE;
          
          }
         
@@ -59,11 +59,11 @@ public class GestorUsuarios implements IGestorUsuarios{
                this.escribirArchivo(NOMBRE_ARCHIVO, c);
                usuarios.add(c);
                
-            return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+            return OPERACION_EXITOSA; 
            }
             else
                 {
-                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+                    return OPERACION_FALLIDA;
                 }
         }
         else if(perfil == EMPLEADO)
@@ -79,11 +79,11 @@ public class GestorUsuarios implements IGestorUsuarios{
                 this.escribirArchivo(NOMBRE_ARCHIVO, em);
                 usuarios.add(em);
                     
-                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+                return OPERACION_EXITOSA; 
                 }
             else
                 {
-                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+                    return OPERACION_FALLIDA;
                 }
         } 
         else if(perfil == ENCARGADO)
@@ -99,16 +99,16 @@ public class GestorUsuarios implements IGestorUsuarios{
                 this.escribirArchivo(NOMBRE_ARCHIVO, en);
                 usuarios.add(en);
                  
-                return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
+                return OPERACION_EXITOSA; 
                 }
             else
                 {
-                    return ("No se pudo realizar la Operación, ingrese valores válidos");
+                    return OPERACION_FALLIDA;
                 }
         } 
         else
         {
-            return ("No se pudo realizar la Operación, ingrese valores válidos");
+            return OPERACION_FALLIDA;
         }
      } 
          

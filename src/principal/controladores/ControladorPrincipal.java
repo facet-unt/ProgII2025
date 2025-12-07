@@ -6,6 +6,7 @@ package principal.controladores;
 
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;
+import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import principal.vistas.VentanaPrincipal;
 
@@ -32,7 +33,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorUsuarios controladorU = new ControladorUsuarios(ventana);
     }
 
 //    @Override

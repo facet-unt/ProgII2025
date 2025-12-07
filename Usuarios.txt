@@ -7,3 +7,6 @@ Empleado-ApellidoEmpleado3-NombreEmpleado3-empleado3@bar.com-claveEmpleado3
 Encargado-ApellidoEncargado1-NombreEncargado1-encargado1@bar.com-claveEncargado1
 Encargado-ApellidoEncargado2-NombreEncargado2-encargado2@bar.com-claveEncargado2
 Encargado-ApellidoEncargado3-NombreEncargado3-encargado3@bar.com-claveEncargado3
+Cliente-Mensege-Lyan-lmensege@gmail.com-123456
+Cliente-Mensege-Lyan-lyan.mensege38@gmail.com-123456
+Cliente-Ortega-Rocio-rocioorteg@gmail.com-123

@@ -14,6 +14,7 @@ public interface IGestorUsuarios {
     /* Mensajes */
     public static final String USUARIO_TIENE_PEDIDO = "El usuario tiene un pedido en curso ";
     public static final String OPERACION_FALLIDA = "No pudo realizarse la operacion ";
+    public static final String USUARIO_EXISTENTE = "No pudo realizarse la operacion. El usuario ya existe en el sistema";
     public static final String OPERACION_EXITOSA = "Operacion exitosa ";
     public static final String USUARIO_INEX = "El usuario no existe ";
     public static final String CREACION_OK = "Se pudo crear el archivo de usuarios";
