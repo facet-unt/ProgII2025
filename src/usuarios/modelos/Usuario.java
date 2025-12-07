@@ -4,7 +4,6 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
@@ -19,12 +18,14 @@ public abstract class Usuario implements Comparable<Usuario> {
     private String clave;
     private String apellido;
     private String nombre;
+    private Perfil perfil;
 
-    public Usuario(String correo, String clave, String apellido, String nombre) {
+    public Usuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
+        this.perfil = perfil;
 
     }
 
@@ -67,6 +68,14 @@ public abstract class Usuario implements Comparable<Usuario> {
         if (nombre != null && !nombre.isBlank()) {
             this.nombre = nombre;
         }
+    }
+    
+    public Perfil verPerfil(){
+        return this.perfil;
+    }
+    
+    public void asignarPerfil(Perfil perfil){
+        this.perfil=perfil;
     }
 
     public void mostrar() {

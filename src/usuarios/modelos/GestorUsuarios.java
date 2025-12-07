@@ -5,19 +5,31 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import static interfaces.IGestorUsuarios.ERROR_PERFIL;
+import static interfaces.IGestorUsuarios.USUARIOS_DUPLICADOS;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import static usuarios.modelos.Perfil.CLIENTE;
+import static usuarios.modelos.Perfil.EMPLEADO;
+import static usuarios.modelos.Perfil.ENCARGADO;
 
 public class GestorUsuarios implements IGestorUsuarios {
 
     List<Usuario> usuarios = new ArrayList();
-
+    File archivoProductos = new File(NOMBREARCHIVO);
     private static GestorUsuarios instancia;
 
     private GestorUsuarios() {
-
+        cargarArchivo();
     }
 
     public static GestorUsuarios instanciar() {
@@ -42,6 +54,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
 
         usuarios.remove(usuario);
+        reescribirArchivo();
         return EXITO_BORRADO;
     }
 
@@ -70,6 +83,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(E);
+                guardarArchivo(E);
                 break;
             }
 
@@ -79,6 +93,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(e);
+                guardarArchivo(e);
                 break;
             }
 
@@ -88,6 +103,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(c);
+                guardarArchivo(c);
                 break;
             }
             default -> {
@@ -100,6 +116,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public List<Usuario> verUsuarios() {
         Collections.sort(usuarios);
+        reescribirArchivo();
         return usuarios;
     }
 
@@ -133,4 +150,118 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
+
+    private void creacionArchivo() {
+        if (!archivoProductos.exists()) {
+            try {
+                archivoProductos.createNewFile();
+                System.out.println(CREACION_OK);
+            } catch (IOException e) {
+                System.out.println(CREACION_ERROR);
+            }
+        }
+    }
+
+    private void guardarArchivo(Usuario unUsuario) {
+        creacionArchivo();
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos, true))) {
+            escritura.write(unUsuario.verCorreo());
+            escritura.write(SEPARADOR);
+            escritura.write(unUsuario.verApellido());
+            escritura.write(SEPARADOR);
+            escritura.write(unUsuario.verNombre());
+            escritura.write(SEPARADOR);
+            escritura.write(unUsuario.verPerfil().toString());
+            escritura.write(SEPARADOR);
+            escritura.write(unUsuario.verClave());
+            escritura.newLine();
+
+            System.out.println(ESCRITURA_OK);
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
+        }
+
+    }
+
+    private void reescribirArchivo() {
+        creacionArchivo();
+        try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
+
+            for (Usuario u : usuarios) {
+
+                escritura.write(u.verCorreo());
+                escritura.write(SEPARADOR);
+                escritura.write(u.verApellido());
+                escritura.write(SEPARADOR);
+                escritura.write(u.verNombre());
+                escritura.write(SEPARADOR);
+                escritura.write(u.verPerfil().toString());
+                escritura.write(SEPARADOR);
+                escritura.write(u.verClave());
+                escritura.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
+        }
+    }
+
+    private void cargarArchivo() {
+        creacionArchivo();
+        usuarios.clear();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoProductos))) {
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(SEPARADOR);
+                String correo = partes[0];
+
+                String apellido = partes[1];
+
+                String nombre = partes[2];
+
+                String perfilString = partes[3];
+                Perfil perfil = null;
+                for (Perfil p : Perfil.values()) {
+                    if (perfilString.equals(p.verValor())) {
+                        perfil = p;
+                    }
+
+                }
+                if (perfil == null) {
+                    System.out.println(LECTURA_ERROR);
+                    continue;
+                }
+                String clave = partes[4];
+
+                switch (perfil) {
+            case ENCARGADO -> {
+                Encargado E = new Encargado(correo, clave, apellido, nombre);
+                usuarios.add(E);
+                break;
+            }
+
+            case EMPLEADO -> {
+                Empleado e = new Empleado(correo, clave, apellido, nombre);
+                usuarios.add(e);
+                break;
+            }
+
+            case CLIENTE -> {
+                Cliente c = new Cliente(correo, clave, apellido, nombre);
+                usuarios.add(c);
+                break;
+            }
+            default -> {
+               break;
+            }
+        }
+                System.out.println(LECTURA_OK);
+            }
+        } catch (IOException e) {
+            System.out.println(LECTURA_ERROR);
+        }
+    }
+
 }

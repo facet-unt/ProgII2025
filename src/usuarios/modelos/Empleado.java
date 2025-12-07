@@ -4,7 +4,6 @@
  */
 package usuarios.modelos;
 
-import java.util.ArrayList;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
@@ -17,7 +16,7 @@ public class Empleado extends Usuario {
 
     //constructor
     public Empleado(String correo, String clave, String apellido, String nombre) {
-        super(correo, clave, apellido, nombre);
+        super(correo, clave, apellido, nombre, Perfil.EMPLEADO);
     }
 
     //metodos
