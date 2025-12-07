@@ -28,6 +28,22 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         initComponents();
         this.controlador = controlador;
     }
+    
+    // Metodo para limpiar la ventana antes de mostrarla al intentar crear un nuevo usuario
+    
+    public void LimpiarVentana() {
+        this.txtApellido.setText("");
+        this.txtNombre.setText("");
+        this.txtCorreo.setText("");
+        this.passClave.setText("");
+        this.passClaveRepetida.setText("");
+    }
+    
+    // Metodo para hacer el correo ineditable en caso de modigicar
+    
+    public void correoEditable(boolean editar) {
+        this.txtCorreo.setEnabled(editar);
+    }
 
     // Metodo para implementar el ModeloComboPerfil
     
@@ -61,7 +77,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public JComboBox<String> verComboPerfiles() {
         return comboPerfiles;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

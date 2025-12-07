@@ -72,13 +72,20 @@ public class ControladorUsuarios implements IControladorUsuarios{
     
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        IControladorAMUsuario controladorNuevoUsuario = ControladorAMUsuario.instanciar();
+        IControladorAMUsuario controladorNuevoUsuario = ControladorAMUsuario.instanciar(null);
         this.actualizarTabla();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this.filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this.ventana, "Seleccione un usuario en la tabla para modificar", "Atencion", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Usuario usuarioAModificar = this.modeloTabla.obtenerUsuarioEnFila(filaSeleccionada);
+        
+        IControladorAMUsuario controladorModificarUsuario = ControladorAMUsuario.instanciar(usuarioAModificar);
     }
 
     @Override

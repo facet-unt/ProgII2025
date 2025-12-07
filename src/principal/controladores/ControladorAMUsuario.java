@@ -8,9 +8,11 @@ import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloComboPerfil;
 import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaAMUsuario;
 
 /**
@@ -22,10 +24,10 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
     private static ControladorAMUsuario instancia;
     private VentanaAMUsuario ventana;
     private ModeloComboPerfil modeloPerfil;
+    private Usuario usuarioModificar = null;
     
     private ControladorAMUsuario() {
         this.ventana = new VentanaAMUsuario(this);
-        this.ventana.setTitle(TITULO_NUEVO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setResizable(false);
         
@@ -33,11 +35,32 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         this.ventana.definirComboPerfil(modeloPerfil);
     }
     
-    public static ControladorAMUsuario instanciar() {
+    public static ControladorAMUsuario instanciar(Usuario usuario) {
         if (instancia == null) {
             instancia = new ControladorAMUsuario();
         }
         
+        instancia.usuarioModificar = usuario;
+        
+        if (usuario == null) {
+            instancia.ventana.setTitle(TITULO_NUEVO);
+            instancia.ventana.LimpiarVentana();
+            instancia.ventana.correoEditable(true);
+        }
+        else {
+            instancia.ventana.setTitle(TITULO_MODIFICAR);
+            
+            // LLeno los datos del usuario
+            instancia.ventana.verTxtNombre().setText(usuario.verNombre());
+            instancia.ventana.verTxtApellido().setText(usuario.verApellido());
+            instancia.ventana.verTxtCorreo().setText(usuario.verCorreo());
+            instancia.ventana.verPassClave().setText(usuario.verClave());
+            instancia.ventana.verPassClaveRepetida().setText(usuario.verClave());
+            
+            instancia.ventana.correoEditable(false);
+        }
+        
+
         instancia.ventana.setVisible(true);
         
         return instancia;
@@ -56,7 +79,13 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         
         String resultado = gu.crearUsuario(correo, clave, apellido, nombre, perfil, claveRepetida);
         
-        System.out.println(resultado);
+        if (!resultado.equals(IGestorUsuarios.EXITO)){
+            JOptionPane.showMessageDialog(this.ventana, resultado, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this.ventana, resultado, "Exito", JOptionPane.INFORMATION_MESSAGE);
+            this.ventana.LimpiarVentana();
+        } 
     }
 
     @Override
