@@ -28,7 +28,6 @@ public class ControladorAMProducto implements IControladorAMProducto {
         this.Ventana.setTitle(TITULO_NUEVO);
         this.Ventana.verBotonG().setEnabled(false);
         this.Ventana.setVisible(true);
-        
 
     }
 
@@ -55,26 +54,23 @@ public class ControladorAMProducto implements IControladorAMProducto {
         float precio = Float.parseFloat(this.Ventana.verTxtprecio().getText().trim());
         Categoria categoria = ((ModeloComboCategorias) this.Ventana.verComboCategorias().getModel()).obtenerCategoria();
         Estado estado = ((ModeloComboEstados) this.Ventana.verComboEstados().getModel()).obtenerEstado();
-
         IGestorProductos gp = GestorProductos.instanciar();
         String resultado;
         if (this.amProducto == null) {
             resultado = gp.crearProducto(codigo, descripcion, precio, categoria, estado);
             if (!resultado.equals(IGestorProductos.EXITO)) {
                 JOptionPane.showMessageDialog(null, resultado, TITULO_NUEVO, JOptionPane.ERROR_MESSAGE);
-
             } else {
                 this.Ventana.dispose();
             }
         } else {
             resultado = gp.modificarProducto(amProducto, codigo, descripcion, precio, categoria, estado);
-            //System.out.println(resultado);
             if (!resultado.equals(IGestorProductos.EXITO)) {
                 JOptionPane.showMessageDialog(null, resultado, TITULO_NUEVO, JOptionPane.ERROR_MESSAGE);
             } else {
                 this.Ventana.dispose();
             }
-            //System.out.println(resultado);
+
         }
 
     }
@@ -113,19 +109,7 @@ public class ControladorAMProducto implements IControladorAMProducto {
         boolean precioVacio = this.Ventana.verTxtprecio().getText().trim().isEmpty();
 
         this.Ventana.verBotonG().setEnabled(!(codigoVacio || descripcionVacia || precioVacio));
-
-//        pintarCampo(this.Ventana.verTxtcodigo(), codigoVacio);
-//        pintarCampo(this.Ventana.verTxtDescripcion(), descripcionVacia);
-//        pintarCampo(this.Ventana.verTxtprecio(), precioVacio);
     }
-
-//    private void pintarCampo(javax.swing.JTextField campo, boolean vacio) {
-//        if (vacio) {
-//            campo.setBackground(new java.awt.Color(255, 180, 180)); // rojo claro
-//        } else {
-//            campo.setBackground(java.awt.Color.WHITE);
-//        }
-//    }
 
     private void configurarCampos() {
         if (this.amProducto != null) {

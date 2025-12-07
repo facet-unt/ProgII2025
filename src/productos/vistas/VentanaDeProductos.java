@@ -14,8 +14,7 @@ import javax.swing.JTextField;
  * @author karen
  */
 public class VentanaDeProductos extends javax.swing.JDialog {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaDeProductos.class.getName());
+
     private IControladorProductos controladorProductos;
 
     /**
@@ -27,14 +26,14 @@ public class VentanaDeProductos extends javax.swing.JDialog {
     public VentanaDeProductos(java.awt.Frame parent, IControladorProductos controladorProductos) {
         super(parent, true);
         initComponents();
-        
+
         addWindowFocusListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 ventanaGanarFoco(evt);
             }
         });
-        
+
         this.controladorProductos = controladorProductos;
     }
 
@@ -114,11 +113,6 @@ public class VentanaDeProductos extends javax.swing.JDialog {
                 "Categoria", "Descripción", "Precio"
             }
         ));
-        tablaProductos.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tablaProductosFocusGained(evt);
-            }
-        });
         jScrollPane1.setViewportView(tablaProductos);
 
         jLabel1.setText("Menú");
@@ -139,14 +133,14 @@ public class VentanaDeProductos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnVolver)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,14 +148,14 @@ public class VentanaDeProductos extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuscar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnNuevo)
                         .addGap(18, 18, 18)
                         .addComponent(btnModificar)
@@ -196,32 +190,25 @@ public class VentanaDeProductos extends javax.swing.JDialog {
         this.controladorProductos.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void tablaProductosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaProductosFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablaProductosFocusGained
-
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         this.controladorProductos.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_txtDescripcionKeyReleased
-    
+
     private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
         this.controladorProductos.ventanaObtenerFoco(evt);
     }
-    
+
     public JTable verTabla() {
         return this.tablaProductos;
     }
-    
+
     public JTextField verDescripcion() {
         return this.txtDescripcion;
     }
-    
-    public JButton verBotonB(){
+
+    public JButton verBotonB() {
         return this.btnBuscar;
     }
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

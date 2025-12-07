@@ -14,12 +14,8 @@ import javax.swing.JTextField;
  */
 public class VentanaDeUsuarios extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaDeUsuarios.class.getName());
     private IControladorUsuarios controladorUsuarios;
 
-    /**
-     * Creates new form VentanaDeProductos
-     */
     /**
      * Creates new form VentanaDeProductos
      *
@@ -29,14 +25,14 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
     public VentanaDeUsuarios(java.awt.Frame parent, IControladorUsuarios controladorUsuarios) {
         super(parent, true);
         initComponents();
-        
+
         addWindowFocusListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 ventanaGanarFoco(evt);
             }
         });
-        
+
         this.controladorUsuarios = controladorUsuarios;
     }
 
@@ -62,6 +58,7 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -104,12 +101,6 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
             }
         });
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Apellido:");
 
         btnVolver.setText("Volver");
@@ -148,27 +139,25 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnBorrar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnVolver)
+                        .addComponent(btnNuevo)
+                        .addComponent(btnBorrar)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.controladorUsuarios.btnNuevoClic(evt);
@@ -179,7 +168,7 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-         this.controladorUsuarios.btnBorrarClic(evt);
+        this.controladorUsuarios.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -189,18 +178,17 @@ public class VentanaDeUsuarios extends javax.swing.JDialog {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.controladorUsuarios.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
-     private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
+    private void ventanaGanarFoco(java.awt.event.WindowEvent evt) {
         this.controladorUsuarios.ventanaObtenerFoco(evt);
     }
-    public JTable verTabla(){
+
+    public JTable verTabla() {
         return this.tablaUsuarios;
     }
-    public JTextField verTxtapellido(){
+
+    public JTextField verTxtapellido() {
         return this.txtApellido;
     }
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

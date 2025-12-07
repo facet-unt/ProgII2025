@@ -17,18 +17,20 @@ import productos.modelos.ModeloComboPerfil;
  * @author Erika
  */
 public class VentanaAMUsuario extends javax.swing.JDialog {
+
     private IControladorAMUsuario controlador;
 
     /**
      * Creates new form VentanaAMUsuario
+     *
      * @param ventanaPadre
      * @param controlador
      */
-    public VentanaAMUsuario(JDialog ventanaPadre, IControladorAMUsuario controlador){
+    public VentanaAMUsuario(JDialog ventanaPadre, IControladorAMUsuario controlador) {
         super(ventanaPadre, true);
         initComponents();
         this.comboPerfil.setModel(new ModeloComboPerfil());
-        this.controlador=controlador;
+        this.controlador = controlador;
     }
 
     /**
@@ -103,11 +105,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
             }
         });
 
-        passClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passClaveActionPerformed(evt);
-            }
-        });
         passClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 passClaveKeyReleased(evt);
@@ -208,44 +205,45 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void passClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passClaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passClaveActionPerformed
-
-    private void passClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyReleased
-
-        this.controlador.passClavePresionarTecla(evt);
-    }//GEN-LAST:event_passClaveKeyReleased
-
     private void passConfirmarClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passConfirmarClaveKeyReleased
         this.controlador.passClaveRepetidaPresionarTecla(evt);
     }//GEN-LAST:event_passConfirmarClaveKeyReleased
 
-    public JButton verBotonG(){
+    private void passClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyReleased
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClaveKeyReleased
+
+    public JButton verBotonG() {
         return this.btnGuardar;
     }
-    public JTextField verTxtApellido(){
+
+    public JTextField verTxtApellido() {
         return this.txtApellido;
     }
-    public JTextField verTxtNombre(){
+
+    public JTextField verTxtNombre() {
         return this.txtNombre;
     }
-    public JPasswordField verTxtClave(){
+
+    public JPasswordField verTxtClave() {
         return this.passClave;
     }
-    public JTextField verTxtCorreo(){
+
+    public JTextField verTxtCorreo() {
         return this.txtCorreo;
     }
-    public JPasswordField verTxtConfirmacionClave(){
+
+    public JPasswordField verTxtConfirmacionClave() {
         return this.passConfirmarClave;
     }
-    public JComboBox verComboPerfil(){
+
+    public JComboBox verComboPerfil() {
         return this.comboPerfil;
     }
     /**
      * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

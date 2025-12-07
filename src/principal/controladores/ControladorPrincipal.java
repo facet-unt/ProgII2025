@@ -38,9 +38,9 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnSalirClic(ActionEvent evt) {
-        int opcion = JOptionPane.showConfirmDialog(VentanaPrincipal,"¿Seguro que desea salir?","Confirmación",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        int opcion = JOptionPane.showConfirmDialog(VentanaPrincipal, "¿Seguro que desea salir?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (opcion == JOptionPane.YES_OPTION) {
-        System.exit(0);
+            System.exit(0);
         }
     }
 

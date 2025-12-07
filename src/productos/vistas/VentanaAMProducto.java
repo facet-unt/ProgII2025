@@ -12,26 +12,24 @@ import javax.swing.JDialog;
 import javax.swing.JTextField;
 import productos.modelos.*;
 
-
-
-
 public class VentanaAMProducto extends JDialog {
+
     private IControladorAMProducto controlador;
-    
+
     /**
      * Constructor
-     * @param ventanaPadre ventana padre 
+     *
+     * @param ventanaPadre ventana padre
      * @param controlador
      */
-    public VentanaAMProducto(JDialog ventanaPadre, IControladorAMProducto controlador){
+    public VentanaAMProducto(JDialog ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstados.setModel(new ModeloComboEstados());
-        this.controlador=controlador;
+        this.controlador = controlador;
     }
-    
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,7 +73,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el producto");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +81,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,14 +155,14 @@ public class VentanaAMProducto extends JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(comboCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6))
                     .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,11 +173,11 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-       this.controlador.btnGuardarClic(evt);
+        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
     private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
-         this.controlador.txtCodigoPresionarTecla(evt);
+        this.controlador.txtCodigoPresionarTecla(evt);
     }//GEN-LAST:event_txtCodigoKeyReleased
 
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
@@ -191,26 +187,28 @@ public class VentanaAMProducto extends JDialog {
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
         this.controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyReleased
-     
-    public JTextField verTxtcodigo(){
+
+    public JTextField verTxtcodigo() {
         return this.txtCodigo;
     }
-    
-    public JTextField verTxtDescripcion(){
+
+    public JTextField verTxtDescripcion() {
         return this.txtDescripcion;
     }
-    
-    public JTextField verTxtprecio(){
+
+    public JTextField verTxtprecio() {
         return this.txtPrecio;
     }
-    public JComboBox verComboCategorias(){
+
+    public JComboBox verComboCategorias() {
         return this.comboCategorias;
     }
-    
-    public JComboBox verComboEstados(){
+
+    public JComboBox verComboEstados() {
         return this.comboEstados;
     }
-    public JButton verBotonG(){
+
+    public JButton verBotonG() {
         return this.btnGuardar;
     }
 
