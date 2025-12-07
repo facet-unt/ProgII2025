@@ -21,24 +21,23 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     public ControladorVentanaPrincipal() {
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setLocationRelativeTo(null);
-        this.ventana.setVisible(true);
         this.ventana.setTitle(TITULO);
+        this.ventana.setVisible(true);
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios();
+        IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios(this.ventana);
     }
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorProductos = new ControladorVentanaProductos();
+        IControladorProductos controladorProductos = new ControladorVentanaProductos(this.ventana);
     }
     
     @Override
     public void btnSalirClic(ActionEvent evt) {
-        int opcion = JOptionPane.showOptionDialog(null,"¿Desea salir del programa?","Salir",
-        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+        int opcion = JOptionPane.showOptionDialog(null,"¿Desea salir del programa?","Salir",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
         if(opcion==0)
             this.ventana.dispose();
     }

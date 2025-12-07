@@ -23,4 +23,13 @@ public enum Perfil {
     public String toString() {
         return this.valor;
     }
+    
+    public static Perfil verPerfil(String p){
+        for(Perfil pe: Perfil.values()){
+            if (p.equals(pe.valor)) {
+                return pe;
+            }
+        }
+        return null;
+    }
 }

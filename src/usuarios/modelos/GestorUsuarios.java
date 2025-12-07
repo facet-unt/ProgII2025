@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import principal.controladores.ControladorVentanaPrincipal;
 
 /**
  *
@@ -33,8 +35,9 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     public static GestorUsuarios instanciar() {
-        if (instancia == null)
+        if (instancia == null){
             instancia = new GestorUsuarios();
+        }
         System.out.println(crearArchivo());
         return instancia;
     }
@@ -46,7 +49,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             return ERROR_CORREO;
         }
         for(Usuario u1: usuarios){
-            if(u1.verCorreo()==correo){
+            if(u1.verCorreo().equals(correo)){
                 return USUARIOS_DUPLICADOS;
             }
         }
@@ -70,21 +73,29 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
         if(perfil==Perfil.CLIENTE){
             Usuario u = new Cliente(correo,clave,apellido,nombre);
-            return agregarUsuario(u);
+            usuarios.add(u);
         }
         if(perfil==Perfil.EMPLEADO){
             Usuario u = new Empleado(correo,clave,apellido,nombre);
-            return agregarUsuario(u);
+            usuarios.add(u);
         }
         if(perfil==Perfil.ENCARGADO){
             Usuario u = new Encargado(correo,clave,apellido,nombre);
-            return agregarUsuario(u);
+            usuarios.add(u);
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, false))) {
+            for(Usuario u1: usuarios){
+                this.agregarUsuario(u1);
+            }
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
         }
         return EXITO;
+        
     }
     
     public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        this.usuarios = this.leerArchivo();
+        this.usuarios = this.verUsuarios();
         if(correo == null||!(correo.contains("@"))){
             return ERROR_CORREO;
         }
@@ -120,6 +131,13 @@ public class GestorUsuarios implements IGestorUsuarios{
             Usuario usuarioModificado = new Encargado(correo,clave,apellido,nombre);
             usuarios.set(usuarios.indexOf(u), usuarioModificado);
         }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, false))) {
+            for(Usuario u1: usuarios){
+                this.agregarUsuario(u1);
+            }
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
+        }
         return EXITO;
     }
     
@@ -139,6 +157,7 @@ public class GestorUsuarios implements IGestorUsuarios{
                 usuariosEncontrados.add(u);
             }
         }
+        Collections.sort(usuariosEncontrados);
         return usuariosEncontrados;
     }
     
@@ -155,7 +174,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     @Override
     public Usuario obtenerUsuario(String correo){
-        this.usuarios = this.leerArchivo();
+        this.usuarios = this.verUsuarios();
         for(Usuario u: usuarios){
             if(u.verCorreo().equals(correo)){
                 return u;
@@ -164,14 +183,27 @@ public class GestorUsuarios implements IGestorUsuarios{
         return null;
     }
 
+    
     @Override
     public String borrarUsuario(Usuario usuario) {
+        this.usuarios = this.verUsuarios();
+        if(usuario==null){
+            return USUARIO_INEXISTENTE;
+        }
         GestorPedidos gp = GestorPedidos.instanciar();
         if(!(usuario instanceof Cliente)){
-            return ERROR_PERFIL;
-        }
-        if(!(gp.hayPedidosConEsteCliente((Cliente)usuario))){
             usuarios.remove(usuario);
+        }else{
+            if(!(gp.hayPedidosConEsteCliente((Cliente)usuario))){
+                usuarios.remove(usuario);
+            }
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, false))) {
+            for(Usuario u: usuarios){
+                this.agregarUsuario(u);
+            }
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
         }
         return EXITO;
     }
@@ -188,15 +220,18 @@ public class GestorUsuarios implements IGestorUsuarios{
     private String agregarUsuario(Usuario u){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, true))){
             StringBuilder sb = new StringBuilder();
-            if(u instanceof Cliente)
-                sb.append(Perfil.CLIENTE).append(SEPARADOR);
-            if(u instanceof Empleado)
-                sb.append(Perfil.EMPLEADO).append(SEPARADOR);
-            if(u instanceof Encargado)
-                sb.append(Perfil.ENCARGADO).append(SEPARADOR);
+            if(u instanceof Cliente){
+                sb.append(Perfil.CLIENTE.toString()).append(SEPARADOR);
+            }
+            if(u instanceof Empleado){
+                sb.append(Perfil.EMPLEADO.toString()).append(SEPARADOR);
+            }
+            if(u instanceof Encargado){
+                sb.append(Perfil.ENCARGADO.toString()).append(SEPARADOR);
+            }
+            sb.append(u.verCorreo()).append(SEPARADOR);
             sb.append(u.verApellido()).append(SEPARADOR);
             sb.append(u.verNombre()).append(SEPARADOR);
-            sb.append(u.verCorreo()).append(SEPARADOR);
             sb.append(u.verClave()).append(SEPARADOR);
             bw.write(sb.toString());
             bw.newLine();
@@ -214,27 +249,18 @@ public class GestorUsuarios implements IGestorUsuarios{
             String linea;
             while((linea = br.readLine())!=null){
                 String[] cadenas = linea.split(SEPARADOR);
-                Usuario u1 = new Cliente();
-                Usuario u2 = new Empleado();
-                Usuario u3 = new Encargado();
                 if(cadenas[0].equals(Perfil.CLIENTE.toString())){
-                    u1.asignarApellido(cadenas[1]);
-                    u1.asignarNombre(cadenas[2]);
-                    u1.asignarCorreo(cadenas[3]);
-                    u1.asignarClave(cadenas[4]);
-                    listaUsuarios.add(u1);}
+                    Usuario u = new Cliente(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
+                    listaUsuarios.add(u);
+                }
                 if(cadenas[0].equals(Perfil.EMPLEADO.toString())){
-                    u2.asignarApellido(cadenas[1]);
-                    u2.asignarNombre(cadenas[2]);
-                    u2.asignarCorreo(cadenas[3]);
-                    u2.asignarClave(cadenas[4]);
-                    listaUsuarios.add(u2);}
+                    Usuario u = new Empleado(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
+                    listaUsuarios.add(u);
+                }
                 if(cadenas[0].equals(Perfil.ENCARGADO.toString())){
-                    u3.asignarApellido(cadenas[1]);
-                    u3.asignarNombre(cadenas[2]);
-                    u3.asignarCorreo(cadenas[3]);
-                    u3.asignarClave(cadenas[4]);
-                    listaUsuarios.add(u3);}
+                    Usuario u = new Encargado(cadenas[1],cadenas[4],cadenas[2],cadenas[3]);
+                    listaUsuarios.add(u);
+                }
             }
             return listaUsuarios;
         } catch (FileNotFoundException ex) {

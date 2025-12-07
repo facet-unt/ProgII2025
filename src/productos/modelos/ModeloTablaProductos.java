@@ -4,43 +4,60 @@
  */
 package productos.modelos;
 
+import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author lazar
+ * @author salut
  */
-public class ModeloTablaProductos extends AbstractTableModel {
-    private String[] columnas = {"Categoría", "Descripción", "Precio"};
-    private ArrayList<Producto> listaProductos;
+public class ModeloTablaProductos extends AbstractTableModel{
+    private IGestorProductos gp = GestorProductos.instanciar();
+    private List<Producto> productos = new ArrayList<>();
+    private static final List<String> nombresColumnas = new ArrayList<>(List.of("Categoría", "Código", "Descripción", "Precio","Estado"));
     
-    public ModeloTablaProductos(ArrayList<Producto> lista){
-        this.listaProductos=lista;
+    
+    public ModeloTablaProductos(){
+        this.productos = gp.menu();
     }
+
+    public ModeloTablaProductos(String busqueda){
+        this.productos = gp.buscarProductos(busqueda);
+    }
+   
     @Override
     public int getRowCount() {
-        return listaProductos.size();
+        return productos.size();
     }
 
     @Override
     public int getColumnCount() {
-        return columnas.length;
+        return nombresColumnas.size();
+    }
+    
+    @Override
+    public String getColumnName(int column) {
+        return nombresColumnas.get(column);
     }
 
     @Override
-    public Object getValueAt(int fila, int columna) {
-        Producto p = listaProductos.get(fila);
-            switch(columna) {
-            case 0: return p.verCategoria();
-            case 1: return p.verDescripcion();
-            case 2: return p.verPrecio();
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Producto p = productos.get(rowIndex);
+        switch(columnIndex){
+            case 0: 
+                return p.verCategoria().toString();
+            case 1:
+                return p.verCodigo();
+            case 2:
+                return p.verDescripcion();
+            case 3:
+                return p.verPrecio();
+            case 4:
+                return p.verEstado().toString();
             default: return null;
         }
     }
     
-    @Override
-    public String getColumnName(int columna) {
-        return columnas[columna];
-    }
 }
