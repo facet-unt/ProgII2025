@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMUsuario;
 import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -30,7 +31,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     }
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorAMUsuario camu = new ControladorAMUsuario(this.ventanaUser);
     }
 
     @Override

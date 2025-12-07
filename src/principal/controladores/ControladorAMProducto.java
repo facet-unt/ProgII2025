@@ -20,7 +20,7 @@ import productos.vistas.VentanaAMProducto;
 public class ControladorAMProducto implements IControladorAMProducto {
 
     private VentanaAMProducto Ventana;
-    Producto amProducto = null;
+    private Producto amProducto = null;
 
     public ControladorAMProducto(JDialog padre) {
         this.Ventana = new VentanaAMProducto(padre, this);
