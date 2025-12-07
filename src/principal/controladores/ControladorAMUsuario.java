@@ -43,13 +43,13 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
     
     @Override
     public void btnGuardarClic(ActionEvent evt) {
+        try {
         String apellido = this.ventanaU.verTxtApellido().getText().trim();
         String nombre = this.ventanaU.verTxtNombre().getText().trim();
         String correo = this.ventanaU.verTxtCorreo().getText().trim();
         String clave = this.ventanaU.verTxtClave().getText().trim();
         String confirmacionClave = this.ventanaU.verTxtConfirmacionClave().getText().trim();
         Perfil perfil = ((ModeloComboPerfil) this.ventanaU.verComboPerfil().getModel()).obtenerPerfil();
-        
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         String resultado;
         if (this.amUsuario==null) {
@@ -68,6 +68,9 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
             } else {
                 this.ventanaU.dispose();
             }
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error inesperado", "Usuarios", JOptionPane.WARNING_MESSAGE);
         }
     }
 

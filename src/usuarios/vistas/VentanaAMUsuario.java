@@ -58,6 +58,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         passConfirmarClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Apellido:");
 

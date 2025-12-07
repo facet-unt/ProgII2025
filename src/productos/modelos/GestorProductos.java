@@ -81,16 +81,6 @@ public class GestorProductos implements IGestorProductos {
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if (codigo <= 0) {
             return ERROR_CODIGO;
-        } else {
-            for (Producto producto : productos) {
-                if (producto.verCodigo() == codigo) {
-                    //return PRODUCTOS_DUPLICADOS;
-                    
-                }
-                else{
-                     
-                }
-            }
         }
         if (descripcion == null || descripcion.isEmpty()) {
             return ERROR_DESCRIPCION;
@@ -111,7 +101,6 @@ public class GestorProductos implements IGestorProductos {
         p.asignarEstado(estado);
         p.asignarCategoria(categoria);
         reescribirArchivo();
-
         return EXITO;
     }
 
@@ -192,20 +181,16 @@ public class GestorProductos implements IGestorProductos {
             escritura.write(SEPARADOR);
             escritura.write(Float.toString(unProducto.verPrecio()));
             escritura.newLine();
-
             System.out.println(ESCRITURA_OK);
         } catch (IOException e) {
             System.out.println(ESCRITURA_ERROR);
         }
-
     }
 
     private void reescribirArchivo() {
         creacionArchivo();
         try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
-
             for (Producto p : productos) {
-
                 escritura.write(Integer.toString(p.verCodigo()));
                 escritura.write(SEPARADOR);
                 escritura.write(p.verDescripcion());
@@ -217,7 +202,6 @@ public class GestorProductos implements IGestorProductos {
                 escritura.write(Float.toString(p.verPrecio()));
                 escritura.newLine();
             }
-
         } catch (IOException e) {
             System.out.println(ESCRITURA_ERROR);
         }
@@ -226,44 +210,33 @@ public class GestorProductos implements IGestorProductos {
     private void cargarArchivo() {
         creacionArchivo();
         productos.clear();
-
         try (BufferedReader br = new BufferedReader(new FileReader(archivoProductos))) {
             String linea;
-
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(SEPARADOR);
-
                 int codigo = Integer.parseInt(partes[0]);
                 String descripcion = partes[1];
-                
-                String catString=partes[2];
+                String catString = partes[2];
                 Categoria categoria = null;
-                for (Categoria c : Categoria.values() ) {
+                for (Categoria c : Categoria.values()) {
                     if (catString.equals(c.verValor())) {
                         categoria = c;
                     }
                 }
-//                if (categoria==null) {
-//                    System.out.println(LECTURA_ERROR);
-//                    continue;
-//                }
-                
-                
+                if (categoria == null) {
+                    throw new IOException("Categoria invalida");
+                }
                 String EstString = partes[3];
                 Estado estado = null;
                 for (Estado e : Estado.values()) {
                     if (EstString.equals(e.verValor())) {
                         estado = e;
                     }
-                    
                 }
-//                if (estado==null) {
-//                    System.out.println(LECTURA_ERROR);
-//                    continue;
-//                }
-                
+                if (estado == null) {
+                    throw new IOException("Estado invalido");
+                }
                 float precio = Float.parseFloat(partes[4]);
-
                 productos.add(new Producto(codigo, descripcion, categoria, estado, precio));
                 System.out.println(LECTURA_OK);
             }

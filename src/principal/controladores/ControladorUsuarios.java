@@ -43,19 +43,22 @@ public class ControladorUsuarios implements IControladorUsuarios {
     @Override
     public void btnModificarClic(ActionEvent evt) {
         JTable tablaUsuarios = this.ventanaUser.verTabla();
-        ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaUsuarios.getModel();
-        Usuario u = mtp.usuarioAsignado(filaSeleccionada);
-        IControladorAMUsuario camu = new ControladorAMUsuario(ventanaUser, u);
+        this.filaSeleccionada = tablaUsuarios.getSelectedRow();
+        if (this.filaSeleccionada != -1) {
+            ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaUsuarios.getModel();
+            Usuario u = mtp.usuarioAsignado(filaSeleccionada);
+            IControladorAMUsuario camu = new ControladorAMUsuario(ventanaUser, u);
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        JTable tablaProductos = this.ventanaUser.verTabla();
-        this.filaSeleccionada = tablaProductos.getSelectedRow();
-        if (this.filaSeleccionada != 1) {
+        JTable tablaUsuarios = this.ventanaUser.verTabla();
+        this.filaSeleccionada = tablaUsuarios.getSelectedRow();
+        if (this.filaSeleccionada != -1) {
             int opcion = JOptionPane.showOptionDialog(null, CONFIRMACION, TITULO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
             if (opcion == JOptionPane.YES_OPTION) {
-                ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaProductos.getModel();
+                ModeloTablaUsuarios mtp = (ModeloTablaUsuarios) tablaUsuarios.getModel();
                 Usuario usuarioSele = mtp.usuarioAsignado(filaSeleccionada);
                 if (usuarioSele != null) {
                     IGestorUsuarios gu = GestorUsuarios.instanciar();
@@ -64,7 +67,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
                         mtp = new ModeloTablaUsuarios();
                         if (mtp.getRowCount() > 0) {
                             this.filaSeleccionada = 0;
-                            tablaProductos.setRowSelectionInterval(0, 0);
+                            tablaUsuarios.setRowSelectionInterval(this.filaSeleccionada, 0);
                         } else {
                             this.filaSeleccionada = -1;
                         }
@@ -85,7 +88,8 @@ public class ControladorUsuarios implements IControladorUsuarios {
             if (this.filaSeleccionada == -1) {
                 this.filaSeleccionada = 0;
             }
-            tablaUsuario.setRowSelectionInterval(0, 0);
+            tablaUsuario.setRowSelectionInterval(this.filaSeleccionada, this.filaSeleccionada);
+            
         }
     }
 

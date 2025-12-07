@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.Pedido;
 import static usuarios.modelos.Perfil.CLIENTE;
 import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
@@ -112,9 +111,9 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return EXITO;
     }
-    
+
     @Override
-    public String modificarUsuarios(Usuario u,String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+    public String modificarUsuarios(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         if (correo == null || correo.isEmpty() || !correo.contains("@")) {
             return ERROR_CORREO;
         }
@@ -130,7 +129,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (perfil == null) {
             return ERROR_PERFIL;
         }
-        
+
         System.out.println(VALIDACION_EXITO);
         u.asignarApellido(apellido);
         u.asignarNombre(nombre);
@@ -138,12 +137,10 @@ public class GestorUsuarios implements IGestorUsuarios {
         u.asignarClave(clave);
         u.asignarPerfil(perfil);
         reescribirArchivo();
-        
+
         return EXITO;
     }
-    
-    
-    
+
     @Override
     public List<Usuario> verUsuarios() {
         Collections.sort(usuarios);
@@ -217,9 +214,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     private void reescribirArchivo() {
         creacionArchivo();
         try (BufferedWriter escritura = new BufferedWriter(new FileWriter(archivoProductos))) {
-
             for (Usuario u : usuarios) {
-
                 escritura.write(u.verCorreo());
                 escritura.write(SEPARADOR);
                 escritura.write(u.verApellido());
@@ -231,7 +226,6 @@ public class GestorUsuarios implements IGestorUsuarios {
                 escritura.write(u.verClave());
                 escritura.newLine();
             }
-
         } catch (IOException e) {
             System.out.println(ESCRITURA_ERROR);
         }
@@ -240,56 +234,50 @@ public class GestorUsuarios implements IGestorUsuarios {
     private void cargarArchivo() {
         creacionArchivo();
         usuarios.clear();
-
         try (BufferedReader br = new BufferedReader(new FileReader(archivoProductos))) {
             String linea;
-
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(SEPARADOR);
                 String correo = partes[0];
-
                 String apellido = partes[1];
-
                 String nombre = partes[2];
-
                 String perfilString = partes[3];
                 Perfil perfil = null;
                 for (Perfil p : Perfil.values()) {
                     if (perfilString.equals(p.verValor())) {
                         perfil = p;
                     }
-
                 }
                 if (perfil == null) {
-                    System.out.println(LECTURA_ERROR);
-                    continue;
+                    throw new IOException("Perfil invalido");
+
                 }
                 String clave = partes[4];
-
                 switch (perfil) {
-            case ENCARGADO -> {
-                Encargado E = new Encargado(correo, clave, apellido, nombre);
-                usuarios.add(E);
-                break;
-            }
+                    case ENCARGADO -> {
+                        Encargado E = new Encargado(correo, clave, apellido, nombre);
+                        usuarios.add(E);
+                        break;
+                    }
 
-            case EMPLEADO -> {
-                Empleado e = new Empleado(correo, clave, apellido, nombre);
-                usuarios.add(e);
-                break;
-            }
+                    case EMPLEADO -> {
+                        Empleado e = new Empleado(correo, clave, apellido, nombre);
+                        usuarios.add(e);
+                        break;
+                    }
 
-            case CLIENTE -> {
-                Cliente c = new Cliente(correo, clave, apellido, nombre);
-                usuarios.add(c);
-                break;
-            }
-            default -> {
-               break;
-            }
-        }
+                    case CLIENTE -> {
+                        Cliente c = new Cliente(correo, clave, apellido, nombre);
+                        usuarios.add(c);
+                        break;
+                    }
+                    default -> {
+                        break;
+                    }
+                }
                 System.out.println(LECTURA_OK);
             }
+
         } catch (IOException e) {
             System.out.println(LECTURA_ERROR);
         }

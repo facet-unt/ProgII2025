@@ -32,7 +32,6 @@ public class ControladorProductos implements IControladorProductos {
         this.ventanaDp.setLocationRelativeTo(null);
         this.ventanaDp.setTitle(TITULO);
         this.agregarListenerATabla(this.ventanaDp.verTabla());
-//        this.ventanaDp.verBotonB().setEnabled(false);
         this.ventanaDp.setVisible(true);
     }
 
@@ -45,7 +44,7 @@ public class ControladorProductos implements IControladorProductos {
             if (this.filaSeleccionada == -1) {
                 this.filaSeleccionada =0;
             }
-            tablaProductos.setRowSelectionInterval(0, 0);
+            tablaProductos.setRowSelectionInterval(this.filaSeleccionada, this.filaSeleccionada);
         }
     }
 
@@ -72,11 +71,6 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-//        char c = evt.getKeyChar();
-//        if (!Character.isLetter(c)) {
-//            evt.consume();
-//        }
-//        this.ventanaDp.verBotonB().setEnabled(!this.ventanaDp.verDescripcion().getText().trim().isEmpty());
     }
 
     @Override
@@ -87,16 +81,19 @@ public class ControladorProductos implements IControladorProductos {
     @Override
     public void btnModificarClic(ActionEvent evt) {
         JTable tablaProductos = this.ventanaDp.verTabla();
+        this.filaSeleccionada = tablaProductos.getSelectedRow();
+        if (this.filaSeleccionada!=-1) {
         ModeloTablaProductos mtp = (ModeloTablaProductos)tablaProductos.getModel();
         Producto p = mtp.productoAsignado(filaSeleccionada);
         IControladorAMProducto camp = new ControladorAMProducto(ventanaDp, p);
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         JTable tablaProductos = this.ventanaDp.verTabla();
         this.filaSeleccionada = tablaProductos.getSelectedRow();
-        if (this.filaSeleccionada!=1) {
+        if (this.filaSeleccionada!=-1) {
             int opcion = JOptionPane.showOptionDialog(null, CONFIRMACION, TITULO, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null,null);
             if (opcion==JOptionPane.YES_OPTION) {
                 ModeloTablaProductos mtp=(ModeloTablaProductos)tablaProductos.getModel();
