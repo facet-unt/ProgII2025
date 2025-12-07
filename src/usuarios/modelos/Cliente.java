@@ -16,7 +16,6 @@ import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario{
     private List<Pedido> pedidos= new ArrayList<>();
-    private Perfil perfil;
     
     @Override
     public void mostrar() {
@@ -27,8 +26,7 @@ public class Cliente extends Usuario{
     }
 
     public Cliente(String correo, String clave, String apellido, String nombre, Perfil perfil) {
-        super(correo,clave, apellido, nombre);
-        this.perfil = perfil;
+        super(correo,clave, apellido, nombre, perfil);
 
     }
     

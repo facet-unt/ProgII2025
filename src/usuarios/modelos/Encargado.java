@@ -16,13 +16,12 @@ import pedidos.modelos.Pedido;
 
 public class Encargado extends Usuario{
     private ArrayList<Pedido> vacio= new ArrayList<>();
-    private Perfil perfil;
     
     //constructor
     
     public Encargado(String correo, String clave, String apellido, String nombre, Perfil perfil) {
-        super(correo, clave, apellido, nombre);
-        this.perfil = perfil;
+        super(correo, clave, apellido, nombre, perfil);
+
     }
     
    @Override
