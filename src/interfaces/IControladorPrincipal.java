@@ -17,17 +17,17 @@ public interface IControladorPrincipal {
      * Acción a ejecutar cuando se selecciona el botón Productos
      * @param evt evento
      */                        
-    public void btnProductosClic(ActionEvent evt); 
+    public void botonProductosClic(ActionEvent evt); 
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Usuarios
      * @param evt evento
      */                        
-    public void btnUsuariosClic(ActionEvent evt); 
+    public void botonUsuariosClic(ActionEvent evt); 
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Cancelar
      * @param evt evento
      */                        
-    public void btnSalirClic(ActionEvent evt); 
+    public void botonSalirClic(ActionEvent evt); 
 }
