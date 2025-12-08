@@ -5,7 +5,6 @@
  */
 package productos.vistas;
 
-import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
@@ -23,15 +22,9 @@ public class VentanaCrearProductos extends JDialog {
     public VentanaCrearProductos(JDialog parent,ControladorCrearProductos controlador ) {
         super(parent, true);
         initComponents();
-        this.setLocationRelativeTo(parent);
-        this.setTitle(TITULO_NUEVO);    
-        this.setVisible(true); 
-        this.toFront();
-        this.requestFocus();
-        this.requestFocusInWindow();
+        this.controlador = controlador;
 //        this.comboCategorias.setModel(new ModeloComboCategorias());
 //        this.comboEstados.setModel(new ModeloComboEstados());
-        this.setSize(300, 400);
 
     }
     
@@ -80,7 +73,6 @@ public class VentanaCrearProductos extends JDialog {
 
         txtPrecio.setToolTipText("Nombres del profesor");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +86,7 @@ public class VentanaCrearProductos extends JDialog {
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarClic(evt);
+                btnCancelar(evt);
             }
         });
 
@@ -181,9 +173,9 @@ public class VentanaCrearProductos extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarClic
+    private void btnCancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar
+        controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelar
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
 //        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());

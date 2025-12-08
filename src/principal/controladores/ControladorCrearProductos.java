@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorAMProducto;
+import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import productos.vistas.VentanaCrearProductos;
@@ -21,8 +22,14 @@ public class ControladorCrearProductos implements IControladorAMProducto {
 
     public ControladorCrearProductos() {
         ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
-        ventanaProductos.setAlwaysOnTop(false);
-        ventanaProductos.toBack();
+        ventanaCrearProductos.setLocationRelativeTo(ventanaProductos);
+        ventanaCrearProductos.setTitle(TITULO_NUEVO);    
+        ventanaCrearProductos.setVisible(true); 
+        ventanaCrearProductos.toFront();
+        ventanaCrearProductos.requestFocus();
+        ventanaCrearProductos.requestFocusInWindow();
+//        ventanaProductos.setAlwaysOnTop(false);
+//        ventanaProductos.toBack();
     }
     
     public static ControladorCrearProductos instanciar() {
@@ -34,7 +41,7 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ventanaCrearProductos.dispose();
     }
 
     @Override

@@ -57,7 +57,6 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        System.out.println("hola");
         IControladorAMProducto controladorProducto = ControladorCrearProductos.instanciar();
     }
 

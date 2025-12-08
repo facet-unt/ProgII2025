@@ -143,7 +143,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Cancela la operaci&#xf3;n"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarClic"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelar"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
