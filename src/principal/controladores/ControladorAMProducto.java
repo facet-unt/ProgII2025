@@ -6,7 +6,9 @@ package principal.controladores;
 
 
 import interfaces.IControladorAMProducto;
+import static interfaces.IGestorProductos.EXITO;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import productos.modelos.Categoria;
@@ -71,15 +73,19 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     GestorProductos gestor = GestorProductos.instanciar();
                     String resultado;
 
-                    if (this.esModificacion) {
+                    if (this.esModificacion==true) {
                         resultado = gestor.modificarProducto(this.productoAEditar, codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
+                        System.out.println(resultado);
+                    
                     } else {
                         resultado = gestor.crearProducto(codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
+                        
+              
                     }
 
                     JOptionPane.showMessageDialog(vp, resultado);
 
-                    if (resultado.equals(GestorProductos.EXITO) || resultado.equals(GestorProductos.VALIDACION_EXITO)) {
+                    if (resultado.equals(EXITO)) {
                         vp.dispose();
                     }
 
@@ -92,16 +98,34 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           //this.botonGuardarClic(null);
+        }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            //this.botonGuardarClic(null);
+        }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                //this.botonGuardarClic(null);
+                }
     }
+
+    @Override
+    public void categoriaSelección(ItemEvent evt) {
+        Categoria categoriaSelec = (Categoria) vp.verComboCategorias().getSelectedItem();
+    }
+
+    @Override
+    public void estadoSelección(ItemEvent evt) {
+        Estado estadoSelec = (Estado) vp.verComboEstado().getSelectedItem();
+    }
+    
+    
 }
