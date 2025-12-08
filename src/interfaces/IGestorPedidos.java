@@ -47,8 +47,6 @@ public interface IGestorPedidos {
     public boolean existeEstePedido(Pedido pedido);
 
     public Pedido obtenerPedido(Integer numero);
-
-   
-
+    
     public List<Pedido> verPedidos();
 }

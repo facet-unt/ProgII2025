@@ -316,6 +316,8 @@ public class GestorUsuarios implements IGestorUsuarios {
             default:
                 return ERROR_PERFIL;
         }
+        
+        
         return EXITO;
         
        

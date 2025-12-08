@@ -59,8 +59,10 @@ public class ControladorUsuarios implements IControladorUsuarios{
         }
         
         ControladorAMUsuarios camu = new ControladorAMUsuarios(this.pasarUsuario(),modificar);
-
+        
+        model.actualizarTabla();
         modificar=false;
+        
         
         
     }
@@ -111,9 +113,9 @@ public class ControladorUsuarios implements IControladorUsuarios{
         
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+         
             this.btnBuscarClic(null);
-        }
+        
         
     }
 

@@ -72,9 +72,9 @@ public class ControladorPrincipalTP5 {
          Usuario usuario1 = gu.obtenerUsuario("correo1@mail.com"); 
         System.out.println("Existe usuario2: " + gu.existeEsteUsuario(usuario2)); 
         
-//        gu.modificarUsuario(usuario2, "correo2@mail.com", "Apellido22", "Nombre2", Perfil.CLIENTE, "clave2", "clave2");
-//        
-//        System.out.println(gu.borrarUsuario(usuario1));
+        System.out.println(gu.modificarUsuario(usuario2, "correo2@mail.com", "Apellido22", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
+        
+        System.out.println(gu.borrarUsuario(usuario1));
        
 
 //        System.out.println("\n--- PRUEBAS GESTOR PEDIDOS ---");

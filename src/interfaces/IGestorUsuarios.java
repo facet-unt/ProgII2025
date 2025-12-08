@@ -45,6 +45,6 @@ public interface IGestorUsuarios {
     public List<Usuario> buscarUsuarios(String apellido);
     
     public void cargarArchivoEnLista();
-    
+   
     public String modificarUsuario(Usuario usuario, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
 }

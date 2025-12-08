@@ -28,9 +28,11 @@ private Usuario usuario;
 
 
 
+
     public ControladorAMUsuarios(Usuario usuario, boolean modificar) {
         this.vamu = new VentanaAMUsuario(this);
         this.usuario=usuario;
+       
         this.modificar=modificar;
         if (modificar==true && usuario != null) 
         {
@@ -117,14 +119,19 @@ private Usuario usuario;
         
         if(modificar==true){
             resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
+           
         }
         else{
         resultado= gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
         }
         
            if (resultado.equals(GestorUsuarios.EXITO) || resultado.equals(GestorUsuarios.VALIDACION_EXITO)) {
+               
+            model.actualizarTabla();
+           
                 vamu.dispose();
             }
+           
         }catch (NullPointerException e) {
     JOptionPane.showMessageDialog(null, "Algún campo no fue inicializado.");
         } catch (ClassCastException e) {
@@ -143,21 +150,49 @@ private Usuario usuario;
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vamu.getTxtApellido().requestFocus();
+            
+        }
         
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+          vamu.getTxtNombre().requestFocus();
+        }
         
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vamu.getTxtAreaCorreo().requestFocus();
+        }
         
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
+      
+    String clave = vamu.getTxtClave().getText();
+    String claveR = vamu.getTxtClaveR().getText();
+    
+    if (!clave.equals(claveR)) {
+       
+        vamu.getBtnGuardar().setEnabled(false);
+    } else {
+        vamu.getBtnGuardar().setEnabled(true);
+    }
+}
+
+@Override
+public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
+    passClavePresionarTecla(evt); 
+}
+
+        
        
     }
 

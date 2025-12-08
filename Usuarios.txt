@@ -1,2 +1,2 @@
-correo1@mail.com*Apellido1*Nombre1*Empleado*clave1*clave1
-correo2@mail.com*Apellido5*Nombre2*Cliente*clave2*clave2
+correo6@gmail.com*Apellido6*Nombre6*Cliente*clave6*clave6
+correo5@gmail.com*Apellido4*Nombre4*Cliente*clave4*clave4
