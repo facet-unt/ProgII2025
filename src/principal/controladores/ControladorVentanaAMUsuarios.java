@@ -23,6 +23,7 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private ControladorVentanaAMUsuarios(){
         this.ventana = new VentanaAMUsuarios(ventanaprincipal, true, controlador);
         this.ventana.setVisible(true);
+        this.ventana.setTitle(TITULO_NUEVO);
         this.ventana.setResizable(false);
         this.ventana.setLocationRelativeTo(null);
     }

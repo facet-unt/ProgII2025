@@ -90,6 +90,13 @@ public abstract class Usuario implements Comparable<Usuario>{
         return hash;
     }
 
+    public void asignarPerfil(Perfil perfil){
+        this.perfil = perfil;
+    }
+    
+    public Perfil verPerfil(){
+        return perfil;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
