@@ -19,7 +19,7 @@ public interface IGestorUsuarios {
     public List<Usuario> verUsuarios();
     public List<Usuario> buscarUsuarios(String apellido);
     public String borrarUsuario(Usuario usuario);
-    public boolean existeEsteUsuario(Usuario usuario);
+    public Usuario existeEsteUsuario(Usuario usuario);
     public Usuario obtenerUsuario(String correo);
     
     public static final String EXITO = "Usuario creado/modificado con éxito";
