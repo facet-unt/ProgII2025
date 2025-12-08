@@ -16,11 +16,20 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaUsuarios extends AbstractTableModel{
     private String[] ATRIBUTOS = {"Apellido", "Nombre", "Correo", "Perfil"};
     private List<Usuario> Usuarios;
+    private GestorUsuarios gestor;
+    private int filaSeleccionada;
 
     public ModeloTablaUsuarios() {
+        this.gestor = GestorUsuarios.instanciarclase();
         this.Usuarios = new ArrayList<>();
+        fireTableDataChanged();
     }
 
+    public void cargarUsuariosOrdenados(){
+        this.Usuarios = gestor.leerUsuarios();
+        fireTableDataChanged();
+    }
+    
     @Override
     public int getRowCount() {
         return this.Usuarios.size();
@@ -61,4 +70,4 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         return this.Usuarios.get(i);
     }
     
-}
+}  

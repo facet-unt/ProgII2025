@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import principal.vistas.VentanaPrincipal;
+import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -18,20 +19,22 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
     private VentanaPrincipal ventanaprincipal; 
+    private ModeloTablaUsuarios modelotabla;
 
     public ControladorVentanaUsuarios() {
         this.ventana = new VentanaUsuarios(ventanaprincipal,true,this);
         this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
+        this.modelotabla = new ModeloTablaUsuarios();
     }
     
+    public ModeloTablaUsuarios modelo(){
+        return modelotabla;
+    }
     
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        
-        
-        
     }
 
     @Override
