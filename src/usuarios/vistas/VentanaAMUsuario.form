@@ -148,14 +148,29 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JPasswordField" name="campoClave1">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoClave1KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="campoClave2">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoClave2KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNombre">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoNombreKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoApellido">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoApellidoKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoCorreo">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoCorreoKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>

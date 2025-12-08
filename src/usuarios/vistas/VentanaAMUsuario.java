@@ -70,6 +70,36 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 
         comboBoxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        campoClave1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoClave1KeyReleased(evt);
+            }
+        });
+
+        campoClave2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoClave2KeyReleased(evt);
+            }
+        });
+
+        campoTextoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoTextoNombreKeyReleased(evt);
+            }
+        });
+
+        campoTextoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoTextoApellidoKeyReleased(evt);
+            }
+        });
+
+        campoTextoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoTextoCorreoKeyReleased(evt);
+            }
+        });
+
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +189,26 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void campoTextoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoCorreoKeyReleased
+        this.controlador.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_campoTextoCorreoKeyReleased
+
+    private void campoTextoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoApellidoKeyReleased
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_campoTextoApellidoKeyReleased
+
+    private void campoTextoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNombreKeyReleased
+        this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_campoTextoNombreKeyReleased
+
+    private void campoClave2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoClave2KeyReleased
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_campoClave2KeyReleased
+
+    private void campoClave1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoClave1KeyReleased
+        this.controlador.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_campoClave1KeyReleased
 
     public JPasswordField verCampoClave1() {
         return campoClave1;
