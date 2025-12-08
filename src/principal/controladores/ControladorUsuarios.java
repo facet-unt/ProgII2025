@@ -54,7 +54,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
               int fila = vu.gettablaUsuario().getSelectedRow();
 
         if (fila == -1) {
-            javax.swing.JOptionPane.showMessageDialog(vu, "Seleccione un producto para modificar.");
+            javax.swing.JOptionPane.showMessageDialog(vu, "Seleccione un usuario para modificar.");
             return;
         }
         
@@ -75,7 +75,27 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int fila = vu.gettablaUsuario().getSelectedRow();
+
+        if (fila == -1) {
+            javax.swing.JOptionPane.showMessageDialog(vu, "Seleccione un usuario para borrar.");
+            return;
+        }
+
+        int opcion = javax.swing.JOptionPane.showConfirmDialog(vu,
+                "¿Seguro que desea borrar este producto?",
+                "Confirmar Borrado",
+                javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+            Usuario u = model.obtenerUsuario(fila);
+
+            IGestorUsuarios gestor = GestorUsuarios.instanciar();
+            String resultado = gestor.borrarUsuario(this.pasarUsuario());
+
+            javax.swing.JOptionPane.showMessageDialog(vu, resultado);
+            model.actualizarTabla();
+           }
     }
 
     @Override

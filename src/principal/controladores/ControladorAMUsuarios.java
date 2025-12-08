@@ -9,11 +9,13 @@ import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaAMUsuario;
-import usuarios.vistas.VentanaUsuarios;
 
 /**
  *
@@ -30,7 +32,10 @@ private Usuario usuario;
         this.vamu = new VentanaAMUsuario(this);
         this.usuario=usuario;
         this.modificar=modificar;
-        this.DatosAModificar();
+        if (modificar==true && usuario != null) 
+        {
+          this.DatosAModificar();
+        }
         vamu.setLocationRelativeTo(null);
         vamu.setVisible(true);
       if(modificar==false)
@@ -57,20 +62,39 @@ private Usuario usuario;
       }
     }
         
-       
-       public void DatosAModificar()
-       {
-           
-           vamu.getTxtApellido().setText(usuario.verApellido());
-           vamu.getTxtAreaCorreo().setText(usuario.verCorreo());
-           vamu.getTxtNombre().setText(usuario.verNombre());
-           vamu.getComboPerfil().setSelectedItem(usuario.verPerfil());
-           vamu.getTxtClave().setText(usuario.verClave());
-           vamu.getTxtClaveR().setText(usuario.verClave());
-        
-       }
-       
+               
+     public void DatosAModificar() {
+
+    vamu.getTxtApellido().setText(usuario.verApellido());
+    vamu.getTxtNombre().setText(usuario.verNombre());
+    vamu.getTxtAreaCorreo().setText(usuario.verCorreo());
+    vamu.getTxtAreaCorreo().setEditable(false);
+    vamu.getTxtClave().setText(usuario.verClave());
+    vamu.getTxtClaveR().setText(usuario.verClave());
     
+
+
+    Perfil perfil = null;
+
+    if (usuario instanceof Encargado) {
+        perfil = Perfil.ENCARGADO;
+    } else if (usuario instanceof Empleado) {
+        perfil = Perfil.EMPLEADO;
+    } else if (usuario instanceof Cliente) {
+        perfil = Perfil.CLIENTE;
+    }
+    
+   
+    if (perfil != null) {
+        
+        vamu.getComboPerfil().setSelectedItem(perfil.toString());
+    } 
+}
+   
+   
+
+       
+ 
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
@@ -85,17 +109,22 @@ private Usuario usuario;
         correo=vamu.getTxtAreaCorreo().getText();
         clave=vamu.getTxtClave().getText();
         claveR=vamu.getTxtClaveR().getText();
-        
-        perfil=(Perfil)vamu.getComboPerfil().getSelectedItem();
+        perfil = Perfil.valueOf(vamu.getComboPerfil().getSelectedItem().toString());
+
         
         IGestorUsuarios gu= GestorUsuarios.instanciar(); 
+        String resultado;
         
-        if(modificar=true){
-        gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
+        if(modificar==true){
+            resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
         }
         else{
-        gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
+        resultado= gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
         }
+        
+           if (resultado.equals(GestorUsuarios.EXITO) || resultado.equals(GestorUsuarios.VALIDACION_EXITO)) {
+                vamu.dispose();
+            }
         }catch (NullPointerException e) {
     JOptionPane.showMessageDialog(null, "Algún campo no fue inicializado.");
         } catch (ClassCastException e) {

@@ -57,7 +57,9 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (usuario.verPedidos().isEmpty()) {
 
             usuarios.remove(usuario);
+            cargarListaUsuariosEnArchivo();
             return BORRADO_EXITO;
+           
         }
         cargarListaUsuariosEnArchivo();
         return BORRADO_ERROR;

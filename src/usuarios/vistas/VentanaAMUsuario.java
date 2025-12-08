@@ -6,6 +6,7 @@ package usuarios.vistas;
 
 import principal.controladores.ControladorAMUsuarios;
 
+import usuarios.modelos.Perfil;
 /**
  *
  * @author sofia
@@ -19,9 +20,39 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
      */
     public VentanaAMUsuario(ControladorAMUsuarios controlador) {
         this.cont= controlador;
-                
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarComboPerfil();
+     
     }
+//    private void cargarComboPerfil()
+//    {
+//        comboPerfil.removeAllItems();
+//        for(Perfil p: Perfil.values())
+//        {
+//            comboPerfil.addItem(p.name());
+//            
+//        }
+//       
+//        
+//     
+//        
+//    }
+    private void cargarComboPerfil() {
+    // Creamos un modelo NUEVO
+    javax.swing.DefaultComboBoxModel<String> modelo = 
+            new javax.swing.DefaultComboBoxModel<>();
+
+    // Llenamos el modelo con los valores de la enum
+    for (Perfil p : Perfil.values()) {
+        modelo.addElement(p.name());   // o p.toString() si tenés override
+    }
+
+    // Pisamos el modelo que puso NetBeans (el de Item 1..4)
+    comboPerfil.setModel(modelo);
+}
+//   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,9 +76,9 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         txtClave = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        comboPerfil = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        comboPerfil = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -82,8 +113,6 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
             }
         });
 
-        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +124,13 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
+            }
+        });
+
+        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>());
+        comboPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPerfilActionPerformed(evt);
             }
         });
 
@@ -123,10 +159,10 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtClaveR)
+                                    .addComponent(txtClaveR, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                                     .addComponent(txtNombre)
                                     .addComponent(txtClave)
-                                    .addComponent(comboPerfil, 0, 236, Short.MAX_VALUE))))
+                                    .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(61, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar)
@@ -184,6 +220,10 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         cont.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void comboPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPerfilActionPerformed
 
     /**
      * @param args the command line arguments
