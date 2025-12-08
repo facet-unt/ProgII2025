@@ -5,6 +5,7 @@
 package interfaces;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 
 public interface IControladorAMProducto {
@@ -40,4 +41,7 @@ public interface IControladorAMProducto {
      * @param evt evento
      */
     public void txtPrecioPresionarTecla(KeyEvent evt);
+    
+    public void categoriaSelección(ItemEvent evt);
+    public void estadoSelección(ItemEvent evt);
 }
