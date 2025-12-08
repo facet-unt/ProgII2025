@@ -58,11 +58,7 @@ public class VentanaAMProducto extends JDialog {
         this.txtPrecio = txtPrecio;
     }
 
-  
-
-   /* private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        controlador.btnGuardarClic(evt);
-    }//GEN-LAST:event_btnGuardarClic*/
+                              
 
     public JComboBox<String> verComboEstado() {
         return comboEstados;
@@ -147,14 +143,14 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel3.setText("Categoría");
 
-        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato Principal", "Postre" }));
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCategoriasActionPerformed(evt);
             }
         });
 
-        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
         comboEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboEstadosActionPerformed(evt);
