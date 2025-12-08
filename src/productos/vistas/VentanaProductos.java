@@ -159,7 +159,8 @@ public class VentanaProductos extends javax.swing.JDialog {
         controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolver
     private void ventanaGanafoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaGanafoco
-       controlador.ventanaObtenerFoco(evt);
+        if(controlador!=null)
+        controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaGanafoco
 
     private void btnNuevo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo

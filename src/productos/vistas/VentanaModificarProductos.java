@@ -6,30 +6,29 @@ package productos.vistas;
 
 import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
 import javax.swing.JDialog;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
-import productos.modelos.ModeloComboCategorias;
-import productos.modelos.ModeloComboEstados;
-import productos.modelos.Producto;
+import principal.controladores.ControladorModificarProductos;
 
 /**
  *
  * @author octav
  */
 public class VentanaModificarProductos extends javax.swing.JDialog {
-    
+    private static ControladorModificarProductos controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarProductos.class.getName());
 
     /**
      * Creates new form VentanaModificarProductos
      */
-    public VentanaModificarProductos(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public VentanaModificarProductos(JDialog parent, ControladorModificarProductos controlador) {
+        super(parent, true);
         initComponents();
-        this.setSize(300, 400);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(parent);
         this.setTitle(TITULO_MODIFICAR);
         this.setVisible(true);
+        this.toFront();
+        this.requestFocus();
+        this.requestFocusInWindow();
+        this.setSize(300, 400);
     }
 
     /**
@@ -55,6 +54,13 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         txtCodigo.setToolTipText("Documento del profesor");
 
@@ -186,25 +192,30 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
-        this.productos.add(unProducto);
-
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
+//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
+//        String descripcion = this.txtDescripcion.getText().trim();
+//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
+//        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
+//        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
+//        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
+//        this.productos.add(unProducto);
+//
+//        System.out.println("Productos");
+//        System.out.println("=========");
+//        for(Producto p : this.productos) {
+//            p.mostrar();
+//            System.out.println();
+//        }
     }//GEN-LAST:event_btnGuardarClic
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
         this.dispose();
     }//GEN-LAST:event_btnCancelarClic
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.setAlwaysOnTop(true);
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -231,7 +242,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaModificarProductos dialog = new VentanaModificarProductos(new javax.swing.JFrame(), true);
+                VentanaModificarProductos dialog = new VentanaModificarProductos(new javax.swing.JDialog(),controlador);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

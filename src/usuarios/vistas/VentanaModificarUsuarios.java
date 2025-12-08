@@ -5,25 +5,30 @@
 package usuarios.vistas;
 
 import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
+import javax.swing.JDialog;
+import principal.controladores.ControladorModificarUsuarios;
 
 /**
  *
  * @author octav
  */
 public class VentanaModificarUsuarios extends javax.swing.JDialog {
-    
+    private static ControladorModificarUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarUsuarios.class.getName());
 
     /**
      * Creates new form VentanaModificarUsuarios
      */
-    public VentanaModificarUsuarios(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public VentanaModificarUsuarios(JDialog parent, ControladorModificarUsuarios controlador) {
+        super(parent, true);
         initComponents();
-         this.setLocationRelativeTo(null);
+         this.setLocationRelativeTo(parent);
         this.setTitle(TITULO_MODIFICAR);
+        this.setVisible(true);
+        this.toFront();
+        this.requestFocus();
+        this.requestFocusInWindow();
         this.setSize(300, 400);
-        this.setVisible(true); 
     }
 
     /**
@@ -36,7 +41,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BotonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,6 +54,13 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -57,10 +69,10 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotonCancelar.setText("Cancelar");
+        BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotonCancelarActionPerformed(evt);
             }
         });
 
@@ -102,7 +114,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(BotonCancelar)
                 .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +169,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BotonCancelar))
                 .addGap(23, 23, 23))
         );
 
@@ -176,9 +188,14 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BotonCancelarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.setAlwaysOnTop(true);
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -205,7 +222,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaModificarUsuarios dialog = new VentanaModificarUsuarios(new javax.swing.JFrame(), true);
+                VentanaModificarUsuarios dialog = new VentanaModificarUsuarios(new javax.swing.JDialog(),controlador);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -218,8 +235,8 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

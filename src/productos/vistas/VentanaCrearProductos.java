@@ -6,15 +6,11 @@
 package productos.vistas;
 
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
-import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
-import productos.modelos.*;
 
 import productos.modelos.Producto;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
 
 public class VentanaCrearProductos extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
@@ -218,7 +214,39 @@ public class VentanaCrearProductos extends JDialog {
         this.setAlwaysOnTop(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_ventanGanaFoco
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            //logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                VentanaCrearProductos dialog = new VentanaCrearProductos(new javax.swing.JDialog(),controlador);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

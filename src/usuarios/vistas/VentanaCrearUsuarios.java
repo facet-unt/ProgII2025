@@ -5,27 +5,31 @@
 package usuarios.vistas;
 
 import static interfaces.IControladorAMUsuario.TITULO_NUEVO;
-import productos.modelos.ModeloComboCategorias;
-import productos.modelos.ModeloComboEstados;
+import javax.swing.JDialog;
+import principal.controladores.ControladorCrearUsuarios;
 
 /**
  *
  * @author octav
  */
 public class VentanaCrearUsuarios extends javax.swing.JDialog {
-    
+    private static ControladorCrearUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaCrearUsuarios.class.getName());
 
     /**
      * Creates new form Usuarios
      */
-    public VentanaCrearUsuarios(java.awt.Frame ventanaPadre, boolean modo) {
-        super(ventanaPadre, modo);
+    public VentanaCrearUsuarios(JDialog parent,ControladorCrearUsuarios controlador ) {
+        super(parent, true);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(parent);
         this.setTitle(TITULO_NUEVO);
+        this.setVisible(true);
+        this.toFront();
+        this.requestFocus();
+        this.requestFocusInWindow();
         this.setSize(300, 400);
-        this.setVisible(true); 
+         
     }
 
     /**
@@ -50,13 +54,20 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BotonCancelar = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jTextField1.setText("jTextField1");
 
@@ -85,7 +96,12 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
 
         jButton1.setText("Guardar");
 
-        jButton2.setText("Cancelar");
+        BotonCancelar.setText("Cancelar");
+        BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +138,7 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(BotonCancelar)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -151,7 +167,7 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BotonCancelar))
                 .addGap(26, 26, 26))
         );
 
@@ -161,6 +177,15 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BotonCancelarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+         this.setAlwaysOnTop(true);
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -187,7 +212,7 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaCrearUsuarios dialog = new VentanaCrearUsuarios(new javax.swing.JFrame(), true);
+                VentanaCrearUsuarios dialog = new VentanaCrearUsuarios(new javax.swing.JDialog(),controlador);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -200,8 +225,8 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
