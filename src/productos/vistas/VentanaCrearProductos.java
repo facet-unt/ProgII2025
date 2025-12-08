@@ -5,15 +5,20 @@
  */
 package productos.vistas;
 
-import java.util.ArrayList;
+import interfaces.IGestorProductos;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 
 import productos.modelos.Producto;
 
 public class VentanaCrearProductos extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
     private static ControladorCrearProductos controlador;
+    public Categoria categoria;
+    public Estado estado;
     
     /**
      * Constructor
@@ -23,8 +28,8 @@ public class VentanaCrearProductos extends JDialog {
         super(parent, true);
         initComponents();
         this.controlador = controlador;
-//        this.comboCategorias.setModel(new ModeloComboCategorias());
-//        this.comboEstados.setModel(new ModeloComboEstados());
+        this.comboCategorias.setModel(new ModeloComboCategorias());
+        this.comboEstados.setModel(new ModeloComboEstados());
 
     }
     
@@ -68,11 +73,22 @@ public class VentanaCrearProductos extends JDialog {
         jLabel1.setText("Descripción:");
 
         txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("Precio:");
 
         txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
+        });
 
+        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +109,11 @@ public class VentanaCrearProductos extends JDialog {
         jLabel4.setText("Código:");
 
         txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
 
         jLabel6.setText("Estado:");
 
@@ -178,34 +199,33 @@ public class VentanaCrearProductos extends JDialog {
     }//GEN-LAST:event_btnCancelar
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-//        String descripcion = this.txtDescripcion.getText().trim();        
-//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-//        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-//        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-//        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
-//        this.productos.add(unProducto);
-//        
-//        System.out.println("Productos");
-//        System.out.println("=========");
-//        for(Producto p : this.productos) {
-//            p.mostrar();
-//            System.out.println();
-//        }
+        controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
-        // TODO add your handling code here:
+        this.estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
     }//GEN-LAST:event_comboEstadosActionPerformed
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-        // TODO add your handling code here:
+        this.categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
     }//GEN-LAST:event_comboCategoriasActionPerformed
 
     private void ventanGanaFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanGanaFoco
         this.setAlwaysOnTop(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_ventanGanaFoco
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyReleased
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

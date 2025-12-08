@@ -6,8 +6,11 @@ package principal.controladores;
 
 import interfaces.IControladorAMProducto;
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+import productos.modelos.GestorProductos;
 import productos.vistas.VentanaCrearProductos;
 import productos.vistas.VentanaProductos;
 
@@ -19,6 +22,10 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     private static ControladorCrearProductos instancia;
     private VentanaProductos ventanaProductos;
     private VentanaCrearProductos ventanaCrearProductos;
+    IGestorProductos gestorProductos = GestorProductos.instanciar();
+    private int codigo;
+    private String descripcion;
+    private float precio;
 
     public ControladorCrearProductos() {
         ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
@@ -28,8 +35,6 @@ public class ControladorCrearProductos implements IControladorAMProducto {
         ventanaCrearProductos.toFront();
         ventanaCrearProductos.requestFocus();
         ventanaCrearProductos.requestFocusInWindow();
-//        ventanaProductos.setAlwaysOnTop(false);
-//        ventanaProductos.toBack();
     }
     
     public static ControladorCrearProductos instanciar() {
@@ -46,22 +51,29 @@ public class ControladorCrearProductos implements IControladorAMProducto {
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
+        ventanaCrearProductos.dispose();
     }
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        String texto = campo.getText().trim();
+        this.codigo = Integer.parseInt(texto);
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.descripcion = campo.getText().trim();
+        System.out.println(descripcion);
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        String texto = campo.getText().trim();
+        this.precio = Float.parseFloat(texto);
     }
     
 }
