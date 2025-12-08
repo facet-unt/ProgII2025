@@ -58,9 +58,7 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.btnBuscarClic(null);
-        }
+        this.btnBuscarClic(null);
     }
 
     @Override

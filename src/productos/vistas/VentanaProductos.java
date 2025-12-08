@@ -63,8 +63,8 @@ private ControladorProductos controlador;
         jLabel1.setText("Descripción:");
 
         fieldDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                fieldDescripcionKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fieldDescripcionKeyReleased(evt);
             }
         });
 
@@ -201,10 +201,11 @@ private ControladorProductos controlador;
         
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void fieldDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDescripcionKeyPressed
+    private void fieldDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDescripcionKeyReleased
         // TODO add your handling code here:
-        controlador.txtDescripcionPresionarTecla(evt);
-    }//GEN-LAST:event_fieldDescripcionKeyPressed
+                controlador.txtDescripcionPresionarTecla(evt);
+
+    }//GEN-LAST:event_fieldDescripcionKeyReleased
 
     /**
      * @param args the command line arguments

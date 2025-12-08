@@ -31,7 +31,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
         ventana.setVisible(true);
     }
 
-    //los botones de esta clase solamente crea controladores y inicializa las ventanas
+    //los botones de esta clase solamente crea controladores e inicializa las ventanas
     @Override
     public void btnProductosClic(ActionEvent evt) {
 
