@@ -18,6 +18,11 @@ public interface IGestorUsuarios {
     public static final String OPERACION_FALLIDA = "No pudo realizarse la operacion ";
     public static final String OPERACION_EXITOSA = "Operacion exitosa ";
     public static final String USUARIO_INEX = "El usuario no existe ";
+    public static final String NOMBRE_ARCHIVO_U = "Usuarios.txt";
+    public static final String SEPARADOR = ";";
+    public static final String LECTURA_ERROR = "Error al leer los usuarios";
+    public static final String VALORES_INVALIDOS = "No se pudo realizar la Operacion, ingrese valores validos";
+    public static final String USUARIOS_DUPLICADOS = "Ya existe un usuario con ese correo ";
     //</editor-fold>
     
     

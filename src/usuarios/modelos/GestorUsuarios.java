@@ -5,12 +5,13 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import static usuarios.modelos.Perfil.CLIENTE;
-import static usuarios.modelos.Perfil.EMPLEADO;
-import static usuarios.modelos.Perfil.ENCARGADO;
 import pedidos.modelos.*;
 
 /**
@@ -34,78 +35,85 @@ public class GestorUsuarios implements IGestorUsuarios {
         return instancia;
     }
 
+    private Boolean crearArchivo() {
+        File archivo = new File(NOMBRE_ARCHIVO_U);
+        try {
+            if (archivo.createNewFile()) {
+                System.out.println("Archivo creado exitosamente.");
+            } else {
+                System.out.println("El archivo ya existe.");
+            }
+            return true;
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error");
+            return false;
+        }
+    }
+
+    private Usuario instanciarUsuario(String correo, String clave, String apellido, String nombre, Perfil unPerfil) {
+        Usuario unUsuario = null;
+        if (unPerfil == Perfil.CLIENTE) {
+            unUsuario = new Cliente(correo, clave, apellido, nombre);
+        } else if (unPerfil == Perfil.EMPLEADO) {
+            unUsuario = new Empleado(correo, clave, apellido, nombre);
+        } else if (unPerfil == Perfil.ENCARGADO) {
+            unUsuario = new Encargado(correo, clave, apellido, nombre);
+        }
+        return unUsuario;
+    }
+
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        if (correo != null && correo.contains("@") && clave != null && claveRepetida !=null && apellido!=null && !apellido.isEmpty() && nombre!=null && !nombre.isEmpty())
-            {
-                if (clave.equals(claveRepetida))
-                {
-                    for (Usuario u: usuarios)
-                    {
-                        if (u.verCorreo().equals(correo))
-                        {
-                            return (OPERACION_FALLIDA + ": el usuario ya existe");
-                        } 
+        if (correo != null && correo.contains("@") && clave != null && claveRepetida != null && apellido != null && !apellido.isEmpty() && nombre != null && !nombre.isEmpty()) {
+            if (clave.equals(claveRepetida)) {
+                for (Usuario u : usuarios) {
+                    if (u.verCorreo().equals(correo)) {
+                        return (USUARIOS_DUPLICADOS);
                     }
-                    if (perfil == CLIENTE) {
-                        Cliente c;
+                }
+                if (perfil == Perfil.CLIENTE || perfil == Perfil.ENCARGADO || perfil == Perfil.EMPLEADO) {
+                    Usuario unUsuario = instanciarUsuario(correo, clave, apellido, nombre, perfil);
+                    usuarios.add(unUsuario);
+                    
+                    return (OPERACION_EXITOSA);
+                } else {
+                    return (VALORES_INVALIDOS);
+                }
+            } else {
+                return (VALORES_INVALIDOS);
+            }
 
-                        c = new Cliente(correo, clave, apellido, nombre);
-                        c.asignarApellido(apellido);
-                        c.asignarClave(clave);
-                        c.asignarCorreo(correo);
-                        c.asignarNombre(nombre);
-                        usuarios.add(c);
-                        return ("Operacion exitosa: El usuario " + apellido + " " +nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
-                    }
-                    else 
-                    {
-                    if (perfil == EMPLEADO) 
-                    {
-                        Empleado em;
-                        em = new Empleado(correo, clave, apellido, nombre);
-                        em.asignarApellido(apellido);
-                        em.asignarClave(clave);
-                        em.asignarCorreo(correo);
-                        em.asignarNombre(nombre);
-                        usuarios.add(em);
-                        return ("Operacion exitosa: El usuario " + apellido +" "+ nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
-                    }
-           
-                    else {
-                        if (perfil == ENCARGADO) {
-                            Encargado en;
-                            en = new Encargado(correo, clave, apellido, nombre);
-                            en.asignarApellido(apellido);
-                            en.asignarClave(clave);
-                            en.asignarCorreo(correo);
-                            en.asignarNombre(nombre);
-                            usuarios.add(en);
-                            return ("Operacion exitosa: El usuario " + apellido +" " + nombre + " con correo " + correo + " clave " + clave + " se guardo correctamente");
-                        }
-                        else {
-                            return ("No se pudo realizar la Operacion, ingrese valores validos");
-                        }
-                    }
-                    }
-                
-            }
-            else 
-            {
-                return ("No se pudo realizar la Operacion, ingrese valores validos");
-            }
-        
-        }
-        else 
-        {
-            return("No se pudo realizar la Operacion, ingrese valores validos");
+        } else {
+            return (VALORES_INVALIDOS);
         }
     }
 
     @Override
     public List<Usuario> verUsuarios() {
-        usuarios.sort(Comparator.comparing(Usuario::verApellido).thenComparing(Usuario::verNombre));
-        return this.usuarios;
+        if (!crearArchivo()) {
+            return null;
+        }
+        File f = new File(NOMBRE_ARCHIVO_U);
+        try (FileReader fr = new FileReader(f);) {
+            BufferedReader br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] cadenas = linea.split(SEPARADOR);
+                String correo = cadenas[0];
+                String clave = cadenas[1];
+                String apellido = cadenas[2];
+                String nombre = cadenas[3];
+                Perfil unPerfil = Perfil.compararValor(cadenas[4]);
+                Usuario unUsuario = instanciarUsuario(correo, clave, apellido, nombre, unPerfil);
+                if (unUsuario != null) {
+                    usuarios.add(unUsuario);
+                }
+
+            }
+        } catch (IOException e1) {
+            System.out.println(LECTURA_ERROR);
+        }
+        return usuarios;
     }
 
     @Override
