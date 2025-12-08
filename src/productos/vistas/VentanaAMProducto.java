@@ -5,31 +5,28 @@
  */
 package productos.vistas;
 
-import java.awt.Dialog;
-import java.util.ArrayList;
+import interfaces.IControladorAMProducto;
+import java.awt.Frame;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 import productos.modelos.*;
 
-import productos.modelos.Producto;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
 
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private IControladorAMProducto controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    public VentanaAMProducto(IControladorAMProducto controlador) {
+        super((Frame)null, true);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
+        this.controlador = controlador;
         this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstado.setModel(new ModeloComboEstado());
-        this.setVisible(true);        
+        this.comboEstado.setModel(new ModeloComboEstado());       
     }
     
       
@@ -46,16 +43,17 @@ public class VentanaAMProducto extends JDialog {
         txtDescripcion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox<>();
         comboEstado = new javax.swing.JComboBox<>();
+        btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         setResizable(false);
 
         jLabel1.setText("Descripción:");
@@ -66,32 +64,9 @@ public class VentanaAMProducto extends JDialog {
 
         txtPrecio.setToolTipText("Precio del producto");
 
-        btnGuardar.setMnemonic('G');
-        btnGuardar.setText("Guardar");
-        btnGuardar.setToolTipText("Guarda el producto");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClic(evt);
-            }
-        });
-
-        btnCancelar.setMnemonic('C');
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setToolTipText("Cancela la operación");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarClic(evt);
-            }
-        });
-
         jLabel4.setText("Código:");
 
         txtCodigo.setToolTipText("Código del producto");
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Estado:");
 
@@ -103,6 +78,20 @@ public class VentanaAMProducto extends JDialog {
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboEstado.setToolTipText("Estado del producto");
 
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,11 +99,6 @@ public class VentanaAMProducto extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -128,7 +112,12 @@ public class VentanaAMProducto extends JDialog {
                             .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)
                             .addComponent(comboCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -154,42 +143,51 @@ public class VentanaAMProducto extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarClic
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstado)this.comboEstado.getModel()).obtenerEstado();
-        
-        Producto unProducto= new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
-    }//GEN-LAST:event_btnGuardarClic
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        this.controlador.btnGuardarClic(evt);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
-
+    public JTextField verTxtCodigo(){
+        return txtCodigo;
+    }
+    
+    public JTextField verTxtDescripcion(){
+        return txtDescripcion;
+    }
+    
+    public JTextField verTxtPrecio(){
+        return txtPrecio;
+    }
+    
+    public JComboBox<String> verTxtCategoria(){
+        return comboCategorias;
+    }
+    
+    public JComboBox<String> verTxtEstado(){
+        return comboEstado;
+    }
+    
+    public void limpiarCampos() {
+        this.txtCodigo.setText("");
+        this.txtDescripcion.setText("");
+        this.txtPrecio.setText("");
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

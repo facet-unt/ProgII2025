@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -42,7 +43,7 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.ventana.dispose();
     }
 
     @Override
@@ -57,12 +58,12 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorAMProducto controladorNuevoProducto = ControladorAMProductos.instanciar(null);
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        IControladorAMProducto controladorModificarProducto = ControladorAMProductos.instanciar(null);
     }
 
     @Override
