@@ -114,19 +114,24 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.ventana.verCampoDescripcion().requestFocus();
+        }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.ventana.verCampoPrecio().requestFocus();
+        }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
     }
-    
     private void configurarCampos(Producto p){
         this.ventana.verCampoCodigo().setText(Integer.toString(p.verCodigo()));
         this.ventana.verCampoDescripcion().setText(p.verDescripcion());

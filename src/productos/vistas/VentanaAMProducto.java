@@ -7,13 +7,7 @@ package productos.vistas;
 
 import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
-import java.util.ArrayList;
 import javax.swing.JDialog;
-import productos.modelos.*;
-
-import productos.modelos.Producto;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
 
 
 public class VentanaAMProducto extends JDialog {
@@ -58,10 +52,20 @@ public class VentanaAMProducto extends JDialog {
         labelDescripcion.setText("Descripción:");
 
         campoDescripcion.setToolTipText("Apellidos del profesor");
+        campoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoDescripcionKeyReleased(evt);
+            }
+        });
 
         labelPrecio.setText("Precio:");
 
         campoPrecio.setToolTipText("Nombres del profesor");
+        campoPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoPrecioKeyReleased(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -82,6 +86,11 @@ public class VentanaAMProducto extends JDialog {
         labelCodigo.setText("Código:");
 
         campoCodigo.setToolTipText("Documento del profesor");
+        campoCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoCodigoKeyReleased(evt);
+            }
+        });
 
         labelEstado.setText("Estado:");
 
@@ -159,9 +168,19 @@ public class VentanaAMProducto extends JDialog {
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
-    
-    
 
+    private void campoCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyReleased
+         this.controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_campoCodigoKeyReleased
+
+    private void campoDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescripcionKeyReleased
+         this.controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_campoDescripcionKeyReleased
+
+    private void campoPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPrecioKeyReleased
+         this.controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_campoPrecioKeyReleased
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
