@@ -1,4 +1,5 @@
 6*Ensalada*4.0*Entrada*Disponible
+1*Producto2*2.0*Entrada*Disponible
 12*Testeo de archivo2*102.0*Entrada*Disponible
 12343*asdasdasdas*2342.0*Entrada*Disponible
 10*descripcion*10000.0*Entrada*Disponible
@@ -7,4 +8,4 @@
 9*Suprema con ensalada*2.8*Plato_Principal*Disponible
 7*Suprema con pure*3.0*Plato_Principal*Disponible
 3*Copa helada*3.0*Postre*Disponible
-1*Producto2*2.0*Entrada*Disponible
+36*ety*46.0*Entrada*Disponible

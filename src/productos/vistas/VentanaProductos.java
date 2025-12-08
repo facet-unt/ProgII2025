@@ -62,11 +62,6 @@ private ControladorProductos controlador;
 
         jLabel1.setText("Descripción:");
 
-        fieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldDescripcionActionPerformed(evt);
-            }
-        });
         fieldDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 fieldDescripcionKeyPressed(evt);
@@ -179,10 +174,6 @@ private ControladorProductos controlador;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void fieldDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDescripcionActionPerformed
-
-    }//GEN-LAST:event_fieldDescripcionActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
