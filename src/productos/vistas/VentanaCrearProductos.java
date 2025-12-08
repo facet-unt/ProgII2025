@@ -5,7 +5,6 @@
  */
 package productos.vistas;
 
-import interfaces.IGestorProductos;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
 import productos.modelos.Categoria;
@@ -13,7 +12,6 @@ import productos.modelos.Estado;
 import productos.modelos.ModeloComboCategorias;
 import productos.modelos.ModeloComboEstados;
 
-import productos.modelos.Producto;
 
 public class VentanaCrearProductos extends JDialog {
     private static ControladorCrearProductos controlador;

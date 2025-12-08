@@ -3,3 +3,4 @@
 5;Queso y dulce;Postre;Disponible;3.0
 6;Ensalada;Entrada;Disponible;3.0
 9;Suprema con ensalada;Plato principal;Disponible;2.8
+20;Arroz;Plato principal;Disponible;2.5

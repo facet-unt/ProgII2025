@@ -4,9 +4,11 @@
  */
 package productos.vistas;
 
-import interfaces.IControladorProductos;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import principal.controladores.ControladorProductos;
-import principal.vistas.VentanaPrincipal;
+import productos.modelos.ModeloTablaProductos;
 
 /**
  *
@@ -16,6 +18,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
     private static ControladorProductos controlador;
+    private ModeloTablaProductos modeloTabla;
     /**
      * Creates new form VentanaProductos
      */
@@ -23,6 +26,9 @@ public class VentanaProductos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.controlador = controlador;
+        this.modeloTabla = new ModeloTablaProductos();
+        this.jTable1.setModel(modeloTabla);
+//        add(new JScrollPane(jTable1), BorderLayout.CENTER);
     }
 
     /**
@@ -164,13 +170,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolver
     private void ventanaGanafoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaGanafoco
-        if(controlador!=null)
         controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaGanafoco
 
     private void btnNuevo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo
        controlador.btnNuevoClic(evt);
-       
     }//GEN-LAST:event_btnNuevo
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
