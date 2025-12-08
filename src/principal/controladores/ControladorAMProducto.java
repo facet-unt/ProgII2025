@@ -92,22 +92,34 @@ public class ControladorAMProducto implements IControladorAMProducto {
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.btnGuardarClic(null);
+            vp.verTxtDescripcion().requestFocus();
         }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.btnGuardarClic(null);
+            vp.verTxtPrecio().requestFocus();
         }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.btnGuardarClic(null);
+            System.out.println("Recomendacion: Use las flechas para navegar entre los items");
+            vp.verComboCategorias().requestFocus();
         }
     }
 
+    public void comboCategoriasPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vp.verComboEstado().requestFocus();
+        }
+    }
+
+    public void comboEstadoPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
+    }
 }

@@ -104,8 +104,18 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboCategoriasKeyPressed(evt);
+            }
+        });
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboEstadoKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +221,16 @@ public class VentanaAMProducto extends JDialog {
     private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
         controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyPressed
+
+    private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
+        controlador.comboCategoriasPresionarTecla(evt);
+
+    }//GEN-LAST:event_comboCategoriasKeyPressed
+
+    private void comboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadoKeyPressed
+        controlador.comboEstadoPresionarTecla(evt);
+
+    }//GEN-LAST:event_comboEstadoKeyPressed
 
     public JComboBox<String> verComboEstado() {
         return comboEstado;
