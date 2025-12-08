@@ -72,8 +72,20 @@ public class ControladorAMProducto implements IControladorAMProducto{
             Categoria categoria = (Categoria)this.ventana.verComboBoxCategorias().getSelectedItem();
             Estado estado = (Estado)this.ventana.verComboBoxEstados().getSelectedItem();
             String descripcion = this.ventana.verCampoDescripcion().getText().trim();
-            int codigo = Integer.parseInt(this.ventana.verCampoCodigo().getText().trim());
-            float precio = Float.parseFloat(this.ventana.verCampoPrecio().getText().trim());
+            int codigo;
+            float precio;
+            try {
+                codigo = Integer.parseInt(this.ventana.verCampoCodigo().getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this.ventana,IGestorProductos.ERROR_CODIGO,"Error al crear el Producto",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try {
+                precio = Float.parseFloat(this.ventana.verCampoPrecio().getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this.ventana,IGestorProductos.ERROR_PRECIO,"Error al crear el Producto",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (!gp.crearProducto(codigo, descripcion, precio, categoria, estado).equals(IGestorProductos.ESCRITURA_OK)) {
                 JOptionPane.showMessageDialog(this.ventana, gp.crearProducto(codigo, descripcion, precio, categoria, estado),"Error al crear el Producto", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -85,7 +97,13 @@ public class ControladorAMProducto implements IControladorAMProducto{
             Estado estado = (Estado)this.ventana.verComboBoxEstados().getSelectedItem();
             String descripcion = this.ventana.verCampoDescripcion().getText().trim();
             int codigo = Integer.parseInt(this.ventana.verCampoCodigo().getText().trim());
-            float precio = Float.parseFloat(this.ventana.verCampoPrecio().getText().trim());
+            float precio;
+            try {
+                precio = Float.parseFloat(this.ventana.verCampoPrecio().getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this.ventana,IGestorProductos.ERROR_PRECIO,"Error al crear el Producto",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (!gp.modificarProducto(this.productoAModificar,codigo, descripcion, precio, categoria, estado).equals(IGestorProductos.EXITO)) {
                 JOptionPane.showMessageDialog(this.ventana, gp.modificarProducto(this.productoAModificar,codigo, descripcion, precio, categoria, estado),"Error al modificar el Producto", JOptionPane.ERROR_MESSAGE);
             }else{
