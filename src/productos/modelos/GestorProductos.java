@@ -155,17 +155,22 @@ public class GestorProductos implements IGestorProductos {
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String resultadoArchivo;
         Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-        if (codigo > 0 && descripcion != null && !descripcion.isEmpty() && precio > 0 && categoria != null && estado != null) {
+   
+        if (codigo>0 && descripcion != null && !descripcion.isEmpty() && precio > 0 && categoria != null && estado != null) {
             if (!productos.contains(p)) {
                 productos.add(p);
                 resultadoArchivo = guardarEnArchivoAgregar(p);
                 if (resultadoArchivo.equals(ESCRITURA_OK)) {
+                    menu();
                     return (EXITO);
-                } else {
+                 } else {
                     return (FRACASO);
                 }
             }
-            return PRODUCTOS_DUPLICADOS;
+            else
+            {
+                return PRODUCTOS_DUPLICADOS;
+            }
 
         } else {
             if (codigo < 0) {
@@ -220,7 +225,10 @@ public class GestorProductos implements IGestorProductos {
         
         resultadoArchivo = guardarEnArchivo(p);
         if (resultadoArchivo.equals(ESCRITURA_OK))
+        {
+            menu();
             return EXITO;
+        }
         else
             return FRACASO;
     }
@@ -335,6 +343,7 @@ public class GestorProductos implements IGestorProductos {
             {
             guardarEnArchivo(p);
             }
+            menu();
             return "Producto borrado con éxito.";
         } else {
             return PRODUCTO_INEXISTENTE;
