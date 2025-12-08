@@ -42,7 +42,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         private static GestorUsuarios gestor;
         private Usuario usuario;
         
-    private GestorUsuarios() {
+    public GestorUsuarios() {
         cargarArchivoEnLista();
     }
    
@@ -87,6 +87,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(e);
+                cargarListaUsuariosEnArchivo();
 
                 break;
 
@@ -96,6 +97,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(en);
+                cargarListaUsuariosEnArchivo();
 
                 break;
 
@@ -146,7 +148,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     
     
     
-      private void cargarArchivoEnLista() {
+      public void cargarArchivoEnLista() {
         usuarios.clear();
         File archivo = new File(ARCHIVO);
 
@@ -235,7 +237,8 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     }
     
-    public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida)
+    @Override
+    public String modificarUsuario(Usuario usuario, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida)
     {
          if (correo == null || correo.isEmpty() || !correo.contains("@")) {
             return ERROR_CORREO;
@@ -252,11 +255,12 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (perfil == null) {
             return ERROR_PERFIL;
         }
-        usuarios.remove(u);
+        
 
         switch (perfil) {
             case ENCARGADO:
                 Encargado e = new Encargado(correo, clave, apellido, nombre);
+                
                 if (usuarios.contains(e)) {
                     return USUARIOS_DUPLICADOS;
                 }
@@ -292,5 +296,9 @@ public class GestorUsuarios implements IGestorUsuarios {
         
        
     }
+
+    
+
+    
 
 }

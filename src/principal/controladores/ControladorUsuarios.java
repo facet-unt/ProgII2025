@@ -8,6 +8,8 @@ import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -17,26 +19,38 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorUsuarios implements IControladorUsuarios{
     
     private VentanaUsuarios vu;
-
-    public ControladorUsuarios(VentanaUsuarios vu) {
-        this.vu = new VentanaUsuarios();
-    }
+    private GestorUsuarios gu;
     
-    public void mostrarVentanaProducto() {
+    private boolean modificar=false; 
 
-        vu.setLocationRelativeTo(null);
+    public ControladorUsuarios() {
+        this.vu = new VentanaUsuarios(this);
+        this.gu= new GestorUsuarios();
         vu.setVisible(true);
+        vu.setLocationRelativeTo(null);
+        ModeloTablaUsuarios model = new ModeloTablaUsuarios();
+        vu.gettablaUsuario().setModel(model);
+        
     }
     
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
+     ControladorAMUsuarios camu = new ControladorAMUsuarios(modificar);    
+        
         
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        modificar=true;
+        
+        int fila = vu.gettablaUsuario().getSelectedRow();
+        Usuario usuario= gu.verUsuarios().get(fila);
+        ControladorAMUsuarios camu = new ControladorAMUsuarios(usuario,modificar); 
+        modificar=false;
+        
+        
     }
 
     @Override

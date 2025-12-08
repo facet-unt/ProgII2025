@@ -46,7 +46,7 @@ private ControladorUsuarios controlador;
         btnVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableMenu = new javax.swing.JTable();
+        tablaUsuario = new javax.swing.JTable();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -112,7 +112,7 @@ private ControladorUsuarios controlador;
 
         jLabel2.setText("Menu");
 
-        tableMenu.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -123,8 +123,8 @@ private ControladorUsuarios controlador;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableMenu.setFocusable(false);
-        jScrollPane1.setViewportView(tableMenu);
+        tablaUsuario.setFocusable(false);
+        jScrollPane1.setViewportView(tablaUsuario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,7 +233,7 @@ private ControladorUsuarios controlador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableMenu;
+    private javax.swing.JTable tablaUsuario;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getBtnBorrar() {
@@ -276,7 +276,7 @@ private ControladorUsuarios controlador;
         return jScrollPane1;
     }
 
-    public javax.swing.JTable getTableMenu() {
-        return tableMenu;
+    public javax.swing.JTable gettablaUsuario() {
+        return tablaUsuario;
     }
 }

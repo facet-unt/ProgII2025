@@ -62,6 +62,7 @@ public class VentanaAMProducto extends JDialog {
 
         txtPrecio.setToolTipText("Precio");
 
+        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +71,7 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
+        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +89,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -182,6 +189,10 @@ public class VentanaAMProducto extends JDialog {
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
+
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
 
     public JComboBox<String> verComboEstado() {
         return comboEstado;

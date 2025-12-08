@@ -42,7 +42,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-
+        ControladorUsuarios cvu= new ControladorUsuarios();
     }
 
     @Override
