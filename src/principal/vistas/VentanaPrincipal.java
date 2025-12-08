@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonProductos = new javax.swing.JButton();
         botonPedidos = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        LabelBar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -82,9 +82,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bar");
+        LabelBar.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        LabelBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelBar.setText("Bar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,14 +102,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(121, 121, 121)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelBar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(LabelBar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,11 +142,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }//GEN-LAST:event_btnUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelBar;
     private javax.swing.JButton botonPedidos;
     public javax.swing.JButton botonProductos;
     public javax.swing.JButton botonSalir;
     public javax.swing.JButton botonUsuarios;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
 public javax.swing.JButton getBotonPedidos() {

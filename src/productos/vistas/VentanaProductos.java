@@ -46,8 +46,9 @@ public class VentanaProductos extends javax.swing.JDialog {
     public void mostrarMensaje(String titulo, String mensaje, int tipo) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
     }
-    
-
+  
+   
+/*
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         controlador.botonNuevoClic(evt);
@@ -73,7 +74,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         // TODO add your handling code here:
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_fieldDescripcionKeyPressed
-
+*/
     /**
      * @param args the command line arguments
      */
@@ -109,6 +110,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         campoDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoDescripcionActionPerformed(evt);
+            }
+        });
+        campoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoDescripcionKeyPressed(evt);
             }
         });
 
@@ -151,7 +157,7 @@ public class VentanaProductos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tablaMenu.setColumnSelectionAllowed(true);
+        tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setShowGrid(true);
         jScrollPane2.setViewportView(tablaMenu);
@@ -165,10 +171,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,8 +179,18 @@ public class VentanaProductos extends javax.swing.JDialog {
         );
 
         botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         botonNuevo.setText("Nuevo");
+        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevoActionPerformed(evt);
+            }
+        });
 
         botonModificar.setText("Editar");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -187,8 +200,18 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         botonBorrar.setText("Borrar");
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
 
         botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,6 +277,30 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         controlador.botonModificarClic(evt);
     }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        // TODO add your handling code here:
+        controlador.botonBuscarClic(evt);
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
+        // TODO add your handling code here:
+        controlador.botonNuevoClic(evt);
+    }//GEN-LAST:event_botonNuevoActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+        // TODO add your handling code here:
+        controlador.botonBorrarClic(evt);
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        controlador.botonVolverClic(evt);
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void campoDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescripcionKeyPressed
+        // TODO add your handling code here:
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_campoDescripcionKeyPressed
 
     /**
      * @param args the command line arguments
@@ -329,6 +376,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     public javax.swing.JTable getTablaMenu() {
         return tablaMenu;
     }
+   
 }
     
 
