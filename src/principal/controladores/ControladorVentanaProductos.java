@@ -22,19 +22,29 @@ import productos.vistas.VentanaProductos;
  */
 public class ControladorVentanaProductos implements IControladorProductos {
 
-    private VentanaProductos ventana;
+    private VentanaProductos vista;
+    private IGestorProductos gestor;
+    private ModeloTablaProductos modeloTabla;
+ 
+    
     
     
     public ControladorVentanaProductos() {
         
-        this.ventana = new VentanaProductos(null, true,this);
-        this.ventana.setTitle(TITULO);
-        this.ventana.setLocationRelativeTo(null);
-        this.ventana.setVisible(true);
+        this.vista = new VentanaProductos(null, true,this);
+        this.vista.setTitle(TITULO);
+        this.vista.setLocationRelativeTo(null);
+        this.gestor = GestorProductos.instanciar();
+        this.modeloTabla = new ModeloTablaProductos();
+        configurarVista();
+        this.vista.setVisible(true);
         
     }
 
-    
+    public ModeloTablaProductos getModeloTabla() {
+        return modeloTabla;
+    }
+
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
@@ -43,12 +53,21 @@ public class ControladorVentanaProductos implements IControladorProductos {
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        this.ventana.dispose();
+        this.vista.dispose();
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
+    String descripcion = vista.obtenerTextoDescripcion(); // antes era conseguirTxt()
     
+    if (descripcion == null || descripcion.trim().isEmpty()) {
+        modeloTabla.cargarTodos();
+    } else {
+        modeloTabla.buscarPorDescripcion(descripcion);
+    }
+    
+    vista.actualizarTabla(modeloTabla);
+
     }
 
     @Override
@@ -69,5 +88,14 @@ public class ControladorVentanaProductos implements IControladorProductos {
     @Override
     public void btnBorrarClic(ActionEvent evt) { 
         
+    }
+    
+     private void configurarVista() {
+        
+        modeloTabla.cargarTodos();
+        vista.actualizarTabla(modeloTabla);
+        
+        // Debug
+        System.out.println("🔍 Configurando vista con " + modeloTabla.getRowCount() + " productos");
     }
 }

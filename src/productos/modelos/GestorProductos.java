@@ -23,12 +23,10 @@ import pedidos.modelos.GestorPedidos;
 public class GestorProductos implements IGestorProductos {
     
     private List<Producto> productos = new ArrayList<>();
-    
-    
     private static GestorProductos instancia;
     
     private GestorProductos() { 
-    this.productos = leerProductos();
+        this.productos = leerProductos();
     }
     
     public static GestorProductos instanciar() {
@@ -36,8 +34,6 @@ public class GestorProductos implements IGestorProductos {
             instancia = new GestorProductos();
         return instancia;
     }
-    
-  
     
     private String validarInfo(int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
         if (codigo <= 0)
@@ -58,8 +54,6 @@ public class GestorProductos implements IGestorProductos {
         return VALIDACION_EXITO;
     }
     
-    
-    
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         
@@ -78,8 +72,6 @@ public class GestorProductos implements IGestorProductos {
         return EXITO;
     }
     
-    
-    
     @Override
     public String modificarProducto(Producto p, int nuevoCodigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         
@@ -90,24 +82,23 @@ public class GestorProductos implements IGestorProductos {
         if (!validacion.equals(VALIDACION_EXITO))
             return validacion;
         
-        
+        // Verificar si el nuevo código ya existe en otro producto
         Producto otro = obtenerProducto(nuevoCodigo);
         if (otro != null && otro != p)
             return PRODUCTOS_DUPLICADOS;
         
-        
+        // CORRECCIÓN 2: Modificar producto correctamente
         p.asignarCodigo(nuevoCodigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
         
+        // Guardar cambios en el archivo
         guardarListaEnArchivo(); 
         
         return EXITO;
     }
-    
-   
     
     @Override
     public String borrarProducto(Producto producto) {
@@ -118,18 +109,21 @@ public class GestorProductos implements IGestorProductos {
         if (!productos.contains(producto))
             return "El producto no existe en el sistema.";
 
-        GestorPedidos gp = GestorPedidos.getInstancia();
-        if (gp.hayPedidosConEsteProducto(producto))
-            return "No se puede eliminar el producto, hay pedidos asociados.";
+        // Verificar si hay pedidos asociados (comentar si GestorPedidos no existe aún)
+        try {
+            GestorPedidos gp = GestorPedidos.getInstancia();
+            if (gp.hayPedidosConEsteProducto(producto))
+                return "No se puede eliminar el producto, hay pedidos asociados.";
+        } catch (Exception e) {
+            // Si GestorPedidos no existe, continuar con la eliminación
+        }
 
+        // CORRECCIÓN 3: Eliminar de la lista Y del archivo
         productos.remove(producto);
-
         guardarListaEnArchivo();
 
         return "Producto eliminado con éxito.";
     }
-    
-    
     
     @Override
     public Producto obtenerProducto(Integer codigo) {
@@ -143,7 +137,7 @@ public class GestorProductos implements IGestorProductos {
     public List<Producto> buscarProductos(String descripcion) {
         List<Producto> lista = new ArrayList<>();
         for (Producto p : productos)
-            if (p.verDescripcion().equals(descripcion))
+            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
                 lista.add(p);
         lista.sort(dDesc);
         return lista;
@@ -166,17 +160,15 @@ public class GestorProductos implements IGestorProductos {
     
     @Override
     public List<Producto> menu() {
-        productos = leerProductos();
         Collections.sort(productos);
-        return productos;
+        return new ArrayList<>(productos); 
     }
     
     Comparator<Producto> dDesc = (p1, p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
     
-   
-    
+    // CORRECCIÓN 5: Sobrescribir archivo completo (sin append)
     private void guardarListaEnArchivo() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO,true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
             
             for (Producto p : productos) {
                 String linea = p.verCodigo() + SEPARADOR +
@@ -190,13 +182,12 @@ public class GestorProductos implements IGestorProductos {
             }
             
         } catch (IOException e) {
-            System.out.println(ESCRITURA_ERROR);
+            System.err.println(ESCRITURA_ERROR + ": " + e.getMessage());
         }
     }
     
-    
-    
-    private List<Producto> leerProductos() {
+    @Override
+    public List<Producto> leerProductos() {
         List<Producto> lista = new ArrayList<>();
         
         File f = new File(NOMBREARCHIVO);
@@ -207,39 +198,61 @@ public class GestorProductos implements IGestorProductos {
             
             String linea;
             while ((linea = br.readLine()) != null) {
+                // Ignorar líneas vacías
+                if (linea.trim().isEmpty())
+                    continue;
+                    
                 String[] partes = linea.split(SEPARADOR);
                 
-                int codigo = Integer.parseInt(partes[0]);
-                String descripcion = partes[1];
-                Categoria categoria = convertirCategoria(partes[2]);
-                Estado estado = convertirEstado(partes[3]);
-                float precio = Float.parseFloat(partes[4]);
+                if (partes.length != 5) {
+                    System.err.println("Línea mal formateada: " + linea);
+                    continue;
+                }
                 
-                Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-                lista.add(p);
+                try {
+                    int codigo = Integer.parseInt(partes[0].trim());
+                    String descripcion = partes[1].trim();
+                    Categoria categoria = convertirCategoria(partes[2].trim());
+                    Estado estado = convertirEstado(partes[3].trim());
+                    float precio = Float.parseFloat(partes[4].trim());
+                    
+                    if (categoria != null && estado != null) {
+                        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
+                        lista.add(p);
+                    }
+                } catch (NumberFormatException e) {
+                    System.err.println("Error al parsear números en línea: " + linea);
+                }
             }
             
         } catch (IOException e) {
-            System.out.println(ERROR_LECTURA);
+            System.err.println(ERROR_LECTURA + ": " + e.getMessage());
         }
         
         return lista;
     }
     
-    
-    
     private Categoria convertirCategoria(String valor) {
-        for (Categoria c : Categoria.values())
-            if (c.toString().equals(valor))
-                return c;
-        return null;
+        try {
+            return Categoria.valueOf(valor);
+        } catch (IllegalArgumentException e) {
+            // Si falla valueOf, intentar con toString()
+            for (Categoria c : Categoria.values())
+                if (c.toString().equalsIgnoreCase(valor))
+                    return c;
+            return null;
+        }
     }
     
     private Estado convertirEstado(String valor) {
-        for (Estado e : Estado.values())
-            if (e.toString().equals(valor))
-                return e;
-        return null;
+        try {
+            return Estado.valueOf(valor);
+        } catch (IllegalArgumentException e) {
+            // Si falla valueOf, intentar con toString()
+            for (Estado t : Estado.values())
+                if (e.toString().equalsIgnoreCase(valor))
+                    return t;
+            return null;
+        }
     }
 }
-

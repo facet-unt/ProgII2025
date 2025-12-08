@@ -30,8 +30,8 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setTitle(TITULO);
         this.ventana.setLocationRelativeTo(null);
-        this.ventana.setVisible(true);
         this.ventana.setResizable(false);
+        this.ventana.setVisible(true);
     }
 
     @Override

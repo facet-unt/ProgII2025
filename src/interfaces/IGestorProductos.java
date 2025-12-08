@@ -32,6 +32,8 @@ public interface IGestorProductos {
 
     public Producto obtenerProducto(Integer codigo);
     
+    public List<Producto> leerProductos();
+    
     public static final String EXITO = "Producto creado/modificado con éxito";
     
     public static final String ERROR_CODIGO = "El código del producto es incorrecto";
