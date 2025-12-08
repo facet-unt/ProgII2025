@@ -16,9 +16,10 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
     public ModeloTablaUsuarios() {
         nombreColumnas.add("Apellidos");
         nombreColumnas.add("Nombres");
-        nombreColumnas.add("Perfiles");
+        nombreColumnas.add("Correo");
         this.actualizarTabla();
     }
+    
 
     @Override
     public int getRowCount() {
@@ -38,19 +39,35 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 return u.verApellido();
             case 1:
                 return u.verNombre();
-            case 2:
-                return u.verPerfil().name();
+         
+            case 2: 
+                return u.verCorreo();
             default:
                 return u.getClass().getSimpleName();
         }
     }
-
+//
+//    public void actualizarTabla() {
+//        IGestorUsuarios gu = GestorUsuarios.instanciar();
+//       gu.cargarArchivoEnLista();
+//        usuarios = gu.verUsuarios();
+//        this.fireTableDataChanged();
+//    }
+    
     public void actualizarTabla() {
-        IGestorUsuarios gu = GestorUsuarios.instanciar();
-        gu.cargarArchivoEnLista();
-        usuarios = gu.verUsuarios();
-        this.fireTableDataChanged();
+    IGestorUsuarios gu = GestorUsuarios.instanciar();
+    gu.cargarArchivoEnLista();
+    usuarios = gu.verUsuarios();
+
+    System.out.println("Usuarios en el modelo: " + usuarios.size());
+    for (Usuario u : usuarios) {
+        System.out.println(u);
     }
+
+    this.fireTableDataChanged();
+}
+
+
 
     public void actualizarTabla(List<Usuario> usuarios) {
         this.usuarios = usuarios;

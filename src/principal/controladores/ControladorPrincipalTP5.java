@@ -50,6 +50,7 @@ public class ControladorPrincipalTP5 {
         List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for(Producto p : productosEntrada) {
             p.mostrar();
+        }
             
             
         IGestorUsuarios gu = GestorUsuarios.instanciar();
@@ -58,7 +59,7 @@ public class ControladorPrincipalTP5 {
         
         System.out.println(gu.crearUsuario("correo1@mail.com", "Apellido1", "Nombre1", Perfil.EMPLEADO, "clave1", "clave1")); 
         System.out.println(gu.crearUsuario("correo2@mail.com", "Apellido2", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
-        System.out.println(gu.crearUsuario("correo1@mail.com", "Apellido1", "Nombre1", Perfil.EMPLEADO, "clave1", "clave1")); 
+        
         
         List<Usuario> usuariosBuscados = gu.buscarUsuarios("Apellido1"); 
         System.out.println("Usuarios buscados por Apellido1:");
@@ -69,7 +70,9 @@ public class ControladorPrincipalTP5 {
         Usuario usuario2 = gu.obtenerUsuario("correo2@mail.com"); 
         System.out.println("Existe usuario2: " + gu.existeEsteUsuario(usuario2)); 
         
-        gu.modificarUsuario(usuario2, "correo2@mail.com", "Apellido4", "Nombre2", Perfil.CLIENTE, "clave2", "clave2");
+        gu.modificarUsuario(usuario2, "correo2@mail.com", "Apellido5", "Nombre2", Perfil.CLIENTE, "clave2", "clave2");
+         
+       
 
         System.out.println("\n--- PRUEBAS GESTOR PEDIDOS ---");
         IGestorPedidos gpe = GestorPedidos.instanciar();
@@ -93,6 +96,20 @@ public class ControladorPrincipalTP5 {
             System.out.println("Cancelando Pedido 1: " + gpe.cancelarPedido(unPedido)); 
             System.out.println("Existe Pedido 1 después de cancelar: " + gpe.existeEstePedido(unPedido)); 
         }
-    }
+        
+        
+           System.out.println("----------------PRUEBA ARRAY-------------------");
+          
+       gu.cargarArchivoEnLista();
+       for (Usuario u: gu.verUsuarios())
+       {
+           System.out.println(u.toString());
+       }
+       
+       
+       
+        }
 }
-}
+    
+
+

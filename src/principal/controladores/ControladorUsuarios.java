@@ -5,31 +5,38 @@
 package principal.controladores;
 
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import productos.modelos.Producto;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
  *
- * @author Ruben
+ * @author Sofia
  */
 public class ControladorUsuarios implements IControladorUsuarios{
     
     private VentanaUsuarios vu;
     private GestorUsuarios gu;
+    private ModeloTablaUsuarios model;
     
     private boolean modificar=false; 
 
     public ControladorUsuarios() {
         this.vu = new VentanaUsuarios(this);
-        this.gu= new GestorUsuarios();
+        this.gu = GestorUsuarios.instanciar();
+
+        this.model = new ModeloTablaUsuarios();
+        vu.gettablaUsuario().setModel(model);
+        model.actualizarTabla();
         vu.setVisible(true);
         vu.setLocationRelativeTo(null);
-        ModeloTablaUsuarios model = new ModeloTablaUsuarios();
-        vu.gettablaUsuario().setModel(model);
+       
         
     }
     
@@ -43,13 +50,26 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        modificar=true;
+         modificar=true;
+              int fila = vu.gettablaUsuario().getSelectedRow();
+
+        if (fila == -1) {
+            javax.swing.JOptionPane.showMessageDialog(vu, "Seleccione un producto para modificar.");
+            return;
+        }
         
-        int fila = vu.gettablaUsuario().getSelectedRow();
-        Usuario usuario= gu.verUsuarios().get(fila);
-        ControladorAMUsuarios camu = new ControladorAMUsuarios(usuario,modificar); 
+        ControladorAMUsuarios camu = new ControladorAMUsuarios(this.pasarUsuario(),modificar);
+
         modificar=false;
         
+        
+    }
+    
+    public Usuario pasarUsuario()
+    {
+         int fila = vu.gettablaUsuario().getSelectedRow();
+        Usuario usuario= model.obtenerUsuario(fila);
+        return usuario;
         
     }
 
@@ -60,21 +80,35 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         this.model.actualizarTabla();
+        
     }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.vu.dispose();
     }
-
+        
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnBuscarClic(null);
+        }
+        
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
+           String texto = vu.getFieldDescripcion().getText().trim();
+
+        IGestorUsuarios gestor = GestorUsuarios.instanciar();
+
+        if (texto.isEmpty()) {
+            model.actualizarTabla();
+        } else {
+            List<Usuario> filtrados = gestor.buscarUsuarios(texto);
+            model.actualizarTabla(filtrados);
+        }
         
     
 }

@@ -146,7 +146,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return null;
     }
     
-    
+  
     
       public void cargarArchivoEnLista() {
         usuarios.clear();
@@ -206,13 +206,15 @@ public class GestorUsuarios implements IGestorUsuarios {
                 }        
          }
                     
-                
+    
             System.out.println(LECTURA_OK);
 
             }catch (Exception e) 
           {
             System.out.println(LECTURA_ERROR);
         }
+        
+      
     
       
 }
@@ -224,7 +226,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 bw.write(u.verCorreo()+ SEPARADOR
                         + u.verApellido() + SEPARADOR
                         + u.verNombre() + SEPARADOR
-                        + u.verPerfil() + SEPARADOR
+                        + u.getClass().getSimpleName() + SEPARADOR
                         + u.verClave() + SEPARADOR
                 + u.verClave());
                 bw.newLine();
@@ -234,8 +236,13 @@ public class GestorUsuarios implements IGestorUsuarios {
         } catch (IOException ex) {
             System.out.println(ESCRITURA_ERROR);
         }
+          catch(NullPointerException ex)
+                    {
+                        System.out.println("Un parámetro es null");
+                    }
+        }
 
-    }
+    
     
     @Override
     public String modificarUsuario(Usuario usuario, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida)
@@ -255,7 +262,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (perfil == null) {
             return ERROR_PERFIL;
         }
-        
+        usuarios.remove(usuario);
 
         switch (perfil) {
             case ENCARGADO:
@@ -264,6 +271,11 @@ public class GestorUsuarios implements IGestorUsuarios {
                 if (usuarios.contains(e)) {
                     return USUARIOS_DUPLICADOS;
                 }
+//                int index = usuarios.indexOf(usuario);
+//               if (index != -1) {
+//                 usuarios.set(index, e);
+//                  }
+
                 usuarios.add(e);
                 cargarListaUsuariosEnArchivo() ;
                 
@@ -276,6 +288,11 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(en);
+//                int index2= usuarios.indexOf(usuario);
+//                 if (index2 != -1) {
+//                usuarios.set(index2, en);
+//                      }
+
                 cargarListaUsuariosEnArchivo() ;
 
                 break;
@@ -286,6 +303,11 @@ public class GestorUsuarios implements IGestorUsuarios {
                     return USUARIOS_DUPLICADOS;
                 }
                 usuarios.add(c);
+//                int index3 = usuarios.indexOf(usuario);
+//              if (index3 != -1) {
+//               usuarios.set(index3, c);
+//                  }
+
                 cargarListaUsuariosEnArchivo();
 
                 break;
