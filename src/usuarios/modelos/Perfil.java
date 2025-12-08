@@ -18,6 +18,16 @@ public enum Perfil {
     private Perfil(String valor) {
         this.valor = valor;
     }
+    
+    public static Perfil compararValor(String perfil) {
+        Perfil[] valores = Perfil.values();
+        for (Perfil unPerfil : valores) {
+            if (unPerfil.equals(perfil)) {
+                return unPerfil;
+            }
+        }
+        return null;
+    }
 
     public String verValor() {
         return valor;

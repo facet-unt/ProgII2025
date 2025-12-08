@@ -26,9 +26,6 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
         this.ventana.setTitle(TITULO);
     }
 
-    public void mostrarVentanaPrincipal() {
-        ventana.setVisible(true);
-    }
 
     //los botones de esta clase solamente crea controladores y inicializa las ventanas
     @Override
@@ -52,11 +49,5 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
         }
     }
 
-    public static void main(String[] args) {
-
-        ControladorPrincipalParcial2 cvp = new ControladorPrincipalParcial2();
-        cvp.mostrarVentanaPrincipal();
-
-    }
     
 }

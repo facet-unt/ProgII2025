@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -28,7 +29,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     @Override
     public void botonProductosClic(ActionEvent evt) {
         System.out.println("Boton productos Clic");
-        //IControladorProductos controladorProductos= new ControladorVentanaProductos();
+        IControladorProductos controladorProductos= new ControladorProductos();
     }
 
     @Override

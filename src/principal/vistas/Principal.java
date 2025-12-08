@@ -5,12 +5,12 @@
 package principal.vistas;
 
 import interfaces.IControladorPrincipal;
-import principal.controladores.ControladorVentanaPrincipal;
+import principal.controladores.ControladorPrincipalParcial2;
 
 
 
 public class Principal {
     public static void main(String[] args) {
-        IControladorPrincipal controlador = new ControladorVentanaPrincipal();
+        IControladorPrincipal controlador = new ControladorPrincipalParcial2();
     }
 }
