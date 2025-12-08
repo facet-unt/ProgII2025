@@ -91,17 +91,23 @@ public class ControladorAMProducto implements IControladorAMProducto {
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
     }
 
 }
