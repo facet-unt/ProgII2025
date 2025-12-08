@@ -59,6 +59,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         jLabel1.setText("Descripción:");
 
         jTextField1.setToolTipText("");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("Menú");
 
@@ -152,7 +157,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar
-//        System.out.println("hola");
+        controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscar
 
     private void btnVolver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver
@@ -167,6 +172,10 @@ public class VentanaProductos extends javax.swing.JDialog {
        controlador.btnNuevoClic(evt);
        
     }//GEN-LAST:event_btnNuevo
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_jTextField1KeyReleased
     /**
      * @param args the command line arguments
      */

@@ -9,6 +9,7 @@ import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.vistas.VentanaProductos;
 
@@ -20,6 +21,7 @@ public class ControladorProductos implements IControladorProductos {
     private static ControladorProductos instancia;
     private VentanaPrincipal ventanaPrincipal;
     private VentanaProductos ventanaProductos;
+    private String descripcion;
 
     public ControladorProductos() {
         ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this); 
@@ -47,12 +49,13 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println(this.descripcion);
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.descripcion = campo.getText().trim();
     }
 
     @Override
