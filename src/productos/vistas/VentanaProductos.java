@@ -46,7 +46,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     public void mostrarMensaje(String titulo, String mensaje, int tipo) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
     }
-    
+   
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
@@ -151,7 +151,7 @@ public class VentanaProductos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tablaMenu.setColumnSelectionAllowed(true);
+        tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setShowGrid(true);
         jScrollPane2.setViewportView(tablaMenu);
@@ -165,10 +165,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
