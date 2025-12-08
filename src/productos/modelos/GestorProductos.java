@@ -1,4 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
+/**
+ *
+ * @author alumno
+ */
 
 import static Interfaces.IGestorProductos.ERROR_CATEGORIA;
 import static Interfaces.IGestorProductos.ERROR_CODIGO;

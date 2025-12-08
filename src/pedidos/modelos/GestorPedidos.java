@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pedidos.modelos;
+/**
+ *
+ * @author alumno
+ */
 
 import static Interfaces.IGestorPedidos.ERROR_CLIENTE;
 import static Interfaces.IGestorPedidos.ERROR_FECHA;
