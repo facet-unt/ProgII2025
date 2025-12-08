@@ -16,12 +16,13 @@ import productos.modelos.*;
 
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    //private ArrayList<Producto> productos = new ArrayList<>();
     private ControladorAMProducto controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
+     * @param controlador
      */
     public VentanaAMProducto(Dialog ventanaPadre, ControladorAMProducto controlador) {
         super(ventanaPadre, true);
@@ -97,8 +98,8 @@ public class VentanaAMProducto extends JDialog {
         txtDescripcion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -112,48 +113,63 @@ public class VentanaAMProducto extends JDialog {
         jLabel1.setText("Descripción:");
 
         txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Precio:");
 
         txtPrecio.setToolTipText("Nombres del profesor");
-
-        btnGuardar.setMnemonic('G');
-        btnGuardar.setText("Guardar");
-        btnGuardar.setToolTipText("Guarda el profesor");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClic(evt);
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyPressed(evt);
             }
         });
 
-        btnCancelar.setMnemonic('C');
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setToolTipText("Cancela la operación");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardar.setMnemonic('G');
+        botonGuardar.setText("Guardar");
+        botonGuardar.setToolTipText("Guarda el profesor");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarClic(evt);
+                botonGuardarClic(evt);
+            }
+        });
+
+        botonCancelar.setMnemonic('C');
+        botonCancelar.setText("Cancelar");
+        botonCancelar.setToolTipText("Cancela la operación");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarClic(evt);
             }
         });
 
         jLabel4.setText("Código:");
 
         txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
 
         jLabel6.setText("Estado:");
 
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato Principal", "Postre" }));
-        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriasActionPerformed(evt);
+        comboCategorias.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCategoriasItemStateChanged(evt);
             }
         });
 
         comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
-        comboEstados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEstadosActionPerformed(evt);
+        comboEstados.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboEstadosItemStateChanged(evt);
             }
         });
 
@@ -166,9 +182,9 @@ public class VentanaAMProducto extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
+                        .addComponent(botonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar))
+                        .addComponent(botonCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -210,48 +226,48 @@ public class VentanaAMProducto extends JDialog {
                     .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGuardar))
+                    .addComponent(botonCancelar)
+                    .addComponent(botonGuardar))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+    private void botonCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarClic
+        controlador.botonGuardarClic(evt);
         this.dispose();
-    }//GEN-LAST:event_btnCancelarClic
+    }//GEN-LAST:event_botonCancelarClic
 
-    private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-                            
-        Producto unProducto= new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
-    }//GEN-LAST:event_btnGuardarClic
+    private void botonGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarClic
 
-    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboCategoriasActionPerformed
+        controlador.botonGuardarClic(evt);
+    }//GEN-LAST:event_botonGuardarClic
 
-    private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboEstadosActionPerformed
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyPressed
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyPressed
+
+    private void comboCategoriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCategoriasItemStateChanged
+        controlador.categoriaSelección(evt);
+    }//GEN-LAST:event_comboCategoriasItemStateChanged
+
+    private void comboEstadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboEstadosItemStateChanged
+        controlador.estadoSelección(evt);
+    }//GEN-LAST:event_comboEstadosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonGuardar;
     private javax.swing.JComboBox<String> comboCategorias;
     private javax.swing.JComboBox<String> comboEstados;
     private javax.swing.JLabel jLabel1;
