@@ -40,11 +40,11 @@ public class ModeloTablaProductos extends AbstractTableModel {
 
         switch (columna) {
             case 0:
-                return p.verCategoria();   
+                return p.verCategoria();
             case 1:
-                return p.verDescripcion(); 
+                return p.verDescripcion();
             case 2:
-                return p.verPrecio();     
+                return p.verPrecio();
             default:
                 return null;
         }

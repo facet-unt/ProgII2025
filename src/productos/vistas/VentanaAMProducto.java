@@ -224,12 +224,12 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
-        ((ControladorAMProducto)controlador).comboCategoriasPresionarTecla(evt);
+        ((ControladorAMProducto) controlador).comboCategoriasPresionarTecla(evt);
 
     }//GEN-LAST:event_comboCategoriasKeyPressed
 
     private void comboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadoKeyPressed
-        ((ControladorAMProducto)controlador).comboEstadoPresionarTecla(evt);
+        ((ControladorAMProducto) controlador).comboEstadoPresionarTecla(evt);
 
     }//GEN-LAST:event_comboEstadoKeyPressed
 

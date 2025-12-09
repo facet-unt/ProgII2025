@@ -46,7 +46,9 @@ public class ControladorAMProducto implements IControladorAMProducto {
         vp.verTxtCodigo().setEditable(false);
         vp.verTxtDescripcion().setText(p.verDescripcion());
         vp.verTxtPrecio().setText(String.valueOf(p.verPrecio()));
-        vp.verComboCategorias().setSelectedItem(p.verCategoria().toString());
+        vp.verComboCategorias().setSelectedItem(p.verCategoria());
+        vp.verComboEstado().setSelectedItem(p.verEstado());
+
     }
 
     @Override

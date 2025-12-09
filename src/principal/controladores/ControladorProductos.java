@@ -61,7 +61,7 @@ public class ControladorProductos implements IControladorProductos {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMProducto cvprod = new ControladorAMProducto();
-        ((ControladorAMProducto)cvprod).mostrarVentanaProducto();
+        ((ControladorAMProducto) cvprod).mostrarVentanaProducto();
         this.modelo.actualizarTabla();
     }
 
@@ -74,8 +74,8 @@ public class ControladorProductos implements IControladorProductos {
         }
         Producto productoSeleccionado = modelo.obtenerProducto(fila);
         IControladorAMProducto controladorAM = new ControladorAMProducto();
-        ((ControladorAMProducto)controladorAM).inicializarModificacion(productoSeleccionado);
-        ((ControladorAMProducto)controladorAM).mostrarVentanaProducto();
+        ((ControladorAMProducto) controladorAM).inicializarModificacion(productoSeleccionado);
+        ((ControladorAMProducto) controladorAM).mostrarVentanaProducto();
         this.modelo.actualizarTabla();
     }
 

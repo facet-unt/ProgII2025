@@ -37,13 +37,13 @@ public class ControladorPrincipal implements IControladorPrincipal {
     public void btnProductosClic(ActionEvent evt) {
 
         IControladorProductos cvprod = new ControladorProductos();
-        ((ControladorProductos)cvprod).mostrarVentanaProducto();
+        ((ControladorProductos) cvprod).mostrarVentanaProducto();
 
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        IControladorUsuarios cvu= new ControladorUsuarios();
+        IControladorUsuarios cvu = new ControladorUsuarios();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
     public static void main(String[] args) {
 
         IControladorPrincipal cvp = new ControladorPrincipal();
-        ((ControladorPrincipal)cvp).mostrarVentanaPrincipal();
+        ((ControladorPrincipal) cvp).mostrarVentanaPrincipal();
     }
 
 }
