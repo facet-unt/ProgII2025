@@ -46,7 +46,7 @@
                           <Component id="txtPrecio" pref="354" max="32767" attributes="0"/>
                           <Component id="txtCodigo" max="32767" attributes="0"/>
                           <Component id="txtDescripcion" max="32767" attributes="0"/>
-                          <Component id="comboCategorias" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboCategoria" alignment="0" max="32767" attributes="0"/>
                           <Component id="comboEstados" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -76,7 +76,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -101,8 +101,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDescripcion">
       <Properties>
+        <Property name="text" type="java.lang.String" value="&quot;HAMBURGUESA&quot;"/>
         <Property name="toolTipText" type="java.lang.String" value="Apellidos del profesor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -111,6 +115,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecio">
       <Properties>
+        <Property name="text" type="java.lang.String" value="10000.0f"/>
         <Property name="toolTipText" type="java.lang.String" value="Nombres del profesor"/>
       </Properties>
     </Component>
@@ -118,7 +123,7 @@
       <Properties>
         <Property name="mnemonic" type="int" value="71"/>
         <Property name="text" type="java.lang.String" value="Guardar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Guarda el profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="Guarda el producto"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarClic"/>
@@ -141,8 +146,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Documento del profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="C&#xf3;digo del producto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarClic"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -154,7 +162,25 @@
         <Property name="text" type="java.lang.String" value="Categor&#xed;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboCategorias">
+    <Component class="javax.swing.JComboBox" name="comboCategoria">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCategoriaActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboEstados">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -172,7 +198,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboEstados">
+    <Component class="javax.swing.JComboBox" name="comboEstados1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">

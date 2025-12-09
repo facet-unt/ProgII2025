@@ -1,156 +1,125 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.modelos;
-import interfaces.IGestorUsuarios;
+
 import java.util.ArrayList;
-import static usuarios.modelos.Perfil.CLIENTE;
-import static usuarios.modelos.Perfil.EMPLEADO;
-import static usuarios.modelos.Perfil.ENCARGADO;
-import pedidos.modelos.*;
+import java.util.Comparator;
+import java.util.List;
+import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import Interfaces.IGestorUsuarios;
+
 
 /**
  *
- * @author estudiante
+ * @author Asus
  */
 public class GestorUsuarios implements IGestorUsuarios{
- private ArrayList<Usuario> usuarios = new ArrayList<>();
     
-    private static GestorUsuarios instancia;
-    
-    private GestorUsuarios() {
-        
-    }
-    
-    public static GestorUsuarios instanciar() {
+     private ArrayList<Usuario> usuarios = new ArrayList<>();
+     private static GestorUsuarios instancia;
+     public static GestorUsuarios instanciar() {
         if (instancia == null)
             instancia = new GestorUsuarios();
         return instancia;
     }
-    
-   public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        
-        if(perfil == CLIENTE)
-        {
-           Cliente c;
-           if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-           {
-               c=new Cliente(correo, clave, apellido, nombre);
-               c.asignarApellido(apellido);
-               c.asignarClave(clave);
-               c.asignarCorreo(correo);
-               c.asignarNombre(nombre);
-               usuarios.add(c);
-               return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-           }
-           else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-           }
-           else
-           {
-                if(perfil == EMPLEADO)
-            {
-                Empleado em;
-                if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-                {
-                    em=new Empleado(correo, clave, apellido, nombre);
-                    em.asignarApellido(apellido);
-                    em.asignarClave(clave);
-                    em.asignarCorreo(correo);
-                    em.asignarNombre(nombre);
-                    usuarios.add(em);
-                    return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-                }
-                else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-            } 
-            else
-            {
-                if(perfil == ENCARGADO)
-                {
-                    Encargado en;
-                    if(correo!=null&&correo.contains("@")&&clave!=null&&claveRepetida==clave)
-                    {
-                        en=new Encargado(correo, clave, apellido, nombre);
-                        en.asignarApellido(apellido);
-                        en.asignarClave(clave);
-                        en.asignarCorreo(correo);
-                        en.asignarNombre(nombre);
-                        usuarios.add(en);
-                        return ("Operación exitosa: El usuario " + apellido + nombre + " con correo "+correo +" clave "+ clave +" se guardó correctamente"); 
-                    }
-                    else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-                    } 
-                else
-                {return ("No se pudo realizar la Operación, ingrese valores válidos");}
-            } 
-            
-           } 
-        }
-    
-   public ArrayList<Usuario> verUsuarios()
-    {
-     return this.usuarios;  
-    }
-    
-    public ArrayList<Usuario> buscarUsuarios(String apellido) {
+     
+     
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+         if (correo == null || !correo.contains("@") || correo.trim().isEmpty()){
+             return ERROR_CORREO;
+         }else if (apellido == null || apellido.trim().isEmpty()){
+         return ERROR_APELLIDO;
+         }else if (nombre == null || nombre.trim().isEmpty()) {
+         return ERROR_NOMBRE;
+         }else if (clave == null || clave.trim().isEmpty() ||claveRepetida == null || claveRepetida.trim().isEmpty()){
+         return ERROR_CLAVES;
+         }
+         if (perfil == Perfil.CLIENTE){
+         Usuario u = new Cliente (correo, clave, nombre, apellido);
+         }else if (perfil == Perfil.EMPLEADO){
+         Usuario u = new Empleado (correo, clave, nombre, apellido);
+         }else if (perfil == Perfil.ENCARGADO){
+         Usuario u = new Encargado (correo, clave, nombre, apellido);
+         }
+         return EXITO;
+     }         
+
+     public List<Usuario> verUsuarios(){
+            Comparator <Usuario> nComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verNombre().compareTo(u2.verNombre());
+               }
+           };
+            Comparator <Usuario> aComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verApellido().compareTo(u2.verApellido());
+               }
+           };
+            Comparator <Usuario> combinado = aComp.thenComparing(aComp);
+            usuarios.sort(combinado);
+            return usuarios;
+         }
+     
+     public String borrarUsuario(Usuario usuario){
+         Usuario u;
+       GestorPedidos gp = GestorPedidos.instanciar();
+         if (usuarios.contains(usuario)){
+             if (usuario instanceof Cliente){
+         if (gp.hayPedidosConEsteCliente((Cliente)usuario))
+             for (Pedido p : usuario.verPedidos())
+                 if (p.verCliente().equals((Cliente)usuario))
+                     this.usuarios.remove(usuario);
+                     return EXITO;
+         }
+           System.out.println("Este usuario no es un cliente");
+           return ERROR;
+         }
+         System.out.println("No existe este usuario");
+         return ERROR;
          
-        ArrayList<Usuario> encontrados = new ArrayList<>();
-        for (Usuario u : usuarios) {
-             
-            if (u.verApellido().toLowerCase().contains(apellido.toLowerCase())) {
-                encontrados.add(u);
-            }
-                
-            }
-        return encontrados;
-    }
-    
-    public boolean existeEsteUsuario(Usuario usuario) {
-        if (usuarios.contains(usuario))
-            return true;
-        else
-            return false;
-    }
-    
-    
-    public Usuario obtenerUsuario(String correo) {
-        for (Usuario u : usuarios) {
-             
-            if (u.verCorreo()==(correo)) {
+     }
+     
+     
+     
+     public boolean existeEsteUsuario(Usuario usuario){
+         if (usuarios.contains(usuario))
+              return true;
+             else
+             return false;
+        }
+
+
+     public List<Usuario> buscarUsuarios(String apellido){
+         ArrayList <Usuario> encontrados = new ArrayList<>();
+         for (Usuario u : usuarios){
+             if (u.verApellido().toLowerCase().contains(apellido.toLowerCase()))
+                 encontrados.add(u);
+         }  
+         Comparator <Usuario> nComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verNombre().compareTo(u2.verNombre());
+               }
+           };
+            Comparator <Usuario> aComp = new Comparator<Usuario>(){
+               @Override 
+               public int compare (Usuario u1, Usuario u2){
+                   return u1.verApellido().compareTo(u2.verApellido());
+               }
+           };
+            Comparator <Usuario> combinado = aComp.thenComparing(aComp);
+            encontrados.sort(combinado);
+         return encontrados;
+     }
+     public Usuario obtenerUsuario(String correo){
+      for (Usuario u : usuarios){   
+            if (u.verCorreo().equals(correo)) {
                 return u;
             }
-                
             }
         return null;
     }
 
-    @Override
-    public String borrarUsuario(Usuario usuario) {
-        if(usuarios.contains(usuario)&&usuario!=null)
-        {
-            if (usuario instanceof Cliente)
-            {
-                GestorPedidos gDeP = GestorPedidos.instanciar();
-                for(Pedido unPedido:gDeP.verPedidos())
-                {
-                    if((unPedido.verCliente()).equals(usuario))
-                    {
-                        return (OPERACION_FALLIDA + USUARIO_TIENE_PEDIDO);
-                    }
-                }
-            }
-            usuarios.remove(usuario);
-            return(OPERACION_EXITOSA);
-        }
-       
-            return(OPERACION_FALLIDA + USUARIO_INEX);
-        
-    }
-    
-    
-    }
-    
-    
+   
+}

@@ -1,31 +1,40 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package productos.modelos;
-
 import javax.swing.DefaultComboBoxModel;
 
-public class ModeloComboEstados extends DefaultComboBoxModel {
-    
-    /**
-     * Constructor
-    */
-    public ModeloComboEstados() { 
+/**
+ *
+ * @author Asus
+ */
+public class ModeloComboEstados extends DefaultComboBoxModel{  //debe ser extension, pues redefino la clase defaultComboboxModel
+   public ModeloComboEstados() { 
+        // Itera sobre la enumeración Estado
         for (Estado estado : Estado.values()) {
             this.addElement(estado); 
         }
     }
     
     /**
-     * Devuelve la estado seleccionada
-     * @return Estado  - estado seleccionada
+     * Devuelve la categoria seleccionada
+     * @return Estado
     */
     public Estado obtenerEstado() { 
         return (Estado)this.getSelectedItem();
     }
     
     /**
-     * Selecciona la Estado especificada
-     * @param estado estado
+     * Selecciona la Categoria especificada
+     * @param estado
     */
-    public void seleccionarEstado(Estado estado) {
-        this.setSelectedItem(estado);
-    }
+    
+//
+//    private void addElement(Estado estado) {
+//       this.setSelectedItem(estado);
+//    }
+
+    
+    
 }

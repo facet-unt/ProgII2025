@@ -1,17 +1,11 @@
 package principal.controladores;
 
-import interfaces.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import pedidos.modelos.GestorPedidos;
-import pedidos.modelos.Pedido;
-import pedidos.modelos.ProductoDelPedido;
+import java.util.List;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
@@ -22,7 +16,7 @@ import usuarios.modelos.Usuario;
  */
 public class ControladorPrincipalTP5 {
     public static void main(String[] args) {        
-        IGestorProductos gp = GestorProductos.instanciar();
+        GestorProductos gp = GestorProductos.instanciar();
         System.out.println(gp.crearProducto(1, "Producto3", 1.0f, Categoria.ENTRADA, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(3, "Producto1", 3.0f, Categoria.POSTRE, Estado.DISPONIBLE));
         System.out.println(gp.crearProducto(2, "Producto2", 2.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE));
@@ -37,56 +31,43 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
         
-        ArrayList<Producto> productosBuscados = gp.buscarProductos("oducto");
+        List<Producto> productosBuscados = gp.buscarProductos("producto");
         for(Producto p : productosBuscados) {
             p.mostrar();
         }
         
         System.out.println(gp.existeEsteProducto(unProducto));
         
-        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
-        for(Producto p : productosEntrada) {
-            p.mostrar();
-            
-            
-        IGestorUsuarios gu = GestorUsuarios.instanciar();
+//        ArrayList<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
+//        for(Producto p : productosEntrada) {
+//            p.mostrar();
+//        }
+    
         
-        
-        System.out.println(gu.crearUsuario("correo1@mail.com", "Apellido1", "Nombre1", Perfil.EMPLEADO, "clave1", "clave1")); 
-        System.out.println(gu.crearUsuario("correo2@mail.com", "Apellido2", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
+        //implementacion del gestor de usuarios
+    GestorUsuarios gu = GestorUsuarios.instanciar();
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "123", "Perez", Perfil.CLIENTE, "Juan", "123"));
+        System.out.println(gu.crearUsuario("encargado@mail.com", "456", "Gomez", Perfil.ENCARGADO, "Ana", "456"));
+        System.out.println(gu.crearUsuario("error@mail.com", "789", "Test", Perfil.CLIENTE, "Error", "000")); // Error clave
+        System.out.println(gu.crearUsuario("cliente1@mail.com", "111", "Test", Perfil.CLIENTE, "Duplicado", "111")); // Error duplicado
+        System.out.println(gu.crearUsuario("correo-invalido", "111", "Test", Perfil.CLIENTE, "Error", "111")); // Error correo
 
-        ArrayList<Usuario> usuariosBuscados = gu.buscarUsuarios("Apellido1"); 
-        System.out.println("Usuarios buscados por Apellido1:");
-        for(Usuario u : usuariosBuscados) {
-            System.out.println(u.toString()); 
+        for(Usuario u : gu.verUsuarios()) {
+            u.mostrar();
         }
 
-        Usuario usuario2 = gu.obtenerUsuario("correo2@mail.com"); 
-        System.out.println("Existe usuario2: " + gu.existeEsteUsuario(usuario2)); 
-        
-
-        System.out.println("\n--- PRUEBAS GESTOR PEDIDOS ---");
-        IGestorPedidos gpe = GestorPedidos.instanciar();
-        
-
-        ArrayList<ProductoDelPedido> productosDelPedido = new ArrayList<>();
-        productosDelPedido.add(new ProductoDelPedido(gp.obtenerProducto(1), 2)); 
-        productosDelPedido.add(new ProductoDelPedido(gp.obtenerProducto(3), 1));
-        Cliente unCliente = new Cliente("correo2@mail.com","clave2", "Apellido2", "Nombre2");
-        
-        System.out.println(gpe.crearPedido(LocalDate.now(), LocalTime.now(), productosDelPedido, unCliente));
-        
-        ArrayList<Pedido> pedidosDelSistema = gpe.verPedidos(); 
-        System.out.println("Pedidos en el sistema: " + pedidosDelSistema.size());
-        
-        System.out.println("Hay pedidos con Producto 1: " + gpe.hayPedidosConEsteProducto(gp.obtenerProducto(1))); 
-        System.out.println("Hay pedidos con Cliente 2: " + gpe.hayPedidosConEsteCliente(unCliente)); 
-        
-        Pedido unPedido = gpe.obtenerPedido(1); 
-        if (unPedido != null) {
-            System.out.println("Cancelando Pedido 1: " + gpe.cancelarPedido(unPedido)); 
-            System.out.println("Existe Pedido 1 después de cancelar: " + gpe.existeEstePedido(unPedido)); 
+        List<Usuario> usuario = gu.buscarUsuarios("perez");
+            for(Usuario u : usuario) {
+            u.mostrar();
         }
-    }
-}
+        }
+    
+    //a este main no le importa como se hace para crear un producto, o como se lo obtiene
+    
+    //pero le importa a quien le pido y que le paso, como le pido y que me devuelve
+    
+    //el main no le importa si los datos que envia son aceptados por el metodo, por lo que si no se puede
+    //crear no es culpa de main, este no sabe como se hace
+    
+    
 }

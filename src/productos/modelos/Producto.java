@@ -1,30 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package productos.modelos;
 
-/**
- *
- * @author Esteban
- */
+
 public class Producto {
-    //Atributos
+
     private int codigo;
     private String descripcion;
-    private Categoria unaCategoria;
-    private Estado unEstado;
+    private Categoria categoria;
+    private Estado estado;
     private float precio;
-
+    private String nombre;
 
     // Métodos
     public void mostrar() {
-        System.out.println("Codigo: " + codigo);
+        System.out.println("Codigo: " + this.codigo);
         System.out.println("Descripcion: " + descripcion);
-        System.out.println("Categoria: " + unaCategoria.verValor());
-        System.out.println("Estado: " + unEstado.verValor());
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
         System.out.println("Precio: " + precio);
-
     }
 
     @Override
@@ -32,30 +24,32 @@ public class Producto {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + unaCategoria.verValor() + '\'' +
-                ", estado='" + unEstado.verValor() + '\'' +
+                ", categoria=" + categoria +
+                ", estado=" + estado +
                 ", precio=" + precio +
                 '}';
     }
 
-    
-    public Producto(int codigo, String descripcion, Categoria categoria, Estado estado, float precio) {
-        this.codigo = codigo;
-        this.unEstado = estado;        
+    // Constructores
+
+    public Producto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
+        this.codigo= codigo;
         this.descripcion = descripcion;
-        this.unaCategoria = categoria;
+        this.categoria = categoria;
+        this.estado = estado;
         this.precio = precio;
     }
-    
-    public Producto(int codigo, String descripcion, String categoria, String estado, float precio) {
-        this.codigo = codigo;
-        this.unEstado =  Estado.valueOf(estado.toUpperCase());        
-        this.descripcion = descripcion;
-        this.unaCategoria =  Categoria.valueOf(categoria.toUpperCase());
+
+    public Producto(int codigo, String descripcion, Categoria categoria, float precio) {
+        this(codigo, descripcion, precio, categoria, Estado.DISPONIBLE); // Estado por defecto
     }
 
-    
-   
+    public Producto(int codigo, String descripcion, float precio) {
+        this(codigo, descripcion, precio, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE); // Categoria y estado por defecto
+    }
+
+    // Getters y setters
+
     public int verCodigo() {
         return codigo;
     }
@@ -75,21 +69,19 @@ public class Producto {
     }
 
     public Categoria verCategoria() {
-
-        return unaCategoria;
+        return categoria;
     }
 
     public void asignarCategoria(Categoria c) {
-        unaCategoria = c;
+        categoria = c;
     }
 
     public Estado verEstado() {
-        return unEstado;
+        return estado;
     }
 
     public void asignarEstado(Estado e) {
-        unEstado = e;
-
+        estado = e;
     }
 
     public float verPrecio() {
@@ -97,32 +89,26 @@ public class Producto {
     }
 
     public void asignarPrecio(float p) {
-        if (p > 0){
-            precio = p;
-        }
+        precio = p;
+    }
+
+    public String verNombre(){
+        return nombre;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Producto producto = (Producto) obj;
+
+        return codigo == producto.codigo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.codigo;
-        return hash;
+        return Integer.hashCode(codigo);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Producto other = (Producto) obj;
-        return this.codigo == other.codigo;
-    }
-
-    
 }

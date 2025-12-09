@@ -4,28 +4,29 @@
  */
 package pedidos.modelos;
 
-
 /**
  *
- * @author estudiante
-    
-/**
-
+ * @author alumno
  */
 public enum Estado {
-    CREADO("Creado"),
-    SOLICITADO("Solicitado"),
-    PROCESANDO("Procesando"),
-    ENTREGADO("Entregado");
-    
-    private String valor;
+    CREADO,
+    SOLICITADO,
+    PROCESANDO,
+    ENTREGADO;
 
-    private Estado(String valor) {
-        this.valor = valor;
-    }
-    
     @Override
     public String toString() {
-        return this.valor;
-    } 
+        switch (this) {
+            case CREADO:
+                return "Creado";
+            case SOLICITADO:
+                return "Solicitado";
+            case PROCESANDO:
+                return "Procesando";
+            case ENTREGADO:
+                return "Entregado";
+            default:
+                return super.toString();
+        }
+    }
 }

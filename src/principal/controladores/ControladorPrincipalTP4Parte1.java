@@ -1,7 +1,8 @@
-
 package principal.controladores;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;//*******************
 import pedidos.modelos.ProductoDelPedido; //****************
@@ -10,6 +11,7 @@ import productos.modelos.Estado;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
+
 public class ControladorPrincipalTP4Parte1 {
 public static void main(String[] args) {
     /*
@@ -17,8 +19,6 @@ public static void main(String[] args) {
         INICIO Primera parte - comparación de objetos
         ***************************************************
     */
- 
-
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Pedido> listaPedidos = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -26,21 +26,22 @@ public static void main(String[] args) {
 
     System.out.println("#################### ");
     System.out.println("PRODUCTOS");
-    Producto p1 = new  Producto(1, "Producto 1", Categoria.ENTRADA ,Estado.DISPONIBLE, 200.0f);        
-    Producto p2 = new  Producto(2, "Producto 2", Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE, 1950.0f);        
-    Producto p3 = new  Producto(3, "Producto 3",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p4 = new  Producto(4, "Producto 4",Categoria.POSTRE, Estado.NO_DISPONIBLE, 580.0f);        
-    Producto p5 = new  Producto(3, "Producto 5",Categoria.POSTRE, Estado.NO_DISPONIBLE, 7580.0f);     
+    Producto p1 = new  Producto(1, "Producto 1", 200.0f, Categoria.ENTRADA ,Estado.DISPONIBLE);        
+    Producto p2 = new  Producto(2, "Producto 2", 1950.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);        
+    Producto p3 = new  Producto(3, "Producto 3", 580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);        
+    Producto p4 = new  Producto(4, "Producto 4", 580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);        
+    Producto p5 = new  Producto(3, "Producto 5", 7580.0f,Categoria.POSTRE, Estado.NO_DISPONIBLE);     
     //no debe agregar a p5
 
-    if (!listaProductos.contains(p1))
-        listaProductos.add(p1); 
-    /*
+    
+     /*
         **************************************************
          * AGREGAR aqui las sentencias para completar el llenado de 
          * la lista de productos
         **************************************************
     */
+    if (!listaProductos.contains(p1))
+        listaProductos.add(p1); 
     if (!listaProductos.contains(p2))
         listaProductos.add(p2);
     if (!listaProductos.contains(p3))
@@ -49,19 +50,22 @@ public static void main(String[] args) {
         listaProductos.add(p4);
     if (!listaProductos.contains(p5))
         listaProductos.add(p5);
+    
+    
     /*
         **************************************************
          * AGREGAR aqui las sentencias para mostrar la lista
          * de productos, deberían listarse 4
         **************************************************
-    
     */
-    for(Producto p : listaProductos)
-        {
+    
+    
+    //solo se recorre el arrayList, como 5 esta repetido mostrara solo 4 elementos 
+
+        for (Producto p: listaProductos)
             p.mostrar();
-        }
-    {
-    }
+    
+    
 
     System.out.println();
     System.out.println("\n#################### ");
@@ -76,10 +80,12 @@ public static void main(String[] args) {
     /*
     Clientes, se crean 3 para crear los pedidos
     */
-
-    for (Cliente e: listaClientes)
+    
+    for (Cliente e: listaClientes){
         e.mostrar();
-
+        }
+    
+    
     System.out.println();
     System.out.println("#################### ");
     System.out.println("PEDIDOS");
@@ -92,9 +98,10 @@ public static void main(String[] args) {
     if (!listapdp1.contains(pdp2))
         listapdp1.add(pdp2);
     if (!listapdp1.contains(pdp3))
-        listapdp1.add(pdp3);
-    Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, cliente1);        
-
+        listapdp1.add(pdp3);//crea dos ProductosDelPedido y comprueba si estan repetidos
+    Pedido unPedido1 = new Pedido(1, LocalDate.now(), LocalTime.now(), listapdp1, cliente1);        
+    
+  
     ArrayList<ProductoDelPedido> productosDelPedido2 = new ArrayList<>();
     ProductoDelPedido pdp4 = new ProductoDelPedido(listaProductos.get(2), 10);
     ProductoDelPedido pdp5 = new ProductoDelPedido(listaProductos.get(0), 20);
@@ -105,8 +112,8 @@ public static void main(String[] args) {
     if (!productosDelPedido2.contains(pdp5))
         productosDelPedido2.add(pdp5);
     if (!productosDelPedido2.contains(pdp6))
-        productosDelPedido2.add(pdp6);
-    Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), productosDelPedido2, cliente2);        
+        productosDelPedido2.add(pdp6);//crea dos ProductosDelPedido y comprueba si estan repetidos
+    Pedido unPedido2 = new Pedido(2, LocalDate.now(), LocalTime.now(), productosDelPedido2, cliente2);        
 
     ArrayList<ProductoDelPedido> productosDelPedido3 = new ArrayList<>();
     ProductoDelPedido pdp7 = new ProductoDelPedido(listaProductos.get(1), 100);
@@ -114,9 +121,10 @@ public static void main(String[] args) {
     if (!productosDelPedido3.contains(pdp7))
         productosDelPedido3.add(pdp7);
     if (!productosDelPedido3.contains(pdp8))
-        productosDelPedido3.add(pdp8);
-    Pedido unPedido3 = new Pedido(2, LocalDateTime.now(), productosDelPedido3, cliente3);        
-    //pedido repetido no debe agregarse a la lista
+        productosDelPedido3.add(pdp8); //crea dos ProductosDelPedido y comprueba si estan repetidos
+    Pedido unPedido3 = new Pedido(1, LocalDate.now(), LocalTime.now(), productosDelPedido3, cliente3);        
+//    pedido repetido no debe agregarse a la lista, pues tiene el mismo numero
+
 
     if(!listaPedidos.contains(unPedido1))
         listaPedidos.add(unPedido1);
@@ -124,7 +132,9 @@ public static void main(String[] args) {
         listaPedidos.add(unPedido2);
     if(!listaPedidos.contains(unPedido3))
         listaPedidos.add(unPedido3);
-
+    
+    
+    
     System.out.println("Los pedidos son: ");
     System.out.println("=======");
     /*
@@ -132,11 +142,10 @@ public static void main(String[] args) {
         AGREGAR aqui la sentencia para mostrar la lista de pedidos
         *************************************************
     */
-    for(Pedido p : listaPedidos)
-        {
-            p.mostrar();
-        }
-
+    for (Pedido p: listaPedidos){
+        System.out.println("Los pedidos realizados son:");
+        p.mostrar();
+    }
 
     System.out.println();        
 
@@ -145,6 +154,5 @@ public static void main(String[] args) {
          FIN Primera parte - comparación de objetos
         ***************************************************
     */
-
   }
 }

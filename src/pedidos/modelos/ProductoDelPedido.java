@@ -1,22 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package pedidos.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
-/**
- *
- * @author estudiante
- */
-public class ProductoDelPedido {
-    private int cantidad;
-    private Producto unProducto;
 
-    public ProductoDelPedido( Producto unProducto,int cantidad) {
+public class ProductoDelPedido {
+    private Producto producto;
+    private Pedido pedido; // opcional
+    private int cantidad;
+
+    // Constructor simple sin el Pedido
+    public ProductoDelPedido(Producto producto, int cantidad) {
+        this.producto = producto;
         this.cantidad = cantidad;
-        this.unProducto = unProducto;
+    }
+
+    // Constructor completo (si lo necesitás)
+    public ProductoDelPedido(Producto producto, Pedido pedido, int cantidad) {
+        this.producto = producto;
+        this.pedido = pedido;
+        this.cantidad = cantidad;
+    }
+
+    public Producto verProducto() {
+        return producto;
+    }
+
+    public void asignarProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Pedido verPedido() {
+        return pedido;
+    }
+
+    public void asignarPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public int verCantidad() {
@@ -27,25 +46,18 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
     }
 
-
-    public Producto verUnProducto() {
-        return unProducto;
+    @Override
+    public String toString() {
+        return "ProductoDelPedido{" + "producto=" + producto + ", cantidad=" + cantidad + '}';
     }
 
-    public void asignarUnProducto(Producto unProducto) {
-        this.unProducto = unProducto;
-        
-    }
-
-    public void mostrar(){
-        System.out.println("\t\t" + verUnProducto().verDescripcion()+ "\t\t" + verCantidad());
-
-    }
-
+    
+    
+    //modifico equals para que no se repitan los pedidos
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.unProducto);
+        hash = 29 * hash + Objects.hashCode(this.pedido);
         return hash;
     }
 
@@ -61,7 +73,9 @@ public class ProductoDelPedido {
             return false;
         }
         final ProductoDelPedido other = (ProductoDelPedido) obj;
-        return Objects.equals(this.unProducto, other.unProducto);
+        return Objects.equals(this.pedido, other.pedido);
     }
+    
+    
     
 }

@@ -1,37 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package productos.modelos;
 
-/**
- *
- * @author estudiante
- */
-public enum Categoria {
-    ENTRADA ("Entrada"),
-    PLATO_PRINCIPAL ("Plato principal"),
-    POSTRE ("Postre");
-    
-    private String valor;
+import java.util.HashMap;
+import java.util.Map;
 
-    private Categoria(String valor) {
-        this.valor = valor;
-    }
-    
+public enum Categoria {
+    ENTRADA,   //cambiar el switch
+    PLATO_PRINCIPAL,
+    POSTRE;
+
     @Override
     public String toString() {
-        return this.valor;
+        switch (this) {
+            case ENTRADA:
+                return "Entrada";
+            case PLATO_PRINCIPAL:
+                return "Plato Principal";
+            case POSTRE:
+                return "Postre";
+            default:
+                return super.toString();
+        }
     }
     
-    
-    public String verValor() {
-        return valor;
+    public static Categoria verCategoria (String categoria){
+        Map<String, Categoria> mapeo = new HashMap<>();
+        for (Categoria c : Categoria.values()){
+            mapeo.put(c.toString(), c);
+        }
+        return mapeo.get(categoria);
     }
-
-    public void asignarValor(String valor) {
-        this.valor = valor;
-    }
-      
-    
 }

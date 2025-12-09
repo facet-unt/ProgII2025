@@ -1,91 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedidos.modelos.Pedido;
+   
 
-/**
- *
- * @author estudiante
- */
 public abstract class Usuario {
-    private String correo;
-    private String clave;
-    private String apellido;
-    private String nombre;
+    private Perfil perfil;
+    private String Correo;
+    private String Clave;
+    private String Nombre;
+    private String Apellido;
     
     
-    
-    //CONSTRUCTOR
-    public Usuario(String correo, String clave, String apellido, String nombre) {
-        this.correo = correo;
-        this.clave = clave;
-        this.apellido = apellido;
-        this.nombre = nombre;
-    
-    }
-    
-    //MOSTRAR
-    public void mostrar(){
-        System.out.println( apellido + ", " + nombre);
-    }
-    
-    //TOString
-    @Override
-    public String toString() {
-        return "Usuario{" + "correo=" + correo + ", clave=" + clave + ", apellido=" + apellido + ", nombre=" + nombre + '}';
-    }
-    
-    
-    //METODOS GET/SET
-    public String verCorreo() {
-        return correo;
+    //declaro los metodos get/set
+    public void mostrar(){  
     }
 
-    public void asignarCorreo(String correo) {
-        if (correo != null && !correo.isBlank()){
-            this.correo = correo;
-        }
+    public String verCorreo() {
+        return Correo;
+    }
+
+    public void asignarCorreo(String Correo) {
+        this.Correo = Correo;
     }
 
     public String verClave() {
-        return clave;
+        return Clave;
     }
 
-    public void asignarClave(String clave) {
-        if (clave != null && !clave.isBlank()){
-            this.clave = clave;
-        }
+    public void asignarClave(String Clave) {
+        this.Clave = Clave;
     }
 
-    public String verApellido() {
-        return apellido;
+   public String verNombre() {
+        return Nombre;
     }
-
-    public void asignarApellido(String apellido) {
-        if (apellido != null && !apellido.isBlank()){
-            this.apellido = apellido;
-        }
-    }
-
-    public String verNombre() {
-        return nombre;
-    }
-
+    
     public void asignarNombre(String nombre) {
-        if (nombre != null && !nombre.isBlank()){
-            this.nombre = nombre;
-        }
+        if (nombre != null && !nombre.isBlank())
+            Nombre = nombre;
+    }
+    
+    public String verApellido() {
+        return Apellido;
+    }
+    
+    public void asignarApellido(String apellido) {
+        if (apellido != null && !apellido.isBlank())
+            Apellido = apellido;
+    }
+    
+     
+    
+    //declaro el metodo toString() (borrado para que no genere conflictos)
+
+//    @Override
+//    public String toString() {
+//        return "Usuario{" + "Correo=" + Correo + ", Clave=" + Clave + ", Nombre=" + Nombre + ", Apellido=" + Apellido + '}';
+//    }
+   
+    //redefino el metodo tostrting para que devuelva solo el nombre y el apellido
+    @Override
+    public String toString() {
+        return  "Nombre: " + Nombre + ", Apellido: " + Apellido;
+    }
+    
+    
+    //agrego un constructor para inicializar las variables de instancia
+    public Usuario(String Correo, String Clave, String Nombre, String Apellido) {
+        this.Correo = Correo;
+        this.Clave = Clave;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
     }
 
+    
+    
+    //redefino el metodo equals y hascode
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.correo);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.Correo);
         return hash;
     }
 
@@ -97,13 +94,15 @@ public abstract class Usuario {
         if (obj == null) {
             return false;
         }
-        if (getClass().getSuperclass() != obj.getClass().getSuperclass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        return Objects.equals(this.correo, other.correo);
+        return Objects.equals(this.Correo, other.Correo);
     }
     
-    public abstract ArrayList<Pedido> verPedido();
- 
+    
+    
+    //agrego el metodo abstracto verPedidos();
+    public abstract List<Pedido> verPedidos();
 }

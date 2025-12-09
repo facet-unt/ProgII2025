@@ -1,151 +1,147 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pedidos.modelos;
+
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import productos.modelos.Producto;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import usuarios.modelos.Cliente;
 
-/**
- *
- * @author estudiante
- */
+
 public class Pedido {
-    
-   private int numero;
-   private LocalDateTime fechaYHora;
-   private Cliente unCliente;
-   private Estado unEstado;
-   private ArrayList <ProductoDelPedido> productoPedido = new ArrayList<>();
-   private static int contador=1;
-   
-   
-   //CONSTRUCTORES
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Estado unEstado, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente) {
-        this.numero = numero;
-        this.fechaYHora = fechaYHora;
-        this.unCliente = unCliente;
-        this.unEstado = unEstado;
-        this.unCliente.agregarPedido(this);
-        this.productoPedido = unProductoDelPedido;
+    private int numero;
+private LocalDateTime fechaHora;
+private Cliente cliente;
+private Estado estado;
+private List<ProductoDelPedido> productosDelPedido;
+private static int contador = 1;
 
+public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.productosDelPedido = new ArrayList<>();
+}
+
+public Pedido(int numero, LocalDate fecha, LocalTime hora, List<ProductoDelPedido> productosDelPedido, Cliente cliente) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.productosDelPedido = productosDelPedido;
+}
+
+public Pedido(int numero, LocalDate fecha, LocalTime hora, Cliente cliente, Estado estado) {
+    this.numero = numero;
+    this.fechaHora = LocalDateTime.of(fecha, hora);
+    this.cliente = cliente;
+    this.estado = estado;
+    this.productosDelPedido = new ArrayList<>();
+}
+
+    public Pedido(int i, LocalDate now, Cliente c1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public Pedido(LocalDate fecha,LocalTime hora, ArrayList<ProductoDelPedido> unProductoDelPedido, Cliente unCliente){
-        this(contador,fecha.atTime(hora),Estado.CREADO, unProductoDelPedido, unCliente);
-    }
     
-    public Pedido(int numero, LocalDateTime fechaYHora, ArrayList<ProductoDelPedido> unProductoDelPedido,  Cliente unCliente) {
-        this(numero,fechaYHora,Estado.CREADO,unProductoDelPedido, unCliente);
-    }
     
-
-  
-
+    
     public int verNumero() {
         return numero;
     }
-
 
     public void asignarNumero(int numero) {
         this.numero = numero;
     }
 
-    public LocalDateTime verFechaYHora() {
-        return fechaYHora;
+    public LocalDateTime verFechaHora() {
+        return fechaHora;
     }
 
-    public void asignarFechaYHora(LocalDateTime fechaYHora) {
-        this.fechaYHora = fechaYHora;
-    }
-
-    public ArrayList<ProductoDelPedido> verProductoPedido() {
-        return productoPedido;
-    }
-
-    public void asignarProductoPedido(ArrayList<ProductoDelPedido> productoPedido) {
-        if(!(productoPedido.contains(this.productoPedido)))
-        {
-            this.productoPedido = productoPedido;
-       }
-    }
-    
-    
-    
-    //METODS toString
-
-    @Override
-    public String toString() {
-        return "Pedido{" + "numero=" + numero + ", fechaYHora=" + fechaYHora + ", unCliente=" + unCliente + ", unEstado=" + unEstado + '}';
-    }
-
-    
-    
-    
-    //OTROS METODOS
-   //MOSTRAR
-    public void mostrar(){
-        System.out.println("Nro: " + numero);
-        DateTimeFormatter Fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter Hora = DateTimeFormatter.ofPattern("hh:mm");
-        String fechaFormateada = this.fechaYHora.format(Fecha);
-        String horaFormateada = this.fechaYHora.format(Hora);
-        System.out.println("Fecha: " + fechaFormateada + "\t\tHora: " + horaFormateada);
-        System.out.println("Cliente: " + unCliente.verApellido() + ", " + unCliente.verNombre());
-        System.out.println("Estado: " + unEstado);
-        System.out.println("\t\t Producto\t\t Cantidad");
-        System.out.println("\t\t========================================");
-       for(ProductoDelPedido p : productoPedido)
-        {
-            p.mostrar();
-        }
-        
-        System.out.println("#################### ");
-        
-    }
-
-   
-    
-
-    
-    public LocalDate verFecha() {
-        return this.fechaYHora.toLocalDate();
-    }
-    
-    public LocalTime verHora() {
-        return this.fechaYHora.toLocalTime();
-    }
-
-    public Estado verEstado() {
-        return unEstado;
-    }
-
-    public void asignarEstado(Estado estado) {
-        this.unEstado = estado;
+    public void asignarFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public Cliente verCliente() {
-        return unCliente;
+        return cliente;
     }
 
-    public void agregarProductodelPedido(Producto produc, int cantidad) {
-        ProductoDelPedido  unProductoDelPedido= new ProductoDelPedido(produc, cantidad);
-        if (!productoPedido.contains(unProductoDelPedido))
-        {
-            productoPedido.add(unProductoDelPedido);
-        }
+    public void asignarCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+    public Estado verEstado() {
+        return estado;
+    }
+
+    public void asignarEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public LocalDate verFecha() {
+        return fechaHora.toLocalDate();
+    }
+
+    public LocalTime verHora() {
+        return fechaHora.toLocalTime();
+    }
+
+    public List<ProductoDelPedido> verProductosDelPedido() {
+        return productosDelPedido;
+    }
+
+    public void AsignarProductosDelPedido(List<ProductoDelPedido> productosDelPedido) {
+        this.productosDelPedido = productosDelPedido;
+    }
+    
+    
+    
+    //metodo para eliminar un producto
+
+    public void eliminarProducto(ProductoDelPedido productoDelPedido) {
+        this.productosDelPedido.remove(productoDelPedido);
+    }
+
+    public double calcularTotal() {
+        double total = 0;
+        for (ProductoDelPedido pdp : productosDelPedido) {
+            total += pdp.verProducto().verPrecio() * pdp.verCantidad();
+        }
+        return total;
+    }
+
+    public void mostrar() {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+
+        System.out.println("Nro: " + numero);
+        System.out.println("Fecha: " + verFecha().format(formatoFecha) +
+                "        Hora: " + verHora().format(formatoHora));
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Estado: " + estado);
+
+        if (productosDelPedido.isEmpty()) {
+            System.out.println("No hay productos en este pedido.");
+        } else {
+            System.out.println("Producto       Cantidad");
+            System.out.println("========================");
+            for (ProductoDelPedido pdp : productosDelPedido) {
+                String nombreProducto = pdp.verProducto().verDescripcion();
+                int cantidad = pdp.verCantidad();
+                System.out.printf("%-15s %5d%n", nombreProducto, cantidad);
+            }
+        }
+
+        System.out.println();
+    }
+
+    // Comparar pedidos por número
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.numero;
+        hash = 97 * hash + this.numero;
         return hash;
     }
 
@@ -163,7 +159,5 @@ public class Pedido {
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
     }
-    
-    
-
+   
 }
