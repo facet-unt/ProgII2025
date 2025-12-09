@@ -53,7 +53,7 @@ public class ControladorPrincipalTP5 {
             p.mostrar();
         }
 
-        System.out.println(gp.existeEsteProducto(unProducto));
+//        System.out.println(gp.existeEsteProducto(unProducto));
 
         List<Producto> productosEntrada = gp.verProductosPorCategoria(Categoria.ENTRADA);
         for (Producto p : productosEntrada) {
