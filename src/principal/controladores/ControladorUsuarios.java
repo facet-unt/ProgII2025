@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -42,7 +43,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     }
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-
+    
     }
 
     @Override
@@ -91,6 +92,10 @@ public class ControladorUsuarios implements IControladorUsuarios{
     public void btnBuscarClic(ActionEvent evt) {
         
     }
+    public void mostrar() {
+        this.cargarTabla();
+        this.vista.setVisible(true);
+    }
     private void agregarListenerATabla(JTable tabla) {
         tabla.getSelectionModel().addListSelectionListener((e) -> {
             if (!e.getValueIsAdjusting()) {
@@ -100,13 +105,16 @@ public class ControladorUsuarios implements IControladorUsuarios{
         });
     }
     private void cargarTabla(List<Usuario> listaDeUsuarios) {
-        String[] titulos = {"Apellido", "Nombre", "Correo"};       
+        String[] titulos = {"Apellido", "Nombre", "Perfil", "Correo"};       
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);      
         for (Usuario u : listaDeUsuarios) {
-            Object[] fila = new Object[3];
+            Object[] fila = new Object[4];
             fila[0] = u.verApellido();
             fila[1] = u.verNombre();
-            fila[2] = u.verCorreo();
+            if (u instanceof usuarios.modelos.Cliente) fila[2] = Perfil.CLIENTE;
+            else if (u instanceof usuarios.modelos.Empleado) fila[2] = Perfil.EMPLEADO;
+            else if (u instanceof usuarios.modelos.Encargado) fila[2] = Perfil.ENCARGADO;
+            fila[3] = u.verCorreo();
             modelo.addRow(fila);
         }
         this.vista.verTblUsuarios().setModel(modelo);
