@@ -4,7 +4,8 @@
  */
 package productos.modelos;
 
-import interfaces.IGestorProductos;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -12,13 +13,17 @@ import javax.swing.table.AbstractTableModel;
  * @author ortiz
  */
 public class ModeloTablaProductos extends AbstractTableModel{
-    IGestorProductos gestorProductos = GestorProductos.instanciar();
+    private List<Producto> productos = new ArrayList<>();
     private String[] columnas = {"Categoria","Descripcion", "Precio","Estado"};
     private Producto producto;
 
+    public ModeloTablaProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+    
     @Override
     public int getRowCount() {
-        return gestorProductos.menu().size();
+        return productos.size();
     }
 
     @Override
@@ -33,7 +38,7 @@ public class ModeloTablaProductos extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int fila, int columna) {
-        producto = gestorProductos.menu().get(fila);
+        producto = productos.get(fila);
         return switch (columna) {
             case 0 -> producto.verCategoria();
             case 1 -> producto.verDescripcion();
@@ -47,5 +52,26 @@ public class ModeloTablaProductos extends AbstractTableModel{
     public boolean isCellEditable(int fila, int col) {
         return true;
     }
+    
+    public void setProductos(List<Producto> nuevaLista) {
+        this.productos = nuevaLista;
+        fireTableDataChanged();
+    }
+
+    public void agregarProducto(Producto p) {
+        productos.add(p);
+        fireTableRowsInserted(productos.size() - 1, productos.size() - 1);
+    }
+
+    public void actualizarProducto(int fila, Producto p) {
+        productos.set(fila, p);
+        fireTableRowsUpdated(fila, fila);
+    }
+
+    public void eliminarProducto(int fila) {
+        productos.remove(fila);
+        fireTableRowsDeleted(fila, fila);
+    }
+    
     
 }

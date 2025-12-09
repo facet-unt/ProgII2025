@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloTablaProductos;
+import productos.modelos.Producto;
 import productos.vistas.VentanaCrearProductos;
 import productos.vistas.VentanaProductos;
 
@@ -26,6 +28,7 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     private int codigo;
     private String descripcion;
     private float precio;
+    private ModeloTablaProductos modelo;
 
     public ControladorCrearProductos() {
         ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
@@ -52,6 +55,11 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
+        Producto p = new Producto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
+        modelo = new ModeloTablaProductos(gestorProductos.menu());
+        modelo.fireTableDataChanged();
+        this.modelo.agregarProducto(p);
+        this.modelo.setProductos(gestorProductos.menu());
         ventanaCrearProductos.dispose();
     }
 

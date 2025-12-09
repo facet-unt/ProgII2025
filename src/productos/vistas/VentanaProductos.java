@@ -4,11 +4,12 @@
  */
 package productos.vistas;
 
-import java.awt.BorderLayout;
-import javax.swing.JScrollPane;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import principal.controladores.ControladorProductos;
 import productos.modelos.ModeloTablaProductos;
+import productos.modelos.Producto;
 
 /**
  *
@@ -18,17 +19,20 @@ public class VentanaProductos extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
     private static ControladorProductos controlador;
+    private static List<Producto> productos = new ArrayList<>();
     private ModeloTablaProductos modeloTabla;
+    private int filaSeleccionada;
     /**
      * Creates new form VentanaProductos
      */
-    public VentanaProductos(java.awt.Frame parent, boolean modal,ControladorProductos controlador) {
+    public VentanaProductos(java.awt.Frame parent, boolean modal,ControladorProductos controlador,List<Producto> productos) {
         super(parent, modal);
         initComponents();
         this.controlador = controlador;
-        this.modeloTabla = new ModeloTablaProductos();
+        this.productos = productos;
+        this.modeloTabla = new ModeloTablaProductos(productos);
         this.jTable1.setModel(modeloTabla);
-//        add(new JScrollPane(jTable1), BorderLayout.CENTER);
+        agregarListenerATabla(jTable1);
     }
 
     /**
@@ -103,6 +107,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         jButton3.setText("Modificar");
 
         jButton4.setText("Borrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrar(evt);
+            }
+        });
 
         jButton5.setText("Volver");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +189,19 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void btnBorrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar
+        
+    }//GEN-LAST:event_btnBorrar
+    
+    private void agregarListenerATabla(JTable tabla) { 
+        tabla.getSelectionModel().addListSelectionListener((e) -> { 
+        if (!e.getValueIsAdjusting()) {                 
+            if (tabla.getSelectedRow() != -1) 
+                this.filaSeleccionada = tabla.getSelectedRow(); 
+            } 
+        }); 
+    } 
     /**
      * @param args the command line arguments
      */
@@ -205,7 +227,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true,controlador);
+                VentanaProductos dialog = new VentanaProductos(new javax.swing.JFrame(), true,controlador,productos);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

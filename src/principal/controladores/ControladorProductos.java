@@ -6,11 +6,14 @@ package principal.controladores;
 
 import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
+import productos.modelos.GestorProductos;
+import productos.modelos.ModeloTablaProductos;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -21,10 +24,12 @@ public class ControladorProductos implements IControladorProductos {
     private static ControladorProductos instancia;
     private VentanaPrincipal ventanaPrincipal;
     private VentanaProductos ventanaProductos;
+    IGestorProductos gestorProductos = GestorProductos.instanciar();
     private String descripcion;
+    private ModeloTablaProductos modelo;
 
     public ControladorProductos() {
-        ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this); 
+        ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this,gestorProductos.menu()); 
         ventanaProductos.setTitle("Productos");
         ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
         ventanaProductos.setVisible(true);
@@ -49,7 +54,7 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        System.out.println(this.descripcion);
+        modelo = new ModeloTablaProductos(gestorProductos.buscarProductos(descripcion));
     }
 
     @Override
