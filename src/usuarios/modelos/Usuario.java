@@ -82,4 +82,8 @@ public abstract class Usuario {
         System.out.println("Correo: " + correo);
         System.out.println("Clave: " + clave);
         }
+
+    public Object verPerfil() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

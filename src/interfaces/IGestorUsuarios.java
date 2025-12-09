@@ -20,4 +20,6 @@ public interface IGestorUsuarios {
     String borrarUsuario(Usuario usuario);
     boolean existeEsteUsuario(Usuario usuario);
     Usuario obtenerUsuario(String correo);
+
+    public String modificarUsuario(Usuario usuario, String apellido, String nombre, Perfil perfil, String clave, String clave2);
 }

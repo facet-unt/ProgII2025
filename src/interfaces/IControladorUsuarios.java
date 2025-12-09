@@ -46,7 +46,7 @@ public interface IControladorUsuarios {
      *      El botón Buscar puede quedar oculto
      * @param evt evento
     */
-    public void txtApellidoPresionarTecla(KeyEvent evt);
+    public void txtApellidoPresionarTecla(ActionEvent evt);
         
     /**
      * Acción a ejecutar cuando se selecciona el botón Buscar

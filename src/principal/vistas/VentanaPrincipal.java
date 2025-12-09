@@ -97,7 +97,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnPedidosActionPerformed
 
 

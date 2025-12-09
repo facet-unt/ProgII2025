@@ -138,4 +138,9 @@ public class GestorUsuarios implements IGestorUsuarios {
             return comparacionApellido;
         });
     }
+
+    @Override
+    public String modificarUsuario(Usuario usuario, String apellido, String nombre, Perfil perfil, String clave, String clave2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
