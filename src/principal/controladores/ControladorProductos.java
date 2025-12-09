@@ -5,9 +5,17 @@
 package principal.controladores;
 
 import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import productos.modelos.GestorProductos;
+import productos.modelos.Producto;
+import productos.vistas.VentanaProductos;
 
 /**
  *
@@ -16,33 +24,45 @@ import java.awt.event.WindowEvent;
 public class ControladorProductos implements IControladorProductos{
     
     private static ControladorProductos instancia;
+    private VentanaProductos vista;
+    private IGestorProductos gestor;
+    private int filaSeleccionada = -1;
     public static ControladorProductos instanciar(){
         if(instancia == null)
             instancia = new ControladorProductos();
         return instancia;
     }
     private ControladorProductos(){
-        
+        this.gestor = GestorProductos.instanciar();
+        this.vista = new VentanaProductos(null, true, this);
+        this.vista.setLocationRelativeTo(null);
+        this.vista.setTitle(TITULO);
+        this.agregarListenerATabla(this.vista.verTblProductos());
     }
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-
+        this.cargarTabla();
     }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-
+        this.vista.setVisible(false);
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-
+        
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-
+        String texto = this.vista.verTxtDescripcion().getText();
+        if (texto.trim().isEmpty()) {
+            this.cargarTabla();
+        } else {
+            this.cargarTabla(this.gestor.buscarProductos(texto));
+        }
     }
 
     @Override
@@ -57,7 +77,46 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-
+        if (this.filaSeleccionada == -1) return;
+        Producto p = this.gestor.menu().get(this.filaSeleccionada);
+        int op = JOptionPane.showConfirmDialog(this.vista, CONFIRMACION, "Borrar", JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            String resultado = this.gestor.borrarProducto(p);
+            JOptionPane.showMessageDialog(this.vista, resultado);
+            this.cargarTabla();
+            this.filaSeleccionada = -1;
+        }
     }
-    
+    private void cargarTabla(List<Producto> lista) {
+        String[] titulos = {"Categoria", "Descripcion", "Precio"};       
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
+        for (Producto p : lista) {
+            Object[] fila = new Object[3];
+            fila[0] = p.verCategoria();
+            fila[1] = p.verDescripcion();
+            fila[2] = p.verPrecio();
+            modelo.addRow(fila);
+        }
+        
+        this.vista.verTblProductos().setModel(modelo);
+    }
+    private void cargarTabla() {
+        this.cargarTabla(this.gestor.menu()); 
+    }
+    private void agregarListenerATabla(JTable tabla) {
+        tabla.getSelectionModel().addListSelectionListener((e) -> {
+            if (!e.getValueIsAdjusting() && tabla.getSelectedRow() != -1) {
+                this.filaSeleccionada = tabla.getSelectedRow();
+            }
+        });
+    }
+    public void mostrar() {
+        this.cargarTabla();
+        this.vista.setVisible(true);
+    }
 }

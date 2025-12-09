@@ -32,7 +32,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        
+        ControladorProductos.instanciar().mostrar();
     }
 
     @Override
