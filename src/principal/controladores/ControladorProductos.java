@@ -120,7 +120,7 @@ public class ControladorProductos implements IControladorProductos{
     }
     private void agregarListenerATabla(JTable tabla) {
         tabla.getSelectionModel().addListSelectionListener((e) -> {
-            if (!e.getValueIsAdjusting() && tabla.getSelectedRow() != -1) {
+            if (!e.getValueIsAdjusting()) {
                 this.filaSeleccionada = tabla.getSelectedRow();
             }
         });

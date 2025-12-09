@@ -66,6 +66,9 @@ public class VentanaProductos extends javax.swing.JDialog {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
+            }
         });
 
         btnBuscar.setText("Buscar");
@@ -184,7 +187,6 @@ public class VentanaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
-        this.controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_txtDescripcionKeyPressed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -206,6 +208,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         this.controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+        this.controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
