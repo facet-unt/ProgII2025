@@ -172,7 +172,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     public JTable verTblUsuarios() {
         return tblUsuarios;
     }
-    public JTextField vertxtApellidoBuscar() {
+    public JTextField verTxtApellidoBuscar() {
         return txtApellidoBuscar;
     }
 }
