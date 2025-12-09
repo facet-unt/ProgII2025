@@ -67,18 +67,25 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-
+        ControladorAMProducto.instanciar().crear();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-
+        if (this.filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this.vista, "Seleccione un producto", "Atención", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Producto p = this.gestor.menu().get(this.filaSeleccionada);
+        ControladorAMProducto.instanciar().modificar(p);
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         if (this.filaSeleccionada == -1) return;
-        Producto p = this.gestor.menu().get(this.filaSeleccionada);
+        int codigo = (int) this.vista.verTblProductos().getValueAt(this.filaSeleccionada, 0);
+        Producto p = this.gestor.obtenerProducto(codigo);
+        if (p == null) return;
         int op = JOptionPane.showConfirmDialog(this.vista, CONFIRMACION, "Borrar", JOptionPane.YES_NO_OPTION);
         if (op == JOptionPane.YES_OPTION) {
             String resultado = this.gestor.borrarProducto(p);
@@ -88,7 +95,7 @@ public class ControladorProductos implements IControladorProductos{
         }
     }
     private void cargarTabla(List<Producto> lista) {
-        String[] titulos = {"Categoria", "Descripcion", "Precio"};       
+        String[] titulos = {"Codigo", "Descripcion", "Precio","Categoria","Estado"};       
         DefaultTableModel modelo = new DefaultTableModel(null, titulos){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -96,13 +103,16 @@ public class ControladorProductos implements IControladorProductos{
             }
         };
         for (Producto p : lista) {
-            Object[] fila = new Object[3];
-            fila[0] = p.verCategoria();
+            Object[] fila = new Object[5];
+            
+            fila[0] = p.verCodigo();
             fila[1] = p.verDescripcion();
             fila[2] = p.verPrecio();
+            fila[3] = p.verCategoria();
+            fila[4] = p.verEstado(); 
+        
             modelo.addRow(fila);
         }
-        
         this.vista.verTblProductos().setModel(modelo);
     }
     private void cargarTabla() {
