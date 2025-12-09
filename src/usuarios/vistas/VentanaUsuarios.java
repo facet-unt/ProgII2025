@@ -45,10 +45,22 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         txtUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         txtApellidoBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoBuscarActionPerformed(evt);
+            }
+        });
+        txtApellidoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoBuscarKeyReleased(evt);
             }
         });
 
@@ -71,8 +83,18 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,7 +105,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,16 +168,33 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtApellidoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoBuscarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtApellidoBuscarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnModificarClic(evt);
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void txtApellidoBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoBuscarKeyReleased
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoBuscarKeyReleased
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.controlador.btnVolverClic(evt);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;

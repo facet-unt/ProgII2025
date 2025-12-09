@@ -1,0 +1,5 @@
+empleado@gmail.com;empleado;empleadito;CLIENTE;ola
+ful@gmail.com;fulanosowaaa;fulanito;ENCARGADO;waos
+pepe@gmail.com;holaaaaa;hola;CLIENTE;123
+hola@gmail.com;zzz;zaza;EMPLEADO;pepe
+cliente@gmail.com;cliente;cliente;CLIENTE;clienteclave
