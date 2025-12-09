@@ -6,6 +6,7 @@ package principal.controladores;
 
 
 import interfaces.IControladorAMProducto;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -57,7 +58,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void botonGuardarClic(ActionEvent evt) {
-        try {
+       try {
                     String codigoStr = vp.verTxtCodigo().getText().trim();
                     String descripcion = vp.verTxtDescripcion().getText().trim();
                     String precioStr = vp.verTxtPrecio().getText().trim();
@@ -68,7 +69,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
                     Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
 
-                    GestorProductos gestor = GestorProductos.instanciar();
+                    IGestorProductos gestor = GestorProductos.instanciar();
                     String resultado;
 
                     if (this.esModificacion==true) {
@@ -86,11 +87,12 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     }
 
                 } catch (NumberFormatException e) {
-                   // JOptionPane.showMessageDialog(vp, "El código y el precio deben ser números válidos.");
+                   JOptionPane.showMessageDialog(vp, "El código y el precio deben ser números válidos.");
                 } catch (Exception e) {
                     System.out.println("Error en guardarclic: " + e);
                 }    
     }
+
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
