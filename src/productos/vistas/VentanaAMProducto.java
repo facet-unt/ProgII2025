@@ -5,6 +5,7 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -16,7 +17,7 @@ import productos.modelos.*;
 
 public class VentanaAMProducto extends JDialog {
     //private ArrayList<Producto> productos = new ArrayList<>();
-    private ControladorAMProducto controlador;
+    private IControladorAMProducto controlador;
     
     /**
      * Constructor
@@ -252,11 +253,11 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
-        controlador.comboCategoriasPresionarTecla(evt);
+       
     }//GEN-LAST:event_comboCategoriasKeyPressed
 
     private void comboEstadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadosKeyPressed
-        controlador.comboEstadoPresionarTecla(evt);
+        
     }//GEN-LAST:event_comboEstadosKeyPressed
 
 
