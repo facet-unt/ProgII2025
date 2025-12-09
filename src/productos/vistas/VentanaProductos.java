@@ -5,10 +5,7 @@
 package productos.vistas;
 
 import interfaces.IControladorProductos;
-import productos.modelos.Producto;
 import javax.swing.*;
-import java.util.List;
-import productos.controladores.ControladorProductos;
 
 /**
  *
@@ -17,36 +14,13 @@ import productos.controladores.ControladorProductos;
 public class VentanaProductos extends JDialog {
     
     private IControladorProductos controlador;
-//    private ModeloTablaProducto modeloTabla;
-//    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
-    
-    /**
-     * Creates new form VentanaProductos
- 
-     */
-//    public VentanaProductos() {
-//        
-//        initComponents();
-//    }
+
     
     public VentanaProductos(IControladorProductos controlador) {
         this.controlador=controlador;
         initComponents();
     }
     
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-
-    // --- Métodos de la Vista llamados por el Controlador ---
-    
-//    public void actualizarTabla(List<Producto> productos) {
-//        modeloTabla.setProductos(productos);
-//    }
-
-//    public void mostrarMensaje(String titulo, String mensaje, int tipo) {
-//        JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
-//    }
-  
    
 /*
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed

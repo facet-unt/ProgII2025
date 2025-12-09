@@ -160,8 +160,8 @@ public class GestorProductos implements IGestorProductos {
             if (!productos.contains(p)) {
                 productos.add(p);
                 resultadoArchivo = guardarEnArchivoAgregar(p);
+                //menu();
                 if (resultadoArchivo.equals(ESCRITURA_OK)) {
-                    menu();
                     return (EXITO);
                  } else {
                     return (FRACASO);
@@ -217,16 +217,24 @@ public class GestorProductos implements IGestorProductos {
         if (error != null)
             return error;
         
-        p.asignarCodigo(codigo);
         p.asignarDescripcion(descripcion);
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
+        for (Producto prod: productos)
+        {
+            if (prod.equals(p))
+            {
+                productos.remove(prod);
+                productos.add(p);
+            }
+        }
+        menu();
+        resultadoArchivo = guardarListaCompleta(productos);
         
-        resultadoArchivo = guardarEnArchivo(p);
         if (resultadoArchivo.equals(ESCRITURA_OK))
         {
-            menu();
+            
             return EXITO;
         }
         else
@@ -262,18 +270,47 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> menu() {
-        String resultadoArchivo;
-        productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
-        for (Producto p: productos)
-        {
-            resultadoArchivo= guardarEnArchivo(p);
-            if (resultadoArchivo.equals (ESCRITURA_ERROR))
-            {
-                System.out.println("No se pudieron ordenar los productos en el archivo");
-                break;
+        // 1. ORDENA LA LISTA EN MEMORIA
+    productos.sort(Comparator.comparing(Producto::verCategoria).thenComparing(Producto::verDescripcion));
+    
+    // 2. LLAMAR AL NUEVO MÉTODO DE GUARDADO MASIVO (NO al problemático guardarEnArchivo(p))
+    String resultadoArchivo = guardarListaCompleta(productos); // <--- NUEVA LLAMADA
+    
+    if (resultadoArchivo.equals(ESCRITURA_ERROR))
+    {
+        System.out.println("No se pudieron ordenar los productos en el archivo");
+    }
+    return this.productos;
+}
+
+// 3. MÉTODO DE GUARDADO MASIVO (Usando sobrescritura UNA SOLA VEZ)
+    private String guardarListaCompleta(List<Producto> lista) {
+        FileWriter fw = null;
+        try {
+            // MODO SOBREESCRITURA (SIN 'true') - ¡Esto borra el archivo SOLO UNA VEZ!
+            fw = new FileWriter(NOMBRE_ARCHIVO_P); 
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            // Escribe TODOS los productos
+            for(Producto p : lista) {
+                bw.write(p.verCodigo() + ";" + p.verDescripcion() + ";" + p.verCategoria() + ";" + p.verEstado() + ";" + p.verPrecio());
+                bw.newLine();
+            }
+
+            bw.flush();
+            return (ESCRITURA_OK);
+        } catch (IOException ioe) {
+            return (ESCRITURA_ERROR);
+        } finally {
+            // El bloque finally y el cierre aseguran que todo se escriba y el recurso se libere
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    return (ESCRITURA_ERROR);
+                }
             }
         }
-        return this.productos;
     }
 
     @Override
@@ -339,11 +376,8 @@ public class GestorProductos implements IGestorProductos {
         }
     
         if (productos.remove(producto)) {
-            for (Producto p: productos)
-            {
-            guardarEnArchivo(p);
-            }
             menu();
+            guardarListaCompleta(productos);
             return "Producto borrado con éxito.";
         } else {
             return PRODUCTO_INEXISTENTE;

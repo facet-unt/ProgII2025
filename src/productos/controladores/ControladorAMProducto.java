@@ -10,6 +10,7 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
@@ -29,13 +30,16 @@ public class ControladorAMProducto implements IControladorAMProducto{
     private boolean esModificacion;
     Producto p;
     
-     public ControladorAMProducto(boolean esModificacion) {
+     public ControladorAMProducto(boolean esModificacion,int codigo) {
         this.vp = new VentanaAMProducto(null, this);
         this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
         this.vp.verComboEstado().setModel(new ModeloComboEstados());
         this.esModificacion = esModificacion;
-        if (this.esModificacion)
+        if (this.esModificacion){
             this.vp.setTitle("Modificación");
+            this.vp.txtCodigo.setText(Integer.toString(codigo));
+            this.vp.txtCodigo.setEnabled(false);
+        }
         else
             this.vp.setTitle("Creación");
         vp.setLocationRelativeTo(null);
@@ -72,7 +76,6 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-       String codigoStr1 = this.vp.verTxtCodigo().getText();
        try {
                     String codigoStr = vp.verTxtCodigo().getText().trim();
                     String descripcion = vp.verTxtDescripcion().getText().trim();

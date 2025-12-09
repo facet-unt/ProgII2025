@@ -73,8 +73,8 @@ public class ModeloTablaProducto extends AbstractTableModel {
     }
 
     public void actualizarTabla(List<Producto> listaFiltrada) {
-//        this.listaProductos = listaFiltrada;
-//        this.fireTableDataChanged();
+       this.productos = listaFiltrada;
+        this.fireTableDataChanged();
     }
 
     public Producto obtenerProducto(int fila) {

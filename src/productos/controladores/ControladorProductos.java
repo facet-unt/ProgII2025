@@ -36,13 +36,7 @@ public class ControladorProductos implements IControladorProductos{
         vp.setVisible(true);
     }
 
-//    public void mostrarVentanaProducto() {
-//
-//        this.modelo.actualizarTabla();
-//
-//        vp.setLocationRelativeTo(null);
-//        vp.setVisible(true);
-//    }
+//    
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
@@ -76,9 +70,7 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        IControladorAMProducto cvprod = new ControladorAMProducto(false);
-        //cvprod.mostrarVentanaProducto();
-        //this.modelo.actualizarTabla();
+        IControladorAMProducto cvprod = new ControladorAMProducto(false, 10);
     }
 
     @Override
@@ -91,11 +83,8 @@ public class ControladorProductos implements IControladorProductos{
         }
         Producto productoSeleccionado = modelo.obtenerProducto(fila);
 
-        IControladorAMProducto controladorAM = new ControladorAMProducto(true);
+        IControladorAMProducto controladorAM = new ControladorAMProducto(true, productoSeleccionado.verCodigo());
 
-        //controladorAM.inicializarModificacion(productoSeleccionado);
-
-        //controladorAM.mostrarVentanaProducto();
 
         this.modelo.actualizarTabla();
     }

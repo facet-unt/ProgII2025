@@ -6,7 +6,6 @@ package principal.vistas;
 
 //import principal.controladores.ControladorPrincipal;
 import interfaces.IControladorPrincipal;
-import principal.controladores.ControladorPrincipalParcial2;
 
 /**
  *
