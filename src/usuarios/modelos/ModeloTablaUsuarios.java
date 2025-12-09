@@ -68,6 +68,8 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 return p.verNombre();
             case 2:
                 return p.verCorreo();
+            case 4:
+                return p.verPerfil();
             default:
                 return null;
         }
