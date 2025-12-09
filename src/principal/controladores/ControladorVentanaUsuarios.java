@@ -84,29 +84,19 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         JTable tablaUsuarios = this.ventana.verTabla();
-        char caracter = evt.getKeyChar();
-        if(Character.isLetter(caracter) || Character.isDigit(caracter)){
-            ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+        if(!evt.isActionKey() && evt.getKeyCode() != KeyEvent.VK_SHIFT && evt.getKeyCode() != KeyEvent.VK_CONTROL){
+            ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verApellido().getText().trim());
             tablaUsuarios.setModel(mtu1);
                 if (tablaUsuarios.getRowCount() > 0) {
                     tablaUsuarios.setRowSelectionInterval(0, 0);
                 }
-        }else{
-            int codigoTecla = evt.getKeyCode();
-            if(codigoTecla==VK_BACK_SPACE || codigoTecla==VK_DELETE){
-                ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
-                tablaUsuarios.setModel(mtu1);
-                if (tablaUsuarios.getRowCount() > 0) {
-                    tablaUsuarios.setRowSelectionInterval(0, 0);
-                }
-            }
         }
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         JTable tablaUsuarios = this.ventana.verTabla();
-	ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verCorreo().getText().trim());
+	ModeloTablaUsuarios mtu1 = new ModeloTablaUsuarios(this.ventana.verApellido().getText().trim());
 	tablaUsuarios.setModel(mtu1);
         if (tablaUsuarios.getRowCount() > 0) {
             tablaUsuarios.setRowSelectionInterval(0, 0);

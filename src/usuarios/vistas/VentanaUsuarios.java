@@ -28,6 +28,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         super(ventanaPadre,true);
         this.controlador = controlador;
         initComponents();
+        btnBuscar.setVisible(false);
     }
 
     /**
@@ -207,7 +208,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         return this.tablaUsuarios;
     }
     
-    public JTextField verCorreo(){
+    public JTextField verApellido(){
         return this.textFieldBuscar;
     }
 

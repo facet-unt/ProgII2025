@@ -26,6 +26,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         super(ventanaPadre, true);
         this.controlador = controlador;
         initComponents();
+        btnBuscar.setVisible(false);
     }
 
     /**

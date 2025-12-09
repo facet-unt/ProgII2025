@@ -64,22 +64,12 @@ public class ControladorVentanaProductos implements IControladorProductos{
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         JTable tablaUsuarios = this.ventana.verTabla();
-        char caracter = evt.getKeyChar();
-        if(Character.isLetter(caracter) || Character.isDigit(caracter)){
-            ModeloTablaProductos mtp1 = new ModeloTablaProductos(this.ventana.verDescripcion().getText().trim());
-            tablaUsuarios.setModel(mtp1);
+        if(!evt.isActionKey() && evt.getKeyCode() != KeyEvent.VK_SHIFT && evt.getKeyCode() != KeyEvent.VK_CONTROL){
+            ModeloTablaProductos mtu1 = new ModeloTablaProductos(this.ventana.verDescripcion().getText().trim());
+            tablaUsuarios.setModel(mtu1);
                 if (tablaUsuarios.getRowCount() > 0) {
                     tablaUsuarios.setRowSelectionInterval(0, 0);
                 }
-        }else{
-            int codigoTecla = evt.getKeyCode();
-            if(codigoTecla==VK_BACK_SPACE || codigoTecla==VK_DELETE){
-                ModeloTablaProductos mtp1 = new ModeloTablaProductos(this.ventana.verDescripcion().getText().trim());
-                tablaUsuarios.setModel(mtp1);
-                if (tablaUsuarios.getRowCount() > 0) {
-                    tablaUsuarios.setRowSelectionInterval(0, 0);
-                }
-            }
         }
     }
 
