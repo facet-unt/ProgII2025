@@ -6,6 +6,7 @@ package usuarios.controladores;
 
 import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
+import static interfaces.IGestorUsuarios.REESCRIBIR_OK;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -88,7 +89,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
 
         JOptionPane.showMessageDialog(vp, resultado);
 
-        if (resultado.equals(GestorUsuarios.OPERACION_EXITOSA)) {
+        if (resultado.equals(GestorUsuarios.OPERACION_EXITOSA)||resultado.equals(GestorUsuarios.REESCRIBIR_OK)) {
             vp.dispose();
         }
 

@@ -1,4 +1,4 @@
 juampi@gmail.com;98593214;Barrionuevo;Juan;Empleado
 iricaramuti@gmail.com;62442;Caramuti;Irina;Cliente
+the-wraith@gmail.com;KazB;Ghafa;Inej;Encargado
 pirulitopirulo5@gmail.com;Maxi;Yiscamonte;Maximiliano;Encargado
-the-wraith@gmail.com;KazB;Ghafa;Inej;Empleado

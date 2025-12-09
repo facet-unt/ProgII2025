@@ -224,7 +224,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
             }
             usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
-            return REESCRIBIR_OK;
+            return (REESCRIBIR_OK);
         } catch (IOException e) {
             return (REESCRIBIR_ERROR);
         }
