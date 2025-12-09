@@ -160,7 +160,6 @@ public class GestorProductos implements IGestorProductos {
             if (!productos.contains(p)) {
                 productos.add(p);
                 resultadoArchivo = guardarEnArchivoAgregar(p);
-                //menu();
                 if (resultadoArchivo.equals(ESCRITURA_OK)) {
                     return (EXITO);
                  } else {
@@ -210,6 +209,7 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String resultadoArchivo;
+        Producto prod1=null;
         if (p==null){
             return PRODUCTO_INEXISTENTE;
         }
@@ -225,10 +225,16 @@ public class GestorProductos implements IGestorProductos {
         {
             if (prod.equals(p))
             {
-                productos.remove(prod);
-                productos.add(p);
+                prod1=prod;
+                break;
             }
         }
+                if (prod1!=null)
+                {
+                    productos.remove(prod1);
+                    productos.add(p);
+                }
+                
         menu();
         resultadoArchivo = guardarListaCompleta(productos);
         

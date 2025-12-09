@@ -40,6 +40,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
             this.vp.txtDescripcion.setText(p.verDescripcion());
             this.vp.txtPrecio.setText(Float.toString(p.verPrecio()));
             vp.verComboCategorias().setSelectedItem(p.verCategoria().toString());
+            vp.verComboEstado().setSelectedItem(p.verEstado().toString());
             productoAEditar=p;
         }
         else
