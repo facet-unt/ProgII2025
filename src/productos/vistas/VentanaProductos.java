@@ -21,7 +21,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     private static ControladorProductos controlador;
     private static List<Producto> productos = new ArrayList<>();
     private ModeloTablaProductos modeloTabla;
-    private int filaSeleccionada;
+    public int filaSeleccionada;
     /**
      * Creates new form VentanaProductos
      */
@@ -193,6 +193,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnBorrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar
         
     }//GEN-LAST:event_btnBorrar
+    
+    public ModeloTablaProductos obtenerModeloProductos() {
+        return (ModeloTablaProductos) jTable1.getModel();
+    }
     
     private void agregarListenerATabla(JTable tabla) { 
         tabla.getSelectionModel().addListSelectionListener((e) -> { 

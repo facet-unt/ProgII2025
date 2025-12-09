@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
+import productos.modelos.Producto;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -27,7 +28,8 @@ public class ControladorProductos implements IControladorProductos {
     IGestorProductos gestorProductos = GestorProductos.instanciar();
     private String descripcion;
     private ModeloTablaProductos modelo;
-
+    private Producto producto;
+    
     public ControladorProductos() {
         ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this,gestorProductos.menu()); 
         ventanaProductos.setTitle("Productos");
@@ -54,7 +56,7 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        modelo = new ModeloTablaProductos(gestorProductos.buscarProductos(descripcion));
+        ventanaProductos.obtenerModeloProductos().setProductos(gestorProductos.buscarProductos(descripcion));
     }
 
     @Override
@@ -66,6 +68,7 @@ public class ControladorProductos implements IControladorProductos {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMProducto controladorProducto = ControladorCrearProductos.instanciar();
+        ventanaProductos.obtenerModeloProductos().setProductos(gestorProductos.menu());
     }
 
     @Override
@@ -75,6 +78,6 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 }

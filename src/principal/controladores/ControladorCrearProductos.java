@@ -55,11 +55,6 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
-        Producto p = new Producto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
-        modelo = new ModeloTablaProductos(gestorProductos.menu());
-        modelo.fireTableDataChanged();
-        this.modelo.agregarProducto(p);
-        this.modelo.setProductos(gestorProductos.menu());
         ventanaCrearProductos.dispose();
     }
 
