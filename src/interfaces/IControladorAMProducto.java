@@ -41,7 +41,4 @@ public interface IControladorAMProducto {
      * @param evt evento
      */
     public void txtPrecioPresionarTecla(KeyEvent evt);
-    
-    public void categoriaSelección(ItemEvent evt);
-    public void estadoSelección(ItemEvent evt);
 }
