@@ -85,7 +85,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         }
 
         int opcion = javax.swing.JOptionPane.showConfirmDialog(vu,
-                "¿Seguro que desea borrar este producto?",
+                "¿Seguro que desea borrar este usuario?",
                 "Confirmar Borrado",
                 javax.swing.JOptionPane.YES_NO_OPTION);
 
@@ -111,13 +111,13 @@ public class ControladorUsuarios implements IControladorUsuarios{
         this.vu.dispose();
     }
         
+
     @Override
-    public void txtApellidoPresionarTecla(KeyEvent evt) {
-         
-            this.btnBuscarClic(null);
-        
-        
-    }
+public void txtApellidoPresionarTecla(KeyEvent evt) {
+    System.out.println("TECLA: " + vu.getFieldDescripcion().getText());
+    this.btnBuscarClic(null);
+}
+
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {

@@ -8,6 +8,8 @@ import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
@@ -72,7 +74,10 @@ private Usuario usuario;
     vamu.getTxtAreaCorreo().setText(usuario.verCorreo());
     vamu.getTxtAreaCorreo().setEditable(false);
     vamu.getTxtClave().setText(usuario.verClave());
+    vamu.getTxtClave().setVisible(false);
+         
     vamu.getTxtClaveR().setText(usuario.verClave());
+    vamu.getTxtClaveR().setVisible(false);
     
 
 
@@ -125,10 +130,10 @@ private Usuario usuario;
         resultado= gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
         }
         
-           if (resultado.equals(GestorUsuarios.EXITO) || resultado.equals(GestorUsuarios.VALIDACION_EXITO)) {
-               
-            model.actualizarTabla();
-           
+        JOptionPane.showMessageDialog(vamu, resultado);
+        
+           if (resultado.equals(GestorUsuarios.EXITO) ) {
+         
                 vamu.dispose();
             }
            
@@ -194,13 +199,10 @@ public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
 
         
        
-    }
+ }
 
-    @Override
-    public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        
-    }
     
     
     
-}
+    
+

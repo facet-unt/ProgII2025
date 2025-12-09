@@ -209,6 +209,7 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

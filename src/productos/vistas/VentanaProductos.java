@@ -175,7 +175,7 @@ private IControladorProductos controlador;
                         .addGap(18, 18, 18)
                         .addComponent(btnVolver))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
