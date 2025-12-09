@@ -5,8 +5,12 @@
 package principal.controladores;
 
 import interfaces.IControladorAMUsuario;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
 import usuarios.vistas.VentanaCrearUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -18,11 +22,20 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
     private static ControladorCrearUsuarios instancia;
     private VentanaUsuarios ventanaUsuarios;
     private VentanaCrearUsuarios ventanaCrearUsuarios;
-
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String clave;
+    private String claveRepetida;
+    IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
     public ControladorCrearUsuarios() {
         ventanaCrearUsuarios = new VentanaCrearUsuarios(ventanaUsuarios,this);
-        ventanaUsuarios.setAlwaysOnTop(false);
-        ventanaUsuarios.toBack();
+        ventanaCrearUsuarios.setLocationRelativeTo(ventanaUsuarios);
+        ventanaCrearUsuarios.setTitle(TITULO_NUEVO);
+        ventanaCrearUsuarios.setVisible(true);
+        ventanaCrearUsuarios.toFront();
+        ventanaCrearUsuarios.requestFocus();
+        ventanaCrearUsuarios.requestFocusInWindow();
     }
     
     public static ControladorCrearUsuarios instanciar() {
@@ -34,37 +47,43 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        gestorUsuarios.crearUsuario(correo, apellido, nombre, Perfil.CLIENTE, clave, claveRepetida);
+        ventanaCrearUsuarios.dispose();
     }
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ventanaCrearUsuarios.dispose();
     }
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.apellido = campo.getText().trim();
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.nombre = campo.getText().trim();
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.correo = campo.getText().trim();
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.clave = campo.getText().trim();
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.claveRepetida = campo.getText().trim();
     }
     
 }

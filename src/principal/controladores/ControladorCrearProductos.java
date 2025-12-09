@@ -12,7 +12,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
-import productos.modelos.Producto;
 import productos.vistas.VentanaCrearProductos;
 import productos.vistas.VentanaProductos;
 

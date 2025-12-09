@@ -4,7 +4,12 @@
  */
 package principal.controladores;
 
-import productos.vistas.VentanaCrearProductos;
+import interfaces.IControladorAMProducto;
+import interfaces.IGestorProductos;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+import productos.modelos.GestorProductos;
 import productos.vistas.VentanaModificarProductos;
 import productos.vistas.VentanaProductos;
 
@@ -12,15 +17,22 @@ import productos.vistas.VentanaProductos;
  *
  * @author octav
  */
-public class ControladorModificarProductos {
+public class ControladorModificarProductos implements IControladorAMProducto{
     private static ControladorModificarProductos instancia;
     private VentanaProductos ventanaProductos;
     private VentanaModificarProductos ventanaModificarProductos;
-    
+    private int codigo;
+    private float precio;
+    private String descripcion;
+    IGestorProductos gestorProductos = GestorProductos.instanciar();
      public ControladorModificarProductos() {
         ventanaModificarProductos = new VentanaModificarProductos(ventanaProductos,this);
-        ventanaProductos.setAlwaysOnTop(false);
-        ventanaProductos.toBack();
+        ventanaModificarProductos.setLocationRelativeTo(ventanaProductos);
+        ventanaModificarProductos.setTitle(TITULO_MODIFICAR);
+        ventanaModificarProductos.setVisible(true);
+        ventanaModificarProductos.toFront();
+        ventanaModificarProductos.requestFocus();
+        ventanaModificarProductos.requestFocusInWindow();
     }
     
     public static ControladorModificarProductos instanciar() {
@@ -28,5 +40,37 @@ public class ControladorModificarProductos {
             instancia = new ControladorModificarProductos();
         }
         return instancia;
-    }    
+    }
+
+    @Override
+    public void btnCancelarClic(ActionEvent evt) {
+        ventanaModificarProductos.dispose();
+    }
+
+    @Override
+    public void btnGuardarClic(ActionEvent evt) {
+        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaModificarProductos.categoria, ventanaModificarProductos.estado);    
+        ventanaModificarProductos.dispose();
+    }
+
+    @Override
+    public void txtCodigoPresionarTecla(KeyEvent evt) {
+        JTextField campo = (JTextField) evt.getComponent();
+        String texto = campo.getText().trim();
+        this.codigo = Integer.parseInt(texto);
+    }
+
+    @Override
+    public void txtDescripcionPresionarTecla(KeyEvent evt) {
+        JTextField campo = (JTextField) evt.getComponent();
+        this.descripcion = campo.getText().trim();
+    }
+
+    @Override
+    public void txtPrecioPresionarTecla(KeyEvent evt) {
+        JTextField campo = (JTextField) evt.getComponent();
+        String texto = campo.getText().trim();
+        this.precio = Float.parseFloat(texto);
+    }
+    
 }

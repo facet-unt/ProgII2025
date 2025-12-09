@@ -45,7 +45,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -68,10 +68,10 @@ public class VentanaProductos extends javax.swing.JDialog {
 
         jLabel1.setText("Descripción:");
 
-        jTextField1.setToolTipText("");
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDescripcion.setToolTipText("");
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtDescripcionKeyReleased(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class VentanaProductos extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -150,7 +150,7 @@ public class VentanaProductos extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -186,9 +186,9 @@ public class VentanaProductos extends javax.swing.JDialog {
        controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevo
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         controlador.txtDescripcionPresionarTecla(evt);
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_txtDescripcionKeyReleased
 
     private void btnBorrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar
         controlador.btnBorrarClic(evt);
@@ -253,6 +253,6 @@ public class VentanaProductos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtDescripcion;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,8 @@ package productos.vistas;
 import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
 import javax.swing.JDialog;
 import principal.controladores.ControladorModificarProductos;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 
 /**
  *
@@ -14,6 +16,8 @@ import principal.controladores.ControladorModificarProductos;
  */
 public class VentanaModificarProductos extends javax.swing.JDialog {
     private static ControladorModificarProductos controlador;
+    public Categoria categoria;
+    public Estado estado;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarProductos.class.getName());
 
     /**
@@ -188,7 +192,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_comboEstadosActionPerformed
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
