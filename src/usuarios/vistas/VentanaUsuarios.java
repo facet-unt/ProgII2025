@@ -7,7 +7,6 @@ package usuarios.vistas;
 import interfaces.IControladorUsuarios;
 import java.util.List;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.Usuario;
 
@@ -23,11 +22,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
      * Creates new form VentanaUsuarios
      
      */
-    public VentanaUsuarios(java.awt.Frame parent, boolean modal, IControladorUsuarios controlador) {
-        super(parent, modal);
+    public VentanaUsuarios(IControladorUsuarios controlador) {
         initComponents();
         this.controlador = controlador;
-        
+        this.modelotabla = new ModeloTablaUsuarios();
+        modificarTabla(this.modelotabla);
     }
 
     /**
@@ -62,32 +61,37 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaObtenerFoco(evt);
+            }
+        });
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarClicActionPerformed(evt);
             }
         });
 
         jButton2.setText("Nuevo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNuevoClicActionPerformed(evt);
             }
         });
 
         jButton3.setText("Modificar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnModificarClicActionPerformed(evt);
             }
         });
 
         jButton4.setText("Borrar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBorrarClicActionPerformed(evt);
             }
         });
 
@@ -102,7 +106,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtApellidoActionPerformed(evt);
             }
         });
 
@@ -195,49 +199,87 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.modelotabla.asignarUsuarios(lista);
     }
     
+    public void mostrarMensaje(String mensaje) {
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            mensaje,
+            "Información",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+    
     public Usuario seleccionarUsuarioenFila(){
-        int i = this.modelotabla.getRowCount();
+        int i = this.getTableMenu().getRowCount();
         
         if(i == -1)
             return null;
         
         return this.modelotabla.seleccionarUsuario(i);
     }
-    
-    public JTable vertabla(){
-        return this.jTable1;
+        
+    public javax.swing.JButton getBtnBorrar() {
+        return jButton4;
+    }
+
+    public javax.swing.JButton getBtnBuscar() {
+        return jButton1;
+    }
+
+    public javax.swing.JButton getBtnModificar() {
+        return jButton3;
+    }
+
+    public javax.swing.JButton getBtnNuevo() {
+        return jButton2;
+    }
+
+    public javax.swing.JButton getBtnVolver() {
+        return jButton5;
+    }
+
+    public javax.swing.JTextField getFieldApellido() {
+        return jTextField1;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public javax.swing.JTable getTableMenu() {
+        return jTable1;
     }
     
-    public String verTxtApellido(){
-        return this.jTextField1.getText().trim();
-    }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnModificarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClicActionPerformed
         this.controlador.btnModificarClic(evt);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnModificarClicActionPerformed
 
     private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
         this.controlador.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_textField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClicActionPerformed
         this.controlador.btnBuscarClic(evt);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarClicActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnNuevoClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClicActionPerformed
         this.controlador.btnNuevoClic(evt);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnNuevoClicActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBorrarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClicActionPerformed
         this.controlador.btnBorrarClic(evt);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnBorrarClicActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-       
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void ventanaObtenerFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaObtenerFoco
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_ventanaObtenerFoco
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
     //     */
 //     * @param args the command line arguments

@@ -22,39 +22,41 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
-    private VentanaPrincipal ventanaprincipal; 
+    private GestorUsuarios gestor;
     private ModeloTablaUsuarios modelotabla;
 
     public ControladorVentanaUsuarios() {
-        this.ventana = new VentanaUsuarios(ventanaprincipal,true,this);
-        this.ventana.setTitle(TITULO);
+        this.ventana = new VentanaUsuarios(this);
+        this.gestor = GestorUsuarios.instanciarclase();
+        this.ventana.setTitle(TITULO);        
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
+        this.refrescarTabla();
         this.modelotabla = new ModeloTablaUsuarios();
     }
     
-    public ModeloTablaUsuarios modelo(){
-        return modelotabla;
+    private void refrescarTabla(){
+        this.modelotabla.actualizarTabla();
     }
     
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        
+        IControladorAMUsuario iu = ControladorVentanaAMUsuarios.instanciar();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        Usuario u = this.ventana.seleccionarUsuarioenFila();
-        
-        if(u != null){
-            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(ventanaprincipal, u);
-            this.btnBuscarClic(null);
-        }
+//        Usuario u = this.ventana.seleccionarUsuarioenFila();
+//        
+//        if(u != null){
+//            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(ventanaprincipal, u);
+//            this.btnBuscarClic(null);
+//        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        Usuario elegido = this.elegirUsuario();
+        Usuario elegido = this.ventana.seleccionarUsuarioenFila();
         
         if(elegido != null){
            int respuesta = JOptionPane.showOptionDialog(null
@@ -65,7 +67,6 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
                    , null
                    , new Object[]{"Si","No"}
                    , "No");
-           
            if(respuesta == JOptionPane.YES_OPTION){
                GestorUsuarios gu = GestorUsuarios.instanciarclase();
                String res = gu.borrarUsuario(elegido);
@@ -73,11 +74,16 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
                this.btnBorrarClic(null);
            }
         }
-    }
+        else{   
+           this.ventana.mostrarMensaje("No Ha seleccionado un Usuario para borrar");
+        }
+    }    
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        this.ventana.requestFocusInWindow();
+        GestorUsuarios gu = GestorUsuarios.instanciarclase();
+        List<Usuario> listado = gu.verUsuarios();
+        this.ventana.actualizarTabla(listado);
     }
 
     @Override
@@ -87,27 +93,24 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void txtApellidoPresionarTecla(ActionEvent evt) {
-        
+  
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         GestorUsuarios gu = GestorUsuarios.instanciarclase();
         List<Usuario> encontrados;
-        String apellidobuscado = this.ventana.verTxtApellido();
+        String apellidobuscado = this.ventana.getFieldApellido().getText().trim();
         
-        if(apellidobuscado == null || apellidobuscado.isEmpty() ){
-            encontrados = gu.verUsuarios();
+        if(apellidobuscado.isEmpty() ){
+            this.refrescarTabla();
         }
         else{
             encontrados = gu.buscarUsuarios(apellidobuscado);
+            this.modelotabla.mostrarTablaAcutalizada(encontrados);
         }
         
-        this.ventana.actualizarTabla(encontrados);
     }
     
-    private Usuario elegirUsuario(){
-        Usuario usuario = this.ventana.seleccionarUsuarioenFila();
-        return usuario;
-    }
+    
 }

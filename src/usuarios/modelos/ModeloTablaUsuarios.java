@@ -4,9 +4,9 @@
  */
 package usuarios.modelos;
 
+import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -15,14 +15,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTablaUsuarios extends AbstractTableModel{
     private String[] ATRIBUTOS = {"Apellido", "Nombre", "Correo", "Perfil"};
-    private List<Usuario> Usuarios;
+    private List<Usuario> Usuarios = new ArrayList<>();
     private GestorUsuarios gestor;
     private int filaSeleccionada;
 
     public ModeloTablaUsuarios() {
-        this.gestor = GestorUsuarios.instanciarclase();
-        this.Usuarios = new ArrayList<>();
-        fireTableDataChanged();
+        actualizarTabla();
     }
 
     public void asignarUsuarios(List<Usuario> usuario){
@@ -37,12 +35,12 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     
     @Override
     public int getRowCount() {
-        return this.Usuarios.size();
+        return Usuarios.size();
     }
 
     @Override
     public int getColumnCount() {
-        return this.ATRIBUTOS.length;
+        return ATRIBUTOS.length;
     }
 
     @Override
@@ -63,16 +61,25 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     }
 
     @Override
-    public String getColumnName(int columnIndex) {
-        return ATRIBUTOS[columnIndex]; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    public String getColumnName(int i) {
+        return ATRIBUTOS[i]; 
     }
     
     //Se elige un usuario segun la fila seleccionada
     public Usuario seleccionarUsuario(int i){
-        if(i == 0 || i >= this.Usuarios.size()){
-            return null;
-        }
         return this.Usuarios.get(i);
     }
+    
+    public void actualizarTabla() {
+        IGestorUsuarios gestor = GestorUsuarios.instanciarclase();
+        this.Usuarios = gestor.verUsuarios();
+        this.fireTableDataChanged();
+    }
+    
+    public void mostrarTablaAcutalizada(List<Usuario> listado){
+        this.Usuarios = listado;
+        this.fireTableDataChanged();
+    }
+    
     
 }  

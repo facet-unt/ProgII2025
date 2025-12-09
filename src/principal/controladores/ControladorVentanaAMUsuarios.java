@@ -8,6 +8,7 @@ import interfaces.IControladorAMUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import principal.vistas.VentanaPrincipal;
+import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.vistas.VentanaAMUsuarios;
 
 /**
@@ -17,13 +18,14 @@ import usuarios.vistas.VentanaAMUsuarios;
 public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private VentanaAMUsuarios ventana;
     private VentanaPrincipal ventanaprincipal;
+    private ModeloTablaUsuarios modelo;
     private IControladorAMUsuario controlador;
     private static ControladorVentanaAMUsuarios instancia;
     
     private ControladorVentanaAMUsuarios(){
         this.ventana = new VentanaAMUsuarios(ventanaprincipal, controlador);
-        this.ventana.setVisible(true);
         this.ventana.setTitle(TITULO_NUEVO);
+        this.ventana.setVisible(true);
         this.ventana.setResizable(false);
         this.ventana.setLocationRelativeTo(null);
     }
