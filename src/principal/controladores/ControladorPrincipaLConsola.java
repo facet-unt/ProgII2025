@@ -22,7 +22,7 @@ import usuarios.modelos.Usuario;
  *
  * @author Mariana
  */
-public class ControladorPrincipalTP5 {
+public class ControladorPrincipaLConsola {
     public static void main(String[] args) { 
         
         IGestorProductos gp = GestorProductos.instanciar();

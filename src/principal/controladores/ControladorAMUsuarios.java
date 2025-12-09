@@ -5,11 +5,10 @@
 package principal.controladores;
 
 import interfaces.IControladorAMUsuario;
+import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 import usuarios.modelos.Cliente;
 import usuarios.modelos.Empleado;
@@ -27,14 +26,17 @@ public class ControladorAMUsuarios implements IControladorAMUsuario {
 private VentanaAMUsuario vamu;
 private boolean modificar; 
 private Usuario usuario; 
+private IControladorUsuarios controladorU;
 
 
 
 
-    public ControladorAMUsuarios(Usuario usuario, boolean modificar) {
+
+
+    public ControladorAMUsuarios(Usuario usuario, boolean modificar, IControladorUsuarios controladorU) {
         this.vamu = new VentanaAMUsuario(this);
         this.usuario=usuario;
-       
+        this.controladorU=controladorU;
         this.modificar=modificar;
         if (modificar==true && usuario != null) 
         {
@@ -42,28 +44,21 @@ private Usuario usuario;
         }
         vamu.setLocationRelativeTo(null);
         vamu.setVisible(true);
-      if(modificar==false)
-      {  vamu.setTitle(TITULO_NUEVO);
+     
+        vamu.setTitle(TITULO_MODIFICAR);
           
-      }else{
-            vamu.setTitle(TITULO_MODIFICAR);
-            
-      }
-   
-       
     }
     
-       public ControladorAMUsuarios(boolean modificar) {
+       public ControladorAMUsuarios(boolean modificar, IControladorUsuarios controladorU) {
         this.vamu = new VentanaAMUsuario(this);
         this.modificar=modificar;
+        this.controladorU=controladorU;
         vamu.setLocationRelativeTo(null);
         vamu.setVisible(true);
       if(modificar==false)
-      {  vamu.setTitle(TITULO_NUEVO);
+        vamu.setTitle(TITULO_NUEVO);
           
-      }else{
-            vamu.setTitle(TITULO_MODIFICAR);
-      }
+    
     }
         
                
@@ -124,16 +119,17 @@ private Usuario usuario;
         
         if(modificar==true){
             resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
-           
+           controladorU.ventanaObtenerFoco(null);
         }
         else{
         resultado= gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
+        controladorU.ventanaObtenerFoco(null);
         }
         
         JOptionPane.showMessageDialog(vamu, resultado);
         
            if (resultado.equals(GestorUsuarios.EXITO) ) {
-         
+                
                 vamu.dispose();
             }
            

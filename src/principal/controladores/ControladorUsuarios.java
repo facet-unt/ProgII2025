@@ -22,7 +22,7 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorUsuarios implements IControladorUsuarios{
     
     private VentanaUsuarios vu;
-    private GestorUsuarios gu;
+    private IGestorUsuarios gu;
     private ModeloTablaUsuarios model;
     
     private boolean modificar=false; 
@@ -43,7 +43,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-     ControladorAMUsuarios camu = new ControladorAMUsuarios(modificar);    
+     ControladorAMUsuarios camu = new ControladorAMUsuarios(modificar, this);    
         
         
     }
@@ -58,13 +58,10 @@ public class ControladorUsuarios implements IControladorUsuarios{
             return;
         }
         
-        ControladorAMUsuarios camu = new ControladorAMUsuarios(this.pasarUsuario(),modificar);
+        ControladorAMUsuarios camu = new ControladorAMUsuarios(this.pasarUsuario(),modificar, this);
         
-        model.actualizarTabla();
         modificar=false;
-        
-        
-        
+          
     }
     
     public Usuario pasarUsuario()
@@ -114,7 +111,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
 public void txtApellidoPresionarTecla(KeyEvent evt) {
-    System.out.println("TECLA: " + vu.getFieldDescripcion().getText());
+
     this.btnBuscarClic(null);
 }
 

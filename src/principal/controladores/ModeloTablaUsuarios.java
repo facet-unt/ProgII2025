@@ -46,28 +46,14 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 return u.getClass().getSimpleName();
         }
     }
-//
-//    public void actualizarTabla() {
-//        IGestorUsuarios gu = GestorUsuarios.instanciar();
-//       gu.cargarArchivoEnLista();
-//        usuarios = gu.verUsuarios();
-//        this.fireTableDataChanged();
-//    }
-    
+
     public void actualizarTabla() {
-    IGestorUsuarios gu = GestorUsuarios.instanciar();
-    gu.cargarArchivoEnLista();
-    usuarios = gu.verUsuarios();
-
-    System.out.println("Usuarios en el modelo: " + usuarios.size());
-    for (Usuario u : usuarios) {
-        System.out.println(u);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+       gu.cargarArchivoEnLista();
+        usuarios = gu.verUsuarios();
+        this.fireTableDataChanged();
     }
-
-    this.fireTableDataChanged();
-}
-
-
+    
 
     public void actualizarTabla(List<Usuario> usuarios) {
         this.usuarios = usuarios;

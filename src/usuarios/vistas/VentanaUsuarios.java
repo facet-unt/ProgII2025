@@ -24,13 +24,6 @@ private IControladorUsuarios controlador;
         public VentanaUsuarios(ControladorUsuarios controlador) {
         this.controlador=controlador;
         initComponents();
-        
-        this.addWindowFocusListener(new java.awt.event.WindowAdapter() {
-        @Override
-        public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-            controlador.ventanaObtenerFoco(evt);
-        }
-    });
     }
         
       
@@ -69,6 +62,13 @@ private IControladorUsuarios controlador;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Apellido:");
 
@@ -230,6 +230,11 @@ private IControladorUsuarios controlador;
         controlador.txtApellidoPresionarTecla(evt);
         
     }//GEN-LAST:event_txtApellidoKeyReleased
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

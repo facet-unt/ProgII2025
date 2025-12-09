@@ -4,6 +4,7 @@
  */
 package usuarios.vistas;
 
+import interfaces.IControladorAMUsuario;
 import principal.controladores.ControladorAMUsuarios;
 
 import usuarios.modelos.Perfil;
@@ -13,7 +14,7 @@ import usuarios.modelos.Perfil;
  */
 public class VentanaAMUsuario extends javax.swing.JFrame {
  
-    private ControladorAMUsuarios cont; 
+    private IControladorAMUsuario cont; 
     
     /**
      * Creates new form VentanaAMUsuario
@@ -24,34 +25,21 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarComboPerfil();
      
-    }
-//    private void cargarComboPerfil()
-//    {
-//        comboPerfil.removeAllItems();
-//        for(Perfil p: Perfil.values())
-//        {
-//            comboPerfil.addItem(p.name());
-//            
-//        }
-//       
-//        
-//     
-//        
-//    }
+    }  
+
     private void cargarComboPerfil() {
-    // Creamos un modelo NUEVO
+  
     javax.swing.DefaultComboBoxModel<String> modelo = 
             new javax.swing.DefaultComboBoxModel<>();
 
-    // Llenamos el modelo con los valores de la enum
+    
     for (Perfil p : Perfil.values()) {
-        modelo.addElement(p.name());   // o p.toString() si tenés override
+        modelo.addElement(p.name());   
     }
 
-    // Pisamos el modelo que puso NetBeans (el de Item 1..4)
     comboPerfil.setModel(modelo);
 }
-//   
+  
 
 
     /**
