@@ -79,10 +79,11 @@ public class GestorUsuarios implements IGestorUsuarios{
     @Override
     public List<Usuario> buscarUsuarios(String apellido){
         int i=0;
+        apellido = apellido.toLowerCase();
         List<Usuario> usuariosPorApellido = new ArrayList<>();
         if(apellido != null && !apellido.equals("")){
             for (Usuario u: usuarios){
-                if (u.verApellido().equalsIgnoreCase(apellido)){
+                if (u.verApellido().equalsIgnoreCase(apellido) || u.verApellido().contains(apellido) || u.verApellido().toLowerCase().contains(apellido)){
                     usuariosPorApellido.add(u);
                     i++;
                 }

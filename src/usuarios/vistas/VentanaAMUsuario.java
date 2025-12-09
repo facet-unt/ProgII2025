@@ -8,16 +8,18 @@ package usuarios.vistas;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import usuarios.modelos.Encargado;
 
-public class VentanaAMEncargado extends JDialog {
+public class VentanaAMUsuario extends JDialog {
     private ArrayList<Encargado> encargados = new ArrayList<>();
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre 
      */
-    public VentanaAMEncargado(Dialog ventanaPadre) {
+    public VentanaAMUsuario(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
@@ -53,7 +55,6 @@ public class VentanaAMEncargado extends JDialog {
 
         txtNombre.setToolTipText("Nombres");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda ");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +63,6 @@ public class VentanaAMEncargado extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +162,39 @@ public class VentanaAMEncargado extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
+    public JPasswordField verPassClave() {
+        return passClave;
+    }
+
+    public void asignarPassClave(JPasswordField passClave) {
+        this.passClave = passClave;
+    }
+
+    public JTextField verTxtApellido() {
+        return txtApellido;
+    }
+
+    public void asignarTxtApellido(JTextField txtApellido) {
+        this.txtApellido = txtApellido;
+    }
+
+    public JTextField verTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public void asignarTxtCorreo(JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public JTextField verTxtNombre() {
+        return txtNombre;
+    }
+
+    public void asignarTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

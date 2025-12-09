@@ -21,6 +21,5 @@ public class tmp {
         System.out.println(gu.crearUsuario("cliente3@bar.com", "ApellidoCliente3", "NombreCliente3", 
                                             Perfil.CLIENTE, "claveCliente3", "claveCliente3"));
         
-        System.out.println(gu.borrarUsuario(gu.verUsuarios().get(0)));
     }
 }

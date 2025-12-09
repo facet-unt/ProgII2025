@@ -46,13 +46,14 @@ public class ControladorVentanaProductos implements IControladorProductos{
         String descripcionTexto;
         List<Producto> productosPorDescripcion = new ArrayList<>();
         descripcionTexto = ventanaProductos.verBuscarCampoTexto().getText().trim();
-        productosPorDescripcion = gp.buscarProductos(descripcionTexto);
-        if (!descripcionTexto.equals("") || descripcionTexto != null) {
+        if (!descripcionTexto.equals("") && descripcionTexto != null) {
+            productosPorDescripcion = gp.buscarProductos(descripcionTexto);
+            TableModel modelo = new ModeloTablaProductos(productosPorDescripcion);
+            ventanaProductos.verTablaProductos().setModel(modelo);
+        } else {
             TableModel modelo = new ModeloTablaProductos(gp.menu());
             ventanaProductos.verTablaProductos().setModel(modelo);
         }
-        TableModel modelo = new ModeloTablaProductos(productosPorDescripcion);
-        ventanaProductos.verTablaProductos().setModel(modelo);
     }
 
     @Override

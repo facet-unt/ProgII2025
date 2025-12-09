@@ -1,0 +1,5 @@
+,cliente4@bar.com,claveCliente3,trapos,NombreCliente3,Cliente,
+,cliente2@bar.com,claveCliente3,nogga,NombreCliente3,Cliente,
+,cliente1@bar.com,claveCliente3,niggi,NombreCliente3,Cliente,
+,cliente3@bar.com,claveCliente3,negge,NombreCliente3,Cliente,
+,cliente5@bar.com,claveCliente3,jijoso,NombreCliente3,Cliente,

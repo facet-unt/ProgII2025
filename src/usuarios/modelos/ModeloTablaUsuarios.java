@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package productos.modelos;
+package usuarios.modelos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,39 +13,37 @@ import javax.swing.table.TableModel;
  *
  * @author damia
  */
-public class ModeloTablaProductos implements TableModel {
+public class ModeloTablaUsuarios implements TableModel {
     private List<TableModelListener> listeners = new ArrayList<>();
-    private List<Producto> productos;
+    private List<Usuario> usuarios;
     
     //Constructor
 
-    public ModeloTablaProductos(List<Producto> productos) {
-        this.productos = new ArrayList<>(productos);
+    public ModeloTablaUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
     
     @Override
     public int getRowCount() {
-        return productos.size();
+        return usuarios.size();
     }
 
     @Override
     public int getColumnCount() {
-        return Producto.class.getDeclaredFields().length - 2;
+        return Usuario.class.getDeclaredFields().length - 3;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
         switch (columnIndex){
             case 0:
-                return "Codigo";
+                return "Correo";
              case 1:
-                return "Descripcion";
+                return "Apellido";
             case 2:
-                return "Categoria";
+                return "Nombre";
             case 3:
-                return "Estado";
-            case 4:
-                return "Precio";
+                return "Perfil";
             default:
                return "Out of Bounds";
         }
@@ -55,15 +53,13 @@ public class ModeloTablaProductos implements TableModel {
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex){
             case 0:
-                return Integer.class;
+                return String.class;
             case 1:
                 return String.class;
             case 2:
-                return Categoria.class;
+                return String.class;
             case 3:
-                return Estado.class;
-            case 4:
-                return Float.class;
+                return Perfil.class;
             default:
                 return Object.class;
         }
@@ -78,15 +74,13 @@ public class ModeloTablaProductos implements TableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                return (Integer)(productos.get(rowIndex).verCodigo());
+                return (String)(usuarios.get(rowIndex).verCorreo());
             case 1:
-                return (String)productos.get(rowIndex).verDescripcion();
+                return (String)usuarios.get(rowIndex).verApellido();
             case 2:
-                return (Categoria)productos.get(rowIndex).verCategoria();
+                return (String)usuarios.get(rowIndex).verNombre();
             case 3:
-                return (Estado)productos.get(rowIndex).verEstado();
-            case 4:
-                return (Float)productos.get(rowIndex).verPrecio();
+                return (Perfil)usuarios.get(rowIndex).verPerfil();
             default:
                 return (String)("?");
         }
@@ -96,19 +90,16 @@ public class ModeloTablaProductos implements TableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                productos.get(rowIndex).asignarCodigo((Integer)aValue);
+               usuarios.get(rowIndex).asignarCorreo((String)aValue);
                 break;
             case 1:
-                productos.get(rowIndex).asignarDescripcion((String)aValue);
+               usuarios.get(rowIndex).asignarApellido((String)aValue);
                 break;
             case 2:
-                productos.get(rowIndex).asignarCategoria((Categoria)aValue);
+               usuarios.get(rowIndex).asignarNombre((String)aValue);
                 break;
             case 3:
-                productos.get(rowIndex).asignarEstado((Estado)aValue);
-                break;
-            case 4:
-                productos.get(rowIndex).asignarPrecio((Float)aValue);
+               usuarios.get(rowIndex).asignarPerfil((Perfil)aValue);
                 break;
             default:
                 System.out.println("Ingrese un numero de columna correcto");
@@ -123,7 +114,8 @@ public class ModeloTablaProductos implements TableModel {
 
     @Override
     public void removeTableModelListener(TableModelListener l) {
-        listeners.remove(l);
+        listeners.add(l);
     }
+    
     
 }
