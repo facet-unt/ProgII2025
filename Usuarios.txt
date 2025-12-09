@@ -1,5 +1,6 @@
 correocliente1@gmail.com/1234/ApellidoCliente1/Cliente1/Cliente
 correocliente2@gmail.com/hola123/ApellidoCliente2/Cliente2/Cliente
 empleado1@hotmail/1234HgHg/ApellidoEmpleado1/Empleado1/Empleado
+empleado2@gmail/1234a_/ApellidoEmpleadoDos/EmpleadoDos/Empleado
 encargado1@correo/clave1/ApellidoEncargado1/Encargado1/Encargado
 encargado2@correo.com/1234gggg/ApellidoEncargado2/Encargado2/Encargado

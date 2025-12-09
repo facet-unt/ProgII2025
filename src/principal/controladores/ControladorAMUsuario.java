@@ -35,10 +35,6 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         
         this.modeloPerfil = new ModeloComboPerfil();
         this.ventana.definirComboPerfil(modeloPerfil);
-        agregarEnterListener(this.ventana.verTxtNombre(), this.ventana.verTxtApellido());
-        agregarEnterListener(this.ventana.verTxtApellido(), this.ventana.verTxtCorreo());
-        agregarEnterListener(this.ventana.verTxtCorreo(), this.ventana.verPassClave());
-        agregarEnterListener(this.ventana.verPassClave(), this.ventana.verPassClaveRepetida());
     }
     
     public static ControladorAMUsuario instanciar(Usuario usuario) {
@@ -111,12 +107,24 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             evt.getComponent().transferFocus();
         }
+        
+        char c = evt.getKeyChar();
+        
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c) && !Character.isISOControl(c)) {
+            evt.consume();
+        }
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             evt.getComponent().transferFocus();
+        }
+        
+        char c = evt.getKeyChar();
+        
+        if (!Character.isLetter(c) && !Character.isISOControl(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
         }
     }
 
@@ -125,6 +133,10 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             evt.getComponent().transferFocus();
         }
+               
+        if (Character.isSpaceChar(evt.getKeyChar())) {
+            evt.consume();
+        }
     }
 
     @Override
@@ -132,12 +144,20 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             evt.getComponent().transferFocus();
         }
+        
+        if (Character.isSpaceChar(evt.getKeyChar())) {
+            evt.consume();
+        }
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.btnGuardarClic(null);
+        }
+        
+        if (Character.isSpaceChar(evt.getKeyChar())) {
+            evt.consume();
         }
     }  
 }
