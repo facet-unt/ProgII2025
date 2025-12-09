@@ -4,10 +4,14 @@
  */
 package usuarios.vistas;
 
-import static interfaces.IControladorAMUsuario.TITULO_MODIFICAR;
+import interfaces.IControladorAMUsuario;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import principal.controladores.ControladorVentanaModificarUsuarios;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
+import usuarios.modelos.ModeloComboPerfil;
 
 /**
  *
@@ -16,17 +20,15 @@ import principal.vistas.VentanaPrincipal;
 public class VentanaModificarUsuarios extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarUsuarios.class.getName());
-    private ControladorVentanaModificarUsuarios controlador;
+    private IControladorAMUsuario controlador;
     private VentanaPrincipal ventana;
     /**
      * Creates new form VentanaModificarUsuarios
      */
-    public VentanaModificarUsuarios(JDialog ventanaMejor, ControladorVentanaModificarUsuarios controloadr) {
+    public VentanaModificarUsuarios(JDialog ventanaMejor, IControladorAMUsuario controlador) {
         super(ventanaMejor, true);
         initComponents();
-        this.setTitle(TITULO_MODIFICAR);
-        this.setVisible(true);
-        this.setResizable(false);
+        this.jComboBox1.setModel(new ModeloComboPerfil());
     }
 
     /**
@@ -168,6 +170,35 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
    
     }
 
+     public JButton getBotonGuardar() {
+        return this.jButton1;
+    }
+
+    public JTextField getTxtApellido() {
+        return this.jTextField2;
+    }
+
+    public JTextField getTxtNombre() {
+        return this.jTextField3;
+    }
+
+    public JPasswordField getTxtClave() {
+        return this.jPasswordField1;
+    }
+
+    public JTextField getTxtCorreo() {
+        return this.jTextField1;
+    }
+
+    public JPasswordField getTxtClaveRepetida() {
+        return this.jPasswordField2;
+    }
+
+    public JComboBox getComboPerfil() {
+        return this.jComboBox1;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

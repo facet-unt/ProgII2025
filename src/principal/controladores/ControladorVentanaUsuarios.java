@@ -58,7 +58,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     }
 
     @Override
-    public void txtApellidoPresionarTecla(KeyEvent evt) {
+    public void txtApellidoPresionarTecla(ActionEvent evt) {
         
     }
 
