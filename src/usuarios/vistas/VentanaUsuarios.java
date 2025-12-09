@@ -212,7 +212,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         }); 
     } 
    
-    public ModeloTablaUsuarios obtenerModeloProductos() {
+    public ModeloTablaUsuarios obtenerModeloUsuarios() {
         return (ModeloTablaUsuarios) jTable1.getModel();
     }
     

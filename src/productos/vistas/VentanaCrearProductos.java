@@ -15,8 +15,8 @@ import productos.modelos.ModeloComboEstados;
 
 public class VentanaCrearProductos extends JDialog {
     private static ControladorCrearProductos controlador;
-    public Categoria categoria;
-    public Estado estado;
+    private Categoria categoria;
+    private Estado estado;
     
     /**
      * Constructor
@@ -224,6 +224,15 @@ public class VentanaCrearProductos extends JDialog {
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
         controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyReleased
+    
+    public Estado verEstado(){
+        return estado;
+    }
+    
+    public Categoria verCategoria(){
+        return categoria;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

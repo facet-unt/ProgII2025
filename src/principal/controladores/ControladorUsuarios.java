@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import interfaces.IControladorAMUsuario;
 import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
@@ -52,7 +53,8 @@ public class ControladorUsuarios implements IControladorUsuarios{
     
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        IControladorAMUsuario controladorCrearUsuarios = ControladorCrearUsuarios.instanciar();
+        ventanaUsuarios.obtenerModeloUsuarios().setUsuarios(gestorUsuarios.verUsuarios());
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        ventanaUsuarios.obtenerModeloProductos().eliminarProducto(ventanaUsuarios.filaSeleccionada);
+        ventanaUsuarios.obtenerModeloUsuarios().eliminarProducto(ventanaUsuarios.filaSeleccionada);
         usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
         gestorUsuarios.borrarUsuario(usuario);
     }
@@ -75,7 +77,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        ventanaUsuarios.obtenerModeloProductos().setUsuarios(gestorUsuarios.buscarUsuarios(apellido));
+        ventanaUsuarios.obtenerModeloUsuarios().setUsuarios(gestorUsuarios.buscarUsuarios(apellido));
     }
     
 }

@@ -53,7 +53,7 @@ public class ControladorCrearProductos implements IControladorAMProducto {
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.categoria, ventanaCrearProductos.estado);
+        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.verCategoria(), ventanaCrearProductos.verEstado());
         ventanaCrearProductos.dispose();
     }
 

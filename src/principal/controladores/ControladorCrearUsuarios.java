@@ -28,6 +28,7 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
     private String clave;
     private String claveRepetida;
     IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
+    
     public ControladorCrearUsuarios() {
         ventanaCrearUsuarios = new VentanaCrearUsuarios(ventanaUsuarios,this);
         ventanaCrearUsuarios.setLocationRelativeTo(ventanaUsuarios);
@@ -47,7 +48,7 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorUsuarios.crearUsuario(correo, apellido, nombre, Perfil.CLIENTE, clave, claveRepetida);
+        gestorUsuarios.crearUsuario(correo, apellido, nombre, ventanaCrearUsuarios.verPerfil(), clave, claveRepetida);
         ventanaCrearUsuarios.dispose();
     }
 

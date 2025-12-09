@@ -4,9 +4,10 @@
  */
 package usuarios.vistas;
 
-import static interfaces.IControladorAMUsuario.TITULO_NUEVO;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearUsuarios;
+import usuarios.modelos.ModeloComboPerfiles;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -15,6 +16,7 @@ import principal.controladores.ControladorCrearUsuarios;
 public class VentanaCrearUsuarios extends javax.swing.JDialog {
     private static ControladorCrearUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaCrearUsuarios.class.getName());
+    private Perfil perfil;
 
     /**
      * Creates new form Usuarios
@@ -22,13 +24,8 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
     public VentanaCrearUsuarios(JDialog parent,ControladorCrearUsuarios controlador ) {
         super(parent, true);
         initComponents();
-        this.setLocationRelativeTo(parent);
-        this.setTitle(TITULO_NUEVO);
-        this.setVisible(true);
-        this.toFront();
-        this.requestFocus();
-        this.requestFocusInWindow();
-        this.setSize(300, 400);
+        this.controlador = controlador;
+        this.jComboBox1.setModel(new ModeloComboPerfiles());
          
     }
 
@@ -46,8 +43,6 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
-        txtRepetirClave = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,6 +50,10 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         BotonGuardar = new javax.swing.JButton();
         BotonCancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -69,43 +68,22 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
             }
         });
 
-        txtNombre.setText("jTextField1");
+        txtNombre.setToolTipText("");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
         });
 
-        txtApellido.setText("jTextField2");
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyReleased(evt);
             }
         });
 
-        txtCorreo.setText("jTextField3");
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyReleased(evt);
-            }
-        });
-
-        txtClave.setText("jTextField4");
-        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtClaveKeyReleased(evt);
-            }
-        });
-
-        txtRepetirClave.setText("jTextField5");
-        txtRepetirClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRepetirClaveActionPerformed(evt);
-            }
-        });
-        txtRepetirClave.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRepetirClaveKeyReleased(evt);
             }
         });
 
@@ -133,43 +111,70 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText("Perfil:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jPasswordField1.setToolTipText("");
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClave(evt);
+            }
+        });
+
+        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRepetirClave(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtRepetirClave, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                            .addComponent(txtClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtApellido)
-                            .addComponent(txtNombre))))
+                            .addComponent(txtNombre)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel5))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(52, 52, 52)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreo)
+                            .addComponent(jComboBox1, 0, 507, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1)
+                            .addComponent(jPasswordField2))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(226, 226, 226)
                 .addComponent(BotonGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonCancelar)
-                .addGap(19, 19, 19))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,38 +183,38 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRepetirClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar)
                     .addComponent(BotonCancelar))
-                .addGap(26, 26, 26))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRepetirClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepetirClaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRepetirClaveActionPerformed
-
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-        this.dispose();
+        controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -233,14 +238,21 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
         controlador.txtCorreoPresionarTecla(evt);
     }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txtClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyReleased
+    private void txtClave(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClave
         controlador.passClavePresionarTecla(evt);
-    }//GEN-LAST:event_txtClaveKeyReleased
+    }//GEN-LAST:event_txtClave
 
-    private void txtRepetirClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepetirClaveKeyReleased
+    private void txtRepetirClave(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepetirClave
         controlador.passClaveRepetidaPresionarTecla(evt);
-    }//GEN-LAST:event_txtRepetirClaveKeyReleased
+    }//GEN-LAST:event_txtRepetirClave
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        this.perfil = ((ModeloComboPerfiles)this.jComboBox1.getModel()).obtenerPerfil();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    public Perfil verPerfil(){
+        return perfil;
+    }
     /**
      * @param args the command line arguments
      */
@@ -281,17 +293,19 @@ public class VentanaCrearUsuarios extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
     private javax.swing.JButton BotonGuardar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtRepetirClave;
     // End of variables declaration//GEN-END:variables
 }
