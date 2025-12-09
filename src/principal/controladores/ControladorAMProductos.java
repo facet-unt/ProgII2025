@@ -118,6 +118,7 @@ public class ControladorAMProductos implements IControladorAMProducto{
         else {
             JOptionPane.showMessageDialog(this.ventana, resultado, "Éxito", JOptionPane.INFORMATION_MESSAGE); 
             this.ventana.limpiarCampos();
+            this.ventana.dispose();
         } 
     }
 
