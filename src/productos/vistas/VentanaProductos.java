@@ -301,7 +301,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         panelMenu.setBackground(new Color(0xDD, 0xE4, 0xE2));
         panelMenu.setBorder(new BevelBorder(BevelBorder.LOWERED, base2.brighter(), base2.brighter(), base2.darker(),
                             base2.darker()));
-        buscarCampoTexto.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buscarCampoTexto.setCursor(new Cursor(Cursor.TEXT_CURSOR));
         buscarCampoTexto.setBorder(new BevelBorder(BevelBorder.LOWERED));
         configurarBoton(btnVolver, BTN, TEXTO, ACENTO);
         configurarBoton(btnBuscar, BTN, TEXTO, ACENTO);

@@ -56,6 +56,7 @@ public class GestorProductos implements IGestorProductos{
     public String modificarProducto(Producto p, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         if(!this.productos.contains(p))
             return PRODUCTO_INEXISTENTE;
+        productos.remove(p);
         if (codigo <= 0)
             return ERROR_CODIGO;
         if(descripcion == null || descripcion.equals(""))

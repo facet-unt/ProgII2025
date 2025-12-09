@@ -85,26 +85,46 @@ public class ControladorVentanaProductos implements IControladorProductos{
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        VentanaAMProducto ventanaAMProducto = new VentanaAMProducto(ventanaProductos);
-        ventanaAMProducto.setLocationRelativeTo(null);
-        ventanaAMProducto.setTitle("Modificar producto");        
-        ventanaAMProducto.verComboCategorias().setModel(new ModeloComboCategorias());
-        ventanaAMProducto.verComboEstados().setModel(new ModeloComboEstados());
-        ventanaAMProducto.setVisible(true);
+        int fila;
+        fila = ventanaProductos.verTablaProductos().getSelectedRow();
+        if (fila != -1) {
+            int codigo;
+            Producto p;
+            VentanaAMProducto ventanaAMProducto = new VentanaAMProducto(ventanaProductos);
+            ventanaAMProducto.setLocationRelativeTo(null);
+            ventanaAMProducto.setTitle("Modificar producto");        
+            ventanaAMProducto.verComboCategorias().setModel(new ModeloComboCategorias());
+            ventanaAMProducto.verComboEstados().setModel(new ModeloComboEstados());
+            codigo = (Integer)ventanaProductos.verTablaProductos().getValueAt(fila, 0);
+            p = gp.obtenerProducto(codigo);
+            ventanaAMProducto.verTxtCodigo().setText(Integer.toString(p.verCodigo()));
+            ventanaAMProducto.verTxtCodigo().setEditable(false);
+            ventanaAMProducto.verTxtCodigo().setToolTipText("No puede modificarse el codigo del producto");
+            ventanaAMProducto.verTxtDescripcion().setText(p.verDescripcion());
+            ventanaAMProducto.verTxtPrecio().setText(Float.toString(p.verPrecio()));
+            ((ModeloComboCategorias)ventanaAMProducto.verComboCategorias().getModel()).seleccionarCategoria(p.verCategoria());
+            ((ModeloComboEstados)ventanaAMProducto.verComboEstados().getModel()).seleccionarEstado(p.verEstado());
+            ventanaAMProducto.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(ventanaProductos, "No se ha seleccionado ningun producto");
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         int fila;
         int codigo;
-        Producto p;
-        int opcion = JOptionPane.showConfirmDialog(ventanaProductos, "¿Esta seguro que quiere borrar este producto?");
+        Producto p; 
         fila = ventanaProductos.verTablaProductos().getSelectedRow();
-        codigo = (Integer)ventanaProductos.verTablaProductos().getValueAt(fila, 0);
-        p = gp.obtenerProducto(codigo);
-        if(opcion == JOptionPane.YES_OPTION){
-            gp.borrarProducto(p);
+        if (fila != -1) {
+            int opcion = JOptionPane.showConfirmDialog(ventanaProductos, "¿Esta seguro que quiere borrar este producto?");
+            codigo = (Integer)ventanaProductos.verTablaProductos().getValueAt(fila, 0);
+            p = gp.obtenerProducto(codigo);
+            if(opcion == JOptionPane.YES_OPTION){
+                gp.borrarProducto(p);
+            }
+        } else {
+            JOptionPane.showMessageDialog(ventanaProductos, "No se ha seleccionado ningun producto");
         }
     } 
-
 }

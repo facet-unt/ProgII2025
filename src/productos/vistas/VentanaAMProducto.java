@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import productos.modelos.*;
 
@@ -22,14 +23,15 @@ import productos.modelos.Estado;
 
 public class VentanaAMProducto extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
-    
+    private ControladorAMProducto controlador;
     /**
      * Constructor
-     * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
+     * @param ventanaPadre ventana padre (VentanaProductos en este caso)
      */
     public VentanaAMProducto(Dialog ventanaPadre) {
         super(ventanaPadre, true);
-        initComponents(); 
+        initComponents();
+        this.controlador = new ControladorAMProducto(this);
         ajustarVista();
     }
     
@@ -58,18 +60,23 @@ public class VentanaAMProducto extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Descripción:");
 
-        txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.setToolTipText("Descripcion del producto");
 
         jLabel2.setText("Precio:");
 
-        txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.setToolTipText("Precio del producto");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
-        btnGuardar.setToolTipText("Guarda el profesor");
+        btnGuardar.setToolTipText("Guardar producto");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarClic(evt);
@@ -87,7 +94,7 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel4.setText("Código:");
 
-        txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.setToolTipText("Codigo del producto");
 
         jLabel6.setText("Estado:");
 
@@ -159,27 +166,16 @@ public class VentanaAMProducto extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
+        this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-        
-                            
-        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
+        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowActivated
 
     public JComboBox<String> verComboCategorias() {
         return comboCategorias;
@@ -196,6 +192,34 @@ public class VentanaAMProducto extends JDialog {
     public void asignarComboEstados(JComboBox<String> comboEstados) {
         this.comboEstados = comboEstados;
     }
+
+    public JTextField verTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public void asignarTxtCodigo(JTextField txtCodigo) {
+        this.txtCodigo = txtCodigo;
+    }
+
+    public JTextField verTxtDescripcion() {
+        return txtDescripcion;
+    }
+
+    public void asignarTxtDescripcion(JTextField txtDescripcion) {
+        this.txtDescripcion = txtDescripcion;
+    }
+
+    public JTextField verTxtPrecio() {
+        return txtPrecio;
+    }
+
+    public void asignarTxtPrecio(JTextField txtPrecio) {
+        this.txtPrecio = txtPrecio;
+    }
+    
+    
+    
+    
     
     private Color BTN = Color.WHITE; 
     private Color TEXTO = new Color(0x21,0x42,0x3D); 
