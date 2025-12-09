@@ -4,13 +4,17 @@
  */
 package productos.vistas;
 
+import javax.swing.table.DefaultTableModel;
+import productos.controladores.ControladorProductos;
+
 /**
  *
  * @author Fernando
  */
 public class VentanaProductos extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
+    private ControladorProductos controlador;
 
     /**
      * Creates new form VentanaBuscarProducto
@@ -18,6 +22,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     public VentanaProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador = new ControladorProductos(this);
     }
 
     /**
@@ -43,6 +48,12 @@ public class VentanaProductos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Descripcion");
+
+        textDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDescripcionActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,24 +183,40 @@ public class VentanaProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.dispose();
+        this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnModificarClic(evt);
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void textDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDescripcionActionPerformed
+        this.controlador.btnBuscarClic(evt);
+    }//GEN-LAST:event_textDescripcionActionPerformed
+    
+    public String getTextDescripcion() {
+        return textDescripcion.getText();
+    }
+
+    public void setModeloTabla(DefaultTableModel modelo) {
+        tablaProductos.setModel(modelo);
+    }
+
+    public javax.swing.JTable getTabla() {
+        return tablaProductos;
+    }
 
     /**
      * @param args the command line arguments
