@@ -10,7 +10,6 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
@@ -28,17 +27,17 @@ public class ControladorAMProducto implements IControladorAMProducto{
     private VentanaAMProducto vp; //se instancia en constructor
     private Producto productoAEditar;
     private boolean esModificacion;
-    Producto p;
     
-     public ControladorAMProducto(boolean esModificacion,int codigo) {
+     public ControladorAMProducto(boolean esModificacion, Producto p) {
         this.vp = new VentanaAMProducto(null, this);
         this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
         this.vp.verComboEstado().setModel(new ModeloComboEstados());
         this.esModificacion = esModificacion;
         if (this.esModificacion){
             this.vp.setTitle("Modificación");
-            this.vp.txtCodigo.setText(Integer.toString(codigo));
+            this.vp.txtCodigo.setText(Integer.toString(p.verCodigo()));
             this.vp.txtCodigo.setEnabled(false);
+            productoAEditar=p;
         }
         else
             this.vp.setTitle("Creación");
@@ -99,7 +98,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     String resultado;
 
                     if (this.esModificacion==true) {
-                        resultado = gestor.modificarProducto(this.productoAEditar, codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
+                        resultado = gestor.modificarProducto(productoAEditar, codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
                     
                     } else {
                         resultado = gestor.crearProducto(codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);

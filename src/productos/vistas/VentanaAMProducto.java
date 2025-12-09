@@ -10,13 +10,11 @@ import java.awt.Dialog;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
-import productos.controladores.ControladorAMProducto;
-import productos.modelos.*;
 
 
 
 public class VentanaAMProducto extends JDialog {
-    //private ArrayList<Producto> productos = new ArrayList<>();
+    
     private IControladorAMProducto controlador;
     
     /**
@@ -27,12 +25,9 @@ public class VentanaAMProducto extends JDialog {
     public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
-//        this.setLocationRelativeTo(null);
-//        this.setTitle("Nuevo producto");        
-        //this.comboCategorias.setModel(new ModeloComboCategorias());
-        //this.comboEstados.setModel(new ModeloComboEstados());
+
         this.controlador = controlador;
-        //initComponents();
+       
     }
     public JTextField verTxtCodigo() {
         return txtCodigo;
@@ -110,10 +105,20 @@ public class VentanaAMProducto extends JDialog {
         etiquetaDescripcion.setText("Descripción:");
 
         txtDescripcion.setToolTipText("Escribir la descripción aquí");
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
+            }
+        });
 
         etiquetaPrecio.setText("Precio:");
 
         txtPrecio.setToolTipText("Escribir el Precio aquí");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -136,6 +141,11 @@ public class VentanaAMProducto extends JDialog {
         etiquetaCodigo.setText("Código:");
 
         txtCodigo.setToolTipText("Escribir el código aquí");
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
 
         etiquetaEstado.setText("Estado:");
 
@@ -215,17 +225,17 @@ public class VentanaAMProducto extends JDialog {
         System.out.println(this.txtCodigo.getText().trim());
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
-
+/*
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        controlador.txtCodigoPresionarTecla(evt);
+        
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
-        controlador.txtDescripcionPresionarTecla(evt);
+       
     }//GEN-LAST:event_txtDescripcionKeyPressed
 
     private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
-        controlador.txtPrecioPresionarTecla(evt);
+        
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
@@ -235,6 +245,18 @@ public class VentanaAMProducto extends JDialog {
     private void comboEstadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadosKeyPressed
         
     }//GEN-LAST:event_comboEstadosKeyPressed
+*/
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+       controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

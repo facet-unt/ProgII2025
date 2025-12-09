@@ -5,7 +5,6 @@
 package productos.modelos;
 
 import interfaces.IGestorProductos;
-import productos.modelos.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;

@@ -105,6 +105,9 @@
           <Connection code="&quot;Escribir la descripci&#xf3;n aqu&#xed;&quot;" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDescripcionKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaPrecio">
       <Properties>
@@ -117,6 +120,9 @@
           <Connection code="&quot;Escribir el Precio aqu&#xed;&quot;" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioKeyReleased"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -154,6 +160,9 @@
           <Connection code="&quot;Escribir el c&#xf3;digo aqu&#xed;&quot;" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyReleased"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VentanaAMProducto_txtCodigo"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

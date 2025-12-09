@@ -2,3 +2,4 @@
 4;Pizzetta de muzzarella;Entrada;Disponible;1500.0
 1;Milanesa con puré;Plato principal;Disponible;2000.0
 2;Flan;Postre;Disponible;1500.0
+5;Torta Selva Negra;Postre;Disponible;1500.0

@@ -70,7 +70,7 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        IControladorAMProducto cvprod = new ControladorAMProducto(false, 10);
+        IControladorAMProducto cvprod = new ControladorAMProducto(false,null);
     }
 
     @Override
@@ -83,7 +83,8 @@ public class ControladorProductos implements IControladorProductos{
         }
         Producto productoSeleccionado = modelo.obtenerProducto(fila);
 
-        IControladorAMProducto controladorAM = new ControladorAMProducto(true, productoSeleccionado.verCodigo());
+        IControladorAMProducto controladorAM = new ControladorAMProducto(true, productoSeleccionado);
+        
 
 
         this.modelo.actualizarTabla();

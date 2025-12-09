@@ -133,6 +133,7 @@ public class VentanaProductos extends JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaMenu.setToolTipText("Menú");
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setShowGrid(true);
