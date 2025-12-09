@@ -67,6 +67,5 @@ public interface IControladorProductos {
      */                        
     public void botonBorrarClic(ActionEvent evt);
 
-    public void buscarProductos(Object object);
-    
+     
 }
