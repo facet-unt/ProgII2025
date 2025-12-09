@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
 
 /**
  *
@@ -113,6 +114,63 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
     @Override
+    public String modificarUsuario(Usuario usuarioActual, String apellido, String nombre, Perfil nuevoPerfil, String clave) {
+
+        if (apellido == null || apellido.trim().isEmpty()) {
+            return ERROR_APELLIDO;
+        }
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return ERROR_NOMBRE;
+        }
+        if (nuevoPerfil == null) {
+            return ERROR_PERFIL;
+        }
+
+        if (usuarioActual.obtenerPerfil() == nuevoPerfil) {
+            usuarioActual.asignarApellido(apellido);
+            usuarioActual.asignarNombre(nombre);
+            if (clave != null && !clave.trim().isEmpty()) {
+                usuarioActual.asignarClave(clave);
+            }
+            guardarArchivo();
+            return EXITO;
+        }
+
+        String correo = usuarioActual.verCorreo();
+        String claveUsada = (clave != null && !clave.trim().isEmpty()) ? clave : usuarioActual.verClave();
+
+        usuario.remove(usuarioActual);
+
+        Usuario nuevoUsuario;
+        switch (nuevoPerfil) {
+            case CLIENTE:
+                nuevoUsuario = new Cliente(correo, claveUsada, apellido, nombre, nuevoPerfil);
+                break;
+            case EMPLEADO:
+                nuevoUsuario = new Empleado(correo, claveUsada, apellido, nombre, nuevoPerfil);
+                break;
+            case ENCARGADO:
+                nuevoUsuario = new Encargado(correo, claveUsada, apellido, nombre, nuevoPerfil);
+                break;
+            default:
+                usuario.add(usuarioActual);
+                return ERROR_PERFIL;
+        }
+
+        if (usuarioActual instanceof Cliente && nuevoUsuario instanceof Cliente) {
+            Cliente viejoCliente = (Cliente) usuarioActual;
+            Cliente nuevoCliente = (Cliente) nuevoUsuario;
+            for (Pedido p : viejoCliente.verPedido()) {
+                nuevoCliente.agregarPedido(p);
+            }
+        }
+
+        usuario.add(nuevoUsuario);
+        guardarArchivo();
+        return EXITO;
+    }
+
+    @Override
     public ArrayList<Usuario> verUsuarios() {
         ArrayList<Usuario> copia = new ArrayList<>(usuario);
         copia.sort((u1, u2) -> {
@@ -149,7 +207,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
             for (Usuario u : usuario) {
                 String linea = u.verCorreo() + "," + u.verClave() + ","
-                        + u.verApellido() + "," + u.verNombre() + "," + u.obtenerPerfil().name(); 
+                        + u.verApellido() + "," + u.verNombre() + "," + u.obtenerPerfil().name();
                 bw.write(linea);
                 bw.newLine();
             }
@@ -165,14 +223,16 @@ public class GestorUsuarios implements IGestorUsuarios {
                 System.out.println("Archivo de usuarios no encontrado. Se creara al agregar usuarios");
                 return;
             }
-            
+
             try (BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
                 usuario.clear();
                 String linea;
 
                 while ((linea = br.readLine()) != null) {
-                    if (linea.trim().isEmpty()) continue; 
-                    
+                    if (linea.trim().isEmpty()) {
+                        continue;
+                    }
+
                     String[] v = linea.split(",");
 
                     if (v.length >= 5) {
@@ -185,7 +245,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                         try {
                             Perfil perfil = Perfil.valueOf(perfilStr.toUpperCase());
                             Usuario nuevoUsuario;
-                            
+
                             switch (perfil) {
                                 case CLIENTE:
                                     nuevoUsuario = new Cliente(correo, clave, apellido, nombre, perfil);

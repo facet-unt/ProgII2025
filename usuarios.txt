@@ -1,4 +1,4 @@
 juan.2@gmail.com,123,juan,pepe,CLIENTE
 pepe@gmail.com,1234,pepe,juan,EMPLEADO
-Arroyo@mail.com,Arroyo1,Jose,Arroyo,ENCARGADO
-manteca.com,papa,papa,papa,CLIENTE
+Arroyo@mail.com,Arroyo1,Jose,Arroyo,EMPLEADO
+manteca.com,papa,papa,papa,ENCARGADO

@@ -82,23 +82,17 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
                 vista.dispose();
             }
         } else {
-            usuarioEdicion.asignarApellido(apellido);
-            usuarioEdicion.asignarNombre(nombre);
 
-            if (clave.isEmpty() && claveRepetida.isEmpty()) {
-                gestor.guardarArchivo();
-                JOptionPane.showMessageDialog(vista, "Usuario modificado exitosamente");
-                vista.dispose();
-            } else if (!clave.isEmpty() || !claveRepetida.isEmpty()) {
-                if (!clave.equals(claveRepetida)) {
-                    JOptionPane.showMessageDialog(vista, IGestorUsuarios.ERROR_CLAVES);
-                    return;
-                }
+            if ((!clave.isEmpty() || !claveRepetida.isEmpty()) && !clave.equals(claveRepetida)) {
+                JOptionPane.showMessageDialog(vista, IGestorUsuarios.ERROR_CLAVES);
+                return;
+            }
 
-                usuarioEdicion.asignarClave(clave);
+            String claveAUsar = clave.isEmpty() ? null : clave;
+            String resultado = gestor.modificarUsuario(usuarioEdicion, apellido, nombre, perfil, claveAUsar);
 
-                gestor.guardarArchivo();
-                JOptionPane.showMessageDialog(vista, "Usuario modificado exitosamente (con clave)");
+            JOptionPane.showMessageDialog(vista, resultado);
+            if (resultado.equals(IGestorUsuarios.EXITO)) {
                 vista.dispose();
             }
         }
