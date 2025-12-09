@@ -67,6 +67,12 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Apellido:");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellido(evt);
+            }
+        });
+
         jLabel2.setText("Usuarios");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -192,6 +198,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void BotonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevoActionPerformed
         controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_BotonNuevoActionPerformed
+
+    private void txtApellido(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellido
+        controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellido
 
     private void agregarListenerATabla(JTable tabla) { 
         tabla.getSelectionModel().addListSelectionListener((e) -> { 
