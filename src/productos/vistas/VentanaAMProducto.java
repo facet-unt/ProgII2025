@@ -126,7 +126,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        botonGuardar.setMnemonic('G');
         botonGuardar.setText("Guardar");
         botonGuardar.setToolTipText("Guardar el Producto");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +134,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        botonCancelar.setMnemonic('C');
         botonCancelar.setText("Cancelar");
         botonCancelar.setToolTipText("Cancela la operación");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -273,8 +271,8 @@ public class VentanaAMProducto extends JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
