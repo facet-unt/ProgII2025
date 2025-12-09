@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package principal.controladores;
+package usuarios.controladores;
 
+import usuarios.modelos.ModeloTablaUsuarios;
 import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.*;
@@ -50,7 +51,6 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        System.out.println("Modificar");
         int fila = vp.getTablaUsuarios().getSelectedRow();
 
         if (fila == -1) {

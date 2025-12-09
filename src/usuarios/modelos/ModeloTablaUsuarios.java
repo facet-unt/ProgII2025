@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package usuarios.vistas;
+package usuarios.modelos;
 
 /**
  *
@@ -24,19 +24,15 @@ import java.util.List;
 public class ModeloTablaUsuarios extends AbstractTableModel {
 
     private List<String> nombreColumnas = new ArrayList<>();
-    private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> listaUsuarios = new ArrayList<>();
 
-    /*public ModeloTablaUsuarios() {
-        actualizarTabla();
-    }*/
+    public ModeloTablaUsuarios() {
+        IGestorUsuarios gp = GestorUsuarios.instanciar();
+        this.listaUsuarios = gp.verUsuarios();
+    }
     private static final String[] columnas
             = {"Apellido", "Nombre", "Correo", "Clave", "Perfil"};
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = (usuarios != null) ? usuarios : new ArrayList<>();
-        this.fireTableDataChanged();
-    }
 
     public void actualizarTabla() {
         IGestorUsuarios gestor = GestorUsuarios.instanciar();
@@ -46,17 +42,8 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         if (this.listaUsuarios == null) {
             this.listaUsuarios = new ArrayList<>();
         }
-        
-        if (this.listaUsuarios == null) {
-            System.out.println("ERROR: La lista viene NULA desde el Gestor.");
-            this.listaUsuarios = new ArrayList<>();
-        } else {
-            System.out.println("DIAGNÓSTICO: Se encontraron " + this.listaUsuarios.size() + " usuarios.");
-            for(Usuario u : this.listaUsuarios) {
-                System.out.println(" -> Usuario cargado: " + u.verCorreo() + " - " + u.verPerfil());
-            }
-        }
 
+       
         this.fireTableDataChanged();
     }
 

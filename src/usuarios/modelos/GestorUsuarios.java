@@ -36,8 +36,8 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return instancia;
     }
-    
-    public List<Usuario> ordenar(){
+
+    public List<Usuario> ordenar() {
         usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
         return usuarios;
     }
@@ -126,34 +126,48 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
     }
 
-    
-    
     @Override
     public List<Usuario> verUsuarios() {
         if (!crearArchivo()) {
-            return null;
+            return new ArrayList<>();
         }
+
         usuarios.clear();
+
         File f = new File(NOMBRE_ARCHIVO_U);
-        try (FileReader fr = new FileReader(f);) {
-            BufferedReader br = new BufferedReader(fr);
+
+        try (FileReader fr = new FileReader(f); BufferedReader br = new BufferedReader(fr)) {
+
             String linea;
             while ((linea = br.readLine()) != null) {
+
+                if (linea.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] cadenas = linea.split(SEPARADOR);
-                String correo = cadenas[0];
-                String clave = cadenas[1];
+
+                if (cadenas.length < 5) {
+                    System.err.println("Línea mal formada ignorada: " + linea);
+                    continue;
+                }
+
+                String correo = cadenas[0].trim();
+                String clave = cadenas[1].trim();
                 String apellido = cadenas[2];
                 String nombre = cadenas[3];
                 Perfil unPerfil = Perfil.compararValor(cadenas[4].trim());
+
                 Usuario unUsuario = instanciarUsuario(correo, clave, apellido, nombre, unPerfil);
+
                 if (unUsuario != null) {
                     usuarios.add(unUsuario);
                 }
-
             }
         } catch (IOException e1) {
             System.out.println(LECTURA_ERROR);
         }
+
         usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
         return usuarios;
     }
@@ -193,6 +207,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
+
     private String actualizarArchivoCompleto() {
         File f = new File(NOMBRE_ARCHIVO_U);
         if (!crearArchivo()) {
@@ -233,6 +248,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return (OPERACION_EXITOSA);
 
     }
+
     public Boolean validarUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         if (correo == null || !correo.contains("@")) {
             System.out.println(VALORES_INVALIDOS);
@@ -246,12 +262,12 @@ public class GestorUsuarios implements IGestorUsuarios {
             System.out.println(VALORES_INVALIDOS);
             return false;
         }
-        
-        if(clave!=claveRepetida){
+
+        if (!clave.equals(claveRepetida)) {
             System.out.println(VALORES_INVALIDOS);
             return false;
-        }  
-        
+        }
+
         if (apellido == null && apellido.isEmpty()) {
             System.out.println(VALORES_INVALIDOS);
             return false;
@@ -266,7 +282,6 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return true;
     }
-
 
     public String modificarUsuario(Usuario usuarioModificado) {
         if (usuarioModificado == null) {
@@ -284,7 +299,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (indice == -1) {
             return USUARIO_INEX;
         }
-        
+
         usuarios.set(indice, usuarioModificado);
 
         return actualizarArchivoCompleto();

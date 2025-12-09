@@ -10,7 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import principal.controladores.ControladorAMUsuario;
+import usuarios.controladores.ControladorAMUsuario;
 import usuarios.modelos.*;
 
 
@@ -131,7 +131,7 @@ public class VentanaAMUsuario extends JDialog {
 
         jLabel1.setText("Nombre:");
 
-        txtNombre.setToolTipText("Escribir la descripción aquí");
+        txtNombre.setToolTipText("Escribir el nombre");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
@@ -140,7 +140,7 @@ public class VentanaAMUsuario extends JDialog {
 
         jLabel2.setText("Correo:");
 
-        txtCorreo.setToolTipText("Escribir el Precio aquí");
+        txtCorreo.setToolTipText("Escribir el correo");
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyPressed(evt);
@@ -167,7 +167,7 @@ public class VentanaAMUsuario extends JDialog {
 
         jLabel4.setText("Apellido:");
 
-        txtApellido.setToolTipText("Escribir el código aquí");
+        txtApellido.setToolTipText("Escribir el apellido");
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyPressed(evt);

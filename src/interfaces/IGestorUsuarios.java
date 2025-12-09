@@ -42,6 +42,7 @@ public interface IGestorUsuarios {
     public String modificarUsuario(Usuario usuarioModificado);
     public boolean existeEsteUsuario(Usuario usuario);
     public Usuario obtenerUsuario(String correo);
+    public Usuario instanciarUsuario(String correo, String clave, String apellido, String nombre, Perfil unPerfil);
     //</editor-fold>
     
 }

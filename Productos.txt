@@ -1,6 +1,6 @@
 3;Empanadas;Entrada;Disponible;1000.0
-4;Pizzetta de muzzarella;Entrada;Disponible;1500.0
 1;Milanesa con puré;Plato principal;Disponible;2000.0
+4;Pizzetta de muzzarella;Plato principal;Disponible;1500.0
 2;Flan;Postre;Disponible;1500.0
 5;Torta Selva Negra;Postre;Disponible;1500.0
 6;Torta tres Leches;Postre;Disponible;1200.0

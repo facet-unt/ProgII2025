@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import usuarios.controladores.ControladorUsuarios;
 import productos.controladores.ControladorProductos;
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;

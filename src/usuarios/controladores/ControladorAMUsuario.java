@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package principal.controladores;
+package usuarios.controladores;
 
 import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
@@ -36,7 +36,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
             vp.setTitle(TITULO_NUEVO);
         }
         vp.setVisible(true);
-        
+
     }
 
     public void inicializarModificacion(Usuario unUsuario) {
@@ -44,6 +44,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
 
         vp.verTxtApellido().setText(unUsuario.verApellido());
         vp.verTxtNombre().setText(unUsuario.verNombre());
+        vp.verTxtCorreo().setText(unUsuario.verCorreo());
         vp.verTxtCorreo().setEditable(false);
         vp.verTxtClave().setText(unUsuario.verClave());
         vp.verTxtClaveRepetida().setText(unUsuario.verClave());
@@ -67,14 +68,18 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
         if (this.esModificacion == true) {
             System.out.println(gestor.validarUsuario(this.usuarioAEditar.verCorreo(), apellido, nombre, perfilSeleccionado, clave, claveRepetida));
             if (gestor.validarUsuario(this.usuarioAEditar.verCorreo(), apellido, nombre, perfilSeleccionado, clave, claveRepetida)) {
-                this.usuarioAEditar.asignarApellido(apellido);
-                this.usuarioAEditar.asignarNombre(nombre);
-                this.usuarioAEditar.asignarClave(clave);
-                this.usuarioAEditar.asignarPerfil(perfilSeleccionado);
-                resultado = gestor.modificarUsuario(this.usuarioAEditar);
+                Usuario usuarioActualizado = gestor.instanciarUsuario(
+                        this.usuarioAEditar.verCorreo(),
+                        clave,
+                        apellido,
+                        nombre,
+                        perfilSeleccionado
+                );
+
+                resultado = gestor.modificarUsuario(usuarioActualizado);
             } else {
                 JOptionPane.showMessageDialog(vp, GestorUsuarios.VALORES_INVALIDOS);
-                resultado=GestorUsuarios.VALORES_INVALIDOS;
+                resultado = GestorUsuarios.VALORES_INVALIDOS;
             }
 
         } else {
