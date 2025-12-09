@@ -191,7 +191,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void btnBorrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar
-        
+        controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrar
     
     public ModeloTablaProductos obtenerModeloProductos() {

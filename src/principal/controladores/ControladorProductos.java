@@ -78,6 +78,8 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        
+        ventanaProductos.obtenerModeloProductos().eliminarProducto(ventanaProductos.filaSeleccionada);
+        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+        gestorProductos.borrarProducto(producto);
     }
 }

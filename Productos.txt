@@ -1,4 +1,3 @@
-2;Bife con arroz;Plato principal;Disponible;2.0
 3;Copa helada;Postre;Disponible;3.0
 5;Queso y dulce;Postre;Disponible;3.0
 6;Ensalada;Entrada;Disponible;3.0
