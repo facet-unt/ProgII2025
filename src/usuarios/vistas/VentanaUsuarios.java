@@ -5,7 +5,12 @@
 package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
+import javax.swing.JComboBox;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import usuarios.modelos.ModeloTablaUsuarios;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -15,6 +20,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private IControladorUsuarios controlador;
     private ModeloTablaUsuarios modelotabla;
+    private JTextField txtcorreo;
+    private JTextField txtapellido;
+    private JTextField txtnombre;
+    private JComboBox<Perfil> comboboxperfil;
+    private JPasswordField txtclave;
+    private JPasswordField txtclaverepetida;
+    
     /**
      * Creates new form VentanaUsuarios
      
@@ -23,6 +35,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.controlador = controlador;
+        
     }
 
     /**
@@ -186,25 +199,27 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.jTable1.setModel(modelo);
     }
     
-    
+    public JTable vertabla(){
+        return this.jTable1;
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnModificarClic(evt);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
-        // TODO add your handling code here:
+        this.controlador.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_textField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -212,7 +227,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     //     */
