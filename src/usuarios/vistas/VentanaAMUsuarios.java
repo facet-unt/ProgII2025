@@ -24,7 +24,7 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
     /**
      * Creates new form VentanaAMUsuarios
      */
-    public VentanaAMUsuarios(VentanaPrincipal ventana, boolean modal, IControladorAMUsuario controlador) {
+    public VentanaAMUsuarios(VentanaPrincipal ventana, IControladorAMUsuario controlador) {
         super(ventana, true);
         this.ventanaprincipal = ventana;
         this.controlador = controlador;

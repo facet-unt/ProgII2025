@@ -21,7 +21,7 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private static ControladorVentanaAMUsuarios instancia;
     
     private ControladorVentanaAMUsuarios(){
-        this.ventana = new VentanaAMUsuarios(ventanaprincipal, true, controlador);
+        this.ventana = new VentanaAMUsuarios(ventanaprincipal, controlador);
         this.ventana.setVisible(true);
         this.ventana.setTitle(TITULO_NUEVO);
         this.ventana.setResizable(false);

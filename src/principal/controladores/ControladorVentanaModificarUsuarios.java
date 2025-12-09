@@ -7,7 +7,7 @@ package principal.controladores;
 import interfaces.IControladorAMUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaModificarUsuarios;
 import usuarios.vistas.VentanaUsuarios;
@@ -21,7 +21,7 @@ public class ControladorVentanaModificarUsuarios implements IControladorAMUsuari
     private VentanaModificarUsuarios ventana2;
     private Usuario u;
     
-    public ControladorVentanaModificarUsuarios(JDialog ventanapadre, Usuario u){
+    public ControladorVentanaModificarUsuarios(JFrame ventanapadre, Usuario u){
         ventana2 = new VentanaModificarUsuarios(ventana, this);
     }
 

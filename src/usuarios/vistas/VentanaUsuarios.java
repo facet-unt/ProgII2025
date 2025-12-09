@@ -5,12 +5,11 @@
 package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
-import javax.swing.JComboBox;
-import javax.swing.JPasswordField;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import usuarios.modelos.ModeloTablaUsuarios;
-import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 /**
  *
@@ -20,13 +19,6 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private IControladorUsuarios controlador;
     private ModeloTablaUsuarios modelotabla;
-    private JTextField txtcorreo;
-    private JTextField txtapellido;
-    private JTextField txtnombre;
-    private JComboBox<Perfil> comboboxperfil;
-    private JPasswordField txtclave;
-    private JPasswordField txtclaverepetida;
-    
     /**
      * Creates new form VentanaUsuarios
      
@@ -194,13 +186,30 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void actualizarTabla(ModeloTablaUsuarios modelo){
+    private void modificarTabla(ModeloTablaUsuarios modelo){
         this.modelotabla = new ModeloTablaUsuarios();
         this.jTable1.setModel(modelo);
     }
     
+    public void actualizarTabla(List<Usuario> lista){
+        this.modelotabla.asignarUsuarios(lista);
+    }
+    
+    public Usuario seleccionarUsuarioenFila(){
+        int i = this.modelotabla.getRowCount();
+        
+        if(i == -1)
+            return null;
+        
+        return this.modelotabla.seleccionarUsuario(i);
+    }
+    
     public JTable vertabla(){
         return this.jTable1;
+    }
+    
+    public String verTxtApellido(){
+        return this.jTextField1.getText().trim();
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.controlador.btnModificarClic(evt);

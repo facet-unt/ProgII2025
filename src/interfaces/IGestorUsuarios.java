@@ -56,4 +56,5 @@ public interface IGestorUsuarios {
     
     public static final String NOMBRE_ARCHIVO = "Usuarios.txt";
     
+    public static final String USUARIO_BORRADO = "Usuario borrado exitosamente";
 }

@@ -25,6 +25,11 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         fireTableDataChanged();
     }
 
+    public void asignarUsuarios(List<Usuario> usuario){
+        this.Usuarios = usuario;
+        this.fireTableDataChanged();
+    }
+    
     public void cargarUsuariosOrdenados(){
         this.Usuarios = gestor.leerUsuarios();
         fireTableDataChanged();
