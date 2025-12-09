@@ -10,7 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import productos.modelos.ModeloComboPerfil;
+import usuarios.modelos.ModeloComboPerfil;
 
 /**
  *

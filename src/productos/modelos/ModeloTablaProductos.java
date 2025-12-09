@@ -18,14 +18,16 @@ public class ModeloTablaProductos extends AbstractTableModel {
     public static final String COLUMNA_CATEGORIA = "Categoria";
     public static final String COLUMNA_DESCRIPCION = "Descripcion";
     public static final String COLUMNA_PRECIO = "Precio";
+    public static final String COLUMNA_CODIGO = "Codigo";
+    public static final String COLUMNA_ESTADO = "Estado";
 
     private List<Producto> productos = new ArrayList<>();
-    
+
     public ModeloTablaProductos() {
         IGestorProductos gp = GestorProductos.instanciar();
         this.productos = gp.menu();
     }
-    
+
     public ModeloTablaProductos(String CadenaBusqueda) {
         IGestorProductos gp = GestorProductos.instanciar();
         this.productos = gp.buscarProductos(CadenaBusqueda);
@@ -38,9 +40,9 @@ public class ModeloTablaProductos extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
-    
+
     @Override
     public String getColumnName(int col) {
         switch (col) {
@@ -48,8 +50,12 @@ public class ModeloTablaProductos extends AbstractTableModel {
                 return COLUMNA_CATEGORIA;
             case 1:
                 return COLUMNA_DESCRIPCION;
-            default:
+            case 2:
                 return COLUMNA_PRECIO;
+            case 3:
+                return COLUMNA_ESTADO;
+            default:
+                return COLUMNA_CODIGO;
         }
     }
 
@@ -61,13 +67,17 @@ public class ModeloTablaProductos extends AbstractTableModel {
                 return producto.verCategoria();
             case 1:
                 return producto.verDescripcion();
-            default:
+            case 2:
                 return producto.verPrecio();
+            case 3:
+                return producto.verEstado();
+            default:
+                return producto.verCodigo();
 
         }
     }
-    
-    public Producto productoAsignado(int fila){
+
+    public Producto productoAsignado(int fila) {
         return productos.get(fila);
     }
 

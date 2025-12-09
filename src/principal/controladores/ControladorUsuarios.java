@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import productos.modelos.ModeloTablaUsuarios;
+import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaDeUsuarios;
