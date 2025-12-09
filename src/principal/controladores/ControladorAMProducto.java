@@ -6,7 +6,6 @@ package principal.controladores;
 
 
 import interfaces.IControladorAMProducto;
-import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -25,6 +24,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
     private VentanaAMProducto vp; //se instancia en constructor
     private Producto productoAEditar;
     private boolean esModificacion = false;
+    Producto p;
     
      public ControladorAMProducto() {
         this.vp = new VentanaAMProducto(null, this);
@@ -52,24 +52,32 @@ public class ControladorAMProducto implements IControladorAMProducto{
     }
 
     @Override
-    public void botonCancelarClic(ActionEvent evt) {
+    public void btnCancelarClic(ActionEvent evt) {
         vp.dispose();    
     }
 
     @Override
-    public void botonGuardarClic(ActionEvent evt) {
+    public void btnGuardarClic(ActionEvent evt) {
        try {
                     String codigoStr = vp.verTxtCodigo().getText().trim();
                     String descripcion = vp.verTxtDescripcion().getText().trim();
                     String precioStr = vp.verTxtPrecio().getText().trim();
-
-                    Float precio = Float.valueOf(precioStr);
-                    int codigo = Integer.parseInt(codigoStr);
-
+                    System.out.println(codigoStr);
+                    System.out.println(precioStr);
                     Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
                     Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
+                    // --- INICIO DE CORRECCIÓN ---
+                    // 1. Reemplazar coma por punto si existe (para asegurar el formato en Java)
+                    String precioLimpio = precioStr.replace(',', '.');
 
-                    IGestorProductos gestor = GestorProductos.instanciar();
+                    // 2. Intentar la conversión con el string limpio
+                    float precio = Float.parseFloat(precioLimpio);
+                    int codigo = Integer.parseInt(codigoStr);
+                    if (precioLimpio.isEmpty() || precioStr.contains(" ")) {
+                    System.out.println("Problemas en el precio");
+                    }
+                    // --- FIN DE CORRECCIÓN ---
+                    GestorProductos gestor = GestorProductos.instanciar();
                     String resultado;
 
                     if (this.esModificacion==true) {
@@ -123,7 +131,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     public void comboEstadoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.botonGuardarClic(null);
+            this.btnGuardarClic(null);
         }
     }
     

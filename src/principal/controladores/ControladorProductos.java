@@ -46,12 +46,12 @@ public class ControladorProductos implements IControladorProductos{
         this.modelo.actualizarTabla();    }
 
     @Override
-    public void botonVolverClic(ActionEvent evt) {
+    public void btnVolverClic(ActionEvent evt) {
         this.vp.dispose();
     }
 
     @Override
-    public void botonBuscarClic(ActionEvent evt) {
+    public void btnBuscarClic(ActionEvent evt) {
         String texto = vp.getCampoDescripcion().getText().trim();
 
         IGestorProductos gestor = GestorProductos.instanciar();
@@ -66,19 +66,19 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.botonBuscarClic(null);
+            this.btnBuscarClic(null);
         }
     }
 
     @Override
-    public void botonNuevoClic(ActionEvent evt) {
+    public void btnNuevoClic(ActionEvent evt) {
         ControladorAMProducto cvprod = new ControladorAMProducto();
         cvprod.mostrarVentanaProducto();
         this.modelo.actualizarTabla();
     }
 
     @Override
-    public void botonModificarClic(ActionEvent evt) {
+    public void btnModificarClic(ActionEvent evt) {
         int fila = vp.getTablaMenu().getSelectedRow();
 
         if (fila == -1) {
@@ -97,7 +97,7 @@ public class ControladorProductos implements IControladorProductos{
     }
 
     @Override
-    public void botonBorrarClic(ActionEvent evt) {
+    public void btnBorrarClic(ActionEvent evt) {
         int fila = vp.getTablaMenu().getSelectedRow();
 
         if (fila == -1) {

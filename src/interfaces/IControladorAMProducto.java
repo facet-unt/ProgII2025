@@ -5,7 +5,6 @@
 package interfaces;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 
 public interface IControladorAMProducto {
@@ -16,13 +15,13 @@ public interface IControladorAMProducto {
      * Acción a ejecutar cuando se selecciona el botón Cancelar
      * @param evt evento
     */                        
-    public void botonCancelarClic(ActionEvent evt);
+    public void btnCancelarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Guardar
      * @param evt evento
     */                 
-    public void botonGuardarClic(ActionEvent evt);
+    public void btnGuardarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se presiona una tecla en el campo txtCodigo

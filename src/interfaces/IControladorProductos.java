@@ -26,7 +26,7 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Volver
      * @param evt evento
     */                        
-    public void botonVolverClic(ActionEvent evt);
+    public void btnVolverClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Buscar
@@ -36,7 +36,7 @@ public interface IControladorProductos {
      *      El método txtDescripcionPresionarEnter() hace la misma acción que éste
      * @param evt evento
     */                        
-    public void botonBuscarClic(ActionEvent evt);
+    public void btnBuscarClic(ActionEvent evt);
     
         
     /**
@@ -53,19 +53,19 @@ public interface IControladorProductos {
      * Acción a ejecutar cuando se selecciona el botón Nuevo
      * @param evt evento
      */                        
-    public void botonNuevoClic(ActionEvent evt);
+    public void btnNuevoClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Modificar
      * @param evt evento
      */                        
-    public void botonModificarClic(ActionEvent evt);
+    public void btnModificarClic(ActionEvent evt);
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Borrar
      * @param evt evento
      */                        
-    public void botonBorrarClic(ActionEvent evt);
+    public void btnBorrarClic(ActionEvent evt);
 
      
 }

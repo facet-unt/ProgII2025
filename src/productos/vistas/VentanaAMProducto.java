@@ -57,8 +57,6 @@ public class VentanaAMProducto extends JDialog {
         this.txtPrecio = txtPrecio;
     }
 
-                              
-
     public JComboBox<String> verComboEstado() {
         return comboEstados;
     }
@@ -92,23 +90,23 @@ public class VentanaAMProducto extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        etiquetaDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        etiquetaPrecio = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        botonGuardar = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        etiquetaCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        etiquetaEstado = new javax.swing.JLabel();
+        etiquetaCategoria = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox<>();
         comboEstados = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Descripción:");
+        etiquetaDescripcion.setText("Descripción:");
 
         txtDescripcion.setToolTipText("Escribir la descripción aquí");
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -117,7 +115,7 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        jLabel2.setText("Precio:");
+        etiquetaPrecio.setText("Precio:");
 
         txtPrecio.setToolTipText("Escribir el Precio aquí");
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -126,23 +124,25 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        botonGuardar.setText("Guardar");
-        botonGuardar.setToolTipText("Guardar el Producto");
-        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setMnemonic('G');
+        btnGuardar.setText("Guardar");
+        btnGuardar.setToolTipText("Guardar el Producto");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarClic(evt);
+                btnGuardarClic(evt);
             }
         });
 
-        botonCancelar.setText("Cancelar");
-        botonCancelar.setToolTipText("Cancela la operación");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setMnemonic('C');
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setToolTipText("Cancela la operación");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarClic(evt);
+                btnCancelarClic(evt);
             }
         });
 
-        jLabel4.setText("Código:");
+        etiquetaCodigo.setText("Código:");
 
         txtCodigo.setToolTipText("Escribir el código aquí");
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -151,9 +151,9 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        jLabel6.setText("Estado:");
+        etiquetaEstado.setText("Estado:");
 
-        jLabel3.setText("Categoría");
+        etiquetaCategoria.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato Principal", "Postre" }));
         comboCategorias.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -178,16 +178,16 @@ public class VentanaAMProducto extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonGuardar)
+                        .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonCancelar))
+                        .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
+                            .addComponent(etiquetaPrecio)
+                            .addComponent(etiquetaDescripcion)
+                            .addComponent(etiquetaCodigo)
+                            .addComponent(etiquetaEstado)
+                            .addComponent(etiquetaCategoria))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
@@ -203,42 +203,41 @@ public class VentanaAMProducto extends JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(etiquetaCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(etiquetaDescripcion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiquetaPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(etiquetaCategoria)
                     .addComponent(comboCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(etiquetaEstado)
                     .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar)
-                    .addComponent(botonGuardar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGuardar))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarClic
-        controlador.botonGuardarClic(evt);
-        this.dispose();
-    }//GEN-LAST:event_botonCancelarClic
+    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+        controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarClic
 
-    private void botonGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarClic
+    private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
 
-        controlador.botonGuardarClic(evt);
-    }//GEN-LAST:event_botonGuardarClic
+        controlador.btnGuardarClic(evt);
+    }//GEN-LAST:event_btnGuardarClic
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
         controlador.txtCodigoPresionarTecla(evt);
@@ -262,15 +261,15 @@ public class VentanaAMProducto extends JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCancelar;
-    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> comboCategorias;
     private javax.swing.JComboBox<String> comboEstados;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel etiquetaCategoria;
+    private javax.swing.JLabel etiquetaCodigo;
+    private javax.swing.JLabel etiquetaDescripcion;
+    private javax.swing.JLabel etiquetaEstado;
+    private javax.swing.JLabel etiquetaPrecio;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtPrecio;
