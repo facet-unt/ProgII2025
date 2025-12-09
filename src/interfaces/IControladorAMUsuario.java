@@ -6,7 +6,6 @@ package interfaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 
 public interface IControladorAMUsuario {
     public static final String TITULO_NUEVO = "Nuevo usuario"; 
