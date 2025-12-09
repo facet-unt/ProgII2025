@@ -48,6 +48,7 @@ public class ControladorAMProductos implements IControladorAMProducto{
         if (producto == null) {
             instancia.ventana.setTitle(TITULO_NUEVO);
             instancia.ventana.limpiarCampos();
+            instancia.ventana.verTxtCodigo().setEnabled(true);
         }
         else {
             instancia.ventana.setTitle(TITULO_MODIFICAR);
@@ -58,6 +59,7 @@ public class ControladorAMProductos implements IControladorAMProducto{
             instancia.ventana.verTxtPrecio().setText(String.valueOf(producto.verPrecio()));
             instancia.ventana.verTxtCategoria().setName(producto.verCategoria().name());
             instancia.ventana.verTxtEstado().setName(producto.verEstado().name());
+            instancia.ventana.verTxtCodigo().setEnabled(false);
         }
         
         instancia.ventana.setVisible(true);
@@ -76,7 +78,8 @@ public class ControladorAMProductos implements IControladorAMProducto{
         String resultado;
         
         // Variables locales para almacenar los datos convertidos
-        int codigo = 0;
+        
+        int codigo =0;
         float precio = 0.0f;
         String codigoTexto = this.ventana.verTxtCodigo().getText().trim();
         String precioTexto = this.ventana.verTxtPrecio().getText().trim();
@@ -87,11 +90,11 @@ public class ControladorAMProductos implements IControladorAMProducto{
         try {
             if (codigoTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(this.ventana, "El campo Código no puede estar vacío.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-                return; // Detenemos la ejecución
+                return;
             }
             if (precioTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(this.ventana, "El campo Precio no puede estar vacío.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-                return; // Detenemos la ejecución
+                return;
             }
             codigo = Integer.parseInt(codigoTexto);
             precio = Float.parseFloat(precioTexto);
@@ -109,7 +112,8 @@ public class ControladorAMProductos implements IControladorAMProducto{
            resultado = gp.crearProducto(codigo, descripcion, precio, categoria, estado);
         }
         else {
-            resultado = gp.modificarProducto(productoAModificar, codigo, descripcion, precio, categoria, estado);
+            int codigoOriginal = this.productoAModificar.verCodigo();
+            resultado = gp.modificarProducto(productoAModificar, codigoOriginal, descripcion, precio, categoria, estado);
         }
         
         if (!resultado.equals(IGestorProductos.EXITO)){

@@ -7,8 +7,10 @@ package principal.controladores;
 import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloComboPerfil;
 import usuarios.modelos.Perfil;
@@ -33,6 +35,10 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         
         this.modeloPerfil = new ModeloComboPerfil();
         this.ventana.definirComboPerfil(modeloPerfil);
+        agregarEnterListener(this.ventana.verTxtNombre(), this.ventana.verTxtApellido());
+        agregarEnterListener(this.ventana.verTxtApellido(), this.ventana.verTxtCorreo());
+        agregarEnterListener(this.ventana.verTxtCorreo(), this.ventana.verPassClave());
+        agregarEnterListener(this.ventana.verPassClave(), this.ventana.verPassClaveRepetida());
     }
     
     public static ControladorAMUsuario instanciar(Usuario usuario) {
@@ -123,5 +129,16 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    private void agregarEnterListener(JTextField currentField, JTextField nextField) {
+            currentField.addKeyListener(new KeyAdapter() {
+             @Override
+             public void keyPressed(KeyEvent e) {
+                  if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                  nextField.requestFocus();
+                  }
+             }
+         });
+        }
     
 }
