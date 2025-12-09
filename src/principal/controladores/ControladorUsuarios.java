@@ -34,6 +34,8 @@ public class ControladorUsuarios implements IControladorUsuarios{
         this.model = new ModeloTablaUsuarios();
         vu.gettablaUsuario().setModel(model);
         model.actualizarTabla();
+        this.vu.gettablaUsuario().getTableHeader().setResizingAllowed(false);
+        this.vu.gettablaUsuario().getTableHeader().setReorderingAllowed(false);
         vu.setVisible(true);
         vu.setLocationRelativeTo(null);
        
