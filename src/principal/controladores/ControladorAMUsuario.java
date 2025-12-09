@@ -162,7 +162,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
     private void cargarComboPerfiles() {
         this.vista.verCmbPerfil().removeAllItems();
         for (Perfil p : Perfil.values()) {
-            this.vista.verCmbPerfil().addItem(p.name());
+            this.vista.verCmbPerfil().addItem(p.toString());
         }
     }
 }
