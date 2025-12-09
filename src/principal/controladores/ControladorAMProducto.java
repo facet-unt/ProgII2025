@@ -58,12 +58,12 @@ public class ControladorAMProducto implements IControladorAMProducto{
     @Override
     public void botonGuardarClic(ActionEvent evt) {
         try {
-                    String codigo = vp.verTxtCodigo().getText().trim();
+                    String codigoStr = vp.verTxtCodigo().getText().trim();
                     String descripcion = vp.verTxtDescripcion().getText().trim();
                     String precioStr = vp.verTxtPrecio().getText().trim();
 
-                    Float precio = Float.parseFloat(precioStr);
-                    int codigoInt = Integer.parseInt(codigo);
+                    Float precio = Float.valueOf(precioStr);
+                    int codigo = Integer.parseInt(codigoStr);
 
                     Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
                     Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
@@ -72,12 +72,10 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     String resultado;
 
                     if (this.esModificacion==true) {
-                        resultado = gestor.modificarProducto(this.productoAEditar, codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
-                        System.out.println(resultado);
+                        resultado = gestor.modificarProducto(this.productoAEditar, codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
                     
                     } else {
-                        resultado = gestor.crearProducto(codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
-                        System.out.println(resultado);
+                        resultado = gestor.crearProducto(codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
               
                     }
 
@@ -88,7 +86,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     }
 
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(vp, "El código y el precio deben ser números válidos.");
+                   // JOptionPane.showMessageDialog(vp, "El código y el precio deben ser números válidos.");
                 } catch (Exception e) {
                     System.out.println("Error en guardarclic: " + e);
                 }    
