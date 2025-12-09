@@ -51,7 +51,6 @@ public class VentanaAMProducto extends JDialog {
 
         labelDescripcion.setText("Descripción:");
 
-        campoDescripcion.setToolTipText("Apellidos del profesor");
         campoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoDescripcionKeyReleased(evt);
@@ -60,7 +59,6 @@ public class VentanaAMProducto extends JDialog {
 
         labelPrecio.setText("Precio:");
 
-        campoPrecio.setToolTipText("Nombres del profesor");
         campoPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoPrecioKeyReleased(evt);
@@ -85,7 +83,6 @@ public class VentanaAMProducto extends JDialog {
 
         labelCodigo.setText("Código:");
 
-        campoCodigo.setToolTipText("Documento del profesor");
         campoCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoCodigoKeyReleased(evt);

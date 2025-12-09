@@ -100,9 +100,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoDescripcion">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Apellidos del profesor"/>
-      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoDescripcionKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPrecio">
       <Properties>
@@ -110,9 +110,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoPrecio">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Nombres del profesor"/>
-      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoPrecioKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
@@ -138,9 +138,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoCodigo">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Documento del profesor"/>
-      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoCodigoKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelEstado">
       <Properties>
