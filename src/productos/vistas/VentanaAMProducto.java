@@ -6,7 +6,6 @@
 package productos.vistas;
 
 import java.awt.Dialog;
-import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
@@ -160,16 +159,16 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato Principal", "Postre" }));
-        comboCategorias.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboCategoriasItemStateChanged(evt);
+        comboCategorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboCategoriasKeyPressed(evt);
             }
         });
 
         comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
-        comboEstados.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboEstadosItemStateChanged(evt);
+        comboEstados.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboEstadosKeyPressed(evt);
             }
         });
 
@@ -256,13 +255,13 @@ public class VentanaAMProducto extends JDialog {
         controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyPressed
 
-    private void comboCategoriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCategoriasItemStateChanged
-        controlador.categoriaSelección(evt);
-    }//GEN-LAST:event_comboCategoriasItemStateChanged
+    private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
+        controlador.comboCategoriasPresionarTecla(evt);
+    }//GEN-LAST:event_comboCategoriasKeyPressed
 
-    private void comboEstadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboEstadosItemStateChanged
-        controlador.estadoSelección(evt);
-    }//GEN-LAST:event_comboEstadosItemStateChanged
+    private void comboEstadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadosKeyPressed
+        controlador.comboEstadoPresionarTecla(evt);
+    }//GEN-LAST:event_comboEstadosKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
