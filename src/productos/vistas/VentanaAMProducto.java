@@ -7,29 +7,31 @@ package productos.vistas;
 
 import interfaces.IControladorAMProducto;
 import java.awt.Frame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import productos.modelos.*;
 
-
-
 public class VentanaAMProducto extends JDialog {
+
     private IControladorAMProducto controlador;
-    
+
     /**
      * Constructor
+     *
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
     public VentanaAMProducto(IControladorAMProducto controlador) {
-        super((Frame)null, true);
+        super((Frame) null, true);
         initComponents();
         this.controlador = controlador;
         this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstado.setModel(new ModeloComboEstado());       
+        this.comboEstado.setModel(new ModeloComboEstado());
+        this.crearKeyListeners();
     }
-    
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,33 +163,64 @@ public class VentanaAMProducto extends JDialog {
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    public JTextField verTxtCodigo(){
+    public JTextField verTxtCodigo() {
         return txtCodigo;
     }
-    
-    public JTextField verTxtDescripcion(){
+
+    public JTextField verTxtDescripcion() {
         return txtDescripcion;
     }
-    
-    public JTextField verTxtPrecio(){
+
+    public JTextField verTxtPrecio() {
         return txtPrecio;
     }
-    
-    public JComboBox<String> verTxtCategoria(){
+
+    public JComboBox<String> verTxtCategoria() {
         return comboCategorias;
     }
-    
-    public JComboBox<String> verTxtEstado(){
+
+    public JComboBox<String> verTxtEstado() {
         return comboEstado;
     }
-    
+
     public void limpiarCampos() {
         this.txtCodigo.setText("");
         this.txtDescripcion.setText("");
         this.txtPrecio.setText("");
     }
-    
-    
+
+    /**
+     * Configura y registra los escuchadores de eventos de teclado (KeyListeners)
+     * para los campos de texto del formulario.
+     * <p>
+     * Se asocia un {@link java.awt.event.KeyAdapter} a los campos Código, Descripción y Precio,
+     * delegando la gestión del evento {@code keyTyped} directamente a los métodos
+     * correspondientes del controlador. Esto permite realizar validaciones de entrada
+     * (como restringir caracteres no numéricos) desde la capa de control.
+     */
+    private void crearKeyListeners() {
+        this.txtCodigo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtCodigoPresionarTecla(evt);
+            }
+        });
+
+        this.txtDescripcion.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtDescripcionPresionarTecla(evt);
+            }
+        });
+
+        this.txtPrecio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtPrecioPresionarTecla(evt);
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

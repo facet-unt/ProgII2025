@@ -16,9 +16,10 @@ import principal.vistas.VentanaPrincipal;
  * @author thoma
  */
 public class ControladorPrincipal implements IControladorPrincipal {
+
     private VentanaPrincipal ventana;
     private static ControladorPrincipal instancia;
-    
+
     private ControladorPrincipal() {
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setTitle(TITULO);
@@ -26,14 +27,14 @@ public class ControladorPrincipal implements IControladorPrincipal {
         this.ventana.setVisible(true);
         this.ventana.setResizable(false);
     }
-    
+
     public static ControladorPrincipal instanciar() {
         if (instancia == null) {
             instancia = new ControladorPrincipal();
         }
         return instancia;
     }
-    
+
     @Override
     public void btnProductosClic(ActionEvent evt) {
         IControladorProductos cProd = ControladorProductos.instanciar();
@@ -48,9 +49,9 @@ public class ControladorPrincipal implements IControladorPrincipal {
     public void btnSalirClic(ActionEvent evt) {
         String mensaje = "Desea salir de la aplicacion?";
         String titulo = "Salir";
-        
+
         int opcion = JOptionPane.showConfirmDialog(this.ventana, mensaje, titulo, JOptionPane.YES_NO_OPTION);
-        
+
         if (opcion == 0) {
             this.ventana.dispose();
             System.exit(0);

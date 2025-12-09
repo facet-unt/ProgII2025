@@ -17,34 +17,25 @@ import javax.swing.table.TableModel;
  * @author thoma
  */
 public class VentanaUsuarios extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private IControladorUsuarios controlador;
-    
+
     /**
      * Creates new form VentanaUsuarios
      */
     public VentanaUsuarios(IControladorUsuarios controlador) {
-        super((Frame)null, true);
+        super((Frame) null, true);
         initComponents();
         this.controlador = controlador;
         this.crearKeyListener();
         this.btnBuscar.setVisible(false);
     }
-    
+
     public void definirModeloTabla(TableModel modelo) {
         this.jtableUsuarios.setModel(modelo);
     }
-    
-    private void crearKeyListener() {
-        this.txtApellido.addKeyListener(new KeyAdapter(){
-            @Override
-            public void keyReleased(KeyEvent evt) {
-                controlador.txtApellidoPresionarTecla(evt);
-            }
-        });
-    }
-    
+
     // Getters para pasar las variables de instancia al controlador
     public JTextField verTxtApellido() {
         return txtApellido;
@@ -53,7 +44,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     public JTable verJtableUsuarios() {
         return jtableUsuarios;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,6 +192,15 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.controlador.btnModificarClic(evt);
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void crearKeyListener() {
+        this.txtApellido.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                controlador.txtApellidoPresionarTecla(evt);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;

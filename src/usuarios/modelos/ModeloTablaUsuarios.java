@@ -12,14 +12,15 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author thoma
  */
-public class ModeloTablaUsuarios extends AbstractTableModel{
+public class ModeloTablaUsuarios extends AbstractTableModel {
+
     private List<Usuario> listaUsuarios;
     private static final String[] TITULOS = {"Apellido", "Nombre", "Correo", "Perfil"};
-    
+
     public ModeloTablaUsuarios() {
         this.listaUsuarios = new ArrayList<>();
     }
-    
+
     @Override
     public int getRowCount() {
         return this.listaUsuarios.size();
@@ -33,26 +34,31 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Usuario u = this.listaUsuarios.get(rowIndex);
-        
+
         switch (columnIndex) {
-            case 0: return u.verApellido();
-            case 1: return u.verNombre();
-            case 2: return u.verCorreo();
-            case 3: return u.getPerfil();
-            default: return null;
+            case 0:
+                return u.verApellido();
+            case 1:
+                return u.verNombre();
+            case 2:
+                return u.verCorreo();
+            case 3:
+                return u.getPerfil();
+            default:
+                return null;
         }
     }
-    
+
     @Override
-    public String getColumnName (int columnIndex) {
+    public String getColumnName(int columnIndex) {
         return TITULOS[columnIndex];
     }
-    
+
     public void dibujarTabla(List<Usuario> usuarios) {
         this.listaUsuarios = usuarios;
         fireTableDataChanged();
     }
-    
+
     //Metodo para obtener el usuario en una fila seleccionada
     public Usuario obtenerUsuarioEnFila(int fila) {
         if (fila < 0 || fila >= listaUsuarios.size()) {

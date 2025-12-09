@@ -19,22 +19,21 @@ import usuarios.modelos.Perfil;
  * @author thoma
  */
 public class VentanaAMUsuario extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAMUsuario.class.getName());
     private IControladorAMUsuario controlador;
-    
+
     /**
      * Creates new form VentanaAMUsuario
      */
     public VentanaAMUsuario(IControladorAMUsuario controlador) {
-        super((Frame)null, true);
+        super((Frame) null, true);
         initComponents();
         this.controlador = controlador;
         this.crearKeyListeners();
     }
-    
+
     // Metodo para limpiar la ventana antes de mostrarla al intentar crear un nuevo usuario
-    
     public void LimpiarVentana() {
         this.txtApellido.setText("");
         this.txtNombre.setText("");
@@ -42,61 +41,23 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         this.passClave.setText("");
         this.passClaveRepetida.setText("");
     }
-    
+
     // Metodo para hacer el correo ineditable en caso de modigicar
-    
     public void correoEditable(boolean editar) {
         this.txtCorreo.setEnabled(editar);
     }
 
     // Metodo para implementar el ModeloComboPerfil
-    
     public void definirComboPerfil(ModeloComboPerfil comboPerfil) {
         this.comboPerfiles.setModel(comboPerfil);
     }
-    
+
     // Metodo para mostrar el perfil de un usuario al modificar
     public void mostrarPerfilAModificar(Perfil perfil) {
         this.comboPerfiles.setSelectedItem(perfil);
     }
-    
-    // Metodo para agregar KeyListeners a los cuadros de texto
-    
-    private void crearKeyListeners() {
-        this.txtNombre.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent evt) {
-                controlador.txtNombrePresionarTecla(evt);
-            }
-        });
-        
-        this.txtApellido.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent evt) {
-                controlador.txtApellidoPresionarTecla(evt);
-            }
-        });
-        
-        this.txtCorreo.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent evt) {
-                controlador.txtCorreoPresionarTecla(evt);
-            }
-        });
-        
-        this.passClave.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent evt) {
-                controlador.passClavePresionarTecla(evt);
-            }
-        });
-        
-        this.passClaveRepetida.addKeyListener(new KeyAdapter(){
-            public void keyTyped(KeyEvent evt) {
-                controlador.passClaveRepetidaPresionarTecla(evt);
-            }
-        });
-    }
-    
-    
+
     // Getters para pasar los campos de texto a ControladorAMUsuario
-    
     public JPasswordField verPassClave() {
         return passClave;
     }
@@ -120,7 +81,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public JComboBox<String> verComboPerfiles() {
         return comboPerfiles;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -293,6 +254,52 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_passClaveActionPerformed
 
+    /**
+     * Configura y registra los escuchadores de eventos de teclado (KeyListeners)
+     * para los campos de texto del formulario.
+     * <p>
+     * Se asocia un {@link java.awt.event.KeyAdapter} a los campos Código, Descripción y Precio,
+     * delegando la gestión del evento {@code keyTyped} directamente a los métodos
+     * correspondientes del controlador. Esto permite realizar validaciones de entrada
+     * (como restringir caracteres no numéricos) desde la capa de control.
+     */
+    private void crearKeyListeners() {
+        this.txtNombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtNombrePresionarTecla(evt);
+            }
+        });
+
+        this.txtApellido.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtApellidoPresionarTecla(evt);
+            }
+        });
+
+        this.txtCorreo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtCorreoPresionarTecla(evt);
+            }
+        });
+
+        this.passClave.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.passClavePresionarTecla(evt);
+            }
+        });
+
+        this.passClaveRepetida.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                controlador.passClaveRepetidaPresionarTecla(evt);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

@@ -14,8 +14,9 @@ import usuarios.modelos.Perfil;
  * @author thoma
  */
 public class Main {
+
     public static void main(String[] args) {
         IControladorPrincipal cp = ControladorPrincipal.instanciar();
     }
-    
+
 }

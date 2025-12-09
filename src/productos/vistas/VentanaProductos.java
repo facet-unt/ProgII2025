@@ -14,15 +14,15 @@ import javax.swing.table.TableModel;
  * @author thoma
  */
 public class VentanaProductos extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
     private IControladorProductos controlador;
-    
+
     /**
      * Creates new form VentanaProductos
      */
     public VentanaProductos(IControladorProductos controlador) {
-        super((Frame)null, true);
+        super((Frame) null, true);
         initComponents();
         this.controlador = controlador;
     }
@@ -187,18 +187,18 @@ public class VentanaProductos extends javax.swing.JDialog {
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_txtDescripcionKeyReleased
 
-    public JTextField verTxtDescripcion(){
+    public JTextField verTxtDescripcion() {
         return txtDescripcion;
     }
-    
+
     public void definirModeloTabla(TableModel modelo) {
         this.jTableProductos.setModel(modelo);
     }
-        
+
     public javax.swing.JTable getTablaProductos() {
         return this.jTableProductos;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;

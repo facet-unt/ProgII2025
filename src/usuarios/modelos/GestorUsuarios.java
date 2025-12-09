@@ -76,20 +76,20 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String modificarUsuario(Usuario usuario, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida) {
         String validacion = this.validacionDatos(usuario.verCorreo(), clave, apellido, nombre, perfil, claveRepetida);
-        
+
         if (!validacion.equals(VALIDACION_EXITO)) {
             return validacion;
         }
-        
+
         if (usuario.getPerfil() != perfil) {
             String resultado = this.borrarUsuario(usuario);
-            
+
             if (!resultado.equals("Usuario eliminado correctamente")) {
                 return "El usuario que intenta modificar es un cliente y aun tiene pedidos";
             }
-            
+
             Usuario usuarioModificado;
-            
+
             switch (perfil) {
                 case CLIENTE:
                     usuarioModificado = new Cliente(usuario.verCorreo(), clave, apellido, nombre, perfil);
@@ -102,20 +102,19 @@ public class GestorUsuarios implements IGestorUsuarios {
                     break;
                 default:
                     return ERROR_PERFIL;
-            }       
+            }
             this.listaUsuarios.add(usuarioModificado);
-        }
-        else {
+        } else {
             usuario.asignarClave(clave);
             usuario.asignarApellido(apellido);
             usuario.asignarNombre(nombre);
         }
-        
+
         this.escribirArchivo();
-        
+
         return EXITO;
     }
-    
+
     @Override
     public List<Usuario> verUsuarios() {
         Collections.sort(this.listaUsuarios);
@@ -181,48 +180,47 @@ public class GestorUsuarios implements IGestorUsuarios {
     // Persistencia en archivo
     private String crearArchivo() {
         File file = new File(NOMBREARCHIVO);
-        
+
         try {
             if (file.createNewFile()) {
                 return CREACION_OK;
-            }
-            else {
+            } else {
                 return ARCHIVO_EXISTENTE;
             }
         } catch (IOException e) {
             return CREACION_ERROR;
         }
     }
-    
+
     private String leerArchivo() {
         String resultado = crearArchivo();
         if (resultado == CREACION_ERROR) {
             return LECTURA_ERROR;
         }
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader(NOMBREARCHIVO))) {
             String cadena;
             while ((cadena = br.readLine()) != null) {
                 String[] vectorCadenas = cadena.split(SEPARADOR);
-                
+
                 String correo = vectorCadenas[0];
                 String clave = vectorCadenas[1];
                 String apellido = vectorCadenas[2];
                 String nombre = vectorCadenas[3];
-                
+
                 Perfil perfil = null;
                 for (Perfil p : Perfil.values()) {
                     if (vectorCadenas[4].equals(p.verValor())) {
                         perfil = p;
                     }
                 }
-                
+
                 if (perfil == null) {
                     return LECTURA_ERROR;
                 }
-                
+
                 Usuario usuarioLeido;
-                
+
                 switch (perfil) {
                     case CLIENTE:
                         usuarioLeido = new Cliente(correo, clave, apellido, nombre, perfil);
@@ -236,23 +234,23 @@ public class GestorUsuarios implements IGestorUsuarios {
                     default:
                         return LECTURA_ERROR;
                 }
-                
+
                 if (!this.listaUsuarios.contains(usuarioLeido)) {
                     this.listaUsuarios.add(usuarioLeido);
                 }
-            } 
+            }
         } catch (IllegalArgumentException | IOException ex) {
             return LECTURA_ERROR;
         }
         return LECTURA_OK;
     }
-    
+
     private String escribirArchivo() {
         String resultado = crearArchivo();
         if (resultado == CREACION_ERROR) {
             return ESCRITURA_ERROR;
         }
-        
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
             for (Usuario u : this.listaUsuarios) {
                 String linea;
@@ -267,10 +265,10 @@ public class GestorUsuarios implements IGestorUsuarios {
         } catch (IOException ioe) {
             return ESCRITURA_ERROR;
         }
-        
+
         return ESCRITURA_OK;
     }
-    
+
     //Validacion datos
     private String validacionDatos(String correo, String clave, String apellido, String nombre, Perfil perfil, String claveRepetida) {
         if (correo == null || correo.isBlank()) {
