@@ -20,7 +20,7 @@ public class GestorProductos implements IGestorProductos {
     private final String NOMBRE_ARCHIVO = "productos.txt";
 
     private GestorProductos() {
-
+        leerArchivo();
     }
 
     public static GestorProductos instanciar() {
@@ -37,6 +37,7 @@ public class GestorProductos implements IGestorProductos {
         }
         Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         productos.add(nuevoProducto);
+        crearYescribirArchivo();
         return EXITO;
     }
 
@@ -66,6 +67,7 @@ public class GestorProductos implements IGestorProductos {
         p.asignarPrecio(precio);
         p.asignarCategoria(categoria);
         p.asignarEstado(estado);
+        crearYescribirArchivo();
         return EXITO;
     }
 
@@ -166,44 +168,44 @@ public class GestorProductos implements IGestorProductos {
         return VALIDACION_EXITO;
     }
 
+    @Override
     public void leerArchivo() {
-        try (BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
-            productos.clear();
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-                String[] v = linea.split(",");
-
-                productos.add(new Producto(
-                        Integer.parseInt(v[0].trim()),
-                        v[1].trim(),
-                        Categoria.valueOf(v[3].trim().toUpperCase().replace(" ", "_")),
-                        Estado.valueOf(v[4].trim().toUpperCase().replace(" ", "_")),
-                        Float.parseFloat(v[2].trim())
-                ));
+        try {
+            File archivo = new File(NOMBRE_ARCHIVO);
+            if (!archivo.exists()) {
+                System.out.println("Archivo de productos no encontrado. Se creara al agregar productos");
+                return;
             }
-            System.out.println(LECTURA_OK);
+            
+            try (BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
+                productos.clear();
+                String linea;
 
+                while ((linea = br.readLine()) != null) {
+                    String[] v = linea.split(",");
+
+                    if (v.length >= 5) {
+                        productos.add(new Producto(
+                                Integer.parseInt(v[0].trim()),
+                                v[1].trim(),
+                                Categoria.valueOf(v[3].trim().toUpperCase().replace(" ", "_")),
+                                Estado.valueOf(v[4].trim().toUpperCase().replace(" ", "_")),
+                                Float.parseFloat(v[2].trim())
+                        ));
+                    }
+                }
+                System.out.println("Archivo de productos cargado correctamente");
+
+            } catch (IOException e) {
+                System.out.println("Error al leer archivo de productos");
+                e.printStackTrace();
+            }
         } catch (Exception e) {
-            System.out.println(LECTURA_ERROR);
+            System.out.println("Error general al leer archivo de productos");
             e.printStackTrace();
         }
     }
 
-//    public String crearArchivo() {
-//        File file = new File(NOMBRE_ARCHIVO);
-//        try {
-//            if (file.createNewFile()) {
-//                return CREACION_OK;
-//            } else {
-//                return CREACION_OK;
-//            }
-//        } catch (IOException ex) {
-//            System.out.println(CREACION_ERROR);
-//            System.err.println(ex.getMessage());
-//            return CREACION_ERROR;
-//        }
-//    }
     public String crearYescribirArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
 
@@ -219,7 +221,7 @@ public class GestorProductos implements IGestorProductos {
             }
             return CREACION_OK + ESCRITURA_OK;
         } catch (IOException ioe) {
-            System.out.println(ESCRITURA_ERROR);
+            System.out.println("Error al guardar archivo de productos");
             System.err.println(ioe.getMessage());
             return CREACION_ERROR + ESCRITURA_ERROR;
         }

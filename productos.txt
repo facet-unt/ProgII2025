@@ -1,0 +1,3 @@
+123,pan,3.0,Entrada,Disponible
+456,helado ,4.0,Postre,No disponible
+1234,papa,3.345,Plato principal,Disponible
