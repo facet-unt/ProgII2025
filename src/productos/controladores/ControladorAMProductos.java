@@ -58,7 +58,7 @@ public class ControladorAMProductos implements IControladorAMProducto {
     }
 
     private void cargarDatos() {
-        vista.setCodigo(String.valueOf(productoEdicion.verCodigo()));
+        vista.getCodigo().setEnabled(false);
         vista.setDescripcion(productoEdicion.verDescripcion());
         vista.setPrecio(String.valueOf(productoEdicion.verPrecio()));
         vista.setComboCategorias1(productoEdicion.verCategoria().toString());
