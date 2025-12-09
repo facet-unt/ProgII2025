@@ -42,11 +42,24 @@ public class VentanaProductos extends JDialog {
     /**
      * Constructor auxiliar para JDialog padre.
      */
-    public VentanaProductos(JDialog padre, IControladorProductos controlador) {
-        super(padre, IControladorProductos.TITULO, true); 
-        this.controlador = controlador;
-        iniciarComponentesYEnlaces();
-    }
+//    public VentanaProductos(VentanaPrincipal padre) {
+//        super(padre, IControladorProductos.TITULO, true); 
+//        this.controlador = controlador;
+//        iniciarComponentesYEnlaces();
+//    }
+    
+    /**
+    * Constructor auxiliar para JFrame padre, si se desea.
+    */
+   public VentanaProductos(VentanaPrincipal padre, IControladorProductos controlador) { // <-- ¡Añadir el parámetro!
+       super(padre, IControladorProductos.TITULO, true); 
+       this.controlador = controlador; // Ahora la asignación es válida
+       iniciarComponentesYEnlaces();
+   }
+    
+    
+    
+    
     
     private void iniciarComponentesYEnlaces() {
         initComponents();

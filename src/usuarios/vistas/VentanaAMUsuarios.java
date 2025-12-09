@@ -65,12 +65,28 @@ public class VentanaAMUsuarios extends JDialog {
     }
 
     
-    public JTextField getTxtCorreo() { return txtCorreo; }
-    public JTextField getTxtNombre() { return txtNombre; }
-    public JTextField getTxtApellido() { return txtApellido; }
-    public JPasswordField getTxtClave() { return txtClave; }
-    public JPasswordField getTxtClaveRepetida() { return txtClaveRepetida; }
-    public JComboBox<Perfil> getComboPerfil() { return comboPerfil; }
-    public JButton getBtnGuardar() { return btnGuardar; }
-    public JButton getBtnCancelar() { return btnCancelar; }
+    public JTextField getTxtCorreo() { 
+        return txtCorreo; 
+    }
+    public JTextField getTxtNombre() { 
+        return txtNombre; 
+    }
+    public JTextField getTxtApellido() { 
+        return txtApellido; 
+    }
+    public JPasswordField getTxtClave() { 
+        return txtClave; 
+    }
+    public JPasswordField getTxtClaveRepetida() { 
+        return txtClaveRepetida; 
+    }
+    public JComboBox<Perfil> getComboPerfil() { 
+        return comboPerfil; 
+    }
+    public JButton getBtnGuardar() { 
+        return btnGuardar; 
+    }
+    public JButton getBtnCancelar() { 
+        return btnCancelar; 
+    }
 }

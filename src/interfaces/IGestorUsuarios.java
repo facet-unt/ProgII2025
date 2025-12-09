@@ -28,4 +28,7 @@ public interface IGestorUsuarios {
     public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
     public static final String ERROR = "error en la opracion"; 
      
+    
+   
+    
 }

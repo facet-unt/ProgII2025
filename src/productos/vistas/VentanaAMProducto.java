@@ -1,222 +1,175 @@
 package productos.vistas;
 
-
-import java.awt.Dialog;
-import java.util.ArrayList;
-import javax.swing.JDialog;
+import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.ModeloComboCategorias;
 import productos.modelos.ModeloComboEstados;
-import productos.modelos.Producto;
+import principal.controladores.ControladorAMProducto;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class VentanaAMProducto extends JDialog {
-    public ArrayList<Producto> producto = new ArrayList<>();
-    
-    /**
-     * Constructor
-     * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
-     */
-    public VentanaAMProducto(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
-        this.producto = new ArrayList<>();
-        initComponents();
-        this.setLocationRelativeTo(null);//antes estaba en ControladorPrincipalGUI.java
-        this.setTitle("Nuevo producto"); //antes estaba en ControladorPrincipalGUI.java
-        this.comboCategoria.setModel(new ModeloComboCategorias());//esto carga el modelo de categoria
-        this.comboEstados.setModel(new ModeloComboEstados());//esto carga el modelo de estados
-        this.setVisible(true);//antes estaba en ControladorPrincipalGUI.java
+
+    private ControladorAMProducto controlador; // Controlador inyectado después
+    private Producto producto; // Producto a editar o null para Alta
+
+    // Componentes de la ventana
+    private JTextField txtCodigo;
+    private JTextField txtDescripcion;
+    private JTextField txtPrecio;
+    private JComboBox<Categoria> comboCategoria;
+    private JComboBox<Estado> comboEstados;
+    private JButton btnGuardar;
+    private JButton btnCancelar;
+
+    // Constructor
+    public VentanaAMProducto(JFrame parent, ControladorAMProducto controladorInicial, Producto producto) {
+        super(parent, true);
+        this.producto = producto;
+
+        if (controladorInicial != null) {
+            this.controlador = controladorInicial;
+        }
+
+        inicializarComponentes();
+        iniciarComponentesYEnlaces();
     }
-    
-          
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        comboCategoria = new javax.swing.JComboBox<>();
-        comboEstados = new javax.swing.JComboBox<>();
+    /** Inyecta el controlador después de crear la ventana */
+    public void inicializarControlador(ControladorAMProducto controlador) {
+        this.controlador = controlador;
+        asignarListeners();
+    }
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    private void inicializarComponentes() {
+        setTitle(producto == null ? "Nuevo Producto" : "Modificar Producto");
+        setSize(450, 300);
+        setLayout(null);
+        setLocationRelativeTo(getParent());
         setResizable(false);
 
-        jLabel1.setText("Descripción:");
+        // Etiquetas
+        JLabel lblCodigo = new JLabel("Código:");
+        lblCodigo.setBounds(30, 20, 100, 25);
+        add(lblCodigo);
 
-        txtDescripcion.setText("\"HAMBURGUESA\"");
-        txtDescripcion.setToolTipText("Apellidos del profesor");
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
+        JLabel lblDescripcion = new JLabel("Descripción:");
+        lblDescripcion.setBounds(30, 60, 100, 25);
+        add(lblDescripcion);
+
+        JLabel lblPrecio = new JLabel("Precio:");
+        lblPrecio.setBounds(30, 100, 100, 25);
+        add(lblPrecio);
+
+        JLabel lblCategoria = new JLabel("Categoría:");
+        lblCategoria.setBounds(30, 140, 100, 25);
+        add(lblCategoria);
+
+        JLabel lblEstado = new JLabel("Estado:");
+        lblEstado.setBounds(30, 180, 100, 25);
+        add(lblEstado);
+
+        // Campos
+        txtCodigo = new JTextField();
+        txtCodigo.setBounds(140, 20, 250, 25);
+        add(txtCodigo);
+
+        txtDescripcion = new JTextField();
+        txtDescripcion.setBounds(140, 60, 250, 25);
+        add(txtDescripcion);
+
+        txtPrecio = new JTextField();
+        txtPrecio.setBounds(140, 100, 250, 25);
+        add(txtPrecio);
+
+        comboCategoria = new JComboBox<>();
+        comboCategoria.setBounds(140, 140, 250, 25);
+        comboCategoria.setModel(new ModeloComboCategorias());
+        add(comboCategoria);
+
+        comboEstados = new JComboBox<>();
+        comboEstados.setBounds(140, 180, 250, 25);
+        comboEstados.setModel(new ModeloComboEstados());
+        add(comboEstados);
+
+        // Botones
+        btnGuardar = new JButton("Guardar");
+        btnGuardar.setBounds(80, 220, 120, 30);
+        add(btnGuardar);
+
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(250, 220, 120, 30);
+        add(btnCancelar);
+
+        // Si es modificación, cargar datos del producto
+        if (producto != null) {
+            txtCodigo.setText(String.valueOf(producto.verCodigo()));
+            txtCodigo.setEditable(false); // No se puede cambiar el código
+            txtDescripcion.setText(producto.verDescripcion());
+            txtPrecio.setText(String.valueOf(producto.verPrecio()));
+            comboCategoria.setSelectedItem(producto.verCategoria());
+            comboEstados.setSelectedItem(producto.verEstado());
+        }
+    }
+
+    private void iniciarComponentesYEnlaces() {
+        if (controlador != null) {
+            asignarListeners();
+        }
+    }
+
+    private void asignarListeners() {
+        if (controlador == null) return;
+
+        btnGuardar.addActionListener(e -> controlador.btnGuardarClic(e));
+        btnCancelar.addActionListener(e -> controlador.btnCancelarClic(e));
+
+        txtCodigo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                controlador.txtCodigoPresionarTecla(e);
             }
         });
 
-        jLabel2.setText("Precio:");
-
-        txtPrecio.setText("10000.0f");
-        txtPrecio.setToolTipText("Nombres del profesor");
-
-        btnGuardar.setMnemonic('G');
-        btnGuardar.setText("Guardar");
-        btnGuardar.setToolTipText("Guarda el producto");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClic(evt);
+        txtDescripcion.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                controlador.txtDescripcionPresionarTecla(e);
             }
         });
 
-        btnCancelar.setMnemonic('C');
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setToolTipText("Cancela la operación");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarClic(evt);
+        txtPrecio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                controlador.txtPrecioPresionarTecla(e);
             }
         });
 
-        jLabel4.setText("Código:");
-
-        txtCodigo.setToolTipText("Código del producto");
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClic(evt);
+        this.addWindowFocusListener(new WindowAdapter() {
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+                controlador.ventanaObtenerFoco(e);
             }
         });
+    }
 
-        jLabel6.setText("Estado:");
+    // --- GETTERS para que el controlador acceda a los datos ---
 
-        jLabel3.setText("Categoría");
+    public String getTxtCodigo() { return txtCodigo.getText().trim(); }
+    public String getTxtDescripcion() { return txtDescripcion.getText().trim(); }
+    public String getTxtPrecio() { return txtPrecio.getText().trim(); }
+    public Categoria getCategoriaSeleccionada() { return (Categoria) comboCategoria.getSelectedItem(); }
+    public Estado getEstadoSeleccionado() { return (Estado) comboEstados.getSelectedItem(); }
+    public Producto getProductoAEditar() { return producto; }
+    public JButton getBtnGuardar() { return btnGuardar; }
+    public JButton getBtnCancelar() { return btnCancelar; }
+    public JComboBox<Categoria> getComboCategoria() { return comboCategoria; }
+    public JComboBox<Estado> getComboEstados() { return comboEstados; }
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriaActionPerformed(evt);
-            }
-        });
-
-        comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtDescripcion)
-                            .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGuardar))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+    public void cerrarVentana() {
         this.dispose();
-    }//GEN-LAST:event_btnCancelarClic
-
-    private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-//        String categoria  = this.txtCategoria.getText().trim(); //asi estaba definida antes
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategoria.getModel()).obtenerCategoria(); //redefino al metodo para cargar el nuevo comboBox
-//        String estado  = this.txtEstado.getText().trim(); //asi estaba definida antes
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-        Producto unProducto = new Producto(codigo, descripcion, precio, categoria, estado);
-        this.producto.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.producto) {
-            p.mostrar();
-            System.out.println();
-        }
-    }//GEN-LAST:event_btnGuardarClic
-
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
-    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
-    
-        
-    }//GEN-LAST:event_comboCategoriaActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> comboCategoria;
-    private javax.swing.JComboBox<String> comboEstados;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtPrecio;
-    // End of variables declaration//GEN-END:variables
-
-    private class producto {
-
-        public producto() {
-        }
     }
 }

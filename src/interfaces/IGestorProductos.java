@@ -37,5 +37,10 @@ import productos.modelos.Producto;
     public static final String ESCRITURA_OK = "Se escribio correctamente";
     public static final String LECTURA_OK = "Se leyo correctramente";
     public static final String LECTURA_ERROR = "Error al leer";
+    
+    
+    
+    
+    
 }
 
