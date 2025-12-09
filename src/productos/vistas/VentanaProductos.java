@@ -14,9 +14,9 @@ import principal.controladores.ControladorProductos;
  *
  * @author irica
  */
-public class VentanaProductos extends javax.swing.JDialog {
+public class VentanaProductos extends JDialog {
     
-    private IControladorProductos controlador;
+    private ControladorProductos controlador;
     private ModeloTablaProducto modeloTabla;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
     
