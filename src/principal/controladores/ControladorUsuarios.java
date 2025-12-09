@@ -86,6 +86,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     @Override
     public void btnVolverClic(ActionEvent evt) {
         this.vista.setVisible(false);
+        this.filaSeleccionada = -1;
     }
 
     @Override
@@ -135,6 +136,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
             modelo.addRow(fila);
         }
         this.vista.verTblUsuarios().setModel(modelo);
+        this.filaSeleccionada = -1;
     }
     private void cargarTabla() {
         this.cargarTabla(this.gestor.verUsuarios());

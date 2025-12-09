@@ -48,6 +48,7 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public void btnVolverClic(ActionEvent evt) {
         this.vista.setVisible(false);
+        this.filaSeleccionada = -1;
     }
 
     @Override
@@ -114,6 +115,7 @@ public class ControladorProductos implements IControladorProductos{
             modelo.addRow(fila);
         }
         this.vista.verTblProductos().setModel(modelo);
+        this.filaSeleccionada = -1;
     }
     private void cargarTabla() {
         this.cargarTabla(this.gestor.menu()); 
