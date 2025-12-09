@@ -4,10 +4,8 @@
  */
 package productos.vistas;
 
-import productos.modelos.Producto;
+import interfaces.IControladorProductos;
 import javax.swing.*;
-import java.util.List;
-import principal.controladores.ControladorProductos;
 
 /**
  *
@@ -15,37 +13,14 @@ import principal.controladores.ControladorProductos;
  */
 public class VentanaProductos extends JDialog {
     
-    private ControladorProductos controlador;
-    private ModeloTablaProducto modeloTabla;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
+    private IControladorProductos controlador;
+
     
-    /**
-     * Creates new form VentanaProductos
- 
-     */
-    public VentanaProductos() {
-        
-        initComponents();
-    }
-    
-    public VentanaProductos(ControladorProductos controlador) {
+    public VentanaProductos(IControladorProductos controlador) {
         this.controlador=controlador;
         initComponents();
     }
     
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-
-    // --- Métodos de la Vista llamados por el Controlador ---
-    
-    public void actualizarTabla(List<Producto> productos) {
-        modeloTabla.setProductos(productos);
-    }
-
-    public void mostrarMensaje(String titulo, String mensaje, int tipo) {
-        JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
-    }
-  
    
 /*
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -105,6 +80,13 @@ public class VentanaProductos extends JDialog {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                ventanaGanaFoco(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         campoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -151,6 +133,7 @@ public class VentanaProductos extends JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaMenu.setToolTipText("Menú");
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaMenu.setShowGrid(true);
@@ -292,28 +275,12 @@ public class VentanaProductos extends JDialog {
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_campoDescripcionKeyPressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void ventanaGanaFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaGanaFoco
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_ventanaGanaFoco
 
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

@@ -5,33 +5,29 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
-import principal.controladores.ControladorAMProducto;
-import productos.modelos.*;
 
 
 
 public class VentanaAMProducto extends JDialog {
-    //private ArrayList<Producto> productos = new ArrayList<>();
-    private ControladorAMProducto controlador;
+    
+    private IControladorAMProducto controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      * @param controlador
      */
-    public VentanaAMProducto(Dialog ventanaPadre, ControladorAMProducto controlador) {
+    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
+
         this.controlador = controlador;
-        initComponents();
+       
     }
     public JTextField verTxtCodigo() {
         return txtCodigo;
@@ -110,8 +106,8 @@ public class VentanaAMProducto extends JDialog {
 
         txtDescripcion.setToolTipText("Escribir la descripción aquí");
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDescripcionKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
             }
         });
 
@@ -119,8 +115,8 @@ public class VentanaAMProducto extends JDialog {
 
         txtPrecio.setToolTipText("Escribir el Precio aquí");
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
             }
         });
 
@@ -146,8 +142,8 @@ public class VentanaAMProducto extends JDialog {
 
         txtCodigo.setToolTipText("Escribir el código aquí");
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
             }
         });
 
@@ -156,18 +152,8 @@ public class VentanaAMProducto extends JDialog {
         etiquetaCategoria.setText("Categoría");
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato Principal", "Postre" }));
-        comboCategorias.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                comboCategoriasKeyPressed(evt);
-            }
-        });
 
         comboEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
-        comboEstados.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                comboEstadosKeyPressed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,28 +222,41 @@ public class VentanaAMProducto extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
 
+        System.out.println(this.txtCodigo.getText().trim());
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
-
+/*
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        controlador.txtCodigoPresionarTecla(evt);
+        
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
-        controlador.txtDescripcionPresionarTecla(evt);
+       
     }//GEN-LAST:event_txtDescripcionKeyPressed
 
     private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
-        controlador.txtPrecioPresionarTecla(evt);
+        
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
-        controlador.comboCategoriasPresionarTecla(evt);
+       
     }//GEN-LAST:event_comboCategoriasKeyPressed
 
     private void comboEstadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadosKeyPressed
-        controlador.comboEstadoPresionarTecla(evt);
+        
     }//GEN-LAST:event_comboEstadosKeyPressed
+*/
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+       controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

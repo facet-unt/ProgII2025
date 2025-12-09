@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package principal.controladores;
+package productos.controladores;
 
 
 import interfaces.IControladorAMProducto;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 import productos.modelos.Producto;
 import productos.vistas.VentanaAMProducto;
 
@@ -23,18 +26,32 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     private VentanaAMProducto vp; //se instancia en constructor
     private Producto productoAEditar;
-    private boolean esModificacion = false;
-    Producto p;
+    private boolean esModificacion;
     
-     public ControladorAMProducto() {
+     public ControladorAMProducto(boolean esModificacion, Producto p) {
         this.vp = new VentanaAMProducto(null, this);
-        this.esModificacion = false; //por defecto
+        this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
+        this.vp.verComboEstado().setModel(new ModeloComboEstados());
+        this.esModificacion = esModificacion;
+        if (this.esModificacion){
+            this.vp.setTitle("Modificación");
+            this.vp.txtCodigo.setText(Integer.toString(p.verCodigo()));
+            this.vp.txtCodigo.setEnabled(false);
+            productoAEditar=p;
+        }
+        else
+            this.vp.setTitle("Creación");
+        vp.setLocationRelativeTo(null);
+        vp.setResizable(false);
+        vp.setVisible(true);
     }
      
      public void mostrarVentanaProducto() {
         vp.setLocationRelativeTo(null);
         vp.setResizable(false);
         vp.setVisible(true);
+        this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
+        this.vp.verComboEstado().setModel(new ModeloComboEstados());
 
     }
 
@@ -64,7 +81,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     String precioStr = vp.verTxtPrecio().getText().trim();
                     System.out.println(codigoStr);
                     System.out.println(precioStr);
-                    Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
+                    Categoria categoriaSeleccionada = (Categoria)vp.verComboCategorias().getSelectedItem();
                     Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
                     // --- INICIO DE CORRECCIÓN ---
                     // 1. Reemplazar coma por punto si existe (para asegurar el formato en Java)
@@ -77,11 +94,11 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     System.out.println("Problemas en el precio");
                     }
                     // --- FIN DE CORRECCIÓN ---
-                    GestorProductos gestor = GestorProductos.instanciar();
+                    IGestorProductos gestor = GestorProductos.instanciar();
                     String resultado;
 
                     if (this.esModificacion==true) {
-                        resultado = gestor.modificarProducto(this.productoAEditar, codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
+                        resultado = gestor.modificarProducto(productoAEditar, codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
                     
                     } else {
                         resultado = gestor.crearProducto(codigo, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);

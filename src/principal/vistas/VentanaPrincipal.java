@@ -5,7 +5,7 @@
 package principal.vistas;
 
 //import principal.controladores.ControladorPrincipal;
-import principal.controladores.ControladorPrincipalParcial2;
+import interfaces.IControladorPrincipal;
 
 /**
  *
@@ -13,7 +13,7 @@ import principal.controladores.ControladorPrincipalParcial2;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     
-   private ControladorPrincipalParcial2 controlador;
+   private IControladorPrincipal controlador;
     /**
      * Creates new form Bar
      */
@@ -22,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         
     }
-       public VentanaPrincipal(ControladorPrincipalParcial2 controlador) {
+       public VentanaPrincipal(IControladorPrincipal controlador) {
        this.controlador=controlador;
         initComponents();
         

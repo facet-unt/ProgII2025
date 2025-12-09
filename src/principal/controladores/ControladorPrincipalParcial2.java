@@ -4,7 +4,9 @@
  */
 package principal.controladores;
 
+import productos.controladores.ControladorProductos;
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -18,23 +20,23 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
    private VentanaPrincipal ventana;
 
     public ControladorPrincipalParcial2() {
+        
+        
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setLocationRelativeTo(null);
         /* Centra la ventana */
-        this.ventana.setVisible(true);
+        
         /* La hace visible */
         this.ventana.setTitle(TITULO);
+        this.ventana.setVisible(true);
     }
-    public void mostrarVentanaPrincipal() {
-        ventana.setVisible(true);
-    }
+//   
 
     //los botones de esta clase solamente crea controladores y inicializa las ventanas
     @Override
     public void botonProductosClic(ActionEvent evt) {
 
-        ControladorProductos cvprod = new ControladorProductos();
-        cvprod.mostrarVentanaProducto();
+        IControladorProductos cvprod = new ControladorProductos();
 
     }
 
@@ -53,8 +55,7 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
     }
      public static void main(String[] args) {
 
-        ControladorPrincipalParcial2 cvp = new ControladorPrincipalParcial2();
-        cvp.mostrarVentanaPrincipal();
+        IControladorPrincipal cvp = new ControladorPrincipalParcial2();
 
     }
 

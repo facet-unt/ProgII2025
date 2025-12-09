@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package principal.controladores;
+package productos.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
-import productos.vistas.ModeloTablaProducto;
+import productos.modelos.ModeloTablaProducto;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -31,19 +32,16 @@ public class ControladorProductos implements IControladorProductos{
         this.modelo = new ModeloTablaProducto();
 
         this.vp.getTablaMenu().setModel(this.modelo);
-    }
-
-    public void mostrarVentanaProducto() {
-
-        this.modelo.actualizarTabla();
-
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
     }
 
+//    
+
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        this.modelo.actualizarTabla();    }
+        this.modelo.actualizarTabla();    
+    }
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
@@ -72,9 +70,7 @@ public class ControladorProductos implements IControladorProductos{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        ControladorAMProducto cvprod = new ControladorAMProducto();
-        cvprod.mostrarVentanaProducto();
-        this.modelo.actualizarTabla();
+        IControladorAMProducto cvprod = new ControladorAMProducto(false,null);
     }
 
     @Override
@@ -87,11 +83,9 @@ public class ControladorProductos implements IControladorProductos{
         }
         Producto productoSeleccionado = modelo.obtenerProducto(fila);
 
-        ControladorAMProducto controladorAM = new ControladorAMProducto();
+        IControladorAMProducto controladorAM = new ControladorAMProducto(true, productoSeleccionado);
+        
 
-        controladorAM.inicializarModificacion(productoSeleccionado);
-
-        controladorAM.mostrarVentanaProducto();
 
         this.modelo.actualizarTabla();
     }
