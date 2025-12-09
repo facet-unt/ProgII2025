@@ -1,7 +1,6 @@
 ApellidoCliente3;claveCliente3;cliente3@bar.com;NombreCliente3;Cliente
 ApellidoCliente1;claveCliente1;cliente1@bar.com;NombreCliente1;Cliente
 ApellidoCliente2;claveCliente2;cliente2@bar.com;NombreCliente2;Cliente
-ApellidoCliente4;claveCliente4;cliente4@bar.com;NombreCliente4;Cliente
 ApellidoEmpleado1;claveEmpleado1;empleado1@bar.com;NombreEmpleado1;Empleado
 ApellidoEmpleado2;claveEmpleado2;empleado2@bar.com;NombreEmpleado2;Empleado
 ApellidoEmpleado3;claveEmpleado3;empleado3@bar.com;NombreEmpleado3;Empleado

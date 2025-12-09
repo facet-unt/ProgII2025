@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -24,6 +25,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private VentanaUsuarios ventanaUsuarios; 
     IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
     private String apellido;
+    private Usuario usuario;
     
     public ControladorUsuarios() {
         ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this,gestorUsuarios.verUsuarios());
@@ -60,7 +62,9 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ventanaUsuarios.obtenerModeloProductos().eliminarProducto(ventanaUsuarios.filaSeleccionada);
+        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+        gestorUsuarios.borrarUsuario(usuario);
     }
     
     @Override
