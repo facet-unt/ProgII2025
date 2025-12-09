@@ -6,6 +6,7 @@ package principal.controladores;
 
 import interfaces.IControladorPrincipal;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
 
 /**
@@ -42,7 +43,15 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnSalirClic(ActionEvent evt) {
-
+        int opcion = JOptionPane.showConfirmDialog(
+                this.vista, 
+                "¿Seguro que desea terminar la aplicación?", 
+                "Salir del Sistema", 
+                JOptionPane.YES_NO_OPTION
+        );
+        if (opcion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
     
     public static void main(String[] args) {

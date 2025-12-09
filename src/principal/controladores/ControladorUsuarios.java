@@ -43,7 +43,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     }
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        principal.controladores.ControladorAMUsuario.instanciar().crear();
+        ControladorAMUsuario.instanciar().crear();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         Usuario usuarioAModificar = this.gestor.obtenerUsuario(correo);
 
         if (usuarioAModificar != null) {
-            principal.controladores.ControladorAMUsuario.instanciar().modificar(usuarioAModificar);
+            ControladorAMUsuario.instanciar().modificar(usuarioAModificar);
         } else {
             JOptionPane.showMessageDialog(this.vista, "No se encontró el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
         }
