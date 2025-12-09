@@ -5,6 +5,7 @@
  */
 package productos.vistas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
 import productos.modelos.Categoria;
@@ -106,7 +107,7 @@ public class VentanaCrearProductos extends JDialog {
 
         jLabel4.setText("Código:");
 
-        txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.setToolTipText("Codigo del producto");
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyReleased(evt);
@@ -213,10 +214,6 @@ public class VentanaCrearProductos extends JDialog {
         this.requestFocusInWindow();
     }//GEN-LAST:event_ventanGanaFoco
 
-    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
-        controlador.txtCodigoPresionarTecla(evt);
-    }//GEN-LAST:event_txtCodigoKeyReleased
-
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_txtDescripcionKeyReleased
@@ -224,6 +221,10 @@ public class VentanaCrearProductos extends JDialog {
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
         controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyReleased
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
     
     public Estado verEstado(){
         return estado;

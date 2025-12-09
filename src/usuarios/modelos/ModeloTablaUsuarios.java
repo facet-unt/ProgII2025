@@ -30,7 +30,10 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     public int getColumnCount() {
         return columnas.length;
     }
-
+    @Override
+    public String getColumnName(int col) {
+        return columnas[col];
+    }
     @Override
     public Object getValueAt(int fila, int columna) {
         usuario = usuarios.get(fila);

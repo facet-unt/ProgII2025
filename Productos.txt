@@ -1,2 +1,2 @@
 45;papas;Entrada;Disponible;34.0
-567;queso;Entrada;Disponible;456.0
+567;arroz;Plato principal;Disponible;6780.0

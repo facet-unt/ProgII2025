@@ -159,7 +159,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Documento del profesor"/>
+        <Property name="toolTipText" type="java.lang.String" value="Codigo del producto"/>
       </Properties>
       <Events>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyReleased"/>

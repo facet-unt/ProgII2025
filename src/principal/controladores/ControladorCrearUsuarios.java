@@ -8,6 +8,7 @@ import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
@@ -51,10 +52,26 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
     private static void nuevaInstancia(VentanaUsuarios ventanaUsuarios){
         instancia = new ControladorCrearUsuarios(ventanaUsuarios);
     }
+    private void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(ventanaCrearUsuarios, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorUsuarios.crearUsuario(correo, apellido, nombre, ventanaCrearUsuarios.verPerfil(), clave, claveRepetida);
-        ventanaCrearUsuarios.dispose();
+        if(correo == null||correo.isEmpty()||!correo.contains("@"))
+            mostrarError("Error correo");
+        else if(apellido == null||apellido.isBlank()||apellido.isEmpty())
+            mostrarError("Error apellido");
+        else if(nombre == null||nombre.isBlank()||nombre.isEmpty())
+            mostrarError("Error nombre");
+        else if(clave == null||clave.isEmpty()||clave.isBlank())
+            mostrarError("Error clave");
+        else if(claveRepetida == null||!claveRepetida.contains(clave))
+            mostrarError("Error clave");
+        else{
+            gestorUsuarios.crearUsuario(correo, apellido, nombre, ventanaCrearUsuarios.verPerfil(), clave, claveRepetida);
+            ventanaCrearUsuarios.dispose();
+        }
+        
     }
 
     @Override

@@ -18,8 +18,8 @@ import productos.modelos.ModeloComboEstados;
  */
 public class VentanaModificarProductos extends javax.swing.JDialog {
     private static ControladorModificarProductos controlador;
-    public Categoria categoria;
-    public Estado estado;
+    private Categoria categoria;
+    private Estado estado;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarProductos.class.getName());
 
     /**
@@ -43,12 +43,10 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCodigo = new javax.swing.JTextField();
         comboCategorias = new javax.swing.JComboBox<>();
         comboEstados = new javax.swing.JComboBox<>();
         txtDescripcion = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,13 +60,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
                 formWindowGainedFocus(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            }
-        });
-
-        txtCodigo.setToolTipText("Documento del profesor");
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyReleased(evt);
             }
         });
 
@@ -100,8 +91,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Código:");
-
         jLabel6.setText("Estado:");
 
         jLabel3.setText("Categoría:");
@@ -110,7 +99,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
 
         jLabel2.setText("Precio:");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +107,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +126,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
@@ -152,7 +138,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
                             .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
                             .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboCategorias, 0, 487, Short.MAX_VALUE)
-                            .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -164,11 +149,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,10 +196,6 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
-        controlador.txtCodigoPresionarTecla(evt);
-    }//GEN-LAST:event_txtCodigoKeyReleased
-
     private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_txtDescripcionKeyReleased
@@ -226,7 +203,13 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
         controlador.txtPrecioPresionarTecla(evt);
     }//GEN-LAST:event_txtPrecioKeyReleased
-
+    public Estado verEstado(){
+        return estado;
+    }
+    
+    public Categoria verCategoria(){
+        return categoria;
+    }
     /**
      * @param args the command line arguments
      */
@@ -272,9 +255,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

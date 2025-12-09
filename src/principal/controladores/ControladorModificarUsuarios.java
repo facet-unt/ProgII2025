@@ -8,6 +8,7 @@ import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
@@ -54,12 +55,27 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
     private static void nuevaInstancia(VentanaUsuarios ventanaUsuarios){
         instancia = new ControladorModificarUsuarios(ventanaUsuarios,usuario);
     }
+    
+    private void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(ventanaModificarUsuarios, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
-        gestorUsuarios.modificarUsuario(usuario, correo, apellido, nombre,ventanaModificarUsuarios.verPerfil(), clave, claveRepetida);
-        ventanaUsuarios.obtenerModeloUsuarios().actualizarUsuario(ventanaUsuarios.filaSeleccionada, usuario);
-        ventanaModificarUsuarios.dispose();
+        this.correo = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada).verCorreo();
+        if(apellido == null||apellido.isBlank()||apellido.isEmpty())
+            mostrarError("Error apellido");
+        else if(nombre == null||nombre.isBlank()||nombre.isEmpty())
+            mostrarError("Error nombre");
+        else if(clave == null||clave.isEmpty()||clave.isBlank())
+            mostrarError("Error clave");
+        else if(claveRepetida == null||!claveRepetida.contains(clave))
+            mostrarError("Error clave");
+        else{
+            usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+            gestorUsuarios.modificarUsuario(usuario, correo, apellido, nombre,ventanaModificarUsuarios.verPerfil(), clave, claveRepetida);
+            ventanaUsuarios.obtenerModeloUsuarios().actualizarUsuario(ventanaUsuarios.filaSeleccionada, usuario);
+            ventanaModificarUsuarios.dispose();
+        }
     }
 
     @Override
@@ -81,8 +97,7 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        JTextField campo = (JTextField) evt.getComponent();
-        this.correo = campo.getText().trim();
+        
     }
 
     @Override

@@ -8,6 +8,7 @@ import interfaces.IControladorAMProducto;
 import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -57,20 +58,27 @@ public class ControladorModificarProductos implements IControladorAMProducto{
     public void btnCancelarClic(ActionEvent evt) {
         ventanaModificarProductos.dispose();
     }
-    
+     private void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(ventanaModificarProductos, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
-        gestorProductos.modificarProducto(producto, codigo, descripcion, precio, ventanaModificarProductos.categoria, ventanaModificarProductos.estado);
-        ventanaProductos.obtenerModeloProductos().actualizarProducto(ventanaProductos.filaSeleccionada, producto);
-        ventanaModificarProductos.dispose();
+        this.codigo = gestorProductos.menu().get(ventanaProductos.filaSeleccionada).verCodigo();
+        if(descripcion==null||descripcion.isBlank())
+            mostrarError("Error descripcion");
+        else if(precio<=0)
+            mostrarError("Error precio");
+        else{
+            producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+            gestorProductos.modificarProducto(producto, codigo, descripcion, precio, ventanaModificarProductos.verCategoria(), ventanaModificarProductos.verEstado());
+            ventanaProductos.obtenerModeloProductos().actualizarProducto(ventanaProductos.filaSeleccionada, producto);
+            ventanaModificarProductos.dispose();
+        }
     }
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
-        JTextField campo = (JTextField) evt.getComponent();
-        String texto = campo.getText().trim();
-        this.codigo = Integer.parseInt(texto);
+        
     }
 
     @Override

@@ -7,8 +7,14 @@ package principal.controladores;
 import interfaces.IControladorAMProducto;
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
 import interfaces.IGestorProductos;
+import static interfaces.IGestorProductos.ERROR_CATEGORIA;
+import static interfaces.IGestorProductos.ERROR_CODIGO;
+import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
+import static interfaces.IGestorProductos.ERROR_ESTADO;
+import static interfaces.IGestorProductos.ERROR_PRECIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
@@ -56,11 +62,21 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     public void btnCancelarClic(ActionEvent evt) {
         ventanaCrearProductos.dispose();
     }
-
+    private void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(ventanaCrearProductos, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.verCategoria(), ventanaCrearProductos.verEstado());
-        ventanaCrearProductos.dispose();
+        if(codigo<=0)
+            mostrarError("Error Codigo");
+        else if(descripcion==null||descripcion.isBlank())
+            mostrarError("Error descripcion");
+        else if(precio<=0)
+            mostrarError("Error precio");
+        else{
+            gestorProductos.crearProducto(codigo, descripcion, precio, ventanaCrearProductos.verCategoria(), ventanaCrearProductos.verEstado());
+            ventanaCrearProductos.dispose();
+        }
     }
 
     @Override
@@ -68,6 +84,7 @@ public class ControladorCrearProductos implements IControladorAMProducto {
         JTextField campo = (JTextField) evt.getComponent();
         String texto = campo.getText().trim();
         this.codigo = Integer.parseInt(texto);
+        
     }
 
     @Override
