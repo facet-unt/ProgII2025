@@ -62,6 +62,33 @@ public class GestorUsuarios implements IGestorUsuarios {
             }
         }
     }
+    public String modificarUsuario(Usuario usuarioAModificar,String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        this.usuarios = LeerArchivo();
+        if(existeEsteUsuario(usuarioAModificar)== true){
+            if(correo == null||correo.isEmpty()||!correo.contains("@"))
+                return ERROR_CORREO;
+            if(apellido == null||apellido.isBlank()||apellido.isEmpty())
+                return ERROR_APELLIDO;
+            if(nombre == null||nombre.isBlank()||nombre.isEmpty())
+                return ERROR_NOMBRE;
+            if(clave == null||clave.isEmpty()||clave.isBlank())
+                return ERROR_CLAVES;
+            if(claveRepetida == null||!claveRepetida.contains(clave))
+                return ERROR_CLAVESREPETIDAS;
+            if(perfil == null||perfil.toString().isBlank()||perfil.toString().isBlank())
+                return ERROR_NOMBRE;
+            borrarUsuario(usuarioAModificar);
+            usuarioAModificar.asignarCorreo(correo);
+            usuarioAModificar.asignarApellido(apellido);
+            usuarioAModificar.asignarNombre(nombre);
+            usuarioAModificar.asignarClave(clave);
+            EscribirArchivo(usuarioAModificar);
+            return USUARIO_MODIFICADO;
+        }
+        else
+            return USUARIO_INEXISTENTE;
+    }
+        
     @Override
     public List<Usuario> verUsuarios(){
         this.usuarios = LeerArchivo();

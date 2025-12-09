@@ -59,12 +59,14 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+        IControladorAMUsuario controladorModificarUsuarios = ControladorModificarUsuarios.instanciar(ventanaUsuarios,usuario);
+
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        ventanaUsuarios.obtenerModeloUsuarios().eliminarProducto(ventanaUsuarios.filaSeleccionada);
+        ventanaUsuarios.obtenerModeloUsuarios().eliminarUsuario(ventanaUsuarios.filaSeleccionada);
         usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
         gestorUsuarios.borrarUsuario(usuario);
     }

@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaModificarUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -22,14 +23,18 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
     private static ControladorModificarUsuarios instancia;
     private VentanaUsuarios ventanaUsuarios;
     private VentanaModificarUsuarios ventanaModificarUsuarios;
+    private Usuario usuario;
      private String nombre;
     private String apellido;
     private String correo;
     private String clave;
     private String claveRepetida;
     IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
-     public ControladorModificarUsuarios() {
+    
+     public ControladorModificarUsuarios(VentanaUsuarios ventanaUsuarios, Usuario usuario) {
         ventanaModificarUsuarios = new VentanaModificarUsuarios(ventanaUsuarios,this);
+        this.usuario = usuario;
+        this.ventanaUsuarios= ventanaUsuarios;
         ventanaModificarUsuarios.setLocationRelativeTo(ventanaUsuarios);
         ventanaModificarUsuarios.setTitle(TITULO_MODIFICAR);
         ventanaModificarUsuarios.setVisible(true);
@@ -38,16 +43,18 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
         ventanaModificarUsuarios.requestFocusInWindow();
     }
     
-    public static ControladorModificarUsuarios instanciar() {
+    public static ControladorModificarUsuarios instanciar(VentanaUsuarios ventanaUsuarios, Usuario usuario) {
         if (instancia == null) {
-            instancia = new ControladorModificarUsuarios();
+            instancia = new ControladorModificarUsuarios(ventanaUsuarios,usuario);
         }
         return instancia;
     }    
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorUsuarios.crearUsuario(correo,apellido,nombre,Perfil.CLIENTE,clave,claveRepetida);
+        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+        gestorUsuarios.modificarUsuario(usuario, correo, apellido, nombre,ventanaModificarUsuarios.verPerfil(), clave, claveRepetida);
+        ventanaUsuarios.obtenerModeloUsuarios().actualizarUsuario(ventanaUsuarios.filaSeleccionada, usuario);
         ventanaModificarUsuarios.dispose();
     }
 

@@ -57,12 +57,12 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         fireTableRowsInserted(usuarios.size() - 1, usuarios.size() - 1);
     }
 
-    public void actualizarProducto(int fila, Usuario u) {
+    public void actualizarUsuario(int fila, Usuario u) {
         usuarios.set(fila, u);
         fireTableRowsUpdated(fila, fila);
     }
 
-    public void eliminarProducto(int fila) {
+    public void eliminarUsuario(int fila) {
         usuarios.remove(fila);
         fireTableRowsDeleted(fila, fila);
     }

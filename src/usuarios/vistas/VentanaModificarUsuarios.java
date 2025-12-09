@@ -4,9 +4,10 @@
  */
 package usuarios.vistas;
 
-import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
 import javax.swing.JDialog;
 import principal.controladores.ControladorModificarUsuarios;
+import usuarios.modelos.ModeloComboPerfiles;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -15,6 +16,7 @@ import principal.controladores.ControladorModificarUsuarios;
 public class VentanaModificarUsuarios extends javax.swing.JDialog {
     private static ControladorModificarUsuarios controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarUsuarios.class.getName());
+    private Perfil perfil;
 
     /**
      * Creates new form VentanaModificarUsuarios
@@ -22,13 +24,8 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     public VentanaModificarUsuarios(JDialog parent, ControladorModificarUsuarios controlador) {
         super(parent, true);
         initComponents();
-         this.setLocationRelativeTo(parent);
-        this.setTitle(TITULO_MODIFICAR);
-        this.setVisible(true);
-        this.toFront();
-        this.requestFocus();
-        this.requestFocusInWindow();
-        this.setSize(300, 400);
+        this.controlador =controlador;
+        this.jComboBox1.setModel(new ModeloComboPerfiles());
     }
 
     /**
@@ -50,8 +47,10 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
-        txtRepetirClave = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -86,62 +85,50 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel5.setText("Repetir Clave:");
 
-        txtNombre.setText("jTextField1");
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
         });
 
-        txtApellido.setText("jTextField2");
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyReleased(evt);
             }
         });
 
-        txtCorreo.setText("jTextField3");
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyReleased(evt);
             }
         });
 
-        txtClave.setText("jTextField4");
-        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtClaveKeyReleased(evt);
+                txtClave(evt);
             }
         });
 
-        txtRepetirClave.setText("jTextField5");
-        txtRepetirClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRepetirClaveActionPerformed(evt);
-            }
-        });
-        txtRepetirClave.addKeyListener(new java.awt.event.KeyAdapter() {
+        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRepetirClaveKeyReleased(evt);
+                txtClaveReoetida(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Perfil:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonGuardar)
-                .addGap(18, 18, 18)
-                .addComponent(BotonCancelar)
-                .addGap(44, 44, 44))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -153,20 +140,25 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtRepetirClave, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                                .addComponent(txtClave, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(39, 39, 39))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPasswordField1)
+                        .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                        .addComponent(txtCorreo))
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtApellido)
+                    .addComponent(txtNombre))
+                .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(BotonGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(BotonCancelar)
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,17 +177,21 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRepetirClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar)
                     .addComponent(BotonCancelar))
-                .addGap(23, 23, 23))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,14 +200,6 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_BotonGuardarActionPerformed
-
-    private void txtRepetirClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepetirClaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRepetirClaveActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
         this.dispose();
@@ -234,14 +222,22 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         controlador.txtCorreoPresionarTecla(evt);
     }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txtClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyReleased
+    private void txtClave(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClave
         controlador.passClavePresionarTecla(evt);
-    }//GEN-LAST:event_txtClaveKeyReleased
+    }//GEN-LAST:event_txtClave
 
-    private void txtRepetirClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepetirClaveKeyReleased
+    private void txtClaveReoetida(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveReoetida
         controlador.passClaveRepetidaPresionarTecla(evt);
-    }//GEN-LAST:event_txtRepetirClaveKeyReleased
+    }//GEN-LAST:event_txtClaveReoetida
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        this.perfil = ((ModeloComboPerfiles)this.jComboBox1.getModel()).obtenerPerfil();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    public Perfil verPerfil(){
+        return perfil;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -282,15 +278,17 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
     private javax.swing.JButton BotonGuardar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtRepetirClave;
     // End of variables declaration//GEN-END:variables
 }

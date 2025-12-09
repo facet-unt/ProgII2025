@@ -29,7 +29,8 @@ public class ControladorModificarProductos implements IControladorAMProducto{
     private float precio;
     private String descripcion;
     IGestorProductos gestorProductos = GestorProductos.instanciar();
-     public ControladorModificarProductos(VentanaProductos ventanaProductos,Producto producto) {
+    
+    public ControladorModificarProductos(VentanaProductos ventanaProductos,Producto producto) {
         this.ventanaProductos= ventanaProductos;
         this.producto = producto;
         ventanaModificarProductos = new VentanaModificarProductos(ventanaProductos,this);
