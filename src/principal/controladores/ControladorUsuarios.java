@@ -25,7 +25,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
         this.modelo = new ModeloTablaUsuarios();
 
-        this.vp.getTablaMenu().setModel(this.modelo);
+        this.vp.getTablaUsuarios().setModel(this.modelo);
     }
 
     public void mostrarVentanaUsuarios() {
@@ -43,7 +43,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        ControladorAMUsuario cvprod = new ControladorAMUsuario();
+        ControladorAMUsuario cvprod = new ControladorAMUsuario(false);
         cvprod.mostrarVentanaAMUsuario();
         this.modelo.actualizarTabla();
     }
@@ -51,25 +51,25 @@ public class ControladorUsuarios implements IControladorUsuarios {
     @Override
     public void btnModificarClic(ActionEvent evt) {
         System.out.println("Modificar");
-//        int fila = vp.getTablaMenu().getSelectedRow();
-//
-//        if (fila == -1) {
-//            javax.swing.JOptionPane.showMessageDialog(vp, "Seleccione un usuario para modificar.");
-//            return;
-//        }
-//        Usuario usuarioSeleccionado = modelo.obtenerUsuario(fila);
-//
-//        ControladorAMProducto controladorAM = new ControladorAMProducto();
-//
-//        controladorAM.inicializarModificacion(usuarioSeleccionado);
-//
-//        controladorAM.mostrarVentanaProducto();
-//
-//        this.modelo.actualizarTabla();
+        int fila = vp.getTablaUsuarios().getSelectedRow();
+
+        if (fila == -1) {
+            javax.swing.JOptionPane.showMessageDialog(vp, "Seleccione un usuario para modificar.");
+            return;
+        }
+        Usuario usuarioSeleccionado = modelo.obtenerUsuario(fila);
+
+        ControladorAMUsuario controladorAM = new ControladorAMUsuario(true);
+
+        controladorAM.inicializarModificacion(usuarioSeleccionado);
+
+        controladorAM.mostrarVentanaAMUsuario();
+
+        this.modelo.actualizarTabla();
     }
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        int fila = vp.getTablaMenu().getSelectedRow();
+        int fila = vp.getTablaUsuarios().getSelectedRow();
 
         if (fila == -1) {
             javax.swing.JOptionPane.showMessageDialog(vp, "Seleccione un usuario para borrar.");
@@ -77,7 +77,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         }
 
         int opcion = javax.swing.JOptionPane.showConfirmDialog(vp,
-                "¿Seguro que desea borrar este producto?",
+                "¿Seguro que desea borrar este usuario?",
                 "Confirmar Borrado",
                 javax.swing.JOptionPane.YES_NO_OPTION);
 
