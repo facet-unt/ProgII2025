@@ -12,7 +12,7 @@ import java.util.List;
 import pedidos.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos{
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
    
     private static GestorProductos instancia;
     

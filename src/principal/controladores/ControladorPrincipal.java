@@ -47,10 +47,15 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos cProd = new ControladorUsuarios(this.ventanaPrincipal);
+        
     }
 
     public void btnPedidosClic(ActionEvent evt) {
-        JOptionPane.showMessageDialog(this.ventanaPrincipal,"Funcionalidad de Pedidos aún no está implementada.","Información",JOptionPane.INFORMATION_MESSAGE);
+        String mensajeFuncionalidadNoDisp = "Esta funcionalidad aún no está disponible.";
+        JOptionPane.showMessageDialog(
+            this.ventanaPrincipal,
+            mensajeFuncionalidadNoDisp,
+            "Advertencia",
+            JOptionPane.INFORMATION_MESSAGE);
     }
 }

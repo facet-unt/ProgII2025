@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.controladores;
 
 import interfaces.IControladorAMUsuario;
@@ -16,19 +12,12 @@ import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaAMUsuario;
 
-/**
- *
- * @author pedri
- */
-
-
 public class ControladorAMUsuario implements IControladorAMUsuario {
 
     private VentanaAMUsuario ventana;
     private Usuario usuario;  
     private boolean esNuevo;
-   
-   
+
     public ControladorAMUsuario(java.awt.Dialog ventanaPadre) {
         this.usuario = null;
         this.esNuevo = true;
@@ -42,7 +31,6 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
 
         this.ventana.setVisible(true);
     }
-
    
     //     Constructor para modificar
     public ControladorAMUsuario(java.awt.Dialog ventanaPadre, Usuario usuario) {
@@ -66,6 +54,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
 
         this.ventana.setVisible(true);
     }
+    
     //       Guardo el usuario
     @Override
     public void btnGuardarClic(ActionEvent evt) {
@@ -136,4 +125,3 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
             btnGuardarClic(null);
     }
 }
-

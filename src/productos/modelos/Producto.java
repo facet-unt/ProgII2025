@@ -15,6 +15,15 @@ public class Producto {
         this.precio = precio;
     }
     
+    public void mostrar() {    
+        System.out.println("-- PRODUCTO --");
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria.toString());
+        System.out.println("Estado: " + estado.toString());
+        System.out.println("Precio: " + precio);
+    }
+    
     public int verCodigo(){
         return codigo;
     }
@@ -78,16 +87,6 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-
- public void mostrar() {
-
-    System.out.println("-- PRODUCTO --");
-    System.out.println("Codigo: " + codigo);
-    System.out.println("Descripcion: " + descripcion);
-    System.out.println("Categoria: " + categoria.toString());
-    System.out.println("Estado: " + estado.toString());
-    System.out.println("Precio: " + precio);
-}
     
     @Override
     public String toString() {

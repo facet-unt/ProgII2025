@@ -10,7 +10,7 @@ import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 public class GestorPedidos implements IGestorPedidos{
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
     
     private static GestorPedidos instancia;
 

@@ -21,6 +21,18 @@ public class Pedido {
         this.estado = Estado.CREADO;
     }
     
+    public void mostrar() {
+        System.out.println("-- PEDIDO --");
+        System.out.println("Nro: " + numero);
+        System.out.println("Fecha: " + verFecha() + " Hora: " + verHora());
+        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
+        System.out.println("Estado: " + estado);
+        System.out.println("Producto \t"  +  "Cantidad");
+        for(ProductoDelPedido Pp :  listaProductosPedidos){
+            System.out.println(Pp);
+        }  
+    }
+    
     public int verNumero() {
         return numero;
     }
@@ -75,18 +87,6 @@ public class Pedido {
         }
         final Pedido other = (Pedido) obj;
         return this.numero == other.numero;
-    }
-
-    public void mostrar() {
-        System.out.println("-- PEDIDO --");
-        System.out.println("Nro: " + numero);
-        System.out.println("Fecha: " + verFecha() + " Hora: " + verHora());
-        System.out.println("Cliente: " + cliente.verApellido() + ", " + cliente.verNombre());
-        System.out.println("Estado: " + estado);
-        System.out.println("Producto \t"  +  "Cantidad");
-        for(ProductoDelPedido Pp :  listaProductosPedidos){
-            System.out.println(Pp);
-        }  
     }
     
     public List<ProductoDelPedido> verListaProductos() {

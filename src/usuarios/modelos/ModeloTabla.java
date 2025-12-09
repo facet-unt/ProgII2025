@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
@@ -9,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author pedri
- */
 public class ModeloTabla extends AbstractTableModel {
 
     private List<Usuario> usuarios = new ArrayList<>();
@@ -49,15 +41,20 @@ public class ModeloTabla extends AbstractTableModel {
 
         Usuario usuario = usuarios.get(fila);
 
-                switch (columna) {
+        switch (columna) {
             case 0:
                 return usuario.verApellido();
             case 1:
                 return usuario.verNombre();
             case 2:
-                return usuario.verPerfil().toString();
+                if (usuario instanceof Cliente) {
+                    return Perfil.CLIENTE.toString();
+                } else if (usuario instanceof Empleado) {
+                    return Perfil.EMPLEADO.toString();
+                } else {
+                    return Perfil.ENCARGADO.toString();
+                }
         }
-
         return "Error";
     }
 

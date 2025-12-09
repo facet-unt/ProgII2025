@@ -17,6 +17,14 @@ public abstract class Usuario {
         this.apellido = apellido;
         this.nombre = nombre;
     }
+    
+    public void mostrar(){
+        System.out.println("\n-- Usuario --");
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Correo: " + correo);
+        System.out.println("Clave: " + clave);
+    }
 
     public String verCorreo() {
         return correo;
@@ -56,8 +64,6 @@ public abstract class Usuario {
         hash = 83 * hash + Objects.hashCode(this.correo);
         return hash;
     }
-    
-    public abstract List<Pedido> verPedidos();
 
     @Override
     public boolean equals(Object obj) {
@@ -73,15 +79,9 @@ public abstract class Usuario {
         }
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
-        }
+    }
     
-        public void mostrar(){
-        System.out.println("\n-- Usuario --");
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Clave: " + clave);
-        }
+    public abstract List<Pedido> verPedidos();
 
     public Object verPerfil() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

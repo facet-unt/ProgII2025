@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.controladores;
 
 import interfaces.IControladorAMUsuario;
@@ -10,20 +6,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
-
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTabla;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaUsuarios;
 
-/**
- *
- * @author pedri
- */
 public class ControladorUsuarios implements IControladorUsuarios {
 
     private VentanaUsuarios ventanaUsuarios;
@@ -50,7 +40,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
             Usuario usuario = ((ModeloTabla) this.ventanaUsuarios.verTablaUsuarios().getModel()).obtenerUsuarios().get(filaSeleccionada);
 
             IControladorAMUsuario controlador = new ControladorAMUsuario(this.ventanaUsuarios, usuario);
-
+            this.actualizarDatosTabla();
         } catch (IndexOutOfBoundsException iob) {
             JOptionPane.showMessageDialog(this.ventanaUsuarios,USUARIO_NO_SELECCIONADO, "Error", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -71,6 +61,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
             if (opcionSeleccionada == JOptionPane.YES_OPTION) {
                 gu.borrarUsuario(usuarioABorrar);
+                this.actualizarDatosTabla();
             }
         } catch (IndexOutOfBoundsException iob) {
             JOptionPane.showMessageDialog(this.ventanaUsuarios,
@@ -102,7 +93,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
         String apellidoBuscar = this.ventanaUsuarios.verTxtApellido().getText().trim();
 
-        if (apellidoBuscar != null) {
+        if (!apellidoBuscar.isEmpty()) {
             IGestorUsuarios gu = GestorUsuarios.instanciar();
 
             List<Usuario> coincidenciasApellido = gu.buscarUsuarios(apellidoBuscar);
@@ -121,5 +112,4 @@ public class ControladorUsuarios implements IControladorUsuarios {
          //Para que comience a buscar al presionar una tecla
         this.btnBuscarClic(null);
     }
-
 }
