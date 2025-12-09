@@ -173,9 +173,9 @@ public class GestorProductos implements IGestorProductos {
             }
 
         } else {
-            if (codigo < 0) {
+            if (codigo <= 0) {
                 return (ERROR_CODIGO);
-            } else if (precio < 0) {
+            } else if (precio <= 0) {
                 return (ERROR_PRECIO);
             } else if (descripcion == null || descripcion.isEmpty()) {
                 return (ERROR_DESCRIPCION);
