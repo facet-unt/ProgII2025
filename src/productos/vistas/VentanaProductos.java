@@ -5,7 +5,7 @@
 package productos.vistas;
 import interfaces.IControladorProductos;
 import javax.swing.JDialog;
-import productos.modelos.ModeloTablaProductos;
+import principal.controladores.ModeloTablaProductos;
 
 /**
  *

@@ -17,11 +17,11 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
 
     private VentanaAMProducto vista; 
     private Producto Modificado;
-    private boolean esModificacion = false;
+    private boolean modificacion = false;
 
     public ControladorVentanaAMProducto() {
         this.vista = new VentanaAMProducto(null, this);
-        this.esModificacion = false; 
+        this.modificacion = false; 
     }
 
     public void mostrarVentanaProducto() {
@@ -33,7 +33,7 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
 
     public void inicializarModificacion(Producto productomodificado) {
         this.Modificado = productomodificado;
-        this.esModificacion = true;
+        this.modificacion = true;
         vista.setTitle("Modificar Producto");
         vista.verTxtCodigo().setText(String.valueOf(productomodificado.verCodigo()));
         vista.verTxtCodigo().setEditable(false);
@@ -63,7 +63,7 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
             IGestorProductos gestor = GestorProductos.instanciar();
             String resultado;
 
-            if (this.esModificacion) {
+            if (this.modificacion) {
                 resultado = gestor.modificarProducto(this.Modificado, codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
             } else {
                 resultado = gestor.crearProducto(codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);

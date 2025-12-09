@@ -10,7 +10,6 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 
 import productos.modelos.GestorProductos;
-import productos.modelos.ModeloTablaProductos;
 import productos.modelos.Producto;
 import productos.vistas.VentanaProductos;
 

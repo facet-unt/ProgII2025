@@ -76,7 +76,7 @@ public class GestorProductos implements IGestorProductos {
         if (!productos.contains(p))
             return PRODUCTO_INEXISTENTE;
 
-        // No se borra si está en algún pedido
+        
         IGestorPedidos gp = GestorPedidos.getInstancia();
         for (Pedido ped : gp.verPedidos()) {
             for (ProductoDelPedido pp : ped.verProductosDelPedido()) {
@@ -156,11 +156,13 @@ public class GestorProductos implements IGestorProductos {
 
                 linea = linea.replace("\uFEFF", "").trim(); 
 
-                if (linea.isEmpty()) continue;
+                if (linea.isEmpty()) 
+                    continue;
 
                 String[] p = linea.split("\\*");
 
-                if (p.length != 5) continue;
+                if (p.length != 5) 
+                    continue;
 
                 int codigo = Integer.parseInt(p[0]);
                 String desc = p[1];
@@ -175,7 +177,7 @@ public class GestorProductos implements IGestorProductos {
 
         } catch (Exception e) {
             System.out.println(LECTURA_ERROR);
-            e.printStackTrace(); // mantiene trazabilidad
+            
         }
     }
 
@@ -204,11 +206,21 @@ public class GestorProductos implements IGestorProductos {
     private String validarDatos(int codigo, String desc, float precio,
                                 Categoria cat, Estado est) {
 
-        if (codigo <= 0) return ERROR_CODIGO;
-        if (desc == null || desc.isEmpty()) return ERROR_DESCRIPCION;
-        if (precio <= 0) return ERROR_PRECIO;
-        if (cat == null) return ERROR_CATEGORIA;
-        if (est == null) return ERROR_ESTADO;
+        if (codigo <= 0) 
+            return ERROR_CODIGO;
+        
+        if (desc == null || desc.isEmpty()) 
+            return ERROR_DESCRIPCION;
+        
+        if (precio <= 0) 
+            return ERROR_PRECIO;
+        
+        if (cat == null) 
+            return ERROR_CATEGORIA;
+        
+        if (est == null) 
+            return ERROR_ESTADO;
+        
 
         return null;
     }

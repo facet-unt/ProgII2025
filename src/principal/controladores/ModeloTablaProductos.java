@@ -1,4 +1,4 @@
-package productos.modelos;
+package principal.controladores;
 
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
@@ -8,9 +8,6 @@ import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 
 public class ModeloTablaProductos extends AbstractTableModel {
-
-    private List<String> nombreColumnas = new ArrayList<>();
-    private List<Producto> productos = new ArrayList<>();
 
     private String[] columnas = {"Categoría", "Descripción", "Precio"};
 
