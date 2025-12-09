@@ -9,6 +9,8 @@ import javax.swing.JDialog;
 import principal.controladores.ControladorModificarProductos;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 
 /**
  *
@@ -27,12 +29,9 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
         this.setLocationRelativeTo(parent);
-        this.setTitle(TITULO_MODIFICAR);
-        this.setVisible(true);
-        this.toFront();
-        this.requestFocus();
-        this.requestFocusInWindow();
-        this.setSize(300, 400);
+        this.controlador = controlador;
+        this.comboCategorias.setModel(new ModeloComboCategorias());
+        this.comboEstados.setModel(new ModeloComboEstados());
     }
 
     /**
@@ -67,6 +66,11 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         });
 
         txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -83,13 +87,18 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
         });
 
         txtDescripcion.setToolTipText("Apellidos del profesor");
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyReleased(evt);
             }
         });
 
         txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Código:");
 
@@ -101,6 +110,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
 
         jLabel2.setText("Precio:");
 
+        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +119,7 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,42 +195,37 @@ public class VentanaModificarProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-        // TODO add your handling code here:
+        this.categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
     }//GEN-LAST:event_comboCategoriasActionPerformed
 
     private void comboEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadosActionPerformed
-        // TODO add your handling code here:
+        this.estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
     }//GEN-LAST:event_comboEstadosActionPerformed
 
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-//        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-//        String descripcion = this.txtDescripcion.getText().trim();
-//        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-//        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-//        Estado estado=((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-//        Producto unProducto= new Producto(codigo, descripcion, precio, categoria, estado);
-//        this.productos.add(unProducto);
-//
-//        System.out.println("Productos");
-//        System.out.println("=========");
-//        for(Producto p : this.productos) {
-//            p.mostrar();
-//            System.out.println();
-//        }
+        controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
+        controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         this.setAlwaysOnTop(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyReleased
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyReleased
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyReleased
 
     /**
      * @param args the command line arguments

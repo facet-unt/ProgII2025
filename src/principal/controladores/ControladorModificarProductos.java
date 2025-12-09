@@ -9,7 +9,10 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
+import productos.modelos.Categoria;
+import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
+import productos.modelos.Producto;
 import productos.vistas.VentanaModificarProductos;
 import productos.vistas.VentanaProductos;
 
@@ -21,11 +24,14 @@ public class ControladorModificarProductos implements IControladorAMProducto{
     private static ControladorModificarProductos instancia;
     private VentanaProductos ventanaProductos;
     private VentanaModificarProductos ventanaModificarProductos;
+    private static Producto producto;
     private int codigo;
     private float precio;
     private String descripcion;
     IGestorProductos gestorProductos = GestorProductos.instanciar();
-     public ControladorModificarProductos() {
+     public ControladorModificarProductos(VentanaProductos ventanaProductos,Producto producto) {
+        this.ventanaProductos= ventanaProductos;
+        this.producto = producto;
         ventanaModificarProductos = new VentanaModificarProductos(ventanaProductos,this);
         ventanaModificarProductos.setLocationRelativeTo(ventanaProductos);
         ventanaModificarProductos.setTitle(TITULO_MODIFICAR);
@@ -35,9 +41,9 @@ public class ControladorModificarProductos implements IControladorAMProducto{
         ventanaModificarProductos.requestFocusInWindow();
     }
     
-    public static ControladorModificarProductos instanciar() {
+    public static ControladorModificarProductos instanciar(VentanaProductos ventanaProductos, Producto producto) {
         if (instancia == null) {
-            instancia = new ControladorModificarProductos();
+            instancia = new ControladorModificarProductos(ventanaProductos,producto);
         }
         return instancia;
     }
@@ -49,7 +55,9 @@ public class ControladorModificarProductos implements IControladorAMProducto{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gestorProductos.crearProducto(codigo, descripcion, precio, ventanaModificarProductos.categoria, ventanaModificarProductos.estado);    
+        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+        gestorProductos.modificarProducto(producto, codigo, descripcion, precio, ventanaModificarProductos.categoria, ventanaModificarProductos.estado);
+        ventanaProductos.obtenerModeloProductos().actualizarProducto(ventanaProductos.filaSeleccionada, producto);
         ventanaModificarProductos.dispose();
     }
 

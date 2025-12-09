@@ -105,6 +105,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar(evt);
+            }
+        });
 
         jButton4.setText("Borrar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +198,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnBorrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar
         controlador.btnBorrarClic(evt);
     }//GEN-LAST:event_btnBorrar
+
+    private void btnModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar
+        controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificar
     
     public ModeloTablaProductos obtenerModeloProductos() {
         return (ModeloTablaProductos) jTable1.getModel();

@@ -73,7 +73,8 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+        IControladorAMProducto controladorModificarProducto = ControladorModificarProductos.instanciar(ventanaProductos,producto);
     }
 
     @Override
