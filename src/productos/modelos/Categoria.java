@@ -33,5 +33,12 @@ public enum Categoria {
         this.valor = valor;
     }
       
-    
+    public static Categoria buscarPorValor(String texto) {
+        for (Categoria c : Categoria.values()) {
+            if (c.toString().equalsIgnoreCase(texto)) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

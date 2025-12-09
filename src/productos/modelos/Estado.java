@@ -31,5 +31,13 @@ public enum Estado {
     public String toString() {
         return this.valor;
     }
-
+    
+    public static Estado buscarPorValor(String texto) {
+        for (Estado e : Estado.values()) {
+            if (e.toString().equalsIgnoreCase(texto)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }
