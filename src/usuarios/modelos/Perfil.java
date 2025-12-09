@@ -20,14 +20,14 @@ public enum Perfil {
     }
     
     public static Perfil compararValor(String perfil) {
-        Perfil[] valores = Perfil.values();
-        for (Perfil unPerfil : valores) {
-            if (unPerfil.equals(perfil)) {
-                return unPerfil;
-            }
+    Perfil[] valores = Perfil.values();
+    for (Perfil unPerfil : valores) {
+        if (unPerfil.verValor().equalsIgnoreCase(perfil)) { 
+            return unPerfil;
         }
-        return null;
     }
+    return null;
+}
 
     public String verValor() {
         return valor;

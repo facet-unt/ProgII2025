@@ -4,12 +4,13 @@
  */
 package usuarios.vistas;
 
+import usuarios.modelos.ModeloTablaUsuarios;
 import productos.vistas.*;
 import interfaces.*;
 import usuarios.modelos.*;
 import javax.swing.*;
 import java.util.List;
-import principal.controladores.ControladorUsuarios;
+import usuarios.controladores.ControladorUsuarios;
 
 /**
  *
@@ -40,9 +41,6 @@ public class VentanaUsuarios extends JDialog {
 
     // --- Métodos de la Vista llamados por el Controlador ---
     
-    public void actualizarTabla(List<Usuario> productos) {
-        modeloTabla.setUsuarios(productos);
-    }
 
     public void mostrarMensaje(String titulo, String mensaje, int tipo) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);

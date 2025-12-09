@@ -1,5 +1,4 @@
 3;Empanadas;Entrada;Disponible;1000.0
-4;Pizzetta de muzzarella;Entrada;Disponible;1500.0
 1;Milanesa con puré;Plato principal;Disponible;2000.0
 7;Pizza a la Bolognesa;Plato principal;Disponible;3000.0
 2;Flan;Postre;Disponible;1500.0
