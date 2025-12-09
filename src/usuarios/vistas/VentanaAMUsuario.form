@@ -19,7 +19,7 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -65,10 +65,10 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtClaveR" pref="236" max="32767" attributes="0"/>
                                   <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="comboPerfil" alignment="0" pref="236" max="32767" attributes="0"/>
                                   <Component id="txtClave" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboPerfil" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtClaveR" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -159,8 +159,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtClaveR">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clave:"/>
@@ -170,8 +168,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Repetir Clave:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtClave">
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
     </Component>
@@ -208,6 +204,22 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtClave">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClaveActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtClaveR">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClaveRActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

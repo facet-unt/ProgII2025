@@ -2,6 +2,7 @@ package principal.controladores;
 
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import usuarios.modelos.GestorUsuarios;
@@ -51,12 +52,28 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
        gu.cargarArchivoEnLista();
         usuarios = gu.verUsuarios();
+        System.out.println("ANTES DE ORDENAR:");
+    for (Usuario u : usuarios) {
+        System.out.println(u.verApellido() + ", " + u.verNombre());
+    }
+
+    Collections.sort(usuarios);
+
+    System.out.println("DESPUES DE ORDENAR:");
+    for (Usuario u : usuarios) {
+        System.out.println(u.verApellido() + ", " + u.verNombre());
+    }
+        
+        
         this.fireTableDataChanged();
     }
     
+ 
 
     public void actualizarTabla(List<Usuario> usuarios) {
+        Collections.sort(usuarios);
         this.usuarios = usuarios;
+       
         this.fireTableDataChanged();
     }
 

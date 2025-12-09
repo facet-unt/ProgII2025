@@ -68,12 +68,13 @@ private IControladorUsuarios controladorU;
     vamu.getTxtNombre().setText(usuario.verNombre());
     vamu.getTxtAreaCorreo().setText(usuario.verCorreo());
     vamu.getTxtAreaCorreo().setEditable(false);
-    vamu.getTxtClave().setText(usuario.verClave());
-    vamu.getTxtClave().setVisible(false);
-         
-    vamu.getTxtClaveR().setText(usuario.verClave());
-    vamu.getTxtClaveR().setVisible(false);
+    vamu.getTxtClave().setVisible(true);
+    vamu.getTxtClaveR().setVisible(true);
     
+    vamu.getTxtClave().setText("");
+    vamu.getTxtClaveR().setText("");
+         
+  
 
 
     Perfil perfil = null;
@@ -109,8 +110,8 @@ private IControladorUsuarios controladorU;
         nombre= vamu.getTxtNombre().getText();
         apellido=vamu.getTxtApellido().getText();
         correo=vamu.getTxtAreaCorreo().getText();
-        clave=vamu.getTxtClave().getText();
-        claveR=vamu.getTxtClaveR().getText();
+        clave  = new String(vamu.getTxtClave().getPassword());
+        claveR = new String(vamu.getTxtClaveR().getPassword());
         perfil = Perfil.valueOf(vamu.getComboPerfil().getSelectedItem().toString());
 
         
@@ -118,10 +119,18 @@ private IControladorUsuarios controladorU;
         String resultado;
         
         if(modificar==true){
-            resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
+            if (clave.isEmpty() && claveR.isEmpty())
+            {
+                 resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, usuario.verClave(), usuario.verClave());
+            }else
+            {
+                resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
+            }
+           
            controladorU.ventanaObtenerFoco(null);
         }
         else{
+            
         resultado= gu.crearUsuario(correo, apellido, nombre, perfil, clave, claveR);
         controladorU.ventanaObtenerFoco(null);
         }
@@ -177,15 +186,15 @@ private IControladorUsuarios controladorU;
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
       
-    String clave = vamu.getTxtClave().getText();
-    String claveR = vamu.getTxtClaveR().getText();
+    String clave  = new String(vamu.getTxtClave().getPassword());
+    String claveR = new String(vamu.getTxtClaveR().getPassword());
     
     if (!clave.equals(claveR)) {
-       
         vamu.getBtnGuardar().setEnabled(false);
     } else {
         vamu.getBtnGuardar().setEnabled(true);
     }
+    
 }
 
 @Override

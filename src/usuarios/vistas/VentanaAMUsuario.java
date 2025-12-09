@@ -5,6 +5,7 @@
 package usuarios.vistas;
 
 import interfaces.IControladorAMUsuario;
+import javax.swing.JPasswordField;
 import principal.controladores.ControladorAMUsuarios;
 
 import usuarios.modelos.Perfil;
@@ -29,8 +30,7 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
 
     private void cargarComboPerfil() {
   
-    javax.swing.DefaultComboBoxModel<String> modelo = 
-            new javax.swing.DefaultComboBoxModel<>();
+    javax.swing.DefaultComboBoxModel<String> modelo = new javax.swing.DefaultComboBoxModel<>();
 
     
     for (Perfil p : Perfil.values()) {
@@ -58,15 +58,15 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaCorreo = new javax.swing.JTextPane();
-        txtClaveR = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtClave = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         comboPerfil = new javax.swing.JComboBox<>();
+        txtClave = new javax.swing.JPasswordField();
+        txtClaveR = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -79,7 +79,7 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Correo:");
 
@@ -122,6 +122,20 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
             }
         });
 
+        txtClave.setText("jPasswordField1");
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
+
+        txtClaveR.setText("jPasswordField2");
+        txtClaveR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveRActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,10 +161,10 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtClaveR, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                                     .addComponent(txtNombre)
+                                    .addComponent(comboPerfil, 0, 236, Short.MAX_VALUE)
                                     .addComponent(txtClave)
-                                    .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtClaveR))))
                         .addContainerGap(61, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar)
@@ -214,6 +228,16 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboPerfilActionPerformed
 
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtClaveRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveRActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtClaveRActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,8 +258,8 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextPane txtAreaCorreo;
-    private javax.swing.JTextField txtClave;
-    private javax.swing.JTextField txtClaveR;
+    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JPasswordField txtClaveR;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
@@ -263,13 +287,15 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         return txtAreaCorreo;
     }
 
-    public javax.swing.JTextField getTxtClave() {
+    public JPasswordField getTxtClave() {
         return txtClave;
     }
 
-    public javax.swing.JTextField getTxtClaveR() {
+    public JPasswordField getTxtClaveR() {
         return txtClaveR;
     }
+
+
 
     public javax.swing.JTextField getTxtNombre() {
         return txtNombre;
