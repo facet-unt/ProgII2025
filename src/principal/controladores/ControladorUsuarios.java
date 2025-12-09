@@ -43,12 +43,23 @@ public class ControladorUsuarios implements IControladorUsuarios{
     }
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-    
+        principal.controladores.ControladorAMUsuario.instanciar().crear();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
+        if (this.filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this.vista, "Debe seleccionar un usuario.", "Atención", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String correo = (String) this.vista.verTblUsuarios().getValueAt(this.filaSeleccionada, 3);
+        Usuario usuarioAModificar = this.gestor.obtenerUsuario(correo);
 
+        if (usuarioAModificar != null) {
+            principal.controladores.ControladorAMUsuario.instanciar().modificar(usuarioAModificar);
+        } else {
+            JOptionPane.showMessageDialog(this.vista, "No se encontró el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
@@ -80,6 +91,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         String textoBusqueda = this.vista.verTxtApellidoBuscar().getText();
+        
         if (textoBusqueda.trim().isEmpty()) {
             this.cargarTabla();
         } else {
@@ -106,7 +118,12 @@ public class ControladorUsuarios implements IControladorUsuarios{
     }
     private void cargarTabla(List<Usuario> listaDeUsuarios) {
         String[] titulos = {"Apellido", "Nombre", "Perfil", "Correo"};       
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);      
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
         for (Usuario u : listaDeUsuarios) {
             Object[] fila = new Object[4];
             fila[0] = u.verApellido();

@@ -34,6 +34,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     private static GestorUsuarios instancia;
     private GestorUsuarios(){
+        this.cargarUsuarios();
     }
     public static GestorUsuarios instanciar() {
         if (instancia == null)
@@ -76,8 +77,9 @@ public class GestorUsuarios implements IGestorUsuarios{
     @Override
     public List<Usuario> buscarUsuarios(String apellido){
         ArrayList<Usuario> usuariosEncontrados = new ArrayList<>();
+        String textoBusqueda = apellido.toLowerCase();
         for(Usuario u : usuarios)
-            if(u.verApellido().equalsIgnoreCase(apellido)) usuariosEncontrados.add(u);
+            if(u.verApellido().toLowerCase().contains(textoBusqueda)) usuariosEncontrados.add(u);
         Collections.sort(usuariosEncontrados, compUs);
         return usuariosEncontrados;
     }
@@ -132,7 +134,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
     }
     
-    public String cargarUsuarios() {
+    public final String cargarUsuarios() {
         File archivo = new File(ARCHIVO_USUARIOS);
         if (!archivo.exists()) {
             return "ARCHIVO_NO_EXISTE";
