@@ -5,11 +5,14 @@
 package principal.controladores;
 
 import interfaces.IControladorAMUsuario;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import principal.vistas.VentanaPrincipal;
-import usuarios.modelos.ModeloTablaUsuarios;
+import javax.swing.JTextField;
+import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.Perfil;
 import usuarios.vistas.VentanaAMUsuarios;
+import usuarios.vistas.VentanaUsuarios;
 
 /**
  *
@@ -17,17 +20,20 @@ import usuarios.vistas.VentanaAMUsuarios;
  */
 public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private VentanaAMUsuarios ventana;
-    private VentanaPrincipal ventanaprincipal;
-    private ModeloTablaUsuarios modelo;
+    private VentanaUsuarios vista;
     private IControladorAMUsuario controlador;
     private static ControladorVentanaAMUsuarios instancia;
+    private String correo, clave, claverepetida, nombre, apellido;
+    IGestorUsuarios gu = GestorUsuarios.instanciarclase();
     
     private ControladorVentanaAMUsuarios(){
-        this.ventana = new VentanaAMUsuarios(ventanaprincipal, controlador);
+        this.ventana = new VentanaAMUsuarios(vista, this);
         this.ventana.setTitle(TITULO_NUEVO);
         this.ventana.setVisible(true);
         this.ventana.setResizable(false);
         this.ventana.setLocationRelativeTo(null);
+        this.ventana.requestFocus();
+        this.ventana.requestFocusInWindow();
     }
     
     public static ControladorVentanaAMUsuarios instanciar(){
@@ -39,37 +45,43 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        
-    }
-
-    @Override
-    public void btnCancelarClic(ActionEvent evt) {
+        gu.crearUsuario(correo, apellido, nombre, ventana.verPerfil(), clave, claverepetida);
         this.ventana.dispose();
     }
 
     @Override
+    public void btnCancelarClic(ActionEvent evt) {
+        ventana.dispose();
+    }
+
+    @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.apellido = campo.getText().trim();
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.nombre = campo.getText().trim();
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         JTextField campo = (JTextField) evt.getComponent();
+        this.correo = campo.getText().trim();
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.clave = campo.getText().trim();
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JTextField campo = (JTextField) evt.getComponent();
+        this.claverepetida = campo.getText().trim();
     }
     
     

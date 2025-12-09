@@ -17,6 +17,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     private String[] ATRIBUTOS = {"Apellido", "Nombre", "Correo", "Perfil"};
     private List<Usuario> Usuarios = new ArrayList<>();
     private GestorUsuarios gestor;
+    private Usuario u;
     private int filaSeleccionada;
 
     public ModeloTablaUsuarios() {
@@ -81,5 +82,18 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
+    public void agregarUsuario(Usuario u){
+        Usuarios.add(u);
+        fireTableRowsInserted(Usuarios.size()-1, Usuarios.size()-1);
+    }
     
+    public void modificarUsuario(int fila, Usuario u){
+        this.Usuarios.set(fila, u);
+        fireTableRowsUpdated(fila, fila);
+    }
+    
+    public void borrarUsuario(int i){
+        Usuarios.remove(i);
+        fireTableRowsDeleted(i, i);
+    }
 }  
