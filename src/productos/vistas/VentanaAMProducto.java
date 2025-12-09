@@ -110,7 +110,7 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel1.setText("Descripción:");
 
-        txtDescripcion.setToolTipText("Apellidos del profesor");
+        txtDescripcion.setToolTipText("Escribir la descripción aquí");
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyPressed(evt);
@@ -119,7 +119,7 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel2.setText("Precio:");
 
-        txtPrecio.setToolTipText("Nombres del profesor");
+        txtPrecio.setToolTipText("Escribir el Precio aquí");
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPrecioKeyPressed(evt);
@@ -146,7 +146,7 @@ public class VentanaAMProducto extends JDialog {
 
         jLabel4.setText("Código:");
 
-        txtCodigo.setToolTipText("Documento del profesor");
+        txtCodigo.setToolTipText("Escribir el código aquí");
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
