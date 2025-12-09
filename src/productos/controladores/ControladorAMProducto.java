@@ -6,6 +6,7 @@ package productos.controladores;
 
 
 import interfaces.IControladorAMProducto;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -46,6 +47,8 @@ public class ControladorAMProducto implements IControladorAMProducto{
         vp.setLocationRelativeTo(null);
         vp.setResizable(false);
         vp.setVisible(true);
+        this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
+        this.vp.verComboEstado().setModel(new ModeloComboEstados());
 
     }
 
@@ -89,7 +92,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     System.out.println("Problemas en el precio");
                     }
                     // --- FIN DE CORRECCIÓN ---
-                    GestorProductos gestor = GestorProductos.instanciar();
+                    IGestorProductos gestor = GestorProductos.instanciar();
                     String resultado;
 
                     if (this.esModificacion==true) {

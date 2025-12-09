@@ -216,6 +216,26 @@ public class VentanaAMProducto extends JDialog {
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        controlador.txtCodigoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
+        controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionKeyPressed
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
+        controlador.txtPrecioPresionarTecla(evt);
+    }//GEN-LAST:event_txtPrecioKeyPressed
+
+    private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
+       
+    }//GEN-LAST:event_comboCategoriasKeyPressed
+
+    private void comboEstadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadosKeyPressed
+        
+    }//GEN-LAST:event_comboEstadosKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
