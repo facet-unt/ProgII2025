@@ -6,9 +6,7 @@ package principal.controladores;
 
 
 import interfaces.IControladorAMProducto;
-import static interfaces.IGestorProductos.EXITO;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import productos.modelos.Categoria;
@@ -79,13 +77,13 @@ public class ControladorAMProducto implements IControladorAMProducto{
                     
                     } else {
                         resultado = gestor.crearProducto(codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
-                        
+                        System.out.println(resultado);
               
                     }
 
                     JOptionPane.showMessageDialog(vp, resultado);
 
-                    if (resultado.equals(EXITO)) {
+                    if (resultado.equals(GestorProductos.EXITO)) {
                         vp.dispose();
                     }
 
@@ -99,32 +97,34 @@ public class ControladorAMProducto implements IControladorAMProducto{
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           //this.botonGuardarClic(null);
+        vp.verTxtDescripcion().requestFocus();
         }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            //this.botonGuardarClic(null);
+         vp.verTxtPrecio().requestFocus();
         }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                //this.botonGuardarClic(null);
+        vp.verComboCategorias().requestFocus();
                 }
     }
 
-    @Override
-    public void categoriaSelección(ItemEvent evt) {
-        Categoria categoriaSelec = (Categoria) vp.verComboCategorias().getSelectedItem();
+    public void comboCategoriasPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vp.verComboEstado().requestFocus();
+        }
     }
 
-    @Override
-    public void estadoSelección(ItemEvent evt) {
-        Estado estadoSelec = (Estado) vp.verComboEstado().getSelectedItem();
+    public void comboEstadoPresionarTecla(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.botonGuardarClic(null);
+        }
     }
     
     
