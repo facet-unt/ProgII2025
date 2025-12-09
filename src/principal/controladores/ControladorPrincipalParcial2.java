@@ -4,10 +4,16 @@
  */
 package principal.controladores;
 
+import productos.controladores.ControladorProductos;
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
+import productos.modelos.GestorProductos;
+import productos.modelos.Producto;
 
 /**
  *
@@ -18,23 +24,28 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
    private VentanaPrincipal ventana;
 
     public ControladorPrincipalParcial2() {
+        //IGestorProductos gp = GestorProductos.instanciar();
+        //List<Producto> productos = gp.menu();
+        //System.out.println(productos.size());
+        
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setLocationRelativeTo(null);
         /* Centra la ventana */
-        this.ventana.setVisible(true);
+        
         /* La hace visible */
         this.ventana.setTitle(TITULO);
+        this.ventana.setVisible(true);
     }
-    public void mostrarVentanaPrincipal() {
-        ventana.setVisible(true);
-    }
+//    public void mostrarVentanaPrincipal() {
+//        ventana.setVisible(true);
+//    }
 
     //los botones de esta clase solamente crea controladores y inicializa las ventanas
     @Override
     public void botonProductosClic(ActionEvent evt) {
 
-        ControladorProductos cvprod = new ControladorProductos();
-        cvprod.mostrarVentanaProducto();
+        IControladorProductos cvprod = new ControladorProductos();
+        //cvprod.mostrarVentanaProducto();
 
     }
 
@@ -52,8 +63,8 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
     }
      public static void main(String[] args) {
 
-        ControladorPrincipalParcial2 cvp = new ControladorPrincipalParcial2();
-        cvp.mostrarVentanaPrincipal();
+        IControladorPrincipal cvp = new ControladorPrincipalParcial2();
+        //cvp.mostrarVentanaPrincipal();
 
     }
 

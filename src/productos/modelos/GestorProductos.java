@@ -28,10 +28,10 @@ public class GestorProductos implements IGestorProductos {
 
         int codigo = Integer.parseInt(partes[0].trim());
         String descripcion = partes[1].trim();
-        float precio = Float.parseFloat(partes[2].trim());
+        float precio = Float.parseFloat(partes[4].trim());
         
-        Categoria categoria = Categoria.desdeTexto(partes[3].trim());
-        Estado estado = Estado.desdeTexto(partes[4].trim());
+        Categoria categoria = Categoria.desdeTexto(partes[2].trim());
+        Estado estado = Estado.desdeTexto(partes[3].trim());
 
         return new Producto(codigo, descripcion, categoria, estado, precio);
     }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package principal.controladores;
+package productos.controladores;
 
 
 import interfaces.IControladorAMProducto;
@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 import productos.modelos.Producto;
 import productos.vistas.VentanaAMProducto;
 
@@ -23,12 +25,21 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     private VentanaAMProducto vp; //se instancia en constructor
     private Producto productoAEditar;
-    private boolean esModificacion = false;
+    private boolean esModificacion;
     Producto p;
     
-     public ControladorAMProducto() {
+     public ControladorAMProducto(boolean esModificacion) {
         this.vp = new VentanaAMProducto(null, this);
-        this.esModificacion = false; //por defecto
+        this.vp.verComboCategorias().setModel(new ModeloComboCategorias());
+        this.vp.verComboEstado().setModel(new ModeloComboEstados());
+        this.esModificacion = esModificacion;
+        if (this.esModificacion)
+            this.vp.setTitle("Modificación");
+        else
+            this.vp.setTitle("Creación");
+        vp.setLocationRelativeTo(null);
+        vp.setResizable(false);
+        vp.setVisible(true);
     }
      
      public void mostrarVentanaProducto() {
@@ -58,13 +69,14 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
+       String codigoStr1 = this.vp.verTxtCodigo().getText();
        try {
                     String codigoStr = vp.verTxtCodigo().getText().trim();
                     String descripcion = vp.verTxtDescripcion().getText().trim();
                     String precioStr = vp.verTxtPrecio().getText().trim();
                     System.out.println(codigoStr);
                     System.out.println(precioStr);
-                    Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
+                    Categoria categoriaSeleccionada = (Categoria)vp.verComboCategorias().getSelectedItem();
                     Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
                     // --- INICIO DE CORRECCIÓN ---
                     // 1. Reemplazar coma por punto si existe (para asegurar el formato en Java)

@@ -4,6 +4,7 @@
  */
 package principal.controladores;
 
+import productos.controladores.ControladorProductos;
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
