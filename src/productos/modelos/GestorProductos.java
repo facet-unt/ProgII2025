@@ -15,8 +15,8 @@ public class GestorProductos implements IGestorProductos {
     private List<Producto> productos = new ArrayList<>();
 
     private static GestorProductos instancia;
-    
-    
+   
+
      private Producto convertirLineaAProducto(String linea) throws IllegalArgumentException {
         if (linea == null || linea.isBlank())
             return null;
