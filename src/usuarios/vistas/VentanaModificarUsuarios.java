@@ -4,14 +4,14 @@
  */
 package usuarios.vistas;
 
-import interfaces.IControladorAMUsuario;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import principal.vistas.VentanaPrincipal;
+import principal.controladores.ControladorVentanaModificarUsuarios;
 import usuarios.modelos.ModeloComboPerfil;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -20,13 +20,14 @@ import usuarios.modelos.ModeloComboPerfil;
 public class VentanaModificarUsuarios extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarUsuarios.class.getName());
-    private IControladorAMUsuario controlador;
-    private VentanaPrincipal ventana;
+    private ControladorVentanaModificarUsuarios controlador;
+    private Perfil perfil;
     /**
      * Creates new form VentanaModificarUsuarios
      */
-    public VentanaModificarUsuarios(JDialog ventanaMejor, IControladorAMUsuario controlador) {
+    public VentanaModificarUsuarios(JDialog ventanaMejor, ControladorVentanaModificarUsuarios controlador) {
         super(ventanaMejor, true);
+        this.controlador = controlador;
         initComponents();
         this.jComboBox1.setModel(new ModeloComboPerfil());
     }
@@ -59,21 +60,54 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Correo : ");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Apellido :");
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Nombre :");
 
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Clave : ");
 
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("ClaveRepetida :");
+
+        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField2KeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Perfil : ");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,6 +179,38 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_jPasswordField1KeyTyped
+
+    private void jPasswordField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField2KeyTyped
+        this.controlador.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_jPasswordField2KeyTyped
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        this.perfil = ((ModeloComboPerfil)this.jComboBox1.getModel()).obtenerPerfil();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.controlador.btnGuardarClic(evt);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

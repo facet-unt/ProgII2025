@@ -57,4 +57,8 @@ public interface IGestorUsuarios {
     public static final String NOMBRE_ARCHIVO = "Usuarios.txt";
     
     public static final String USUARIO_BORRADO = "Usuario borrado exitosamente";
+    
+    public static final String ERROR_USUARIO = "No se puede eliminar el usuario, posee un pedido pendiente.";
+    
+    public static final String USUARIO_NO_EXISTENTE = "El usuario no existe";
 }

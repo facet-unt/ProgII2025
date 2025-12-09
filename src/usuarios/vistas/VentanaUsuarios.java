@@ -18,6 +18,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private IControladorUsuarios controlador;
     private ModeloTablaUsuarios modelotabla;
+    public int filaSeleccionada;
     /**
      * Creates new form VentanaUsuarios
      
@@ -191,7 +192,6 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarTabla(ModeloTablaUsuarios modelo){
-        this.modelotabla = new ModeloTablaUsuarios();
         this.jTable1.setModel(modelo);
     }
     
@@ -216,7 +216,20 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         
         return this.modelotabla.seleccionarUsuario(i);
     }
-        
+    
+    private void agregarListenerATabla(JTable tabla) { 
+        tabla.getSelectionModel().addListSelectionListener((e) -> { 
+        if (!e.getValueIsAdjusting()) {                 
+            if (tabla.getSelectedRow() != -1) 
+                this.filaSeleccionada = tabla.getSelectedRow(); 
+            } 
+        }); 
+    } 
+
+    public ModeloTablaUsuarios verModelo(){
+        return (ModeloTablaUsuarios)jTable1.getModel();
+    }
+    
     public javax.swing.JButton getBtnBorrar() {
         return jButton4;
     }

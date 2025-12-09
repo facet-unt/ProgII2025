@@ -100,6 +100,22 @@ public class GestorUsuarios implements IGestorUsuarios{
         return VALIDACION_EXITO;
     }
     
+    public String modificarUsuarios(Usuario us, String nombre, String apellido, String correo, String clave, String claverepetida, Perfil perfil){
+        if(existeEsteUsuario(us) == true){
+            borrarUsuario(us);
+            us.asignarApellido(apellido);
+            us.asignarClave(clave);
+            us.asignarNombre(nombre);
+            us.asignarCorreo(correo);
+            agregarUsuario(us);
+            return EXITO;
+        }
+        else
+            return USUARIO_NO_EXISTENTE;
+    }
+    
+    
+    
     @Override
     public List<Usuario> verUsuarios(){
         this.usuarios = leerUsuarios();
@@ -145,11 +161,15 @@ public class GestorUsuarios implements IGestorUsuarios{
             GestorPedidos gp = GestorPedidos.getInstancia();
 
             if (gp.hayPedidosConEsteCliente(cliente)) {
-                return "No se puede eliminar el usuario, posee un pedido pendiente.";
+                return ERROR_USUARIO;
             }
             else {
-            usuarios.remove(usuario);    
-            return "Usuario removido con exito";
+                reescribirArchivo();
+                usuarios.remove(usuario);
+                for(Usuario u : usuarios){
+                    this.agregarUsuario(u);
+                }
+            return USUARIO_BORRADO;
             }
         }
 
@@ -255,6 +275,19 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
         }
         return null;
+    }
+    
+    public String reescribirArchivo(){
+        File f = new File(NOMBRE_ARCHIVO);
+        try{
+            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, false); 
+            fw.write("");
+            fw.close();
+            return ESCRITURA_OK;
+        }
+        catch (IOException ex) {
+            return ESCRITURA_ERROR;
+        }
     }
 }
 
