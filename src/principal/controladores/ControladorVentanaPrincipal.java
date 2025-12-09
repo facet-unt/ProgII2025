@@ -36,7 +36,6 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     @Override
     public void botonUsuariosClic(ActionEvent evt) {
         System.out.println("Boton usuarios Clic");
-        //IControladorUsuarios controladorUsuarios= new ControladorVentanaUsuarios();
     }
 
     @Override
