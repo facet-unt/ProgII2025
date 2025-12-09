@@ -37,6 +37,9 @@ public class ControladorAMProducto implements IControladorAMProducto{
             this.vp.setTitle("Modificación");
             this.vp.txtCodigo.setText(Integer.toString(p.verCodigo()));
             this.vp.txtCodigo.setEnabled(false);
+            vp.verTxtDescripcion().setText(p.verDescripcion());
+            vp.verTxtPrecio().setText(String.valueOf(p.verPrecio()));
+            vp.verComboCategorias().setSelectedItem(p.verCategoria().toString());
             productoAEditar=p;
         }
         else
@@ -55,7 +58,7 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     }
 
-    public void inicializarModificacion(Producto p) {
+   /* public void inicializarModificacion(Producto p) {
         this.productoAEditar = p;
         this.esModificacion = true;
 
@@ -66,8 +69,8 @@ public class ControladorAMProducto implements IControladorAMProducto{
         vp.verTxtDescripcion().setText(p.verDescripcion());
         vp.verTxtPrecio().setText(String.valueOf(p.verPrecio()));
         vp.verComboCategorias().setSelectedItem(p.verCategoria().toString());
-    }
-
+    }*/
+     
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         vp.dispose();    
