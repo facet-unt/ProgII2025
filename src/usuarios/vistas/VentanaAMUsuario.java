@@ -6,10 +6,13 @@ package usuarios.vistas;
 
 import interfaces.IControladorAMUsuario;
 import java.awt.Frame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import usuarios.modelos.ModeloComboPerfil;
+import usuarios.modelos.Perfil;
 
 /**
  *
@@ -27,6 +30,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         super((Frame)null, true);
         initComponents();
         this.controlador = controlador;
+        this.crearKeyListeners();
     }
     
     // Metodo para limpiar la ventana antes de mostrarla al intentar crear un nuevo usuario
@@ -49,6 +53,45 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     
     public void definirComboPerfil(ModeloComboPerfil comboPerfil) {
         this.comboPerfiles.setModel(comboPerfil);
+    }
+    
+    // Metodo para mostrar el perfil de un usuario al modificar
+    public void mostrarPerfilAModificar(Perfil perfil) {
+        this.comboPerfiles.setSelectedItem(perfil);
+    }
+    
+    // Metodo para agregar KeyListeners a los cuadros de texto
+    
+    private void crearKeyListeners() {
+        this.txtNombre.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtNombrePresionarTecla(evt);
+            }
+        });
+        
+        this.txtApellido.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtApellidoPresionarTecla(evt);
+            }
+        });
+        
+        this.txtCorreo.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt) {
+                controlador.txtCorreoPresionarTecla(evt);
+            }
+        });
+        
+        this.passClave.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt) {
+                controlador.passClavePresionarTecla(evt);
+            }
+        });
+        
+        this.passClaveRepetida.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt) {
+                controlador.passClaveRepetidaPresionarTecla(evt);
+            }
+        });
     }
     
     
