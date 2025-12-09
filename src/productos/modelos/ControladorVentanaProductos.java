@@ -32,7 +32,8 @@ public class ControladorVentanaProductos implements IControladorProductos{
     
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        
+        TableModel modelo = new ModeloTablaProductos(gp.buscarProductos(ventanaProductos.verBuscarCampoTexto().getText().trim()));
+        ventanaProductos.verTablaProductos().setModel(modelo);
     }
 
     @Override
@@ -46,8 +47,9 @@ public class ControladorVentanaProductos implements IControladorProductos{
         List<Producto> productosPorDescripcion = new ArrayList<>();
         descripcionTexto = ventanaProductos.verBuscarCampoTexto().getText().trim();
         productosPorDescripcion = gp.buscarProductos(descripcionTexto);
-        if (!descripcionTexto.equals("") || !descripcionTexto == null) {
-            
+        if (!descripcionTexto.equals("") || descripcionTexto != null) {
+            TableModel modelo = new ModeloTablaProductos(gp.menu());
+            ventanaProductos.verTablaProductos().setModel(modelo);
         }
         TableModel modelo = new ModeloTablaProductos(productosPorDescripcion);
         ventanaProductos.verTablaProductos().setModel(modelo);
@@ -55,6 +57,19 @@ public class ControladorVentanaProductos implements IControladorProductos{
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
+        String descripcionTexto;
+        List<Producto> productosPorDescripcion = new ArrayList<>();
+        descripcionTexto = ventanaProductos.verBuscarCampoTexto().getText().trim();
+        if (!descripcionTexto.equals("") && descripcionTexto != null) {
+            productosPorDescripcion = gp.buscarProductos(descripcionTexto);
+            if ((descripcionTexto.charAt(descripcionTexto.length() - 1) != KeyEvent.CHAR_UNDEFINED) && !evt.isActionKey()) {
+                TableModel modelo = new ModeloTablaProductos(productosPorDescripcion);
+                ventanaProductos.verTablaProductos().setModel(modelo);
+            }
+        } else {
+            TableModel modelo = new ModeloTablaProductos(gp.menu());
+            ventanaProductos.verTablaProductos().setModel(modelo);
+        }
         
     }
 

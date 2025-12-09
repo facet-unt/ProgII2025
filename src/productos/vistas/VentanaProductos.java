@@ -68,6 +68,11 @@ public class VentanaProductos extends javax.swing.JDialog {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         descripcionLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         descripcionLabel.setText("Descripcion");
@@ -101,6 +106,12 @@ public class VentanaProductos extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        buscarCampoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscarCampoTextoKeyReleased(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +238,14 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void buscarCampoTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarCampoTextoKeyReleased
+        this.controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_buscarCampoTextoKeyReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

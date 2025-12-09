@@ -1,3 +1,2 @@
 ,1,Producto1,Plato principal,Disponible,2.6,
-,2,Producto2,Entrada,Disponible,5.0,
 ,9,Suprema con ensalada,Plato principal,Disponible,2.8,
