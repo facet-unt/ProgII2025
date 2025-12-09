@@ -25,8 +25,8 @@ public class Empleado extends Usuario{
     }
     
     @Override 
-    public String verPerfil() {
-       return "Empleado";
+    public Perfil verPerfil() {
+       return Perfil.ENCARGADO;
     }
 }
 

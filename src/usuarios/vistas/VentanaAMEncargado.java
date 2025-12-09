@@ -73,12 +73,14 @@ public class VentanaAMEncargado extends JDialog {
 
         jLabel4.setText("Correo:");
 
-        txtCorreo.setToolTipText("Documento");
+        txtCorreo.setToolTipText("Correo");
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
+
+        passClave.setToolTipText("Clave");
 
         jLabel6.setText("Clave:");
 

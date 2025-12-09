@@ -30,6 +30,8 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         configurarTabla();
     }
 
+    
+    
     /*Metodo auxiliar que me permite asignarle un modelo a la tabla */
     private void configurarTabla(){
         this.modeloTabla = new ModeloTablaUsuarios();

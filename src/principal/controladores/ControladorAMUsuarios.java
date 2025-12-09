@@ -31,6 +31,23 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
         this.usuario = usuario;
         this.ventanaAMUsuario = new VentanaAMUsuario(ventanaPadre, this);
         
+        if(this.usuario != null){
+            /*Ventana Modificar*/
+            this.ventanaAMUsuario.setTitle("Modificar Usurio");
+            
+            /*Cargamos los datos en la ventana*/
+            this.ventanaAMUsuario.setTxtCorreo(usuario.verCorreo());
+            this.ventanaAMUsuario.setTxtApellido(usuario.verApellido());
+            this.ventanaAMUsuario.setTxtNombre(usuario.verNombre());
+            this.ventanaAMUsuario.setPerfilSeleccionado(usuario.verPerfil());
+            this.ventanaAMUsuario.bloquearCampoCorreo();
+            this.ventanaAMUsuario.bloquearCampoPerfil();
+        }else{
+            /*Ventana Nuevo */
+            this.ventanaAMUsuario.setTitle("Nuevo Usuario");
+        }
+        
+        
         
         ModeloComboPerfil modeloPerfil = new ModeloComboPerfil();
         this.ventanaAMUsuario.configurarModeloPerfil(modeloPerfil); /*Configura el modelo Combo Perfil*/
@@ -39,11 +56,15 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
         
     }
 
+    /*Metodo para el boton que permite guardar los datos ingresados*/
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         String resultado;
         GestorUsuarios gu = GestorUsuarios.instanciar();
+        String claveNueva;
+        String claveNuevaRepetida;
         
+        /*Trabajamos con los datos que nos da la ventana para no romper con el patron MVC*/
         String txtCorreo = this.ventanaAMUsuario.obtenerCorreo();
         String txtApe = this.ventanaAMUsuario.obtenerApellido();
         String txtNom = this.ventanaAMUsuario.obtenerNombre();
@@ -52,7 +73,7 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
         Perfil perfil = this.ventanaAMUsuario.obtenerPerfilSeleccionado();
 
         if(!txtClave.equals(txtClaveRepetida)){
-            javax.swing.JOptionPane.showMessageDialog(this.ventanaAMUsuario, 
+            javax.swing.JOptionPane.showMessageDialog(this.ventanaAMUsuario, /*Mensaje que muestra al usuario*/
             "Las contraseñas no coinciden.", 
             "Error de Validación", 
             javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -62,23 +83,37 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
         if(this.usuario == null){
             /*Crea un usuario nuevo*/
             resultado = gu.crearUsuario(txtCorreo, txtApe, txtNom, perfil, txtClave, txtClaveRepetida);
+            
         }
          else{
             /*Modifica un usuario*/
-            resultado = gu.modificarUsuario(usuario ,txtCorreo, txtApe, txtNom, txtClave, txtClaveRepetida);
+            if (txtClave.isEmpty() && txtClaveRepetida.isEmpty()) {
+                claveNueva = this.usuario.verClave(); /*Si el usuario no ingresa ninguna clave, decide guardarla como esta*/
+                claveNuevaRepetida = this.usuario.verClave();
+            }else{
+                if(!txtClave.equals(txtClaveRepetida)){
+                    javax.swing.JOptionPane.showMessageDialog(this.ventanaAMUsuario, 
+                    "Las contraseñas no coinciden.", 
+                    "Error de Validación", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                claveNueva = txtClave;
+                claveNuevaRepetida = txtClaveRepetida;
+            }
+            resultado = gu.modificarUsuario(usuario ,txtCorreo, txtApe, txtNom, claveNueva, claveNuevaRepetida);
         }
         
         if (resultado.equals(GestorUsuarios.OPERACION_EXITOSA)) { 
             System.out.println(resultado);
-            this.ventanaAMUsuario.dispose(); // Cerramos la ventana si salió bien
+            this.ventanaAMUsuario.dispose(); /*Cerramos la ventana*/
         } 
          else {
-            System.out.println("usario creado exitosamente");
-            // Mostramos el error que devolvió el gestor (ej: "Correo repetido")
             System.out.println("Error al crear o modificar");
         }  
     }
 
+    /*Metodo que destruye la ventana*/
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         this.ventanaAMUsuario.dispose();

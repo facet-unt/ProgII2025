@@ -30,7 +30,8 @@ public class ControladorProductos implements IControladorProductos{
     public ControladorProductos(VentanaPrincipal ventanaPadre) {
         this.ventanaPadre= ventanaPadre;
         System.out.println("SE INICIA CONTROLADOR DE PRODUCTOS"); 
-        this.ventana = new VentanaProductos(null, true, this);        
+        this.ventana = new VentanaProductos(null, true, this);       
+        this.ventana.setTitle("Productos");
         this.ventana.setLocationRelativeTo(null);
         this.btnBuscarClic(null);
         this.ventana.setVisible(true);   

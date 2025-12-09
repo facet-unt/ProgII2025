@@ -6,7 +6,7 @@ package principal.controladores;
 
 import interfaces.IControladorAMProducto;
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
-import interfaces.IGestorUsuarios;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import principal.vistas.VentanaPrincipal;
@@ -87,7 +87,7 @@ public class ControladorAMProductos implements IControladorAMProducto {
         }
         
         System.out.println(resultado);
-        if(resultado.equals(IGestorUsuarios.OPERACION_EXITOSA))
+        if(resultado.equals(IGestorProductos.EXITO))
         {
             System.out.println("Producto creado exitosamente");
             this.ventanaAMProductos.dispose(); 

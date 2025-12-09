@@ -1,2 +1,5 @@
 1-arroz-Entrada-Disponible-323232.0
 34433-errerere-Entrada-Disponible-343.0
+1234-PruebaCreacion-Entrada-Disponible-900.0
+9999-Prueba2-Entrada-Disponible-8000.0
+12345-Prueba3-Entrada-Disponible-99000.0

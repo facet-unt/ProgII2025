@@ -17,7 +17,8 @@ public abstract class Usuario implements Comparable<Usuario> {
     private String apellido;
     private String nombre;
     
-    public abstract String verPerfil(); /*Permite saber que tipo de Usuario es*/
+    
+    public abstract Perfil verPerfil(); /*Permite saber que tipo de Usuario es*/
     
     /* Constructor */ 
     public Usuario(String correo, String clave, String apellido, String nombre) {

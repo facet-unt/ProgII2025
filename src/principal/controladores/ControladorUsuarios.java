@@ -30,6 +30,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         this.ventanaPadre = ventanaPadre;
         System.out.println("SE INICIA CONTROLADOR DE USUARIOS"); 
         this.ventana = new VentanaUsuarios(this.ventanaPadre, true, this);
+        this.ventana.setTitle("Usuarios");
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);   
     }
@@ -105,7 +106,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         GestorUsuarios gu = GestorUsuarios.instanciar();
@@ -131,9 +132,5 @@ public class ControladorUsuarios implements IControladorUsuarios{
                     JOptionPane.WARNING_MESSAGE);
         }
         return u;
-    }
-    
- 
-    
-    
+    } 
 }

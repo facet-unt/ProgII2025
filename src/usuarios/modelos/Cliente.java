@@ -56,7 +56,7 @@ public class Cliente extends Usuario{
     }
 
     @Override 
-    public String verPerfil() {
-       return "Cliente";
+    public Perfil verPerfil() {
+       return Perfil.CLIENTE;
     }
 } 

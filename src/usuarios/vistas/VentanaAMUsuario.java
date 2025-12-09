@@ -63,10 +63,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         return (Perfil) this.comboPerfil.getSelectedItem();
     }
     
-    /*Metodo para configurar el perfil en caso de modificar un usuario*/
-    public void setPerfilSeleccionado(Perfil perfil) {
-        this.comboPerfil.setSelectedItem(perfil);
-    }
+    
     
     /* Métodos para mover el foco (Cursor) */
     public void enfocarApellido() {
@@ -87,6 +84,33 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 
     public void enfocarClaveRepetida() {
         this.txtClaveRepetida.requestFocus();
+    }
+    
+    /*Metodos setters para cargar los datos en la ventana Modificar Usuario */
+
+    public void setTxtCorreo(String correo) {
+        this.txtCorreo.setText(correo);
+    }
+
+    public void setTxtApellido(String apellido) {
+        this.txtApellido.setText(apellido);
+    }
+
+    public void setTxtNombre(String nombre) {
+        this.txtNombre.setText(nombre);
+    }
+
+    public void setPerfilSeleccionado(Perfil perfil) {
+        this.comboPerfil.setSelectedItem(perfil);
+    }
+
+    public void bloquearCampoCorreo() {
+        this.txtCorreo.setEditable(false);
+        this.txtCorreo.setEnabled(false); 
+    }
+    
+    public void bloquearCampoPerfil(){
+        this.comboPerfil.setEnabled(false);
     }
 
     
