@@ -1,2 +1,4 @@
-juan@;juan;Barrionuevo beatriz;juan;Empleado
-hffhffh@;juan;juan;fhfh;Encargado
+juampi@gmail.com;98593214;Barrionuevo;Juan;Empleado
+iricaramuti@gmail.com;62442;Caramuti;Irina;Cliente
+pirulitopirulo5@gmail.com;Maxi;Yiscamonte;Maximiliano;Encargado
+the-wraith@gmail.com;KazB;Ghafa;Inej;Empleado
