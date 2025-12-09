@@ -4,9 +4,6 @@
  */
 package principal.vistas;
 
-import interfaces.IControladorPrincipal;
-import productos.vistas.VentanaProductos;
-import usuarios.vistas.VentanaUsuarios;
 
 /**
  *
@@ -22,7 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
-        this.controlador = new principal.controladores.ControladorPrincipal(this);
+        this.controlador = principal.controladores.ControladorPrincipal.instanciar(this);
     }
 
     /**

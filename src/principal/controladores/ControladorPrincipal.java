@@ -6,8 +6,6 @@ package principal.controladores;
 
 import interfaces.IControladorPrincipal;
 import java.awt.event.ActionEvent;
-import interfaces.IControladorPrincipal;
-import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import usuarios.vistas.VentanaUsuarios;
@@ -17,12 +15,20 @@ import productos.vistas.VentanaProductos;
  * @author Fernando
  */
 public class ControladorPrincipal implements IControladorPrincipal{
+    private static ControladorPrincipal instancia;
     private JFrame ventanaPrincipal;
 
-    public ControladorPrincipal(JFrame ventanaPrincipal) {
+    private ControladorPrincipal(JFrame ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
+        this.ventanaPrincipal.setTitle(TITULO);
     }
     
+    public static IControladorPrincipal instanciar(JFrame ventanaPrincipal) {
+        if (instancia == null) {
+            instancia = new ControladorPrincipal(ventanaPrincipal);
+        }
+        return instancia;
+    }
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
