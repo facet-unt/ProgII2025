@@ -22,26 +22,32 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
-    private VentanaPrincipal ventanaPrincipal;
+    private static VentanaPrincipal ventanaPrincipal;
     private VentanaUsuarios ventanaUsuarios; 
     IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
     private String apellido;
     private Usuario usuario;
     
-    public ControladorUsuarios() {
+    public ControladorUsuarios(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
         ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this,gestorUsuarios.verUsuarios());
         ventanaUsuarios.setTitle("Usuarios");
         ventanaUsuarios.setLocationRelativeTo(ventanaPrincipal);
         ventanaUsuarios.setVisible(true);
     }
     
-    public static ControladorUsuarios instanciar() {
+    public static ControladorUsuarios instanciar(VentanaPrincipal ventanaPrincipal) {
         if (instancia == null) {
-            instancia = new ControladorUsuarios();
+            instancia = new ControladorUsuarios(ventanaPrincipal);
         }
+        else
+            nuevaInstancia(ventanaPrincipal);
         return instancia;
 }
     
+    private static void nuevaInstancia(VentanaPrincipal ventanaPrincipal){
+        instancia = new ControladorUsuarios(ventanaPrincipal);
+    }
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
         ventanaUsuarios.requestFocusInWindow();

@@ -20,7 +20,7 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorCrearUsuarios implements IControladorAMUsuario{
     private static ControladorCrearUsuarios instancia;
-    private VentanaUsuarios ventanaUsuarios;
+    private static VentanaUsuarios ventanaUsuarios;
     private VentanaCrearUsuarios ventanaCrearUsuarios;
     private String nombre;
     private String apellido;
@@ -29,7 +29,8 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
     private String claveRepetida;
     IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
     
-    public ControladorCrearUsuarios() {
+    public ControladorCrearUsuarios(VentanaUsuarios ventanaUsuarios) {
+        this.ventanaUsuarios = ventanaUsuarios;
         ventanaCrearUsuarios = new VentanaCrearUsuarios(ventanaUsuarios,this);
         ventanaCrearUsuarios.setLocationRelativeTo(ventanaUsuarios);
         ventanaCrearUsuarios.setTitle(TITULO_NUEVO);
@@ -41,11 +42,15 @@ public class ControladorCrearUsuarios implements IControladorAMUsuario{
     
     public static ControladorCrearUsuarios instanciar() {
         if (instancia == null) {
-            instancia = new ControladorCrearUsuarios();
+            instancia = new ControladorCrearUsuarios(ventanaUsuarios);
         }
+        else
+            nuevaInstancia(ventanaUsuarios);
         return instancia;
     }    
-
+    private static void nuevaInstancia(VentanaUsuarios ventanaUsuarios){
+        instancia = new ControladorCrearUsuarios(ventanaUsuarios);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         gestorUsuarios.crearUsuario(correo, apellido, nombre, ventanaCrearUsuarios.verPerfil(), clave, claveRepetida);

@@ -36,12 +36,12 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     }
     //@Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorproductos = ControladorProductos.instanciar(); 
+        IControladorProductos controladorproductos = ControladorProductos.instanciar(ventana); 
     }
 
     //@Override
     public void btnUsuariosClic(ActionEvent evt) {
-        IControladorUsuarios controladorusuarios = ControladorUsuarios.instanciar();
+        IControladorUsuarios controladorusuarios = ControladorUsuarios.instanciar(ventana);
     }
 
     //@Override

@@ -21,7 +21,7 @@ import productos.vistas.VentanaProductos;
  */
 public class ControladorCrearProductos implements IControladorAMProducto {
     private static ControladorCrearProductos instancia;
-    private VentanaProductos ventanaProductos;
+    private static VentanaProductos ventanaProductos;
     private VentanaCrearProductos ventanaCrearProductos;
     IGestorProductos gestorProductos = GestorProductos.instanciar();
     private int codigo;
@@ -29,7 +29,8 @@ public class ControladorCrearProductos implements IControladorAMProducto {
     private float precio;
     private ModeloTablaProductos modelo;
 
-    public ControladorCrearProductos() {
+    public ControladorCrearProductos(VentanaProductos ventanaProductos) {
+        this.ventanaProductos = ventanaProductos;
         ventanaCrearProductos = new VentanaCrearProductos(ventanaProductos,this);
         ventanaCrearProductos.setLocationRelativeTo(ventanaProductos);
         ventanaCrearProductos.setTitle(TITULO_NUEVO);    
@@ -37,15 +38,20 @@ public class ControladorCrearProductos implements IControladorAMProducto {
         ventanaCrearProductos.toFront();
         ventanaCrearProductos.requestFocus();
         ventanaCrearProductos.requestFocusInWindow();
+        
     }
     
     public static ControladorCrearProductos instanciar() {
         if (instancia == null) {
-            instancia = new ControladorCrearProductos();
+            instancia = new ControladorCrearProductos(ventanaProductos);
         }
+        else
+            nuevaInstancia(ventanaProductos);
         return instancia;
     }    
-    
+    private static void nuevaInstancia(VentanaProductos ventanaProductos){
+        instancia = new ControladorCrearProductos(ventanaProductos);
+    }
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         ventanaCrearProductos.dispose();

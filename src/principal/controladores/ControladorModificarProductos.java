@@ -46,14 +46,18 @@ public class ControladorModificarProductos implements IControladorAMProducto{
         if (instancia == null) {
             instancia = new ControladorModificarProductos(ventanaProductos,producto);
         }
+        else
+            nuevaInstancia(ventanaProductos);
         return instancia;
     }
-
+    private static void nuevaInstancia(VentanaProductos ventanaProductos){
+        instancia = new ControladorModificarProductos(ventanaProductos,producto);
+    }
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         ventanaModificarProductos.dispose();
     }
-
+    
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);

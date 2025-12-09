@@ -30,17 +30,20 @@ public class ControladorProductos implements IControladorProductos {
     private ModeloTablaProductos modelo;
     private Producto producto;
     
-    public ControladorProductos() {
+    public ControladorProductos(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
         ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this,gestorProductos.menu()); 
         ventanaProductos.setTitle("Productos");
         ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
         ventanaProductos.setVisible(true);
     }
     
-    public static ControladorProductos instanciar() {
+    public static ControladorProductos instanciar(VentanaPrincipal ventanaPrincipal) {
         if (instancia == null) {
-            instancia = new ControladorProductos();
+            instancia = new ControladorProductos(ventanaPrincipal);
         }
+        else
+            nuevaInstancia(ventanaPrincipal);
         return instancia;
 }
     
@@ -48,9 +51,13 @@ public class ControladorProductos implements IControladorProductos {
     public void ventanaObtenerFoco(WindowEvent evt) {
         ventanaProductos.requestFocusInWindow();
     }
-
+    private static void nuevaInstancia(VentanaPrincipal ventanaPrincipal){
+        instancia = new ControladorProductos(ventanaPrincipal);
+    }
     @Override
     public void btnVolverClic(ActionEvent evt) {
+        ventanaProductos.setVisible(false);
+        ventanaPrincipal.setVisible(true);
         ventanaProductos.dispose();
     }
 

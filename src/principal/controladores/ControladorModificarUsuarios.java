@@ -23,7 +23,7 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
     private static ControladorModificarUsuarios instancia;
     private VentanaUsuarios ventanaUsuarios;
     private VentanaModificarUsuarios ventanaModificarUsuarios;
-    private Usuario usuario;
+    private static Usuario usuario;
      private String nombre;
     private String apellido;
     private String correo;
@@ -47,9 +47,13 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
         if (instancia == null) {
             instancia = new ControladorModificarUsuarios(ventanaUsuarios,usuario);
         }
+        else
+            nuevaInstancia(ventanaUsuarios);
         return instancia;
     }    
-
+    private static void nuevaInstancia(VentanaUsuarios ventanaUsuarios){
+        instancia = new ControladorModificarUsuarios(ventanaUsuarios,usuario);
+    }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
