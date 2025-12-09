@@ -151,6 +151,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public ArrayList<Usuario> buscarUsuarios(String apellido) {
         ArrayList<Usuario> buscados = new ArrayList<>();
+        apellido = apellido.toLowerCase();
         for (Usuario u : usuarios) {
             if (u.verApellido().toLowerCase().contains(apellido)) {
                 buscados.add(u);
