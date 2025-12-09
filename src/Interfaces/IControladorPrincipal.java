@@ -1,7 +1,3 @@
-/**
- *
- * @author Asus
- */
 package Interfaces;
 /**
  *

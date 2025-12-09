@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package principal.controladores;
-/**
- *
- * @author Usuario
- */
 
 
 import Interfaces.IControladorPrincipal;
@@ -15,6 +7,8 @@ import usuarios.vistas.VentanaUsuarios;
 import productos.vistas.VentanaProductos;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+
+
 
 public class ControladorVentanaPrincipal implements IControladorPrincipal {
 
@@ -27,23 +21,38 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
         vista.getBtnSalir().addActionListener(this::btnSalirClic);
     }
 
+    
+
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        new VentanaProductos().setVisible(true);
+
+        // 1. Crear el Controlador de Productos, pasando NULL o la vista principal
+        //    Usó 'null' para indicar que la vista no está lista para ser usada por el constructor.
+        ControladorProductos controladorProductos = new ControladorProductos(null); 
+
+        // 2. Crear la Vista, pasándole la Ventana Principal (vista) como padre y el controlador.
+        //    Esto asigna el controlador a la vista.
+        VentanaProductos ventanaProductos = new VentanaProductos(vista, controladorProductos);
+
+        // llamamos a iniciar para que cargue la tabla.
+        controladorProductos.iniciar(); 
+
+        // 4. Mostrar la ventana
+        ventanaProductos.setVisible(true);
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        // --- CORRECCIÓN AQUÍ ---
-        // Tu ventana pide (Frame, boolean), así que se los pasamos:
+       
+        // ventana pide (Frame, boolean)
         // 'vista' es la ventana principal (Frame) y 'true' es para que sea modal
-        VentanaUsuarios vUsuarios = new VentanaUsuarios(vista, true);
+        VentanaUsuarios ventanaUsuarios = new VentanaUsuarios(vista, true);
         
-        // Creamos el controlador
-        new ControladorUsuarios(vUsuarios); 
+        // Creó el controlador
+        new ControladorUsuarios(ventanaUsuarios); 
         
         // Mostramos la ventana
-        vUsuarios.setVisible(true);
+        ventanaUsuarios.setVisible(true);
     }    
 
     @Override

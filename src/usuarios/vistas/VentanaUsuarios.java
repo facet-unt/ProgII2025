@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package usuarios.vistas;
 /**
  *
@@ -77,12 +73,28 @@ public class VentanaUsuarios extends JDialog {
     }
 
 
-    public JButton getBtnBuscar() { return btnBuscar; }
-    public JButton getBtnNuevo() { return btnNuevo; }
-    public JButton getBtnModificar() { return btnModificar; }
-    public JButton getBtnBorrar() { return btnBorrar; }
-    public JButton getBtnVolver() { return btnVolver; }
-    public JTextField getTxtBuscar() { return txtBuscar; }
-    public JTable getTablaUsuarios() { return tablaUsuarios; }
-    public DefaultTableModel getModeloTabla() { return modeloTabla; }
+    public JButton getBtnBuscar() { 
+        return btnBuscar; 
+    }
+    public JButton getBtnNuevo() { 
+        return btnNuevo; 
+    }
+    public JButton getBtnModificar() { 
+        return btnModificar; 
+    }
+    public JButton getBtnBorrar() { 
+        return btnBorrar; 
+    }
+    public JButton getBtnVolver() { 
+        return btnVolver; 
+    }
+    public JTextField getTxtBuscar() { 
+        return txtBuscar; 
+    }
+    public JTable getTablaUsuarios() { 
+        return tablaUsuarios; 
+    }
+    public DefaultTableModel getModeloTabla() { 
+        return modeloTabla; 
+    }
 }

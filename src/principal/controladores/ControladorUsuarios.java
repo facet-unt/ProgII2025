@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package principal.controladores;
-/**
- *
- * @author Usuario
- */
 
 
 import Interfaces.IGestorUsuarios;
@@ -160,8 +152,18 @@ public class ControladorUsuarios implements IControladorUsuarios, ActionListener
     }
     
     
-    @Override public void keyTyped(KeyEvent e) { txtApellidoPresionarTecla(e); }
-    @Override public void keyPressed(KeyEvent e) {}
-    @Override public void windowGainedFocus(WindowEvent e) { ventanaObtenerFoco(e); }
-    @Override public void windowLostFocus(WindowEvent e) {}
+    @Override 
+    public void keyTyped(KeyEvent e) { 
+        txtApellidoPresionarTecla(e); 
+    }
+    @Override 
+    public void keyPressed(KeyEvent e) {
+    }
+    @Override 
+    public void windowGainedFocus(WindowEvent e) { 
+        ventanaObtenerFoco(e); 
+    }
+    @Override 
+    public void windowLostFocus(WindowEvent e) {
+    }
 }
