@@ -51,24 +51,18 @@ public final class GestorProductos implements IGestorProductos{
     }
     @Override
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        String validacion = validarDatos(codigo, descripcion,precio,categoria,estado);
+        String validacion = validarDatos(productoAModificar.verCodigo(), descripcion, precio, categoria, estado);
+        
         if(validacion.equals(VALIDACION_EXITO)){
             if(existeEsteProducto(productoAModificar)){
-                if (productoAModificar.verCodigo() != codigo) { 
-                    Producto pConEseCodigo = obtenerProducto(codigo); 
-                    if (pConEseCodigo != null) {
-                        return PRODUCTOS_DUPLICADOS; 
-                    }
-                }
-                productoAModificar.asignarCodigo(codigo);
                 productoAModificar.asignarDescripcion(descripcion);
                 productoAModificar.asignarPrecio(precio);
                 productoAModificar.asignarCategoria(categoria);
                 productoAModificar.asignarEstado(estado);
                 this.guardarProductos();
                 return EXITO;
-        }
-        return PRODUCTO_INEXISTENTE;
+            }
+            return PRODUCTO_INEXISTENTE;
         }
         return validacion;
     }
@@ -80,8 +74,11 @@ public final class GestorProductos implements IGestorProductos{
     @Override
     public List<Producto> buscarProductos(String descripcion) {
         List<Producto> ps = new ArrayList<>();
+        String busqueda = descripcion.toLowerCase(); 
         for (Producto p : productos)
-            if(p.verDescripcion().contains(descripcion)) ps.add(p);
+            if(p.verDescripcion().toLowerCase().contains(busqueda)) { 
+                ps.add(p);
+            }
         Collections.sort(ps, compProd);
         return ps;
     }
@@ -149,6 +146,7 @@ public final class GestorProductos implements IGestorProductos{
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(SEPARADOR);
+                if (datos.length < 5) continue;
                 int codigo = Integer.parseInt(datos[0]);
                 String descripcion = datos[1];
                 float precio = Float.parseFloat(datos[2]);
