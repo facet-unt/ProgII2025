@@ -30,7 +30,6 @@ public class VentanaAMProducto extends JDialog {
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);
         this.controlador = controlador;
         initComponents();
     }
@@ -129,7 +128,7 @@ public class VentanaAMProducto extends JDialog {
 
         botonGuardar.setMnemonic('G');
         botonGuardar.setText("Guardar");
-        botonGuardar.setToolTipText("Guarda el profesor");
+        botonGuardar.setToolTipText("Guardar el Producto");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarClic(evt);
