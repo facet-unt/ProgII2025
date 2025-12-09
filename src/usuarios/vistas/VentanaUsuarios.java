@@ -4,8 +4,12 @@
  */
 package usuarios.vistas;
 
-import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
 import principal.controladores.ControladorUsuarios;
+import usuarios.modelos.ModeloTablaUsuarios;
+import usuarios.modelos.Usuario;
 
 /**
  *
@@ -14,13 +18,20 @@ import principal.controladores.ControladorUsuarios;
 public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private static ControladorUsuarios controlador;
+    public int filaSeleccionada;
+    private ModeloTablaUsuarios modeloTabla;
+    private static List<Usuario> usuarios = new ArrayList<>();
     /**
      * Creates new form VentanaUsuarios
      */
-    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorUsuarios controlador) {
+    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorUsuarios controlador,List<Usuario> usuarios) {
         super(parent, modal);
         initComponents();
         this.controlador = controlador;
+        this.usuarios = usuarios;
+        this.modeloTabla = new ModeloTablaUsuarios(usuarios);
+        this.jTable1.setModel(modeloTabla);
+        agregarListenerATabla(jTable1);
     }
 
     /**
@@ -54,7 +65,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Descripción:");
+        jLabel1.setText("Apellido:");
 
         jLabel2.setText("Usuarios");
 
@@ -112,26 +123,24 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(BotonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BotonNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BotonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BotonVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel2))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(21, 21, 21)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(BotonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,8 +193,18 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         controlador.btnNuevoClic(evt);
     }//GEN-LAST:event_BotonNuevoActionPerformed
 
+    private void agregarListenerATabla(JTable tabla) { 
+        tabla.getSelectionModel().addListSelectionListener((e) -> { 
+        if (!e.getValueIsAdjusting()) {                 
+            if (tabla.getSelectedRow() != -1) 
+                this.filaSeleccionada = tabla.getSelectedRow(); 
+            } 
+        }); 
+    } 
    
-                                
+    public ModeloTablaUsuarios obtenerModeloProductos() {
+        return (ModeloTablaUsuarios) jTable1.getModel();
+    }
     
     /**
      * @param args the command line arguments
@@ -212,7 +231,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true,controlador);
+                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true,controlador,usuarios);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

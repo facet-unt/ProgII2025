@@ -5,10 +5,12 @@
 package principal.controladores;
 
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import principal.vistas.VentanaPrincipal;
+import usuarios.modelos.GestorUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 
 /**
@@ -19,9 +21,10 @@ public class ControladorUsuarios implements IControladorUsuarios{
     private static ControladorUsuarios instancia;
     private VentanaPrincipal ventanaPrincipal;
     private VentanaUsuarios ventanaUsuarios; 
+    IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciar();
     
     public ControladorUsuarios() {
-        ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this);
+        ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this,gestorUsuarios.verUsuarios());
         ventanaUsuarios.setTitle("Usuarios");
         ventanaUsuarios.setLocationRelativeTo(ventanaPrincipal);
         ventanaUsuarios.setVisible(true);
