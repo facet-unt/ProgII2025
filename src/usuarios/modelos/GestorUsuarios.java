@@ -5,7 +5,10 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     private final String NOMBRE_ARCHIVO = "usuarios.txt";
 
     private GestorUsuarios() {
-
+        leerArchivo();
     }
 
     public static GestorUsuarios instanciar() {
@@ -60,6 +63,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 return ERROR_PERFIL;
         }
         usuario.add(nuevoUsuario);
+        guardarArchivo();
         return EXITO;
     }
 
@@ -70,14 +74,14 @@ public class GestorUsuarios implements IGestorUsuarios {
             if (u.verApellido().equals(apellido)) {
                 resultados.add(u);
             }
-            resultados.sort((u1, u2) -> {
-                int copararApellido = u1.verApellido().compareTo(u2.verApellido());
-                if (copararApellido != 0) {
-                    return copararApellido;
-                }
-                return u1.verNombre().compareToIgnoreCase(u2.verNombre());
-            });
         }
+        resultados.sort((u1, u2) -> {
+            int copararApellido = u1.verApellido().compareTo(u2.verApellido());
+            if (copararApellido != 0) {
+                return copararApellido;
+            }
+            return u1.verNombre().compareToIgnoreCase(u2.verNombre());
+        });
         return resultados;
     }
 
@@ -103,6 +107,7 @@ public class GestorUsuarios implements IGestorUsuarios {
             return ERROR_BORRAR_USUARIO;
         } else {
             usuario.remove(usuarios);
+            guardarArchivo();
             return USUARIO_BORRADO;
         }
     }
@@ -144,12 +149,71 @@ public class GestorUsuarios implements IGestorUsuarios {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))) {
             for (Usuario u : usuario) {
                 String linea = u.verCorreo() + "," + u.verClave() + ","
-                        + u.verApellido() + "," + u.verNombre() + "," + u.obtenerPerfil().toString();
+                        + u.verApellido() + "," + u.verNombre() + "," + u.obtenerPerfil().name(); 
                 bw.write(linea);
                 bw.newLine();
             }
         } catch (IOException e) {
             System.out.println("Error al guardar archivo de usuarios");
+        }
+    }
+
+    private void leerArchivo() {
+        try {
+            File archivo = new File(NOMBRE_ARCHIVO);
+            if (!archivo.exists()) {
+                System.out.println("Archivo de usuarios no encontrado. Se creara al agregar usuarios");
+                return;
+            }
+            
+            try (BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
+                usuario.clear();
+                String linea;
+
+                while ((linea = br.readLine()) != null) {
+                    if (linea.trim().isEmpty()) continue; 
+                    
+                    String[] v = linea.split(",");
+
+                    if (v.length >= 5) {
+                        String correo = v[0].trim();
+                        String clave = v[1].trim();
+                        String apellido = v[2].trim();
+                        String nombre = v[3].trim();
+                        String perfilStr = v[4].trim();
+
+                        try {
+                            Perfil perfil = Perfil.valueOf(perfilStr.toUpperCase());
+                            Usuario nuevoUsuario;
+                            
+                            switch (perfil) {
+                                case CLIENTE:
+                                    nuevoUsuario = new Cliente(correo, clave, apellido, nombre, perfil);
+                                    break;
+                                case EMPLEADO:
+                                    nuevoUsuario = new Empleado(correo, clave, apellido, nombre, perfil);
+                                    break;
+                                case ENCARGADO:
+                                    nuevoUsuario = new Encargado(correo, clave, apellido, nombre, perfil);
+                                    break;
+                                default:
+                                    continue;
+                            }
+                            usuario.add(nuevoUsuario);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Error al parsear perfil: " + perfilStr + " - formato no reconocido");
+                        }
+                    }
+                }
+                System.out.println("Archivo de usuarios cargado correctamente");
+
+            } catch (IOException e) {
+                System.out.println("Error al leer archivo de usuarios");
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.out.println("Error general al leer archivo de usuarios");
+            e.printStackTrace();
         }
     }
 }
