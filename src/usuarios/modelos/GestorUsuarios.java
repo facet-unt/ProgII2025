@@ -5,6 +5,12 @@
 package usuarios.modelos;
 
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,6 +22,14 @@ import pedidos.modelos.GestorPedidos;
  * @author Gaston
  */
 public class GestorUsuarios implements IGestorUsuarios{
+    
+    private static final String SEPARADOR = ";";
+    private static final String ARCHIVO_USUARIOS = "usuarios.txt";
+    private static final String ESCRITURA_OK = "Exito en la escritura";
+    private static final String ESCRITURA_ERROR = "Error en la escritura";
+    private static final String LECTURA_OK = "Exito en la lectura";
+    private static final String LECTURA_ERROR = "Error en la lectura";
+    
     private List<Usuario> usuarios = new ArrayList<>();
     
     private static GestorUsuarios instancia;
@@ -51,6 +65,7 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
         }
         usuarios.add(nuevoUsuario);
+        this.guardarUsuarios();
         return EXITO;
     }
     @Override
@@ -94,7 +109,64 @@ public class GestorUsuarios implements IGestorUsuarios{
                 return "Este Cliente tiene un pedido, no se puede borrar";
         }
         if(usuarios.remove(usuario)){
+            this.guardarUsuarios();
             return "Usuario borrado con exito";
         } else return "El usuario no esta";
+    }
+    
+    public String guardarUsuarios() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_USUARIOS))) {
+            for (Usuario u : this.usuarios) {
+                String perfilStr = this.obtenerPerfil(u).name();
+                String linea = u.verCorreo() + SEPARADOR + 
+                               u.verApellido() + SEPARADOR + 
+                               u.verNombre() + SEPARADOR + 
+                               perfilStr + SEPARADOR + 
+                               u.verClave();
+                bw.write(linea);
+                bw.newLine();
+            }
+            return ESCRITURA_OK; 
+        } catch (IOException e) {
+            return ESCRITURA_ERROR;
+        }
+    }
+    
+    public String cargarUsuarios() {
+        File archivo = new File(ARCHIVO_USUARIOS);
+        if (!archivo.exists()) {
+            return "ARCHIVO_NO_EXISTE";
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            this.usuarios.clear(); 
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(SEPARADOR);
+                if (datos.length < 5) continue;
+                String correo = datos[0];
+                String apellido = datos[1];
+                String nombre = datos[2];
+                Perfil perfil = Perfil.valueOf(datos[3]); 
+                String clave = datos[4];
+                Usuario nuevo = null;
+                switch (perfil) {
+                    case CLIENTE -> nuevo = new Cliente(correo, clave, apellido, nombre);
+                    case ENCARGADO -> nuevo = new Encargado(correo, clave, apellido, nombre);
+                    case EMPLEADO -> nuevo = new Empleado(correo, clave, apellido, nombre);
+                }
+                if (nuevo != null) {
+                    this.usuarios.add(nuevo);
+                }
+            }
+            return LECTURA_OK;
+        } catch (IOException | IllegalArgumentException e) {
+            return LECTURA_ERROR;
+        }
+    }
+    private Perfil obtenerPerfil(Usuario u) {
+        if (u instanceof Cliente) return Perfil.CLIENTE;
+        if (u instanceof Empleado) return Perfil.EMPLEADO;
+        if (u instanceof Encargado) return Perfil.ENCARGADO;
+        return Perfil.CLIENTE;
     }
 }
