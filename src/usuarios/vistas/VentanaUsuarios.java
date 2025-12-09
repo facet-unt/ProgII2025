@@ -6,6 +6,8 @@ package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
 import java.awt.Frame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
@@ -26,10 +28,21 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         super((Frame)null, true);
         initComponents();
         this.controlador = controlador;
+        this.crearKeyListener();
+        this.btnBuscar.setVisible(false);
     }
     
     public void definirModeloTabla(TableModel modelo) {
         this.jtableUsuarios.setModel(modelo);
+    }
+    
+    private void crearKeyListener() {
+        this.txtApellido.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                controlador.txtApellidoPresionarTecla(evt);
+            }
+        });
     }
     
     // Getters para pasar las variables de instancia al controlador

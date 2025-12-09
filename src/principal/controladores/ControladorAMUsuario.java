@@ -56,6 +56,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
             instancia.ventana.verTxtCorreo().setText(usuario.verCorreo());
             instancia.ventana.verPassClave().setText(usuario.verClave());
             instancia.ventana.verPassClaveRepetida().setText(usuario.verClave());
+            instancia.ventana.mostrarPerfilAModificar(usuario.getPerfil());
             
             instancia.ventana.correoEditable(false);
         }
@@ -90,7 +91,7 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
         }
         else {
             JOptionPane.showMessageDialog(this.ventana, resultado, "Exito", JOptionPane.INFORMATION_MESSAGE);
-            this.ventana.LimpiarVentana();
+            this.ventana.dispose();
         } 
     }
 
@@ -101,27 +102,36 @@ public class ControladorAMUsuario implements IControladorAMUsuario{
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            evt.getComponent().transferFocus();
+        }
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            evt.getComponent().transferFocus();
+        }
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            evt.getComponent().transferFocus();
+        }
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            evt.getComponent().transferFocus();
+        }
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.btnGuardarClic(null);
+        }
+    }  
 }
