@@ -13,7 +13,6 @@ import java.util.List;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 import productos.vistas.ModeloTablaProducto;
-import productos.vistas.VentanaAMProducto;
 import productos.vistas.VentanaProductos;
 
 /**
@@ -24,7 +23,6 @@ public class ControladorProductos implements IControladorProductos{
     
     
     private VentanaProductos vp;
-    private VentanaAMProducto vap;
     private ModeloTablaProducto modelo;
 
     public ControladorProductos() {
@@ -41,10 +39,6 @@ public class ControladorProductos implements IControladorProductos{
 
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
-    }
-    public void mostrarVentanaAMProducto() {
-        vap.setLocationRelativeTo(null);
-        vap.setVisible(true);
     }
 
     @Override
@@ -79,9 +73,8 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public void botonNuevoClic(ActionEvent evt) {
         ControladorAMProducto cvprod = new ControladorAMProducto();
-        ControladorProductos cprod = new ControladorProductos();
-        mostrarVentanaAMProducto();
-        cprod.modelo.actualizarTabla();
+        cvprod.mostrarVentanaProducto();
+        this.modelo.actualizarTabla();
     }
 
     @Override
@@ -127,10 +120,4 @@ public class ControladorProductos implements IControladorProductos{
             modelo.actualizarTabla();
         }
     }
-
-    @Override
-    public void buscarProductos(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
