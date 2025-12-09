@@ -125,8 +125,9 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     public List<Usuario> buscarUsuarios(String apellido) {
         List<Usuario> usuariosBuscados = new ArrayList();
+         String buscado = apellido.toLowerCase();
         for (Usuario u : usuarios) {
-            if (u.verApellido().contains(apellido)) {
+            if (u.verApellido().toLowerCase().contains(apellido)) {
                 
                 usuariosBuscados.add(u);
             }
@@ -246,7 +247,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     
     
-    @Override
+    
     public String modificarUsuario(Usuario usuario, String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida)
     {
          if (correo == null || correo.isEmpty() || !correo.contains("@")) {

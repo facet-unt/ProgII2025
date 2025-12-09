@@ -73,7 +73,7 @@ public class ControladorPrincipaLConsola {
          Usuario usuario1 = gu.obtenerUsuario("correo1@mail.com"); 
         System.out.println("Existe usuario2: " + gu.existeEsteUsuario(usuario2)); 
         
-        System.out.println(gu.modificarUsuario(usuario2, "correo2@mail.com", "Apellido22", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
+        System.out.println(((GestorUsuarios)gu).modificarUsuario(usuario2, "correo2@mail.com", "Apellido22", "Nombre2", Perfil.CLIENTE, "clave2", "clave2"));
         
         System.out.println(gu.borrarUsuario(usuario1));
        
@@ -104,7 +104,7 @@ public class ControladorPrincipaLConsola {
         
            System.out.println("----------------PRUEBA ARRAY-------------------");
           
-       gu.cargarArchivoEnLista();
+       ((GestorUsuarios)gu).cargarArchivoEnLista();
        for (Usuario u: gu.verUsuarios())
        {
            System.out.println(u.toString());

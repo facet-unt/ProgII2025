@@ -50,7 +50,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     public void actualizarTabla() {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
-       gu.cargarArchivoEnLista();
+       ((GestorUsuarios)gu).cargarArchivoEnLista();
         usuarios = gu.verUsuarios();
         Collections.sort(usuarios);
         

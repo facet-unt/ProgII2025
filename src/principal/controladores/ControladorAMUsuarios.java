@@ -121,10 +121,10 @@ private IControladorUsuarios controladorU;
         if(modificar==true){
             if (clave.isEmpty() && claveR.isEmpty())
             {
-                 resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, usuario.verClave(), usuario.verClave());
+                 resultado= ((GestorUsuarios)gu).modificarUsuario(usuario, correo, apellido, nombre, perfil, usuario.verClave(), usuario.verClave());
             }else
             {
-                resultado= gu.modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
+                resultado= ((GestorUsuarios)gu).modificarUsuario(usuario, correo, apellido, nombre, perfil, clave, claveR);
             }
            
            controladorU.ventanaObtenerFoco(null);
