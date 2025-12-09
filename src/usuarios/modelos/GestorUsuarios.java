@@ -133,6 +133,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (!crearArchivo()) {
             return null;
         }
+        usuarios.clear();
         File f = new File(NOMBRE_ARCHIVO_U);
         try (FileReader fr = new FileReader(f);) {
             BufferedReader br = new BufferedReader(fr);
@@ -143,7 +144,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 String clave = cadenas[1];
                 String apellido = cadenas[2];
                 String nombre = cadenas[3];
-                Perfil unPerfil = Perfil.compararValor(cadenas[4]);
+                Perfil unPerfil = Perfil.compararValor(cadenas[4].trim());
                 Usuario unUsuario = instanciarUsuario(correo, clave, apellido, nombre, unPerfil);
                 if (unUsuario != null) {
                     usuarios.add(unUsuario);
@@ -231,6 +232,39 @@ public class GestorUsuarios implements IGestorUsuarios {
         System.out.println(actualizarArchivoCompleto());
         return (OPERACION_EXITOSA);
 
+    }
+    public Boolean validarUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
+        if (correo == null || !correo.contains("@")) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        if (clave == null || clave.isEmpty()) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        if (claveRepetida == null || claveRepetida.isEmpty()) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        
+        if(clave!=claveRepetida){
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }  
+        
+        if (apellido == null && apellido.isEmpty()) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        if (nombre == null && nombre.isEmpty()) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        if (perfil == null) {
+            System.out.println(VALORES_INVALIDOS);
+            return false;
+        }
+        return true;
     }
 
 

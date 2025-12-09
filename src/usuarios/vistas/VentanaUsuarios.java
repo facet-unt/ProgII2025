@@ -91,7 +91,7 @@ public class VentanaUsuarios extends JDialog {
 
         campoApellido = new javax.swing.JTextField();
         labelDescripcion = new javax.swing.JLabel();
-        etiquetaMenu = new javax.swing.JLabel();
+        etiquetaUsuarios = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
@@ -116,8 +116,8 @@ public class VentanaUsuarios extends JDialog {
 
         labelDescripcion.setText("Apellido:");
 
-        etiquetaMenu.setText("Usuarios");
-        etiquetaMenu.setToolTipText("");
+        etiquetaUsuarios.setText("Usuarios");
+        etiquetaUsuarios.setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -236,7 +236,7 @@ public class VentanaUsuarios extends JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(etiquetaMenu))
+                                    .addComponent(etiquetaUsuarios))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -249,7 +249,7 @@ public class VentanaUsuarios extends JDialog {
                     .addComponent(labelDescripcion)
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
-                .addComponent(etiquetaMenu)
+                .addComponent(etiquetaUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,8 +263,6 @@ public class VentanaUsuarios extends JDialog {
                 .addComponent(btnVolver)
                 .addContainerGap())
         );
-
-        etiquetaMenu.getAccessibleContext().setAccessibleName("Usuarios");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -331,11 +329,11 @@ public class VentanaUsuarios extends JDialog {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVolver;
     private javax.swing.JTextField campoApellido;
-    private javax.swing.JLabel etiquetaMenu;
+    private javax.swing.JLabel etiquetaUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDescripcion;
-    private javax.swing.JTable tablaUsuarios;
+    public javax.swing.JTable tablaUsuarios;
     // End of variables declaration//GEN-END:variables
 
     
@@ -368,11 +366,11 @@ public class VentanaUsuarios extends JDialog {
         return labelDescripcion;
     }
 
-    public javax.swing.JLabel getetiquetaMenu() {
-        return etiquetaMenu;
+    public javax.swing.JLabel getetiquetaUsuarios() {
+        return etiquetaUsuarios;
     }
 
-    public javax.swing.JTable getTablaMenu() {
+    public javax.swing.JTable getTablaUsuarios() {
         return tablaUsuarios;
     }
    

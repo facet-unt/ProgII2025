@@ -5,34 +5,30 @@
  */
 package usuarios.vistas;
 
-import productos.vistas.*;
 import java.awt.Dialog;
-import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import principal.controladores.ControladorAMProducto;
 import principal.controladores.ControladorAMUsuario;
 import usuarios.modelos.*;
 
 
 
 public class VentanaAMUsuario extends JDialog {
-    //private ArrayList<Producto> productos = new ArrayList<>();
     private ControladorAMUsuario controlador;
     
     /**
-     * Constructor
+     * ConstructorMofrloComboPerfiles
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      * @param controlador
      */
     public VentanaAMUsuario(Dialog ventanaPadre, ControladorAMUsuario controlador) {
         super(ventanaPadre, true);
+        initComponents();
         this.setLocationRelativeTo(null);      
         this.comboPerfiles.setModel(new ModeloComboPerfiles());
         this.controlador = controlador;
-        initComponents();
     }
     public JTextField verTxtApellido() {
         return txtApellido;
@@ -136,18 +132,18 @@ public class VentanaAMUsuario extends JDialog {
         jLabel1.setText("Nombre:");
 
         txtNombre.setToolTipText("Escribir la descripción aquí");
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
             }
         });
 
         jLabel2.setText("Correo:");
 
         txtCorreo.setToolTipText("Escribir el Precio aquí");
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
             }
         });
 
@@ -172,9 +168,9 @@ public class VentanaAMUsuario extends JDialog {
         jLabel4.setText("Apellido:");
 
         txtApellido.setToolTipText("Escribir el código aquí");
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
             }
         });
 
@@ -182,9 +178,10 @@ public class VentanaAMUsuario extends JDialog {
 
         comboPerfiles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Cliente", "Encargado" }));
         comboPerfiles.setSelectedItem(comboPerfiles.getSelectedItem());
-        comboPerfiles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboPerfilesActionPerformed(evt);
+        comboPerfiles.setName("comboPerfiles"); // NOI18N
+        comboPerfiles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboPerfilesKeyPressed(evt);
             }
         });
 
@@ -192,15 +189,17 @@ public class VentanaAMUsuario extends JDialog {
 
         jLabel7.setText("Repetir clave:");
 
-        clave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                claveActionPerformed(evt);
+        clave.setColumns(20);
+        clave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                claveKeyPressed(evt);
             }
         });
 
-        claveRepetida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                claveRepetidaActionPerformed(evt);
+        claveRepetida.setColumns(20);
+        claveRepetida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                claveRepetidaKeyPressed(evt);
             }
         });
 
@@ -231,9 +230,9 @@ public class VentanaAMUsuario extends JDialog {
                             .addComponent(txtNombre)
                             .addComponent(comboPerfiles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(claveRepetida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(clave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(claveRepetida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -271,8 +270,6 @@ public class VentanaAMUsuario extends JDialog {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("Nombre:");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -283,32 +280,32 @@ public class VentanaAMUsuario extends JDialog {
 
     private void botonGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarClic
 
-        controlador.botonGuardarClic(evt);
+        controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_botonGuardarClic
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        controlador.txtCorreoPresionarTecla(evt);
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void comboPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPerfilesActionPerformed
-        controlador.comboPerfilesPresionarTecla(evt);
-    }//GEN-LAST:event_comboPerfilesActionPerformed
-
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
         controlador.txtApellidoPresionarTecla(evt);
-    }//GEN-LAST:event_txtApellidoActionPerformed
+    }//GEN-LAST:event_txtApellidoKeyPressed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         controlador.txtNombrePresionarTecla(evt);
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtNombreKeyPressed
 
-    private void claveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claveActionPerformed
-        controlador.passClavePresionarTecla(evt); 
-    }//GEN-LAST:event_claveActionPerformed
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        controlador.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCorreoKeyPressed
 
-    private void claveRepetidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claveRepetidaActionPerformed
+    private void comboPerfilesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPerfilesKeyPressed
+        controlador.comboPerfilesPresionarTecla(evt);
+    }//GEN-LAST:event_comboPerfilesKeyPressed
+
+    private void claveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_claveKeyPressed
+        controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_claveKeyPressed
+
+    private void claveRepetidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_claveRepetidaKeyPressed
         controlador.passClaveRepetidaPresionarTecla(evt);
-    }//GEN-LAST:event_claveRepetidaActionPerformed
+    }//GEN-LAST:event_claveRepetidaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
