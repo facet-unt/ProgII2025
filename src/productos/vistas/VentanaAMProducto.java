@@ -5,6 +5,7 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -14,14 +15,14 @@ import productos.modelos.*;
 
 public class VentanaAMProducto extends JDialog {
 
-    private ControladorAMProducto controlador;
+    private IControladorAMProducto controlador;
 
     /**
      * Constructor
      *
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre, ControladorAMProducto controlador) {
+    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         this.controlador = controlador;
         initComponents();
@@ -223,12 +224,12 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_txtPrecioKeyPressed
 
     private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriasKeyPressed
-        controlador.comboCategoriasPresionarTecla(evt);
+        ((ControladorAMProducto)controlador).comboCategoriasPresionarTecla(evt);
 
     }//GEN-LAST:event_comboCategoriasKeyPressed
 
     private void comboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadoKeyPressed
-        controlador.comboEstadoPresionarTecla(evt);
+        ((ControladorAMProducto)controlador).comboEstadoPresionarTecla(evt);
 
     }//GEN-LAST:event_comboEstadoKeyPressed
 

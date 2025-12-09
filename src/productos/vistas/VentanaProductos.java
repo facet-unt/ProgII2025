@@ -4,15 +4,15 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorProductos;
 import javax.swing.JDialog;
-import principal.controladores.ControladorProductos;
 
 /**
  *
  * @author sofia
  */
 public class VentanaProductos extends JDialog {
-private ControladorProductos controlador;
+private IControladorProductos controlador;
     /**
      * Creates new form VentanaProductos
      */
@@ -20,7 +20,7 @@ private ControladorProductos controlador;
         
         initComponents();
     }
-        public VentanaProductos(ControladorProductos controlador) {
+        public VentanaProductos(IControladorProductos controlador) {
         this.controlador=controlador;
         initComponents();
     }

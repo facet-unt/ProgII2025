@@ -1,5 +1,6 @@
 package principal.controladores;
 
+import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
@@ -17,23 +18,18 @@ public class ControladorProductos implements IControladorProductos {
 
     public ControladorProductos() {
         this.vp = new VentanaProductos(this);
-
         this.modelo = new ModeloTablaProductos();
-
         this.vp.getTableMenu().setModel(this.modelo);
     }
 
     public void mostrarVentanaProducto() {
-
         this.modelo.actualizarTabla();
-
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
     }
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-
         this.modelo.actualizarTabla();
     }
 
@@ -63,28 +59,22 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        ControladorAMProducto cvprod = new ControladorAMProducto();
-        cvprod.mostrarVentanaProducto();
+        IControladorAMProducto cvprod = new ControladorAMProducto();
+        ((ControladorAMProducto)cvprod).mostrarVentanaProducto();
         this.modelo.actualizarTabla();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
         int fila = vp.getTableMenu().getSelectedRow();
-
         if (fila == -1) {
             javax.swing.JOptionPane.showMessageDialog(vp, "Seleccione un producto para modificar.");
             return;
         }
-
         Producto productoSeleccionado = modelo.obtenerProducto(fila);
-
-        ControladorAMProducto controladorAM = new ControladorAMProducto();
-
-        controladorAM.inicializarModificacion(productoSeleccionado);
-
-        controladorAM.mostrarVentanaProducto();
-
+        IControladorAMProducto controladorAM = new ControladorAMProducto();
+        ((ControladorAMProducto)controladorAM).inicializarModificacion(productoSeleccionado);
+        ((ControladorAMProducto)controladorAM).mostrarVentanaProducto();
         this.modelo.actualizarTabla();
     }
 

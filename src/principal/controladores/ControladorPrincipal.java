@@ -5,10 +5,10 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
-import productos.vistas.VentanaProductos;
 
 /**
  *
@@ -35,14 +35,14 @@ public class ControladorPrincipal implements IControladorPrincipal {
     @Override
     public void btnProductosClic(ActionEvent evt) {
 
-        ControladorProductos cvprod = new ControladorProductos();
-        cvprod.mostrarVentanaProducto();
+        IControladorProductos cvprod = new ControladorProductos();
+        ((ControladorProductos)cvprod).mostrarVentanaProducto();
 
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-        ControladorUsuarios cvu= new ControladorUsuarios();
+//        ControladorUsuarios cvu= new ControladorUsuarios();
     }
 
     @Override
@@ -55,9 +55,8 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     public static void main(String[] args) {
 
-        ControladorPrincipal cvp = new ControladorPrincipal();
-        cvp.mostrarVentanaPrincipal();
-
+        IControladorPrincipal cvp = new ControladorPrincipal();
+        ((ControladorPrincipal)cvp).mostrarVentanaPrincipal();
     }
 
 }

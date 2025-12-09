@@ -5,6 +5,7 @@
 package principal.controladores;
 
 import interfaces.IControladorAMProducto;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -39,9 +40,7 @@ public class ControladorAMProducto implements IControladorAMProducto {
     public void inicializarModificacion(Producto p) {
         this.productoAEditar = p;
         this.esModificacion = true;
-
         vp.setTitle("Modificar Producto");
-
         vp.verTxtCodigo().setText(String.valueOf(p.verCodigo()));
         vp.verTxtCodigo().setEditable(false);
         vp.verTxtDescripcion().setText(p.verDescripcion());
@@ -67,7 +66,7 @@ public class ControladorAMProducto implements IControladorAMProducto {
             Categoria categoriaSeleccionada = (Categoria) vp.verComboCategorias().getSelectedItem();
             Estado estadoSeleccionado = (Estado) vp.verComboEstado().getSelectedItem();
 
-            GestorProductos gestor = GestorProductos.instanciar();
+            IGestorProductos gestor = GestorProductos.instanciar();
             String resultado;
 
             if (this.esModificacion) {
