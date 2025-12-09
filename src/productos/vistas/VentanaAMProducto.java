@@ -5,9 +5,13 @@
  */
 package productos.vistas;
 
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
+import principal.controladores.ControladorVentanaAMProducto;
 import productos.modelos.*;
 
 import productos.modelos.Producto;
@@ -15,13 +19,15 @@ import productos.modelos.Categoria;
 
 
 public class VentanaAMProducto extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private IControladorAMProducto controlador;
+
+
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre) {
+    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -65,7 +71,6 @@ public class VentanaAMProducto extends JDialog {
 
         txtPrecio.setToolTipText("Nombres del profesor");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +79,6 @@ public class VentanaAMProducto extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +103,11 @@ public class VentanaAMProducto extends JDialog {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,26 +175,16 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados)this.comboEstados.getModel()).obtenerEstado();
-                            
-        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
+       
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCategoriasActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     private javax.swing.JComboBox<String> comboEstados;
@@ -203,4 +202,76 @@ public class VentanaAMProducto extends JDialog {
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField verTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public void asignarTxtCodigo(JTextField txtCodigo) {
+        this.txtCodigo = txtCodigo;
+    }
+
+    public JTextField verTxtDescripcion() {
+        return txtDescripcion;
+    }
+
+    public void asignarTxtDescripcion(JTextField txtDescripcion) {
+        this.txtDescripcion = txtDescripcion;
+    }
+
+    public JTextField verTxtPrecio() {
+        return txtPrecio;
+    }
+
+    public void asignarTxtPrecio(JTextField txtPrecio) {
+        this.txtPrecio = txtPrecio;
+    }
+                            
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {                                     
+        controlador.txtCodigoPresionarTecla(evt);
+    }                                    
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {                                          
+        controlador.txtDescripcionPresionarTecla(evt);
+    }                                         
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {                                     
+        controlador.txtPrecioPresionarTecla(evt);
+    }                                    
+
+    private void comboCategoriasKeyPressed(java.awt.event.KeyEvent evt) {                                           
+        ((ControladorVentanaAMProducto)controlador).comboCategoriasPresionarTecla(evt);
+
+    }                                          
+
+    private void comboEstadoKeyPressed(java.awt.event.KeyEvent evt) {                                       
+        ((ControladorVentanaAMProducto)controlador).comboEstadoPresionarTecla(evt);
+
+    }                                      
+
+    public JComboBox<String> verComboEstado() {
+        return jComboBox1;
+    }
+
+    public void asignarComboEstado(JComboBox<String> comboEstado) {
+        this.jComboBox1 = comboEstado;
+    }
+
+    public JComboBox<String> verComboCategorias() {
+        return comboCategorias;
+    }
+
+    public void asignarComboCategorias(JComboBox<String> comboCategorias) {
+        this.comboCategorias = comboCategorias;
+    }
+
+    public Object getCategoriaSeleccionada() {
+        return comboCategorias.getSelectedItem();
+    }
+
+    public Object getEstadoSeleccionado() {
+        return jComboBox1.getSelectedItem();
+    }
+
 }

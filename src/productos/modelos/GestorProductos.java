@@ -1,258 +1,218 @@
 package productos.modelos;
 
+import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
-import static interfaces.IGestorProductos.ERROR_CATEGORIA;
-import static interfaces.IGestorProductos.ERROR_CODIGO;
-import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
-import static interfaces.IGestorProductos.ERROR_PRECIO;
-import static interfaces.IGestorProductos.PRODUCTOS_DUPLICADOS;
-import static interfaces.IGestorProductos.PRODUCTO_INEXISTENTE;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+
+import java.io.*;
+import java.util.*;
+
 import pedidos.modelos.GestorPedidos;
+import pedidos.modelos.Pedido;
+import pedidos.modelos.ProductoDelPedido;
 
 public class GestorProductos implements IGestorProductos {
-    
-    private List<Producto> productos = new ArrayList<>();
+
     private static GestorProductos instancia;
-    
-    private GestorProductos() { 
-        this.productos = leerProductos();
+    private final List<Producto> productos = new ArrayList<>();
+
+    private GestorProductos() {
+        cargarDesdeArchivo();
     }
-    
+
     public static GestorProductos instanciar() {
-        if (instancia == null)
+        if (instancia == null) {
             instancia = new GestorProductos();
+        }
         return instancia;
     }
-    
-    private String validarInfo(int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
-        if (codigo <= 0)
-            return ERROR_CODIGO;
-        
-        if (descripcion == null || descripcion.isEmpty())
-            return ERROR_DESCRIPCION;
-        
-        if (precio <= 0)
-            return ERROR_PRECIO;
-        
-        if (categoria == null)
-            return ERROR_CATEGORIA;
-        
-        if (estado == null)
-            return ERROR_ESTADO;
-        
+
+   
+    @Override
+    public String crearProducto(int codigo, String descripcion, float precio,
+                                Categoria categoria, Estado estado) {
+
+        String error = validarDatos(codigo, descripcion, precio, categoria, estado);
+        if (error != null) return error;
+
+        Producto nuevo = new Producto(codigo, descripcion, categoria, estado, precio);
+
+        if (productos.contains(nuevo))
+            return PRODUCTOS_DUPLICADOS;
+
+        productos.add(nuevo);
+        guardarEnArchivo();
         return VALIDACION_EXITO;
     }
-    
+
     @Override
-    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        
-        String resultado = validarInfo(codigo, descripcion, precio, categoria, estado);
-        if (!resultado.equals(VALIDACION_EXITO))
-            return resultado;
-        
-        if (obtenerProducto(codigo) != null)
-            return PRODUCTOS_DUPLICADOS;
-        
-        Producto nuevo = new Producto(codigo, descripcion, categoria, estado, precio);
-        productos.add(nuevo);
-        
-        guardarListaEnArchivo();
-        
-        return EXITO;
-    }
-    
-    @Override
-    public String modificarProducto(Producto p, int nuevoCodigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        
-        if (p == null || !productos.contains(p))
+    public String modificarProducto(Producto existente, int codigo, String descripcion,
+                                    float precio, Categoria categoria, Estado estado) {
+
+        if (!productos.contains(existente))
             return PRODUCTO_INEXISTENTE;
-        
-        String validacion = validarInfo(nuevoCodigo, descripcion, precio, categoria, estado);
-        if (!validacion.equals(VALIDACION_EXITO))
-            return validacion;
-        
-        // Verificar si el nuevo código ya existe en otro producto
-        Producto otro = obtenerProducto(nuevoCodigo);
-        if (otro != null && otro != p)
+
+        String error = validarDatos(codigo, descripcion, precio, categoria, estado);
+        if (error != null) return error;
+
+        productos.remove(existente);
+
+        existente.asignarCodigo(codigo);
+        existente.asignarDescripcion(descripcion);
+        existente.asignarPrecio(precio);
+        existente.asignarCategoria(categoria);
+        existente.asignarEstado(estado);
+
+        if (productos.contains(existente))
             return PRODUCTOS_DUPLICADOS;
-        
-        // CORRECCIÓN 2: Modificar producto correctamente
-        p.asignarCodigo(nuevoCodigo);
-        p.asignarDescripcion(descripcion);
-        p.asignarPrecio(precio);
-        p.asignarCategoria(categoria);
-        p.asignarEstado(estado);
-        
-        // Guardar cambios en el archivo
-        guardarListaEnArchivo(); 
-        
+
+        productos.add(existente);
+        guardarEnArchivo();
         return EXITO;
     }
-    
+
     @Override
-    public String borrarProducto(Producto producto) {
+    public String borrarProducto(Producto p) {
 
-        if (producto == null)
-            return "Error: el producto es nulo.";
+        if (!productos.contains(p))
+            return PRODUCTO_INEXISTENTE;
 
-        if (!productos.contains(producto))
-            return "El producto no existe en el sistema.";
-
-        // Verificar si hay pedidos asociados (comentar si GestorPedidos no existe aún)
-        try {
-            GestorPedidos gp = GestorPedidos.getInstancia();
-            if (gp.hayPedidosConEsteProducto(producto))
-                return "No se puede eliminar el producto, hay pedidos asociados.";
-        } catch (Exception e) {
-            // Si GestorPedidos no existe, continuar con la eliminación
+        // No se borra si está en algún pedido
+        IGestorPedidos gp = GestorPedidos.getInstancia();
+        for (Pedido ped : gp.verPedidos()) {
+            for (ProductoDelPedido pp : ped.verProductosDelPedido()) {
+                if (pp.verUnProducto().equals(p)) {
+                    return "no se pudo borrar";
+                }
+            }
         }
 
-        // CORRECCIÓN 3: Eliminar de la lista Y del archivo
-        productos.remove(producto);
-        guardarListaEnArchivo();
+        productos.remove(p);
+        guardarEnArchivo();
+        return "Se borró con éxito";
+    }
 
-        return "Producto eliminado con éxito.";
-    }
-    
-    @Override
-    public Producto obtenerProducto(Integer codigo) {
-        for (Producto p : productos)
-            if (p.verCodigo() == codigo)
-                return p;
-        return null;
-    }
-    
-    @Override
-    public List<Producto> buscarProductos(String descripcion) {
-        List<Producto> lista = new ArrayList<>();
-        for (Producto p : productos)
-            if (p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
-                lista.add(p);
-        lista.sort(dDesc);
-        return lista;
-    }
-    
-    @Override
-    public boolean existeEsteProducto(Producto producto) {
-        return productos.contains(producto);
-    }
-    
-    @Override
-    public List<Producto> verProductosPorCategoria(Categoria categoria) {
-        List<Producto> filtrados = new ArrayList<>();
-        for (Producto p : productos)
-            if (p.verCategoria().equals(categoria))
-                filtrados.add(p);
-        filtrados.sort(dDesc);
-        return filtrados;
-    }
-    
+   
     @Override
     public List<Producto> menu() {
         Collections.sort(productos);
-        return new ArrayList<>(productos); 
+        return productos;
     }
-    
-    Comparator<Producto> dDesc = (p1, p2) -> p1.verDescripcion().compareTo(p2.verDescripcion());
-    
-    // CORRECCIÓN 5: Sobrescribir archivo completo (sin append)
-    private void guardarListaEnArchivo() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
-            
-            for (Producto p : productos) {
-                String linea = p.verCodigo() + SEPARADOR +
-                               p.verDescripcion() + SEPARADOR +
-                               p.verCategoria().toString() + SEPARADOR +
-                               p.verEstado().toString() + SEPARADOR +
-                               p.verPrecio();
-                
-                bw.write(linea);
-                bw.newLine();
-            }
-            
-        } catch (IOException e) {
-            System.err.println(ESCRITURA_ERROR + ": " + e.getMessage());
-        }
-    }
-    
+
     @Override
-    public List<Producto> leerProductos() {
+    public List<Producto> buscarProductos(String texto) {
+        String buscado = texto.toLowerCase();
         List<Producto> lista = new ArrayList<>();
-        
-        File f = new File(NOMBREARCHIVO);
-        if (!f.exists())
-            return lista;
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-            
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                // Ignorar líneas vacías
-                if (linea.trim().isEmpty())
-                    continue;
-                    
-                String[] partes = linea.split(SEPARADOR);
-                
-                if (partes.length != 5) {
-                    System.err.println("Línea mal formateada: " + linea);
-                    continue;
-                }
-                
-                try {
-                    int codigo = Integer.parseInt(partes[0].trim());
-                    String descripcion = partes[1].trim();
-                    Categoria categoria = convertirCategoria(partes[2].trim());
-                    Estado estado = convertirEstado(partes[3].trim());
-                    float precio = Float.parseFloat(partes[4].trim());
-                    
-                    if (categoria != null && estado != null) {
-                        Producto p = new Producto(codigo, descripcion, categoria, estado, precio);
-                        lista.add(p);
-                    }
-                } catch (NumberFormatException e) {
-                    System.err.println("Error al parsear números en línea: " + linea);
-                }
+
+        for (Producto p : productos) {
+            if (p.verDescripcion().toLowerCase().contains(buscado)) {
+                lista.add(p);
             }
-            
-        } catch (IOException e) {
-            System.err.println(ERROR_LECTURA + ": " + e.getMessage());
         }
-        
+
+        Collections.sort(lista);
         return lista;
     }
-    
-    private Categoria convertirCategoria(String valor) {
-        try {
-            return Categoria.valueOf(valor);
-        } catch (IllegalArgumentException e) {
-            // Si falla valueOf, intentar con toString()
-            for (Categoria c : Categoria.values())
-                if (c.toString().equalsIgnoreCase(valor))
-                    return c;
-            return null;
+
+    public Producto obtenerProducto(Integer codigo) {
+        return productos.stream()
+                .filter(p -> p.verCodigo() == codigo)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Producto> verProductosPorCategoria(Categoria cat) {
+        List<Producto> lista = new ArrayList<>();
+
+        for (Producto p : productos) {
+            if (p.verCategoria() == cat) {
+                lista.add(p);
+            }
+        }
+
+        Collections.sort(lista);
+        return lista;
+    }
+
+
+    private void cargarDesdeArchivo() {
+
+        productos.clear();
+        File file = new File(NOMBREARCHIVO);
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println(CREACION_OK);
+            } catch (IOException e) {
+                System.out.println(CREACION_ERROR);
+            }
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+
+                linea = linea.replace("\uFEFF", "").trim(); 
+
+                if (linea.isEmpty()) continue;
+
+                String[] p = linea.split("\\*");
+
+                if (p.length != 5) continue;
+
+                int codigo = Integer.parseInt(p[0]);
+                String desc = p[1];
+                float precio = Float.parseFloat(p[2]);
+                Categoria cat = Categoria.valueOf(p[3].trim().toUpperCase());
+                Estado est = Estado.valueOf(p[4].trim().toUpperCase());
+
+                productos.add(new Producto(codigo, desc, cat, est, precio));
+            }
+
+            System.out.println(LECTURA_OK);
+
+        } catch (Exception e) {
+            System.out.println(LECTURA_ERROR);
+            e.printStackTrace(); // mantiene trazabilidad
         }
     }
-    
-    private Estado convertirEstado(String valor) {
-        try {
-            return Estado.valueOf(valor);
-        } catch (IllegalArgumentException e) {
-            // Si falla valueOf, intentar con toString()
-            for (Estado t : Estado.values())
-                if (e.toString().equalsIgnoreCase(valor))
-                    return t;
-            return null;
+
+    private void guardarEnArchivo() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
+
+            for (Producto p : productos) {
+                bw.write(
+                        p.verCodigo() + SEPARADOR +
+                        p.verDescripcion() + SEPARADOR +
+                        p.verPrecio() + SEPARADOR +
+                        p.verCategoria() + SEPARADOR +
+                        p.verEstado()
+                );
+                bw.newLine();
+            }
+
+            System.out.println(ESCRITURA_OK);
+
+        } catch (IOException e) {
+            System.out.println(ESCRITURA_ERROR);
         }
     }
+
+
+    private String validarDatos(int codigo, String desc, float precio,
+                                Categoria cat, Estado est) {
+
+        if (codigo <= 0) return ERROR_CODIGO;
+        if (desc == null || desc.isEmpty()) return ERROR_DESCRIPCION;
+        if (precio <= 0) return ERROR_PRECIO;
+        if (cat == null) return ERROR_CATEGORIA;
+        if (est == null) return ERROR_ESTADO;
+
+        return null;
+    }
+
+    
 }
+

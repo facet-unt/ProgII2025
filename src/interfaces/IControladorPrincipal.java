@@ -31,4 +31,6 @@ public interface IControladorPrincipal {
      * @param evt evento
      */                        
     public void btnSalirClic(ActionEvent evt); 
+    
+    public void ControladorVentana();
 }

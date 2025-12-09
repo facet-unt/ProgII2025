@@ -14,5 +14,8 @@ import usuarios.vistas.VentanaUsuarios;
 public class Prueba {
     public static void main(String[] args){
         IControladorPrincipal cp = ControladorVentanaPrincipal.instanciar();
-    }
+        cp.ControladorVentana();
+        
+    
+    } 
 }

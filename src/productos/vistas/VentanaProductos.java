@@ -4,7 +4,7 @@
  */
 package productos.vistas;
 import interfaces.IControladorProductos;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import productos.modelos.ModeloTablaProductos;
 
 /**
@@ -16,14 +16,13 @@ public class VentanaProductos extends javax.swing.JDialog {
      private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
      private IControladorProductos controlador;
      private ModeloTablaProductos ModeloTabla;
-    /**
-     * Creates new form VentanaProductos
-     * 
-     */
-    public VentanaProductos(java.awt.Frame parent, boolean modal,IControladorProductos controlador) {
-        super(parent, modal);
+    
+  
+    public VentanaProductos(IControladorProductos controlador) {
         initComponents();
         this.controlador = controlador;
+        this.ModeloTabla = new ModeloTablaProductos();
+        actualizarTabla(this.ModeloTabla);
 
     }
     
@@ -40,7 +39,26 @@ public class VentanaProductos extends javax.swing.JDialog {
       public int obtenerFilaSeleccionada() {
         return this.jTable1.getSelectedRow();
     }
-      
+    
+    public boolean confirmar(String mensaje) {
+    int opcion = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            mensaje,
+            "Confirmación",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+    );
+
+    return opcion == javax.swing.JOptionPane.YES_OPTION;
+}
+    public void mostrarMensaje(String mensaje) {
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            mensaje,
+            "Información",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,4 +258,47 @@ public class VentanaProductos extends javax.swing.JDialog {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getBtnBorrar() {
+        return jButton4;
+    }
+
+    public javax.swing.JButton getBtnBuscar() {
+        return jButton1;
+    }
+
+    public javax.swing.JButton getBtnModificar() {
+        return jButton3;
+    }
+
+    public javax.swing.JButton getBtnNuevo() {
+        return jButton2;
+    }
+
+    public javax.swing.JButton getBtnVolver() {
+        return jButton5;
+    }
+
+    public javax.swing.JTextField getFieldDescripcion() {
+        return jTextField1;
+    }
+
+
+    public javax.swing.JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public javax.swing.JTable getTableMenu() {
+        return jTable1;
+    }
 }
+
+

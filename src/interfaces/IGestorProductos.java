@@ -25,14 +25,10 @@ public interface IGestorProductos {
     public List<Producto> buscarProductos(String descripcion);
 
     public String borrarProducto(Producto producto);
-
-    public boolean existeEsteProducto(Producto producto);
-
+    
     public List<Producto> verProductosPorCategoria(Categoria categoria);
 
     public Producto obtenerProducto(Integer codigo);
-    
-    public List<Producto> leerProductos();
     
     public static final String EXITO = "Producto creado/modificado con éxito";
     

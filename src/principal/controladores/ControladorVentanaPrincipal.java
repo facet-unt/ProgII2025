@@ -8,6 +8,7 @@ import productos.modelos.GestorProductos;
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -33,14 +34,23 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
         this.ventana.setResizable(false);
         this.ventana.setVisible(true);
     }
+    
+    @Override
+    public void ControladorVentana () {
+        this.ventana.setVisible(true);
+    }
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos controladorVentanaProductos = new ControladorVentanaProductos();
+        IControladorProductos cvp = new ControladorVentanaProductos();
+        
+        
+        
     }
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
        IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios();
+       
     }
 
     @Override
