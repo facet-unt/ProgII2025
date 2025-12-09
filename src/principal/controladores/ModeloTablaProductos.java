@@ -17,11 +17,7 @@ import productos.modelos.Producto;
 
 public class ModeloTablaProductos extends AbstractTableModel {
 
-    private List<String> nombreColumnas = new ArrayList<>();
-    private List<Producto> productos = new ArrayList<>();
-
     private String[] columnas = {"Categoría", "Descripción", "Precio"};
-
     private List<Producto> listaProductos = new ArrayList<>();
 
     public ModeloTablaProductos() {

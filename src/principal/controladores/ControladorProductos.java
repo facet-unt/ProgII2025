@@ -19,12 +19,15 @@ public class ControladorProductos implements IControladorProductos {
     public ControladorProductos() {
         this.vp = new VentanaProductos(this);
         this.modelo = new ModeloTablaProductos();
+        this.vp.getTableMenu().getTableHeader().setResizingAllowed(false);
+        this.vp.getTableMenu().getTableHeader().setReorderingAllowed(false);
         this.vp.getTableMenu().setModel(this.modelo);
     }
 
     public void mostrarVentanaProducto() {
         this.modelo.actualizarTabla();
         vp.setLocationRelativeTo(null);
+        vp.setTitle("Productos");
         vp.setVisible(true);
     }
 
@@ -41,9 +44,7 @@ public class ControladorProductos implements IControladorProductos {
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         String texto = vp.getFieldDescripcion().getText().trim();
-
         IGestorProductos gestor = GestorProductos.instanciar();
-
         if (texto.isEmpty()) {
             modelo.actualizarTabla();
         } else {
@@ -94,10 +95,8 @@ public class ControladorProductos implements IControladorProductos {
 
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             Producto p = modelo.obtenerProducto(fila);
-
             IGestorProductos gestor = GestorProductos.instanciar();
             String resultado = gestor.borrarProducto(p);
-
             javax.swing.JOptionPane.showMessageDialog(vp, resultado);
             modelo.actualizarTabla();
         }

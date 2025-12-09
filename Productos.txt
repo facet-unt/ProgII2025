@@ -1,12 +1,12 @@
 1*Producto3*2.0*Entrada*Disponible
+9*Suprema con ensalada*29.0*Entrada*Disponible
 12*Testeo de archivo2*102.0*Entrada*Disponible
 12343*asdasdasdas*2342.0*Entrada*Disponible
 10*descripcion*1.0*Entrada*Disponible
 32*ensalada con huevo*2.0*Entrada*Disponible
-6*ggg*1.0*Entrada*Disponible
 4444*modificamos*111.0*Entrada*Disponible
 35*regoprhjipr*454666.0*Entrada*Disponible
 2*Producto2*2.0*Plato_Principal*Disponible
 7*Suprema con pure*3.0*Plato_Principal*Disponible
 3*Copa helada*3.0*Postre*Disponible
-9*Suprema con ensalada*29.0*Entrada*Disponible
+132421*producto no disponible*1245.0*Entrada*No_Disponible

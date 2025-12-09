@@ -33,6 +33,7 @@ public class ControladorAMProducto implements IControladorAMProducto {
     public void mostrarVentanaProducto() {
         vp.setLocationRelativeTo(null);
         vp.setResizable(false);
+        vp.setTitle("Productos");
         vp.setVisible(true);
 
     }
