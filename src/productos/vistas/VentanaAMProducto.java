@@ -5,6 +5,9 @@
 package productos.vistas;
 
 import interfaces.IControladorAMProducto;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -58,6 +61,11 @@ public class VentanaAMProducto extends javax.swing.JDialog {
         jLabel5.setText("Estado:");
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,8 +136,13 @@ public class VentanaAMProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
@@ -144,4 +157,32 @@ public class VentanaAMProducto extends javax.swing.JDialog {
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+    public JButton verBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JButton verBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JComboBox<String> verCmbCategoria() {
+        return cmbCategoria;
+    }
+
+    public JComboBox<String> verCmbEstado() {
+        return cmbEstado;
+    }
+
+    public JTextField verTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public JTextField verTxtDescripcion() {
+        return txtDescripcion;
+    }
+
+    public JTextField verTxtPrecio() {
+        return txtPrecio;
+    }
 }
