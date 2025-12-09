@@ -24,6 +24,8 @@ private IControladorUsuarios controlador;
         public VentanaUsuarios(ControladorUsuarios controlador) {
         this.controlador=controlador;
         initComponents();
+       
+
     }
         
       
@@ -120,6 +122,7 @@ private IControladorUsuarios controlador;
 
         jLabel2.setText("Menu");
 
+        tablaUsuario.setAutoCreateRowSorter(false);
         tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

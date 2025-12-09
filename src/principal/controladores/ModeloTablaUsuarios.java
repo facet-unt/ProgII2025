@@ -52,17 +52,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
        gu.cargarArchivoEnLista();
         usuarios = gu.verUsuarios();
-        System.out.println("ANTES DE ORDENAR:");
-    for (Usuario u : usuarios) {
-        System.out.println(u.verApellido() + ", " + u.verNombre());
-    }
-
-    Collections.sort(usuarios);
-
-    System.out.println("DESPUES DE ORDENAR:");
-    for (Usuario u : usuarios) {
-        System.out.println(u.verApellido() + ", " + u.verNombre());
-    }
+        Collections.sort(usuarios);
         
         
         this.fireTableDataChanged();

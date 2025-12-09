@@ -4,6 +4,7 @@ import interfaces.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
 import pedidos.modelos.Pedido;
@@ -111,8 +112,31 @@ public class ControladorPrincipaLConsola {
        
        
        
-        }
+     
+    
+    
+   
+       
+        
+        System.out.println("ANTES DE ORDENAR:");
+    for (Usuario u : gu.verUsuarios()) {
+        System.out.println(u.verApellido() + ", " + u.verNombre());
+    }
+
+    Collections.sort(gu.verUsuarios());
+
+    System.out.println("DESPUES DE ORDENAR:");
+    for (Usuario u : gu.verUsuarios()) {
+        System.out.println(u.verApellido() + ", " + u.verNombre());
+    
+        
+        
+       
+    }
+    }
 }
+
+
     
 
 
