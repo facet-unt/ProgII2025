@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import productos.modelos.GestorProductos;
 import productos.modelos.ModeloTablaProductos;
 import productos.modelos.Producto;
@@ -24,6 +25,7 @@ public class ControladorProductos implements IControladorProductos {
     private VentanaProductos ventana;
     private static ControladorProductos instancia;
     private ModeloTablaProductos modeloTabla;
+    private int filaSeleccionada = -1;
     
     private ControladorProductos() {
         this.ventana = new VentanaProductos(this);
@@ -42,13 +44,11 @@ public class ControladorProductos implements IControladorProductos {
         return instancia;
     }
     
-
     public void inicializarTabla() {
         List<Producto> productos = GestorProductos.instanciar().menu();
-
         modeloTabla = new ModeloTablaProductos(productos);
-
         this.ventana.definirModeloTabla(modeloTabla);
+        this.agregarListenerATabla(this.ventana.getTablaProductos());
     }
 
     @Override
@@ -90,16 +90,15 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
 public void btnModificarClic(ActionEvent evt) {
-    int filaSeleccionada = this.ventana.getTablaProductos().getSelectedRow(); //obtengo la fila seleccionada (-1 si no hay nada)
     
-    if (filaSeleccionada == -1) {
+    if (this.filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(ventana, "Debe seleccionar un producto de la lista.");
         return;
     }
     
     this.modeloTabla = (ModeloTablaProductos) this.ventana.getTablaProductos().getModel();
     
-    Producto productoSeleccionado = this.modeloTabla.obtenerProducto(filaSeleccionada);
+    Producto productoSeleccionado = this.modeloTabla.obtenerProducto(this.filaSeleccionada);
     
     ControladorAMProductos.instanciar(productoSeleccionado);
     
@@ -108,9 +107,8 @@ public void btnModificarClic(ActionEvent evt) {
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        int filaSeleccionada = this.ventana.getTablaProductos().getSelectedRow();
         
-        if (filaSeleccionada == -1) {
+        if (this.filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(ventana, "Debe seleccionar un producto para borrar.", "Atención", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -124,7 +122,7 @@ public void btnModificarClic(ActionEvent evt) {
             String resultado = GestorProductos.instanciar().borrarProducto(productoABorrar);
             
             JOptionPane.showMessageDialog(ventana, resultado, "Información", JOptionPane.INFORMATION_MESSAGE);
-            
+            this.filaSeleccionada = -1;
             this.actualizarTabla(); 
         }
     }
@@ -133,6 +131,19 @@ public void btnModificarClic(ActionEvent evt) {
         List<Producto> listaActualizada = GestorProductos.instanciar().menu();
         ModeloTablaProductos modelo = (ModeloTablaProductos) this.ventana.getTablaProductos().getModel();
         modelo.dibujarProductosEnTabla(listaActualizada);
+    }
+    
+     //METODO para agregar listener a una tabla: 
+    private void agregarListenerATabla(javax.swing.JTable tabla) {
+        tabla.getSelectionModel().addListSelectionListener((e) -> {
+            if (!e.getValueIsAdjusting()) {
+                if (tabla.getSelectedRow() != -1) {
+                    this.filaSeleccionada = tabla.getSelectedRow();
+                } else {
+                    this.filaSeleccionada = -1; // Reseteamos si no hay selección
+                }
+            }
+        });
     }
     
 }
