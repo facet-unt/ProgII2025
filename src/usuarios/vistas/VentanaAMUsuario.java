@@ -6,6 +6,7 @@ package usuarios.vistas;
 
 import interfaces.IControladorAMUsuario;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import principal.controladores.ControladorAMUsuarios;
 
 import usuarios.modelos.Perfil;
@@ -56,8 +57,6 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaCorreo = new javax.swing.JTextPane();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -67,6 +66,7 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         comboPerfil = new javax.swing.JComboBox<>();
         txtClave = new javax.swing.JPasswordField();
         txtClaveR = new javax.swing.JPasswordField();
+        txtCorreo = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -89,15 +89,29 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
 
         jLabel4.setText("Perfil:");
 
-        jScrollPane1.setViewportView(txtAreaCorreo);
-
         jLabel5.setText("Clave:");
 
         jLabel6.setText("Repetir Clave:");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
+
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
+            }
+        });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyReleased(evt);
             }
         });
 
@@ -121,6 +135,11 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                 comboPerfilActionPerformed(evt);
             }
         });
+        comboPerfil.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                comboPerfilKeyReleased(evt);
+            }
+        });
 
         txtClave.setText("jPasswordField1");
         txtClave.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +147,32 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                 txtClaveActionPerformed(evt);
             }
         });
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClaveKeyReleased(evt);
+            }
+        });
 
         txtClaveR.setText("jPasswordField2");
         txtClaveR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtClaveRActionPerformed(evt);
+            }
+        });
+        txtClaveR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClaveRKeyReleased(evt);
+            }
+        });
+
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyReleased(evt);
             }
         });
 
@@ -145,41 +185,40 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombre)
-                                    .addComponent(comboPerfil, 0, 236, Short.MAX_VALUE)
-                                    .addComponent(txtClave)
-                                    .addComponent(txtClaveR))))
-                        .addContainerGap(61, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtApellido)))
+                    .addComponent(btnCancelar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addGap(2, 2, 2)
-                        .addComponent(btnGuardar)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(31, 31, 31))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtClaveR)
+                            .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .addComponent(txtNombre))))
+                .addGap(2, 2, 2)
+                .addComponent(btnGuardar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,19 +226,19 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtClaveR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -238,6 +277,44 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtClaveRActionPerformed
 
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
+        // TODO add your handling code here:
+        cont.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCorreoKeyReleased
+
+    private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
+        // TODO add your handling code here:
+        cont.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        // TODO add your handling code here:
+        cont.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void comboPerfilKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPerfilKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboPerfilKeyReleased
+
+    private void txtClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyReleased
+        // TODO add your handling code here:
+        cont.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_txtClaveKeyReleased
+
+    private void txtClaveRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveRKeyReleased
+        // TODO add your handling code here:
+        cont.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_txtClaveRKeyReleased
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,11 +332,10 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextPane txtAreaCorreo;
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JPasswordField txtClaveR;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
@@ -275,17 +351,16 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         return comboPerfil;
     }
 
-    public javax.swing.JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
+  
 
     public javax.swing.JTextField getTxtApellido() {
         return txtApellido;
     }
 
-    public javax.swing.JTextPane getTxtAreaCorreo() {
-        return txtAreaCorreo;
+    public JTextField getTxtCorreo() {
+        return txtCorreo;
     }
+
 
     public JPasswordField getTxtClave() {
         return txtClave;

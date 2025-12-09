@@ -66,8 +66,8 @@ private IControladorUsuarios controladorU;
 
     vamu.getTxtApellido().setText(usuario.verApellido());
     vamu.getTxtNombre().setText(usuario.verNombre());
-    vamu.getTxtAreaCorreo().setText(usuario.verCorreo());
-    vamu.getTxtAreaCorreo().setEditable(false);
+    vamu.getTxtCorreo().setText(usuario.verCorreo());
+    vamu.getTxtCorreo().setEditable(false);
     vamu.getTxtClave().setVisible(true);
     vamu.getTxtClaveR().setVisible(true);
     
@@ -109,7 +109,7 @@ private IControladorUsuarios controladorU;
         
         nombre= vamu.getTxtNombre().getText();
         apellido=vamu.getTxtApellido().getText();
-        correo=vamu.getTxtAreaCorreo().getText();
+        correo=vamu.getTxtCorreo().getText();
         clave  = new String(vamu.getTxtClave().getPassword());
         claveR = new String(vamu.getTxtClaveR().getPassword());
         perfil = Perfil.valueOf(vamu.getComboPerfil().getSelectedItem().toString());
@@ -161,7 +161,7 @@ private IControladorUsuarios controladorU;
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vamu.getTxtApellido().requestFocus();
+            vamu.getTxtNombre().requestFocus();
             
         }
         
@@ -170,7 +170,7 @@ private IControladorUsuarios controladorU;
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-          vamu.getTxtNombre().requestFocus();
+          vamu.getTxtClave().requestFocus();
         }
         
     }
@@ -178,28 +178,28 @@ private IControladorUsuarios controladorU;
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vamu.getTxtAreaCorreo().requestFocus();
+            vamu.getTxtApellido().requestFocus();
         }
         
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-      
-    String clave  = new String(vamu.getTxtClave().getPassword());
-    String claveR = new String(vamu.getTxtClaveR().getPassword());
-    
-    if (!clave.equals(claveR)) {
-        vamu.getBtnGuardar().setEnabled(false);
-    } else {
-        vamu.getBtnGuardar().setEnabled(true);
-    }
+
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vamu.getTxtClaveR().requestFocus();
+            
+        }
     
 }
 
 @Override
 public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-    passClavePresionarTecla(evt); 
+   
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            vamu.getComboPerfil().requestFocus();
+            
+        }
 }
 
         
