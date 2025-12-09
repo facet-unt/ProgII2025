@@ -137,26 +137,18 @@ public class ControladorProductos implements IControladorProductos{
         
     }
     
-    private Producto obtenerProductoSeleccionado(){
-           JTable tabla = this.ventana.obtenerTabla(); /* Obtiene el modelo de la tabla actual */ 
-        int fila = tabla.getSelectedRow();          /* Obtiene la fila seleccionada de la tabla */
-        
-       
-        if (fila == -1) { 
-          JOptionPane.showMessageDialog(this.ventana, 
-            IControladorProductos.ADVERTENCIA, 
-                            IControladorProductos.ATENCION, 
-                     JOptionPane.WARNING_MESSAGE);
-          
-            return null ;  /* Si no selecciona nada devuelve null */
-            
+    private Producto obtenerProductoSeleccionado() {
+        Producto p = this.ventana.obtenerProductoSeleccionado();
+
+        if (p == null) {
+            JOptionPane.showMessageDialog(this.ventana,
+                    IControladorProductos.ADVERTENCIA,
+                    IControladorProductos.ATENCION,
+                    JOptionPane.WARNING_MESSAGE);
         }
-        
-        ModeloTablaProductos modelo = this.ventana.obtenerModeloTabla();
-        Producto productoSeleccionado = modelo.obtenerProductoEnFila(fila);
-          
-        return modelo.obtenerProductoEnFila(fila);
-       }
+
+        return p;
+    }
     
 
  

@@ -8,6 +8,7 @@ import interfaces.IControladorAMUsuario;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
+import productos.modelos.Producto;
 import usuarios.modelos.ModeloComboPerfil;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
@@ -20,7 +21,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAMUsuario.class.getName());
     private IControladorAMUsuario controlador;
     private VentanaPrincipal ventanaPadre;
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     /**
      * Creates new form VentanaAMUsuario
      */
@@ -67,6 +68,27 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         this.comboPerfil.setSelectedItem(perfil);
     }
     
+    /* Métodos para mover el foco (Cursor) */
+    public void enfocarApellido() {
+        this.txtApellido.requestFocus();
+    }
+
+    public void enfocarNombre() {
+        this.txtNombre.requestFocus();
+    }
+
+    public void enfocarCorreo() {
+        this.txtCorreo.requestFocus();
+    }
+
+    public void enfocarClave() {
+        this.txtClave.requestFocus();
+    }
+
+    public void enfocarClaveRepetida() {
+        this.txtClaveRepetida.requestFocus();
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,19 +118,43 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 
         jLabel1.setText("Correo:");
 
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoPresionarTecla(evt);
             }
         });
 
         jLabel2.setText("Apellido:");
 
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoPresionarTecla(evt);
+            }
+        });
+
         jLabel3.setText("Nombre:");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombrePresionarTecla(evt);
+            }
+        });
 
         jLabel4.setText("Contraseña:");
 
         jLabel5.setText("Confirmar Contraseña:");
+
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassClavePresionarTecla(evt);
+            }
+        });
+
+        txtClaveRepetida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassClaveRepetidaPresionarTecla(evt);
+            }
+        });
 
         jLabel6.setText("Perfil");
 
@@ -205,10 +251,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void btnGuardarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClicActionPerformed
         this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClicActionPerformed
@@ -216,6 +258,26 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     private void btnCancelarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClicActionPerformed
         this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClicActionPerformed
+
+    private void txtCorreoPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoPresionarTecla
+        this.controlador.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCorreoPresionarTecla
+
+    private void txtApellidoPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPresionarTecla
+       this.controlador.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoPresionarTecla
+
+    private void txtNombrePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePresionarTecla
+       this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombrePresionarTecla
+
+    private void txtpassClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassClavePresionarTecla
+       this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_txtpassClavePresionarTecla
+
+    private void txtpassClaveRepetidaPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassClaveRepetidaPresionarTecla
+       this.controlador.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_txtpassClaveRepetidaPresionarTecla
 
     /**
      * @param args the command line arguments

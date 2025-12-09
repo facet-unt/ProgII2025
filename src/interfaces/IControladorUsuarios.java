@@ -14,8 +14,14 @@ import java.awt.event.WindowEvent;
  * @author root
  */
 public interface IControladorUsuarios {
-    public static final String TITULO = "Usuarios";
+    public static final String TITULO = "Borrar usuario";
     public static final String CONFIRMACION = "¿Desea borrar el usuario especificado?";
+    public static final String ADVERTENCIA = "No ha seleccionado ningun usuario de la lista. Intente nuevamente.";
+    public static final String ATENCION = "Atención";
+    public static final String AVISO_SALIDA= "¿Seguro que quieres salir?";
+    public static final String OPERACION_EXITOSA = "Operacion exitosa";
+    public static final String OPERACION_FALLIDA = "No pudo realizarse la operacion";
+    
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Nuevo

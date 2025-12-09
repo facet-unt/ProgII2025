@@ -5,11 +5,10 @@
 package principal.controladores;
 
 import interfaces.IControladorAMProducto;
-import static interfaces.IControladorAMProducto.TITULO_MODIFICAR;
 import static interfaces.IControladorAMProducto.TITULO_NUEVO;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -36,31 +35,21 @@ public class ControladorAMProductos implements IControladorAMProducto {
         this.producto = producto;
         this.ventanaAMProductos = new VentanaAMProducto(ventanaPadre, this);
     
-        /* ControladorAM crea el modelo de Categoria y Estado */
-        ModeloComboCategorias modeloCategorias = new ModeloComboCategorias();
+        
+        ModeloComboCategorias modeloCategorias = new ModeloComboCategorias(); /* ControladorAM crea el modelo de Categoria y Estado */
         ModeloComboEstados modeloEstados = new ModeloComboEstados();
          
-        /*ControladorAM se encarga de dar el modelo a la ventanaAM */
-        this.ventanaAMProductos.configurarCategorias(modeloCategorias);
+        
+        this.ventanaAMProductos.configurarCategorias(modeloCategorias); /*ControladorAM se encarga de dar el modelo a la ventanaAM */
         this.ventanaAMProductos.configurarEstados(modeloEstados);
         
-        /*Control dependiendo si hay o no productos */
-        if(producto == null){
+        
+        if(producto == null){  /*Control dependiendo si hay o no productos */
            this.ventanaAMProductos.setTitle(TITULO_NUEVO);
         } 
          
         else {
-        /*En caso de que la ventana sea para modificar, el controlador hace esto*/
-            this.ventanaAMProductos.setTitle(TITULO_MODIFICAR);
-            this.ventanaAMProductos.setCodigo(producto.verCodigo());
-            this.ventanaAMProductos.setDescripcion(producto.verDescripcion());
-            this.ventanaAMProductos.setPrecio(producto.verPrecio());
-
-            // Seleccionamos los items correctos en los combos
-            this.ventanaAMProductos.setCategoria(producto.verCategoria());
-            this.ventanaAMProductos.setEstado(producto.verEstado());
-        
-            //this.ventanaAMProductos.deshabilitarCampoCodigo();
+          this.ventanaAMProductos.mostrarProducto(producto);
         }
 
         this.ventanaAMProductos.setLocationRelativeTo(null); /* Centra la ventana */
@@ -77,41 +66,37 @@ public class ControladorAMProductos implements IControladorAMProducto {
     /*Metodo que guarda los datos ingresados por el usuario*/
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-            String resultado; 
+        String resultado; 
         
-        JTextField txtCod = this.ventanaAMProductos.obtenerCodigo();
-        JTextField txtDesc = this.ventanaAMProductos.obtenerDescripcion();
-        JTextField txtPrec = this.ventanaAMProductos.obtenerPrecio();
+        String cod = this.ventanaAMProductos.obtenerCodigo();
+        String descrip= this.ventanaAMProductos.obtenerDescripcion();
+        String prec = this.ventanaAMProductos.obtenerPrecio();
         
-        /*Como la ventana me entrega todos los datos de tipo String se lo convierte 
-                              en sus respectivos tipos*/
-        int codigo = Integer.parseInt(txtCod.getText().trim());
-        String descripcion = txtDesc.getText().trim();
-        float precio = Float.parseFloat(txtPrec.getText().trim());
+        int codigo = Integer.parseInt(cod);
+        float precio = Float.parseFloat(prec);
         Categoria categoria = this.ventanaAMProductos.comboCategoria();
         Estado estado = this.ventanaAMProductos.comboEstado();
         
         GestorProductos gp =  GestorProductos.instanciar();
         if(this.producto == null)
         {
-            resultado = gp.crearProducto(codigo, descripcion, precio, categoria, estado);
+            resultado = gp.crearProducto(codigo, descrip, precio, categoria, estado);
         }
         else {
-            resultado = gp.modificarProducto(producto, codigo, descripcion, precio, categoria, estado);
+            resultado = gp.modificarProducto(producto, codigo, descrip, precio, categoria, estado);
         }
         
-        System.out.println(resultado); /* muestra el problema al crear/modificar el producto*/
-        if(resultado.equals("Producto creado/modificado con exito "))
+        System.out.println(resultado);
+        if(resultado.equals(IGestorUsuarios.OPERACION_EXITOSA))
         {
             System.out.println("Producto creado exitosamente");
-            this.ventanaAMProductos.dispose(); /* Destruye la ventanaAMProductos */
+            this.ventanaAMProductos.dispose(); 
         }
         else
         {
             System.out.println("Error al crear/modificar");
         }
 
-    
     }
 
     
@@ -122,31 +107,23 @@ public class ControladorAMProductos implements IControladorAMProducto {
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-  
-        this.ventanaAMProductos.obtenerDescripcion().requestFocus();
-        
+        this.ventanaAMProductos.enfocarDescripcion();
        }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        
-        this.ventanaAMProductos.obtenerPrecio().requestFocus();
-        
+        this.ventanaAMProductos.enfocarPrecio();
        }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-       
-        this.ventanaAMProductos.obtenerCategoria().requestFocus();
-        
+        this.ventanaAMProductos.comboCategoria();
        }
     }
-    
-    
-    
+     
     
 }

@@ -20,9 +20,10 @@ public class ModeloTablaProductos extends AbstractTableModel{
     public ModeloTablaProductos() {
     }
     
-    /*Metodo para recibir la lista de los productos*/ 
+    /*Metodo pque devuelve la lista de los productos actualizada*/ 
     public void setProductos(List <Producto> p){
         this.productos = p;
+        this.fireTableDataChanged();
     }
     
     @Override

@@ -21,10 +21,8 @@ public class ControladorPrincipal implements IControladorPrincipal {
         this.ventana = new VentanaPrincipal(this);
         this.ventana.setLocationRelativeTo(null); /* Centra la ventana */
         this.ventana.setVisible(true); /* La hace visible */
-        this.ventana.setTitle(TITULO);
+        this.ventana.setTitle(TITULO); /* Coloca el titulo */
     }
-
-     
     
     @Override
     public void btnProductosClic(ActionEvent evt) {
@@ -36,20 +34,15 @@ public class ControladorPrincipal implements IControladorPrincipal {
         IControladorUsuarios controladorU = new ControladorUsuarios(ventana);
     }
 
-//    @Override
-//    public void btnSalirClic(ActionEvent evt) {
-//       this.ventana.dispose(); 
-//       System.exit(0);
-//    }
-//    
     
     @Override
     public void btnSalirClic(ActionEvent evt) {
         /* Muestra un cuadro de dialogo con botones de confirmacion, /ventana sobre la aparece el dialogo/
         mensaje/titulo de la ventana/ 0 indica los botones si/no 
         */
-    if(javax.swing.JOptionPane.showConfirmDialog(ventana,"¿Seguro que quieres salir?", "Confirmar salida", 0) == 0)
-    System.exit(0);
+    if(javax.swing.JOptionPane.showConfirmDialog(ventana,IControladorPrincipal.AVISO_SALIDA,
+                    IControladorPrincipal.CONFIRMAR, 0) == 0)
+        System.exit(0);
 
     }
 

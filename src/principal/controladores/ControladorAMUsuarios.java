@@ -61,25 +61,22 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
         
         if(this.usuario == null){
             /*Crea un usuario nuevo*/
-            
             resultado = gu.crearUsuario(txtCorreo, txtApe, txtNom, perfil, txtClave, txtClaveRepetida);
-        }else{
+        }
+         else{
             /*Modifica un usuario*/
-            resultado = null;
+            resultado = gu.modificarUsuario(usuario ,txtCorreo, txtApe, txtNom, txtClave, txtClaveRepetida);
         }
         
         if (resultado.equals(GestorUsuarios.OPERACION_EXITOSA)) { 
             System.out.println(resultado);
             this.ventanaAMUsuario.dispose(); // Cerramos la ventana si salió bien
-        } else {
+        } 
+         else {
+            System.out.println("usario creado exitosamente");
             // Mostramos el error que devolvió el gestor (ej: "Correo repetido")
-            javax.swing.JOptionPane.showMessageDialog(this.ventanaAMUsuario, 
-                resultado, 
-                "Error del Sistema", 
-                javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
+            System.out.println("Error al crear o modificar");
+        }  
     }
 
     @Override
@@ -89,28 +86,38 @@ public class ControladorAMUsuarios implements IControladorAMUsuario{
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.ventanaAMUsuario.enfocarNombre();
+        }
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.ventanaAMUsuario.enfocarClave();
+        }
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.ventanaAMUsuario.enfocarApellido();
+       }
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.ventanaAMUsuario.enfocarClaveRepetida();
+      }
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.ventanaAMUsuario.obtenerPerfilSeleccionado();
+      }
     }
-    
+   
     
 }

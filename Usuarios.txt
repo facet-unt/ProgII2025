@@ -1,12 +1,3 @@
-Cliente-ApellidoCliente3-NombreCliente3-cliente3@bar.com-claveCliente3
-Cliente-ApellidoCliente1-NombreCliente1-cliente1@bar.com-claveCliente1
-Cliente-ApellidoCliente2-NombreCliente2-cliente2@bar.com-claveCliente2
-Empleado-ApellidoEmpleado1-NombreEmpleado1-empleado1@bar.com-claveEmpleado1
-Empleado-ApellidoEmpleado2-NombreEmpleado2-empleado2@bar.com-claveEmpleado2
-Empleado-ApellidoEmpleado3-NombreEmpleado3-empleado3@bar.com-claveEmpleado3
-Encargado-ApellidoEncargado1-NombreEncargado1-encargado1@bar.com-claveEncargado1
 Encargado-ApellidoEncargado2-NombreEncargado2-encargado2@bar.com-claveEncargado2
-Encargado-ApellidoEncargado3-NombreEncargado3-encargado3@bar.com-claveEncargado3
-Cliente-Mensege-Lyan-lmensege@gmail.com-123456
 Cliente-Mensege-Lyan-lyan.mensege38@gmail.com-123456
 Cliente-Ortega-Rocio-rocioorteg@gmail.com-123

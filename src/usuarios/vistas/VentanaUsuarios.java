@@ -6,6 +6,7 @@ package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
 import java.util.List;
+import productos.modelos.Producto;
 import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.Usuario;
 
@@ -36,13 +37,23 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }
     
     public void actualizarTabla(List<Usuario> productos) {
-        this.modeloTabla = new ModeloTablaUsuarios();
-    
         this.modeloTabla.setUsuarios(productos);
-    
-        this.tablaUsuarios.setModel(this.modeloTabla);
     }
     
+    public Usuario obtenerUsuarioSeleccionado() {
+    int fila = this.tablaUsuarios.getSelectedRow();
+    
+    if (fila == -1) {
+        return null; 
+    }
+    
+    return this.modeloTabla.obtenerUsuarioEnFila(fila);
+   }
+    
+    /*Metodo para conseguir el texto de txtDescripcion */
+    public String conseguirTxt(){
+        return this.txtApellido.getText().trim();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,6 +102,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jLabel2.setText("Usuarios");
 
         btnBuscarClic.setText("Buscar");
+        btnBuscarClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClic(evt);
+            }
+        });
 
         btnNuevoClic.setText("Nuevo");
         btnNuevoClic.addActionListener(new java.awt.event.ActionListener() {
@@ -100,8 +116,18 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         });
 
         btnModificarClic.setText("Modificar");
+        btnModificarClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarClic(evt);
+            }
+        });
 
         btnBorrarClic.setText("Borrar");
+        btnBorrarClic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClic(evt);
+            }
+        });
 
         btnVolverClic.setText("Volver");
         btnVolverClic.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +200,18 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void ventanaObtenerFoco(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaObtenerFoco
         this.controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaObtenerFoco
+
+    private void btnBuscarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClic
+        this.controlador.btnBuscarClic(evt);
+    }//GEN-LAST:event_btnBuscarClic
+
+    private void btnModificarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClic
+        this.controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificarClic
+
+    private void btnBorrarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClic
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarClic
 
     /**
      * @param args the command line arguments

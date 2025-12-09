@@ -7,6 +7,7 @@ package usuarios.modelos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import productos.modelos.Producto;
 
 /**
  *
@@ -22,6 +23,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     
     public void setUsuarios(List <Usuario> u){
         this.usuarios = u;
+        this.fireTableDataChanged();
     }
 
     @Override
@@ -49,5 +51,12 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
             case 2: return u.verCorreo();
             default: return null;
         }
+    }
+    
+    
+    public Usuario obtenerUsuarioEnFila(int fila) {
+      
+    return this.usuarios.get(fila); 
+    
     }
 }

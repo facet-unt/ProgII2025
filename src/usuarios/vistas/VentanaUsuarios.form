@@ -121,6 +121,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarClic"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnNuevoClic">
       <Properties>
@@ -134,11 +137,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarClic"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBorrarClic">
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarClic"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnVolverClic">
       <Properties>

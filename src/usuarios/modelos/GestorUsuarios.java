@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package usuarios.modelos;
+import static interfaces.IGestorProductos.ERROR_CATEGORIA;
+import static interfaces.IGestorProductos.ERROR_CODIGO;
+import static interfaces.IGestorProductos.ERROR_DESCRIPCION;
+import static interfaces.IGestorProductos.ERROR_ESTADO;
+import static interfaces.IGestorProductos.ERROR_PRECIO;
+import static interfaces.IGestorProductos.EXITO;
 import interfaces.IGestorUsuarios;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +22,8 @@ import static usuarios.modelos.Perfil.CLIENTE;
 import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
 import pedidos.modelos.*;
+import productos.modelos.Categoria;
+import productos.modelos.Producto;
 
 
 public class GestorUsuarios implements IGestorUsuarios{
@@ -153,7 +161,25 @@ public class GestorUsuarios implements IGestorUsuarios{
             }
         return null;
     }
+    
+      public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, String clave, String claveRepetida) 
+    {
 
+        if(nombre!= null && !nombre.isBlank() && apellido!= null && !apellido.isBlank() && correo!=null && correo.contains("@") && clave!=null && claveRepetida!= null && claveRepetida.equals(clave)){
+               u.asignarApellido(apellido);
+               u.asignarClave(clave);
+               u.asignarCorreo(correo);
+               u.asignarNombre(nombre);
+            this.modificarArchivo(NOMBRE_ARCHIVO);
+            return (OPERACION_EXITOSA); 
+            
+        }
+          else{
+            return OPERACION_FALLIDA;
+    }
+    }
+    
+    
     @Override
     public String borrarUsuario(Usuario usuario) {
         if(usuarios.contains(usuario) && usuario!=null)

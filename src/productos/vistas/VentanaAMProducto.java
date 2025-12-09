@@ -5,10 +5,8 @@
  */
 package productos.vistas;
 import interfaces.IControladorAMProducto;
-import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
-import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.*;
 
@@ -32,50 +30,30 @@ public class VentanaAMProducto extends JDialog {
   
     }
     
-    /* Metodos para cuando la ventana va a modificar un producto */
-    public void setCodigo(int codigo) {
-        this.txtCodigo.setText(String.valueOf(codigo));
-        /* Si es modificar, el código no se toca */
-        this.txtCodigo.setEditable(false); 
+    /*Se encargan de extraer los datos de las cajas de texto y se las entrega al controlador */
+    public String obtenerCodigo() { 
+    return this.txtCodigo.getText().trim();
+    }
+    
+    public String obtenerDescripcion() { 
+    return this.txtDescripcion.getText().trim();
+    }
+    public String obtenerPrecio() { 
+    return this.txtPrecio.getText().trim();
     }
 
-    public void setDescripcion(String descripcion) {
-        this.txtDescripcion.setText(descripcion);
-    }
-
-    public void setPrecio(float precio) {
-        this.txtPrecio.setText(String.valueOf(precio));
-    }
-
-    public void setCategoria(Categoria c) {
-        this.comboCategorias.setSelectedItem(c);
-    }
-
-    public void setEstado(Estado e) {
-        this.comboEstados.setSelectedItem(e);
-    }
-
+    
     /* Método para cambiar el título de la ventana cuando se esta por modificar un producto */
     public void setTituloVentana(String titulo) {
         this.setTitle(titulo);
     }
     
-    /*Metodo me devuelve JcomboBox de categoria */
-    public javax.swing.JComboBox obtenerCategoria() {
-        return this.comboCategorias;
-    }
-    
-    /*Metodo me devuelve JcomboBox de estado */
-    public javax.swing.JComboBox obtenerEstado() {
-        return this.comboEstados;
-    }
-    
-    /*Metodo se va encargar de recibir el modelo de categorias desde el ControladorAMProductos*/ 
+    /* Metodo que permite al Controlador llenar la lista desplegable con las categorías */
     public void configurarCategorias(ModeloComboCategorias modelo) {
        this.comboCategorias.setModel(modelo);
     }
     
-    /*Metodo se va encargar de recibir el modelo de estado desde el ControladorAMProductos*/
+    /* El controlador envia el modelo, la ventana los recibe y muestra la lista desplegable con las datos enviados*/
     public void configurarEstados(ModeloComboEstados modelo) {
        this.comboEstados.setModel(modelo);
     }
@@ -86,27 +64,39 @@ public class VentanaAMProducto extends JDialog {
     public Categoria comboCategoria() {
       return (Categoria) this.comboCategorias.getSelectedItem();
     }
+    
     /*Recupera la opcion que el usuario seleccionó en la lista
      y lo convierte (castea) al tipo de dato Estado*/
     public Estado comboEstado() {
       return (Estado) this.comboEstados.getSelectedItem();
     }
     
-     /* Ventana se encarga de pedir los campos de texto de cada atributo de Producto */
-           /*Si lo ponia privado no me deja llamrlo dsde el controlador */
-    public JTextField obtenerCodigo()
-    {
-        return this.txtCodigo;
-    }
     
-    public JTextField obtenerDescripcion()
-    {
-        return this.txtDescripcion;
+    /* Métodos para mover el cursor */
+    public void enfocarCodigo() {
+        this.txtCodigo.requestFocus();
     }
-    public JTextField obtenerPrecio()
-    {
-        return this.txtPrecio;
+
+    public void enfocarDescripcion() {
+        this.txtDescripcion.requestFocus();
     }
+
+    public void enfocarPrecio() {
+        this.txtPrecio.requestFocus();
+    }
+
+    public void mostrarProducto(Producto p) {
+ 
+        this.txtCodigo.setText(String.valueOf(p.verCodigo()));
+        this.txtDescripcion.setText(p.verDescripcion());
+        this.txtPrecio.setText(String.valueOf(p.verPrecio()));
+        
+        this.comboCategorias.setSelectedItem(p.verCategoria());
+        this.comboEstados.setSelectedItem(p.verEstado());
+        
+        this.txtCodigo.setEditable(false);
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -263,7 +253,6 @@ public class VentanaAMProducto extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         this.controlador.btnGuardarClic(evt);
-        
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed

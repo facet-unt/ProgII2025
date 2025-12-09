@@ -41,11 +41,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     }
     
     public void actualizarTabla(List<Producto> productos) {
-        this.modeloTabla = new ModeloTablaProductos();
-    
         this.modeloTabla.setProductos(productos);
-    
-        this.tablaProductos.setModel(this.modeloTabla);
     }
     
     public ModeloTablaProductos obtenerModeloTabla() {
@@ -57,6 +53,16 @@ public class VentanaProductos extends javax.swing.JDialog {
     public String conseguirTxt(){
         return this.txtDescripcion.getText().trim();
     }
+    
+    public Producto obtenerProductoSeleccionado() {
+    int fila = this.tablaProductos.getSelectedRow();
+    
+    if (fila == -1) {
+        return null; 
+    }
+    
+    return this.modeloTabla.obtenerProductoEnFila(fila);
+   }
     
     
     
