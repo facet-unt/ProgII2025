@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import pedidos.modelos.*;
 
 /**
@@ -20,12 +22,12 @@ import pedidos.modelos.*;
  */
 public class GestorUsuarios implements IGestorUsuarios {
 
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();
 
     private static GestorUsuarios instancia;
 
     private GestorUsuarios() {
-
+        this.usuarios = verUsuarios();
     }
 
     public static GestorUsuarios instanciar() {
@@ -33,6 +35,11 @@ public class GestorUsuarios implements IGestorUsuarios {
             instancia = new GestorUsuarios();
         }
         return instancia;
+    }
+    
+    public List<Usuario> ordenar(){
+        usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
+        return usuarios;
     }
 
     private Boolean crearArchivo() {
@@ -50,21 +57,52 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
     }
 
-    private Usuario instanciarUsuario(String correo, String clave, String apellido, String nombre, Perfil unPerfil) {
+    public Usuario instanciarUsuario(String correo, String clave, String apellido, String nombre, Perfil unPerfil) {
         Usuario unUsuario = null;
         if (unPerfil == Perfil.CLIENTE) {
-            unUsuario = new Cliente(correo, clave, apellido, nombre);
+            unUsuario = new Cliente(correo, clave, apellido, nombre, unPerfil);
         } else if (unPerfil == Perfil.EMPLEADO) {
-            unUsuario = new Empleado(correo, clave, apellido, nombre);
+            unUsuario = new Empleado(correo, clave, apellido, nombre, unPerfil);
         } else if (unPerfil == Perfil.ENCARGADO) {
-            unUsuario = new Encargado(correo, clave, apellido, nombre);
+            unUsuario = new Encargado(correo, clave, apellido, nombre, unPerfil);
         }
         return unUsuario;
     }
 
     @Override
+    public String guardarEnArchivo(Usuario unUsuario, String perfil) {
+
+        if (unUsuario == null) {
+            return ESCRITURA_ERROR;
+        }
+
+        if (!crearArchivo()) {
+            return ESCRITURA_ERROR;
+        }
+        File f = new File(NOMBRE_ARCHIVO_U);
+
+        try (FileWriter fw = new FileWriter(f, true); BufferedWriter bw = new BufferedWriter(fw)) {
+
+            String linea = unUsuario.verCorreo() + ";"
+                    + unUsuario.verClave() + ";"
+                    + unUsuario.verApellido() + ";"
+                    + unUsuario.verNombre() + ";"
+                    + unUsuario.verPerfil();
+
+            bw.write(linea);
+            bw.newLine();
+            bw.flush();
+
+            return ESCRITURA_OK;
+
+        } catch (IOException ioe) {
+            return ESCRITURA_ERROR;
+        }
+    }
+
+    @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        if (correo != null && correo.contains("@") && clave != null && claveRepetida != null && apellido != null && !apellido.isEmpty() && nombre != null && !nombre.isEmpty()) {
+        if (correo != null && correo.contains("@") && clave != null && !clave.isEmpty() && claveRepetida != null && !claveRepetida.isEmpty() && apellido != null && !apellido.isEmpty() && nombre != null && !nombre.isEmpty()) {
             if (clave.equals(claveRepetida)) {
                 for (Usuario u : usuarios) {
                     if (u.verCorreo().equals(correo)) {
@@ -74,7 +112,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 if (perfil == Perfil.CLIENTE || perfil == Perfil.ENCARGADO || perfil == Perfil.EMPLEADO) {
                     Usuario unUsuario = instanciarUsuario(correo, clave, apellido, nombre, perfil);
                     usuarios.add(unUsuario);
-                    
+                    System.out.println(guardarEnArchivo(unUsuario, perfil.toString()));
                     return (OPERACION_EXITOSA);
                 } else {
                     return (VALORES_INVALIDOS);
@@ -88,6 +126,8 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
     }
 
+    
+    
     @Override
     public List<Usuario> verUsuarios() {
         if (!crearArchivo()) {
@@ -113,6 +153,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         } catch (IOException e1) {
             System.out.println(LECTURA_ERROR);
         }
+        usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
         return usuarios;
     }
 
@@ -151,24 +192,68 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return null;
     }
+    private String actualizarArchivoCompleto() {
+        File f = new File(NOMBRE_ARCHIVO_U);
+        if (!crearArchivo()) {
+            return (ESCRITURA_ERROR);
+        }
+        try (FileWriter fw = new FileWriter(f, false); BufferedWriter bw = new BufferedWriter(fw)) {
+
+            for (Usuario u : usuarios) {
+                String linea = u.verCorreo() + ";" + u.verClave() + ";"
+                        + u.verApellido() + ";" + u.verNombre() + ";"
+                        + u.verPerfil();
+                bw.write(linea);
+                bw.newLine();
+
+            }
+            usuarios.sort(Comparator.comparing(Usuario::verApellido, String.CASE_INSENSITIVE_ORDER));
+            return REESCRIBIR_OK;
+        } catch (IOException e) {
+            return (REESCRIBIR_ERROR);
+        }
+    }
 
     @Override
     public String borrarUsuario(Usuario usuario) {
-        if (usuarios.contains(usuario) && usuario != null) {
-            if (usuario instanceof Cliente) {
-                GestorPedidos gDeP = GestorPedidos.instanciar();
-                for (Pedido unPedido : gDeP.verPedidos()) {
-                    if ((unPedido.verCliente()).equals(usuario)) {
-                        return (OPERACION_FALLIDA + USUARIO_TIENE_PEDIDO);
-                    }
+        GestorPedidos gp = GestorPedidos.instanciar();
+        if (!usuarios.contains(usuario)) {
+            return (OPERACION_FALLIDA + USUARIO_INEX);
+        }
+        if (usuario instanceof Cliente) {
+            for (Pedido unPedido : gp.verPedidos()) {
+                if (unPedido.verCliente().equals(usuario)) {
+                    return PEDIDO_EN_CURSO;
                 }
             }
-            usuarios.remove(usuario);
-            return (OPERACION_EXITOSA);
+        }
+        usuarios.remove(usuario);
+        System.out.println(actualizarArchivoCompleto());
+        return (OPERACION_EXITOSA);
+
+    }
+
+
+    public String modificarUsuario(Usuario usuarioModificado) {
+        if (usuarioModificado == null) {
+            return OPERACION_FALLIDA;
         }
 
-        return (OPERACION_FALLIDA + USUARIO_INEX);
+        int indice = -1;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).verCorreo().equals(usuarioModificado.verCorreo())) {
+                indice = i;
+                break;
+            }
+        }
 
+        if (indice == -1) {
+            return USUARIO_INEX;
+        }
+        
+        usuarios.set(indice, usuarioModificado);
+
+        return actualizarArchivoCompleto();
     }
 
 }

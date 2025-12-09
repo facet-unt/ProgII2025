@@ -40,7 +40,8 @@ public class ControladorPrincipalParcial2 implements IControladorPrincipal {
 
     @Override
     public void botonUsuariosClic(ActionEvent evt) {
-
+        ControladorUsuarios cvprod = new ControladorUsuarios();
+        cvprod.mostrarVentanaUsuarios();
     }
 
     @Override

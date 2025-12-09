@@ -10,7 +10,7 @@ package usuarios.modelos;
  */
 public enum Perfil {
     CLIENTE("Cliente"),
-    EMPLEADO("Emleado"),
+    EMPLEADO("Empleado"),
     ENCARGADO("Encargado");
 
     private String valor;

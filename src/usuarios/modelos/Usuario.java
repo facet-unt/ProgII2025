@@ -18,13 +18,14 @@ public abstract class Usuario {
     private String clave;
     private String apellido;
     private String nombre;
+    private Perfil perfil;
 
-    public Usuario(String correo, String clave, String apellido, String nombre) {
+    public Usuario(String correo, String clave, String apellido, String nombre, Perfil perfil) {
         this.correo = correo;
         this.clave = clave;
         this.apellido = apellido;
         this.nombre = nombre;
-
+        this.perfil=perfil;
     }
 
     public String verCorreo() {
@@ -67,6 +68,16 @@ public abstract class Usuario {
         }
     }
 
+    public Perfil verPerfil() {
+        return perfil;
+    }
+
+    public void asignarPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    
+   
     public void mostrar() {
         System.out.println(apellido + ", " + nombre);
     }
