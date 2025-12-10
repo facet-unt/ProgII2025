@@ -67,11 +67,12 @@ public class ControladorAMProductos implements IControladorAMProducto {
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         String resultado; 
-        
-        String cod = this.ventanaAMProductos.obtenerCodigo();
-        String descrip= this.ventanaAMProductos.obtenerDescripcion();
-        String prec = this.ventanaAMProductos.obtenerPrecio();
-        
+    
+    String cod = this.ventanaAMProductos.obtenerCodigo();
+    String descrip= this.ventanaAMProductos.obtenerDescripcion();
+    String prec = this.ventanaAMProductos.obtenerPrecio();
+    
+    try {
         int codigo = Integer.parseInt(cod);
         float precio = Float.parseFloat(prec);
         Categoria categoria = this.ventanaAMProductos.comboCategoria();
@@ -87,7 +88,7 @@ public class ControladorAMProductos implements IControladorAMProducto {
         }
         
         System.out.println(resultado);
-        if(resultado.equals(IGestorProductos.EXITO))
+        if(resultado.equals(IGestorProductos.EXITO)) 
         {
             System.out.println("Producto creado exitosamente");
             this.ventanaAMProductos.dispose(); 
@@ -95,6 +96,11 @@ public class ControladorAMProductos implements IControladorAMProducto {
         else
         {
             System.out.println("Error al crear/modificar");
+            javax.swing.JOptionPane.showMessageDialog(this.ventanaAMProductos, resultado, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this.ventanaAMProductos, "El código y el precio deben ser números válidos", "Error de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
 
     }
