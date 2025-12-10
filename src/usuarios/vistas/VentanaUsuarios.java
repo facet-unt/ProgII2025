@@ -19,21 +19,14 @@ import usuarios.modelos.Usuario;
 public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private ControladorVentanaUsuarios controlador;
-    private ModeloTablaUsuarios modelotabla;
-    private int filaSeleccionada;
-    private static List<Usuario> usuarios = new ArrayList<>();
     /**
      * Creates new form VentanaUsuarios
      
      */
-    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorVentanaUsuarios controlador, List<Usuario> usuarios) {
+    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorVentanaUsuarios controlador) {
         super(parent, modal);
         initComponents();
-        this.usuarios = usuarios;
         this.controlador = controlador;
-        this.modelotabla = new ModeloTablaUsuarios();
-        modificarTabla(this.modelotabla);
-        agregarListenerATabla(jTable1);
     }
 
     /**
@@ -68,6 +61,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 ventanaObtenerFoco(evt);
@@ -197,48 +197,48 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modificarTabla(ModeloTablaUsuarios modelo){
-        this.jTable1.setModel(modelo);
-    }
-    
-    public void actualizarTabla(List<Usuario> lista){
-        this.modelotabla.asignarUsuarios(lista);
-    }
-    
-    public void mostrarMensaje(String mensaje) {
-    javax.swing.JOptionPane.showMessageDialog(
-            this,
-            mensaje,
-            "Información",
-            javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
-    }
-    
-    public Usuario seleccionarUsuarioenFila(){
-        int i = this.getTableMenu().getRowCount();
-        
-        if(i == -1)
-            return null;
-        
-        return this.modelotabla.seleccionarUsuario(i);
-    }
-    
-    private void agregarListenerATabla(JTable tabla) { 
-        tabla.getSelectionModel().addListSelectionListener((e) -> { 
-        if (!e.getValueIsAdjusting()) {                 
-            if (tabla.getSelectedRow() != -1) 
-                this.filaSeleccionada = tabla.getSelectedRow(); 
-            } 
-        }); 
-    } 
+//    private void modificarTabla(ModeloTablaUsuarios modelo){
+//        this.jTable1.setModel(modelo);
+//    }
+//    
+//    public void actualizarTabla(List<Usuario> lista){
+//        this.modelotabla.asignarUsuarios(lista);
+//    }
+//    
+//    public void mostrarMensaje(String mensaje) {
+//    javax.swing.JOptionPane.showMessageDialog(
+//            this,
+//            mensaje,
+//            "Información",
+//            javax.swing.JOptionPane.INFORMATION_MESSAGE
+//        );
+//    }
+//    
+//    public Usuario seleccionarUsuarioenFila(){
+//        int i = this.getTableMenu().getRowCount();
+//        
+//        if(i == -1)
+//            return null;
+//        
+//        return this.modelotabla.seleccionarUsuario(i);
+//    }
+//    
+//    private void agregarListenerATabla(JTable tabla) { 
+//        tabla.getSelectionModel().addListSelectionListener((e) -> { 
+//        if (!e.getValueIsAdjusting()) {                 
+//            if (tabla.getSelectedRow() != -1) 
+//                this.filaSeleccionada = tabla.getSelectedRow(); 
+//            } 
+//        }); 
+//    } 
 
-    public ModeloTablaUsuarios verModelo(){
-        return (ModeloTablaUsuarios)jTable1.getModel();
-    }
-    
-    public int obtenerFilaSeleccionada(){
-        return filaSeleccionada;
-    }
+//    public ModeloTablaUsuarios verModelo(){
+//        return (ModeloTablaUsuarios)jTable1.getModel();
+//    }
+//    
+//    public int obtenerFilaSeleccionada(){
+//        return filaSeleccionada;
+//    }
     
     public javax.swing.JButton getBtnBorrar() {
         return jButton4;
@@ -304,6 +304,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.controlador.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    
     //     */
 //     * @param args the command line arguments
 //     */

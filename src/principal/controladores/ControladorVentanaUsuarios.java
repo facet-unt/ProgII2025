@@ -10,8 +10,9 @@ import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import principal.vistas.VentanaPrincipal;
+import javax.swing.table.AbstractTableModel;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.Usuario;
@@ -23,42 +24,42 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
-    private static VentanaPrincipal vista;
-    private ModeloTablaUsuarios modelotabla;
-    IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciarclase();
 
-    public ControladorVentanaUsuarios(VentanaPrincipal padre) {
-        this.ventana = new VentanaUsuarios(padre, true, this, gestorUsuarios.verUsuarios());
-        this.vista = padre;
+    public ControladorVentanaUsuarios(JFrame vista) {
+        this.ventana = new VentanaUsuarios(vista, true, this);
+        this.ventana.getTableMenu().setModel(new ModeloTablaUsuarios());
         this.ventana.setTitle(TITULO);        
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
-        this.refrescarTabla();
-        this.modelotabla = new ModeloTablaUsuarios();
     }
-    
-    private void refrescarTabla(){
-        this.modelotabla.actualizarTabla();
-    }
-    
+       
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        IControladorAMUsuario iu = ControladorVentanaAMUsuarios.instanciar();
-        this.ventana.verModelo().mostrarTablaAcutalizada(gestorUsuarios.verUsuarios());
+        IControladorAMUsuario iu = new ControladorVentanaAMUsuarios(this.ventana);
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        Usuario u = this.ventana.seleccionarUsuarioenFila();
-        ControladorVentanaModificarUsuarios controlador = new ControladorVentanaModificarUsuarios(ventana, u);
+        int i = this.ventana.getTableMenu().getSelectedRow();
+        try{
+            Usuario u = ((ModeloTablaUsuarios)this.ventana.getTableMenu().getModel()).seleccionarUsuario(i);           
+            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(this.ventana, u);
+            this.actualizarDatosTabla();          
+        }
+        catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this.ventana,
+                    "No ha elegido a ningun usuario", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        Usuario elegido = this.ventana.seleccionarUsuarioenFila();
-        
-        if(elegido != null){
-           int respuesta = JOptionPane.showOptionDialog(null
+        int i = this.ventana.getTableMenu().getSelectedRow();
+        GestorUsuarios gu = GestorUsuarios.instanciarclase();
+        try{
+            Usuario u = ((ModeloTablaUsuarios)this.ventana.getTableMenu().getModel()).seleccionarUsuario(i);
+            int respuesta = JOptionPane.showOptionDialog(null
                    , CONFIRMACION
                    , TITULO
                    , JOptionPane.YES_NO_OPTION
@@ -67,20 +68,27 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
                    , new Object[]{"Si","No"}
                    , "No");
            if(respuesta == JOptionPane.YES_OPTION){
-               GestorUsuarios gu = GestorUsuarios.instanciarclase();
-               String res = gu.borrarUsuario(elegido);
-               JOptionPane.showMessageDialog(null, res);
-               this.btnBorrarClic(null);
+               String res = gu.borrarUsuario(u);
+               this.actualizarDatosTabla();
            }
         }
-        else{   
-           this.ventana.mostrarMensaje("No Ha seleccionado un Usuario para borrar");
+        catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this.ventana,
+                    "No ha elegido a ningun usuario", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }    
 
+    private void actualizarDatosTabla() {
+        AbstractTableModel modelo =
+                (AbstractTableModel) this.ventana.getTableMenu().getModel();
+        ((ModeloTablaUsuarios) modelo).actualizarTabla();
+    }
+    
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        this.ventana.requestFocusInWindow();
+        this.actualizarDatosTabla();
+        this.ventana.getFieldApellido().setText(null);
     }
 
     @Override
@@ -90,7 +98,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void txtApellidoPresionarTecla(ActionEvent evt) {
-  
+        this.btnBorrarClic(null);
     }
 
     @Override
@@ -99,11 +107,14 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         String apellidobuscado = this.ventana.getFieldApellido().getText().trim();
         
         if(apellidobuscado.isEmpty() ){
-            this.refrescarTabla();
+            this.actualizarDatosTabla();
         }
         else{
-            encontrados = gestorUsuarios.buscarUsuarios(apellidobuscado);
-            this.modelotabla.mostrarTablaAcutalizada(encontrados);
+            IGestorUsuarios gu = GestorUsuarios.instanciarclase();
+            encontrados = gu.buscarUsuarios(apellidobuscado);
+            AbstractTableModel modelotabla =
+                    (AbstractTableModel) this.ventana.getTableMenu().getModel();
+            ((ModeloTablaUsuarios) modelotabla).mostrarTablaAcutalizada(encontrados);
         }
         
     }
