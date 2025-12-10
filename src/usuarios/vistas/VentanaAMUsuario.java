@@ -90,12 +90,22 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Repetir Clave:");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
         });
 
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyReleased(evt);
@@ -117,13 +127,26 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         });
 
         comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>());
+        comboPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPerfilActionPerformed(evt);
+            }
+        });
         comboPerfil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 comboPerfilKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                comboPerfilKeyReleased(evt);
+            }
         });
 
         txtClave.setText("jPasswordField1");
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
         txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtClaveKeyReleased(evt);
@@ -131,12 +154,22 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         });
 
         txtClaveR.setText("jPasswordField2");
+        txtClaveR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveRActionPerformed(evt);
+            }
+        });
         txtClaveR.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtClaveRKeyReleased(evt);
             }
         });
 
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyReleased(evt);
@@ -219,6 +252,11 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtApellidoActionPerformed
+
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         cont.btnCancelarClic(evt);
@@ -228,6 +266,24 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         cont.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void comboPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPerfilActionPerformed
+
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtClaveRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveRActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtClaveRActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
         // TODO add your handling code here:
@@ -244,6 +300,11 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         cont.txtNombrePresionarTecla(evt);
     }//GEN-LAST:event_txtNombreKeyReleased
 
+    private void comboPerfilKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPerfilKeyReleased
+
+
+    }//GEN-LAST:event_comboPerfilKeyReleased
+
     private void txtClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyReleased
         // TODO add your handling code here:
         cont.passClavePresionarTecla(evt);
@@ -253,6 +314,10 @@ public class VentanaAMUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         cont.passClaveRepetidaPresionarTecla(evt);
     }//GEN-LAST:event_txtClaveRKeyReleased
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void comboPerfilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPerfilKeyPressed
         ((ControladorAMUsuario) cont).comboPerfilPresionarTecla(evt);        
