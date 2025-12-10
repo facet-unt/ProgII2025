@@ -5,6 +5,7 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import principal.vistas.VentanaPrincipal;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
@@ -13,170 +14,112 @@ import productos.modelos.ModeloComboEstados;
 import productos.modelos.Producto;
 import productos.vistas.VentanaAMProducto;
 
-public class ControladorVentanaAMProducto implements IControladorAMProducto {
+    public class ControladorVentanaAMProducto implements IControladorAMProducto {
 
-    private VentanaAMProducto vista; 
-    private Producto productoModificar;
-    private boolean esModificacion;
-    private final IGestorProductos gestor;
-
-    // ✅ Constructor para CREAR producto
-    public ControladorVentanaAMProducto(Producto producto, boolean esModificacion) {
-        this.gestor = GestorProductos.instanciar();
-        this.productoModificar = producto;
-        this.esModificacion = esModificacion;
+    private VentanaAMProducto ProductosVentana;
+    private VentanaPrincipal ventanaPadre;
+    private Producto prod;
+    
+    public ControladorVentanaAMProducto(VentanaPrincipal ventanaPadre, Producto producto) {
         
-        inicializarVista();
-    }
-
-    private void inicializarVista() {
-        this.vista = new VentanaAMProducto(null, this);
-        
-        // Configurar título
-        if (esModificacion) {
-            vista.setTitle(TITULO_MODIFICAR);
-            cargarDatosProducto();
-        } else {
-            vista.setTitle(TITULO_NUEVO);
+        this.ventanaPadre= ventanaPadre;
+        this.prod = producto;
+        this.ProductosVentana = new VentanaAMProducto(ventanaPadre, this);
+        ModeloComboCategorias modeloCategorias = new ModeloComboCategorias(); 
+        ModeloComboEstados modeloEstados = new ModeloComboEstados();
+  
+        this.ProductosVentana.configurarCategorias(modeloCategorias); 
+        this.ProductosVentana.configurarEstados(modeloEstados);
+        if(producto == null){  
+           this.ProductosVentana.setTitle(TITULO_NUEVO);
+        } 
+        else {
+          this.ProductosVentana.mostrarProducto(producto);
         }
-        
-        vista.setLocationRelativeTo(null);
-        vista.setResizable(false);
-        vista.setVisible(true);
+        this.ProductosVentana.setLocationRelativeTo(null);
+        this.ProductosVentana.setVisible(true); 
     }
-
-    // ✅ NUEVO: Carga datos del producto a modificar
-    private void cargarDatosProducto() {
-        if (productoModificar != null) {
-            vista.verTxtCodigo().setText(String.valueOf(productoModificar.verCodigo()));
-            vista.verTxtCodigo().setEditable(false); // No se puede cambiar el código
-            vista.verTxtDescripcion().setText(productoModificar.verDescripcion());
-            vista.verTxtPrecio().setText(String.valueOf(productoModificar.verPrecio()));
-            
-            // Seleccionar categoría y estado
-            ModeloComboCategorias modeloCat = (ModeloComboCategorias) vista.verComboCategorias().getModel();
-            modeloCat.seleccionarCategoria(productoModificar.verCategoria());
-            
-            ModeloComboEstados modeloEst = (ModeloComboEstados) vista.verComboEstado().getModel();
-            modeloEst.seleccionarEstado(productoModificar.verEstado());
-        }
-    }
-
+    
+    
+   
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        vista.dispose();
+        this.ProductosVentana.dispose();
     }
-
+    
+   
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        try {
-            // Obtener datos de la vista
-            String codigoStr = vista.verTxtCodigo().getText().trim();
-            String descripcion = vista.verTxtDescripcion().getText().trim();
-            String precioStr = vista.verTxtPrecio().getText().trim();
-
-            // Validar campos vacíos
-            if (codigoStr.isEmpty() || descripcion.isEmpty() || precioStr.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, 
-                    "Todos los campos son obligatorios", 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Parsear valores
-            int codigo = Integer.parseInt(codigoStr);
-            float precio = Float.parseFloat(precioStr);
-
-            // Obtener categoría y estado
-            ModeloComboCategorias modeloCat = (ModeloComboCategorias) vista.verComboCategorias().getModel();
-            Categoria categoriaSeleccionada = modeloCat.obtenerCategoria();
+        String coincidencia; 
+    
+    String ObtenerCodigo = this.ProductosVentana.obtenerCodigo();
+    String prec = this.ProductosVentana.obtenerPrecio();
+    String ObtenerDescripcion = this.ProductosVentana.obtenerDescripcion();
+    
+    try {
+        int Codigo = Integer.parseInt(ObtenerCodigo);
+        float Precio = Float.parseFloat(prec);
+        Categoria Cat = this.ProductosVentana.comboCategoria();
+        Estado Estado = this.ProductosVentana.comboEstado();
+        
+        GestorProductos gp =  GestorProductos.instanciar();
+        if(this.prod == null)
+        {
             
-            ModeloComboEstados modeloEst = (ModeloComboEstados) vista.verComboEstado().getModel();
-            Estado estadoSeleccionado = modeloEst.obtenerEstado();
-
-            String resultado;
-
-            if (esModificacion) {
-                // ✅ MODIFICAR producto existente
-                resultado = gestor.modificarProducto(
-                    productoModificar, 
-                    codigo, 
-                    descripcion, 
-                    precio, 
-                    categoriaSeleccionada, 
-                    estadoSeleccionado
-                );
-            } else {
-                // ✅ CREAR nuevo producto
-                resultado = gestor.crearProducto(
-                    codigo, 
-                    descripcion, 
-                    precio, 
-                    categoriaSeleccionada, 
-                    estadoSeleccionado
-                );
-            }
-
-            // Mostrar resultado
-            if (resultado.equals(IGestorProductos.EXITO) || 
-                resultado.equals(IGestorProductos.VALIDACION_EXITO)) {
-                JOptionPane.showMessageDialog(vista, 
-                    esModificacion ? "Producto modificado con éxito" : "Producto creado con éxito",
-                    "Éxito", 
-                    JOptionPane.INFORMATION_MESSAGE);
-                vista.dispose();
-            } else {
-                JOptionPane.showMessageDialog(vista, 
-                    resultado, 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(vista, 
-                "El código debe ser un número entero y el precio un número decimal válido.",
-                "Error de formato",
-                JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, 
-                "Error inesperado: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            coincidencia = gp.crearProducto(Codigo, ObtenerDescripcion, Precio, Cat, Estado);
+            
         }
+        else {
+            
+            coincidencia = gp.modificarProducto(prod, Codigo, ObtenerDescripcion, Precio, Cat, Estado);
+            
+        }
+        
+        System.out.println(coincidencia);
+        
+        
+        
+        
+        if(coincidencia.equals(IGestorProductos.EXITO)) 
+        {
+            System.out.println("Producto creado exitosamente");
+            
+            this.ProductosVentana.dispose(); 
+            
+        }
+        else
+        {
+            System.out.println("Hubo un error al crear/modificar");
+            
+            javax.swing.JOptionPane.showMessageDialog(this.ProductosVentana, coincidencia, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            
+        }
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this.ProductosVentana, "El código y el precio deben ser números válidos", "Error de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     @Override
     public void txtCodigoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vista.verTxtDescripcion().requestFocus();
-        }
+        this.ProductosVentana.enfocarDescripcion();
+       }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vista.verTxtPrecio().requestFocus();
-        }
+        this.ProductosVentana.enfocarPrecio();
+       }
     }
 
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vista.verComboCategorias().requestFocus();
-        }
+        this.ProductosVentana.comboCategoria();
+       }
     }
-
-    public void comboCategoriasPresionarTecla(KeyEvent evt) {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            vista.verComboEstado().requestFocus();
-        }
-    }
-
-    public void comboEstadoPresionarTecla(KeyEvent evt) {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnGuardarClic(null);
-        }
-    }
-}
+    }    
+    

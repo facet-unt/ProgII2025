@@ -5,21 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTablaProductos extends AbstractTableModel {
+public class ModeloTablaProductos extends AbstractTableModel{
+    private String[] columnas = {"Categoría", "Descripción", "Precio"};
+    private List<Producto> productos = new ArrayList<>();
 
-    private String[] columnas = { "Categoría", "Descripción", "Precio",};
-    private List<Producto> listaProductos = new ArrayList<>();
-    
-    // ✅ CORREGIDO: Singleton compartido
-    private final IGestorProductos gestor = GestorProductos.instanciar();
-
+    /*Constructor*/
     public ModeloTablaProductos() {
-        actualizarTabla();
     }
-
+    
+    /*Metodo pque devuelve la lista de los productos actualizada*/ 
+    public void setProductos(List <Producto> p){
+        this.productos = p;
+        this.fireTableDataChanged();
+    }
+    
     @Override
     public int getRowCount() {
-        return listaProductos.size();
+        return productos.size();
     }
 
     @Override
@@ -28,53 +30,27 @@ public class ModeloTablaProductos extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int fila, int columna) {
-        if (fila < 0 || fila >= listaProductos.size()) {
-            return null;
+    public String getColumnName(int column) {
+        return columnas[column];
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Producto p = productos.get(rowIndex);
+        switch(columnIndex) {
+            case 0: return p.verCategoria();
+            case 1: return p.verDescripcion();
+            case 2: return p.verPrecio();
+            default: return null;
         }
+    }
+    
+
+    public Producto obtenerProductoEnFila(int fila) {
         
-        Producto p = listaProductos.get(fila);
-
-        switch (columna) {
-            case 0:
-                return p.verCategoria();
-            case 1:
-                return p.verDescripcion();    
-            case 2:
-                return String.format("$%.2f", p.verPrecio()); 
-            default:
-                return null;
-        }
+    return this.productos.get(fila); 
+    
     }
 
-    @Override
-    public String getColumnName(int i) {
-        return columnas[i];
-    }
-
-    // ✅ CORREGIDO: Usa el gestor singleton
-    public void actualizarTabla() {
-        this.listaProductos = gestor.menu();
-        System.out.println("Productos en tabla: " + listaProductos.size());
-        this.fireTableDataChanged();
-    }
-
-    // ✅ NUEVO: Actualizar con lista filtrada
-    public void actualizarTabla(List<Producto> listaFiltrada) {
-        this.listaProductos = new ArrayList<>(listaFiltrada);
-        this.fireTableDataChanged();
-    }
-
-    public Producto obtenerProducto(int fila) {
-        if (fila < 0 || fila >= listaProductos.size()) {
-            return null;
-        }
-        return listaProductos.get(fila);
-    }
-
-    @Override
-    public boolean isCellEditable(int row, int col) {
-        return false;
-    }
 }
 

@@ -66,4 +66,6 @@ public interface IGestorProductos {
     public static final String SEPARADOR = "-";
     
     public static final String NOMBREARCHIVO = "Productos.txt";
+    
+    public static final String BORRADO = "se borró con exito";
 }

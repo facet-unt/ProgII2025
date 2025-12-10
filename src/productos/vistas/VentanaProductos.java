@@ -4,9 +4,11 @@
  */
 package productos.vistas;
 import interfaces.IControladorProductos;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 import productos.modelos.ModeloTablaProductos;
+import productos.modelos.Producto;
 
 /**
  *
@@ -14,27 +16,54 @@ import productos.modelos.ModeloTablaProductos;
  */
 public class VentanaProductos extends javax.swing.JDialog {
     
-     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
-     private IControladorProductos controlador;
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
+    private IControladorProductos controlador;
+    private ModeloTablaProductos tabla;
     
-  
-    public VentanaProductos(IControladorProductos controlador, ModeloTablaProductos modelo) {
-        initComponents();
+    /**
+     * Creates new form ventanaProducto
+     */
+    public VentanaProductos(java.awt.Frame parent, boolean modal, IControladorProductos controlador) {
+        super(parent, modal);
         this.controlador = controlador;
-        
-        this.jTable1.setModel(modelo);
+        initComponents();
+        configurarTabla();
     }
-
     
+    /*Metodo auxiliar que me permite asignarle un modelo a la tabla */
+    private void configurarTabla(){
+        this.tabla = new ModeloTablaProductos();
+        this.tablaProductos.setModel(tabla);
+    }
+    
+    public JTable obtenerTabla() {
+        return this.tablaProductos;
+    }
+    
+    public void actualizarTabla(List<Producto> productos) {
+        this.tabla.setProductos(productos);
+    }
+    
+    public ModeloTablaProductos obtenerModeloTabla() {
+        return (ModeloTablaProductos) this.tablaProductos.getModel();
+    }
+    
+    
+    /*Metodo para conseguir el texto de txtDescripcion */
+    public String conseguirTxt(){
+        return this.jTextField1.getText().trim();
+    }
+    
+    public Producto obtenerProductoSeleccionado() {
+    int fila = this.tablaProductos.getSelectedRow();
+    
+    if (fila == -1) {
+        return null; 
+    }
+    
+    return this.tabla.obtenerProductoEnFila(fila);
+   }
 
-    public void setTablaModel(javax.swing.table.TableModel modelo) {
-       jTable1.setModel(modelo);
-    }
-   
-     
-      public int obtenerFilaSeleccionada() {
-        return this.jTable1.getSelectedRow();
-    }
     
     public boolean confirmar(String mensaje) {
     int opcion = javax.swing.JOptionPane.showConfirmDialog(
@@ -74,7 +103,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -124,7 +153,7 @@ public class VentanaProductos extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("    Menú");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -135,7 +164,7 @@ public class VentanaProductos extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaProductos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,50 +280,10 @@ public class VentanaProductos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JButton getBtnBorrar() {
-        return jButton4;
-    }
-
-    public javax.swing.JButton getBtnBuscar() {
-        return jButton1;
-    }
-
-    public javax.swing.JButton getBtnModificar() {
-        return jButton3;
-    }
-
-    public javax.swing.JButton getBtnNuevo() {
-        return jButton2;
-    }
-
-    public javax.swing.JButton getBtnVolver() {
-        return jButton5;
-    }
-
-    public javax.swing.JTextField getFieldDescripcion() {
-        return jTextField1;
-    }
-
-
-    public javax.swing.JLabel getjLabel1() {
-        return jLabel1;
-    }
-
-    public javax.swing.JLabel getjLabel2() {
-        return jLabel2;
-    }
-
-    public javax.swing.JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public javax.swing.JTable getTableMenu() {
-        return jTable1;
-    }
 }
 
 

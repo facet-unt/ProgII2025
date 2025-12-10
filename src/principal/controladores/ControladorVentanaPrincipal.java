@@ -17,52 +17,37 @@ import principal.vistas.VentanaPrincipal;
  *
  * @author tobias150
  */
-public class ControladorVentanaPrincipal implements IControladorPrincipal{
-    private VentanaPrincipal ventana;
-    private static ControladorVentanaPrincipal instancia;
-    
-    public static ControladorVentanaPrincipal instanciar(){
-        if(instancia == null)
-            instancia = new ControladorVentanaPrincipal();
-        return instancia;
+public class ControladorVentanaPrincipal implements IControladorPrincipal {
+    private VentanaPrincipal vista;
+      
+    public ControladorVentanaPrincipal() {
+        this.vista = new VentanaPrincipal(this);
+        this.vista.setLocationRelativeTo(null); 
+        this.vista.setVisible(true); 
+        this.vista.setTitle(TITULO); 
     }
     
-    public ControladorVentanaPrincipal(){
-        this.ventana = new VentanaPrincipal(this);
-        this.ventana.setTitle(TITULO);
-        this.ventana.setLocationRelativeTo(null);
-        this.ventana.setResizable(false);
-        this.ventana.setVisible(true);
-    }
-    
-    @Override
-    public void ControladorVentana () {
-        this.ventana.setVisible(true);
-    }
-
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        IControladorProductos cvp = new ControladorVentanaProductos();
-        
-        
-        
-    }
-    @Override
-    public void btnUsuariosClic(ActionEvent evt) {
-       IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios(ventana);
-       
+        IControladorProductos cp = new ControladorVentanaProductos(vista);
     }
 
     @Override
-    public void btnSalirClic(ActionEvent evt) {
-        int accion = JOptionPane.showConfirmDialog(this.ventana, "Esta seguro que quiere salir?", "Salir", JOptionPane.YES_NO_OPTION);
-        
-        if(accion == 0){
-            this.ventana.dispose();
-            System.exit(0);
-        }
+    public void btnUsuariosClic(ActionEvent evt) {
+        IControladorUsuarios cu = new ControladorVentanaUsuarios(vista);
     }
+
     
+    @Override
+    public void btnSalirClic(ActionEvent evt) {
+   
+    if(javax.swing.JOptionPane.showConfirmDialog(vista,IControladorPrincipal.AVISO,
+                    IControladorPrincipal.CONFIRMAR, 0) == 0)
+        System.exit(0);
+
+    }
+
     
+
     
 }

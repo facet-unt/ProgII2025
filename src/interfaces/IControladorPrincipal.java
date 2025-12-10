@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
  */
 public interface IControladorPrincipal {
     public static final String TITULO = "Bar";
+    public static final String CONFIRMAR = "SI";
+    public static final String AVISO = "¿Estás seguro que quieres salir?";
 
     /**
      * Acción a ejecutar cuando se selecciona el botón Productos
@@ -32,5 +34,4 @@ public interface IControladorPrincipal {
      */                        
     public void btnSalirClic(ActionEvent evt); 
     
-    public void ControladorVentana();
 }
