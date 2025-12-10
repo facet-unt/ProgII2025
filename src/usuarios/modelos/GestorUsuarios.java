@@ -120,7 +120,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         List<Usuario> usuariosBuscados = new ArrayList();
         String buscado = apellido.toLowerCase();
         for (Usuario u : usuarios) {
-            if (u.verApellido().toLowerCase().contains(apellido)) {
+            if (u.verApellido().toLowerCase().contains(buscado)) {
 
                 usuariosBuscados.add(u);
             }
