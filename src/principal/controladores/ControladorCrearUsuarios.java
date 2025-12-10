@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
-import usuarios.modelos.Perfil;
 import usuarios.vistas.VentanaCrearUsuarios;
 import usuarios.vistas.VentanaUsuarios;
 

@@ -5,7 +5,6 @@
  */
 package productos.vistas;
 
-import java.awt.event.KeyEvent;
 import javax.swing.JDialog;
 import principal.controladores.ControladorCrearProductos;
 import productos.modelos.Categoria;
@@ -87,7 +86,6 @@ public class VentanaCrearProductos extends JDialog {
             }
         });
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +94,6 @@ public class VentanaCrearProductos extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -139,26 +136,25 @@ public class VentanaCrearProductos extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecio)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtDescripcion)
-                            .addComponent(comboCategorias, 0, 365, Short.MAX_VALUE)
-                            .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPrecio)
+                    .addComponent(txtCodigo)
+                    .addComponent(txtDescripcion)
+                    .addComponent(comboCategorias, 0, 365, Short.MAX_VALUE)
+                    .addComponent(comboEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(btnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +179,11 @@ public class VentanaCrearProductos extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGuardar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();

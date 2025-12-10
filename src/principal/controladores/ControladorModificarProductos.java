@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import productos.modelos.Categoria;
-import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
 import productos.modelos.Producto;
 import productos.vistas.VentanaModificarProductos;
@@ -63,15 +61,15 @@ public class ControladorModificarProductos implements IControladorAMProducto{
     }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        this.codigo = gestorProductos.menu().get(ventanaProductos.filaSeleccionada).verCodigo();
+        this.codigo = gestorProductos.menu().get(ventanaProductos.obtenerFilaSeleccionada()).verCodigo();
         if(descripcion==null||descripcion.isBlank())
             mostrarError("Error descripcion");
         else if(precio<=0)
             mostrarError("Error precio");
         else{
-            producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+            producto = gestorProductos.menu().get(ventanaProductos.obtenerFilaSeleccionada());
             gestorProductos.modificarProducto(producto, codigo, descripcion, precio, ventanaModificarProductos.verCategoria(), ventanaModificarProductos.verEstado());
-            ventanaProductos.obtenerModeloProductos().actualizarProducto(ventanaProductos.filaSeleccionada, producto);
+            ventanaProductos.obtenerModeloProductos().actualizarProducto(ventanaProductos.obtenerFilaSeleccionada(), producto);
             ventanaModificarProductos.dispose();
         }
     }

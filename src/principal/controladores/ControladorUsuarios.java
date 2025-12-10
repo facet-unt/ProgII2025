@@ -10,6 +10,7 @@ import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.GestorUsuarios;
@@ -31,7 +32,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
     public ControladorUsuarios(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
         ventanaUsuarios = new VentanaUsuarios(ventanaPrincipal,true,this,gestorUsuarios.verUsuarios());
-        ventanaUsuarios.setTitle("Usuarios");
+        ventanaUsuarios.setTitle(TITULO);
         ventanaUsuarios.setLocationRelativeTo(ventanaPrincipal);
         ventanaUsuarios.setVisible(true);
     }
@@ -43,7 +44,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
         else
             nuevaInstancia(ventanaPrincipal);
         return instancia;
-}
+    }
     
     private static void nuevaInstancia(VentanaPrincipal ventanaPrincipal){
         instancia = new ControladorUsuarios(ventanaPrincipal);
@@ -65,18 +66,20 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.obtenerFilaSeleccionada());
         IControladorAMUsuario controladorModificarUsuarios = ControladorModificarUsuarios.instanciar(ventanaUsuarios,usuario);
 
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        ventanaUsuarios.obtenerModeloUsuarios().eliminarUsuario(ventanaUsuarios.filaSeleccionada);
-        usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
-        gestorUsuarios.borrarUsuario(usuario);
+        int opcion = JOptionPane.showConfirmDialog(ventanaUsuarios,CONFIRMACION,"Borrar un usuario",JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            ventanaUsuarios.obtenerModeloUsuarios().eliminarUsuario(ventanaUsuarios.obtenerFilaSeleccionada());
+            usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.obtenerFilaSeleccionada());
+            gestorUsuarios.borrarUsuario(usuario);
+        }
     }
-    
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         JTextField campo = (JTextField) evt.getComponent();
@@ -86,6 +89,5 @@ public class ControladorUsuarios implements IControladorUsuarios{
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         ventanaUsuarios.obtenerModeloUsuarios().setUsuarios(gestorUsuarios.buscarUsuarios(apellido));
-    }
-    
+    }   
 }

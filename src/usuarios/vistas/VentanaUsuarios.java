@@ -18,7 +18,7 @@ import usuarios.modelos.Usuario;
 public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
     private static ControladorUsuarios controlador;
-    public int filaSeleccionada;
+    private int filaSeleccionada;
     private ModeloTablaUsuarios modeloTabla;
     private static List<Usuario> usuarios = new ArrayList<>();
     /**
@@ -215,7 +215,9 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     public ModeloTablaUsuarios obtenerModeloUsuarios() {
         return (ModeloTablaUsuarios) jTable1.getModel();
     }
-    
+    public int obtenerFilaSeleccionada(){
+        return filaSeleccionada;
+    }
     /**
      * @param args the command line arguments
      */

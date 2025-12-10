@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
-import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 import usuarios.vistas.VentanaModificarUsuarios;
 import usuarios.vistas.VentanaUsuarios;
@@ -61,7 +60,7 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
     }
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        this.correo = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada).verCorreo();
+        this.correo = gestorUsuarios.verUsuarios().get(ventanaUsuarios.obtenerFilaSeleccionada()).verCorreo();
         if(apellido == null||apellido.isBlank()||apellido.isEmpty())
             mostrarError("Error apellido");
         else if(nombre == null||nombre.isBlank()||nombre.isEmpty())
@@ -71,9 +70,9 @@ public class ControladorModificarUsuarios implements IControladorAMUsuario{
         else if(claveRepetida == null||!claveRepetida.contains(clave))
             mostrarError("Error clave");
         else{
-            usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.filaSeleccionada);
+            usuario = gestorUsuarios.verUsuarios().get(ventanaUsuarios.obtenerFilaSeleccionada());
             gestorUsuarios.modificarUsuario(usuario, correo, apellido, nombre,ventanaModificarUsuarios.verPerfil(), clave, claveRepetida);
-            ventanaUsuarios.obtenerModeloUsuarios().actualizarUsuario(ventanaUsuarios.filaSeleccionada, usuario);
+            ventanaUsuarios.obtenerModeloUsuarios().actualizarUsuario(ventanaUsuarios.obtenerFilaSeleccionada(), usuario);
             ventanaModificarUsuarios.dispose();
         }
     }

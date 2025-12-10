@@ -23,8 +23,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
     
     public ControladorVentanaPrincipal() {
         ventana = new VentanaPrincipal(this);
-        ventana.setTitle("Bar"); 
-        ventana.setSize(500,500);
+        ventana.setTitle(TITULO); 
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
@@ -34,17 +33,17 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
             instancia = new ControladorVentanaPrincipal();
         return instancia;
     }
-    //@Override
+    @Override
     public void btnProductosClic(ActionEvent evt) {
         IControladorProductos controladorproductos = ControladorProductos.instanciar(ventana); 
     }
 
-    //@Override
+    @Override
     public void btnUsuariosClic(ActionEvent evt) {
         IControladorUsuarios controladorusuarios = ControladorUsuarios.instanciar(ventana);
     }
 
-    //@Override
+    @Override
     public void btnSalirClic(ActionEvent evt) {
         int opcion = JOptionPane.showConfirmDialog(this.ventana,"¿Esta seguro que desea salir del programa?","Salir del programa",JOptionPane.YES_NO_OPTION);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

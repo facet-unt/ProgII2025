@@ -10,6 +10,8 @@ import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
@@ -33,7 +35,7 @@ public class ControladorProductos implements IControladorProductos {
     public ControladorProductos(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
         ventanaProductos = new VentanaProductos(ventanaPrincipal,true,this,gestorProductos.menu()); 
-        ventanaProductos.setTitle("Productos");
+        ventanaProductos.setTitle(TITULO);
         ventanaProductos.setLocationRelativeTo(ventanaPrincipal);
         ventanaProductos.setVisible(true);
     }
@@ -80,14 +82,18 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
+        producto = gestorProductos.menu().get(ventanaProductos.obtenerFilaSeleccionada());
         IControladorAMProducto controladorModificarProducto = ControladorModificarProductos.instanciar(ventanaProductos,producto);
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        ventanaProductos.obtenerModeloProductos().eliminarProducto(ventanaProductos.filaSeleccionada);
-        producto = gestorProductos.menu().get(ventanaProductos.filaSeleccionada);
-        gestorProductos.borrarProducto(producto);
+        int opcion = JOptionPane.showConfirmDialog(ventanaProductos,CONFIRMACION,"Borrar un producto",JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            ventanaProductos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            ventanaProductos.obtenerModeloProductos().eliminarProducto(ventanaProductos.obtenerFilaSeleccionada());
+            producto = gestorProductos.menu().get(ventanaProductos.obtenerFilaSeleccionada());
+            gestorProductos.borrarProducto(producto);
+        }
     }
 }

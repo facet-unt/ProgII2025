@@ -1,5 +1,3 @@
 ApellidoCliente1;claveCliente1;cliente1@bar.com;NombreCliente1;Cliente
-ApellidoCliente2;claveCliente2;cliente2@bar.com;NombreCliente2;Cliente
-ApellidoEmpleado1;claveEmpleado1;empleado1@bar.com;NombreEmpleado1;Empleado
-ApellidoEmpleado2;claveEmpleado2;empleado2@bar.com;NombreEmpleado2;Empleado
-ApellidoEncargado1;claveEncargado1;encargado1@bar.com;NombreEncargado1;Encargado
+pascual;456;cliente2@bar.com;pedro;Cliente
+@753;789;empleado2@bar.com;/898;Empleado
