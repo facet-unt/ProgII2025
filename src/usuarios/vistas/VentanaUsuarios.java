@@ -36,6 +36,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void configurarTabla(){
         this.modeloTabla = new ModeloTablaUsuarios();
         this.tablaUsuarios.setModel(modeloTabla);
+        this.tablaUsuarios.getTableHeader().setReorderingAllowed(false); /*Bloquea el arrastre de columnas*/
     }
     
     public void actualizarTabla(List<Usuario> productos) {

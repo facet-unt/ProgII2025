@@ -34,6 +34,7 @@ public class VentanaProductos extends javax.swing.JDialog {
     private void configurarTabla(){
         this.modeloTabla = new ModeloTablaProductos();
         this.tablaProductos.setModel(modeloTabla);
+        this.tablaProductos.getTableHeader().setReorderingAllowed(false); /*Bloquea el arrastre de columnas*/
     }
     
     public JTable obtenerTabla() {
