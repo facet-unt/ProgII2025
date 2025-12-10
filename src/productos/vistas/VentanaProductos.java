@@ -155,15 +155,29 @@ public class VentanaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.controlador.btnBorrarClic(evt);
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto para borrar.");
+            return;
+        }
+
+        int opcion = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Está seguro que desea borrar el producto seleccionado?", 
+            "Confirmar Borrado", 
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            this.controlador.btnBorrarClic(evt);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public javax.swing.JTable verTablaProductos() {
-        return jTable1;
+        return this.jTable1;
     }
-
     public javax.swing.JTextField verTxtDescripcion() {
-        return txtDescripcion;
+        return this.txtDescripcion;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
