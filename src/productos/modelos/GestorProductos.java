@@ -15,7 +15,6 @@ public class GestorProductos implements IGestorProductos {
     private static GestorProductos instancia;
     private final List<Producto> productos = new ArrayList<>();
 
-    // ✅ CORREGIDO: Carga datos al instanciar
     private GestorProductos() {
         cargarDesdeArchivo();
     }
@@ -54,7 +53,6 @@ public class GestorProductos implements IGestorProductos {
         String error = validarDatos(codigo, descripcion, precio, categoria, estado);
         if (error != null) return error;
 
-        // ✅ CORREGIDO: Guarda el índice antes de remover
         int indice = productos.indexOf(existente);
         productos.remove(existente);
 
@@ -64,9 +62,7 @@ public class GestorProductos implements IGestorProductos {
         existente.asignarCategoria(categoria);
         existente.asignarEstado(estado);
 
-        // Verifica duplicados con el nuevo código
         if (productos.contains(existente)) {
-            // Restaura el producto original si hay conflicto
             productos.add(indice, new Producto(
                 existente.verCodigo(), 
                 existente.verDescripcion(), 
@@ -88,7 +84,7 @@ public class GestorProductos implements IGestorProductos {
         if (!productos.contains(p))
             return PRODUCTO_INEXISTENTE;
 
-        // ✅ CORREGIDO: Valida que no esté en pedidos
+
         IGestorPedidos gp = GestorPedidos.getInstancia();
         for (Pedido ped : gp.verPedidos()) {
             for (ProductoDelPedido pp : ped.verProductosDelPedido()) {
@@ -106,7 +102,7 @@ public class GestorProductos implements IGestorProductos {
     @Override
     public List<Producto> menu() {
         Collections.sort(productos);
-        return new ArrayList<>(productos); // ✅ Retorna copia
+        return new ArrayList<>(productos); 
     }
 
     @Override
@@ -146,7 +142,6 @@ public class GestorProductos implements IGestorProductos {
         return lista;
     }
 
-    // ✅ CORREGIDO: Manejo robusto de lectura
     private void cargarDesdeArchivo() {
         productos.clear();
         File file = new File(NOMBREARCHIVO);
@@ -167,7 +162,7 @@ public class GestorProductos implements IGestorProductos {
                 linea = linea.replace("\uFEFF", "").trim();
                 if (linea.isEmpty()) continue;
 
-                String[] p = linea.split("\\*"); // ✅ Usa * como separador
+                String[] p = linea.split("\\*"); 
 
                 if (p.length != 5) {
                     System.err.println("Línea mal formateada: " + linea);
@@ -195,7 +190,6 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
-    // ✅ CORREGIDO: Usa * como separador y reescribe todo
     private void guardarEnArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
             for (Producto p : productos) {

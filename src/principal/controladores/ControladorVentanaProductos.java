@@ -3,16 +3,13 @@ package principal.controladores;
 import interfaces.IControladorAMProducto;
 import interfaces.IControladorProductos;
 import interfaces.IGestorProductos;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
-
 import productos.modelos.GestorProductos;
-import productos.modelos.ModeloTablaProductos;
 import productos.modelos.Producto;
 import productos.vistas.VentanaProductos;
 
@@ -25,24 +22,43 @@ public class ControladorVentanaProductos implements IControladorProductos {
         this.ventanaPadre= ventanaPadre;
         this.vista = new VentanaProductos(null, true, this);       
         this.vista.setTitle(TITULO);
-        this.vista.setLocationRelativeTo(null);
         this.btnBuscarClic(null);
+        this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);   
     }
-
-
     @Override
-    public void ventanaObtenerFoco(WindowEvent evt) {
-        GestorProductos gp = GestorProductos.instanciar();
-        List<Producto> listaProductosActualizada = gp.menu();
-        this.vista.actualizarTabla(listaProductosActualizada);
-    }
-
-   @Override
-    public void btnVolverClic(ActionEvent evt) {
-        this.vista.dispose(); 
-    }
+    public void btnBorrarClic(ActionEvent evt) {
+    Producto borrado = this.obtenerProductoSeleccionado();
     
+        if(borrado != null){
+        int opcion = JOptionPane.showOptionDialog(null,
+                IControladorProductos.CONFIRM,
+                IControladorProductos.BORRARPRODUCTO, 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Sí", "No"}, "No");
+        
+        if (opcion == JOptionPane.YES_OPTION){
+            GestorProductos gp = GestorProductos.instanciar();
+            String resultado = gp.borrarProducto(borrado);
+  
+            if(resultado.equals(IGestorProductos.BORRADO)) {
+                this.btnBuscarClic(null);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    resultado, 
+                    IControladorProductos.ERROR_BORRAR,
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(null,
+            "Seleccione el producto a eliminar",
+            IControladorProductos.TITULO,
+            JOptionPane.WARNING_MESSAGE);
+    }
+}
+   
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
@@ -82,43 +98,20 @@ public class ControladorVentanaProductos implements IControladorProductos {
     }
 }
 
+ private Producto obtenerProductoSeleccionado() {
+        return this.vista.obtenerProductoSeleccionado();    
+    }
 
-
-@Override
-public void btnBorrarClic(ActionEvent evt) {
-    Producto borrado = this.obtenerProductoSeleccionado();
+    @Override
+    public void btnVolverClic(ActionEvent evt) {
+        this.vista.dispose(); 
+    }
     
-    if(borrado != null){
-        int opcion = JOptionPane.showOptionDialog(null,
-                IControladorProductos.CONFIRM,
-                IControladorProductos.BORRARPRODUCTO, 
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Sí", "No"}, "No");
-        
-        if (opcion == JOptionPane.YES_OPTION){
-            GestorProductos gp = GestorProductos.instanciar();
-            String resultado = gp.borrarProducto(borrado);
-  
-            if(resultado.equals(IGestorProductos.BORRADO)) {
-                this.btnBuscarClic(null);
-            } else {
-                JOptionPane.showMessageDialog(null,
-                    resultado, 
-                    IControladorProductos.ERROR_BORRAR,
-                    JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    } else {
-        JOptionPane.showMessageDialog(null,
-            "Seleccione el producto a eliminar",
-            IControladorProductos.TITULO,
-            JOptionPane.WARNING_MESSAGE);
+     @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        GestorProductos gp = GestorProductos.instanciar();
+        List<Producto> listaProductosActualizada = gp.menu();
+        this.vista.actualizarTabla(listaProductosActualizada);
     }
 }
-    private Producto obtenerProductoSeleccionado() {
-        Producto p = this.vista.obtenerProductoSeleccionado();
-        return null;
-        
-    }
-}
+

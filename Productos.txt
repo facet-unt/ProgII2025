@@ -1,3 +1,2 @@
 5*Tarta*1.0*Entrada*Disponible
-3*Helado*33.03*Postre*Disponible
-2134124*a*124312.0*Entrada*Disponible
+2134124*a*1243112.0*Entrada*Disponible

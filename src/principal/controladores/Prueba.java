@@ -7,10 +7,8 @@ package principal.controladores;
 import interfaces.IControladorPrincipal;
 import productos.vistas.VentanaProductos;
 import usuarios.vistas.VentanaUsuarios;
-/**
- *
- * @author tobias150
- */
+import productos.modelos.GestorProductos;
+
 public class Prueba {
     public static void main(String[] args){
         IControladorPrincipal cp = new ControladorVentanaPrincipal();
