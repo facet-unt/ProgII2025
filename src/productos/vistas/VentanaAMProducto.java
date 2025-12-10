@@ -27,27 +27,10 @@ public class VentanaAMProducto extends JDialog {
             this.setTitle(IControladorAMProducto.TITULO_MODIFICAR);
             cargarProductoEnCampos(producto);
         }
-
-        this.setVisible(true);
     }
-    
-    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador, Producto producto) {
-        super(ventanaPadre, true);
+
+    public void setControlador(IControladorAMProducto controlador) {
         this.controlador = controlador;
-        this.producto = producto;
-        initComponents();
-        this.setLocationRelativeTo(null);
-
-        if (producto == null) {
-            this.setTitle(IControladorAMProducto.TITULO_NUEVO);
-        } else {
-            this.setTitle(IControladorAMProducto.TITULO_MODIFICAR);
-            cargarProductoEnCampos(producto);
-        }
-
-        this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);
     }
     
     @SuppressWarnings("unchecked")

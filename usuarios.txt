@@ -1,0 +1,2 @@
+olitoledo2005@gmail.com;Toledo;Olivia;1234;Empleado
+pedri@gmail.com;Cagna;Pedro;9876;Cliente

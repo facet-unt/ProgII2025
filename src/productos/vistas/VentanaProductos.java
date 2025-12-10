@@ -1,7 +1,10 @@
 package productos.vistas;
 
 import interfaces.IControladorProductos;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import productos.modelos.Producto;
 
 public class VentanaProductos extends javax.swing.JDialog {
     
@@ -178,6 +181,16 @@ public class VentanaProductos extends javax.swing.JDialog {
     }
     public javax.swing.JTextField verTxtDescripcion() {
         return this.txtDescripcion;
+    }
+    
+    public void actualizarTabla(List<Producto> productos) {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+    
+        for (Producto p : productos) {
+            modelo.addRow(new Object[]{p.verCodigo(), p.verDescripcion(), p.verPrecio(), p.verCategoria(), p.verEstado()
+            });
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

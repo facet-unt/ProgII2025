@@ -7,6 +7,7 @@ import static interfaces.IControladorProductos.TITULO;
 import interfaces.IGestorProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -34,13 +35,21 @@ public class ControladorProductos implements IControladorProductos {
     public void btnNuevoClic(ActionEvent evt) {
         VentanaAMProducto ventanaAM = new VentanaAMProducto(this.ventanaProductos, null);
         IControladorAMProducto controlador = new ControladorAMProducto(ventanaAM, null);
+        ventanaAM.setControlador(controlador);
+
+        ventanaAM.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                actualizarDatosTabla();
+            }
+        });
+
+        ventanaAM.setVisible(true);
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        
         int fila = this.ventanaProductos.verTablaProductos().getSelectedRow();
-
         if (fila == -1) {
             JOptionPane.showMessageDialog(this.ventanaProductos, PRODUCTO_NO_SELECCIONADO, "Error", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -51,11 +60,20 @@ public class ControladorProductos implements IControladorProductos {
 
         VentanaAMProducto ventanaAM = new VentanaAMProducto(this.ventanaProductos, p);
         IControladorAMProducto controlador = new ControladorAMProducto(ventanaAM, p);
+        ventanaAM.setControlador(controlador);
+
+        ventanaAM.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                actualizarDatosTabla();
+            }
+        });
+
+        ventanaAM.setVisible(true);
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        
         int fila = this.ventanaProductos.verTablaProductos().getSelectedRow();
 
         if (fila == -1) {
@@ -101,16 +119,10 @@ public class ControladorProductos implements IControladorProductos {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        
         String desc = this.ventanaProductos.verTxtDescripcion().getText().trim();
-
         ModeloTablaProductos modelo = (ModeloTablaProductos) this.ventanaProductos.verTablaProductos().getModel();
 
-        if (!desc.isEmpty()) {
-            List<Producto> coincidencias = GestorProductos.instanciar().menu().stream().filter(p -> p.verDescripcion() != null && p.verDescripcion().toLowerCase().contains(desc.toLowerCase())).toList();
-            modelo.actualizarDatosTabla(coincidencias);
-        } else {
-            modelo.actualizarDatosTabla();
-        }
+        List<Producto> productosFiltrados = GestorProductos.instanciar().buscarProductos(desc);
+        modelo.actualizarDatosTabla(productosFiltrados);
     }
 }

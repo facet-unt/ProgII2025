@@ -75,16 +75,17 @@ public class GestorProductos implements IGestorProductos{
     @Override
     public List<Producto> buscarProductos(String descripcion) {
         ArrayList<Producto> pEncontrados = new ArrayList<>();
-        
-        if(descripcion==null || descripcion.trim().isEmpty()){
-            return pEncontrados;
-        }
-        for(Producto p : productos){
-            if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())){
-                pEncontrados.add(p);
+    
+        if(descripcion == null || descripcion.trim().isEmpty()){
+            pEncontrados.addAll(productos);
+        } else {
+            for(Producto p : productos){
+                if(p.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())){
+                    pEncontrados.add(p);
+                }
             }
         }
-        
+    
         ordenarPorCategoriaYDescripcion(pEncontrados);
         return pEncontrados;
     }

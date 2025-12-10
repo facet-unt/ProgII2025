@@ -50,10 +50,10 @@ public class ControladorAMProducto implements IControladorAMProducto{
 
     @Override
     public void txtCodigoPresionarTecla(java.awt.event.KeyEvent evt) {}
-
+    
     @Override
     public void txtDescripcionPresionarTecla(java.awt.event.KeyEvent evt) {}
-
+    
     @Override
     public void txtPrecioPresionarTecla(java.awt.event.KeyEvent evt) {}
 }
