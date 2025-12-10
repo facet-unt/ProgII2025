@@ -20,7 +20,7 @@ public class VentanaProductos extends JDialog {
         this.controlador=controlador;
         initComponents();
     }
-    
+     //<editor-fold defaultstate="collapsed" desc=" ">
    
 /*
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -49,6 +49,7 @@ public class VentanaProductos extends JDialog {
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_fieldDescripcionKeyPressed
 */
+     //</editor-fold>
     /**
      * @param args the command line arguments
      */

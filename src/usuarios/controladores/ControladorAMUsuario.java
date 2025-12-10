@@ -6,7 +6,6 @@ package usuarios.controladores;
 
 import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
-import static interfaces.IGestorUsuarios.REESCRIBIR_OK;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;

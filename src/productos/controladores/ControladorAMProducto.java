@@ -58,19 +58,6 @@ public class ControladorAMProducto implements IControladorAMProducto{
         this.vp.verComboEstado().setModel(new ModeloComboEstados());
 
     }
-
-   /* public void inicializarModificacion(Producto p) {
-        this.productoAEditar = p;
-        this.esModificacion = true;
-
-        vp.setTitle("Modificar Producto");
-
-        vp.verTxtCodigo().setText(String.valueOf(p.verCodigo()));
-        vp.verTxtCodigo().setEditable(false);
-        vp.verTxtDescripcion().setText(p.verDescripcion());
-        vp.verTxtPrecio().setText(String.valueOf(p.verPrecio()));
-        vp.verComboCategorias().setSelectedItem(p.verCategoria().toString());
-    }*/
      
     @Override
     public void btnCancelarClic(ActionEvent evt) {

@@ -46,7 +46,7 @@ public class VentanaUsuarios extends JDialog {
         JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
     }
   
-   
+   //<editor-fold defaultstate="collapsed" desc=" ">
 /*
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
@@ -74,6 +74,7 @@ public class VentanaUsuarios extends JDialog {
         controlador.txtDescripcionPresionarTecla(evt);
     }//GEN-LAST:event_fieldDescripcionKeyPressed
 */
+     //</editor-fold>
     /**
      * @param args the command line arguments
      */

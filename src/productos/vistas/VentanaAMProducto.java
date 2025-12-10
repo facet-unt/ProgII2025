@@ -223,7 +223,9 @@ public class VentanaAMProducto extends JDialog {
         System.out.println(this.txtCodigo.getText().trim());
         controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
-/*
+ //<editor-fold defaultstate="collapsed" desc=" ">
+    /*
+   
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
         
     }//GEN-LAST:event_txtCodigoKeyPressed
@@ -244,6 +246,7 @@ public class VentanaAMProducto extends JDialog {
         
     }//GEN-LAST:event_comboEstadosKeyPressed
 */
+     //</editor-fold>
     private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
         controlador.txtCodigoPresionarTecla(evt);
     }//GEN-LAST:event_txtCodigoKeyReleased
