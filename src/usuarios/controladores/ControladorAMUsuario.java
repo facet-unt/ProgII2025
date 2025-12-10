@@ -26,12 +26,13 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
         this.ventana.setTitle(TITULO_NUEVO);
         this.ventana.setLocationRelativeTo(ventanaPadre);
 
-        // cargar enum Perfil en el combo
+        // Cargamos enum Perfil en el combo
         this.ventana.verCmbPerfil().setModel(new javax.swing.DefaultComboBoxModel<>(Perfil.values()));
 
         this.ventana.setVisible(true);
     }
    
+    //     Constructor para modificar
     //     Constructor para modificar
     public ControladorAMUsuario(java.awt.Dialog ventanaPadre, Usuario usuario) {
         this.usuario = usuario;
@@ -39,23 +40,13 @@ public class ControladorAMUsuario implements IControladorAMUsuario {
         this.ventana = new VentanaAMUsuario(ventanaPadre, true, this);
         this.ventana.setTitle(TITULO_MODIFICAR);
         this.ventana.setLocationRelativeTo(ventanaPadre);
-
-        // cargar enum Perfil
         this.ventana.verCmbPerfil().setModel(new javax.swing.DefaultComboBoxModel<>(Perfil.values()));
-
-        // completar campos
-        this.ventana.verTxtApellido().setText(usuario.verApellido());
-        this.ventana.verTxtNombre().setText(usuario.verNombre());
-        this.ventana.verTxtCorreo().setText(usuario.verCorreo());
-        this.ventana.verTxtCorreo().setEnabled(false); // el correo no se cambia
-        this.ventana.verPswClave().setText(usuario.verClave());
-        this.ventana.verPswRepetida().setText(usuario.verClave());
-        this.ventana.verCmbPerfil().setSelectedItem(usuario.verPerfil());
-
+        this.ventana.cargarDatosModificar(usuario);  // cargamos los datos del usuario en la ventana
         this.ventana.setVisible(true);
-    }
+}
+
     
-    //       Guardo el usuario
+    
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         String apellido = ventana.verTxtApellido().getText().trim();
