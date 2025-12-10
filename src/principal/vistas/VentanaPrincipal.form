@@ -24,34 +24,34 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnPedidos" max="32767" attributes="0"/>
-                  <Component id="btnUsuarios" pref="150" max="32767" attributes="0"/>
+                  <Component id="btnUsuarios" min="-2" pref="170" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnProductos" pref="150" max="32767" attributes="0"/>
                   <Component id="btnSalir" max="32767" attributes="0"/>
+                  <Component id="btnProductos" min="-2" pref="170" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnProductos" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="btnUsuarios" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="btnUsuarios" alignment="3" min="-2" pref="127" max="-2" attributes="0"/>
+                  <Component id="btnProductos" alignment="3" min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnPedidos" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="btnSalir" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnPedidos" max="32767" attributes="0"/>
+                  <Component id="btnSalir" min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

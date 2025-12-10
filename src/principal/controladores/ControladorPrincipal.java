@@ -1,4 +1,4 @@
-package principal.controladores;   // <-- poné el package que uses
+package principal.controladores;
 
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorProductos;
@@ -47,7 +47,7 @@ public class ControladorPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnProductosClic(ActionEvent evt) {
-        
+        IControladorProductos cp = new productos.controladores.ControladorProductos(this.ventanaPrincipal);
     }
 
     public void btnPedidosClic(ActionEvent evt) {

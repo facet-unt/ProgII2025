@@ -1,24 +1,53 @@
 package productos.vistas;
 
+import interfaces.IControladorAMProducto;
 import java.awt.Dialog;
-import java.util.ArrayList;
 import javax.swing.JDialog;
 import productos.modelos.*;
 import productos.modelos.Producto;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 
-public class VentanaAMProductos extends JDialog {
-    private ArrayList<Producto> productos = new ArrayList<>();
-    
-    public VentanaAMProductos(Dialog ventanaPadre) {
+public class VentanaAMProducto extends JDialog {
+    private IControladorAMProducto controlador;
+    private Producto producto;
+
+    public VentanaAMProducto(VentanaProductos ventanaPadre, Producto producto) {
         super(ventanaPadre, true);
+        this.producto = producto;
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Nuevo producto");        
+
         this.comboCategorias.setModel(new ModeloComboCategorias());
         this.comboEstados.setModel(new ModeloComboEstados());
-        this.setVisible(true);        
+
+        if (producto == null) {
+            this.setTitle(IControladorAMProducto.TITULO_NUEVO);
+        } else {
+            this.setTitle(IControladorAMProducto.TITULO_MODIFICAR);
+            cargarProductoEnCampos(producto);
+        }
+
+        this.setVisible(true);
+    }
+    
+    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador, Producto producto) {
+        super(ventanaPadre, true);
+        this.controlador = controlador;
+        this.producto = producto;
+        initComponents();
+        this.setLocationRelativeTo(null);
+
+        if (producto == null) {
+            this.setTitle(IControladorAMProducto.TITULO_NUEVO);
+        } else {
+            this.setTitle(IControladorAMProducto.TITULO_MODIFICAR);
+            cargarProductoEnCampos(producto);
+        }
+
+        this.comboCategorias.setModel(new ModeloComboCategorias());
+        this.comboEstados.setModel(new ModeloComboEstados());
+        this.setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -49,7 +78,6 @@ public class VentanaAMProductos extends JDialog {
 
         txtPrecio.setToolTipText("Nombres del profesor");
 
-        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda el profesor");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +86,6 @@ public class VentanaAMProductos extends JDialog {
             }
         });
 
-        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,31 +173,45 @@ public class VentanaAMProductos extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
+        controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int codigo = Integer.parseInt(this.txtCodigo.getText().trim());
-        String descripcion = this.txtDescripcion.getText().trim();        
-        float precio = Float.parseFloat(this.txtPrecio.getText().trim());
-        Categoria categoria = ((ModeloComboCategorias)this.comboCategorias.getModel()).obtenerCategoria();
-        Estado estado = ((ModeloComboEstados) this.comboEstados.getModel()).obtenerEstado();
-        
-        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
-        this.productos.add(unProducto);
-        
-        System.out.println("Productos");
-        System.out.println("=========");
-        for(Producto p : this.productos) {
-            p.mostrar();
-            System.out.println();
-        }
+        controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_comboCategoriasActionPerformed
 
+    private void cargarProductoEnCampos(Producto p) {
+        txtCodigo.setText(String.valueOf(p.verCodigo()));
+        txtDescripcion.setText(p.verDescripcion());
+        txtPrecio.setText(String.valueOf(p.verPrecio()));
+        ((ModeloComboCategorias) comboCategorias.getModel()).seleccionarCategoria(p.verCategoria());
+        ((ModeloComboEstados) comboEstados.getModel()).seleccionarEstado(p.verEstado());
+    }
+    
+    public String getCodigo() {
+        return txtCodigo.getText().trim();
+    }
+
+    public String getDescripcion() {
+        return txtDescripcion.getText().trim();
+    }
+
+    public String getPrecio() {
+        return txtPrecio.getText().trim();
+    }
+
+    public Categoria getCategoriaSeleccionada() {
+        return ((ModeloComboCategorias) comboCategorias.getModel()).obtenerCategoria();
+    }
+
+    public Estado getEstadoSeleccionado() {
+        return ((ModeloComboEstados) comboEstados.getModel()).obtenerEstado();
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
