@@ -73,11 +73,6 @@ private IControladorUsuarios controlador;
 
         jLabel1.setText("Apellido:");
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
-            }
-        });
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyReleased(evt);
@@ -197,10 +192,6 @@ private IControladorUsuarios controlador;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-
-    }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
