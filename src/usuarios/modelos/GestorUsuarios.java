@@ -31,10 +31,9 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
   
-    // Creamos el usuario
+    // 
     @Override
-    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil,
-                               String clave, String claveRepetida) {
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
 
         String error = validarDatosUsuarios(correo, apellido, nombre, perfil, clave, claveRepetida);
         if (error != null)
@@ -50,8 +49,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return EXITO;
     }
 
-    private Usuario crearUsuarioSegunPerfil(String correo, String apellido, String nombre,
-                                            Perfil perfil, String clave) {
+    private Usuario crearUsuarioSegunPerfil(String correo, String apellido, String nombre, Perfil perfil, String clave) {
         return switch (perfil) {
             case CLIENTE -> new Cliente(correo, clave, apellido, nombre);
             case EMPLEADO -> new Empleado(correo, clave, apellido, nombre);
@@ -107,7 +105,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (usuario == null)
             return "El usuario no existe";
 
-        // No borrar si el cliente tiene pedidos
+        // no se borra si el cliente tine pedidos
         GestorPedidos gp = GestorPedidos.instanciar();
         if (usuario instanceof Cliente cliente) {
             if (gp.hayPedidosConEsteCliente(cliente))
@@ -118,14 +116,12 @@ public class GestorUsuarios implements IGestorUsuarios {
             guardarUsuariosEnArchivo();
             return EXITO;
         }
-
         return "El usuario no existe";
     }
 
     
     @Override
-    public String modificarUsuario(Usuario usuario, String apellido, String nombre,
-                                   Perfil perfil, String clave, String clave2) {
+    public String modificarUsuario(Usuario usuario, String apellido, String nombre, Perfil perfil, String clave, String clave2) {
 
         if (usuario == null)
             return "Usuario inexistente";
@@ -144,8 +140,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
     
-    private String validarDatosUsuarios(String correo, String apellido, String nombre,
-                                        Perfil perfil, String clave, String claveRepetida) {
+    private String validarDatosUsuarios(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
 
         if (correo == null || !correo.contains("@"))
             return ERROR_CORREO;
@@ -173,9 +168,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                     u1.verNombre().compareToIgnoreCase(u2.verNombre());
         });
     }
-
-
-    //Para crear el archivo
+    
     private void leerUsuariosDesdeArchivo() {
         File archivo = new File(NOMBRE_ARCHIVO);
 

@@ -1,16 +1,17 @@
 package usuarios.vistas;
 
 import interfaces.IControladorAMUsuario;
+import usuarios.modelos.Usuario;
 
 public class VentanaAMUsuario extends javax.swing.JDialog {
     
     private IControladorAMUsuario controlador;
-//    private VentanaAMUsuario ventana;
     
     public VentanaAMUsuario(java.awt.Dialog parent, boolean modal, IControladorAMUsuario controlador) {
         super(parent, modal);
         this.controlador = controlador;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
 
@@ -238,7 +239,22 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public javax.swing.JComboBox verCmbPerfil() {
         return cmbPerfil;
     }
+    
+    //Creamos el metodo para modificar usuarios
+    public void cargarDatosModificar(Usuario usuario) {
+    txtApellido.setText(usuario.verApellido());
+    txtNombre.setText(usuario.verNombre());
+    txtCorreo.setText(usuario.verCorreo());
+    txtCorreo.setEditable(false);
+    txtCorreo.setOpaque(false);
 
+    ClaveUsuario.setText(usuario.verClave());
+    repetirClave.setText(usuario.verClave());
+
+    cmbPerfil.setSelectedItem(usuario.verPerfil());
+}
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField ClaveUsuario;

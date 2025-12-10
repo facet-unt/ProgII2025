@@ -82,8 +82,15 @@ public abstract class Usuario {
     }
     
     public abstract List<Pedido> verPedidos();
-
-    public Object verPerfil() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    
+    public Perfil verPerfil() {
+        if (this instanceof Cliente)
+            return Perfil.CLIENTE;
+        if (this instanceof Empleado)
+            return Perfil.EMPLEADO;
+        if (this instanceof Encargado)
+            return Perfil.ENCARGADO;
+        return null;
     }
 }
