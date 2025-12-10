@@ -33,7 +33,7 @@ public class VentanaAMProducto extends JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
-        this.comboEstados.setModel(new ModeloComboEstados());
+        this.jComboBox1.setModel(new ModeloComboEstados());
         this.setVisible(true);        
     }
     
@@ -187,7 +187,6 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
-    private javax.swing.JComboBox<String> comboEstados;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

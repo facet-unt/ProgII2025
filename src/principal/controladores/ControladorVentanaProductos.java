@@ -75,7 +75,7 @@ public class ControladorVentanaProductos implements IControladorProductos {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMProducto controlador = new ControladorVentanaAMProducto();
-        ((ControladorVentanaAMProducto) controlador).mostrarVentanaProducto();
+
 
         refrescarTabla();
     }
