@@ -17,12 +17,7 @@ import pedidos.modelos.ProductoDelPedido;
 
 public class GestorProductos implements IGestorProductos {
 
-    public static final String ARCHIVO = "Productos.txt";
-
-    public static final String SEPARADOR = "*";
-
     private final List<Producto> productos = new ArrayList();
-
     private static GestorProductos instancia;
 
     private GestorProductos() {
@@ -49,7 +44,7 @@ public class GestorProductos implements IGestorProductos {
                 }
             }
         }
-        if(!productos.contains(producto)){
+        if (!productos.contains(producto)) {
             return PRODUCTO_INEXISTENTE;
         }
         productos.remove(producto);
@@ -88,8 +83,7 @@ public class GestorProductos implements IGestorProductos {
 
     }
 
-    private void cargarArchivoEnLista() 
-    {
+    private void cargarArchivoEnLista() {
         productos.clear();
         File archivo = new File(ARCHIVO);
 
@@ -117,7 +111,7 @@ public class GestorProductos implements IGestorProductos {
                 String desc = partes[1];
                 float precio = Float.parseFloat(partes[2]);
                 Categoria cat = Categoria.valueOf(nombreEnMayuscula(partes[3]));
-                
+
                 Estado est = Estado.valueOf(nombreEnMayuscula(partes[4]));
                 productos.add(new Producto(codigo, desc, cat, est, precio));
             }
@@ -128,9 +122,10 @@ public class GestorProductos implements IGestorProductos {
         }
     }
 
-    public String nombreEnMayuscula(String nombre){
+    public String nombreEnMayuscula(String nombre) {
         return nombre.toUpperCase();
     }
+
     private void cargarListaProductosEnArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, false))) {
 
@@ -193,7 +188,7 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> buscarProductos(String descripcion) {
-        
+
         List<Producto> prod = new ArrayList<>();
 
         String buscada = descripcion.toLowerCase();

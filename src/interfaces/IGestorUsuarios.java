@@ -31,6 +31,8 @@ public interface IGestorUsuarios {
     public static final String ESCRITURA_OK = "Se pudieron guardar los usuarios";
     public static final String ESCRITURA_ERROR = "Error al guardar los usuarios";
     public static final String LECTURA_ERROR = "Error al leer los usuarios";
+    public static final String ARCHIVO = "Usuarios.txt";
+    public static final String SEPARADOR = "*";
 
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
 
@@ -43,6 +45,5 @@ public interface IGestorUsuarios {
     public List<Usuario> verUsuarios();
 
     public List<Usuario> buscarUsuarios(String apellido);
-    
-    
+
 }

@@ -27,8 +27,7 @@ import static usuarios.modelos.Perfil.ENCARGADO;
  */
 public class GestorUsuarios implements IGestorUsuarios {
 
-    public static final String ARCHIVO = "Usuarios.txt";
-    public static final String SEPARADOR = "*";
+    
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     private static GestorUsuarios gestor;

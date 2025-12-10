@@ -33,6 +33,8 @@ public interface IGestorProductos {
     public static final String CREACION_OK = "Se pudo crear el archivo de productos";
     public static final String ESCRITURA_OK = "Se pudieron guardar los productos";
     public static final String ESCRITURA_ERROR = "Error al guardar los productos";
+    public static final String ARCHIVO = "Productos.txt";
+    public static final String SEPARADOR = "*";
 
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
 
