@@ -9,8 +9,10 @@ import interfaces.IControladorProductos;
 import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import principal.vistas.VentanaPrincipal;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloTablaProductos;
 import productos.vistas.VentanaProductos;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -20,6 +22,7 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorPrincipal implements IControladorPrincipal{
     static VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+    private GestorProductos gp = GestorProductos.instanciar();
     
     public static void main(String[] args) {
         ventanaPrincipal.setLocationRelativeTo(null);

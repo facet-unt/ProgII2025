@@ -78,6 +78,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios{
                         ventanaModificar.verTxtApellido().setText(u.verApellido());
                         ventanaModificar.verTxtNombre().setText(u.verNombre());
                         ventanaModificar.verPassClave().setText(u.verClave());
+                        ventanaModificar.verPassClaveRepetida().setText(u.verClave());
                         ventanaModificar.setTitle("Modificar encargado");
                         ventanaModificar.setLocationRelativeTo(null);
                         ventanaModificar.setVisible(true);
@@ -90,6 +91,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios{
                         ventanaModificar.verTxtApellido().setText(u.verApellido());
                         ventanaModificar.verTxtNombre().setText(u.verNombre());
                         ventanaModificar.verPassClave().setText(u.verClave());
+                        ventanaModificar.verPassClaveRepetida().setText(u.verClave());
                         ventanaModificar.setTitle("Modificar empleado");
                         ventanaModificar.setLocationRelativeTo(null);
                         ventanaModificar.setVisible(true);
@@ -102,6 +104,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios{
                         ventanaModificar.verTxtApellido().setText(u.verApellido());
                         ventanaModificar.verTxtNombre().setText(u.verNombre());
                         ventanaModificar.verPassClave().setText(u.verClave());
+                        ventanaModificar.verPassClaveRepetida().setText(u.verClave());
                         ventanaModificar.setTitle("Modificar cliente");
                         ventanaModificar.setLocationRelativeTo(null);
                         ventanaModificar.setVisible(true);
@@ -119,6 +122,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios{
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         int fila;
+        String mensaje = "";
         Usuario u;
         String correo;
         fila = ventanaUsuarios.verTablaUsuarios().getSelectedRow();
@@ -127,8 +131,9 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios{
             if (opcion == JOptionPane.YES_OPTION) {
                 correo = (String)ventanaUsuarios.verTablaUsuarios().getValueAt(fila, 0);
                 u = gu.obtenerUsuario(correo);
-                gu.borrarUsuario(u);
+                mensaje = gu.borrarUsuario(u);
             }
+            JOptionPane.showMessageDialog(ventanaUsuarios, mensaje);
         } else {
             JOptionPane.showMessageDialog(ventanaUsuarios, "No se ha seleccionado ningun usuario");
         }

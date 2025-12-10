@@ -65,6 +65,36 @@ public class GestorUsuarios implements IGestorUsuarios{
         
         guardarUsuario(u);
         usuarios.add(u);
+        actualizarArchivo();
+        return EXITO;
+    }
+    
+    public String modificarUsuario(Usuario u, String correo, String apellido, String nombre, String clave, String claveRepetida){
+        String correoAModificar = u.verCorreo();
+        if (correo == null || !correo.contains("@") || correo.equals(""))
+            return ERROR_CORREO;
+        if(apellido == null || apellido.isEmpty())
+            return ERROR_APELLIDO;
+        if (nombre == null || nombre.isEmpty())
+            return ERROR_NOMBRE;
+        if (clave == null || clave.isEmpty())
+            return ERROR_CLAVES;
+        if (claveRepetida == null || claveRepetida.isEmpty() || !claveRepetida.equals(clave))
+            return ERROR_CLAVES;
+        
+        usuarios.remove(u);
+        u.asignarCorreo(correo);
+        if (usuarios.contains(u)){
+            u.asignarCorreo(correoAModificar);
+            usuarios.add(u);
+            return USUARIOS_DUPLICADOS;
+        }
+        
+        u.asignarApellido(apellido);
+        u.asignarNombre(nombre);
+        u.asignarClave(clave);
+        usuarios.add(u);
+        actualizarArchivo();
         return EXITO;
     }
     
@@ -128,12 +158,18 @@ public class GestorUsuarios implements IGestorUsuarios{
     @Override
     public String borrarUsuario(Usuario usuario) {
         if (usuario != null && usuarios.contains(usuario)){
-            if(usuario.verPedidos().isEmpty()){
+            try{
+                if(usuario.verPedidos().isEmpty()){
+                borrarUsuarioDelArchivo(usuario);
+                return "Se ha borrado el usuario correctamente";
+                } else {
+                    return "No se puede borrar este usuario ya que tiene un pedido en marcha \n";
+                }
+            } catch (NullPointerException e){
                 System.out.println(borrarUsuarioDelArchivo(usuario));
                 return "Se ha borrado el usuario correctamente";
-            } else {
-                return "No se puede borrar este usuario ya que tiene un pedido en marcha \n";
             }
+            
         } else {
             return "El usuario ingresado no es valido\n";
         }
@@ -167,7 +203,6 @@ public class GestorUsuarios implements IGestorUsuarios{
         String usuariostxt = SEPARADOR + u.verCorreo() + SEPARADOR + u.verClave() + SEPARADOR + u.verApellido()
                             + SEPARADOR + u.verNombre() + SEPARADOR + u.verPerfil() + SEPARADOR + "\n";
         File archivo = new File("Usuarios.txt");
-        System.out.println(verificarArchivo(archivo));
         try(FileWriter fw = new FileWriter(archivo, true)){
             try(BufferedWriter bw = new BufferedWriter(fw)){
                 bw.write(usuariostxt);

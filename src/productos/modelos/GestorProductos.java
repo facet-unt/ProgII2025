@@ -15,13 +15,12 @@ import java.io.FileNotFoundException;
 
 
 public class GestorProductos implements IGestorProductos{
-    private List<Producto> productos = leerProductos();
-    
+    private List<Producto> productos;
     private static GestorProductos instancia;
     
         // Constructor
     private GestorProductos() {
-        
+        this.productos = leerProductos();
     }
     
     public static GestorProductos instanciar() {

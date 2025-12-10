@@ -100,9 +100,6 @@ public abstract class Usuario implements Comparable<Usuario>{
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }

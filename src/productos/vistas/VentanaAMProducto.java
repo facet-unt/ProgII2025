@@ -216,11 +216,7 @@ public class VentanaAMProducto extends JDialog {
     public void asignarTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
-    
-    
-    
-    
-    
+
     private Color BTN = Color.WHITE; 
     private Color TEXTO = new Color(0x21,0x42,0x3D); 
     private Color ACENTO = new Color(0x26,0xA6,0x9A);

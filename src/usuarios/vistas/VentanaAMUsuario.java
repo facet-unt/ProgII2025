@@ -5,15 +5,19 @@
  */
 package usuarios.vistas;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import usuarios.modelos.ControladorAMUsuario;
 import usuarios.modelos.Encargado;
 
 public class VentanaAMUsuario extends JDialog {
-    private ArrayList<Encargado> encargados = new ArrayList<>();
+    private ControladorAMUsuario controlador = new ControladorAMUsuario(this);
     
     /**
      * Constructor
@@ -22,6 +26,7 @@ public class VentanaAMUsuario extends JDialog {
     public VentanaAMUsuario(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
+        ajustarVista();
     }
           
     /**
@@ -43,9 +48,16 @@ public class VentanaAMUsuario extends JDialog {
         txtCorreo = new javax.swing.JTextField();
         passClave = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        passClaveRepetida = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Apellido:");
 
@@ -55,6 +67,7 @@ public class VentanaAMUsuario extends JDialog {
 
         txtNombre.setToolTipText("Nombres");
 
+        btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
         btnGuardar.setToolTipText("Guarda ");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +76,7 @@ public class VentanaAMUsuario extends JDialog {
             }
         });
 
+        btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancela la operación");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +95,8 @@ public class VentanaAMUsuario extends JDialog {
         });
 
         jLabel6.setText("Clave:");
+
+        jLabel7.setText("Clave repetida:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +121,11 @@ public class VentanaAMUsuario extends JDialog {
                             .addComponent(passClave)
                             .addComponent(txtApellido)
                             .addComponent(txtNombre)
-                            .addComponent(txtCorreo))))
+                            .addComponent(txtCorreo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passClaveRepetida)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,7 +147,11 @@ public class VentanaAMUsuario extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(78, 78, 78)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(passClaveRepetida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -138,29 +162,20 @@ public class VentanaAMUsuario extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
-        this.dispose();
+        this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-
-         String correo = this.txtCorreo.getText().trim();
-        String apellido = this.txtApellido.getText().trim();
-        String nombre = this.txtNombre.getText().trim();
-        String clave = new String(this.passClave.getPassword());
-        Encargado unEncargado = new Encargado(correo, clave, apellido, nombre);
-        this.encargados.add(unEncargado);
-        
-        System.out.println("Clientes");
-        System.out.println("========");
-        for(Encargado c : this.encargados) {
-            c.mostrar();
-            System.out.println();
-        }
+        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.controlador.ventanaObtenerFoco(evt);
+    }//GEN-LAST:event_formWindowActivated
 
     public JPasswordField verPassClave() {
         return passClave;
@@ -194,6 +209,42 @@ public class VentanaAMUsuario extends JDialog {
         this.txtNombre = txtNombre;
     }
 
+    public JPasswordField verPassClaveRepetida() {
+        return passClaveRepetida;
+    }
+
+    public void asignarPassClaveRepetida(JPasswordField passClaveRepetida) {
+        this.passClaveRepetida = passClaveRepetida;
+    }
+    
+    private Color BTN = Color.WHITE; 
+    private Color TEXTO = new Color(0x21,0x42,0x3D); 
+    private Color ACENTO = new Color(0x26,0xA6,0x9A);
+    
+    /**
+     * Metodo para cambiar la vista de los componentes en la ventana
+     */
+    private void ajustarVista(){
+        getContentPane().setBackground(new java.awt.Color(0xF1, 0xF8, 0xF6));
+        configurarBoton(btnCancelar, BTN, TEXTO, ACENTO);
+        configurarBoton(btnGuardar, BTN, TEXTO, ACENTO);
+    }
+
+    /**
+     * Metodo para cambiar los colores del boton
+     * @param btn
+     * @param fondo
+     * @param texto
+     * @param acento 
+     */
+    private void configurarBoton(JButton btn, Color fondo, Color texto, Color acento) {
+        btn.setBackground(fondo);
+        btn.setForeground(texto);
+        btn.setFocusPainted(false);
+        btn.setBorder(new javax.swing.border.LineBorder(acento.darker(), 2, true));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setOpaque(true);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -203,7 +254,9 @@ public class VentanaAMUsuario extends JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField passClave;
+    private javax.swing.JPasswordField passClaveRepetida;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;

@@ -114,6 +114,7 @@ public class ControladorVentanaProductos implements IControladorProductos{
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         int fila;
+        String mensaje = "";
         int codigo;
         Producto p; 
         fila = ventanaProductos.verTablaProductos().getSelectedRow();
@@ -122,8 +123,9 @@ public class ControladorVentanaProductos implements IControladorProductos{
             codigo = (Integer)ventanaProductos.verTablaProductos().getValueAt(fila, 0);
             p = gp.obtenerProducto(codigo);
             if(opcion == JOptionPane.YES_OPTION){
-                gp.borrarProducto(p);
+                mensaje = gp.borrarProducto(p);
             }
+            JOptionPane.showMessageDialog(ventanaProductos, mensaje);
         } else {
             JOptionPane.showMessageDialog(ventanaProductos, "No se ha seleccionado ningun producto");
         }
