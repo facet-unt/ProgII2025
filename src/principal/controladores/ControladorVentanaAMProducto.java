@@ -8,38 +8,58 @@ import javax.swing.JOptionPane;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
 import productos.modelos.GestorProductos;
+import productos.modelos.ModeloComboCategorias;
+import productos.modelos.ModeloComboEstados;
 import productos.modelos.Producto;
 import productos.vistas.VentanaAMProducto;
 
-
-    
 public class ControladorVentanaAMProducto implements IControladorAMProducto {
 
     private VentanaAMProducto vista; 
-    private Producto Modificado;
-    private boolean esModificacion = false;
+    private Producto productoModificar;
+    private boolean esModificacion;
+    private final IGestorProductos gestor;
 
-    public ControladorVentanaAMProducto() {
-        this.vista = new VentanaAMProducto(null, this);
-        this.esModificacion = false; 
+    // ✅ Constructor para CREAR producto
+    public ControladorVentanaAMProducto(Producto producto, boolean esModificacion) {
+        this.gestor = GestorProductos.instanciar();
+        this.productoModificar = producto;
+        this.esModificacion = esModificacion;
+        
+        inicializarVista();
     }
 
-    public void mostrarVentanaProducto() {
+    private void inicializarVista() {
+        this.vista = new VentanaAMProducto(null, this);
+        
+        // Configurar título
+        if (esModificacion) {
+            vista.setTitle(TITULO_MODIFICAR);
+            cargarDatosProducto();
+        } else {
+            vista.setTitle(TITULO_NUEVO);
+        }
+        
         vista.setLocationRelativeTo(null);
         vista.setResizable(false);
         vista.setVisible(true);
-
     }
 
-    public void inicializarModificacion(Producto productomodificado) {
-        this.Modificado = productomodificado;
-        this.esModificacion = true;
-        vista.setTitle("Modificar Producto");
-        vista.verTxtCodigo().setText(String.valueOf(productomodificado.verCodigo()));
-        vista.verTxtCodigo().setEditable(false);
-        vista.verTxtDescripcion().setText(productomodificado.verDescripcion());
-        vista.verTxtPrecio().setText(String.valueOf(productomodificado.verPrecio()));
-        vista.verComboCategorias().setSelectedItem(productomodificado.verCategoria().toString());
+    // ✅ NUEVO: Carga datos del producto a modificar
+    private void cargarDatosProducto() {
+        if (productoModificar != null) {
+            vista.verTxtCodigo().setText(String.valueOf(productoModificar.verCodigo()));
+            vista.verTxtCodigo().setEditable(false); // No se puede cambiar el código
+            vista.verTxtDescripcion().setText(productoModificar.verDescripcion());
+            vista.verTxtPrecio().setText(String.valueOf(productoModificar.verPrecio()));
+            
+            // Seleccionar categoría y estado
+            ModeloComboCategorias modeloCat = (ModeloComboCategorias) vista.verComboCategorias().getModel();
+            modeloCat.seleccionarCategoria(productoModificar.verCategoria());
+            
+            ModeloComboEstados modeloEst = (ModeloComboEstados) vista.verComboEstado().getModel();
+            modeloEst.seleccionarEstado(productoModificar.verEstado());
+        }
     }
 
     @Override
@@ -50,35 +70,80 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
     @Override
     public void btnGuardarClic(ActionEvent evt) {
         try {
-            String codigo = vista.verTxtCodigo().getText().trim();
+            // Obtener datos de la vista
+            String codigoStr = vista.verTxtCodigo().getText().trim();
             String descripcion = vista.verTxtDescripcion().getText().trim();
             String precioStr = vista.verTxtPrecio().getText().trim();
 
-            Float precio = Float.parseFloat(precioStr);
-            int codigoInt = Integer.parseInt(codigo);
-
-            Categoria categoriaSeleccionada = (Categoria) vista.verComboCategorias().getSelectedItem();
-            Estado estadoSeleccionado = (Estado) vista.verComboEstado().getSelectedItem();
-
-            IGestorProductos gestor = GestorProductos.instanciar();
-            String resultado;
-
-            if (this.esModificacion) {
-                resultado = gestor.modificarProducto(this.Modificado, codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
-            } else {
-                resultado = gestor.crearProducto(codigoInt, descripcion, precio, categoriaSeleccionada, estadoSeleccionado);
+            // Validar campos vacíos
+            if (codigoStr.isEmpty() || descripcion.isEmpty() || precioStr.isEmpty()) {
+                JOptionPane.showMessageDialog(vista, 
+                    "Todos los campos son obligatorios", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return;
             }
 
-            JOptionPane.showMessageDialog(vista, resultado);
+            // Parsear valores
+            int codigo = Integer.parseInt(codigoStr);
+            float precio = Float.parseFloat(precioStr);
 
-            if (resultado.equals(GestorProductos.EXITO) || resultado.equals(GestorProductos.VALIDACION_EXITO)) {
+            // Obtener categoría y estado
+            ModeloComboCategorias modeloCat = (ModeloComboCategorias) vista.verComboCategorias().getModel();
+            Categoria categoriaSeleccionada = modeloCat.obtenerCategoria();
+            
+            ModeloComboEstados modeloEst = (ModeloComboEstados) vista.verComboEstado().getModel();
+            Estado estadoSeleccionado = modeloEst.obtenerEstado();
+
+            String resultado;
+
+            if (esModificacion) {
+                // ✅ MODIFICAR producto existente
+                resultado = gestor.modificarProducto(
+                    productoModificar, 
+                    codigo, 
+                    descripcion, 
+                    precio, 
+                    categoriaSeleccionada, 
+                    estadoSeleccionado
+                );
+            } else {
+                // ✅ CREAR nuevo producto
+                resultado = gestor.crearProducto(
+                    codigo, 
+                    descripcion, 
+                    precio, 
+                    categoriaSeleccionada, 
+                    estadoSeleccionado
+                );
+            }
+
+            // Mostrar resultado
+            if (resultado.equals(IGestorProductos.EXITO) || 
+                resultado.equals(IGestorProductos.VALIDACION_EXITO)) {
+                JOptionPane.showMessageDialog(vista, 
+                    esModificacion ? "Producto modificado con éxito" : "Producto creado con éxito",
+                    "Éxito", 
+                    JOptionPane.INFORMATION_MESSAGE);
                 vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(vista, 
+                    resultado, 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(vista, "El código y el precio deben ser números válidos.");
+            JOptionPane.showMessageDialog(vista, 
+                "El código debe ser un número entero y el precio un número decimal válido.",
+                "Error de formato",
+                JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            System.out.println("Error en guardarclic: " + e);
+            JOptionPane.showMessageDialog(vista, 
+                "Error inesperado: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 
@@ -99,7 +164,6 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
     @Override
     public void txtPrecioPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("Recomendacion: Use las flechas para navegar entre los items");
             vista.verComboCategorias().requestFocus();
         }
     }
@@ -112,8 +176,7 @@ public class ControladorVentanaAMProducto implements IControladorAMProducto {
 
     public void comboEstadoPresionarTecla(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.btnGuardarClic(null);
+            btnGuardarClic(null);
         }
     }
 }
-

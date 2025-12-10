@@ -15,6 +15,7 @@ public class GestorProductos implements IGestorProductos {
     private static GestorProductos instancia;
     private final List<Producto> productos = new ArrayList<>();
 
+    // ✅ CORREGIDO: Carga datos al instanciar
     private GestorProductos() {
         cargarDesdeArchivo();
     }
@@ -26,7 +27,6 @@ public class GestorProductos implements IGestorProductos {
         return instancia;
     }
 
-   
     @Override
     public String crearProducto(int codigo, String descripcion, float precio,
                                 Categoria categoria, Estado estado) {
@@ -41,7 +41,7 @@ public class GestorProductos implements IGestorProductos {
 
         productos.add(nuevo);
         guardarEnArchivo();
-        return VALIDACION_EXITO;
+        return EXITO;
     }
 
     @Override
@@ -54,6 +54,8 @@ public class GestorProductos implements IGestorProductos {
         String error = validarDatos(codigo, descripcion, precio, categoria, estado);
         if (error != null) return error;
 
+        // ✅ CORREGIDO: Guarda el índice antes de remover
+        int indice = productos.indexOf(existente);
         productos.remove(existente);
 
         existente.asignarCodigo(codigo);
@@ -62,8 +64,18 @@ public class GestorProductos implements IGestorProductos {
         existente.asignarCategoria(categoria);
         existente.asignarEstado(estado);
 
-        if (productos.contains(existente))
+        // Verifica duplicados con el nuevo código
+        if (productos.contains(existente)) {
+            // Restaura el producto original si hay conflicto
+            productos.add(indice, new Producto(
+                existente.verCodigo(), 
+                existente.verDescripcion(), 
+                existente.verCategoria(), 
+                existente.verEstado(), 
+                existente.verPrecio()
+            ));
             return PRODUCTOS_DUPLICADOS;
+        }
 
         productos.add(existente);
         guardarEnArchivo();
@@ -76,26 +88,25 @@ public class GestorProductos implements IGestorProductos {
         if (!productos.contains(p))
             return PRODUCTO_INEXISTENTE;
 
-        // No se borra si está en algún pedido
+        // ✅ CORREGIDO: Valida que no esté en pedidos
         IGestorPedidos gp = GestorPedidos.getInstancia();
         for (Pedido ped : gp.verPedidos()) {
             for (ProductoDelPedido pp : ped.verProductosDelPedido()) {
                 if (pp.verUnProducto().equals(p)) {
-                    return "no se pudo borrar";
+                    return "No se puede borrar el producto porque está asociado a un pedido";
                 }
             }
         }
 
         productos.remove(p);
         guardarEnArchivo();
-        return "Se borró con éxito";
+        return "Producto borrado con éxito";
     }
 
-   
     @Override
     public List<Producto> menu() {
         Collections.sort(productos);
-        return productos;
+        return new ArrayList<>(productos); // ✅ Retorna copia
     }
 
     @Override
@@ -113,6 +124,7 @@ public class GestorProductos implements IGestorProductos {
         return lista;
     }
 
+    @Override
     public Producto obtenerProducto(Integer codigo) {
         return productos.stream()
                 .filter(p -> p.verCodigo() == codigo)
@@ -120,6 +132,7 @@ public class GestorProductos implements IGestorProductos {
                 .orElse(null);
     }
 
+    @Override
     public List<Producto> verProductosPorCategoria(Categoria cat) {
         List<Producto> lista = new ArrayList<>();
 
@@ -133,9 +146,8 @@ public class GestorProductos implements IGestorProductos {
         return lista;
     }
 
-
+    // ✅ CORREGIDO: Manejo robusto de lectura
     private void cargarDesdeArchivo() {
-
         productos.clear();
         File file = new File(NOMBREARCHIVO);
 
@@ -150,46 +162,49 @@ public class GestorProductos implements IGestorProductos {
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
             String linea;
             while ((linea = br.readLine()) != null) {
-
-                linea = linea.replace("\uFEFF", "").trim(); 
-
+                linea = linea.replace("\uFEFF", "").trim();
                 if (linea.isEmpty()) continue;
 
-                String[] p = linea.split("\\*");
+                String[] p = linea.split("\\*"); // ✅ Usa * como separador
 
-                if (p.length != 5) continue;
+                if (p.length != 5) {
+                    System.err.println("Línea mal formateada: " + linea);
+                    continue;
+                }
 
-                int codigo = Integer.parseInt(p[0]);
-                String desc = p[1];
-                float precio = Float.parseFloat(p[2]);
-                Categoria cat = Categoria.valueOf(p[3].trim().toUpperCase());
-                Estado est = Estado.valueOf(p[4].trim().toUpperCase());
+                try {
+                    int codigo = Integer.parseInt(p[0].trim());
+                    String desc = p[1].trim();
+                    float precio = Float.parseFloat(p[2].trim());
+                    Categoria cat = Categoria.valueOf(p[3].trim().toUpperCase());
+                    Estado est = Estado.valueOf(p[4].trim().toUpperCase());
 
-                productos.add(new Producto(codigo, desc, cat, est, precio));
+                    productos.add(new Producto(codigo, desc, cat, est, precio));
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Error parseando línea: " + linea + " -> " + e.getMessage());
+                }
             }
 
-            System.out.println(LECTURA_OK);
+            System.out.println(LECTURA_OK + " - " + productos.size() + " productos cargados");
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(LECTURA_ERROR);
-            e.printStackTrace(); // mantiene trazabilidad
+            e.printStackTrace();
         }
     }
 
+    // ✅ CORREGIDO: Usa * como separador y reescribe todo
     private void guardarEnArchivo() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBREARCHIVO))) {
-
             for (Producto p : productos) {
-                bw.write(
-                        p.verCodigo() + SEPARADOR +
-                        p.verDescripcion() + SEPARADOR +
-                        p.verPrecio() + SEPARADOR +
-                        p.verCategoria() + SEPARADOR +
-                        p.verEstado()
-                );
+                String linea = p.verCodigo() + "*" +
+                              p.verDescripcion() + "*" +
+                              p.verPrecio() + "*" +
+                              p.verCategoria() + "*" +
+                              p.verEstado();
+                bw.write(linea);
                 bw.newLine();
             }
 
@@ -197,22 +212,20 @@ public class GestorProductos implements IGestorProductos {
 
         } catch (IOException e) {
             System.out.println(ESCRITURA_ERROR);
+            e.printStackTrace();
         }
     }
-
 
     private String validarDatos(int codigo, String desc, float precio,
                                 Categoria cat, Estado est) {
 
         if (codigo <= 0) return ERROR_CODIGO;
-        if (desc == null || desc.isEmpty()) return ERROR_DESCRIPCION;
+        if (desc == null || desc.trim().isEmpty()) return ERROR_DESCRIPCION;
         if (precio <= 0) return ERROR_PRECIO;
         if (cat == null) return ERROR_CATEGORIA;
         if (est == null) return ERROR_ESTADO;
 
         return null;
     }
-
-    
 }
 

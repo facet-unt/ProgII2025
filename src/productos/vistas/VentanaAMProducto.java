@@ -10,6 +10,7 @@ import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import principal.controladores.ControladorVentanaAMProducto;
 import productos.modelos.*;
@@ -27,9 +28,10 @@ public class VentanaAMProducto extends JDialog {
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
      */
-    public VentanaAMProducto(Dialog ventanaPadre, IControladorAMProducto controlador) {
+    public VentanaAMProducto(JFrame ventanaPadre, IControladorAMProducto controlador) {
         super(ventanaPadre, true);
         initComponents();
+        this.controlador = controlador;
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo producto");        
         this.comboCategorias.setModel(new ModeloComboCategorias());
@@ -175,7 +177,8 @@ public class VentanaAMProducto extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-       
+       this.controlador.btnGuardarClic(evt);
+       this.dispose();
     }//GEN-LAST:event_btnGuardarClic
 
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed

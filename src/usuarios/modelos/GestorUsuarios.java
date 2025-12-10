@@ -32,7 +32,7 @@ public class GestorUsuarios implements IGestorUsuarios{
     private static GestorUsuarios instancia;
     
     private GestorUsuarios(){
-        
+        this.usuarios = leerUsuarios();
     }
 
     public static GestorUsuarios instanciarclase(){

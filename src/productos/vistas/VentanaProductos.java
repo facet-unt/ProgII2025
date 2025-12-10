@@ -5,6 +5,7 @@
 package productos.vistas;
 import interfaces.IControladorProductos;
 import javax.swing.JDialog;
+import javax.swing.JTable;
 import productos.modelos.ModeloTablaProductos;
 
 /**
@@ -15,26 +16,21 @@ public class VentanaProductos extends javax.swing.JDialog {
     
      private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaProductos.class.getName());
      private IControladorProductos controlador;
-     private ModeloTablaProductos ModeloTabla;
     
   
-    public VentanaProductos(IControladorProductos controlador) {
+    public VentanaProductos(IControladorProductos controlador, ModeloTablaProductos modelo) {
         initComponents();
         this.controlador = controlador;
-        this.ModeloTabla = new ModeloTablaProductos();
-        actualizarTabla(this.ModeloTabla);
-
-    }
-    
-    public void actualizarTabla(ModeloTablaProductos modelo) {
-        this.ModeloTabla = modelo;
+        
         this.jTable1.setModel(modelo);
+    }
+
     
+
+    public void setTablaModel(javax.swing.table.TableModel modelo) {
+       jTable1.setModel(modelo);
     }
    
-     public String obtenerTextoDescripcion() {
-        return this.jTextField1.getText().trim();
-    }
      
       public int obtenerFilaSeleccionada() {
         return this.jTable1.getSelectedRow();
