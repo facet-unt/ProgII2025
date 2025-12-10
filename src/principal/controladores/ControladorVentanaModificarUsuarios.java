@@ -30,15 +30,17 @@ public class ControladorVentanaModificarUsuarios implements IControladorAMUsuari
     public ControladorVentanaModificarUsuarios(VentanaUsuarios padre, Usuario usuario){
         this.ventana = new VentanaModificarUsuarios(vista, this);
         this.ventana.setVisible(true);
+        this.ventana.setTitle(TITULO_MODIFICAR);
         this.ventana.setResizable(false);
+        this.ventana.toFront();
         this.ventana.setLocationRelativeTo(padre);
+        this.ventana.requestFocusInWindow();
         this.ventana.requestFocus();
     }
 
     private void mostrarMensajeError(String aviso){
         JOptionPane.showMessageDialog(ventana, aviso, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
     
     private String validarDatos(String nombre, String apellido, String clave, String claverep){
         if(nombre.isEmpty())
@@ -59,16 +61,16 @@ public class ControladorVentanaModificarUsuarios implements IControladorAMUsuari
     
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        this.correo = gu.verUsuarios().get(vista.filaSeleccionada).verCorreo();
+        this.correo = gu.verUsuarios().get(vista.obtenerFilaSeleccionada()).verCorreo();
         String resultado = validarDatos(nombre, apellido, clave, claverep);
         
         if(!resultado.equals(VALIDACION_EXITO)){
             mostrarMensajeError(resultado);
         }
         else{
-            u = gu.verUsuarios().get(vista.filaSeleccionada);
+            u = gu.verUsuarios().get(vista.obtenerFilaSeleccionada());
             gu.modificarUsuarios(u, nombre, apellido, correo, clave, claverep, u.verPerfil());
-            vista.verModelo().modificarUsuario(vista.filaSeleccionada, u);
+            vista.verModelo().modificarUsuario(vista.obtenerFilaSeleccionada(), u);
         }
     }
 

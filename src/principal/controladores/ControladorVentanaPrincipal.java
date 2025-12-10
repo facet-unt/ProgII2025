@@ -49,7 +49,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     }
     @Override
     public void btnUsuariosClic(ActionEvent evt) {
-       IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios();
+       IControladorUsuarios controladorUsuarios = new ControladorVentanaUsuarios(ventana);
        
     }
 

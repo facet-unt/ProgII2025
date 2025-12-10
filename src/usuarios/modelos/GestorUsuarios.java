@@ -43,10 +43,8 @@ public class GestorUsuarios implements IGestorUsuarios{
         return instancia;
     }
         @Override    
-        public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        
+    public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){       
         String resultado = validarValores(correo, apellido, nombre, perfil, clave, claveRepetida);
-        
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
@@ -54,7 +52,7 @@ public class GestorUsuarios implements IGestorUsuarios{
         if (obtenerUsuario(correo) != null){
             return USUARIOS_DUPLICADOS;
         }
-               
+             
         Usuario u = null;
         switch (perfil){
             case CLIENTE:
@@ -70,9 +68,13 @@ public class GestorUsuarios implements IGestorUsuarios{
                 return ERROR_PERFIL;
                 
         
+        }       
+        
+        if(usuarios.contains(u)){
+            return USUARIOS_DUPLICADOS;
         }
-       
-        this.agregarUsuario(u);
+        
+        agregarUsuario(u);
         return EXITO;
     }
     
@@ -83,12 +85,12 @@ public class GestorUsuarios implements IGestorUsuarios{
         
         if (apellido == null || apellido.isEmpty()){
             return ERROR_APELLIDO;
-        }
-        
+    }
+    
         if (nombre == null || nombre.isEmpty()){
             return ERROR_NOMBRE;
         }
-        
+    
         if (clave == null || clave.isEmpty() && claverepetida.isEmpty() && !claverepetida.equals(clave)){
             return ERROR_CLAVES;
         }

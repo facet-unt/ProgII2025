@@ -6,8 +6,10 @@ package principal.controladores;
 
 import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
+import static interfaces.IGestorUsuarios.VALIDACION_EXITO;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
@@ -20,7 +22,7 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private VentanaAMUsuarios ventana;
-    private VentanaUsuarios vista;
+    private static VentanaUsuarios vista;
     private IControladorAMUsuario controlador;
     private static ControladorVentanaAMUsuarios instancia;
     private String correo, clave, claverepetida, nombre, apellido;
@@ -40,13 +42,47 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
         if(instancia == null){
             instancia = new ControladorVentanaAMUsuarios();
         }
+        else{
+            nuevaInstancia(vista);
+        }
         return instancia;
     }
 
+    private static void nuevaInstancia(VentanaUsuarios vista){
+        instancia = new ControladorVentanaAMUsuarios();
+    }
+    
+    private String validarDatos(String nombre, String apellido, String clave, String claverep){
+        if(nombre.isEmpty())
+            return "Error Nombre";
+        if(apellido.isEmpty())
+            return "Apellido no Valido";
+        if(clave.isEmpty() || clave == null)
+            return "Clave Vacia";
+        if(claverep.isEmpty() || claverep.isBlank() || claverep == null)
+            return "Clave Repetida Vacia";
+        if(!clave.equals(claverep)){
+            return "Las Claves No son Iguales";
+        }
+        
+        return VALIDACION_EXITO;
+    }
+    
+    private void mostrarMensajeError(String aviso){
+        JOptionPane.showMessageDialog(ventana, aviso, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        gu.crearUsuario(correo, apellido, nombre, ventana.verPerfil(), clave, claverepetida);
-        this.ventana.dispose();
+        String resultado = validarDatos(nombre, apellido, clave, claverepetida);
+
+        if(!resultado.equals(VALIDACION_EXITO)){
+            mostrarMensajeError(resultado);
+        }
+        else{
+            gu.crearUsuario(correo, apellido, nombre, ventana.verPerfil(), clave, claverepetida);
+            this.ventana.dispose();
+        }
     }
 
     @Override
