@@ -5,18 +5,14 @@ import interfaces.IControladorAMUsuario;
 public class VentanaAMUsuario extends javax.swing.JDialog {
     
     private IControladorAMUsuario controlador;
-    private VentanaAMUsuario ventana;
-
-    public VentanaAMUsuario(java.awt.Frame parent, boolean modal, IControladorAMUsuario controlador) {
+//    private VentanaAMUsuario ventana;
+    
+    public VentanaAMUsuario(java.awt.Dialog parent, boolean modal, IControladorAMUsuario controlador) {
         super(parent, modal);
         this.controlador = controlador;
         initComponents();
     }
-     public VentanaAMUsuario(java.awt.Dialog parent, boolean modal, IControladorAMUsuario controlador) {
-        this.ventana = ventana;
-        this.controlador = controlador;
-        initComponents();
-    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
