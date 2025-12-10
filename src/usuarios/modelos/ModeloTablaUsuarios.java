@@ -21,7 +21,8 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     private int filaSeleccionada;
 
     public ModeloTablaUsuarios() {
-        actualizarTabla();
+        IGestorUsuarios gu = GestorUsuarios.instanciarclase();
+        this.Usuarios = gu.verUsuarios();
     }
 
     public void asignarUsuarios(List<Usuario> usuario){
@@ -82,18 +83,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
-    public void agregarUsuario(Usuario u){
-        Usuarios.add(u);
-        fireTableRowsInserted(Usuarios.size()-1, Usuarios.size()-1);
-    }
-    
-    public void modificarUsuario(int fila, Usuario u){
-        this.Usuarios.set(fila, u);
-        fireTableRowsUpdated(fila, fila);
-    }
-    
-    public void borrarUsuario(int i){
-        Usuarios.remove(i);
-        fireTableRowsDeleted(i, i);
+    public List<Usuario> mostrarUsuarios(){
+        return Usuarios;
     }
 }  

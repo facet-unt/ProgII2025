@@ -11,7 +11,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import principal.controladores.ControladorVentanaModificarUsuarios;
 import usuarios.modelos.ModeloComboPerfil;
-import usuarios.modelos.Perfil;
 
 /**
  *
@@ -21,7 +20,6 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarUsuarios.class.getName());
     private ControladorVentanaModificarUsuarios controlador;
-    private Perfil perfil;
     /**
      * Creates new form VentanaModificarUsuarios
      */
@@ -29,6 +27,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         super(ventanaMejor, true);
         this.controlador = controlador;
         initComponents();
+        this.setLocationRelativeTo(null);
         this.jComboBox1.setModel(new ModeloComboPerfil());
     }
 
@@ -60,6 +59,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Correo : ");
 
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
@@ -68,6 +68,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel2.setText("Apellido :");
 
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField2KeyTyped(evt);
@@ -76,6 +77,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel3.setText("Nombre :");
 
+        jTextField3.addActionListener(this::jTextField3ActionPerformed);
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
@@ -84,6 +86,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel4.setText("Clave : ");
 
+        jPasswordField1.addActionListener(this::jPasswordField1ActionPerformed);
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jPasswordField1KeyTyped(evt);
@@ -92,6 +95,7 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
 
         jLabel5.setText("ClaveRepetida :");
 
+        jPasswordField2.addActionListener(this::jPasswordField2ActionPerformed);
         jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jPasswordField2KeyTyped(evt);
@@ -201,7 +205,6 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jPasswordField2KeyTyped
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        this.perfil = ((ModeloComboPerfil)this.jComboBox1.getModel()).obtenerPerfil();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -211,6 +214,26 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,10 +275,6 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         return this.jPasswordField1;
     }
 
-    public JTextField getTxtCorreo() {
-        return this.jTextField1;
-    }
-
     public JPasswordField getTxtClaveRepetida() {
         return this.jPasswordField2;
     }
@@ -264,6 +283,9 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         return this.jComboBox1;
     }
     
+    public JTextField getCorreo(){
+        return this.jTextField1;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
