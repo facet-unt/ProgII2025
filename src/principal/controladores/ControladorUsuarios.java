@@ -45,7 +45,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-     ControladorAMUsuarios camu = new ControladorAMUsuarios(modificar, this);    
+     ControladorAMUsuario camu = new ControladorAMUsuario(modificar, this);    
         
         
     }
@@ -60,7 +60,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
             return;
         }
         
-        ControladorAMUsuarios camu = new ControladorAMUsuarios(this.pasarUsuario(),modificar, this);
+        ControladorAMUsuario camu = new ControladorAMUsuario(this.pasarUsuario(),modificar, this);
         
         modificar=false;
           

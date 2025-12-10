@@ -8,7 +8,6 @@ import javax.swing.table.AbstractTableModel;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Usuario;
 
-
 public class ModeloTablaUsuarios extends AbstractTableModel {
 
     List<String> nombreColumnas = new ArrayList();
@@ -20,7 +19,6 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         nombreColumnas.add("Correo");
         this.actualizarTabla();
     }
-    
 
     @Override
     public int getRowCount() {
@@ -40,8 +38,8 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 return u.verApellido();
             case 1:
                 return u.verNombre();
-         
-            case 2: 
+
+            case 2:
                 return u.verCorreo();
             default:
                 return u.getClass().getSimpleName();
@@ -50,20 +48,17 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     public void actualizarTabla() {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
-       ((GestorUsuarios)gu).cargarArchivoEnLista();
+        ((GestorUsuarios) gu).cargarArchivoEnLista();
         usuarios = gu.verUsuarios();
         Collections.sort(usuarios);
-        
-        
+
         this.fireTableDataChanged();
     }
-    
- 
 
     public void actualizarTabla(List<Usuario> usuarios) {
         Collections.sort(usuarios);
         this.usuarios = usuarios;
-       
+
         this.fireTableDataChanged();
     }
 

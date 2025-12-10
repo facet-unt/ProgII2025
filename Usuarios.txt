@@ -1,5 +1,5 @@
-correo3@mail.com*Apellido3*Nombre4*Cliente*clave3*clave3
+correo2@mail.com*Apellido22*Nombre2*Cliente*clave2*clave2
+correo3@mail.com*Apellido3*Nombre4*Empleado*clave3*clave3
+@kdj*apellido45*nombre45*Empleado*1234*1234
 correo6@gmail.com*Apellido6*Nombre6*Cliente*clave6*clave6
 correo23@gmail.com*apellido23*nombre23*Empleado*clave23*clave23
-@kdj*apellido45*nombre45*Cliente*1234*1234
-correo2@mail.com*Apellido22*Nombre2*Empleado*clave2*clave2
