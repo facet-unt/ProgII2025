@@ -6,6 +6,7 @@ package principal.controladores;
 
 import interfaces.IControladorAMUsuario;
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -22,12 +23,13 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
-    private GestorUsuarios gestor;
+    private static VentanaPrincipal vista;
     private ModeloTablaUsuarios modelotabla;
+    IGestorUsuarios gestorUsuarios = GestorUsuarios.instanciarclase();
 
-    public ControladorVentanaUsuarios() {
-        this.ventana = new VentanaUsuarios(this);
-        this.gestor = GestorUsuarios.instanciarclase();
+    public ControladorVentanaUsuarios(VentanaPrincipal padre) {
+        this.ventana = new VentanaUsuarios(padre, true, this, gestorUsuarios.verUsuarios());
+        this.vista = padre;
         this.ventana.setTitle(TITULO);        
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
@@ -42,16 +44,13 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         IControladorAMUsuario iu = ControladorVentanaAMUsuarios.instanciar();
+        this.ventana.verModelo().mostrarTablaAcutalizada(gestorUsuarios.verUsuarios());
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-//        Usuario u = this.ventana.seleccionarUsuarioenFila();
-//        
-//        if(u != null){
-//            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(ventanaprincipal, u);
-//            this.btnBuscarClic(null);
-//        }
+        Usuario u = this.ventana.seleccionarUsuarioenFila();
+        ControladorVentanaModificarUsuarios controlador = new ControladorVentanaModificarUsuarios(ventana, u);
     }
 
     @Override
@@ -81,9 +80,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        GestorUsuarios gu = GestorUsuarios.instanciarclase();
-        List<Usuario> listado = gu.verUsuarios();
-        this.ventana.actualizarTabla(listado);
+        this.ventana.requestFocusInWindow();
     }
 
     @Override
@@ -98,7 +95,6 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        GestorUsuarios gu = GestorUsuarios.instanciarclase();
         List<Usuario> encontrados;
         String apellidobuscado = this.ventana.getFieldApellido().getText().trim();
         
@@ -106,7 +102,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
             this.refrescarTabla();
         }
         else{
-            encontrados = gu.buscarUsuarios(apellidobuscado);
+            encontrados = gestorUsuarios.buscarUsuarios(apellidobuscado);
             this.modelotabla.mostrarTablaAcutalizada(encontrados);
         }
         

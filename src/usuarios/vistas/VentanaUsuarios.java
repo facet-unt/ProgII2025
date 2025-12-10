@@ -5,8 +5,10 @@
 package usuarios.vistas;
 
 import interfaces.IControladorUsuarios;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
+import principal.controladores.ControladorVentanaUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.Usuario;
 
@@ -16,18 +18,22 @@ import usuarios.modelos.Usuario;
  */
 public class VentanaUsuarios extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName());
-    private IControladorUsuarios controlador;
+    private ControladorVentanaUsuarios controlador;
     private ModeloTablaUsuarios modelotabla;
-    public int filaSeleccionada;
+    private int filaSeleccionada;
+    private static List<Usuario> usuarios = new ArrayList<>();
     /**
      * Creates new form VentanaUsuarios
      
      */
-    public VentanaUsuarios(IControladorUsuarios controlador) {
+    public VentanaUsuarios(java.awt.Frame parent, boolean modal,ControladorVentanaUsuarios controlador, List<Usuario> usuarios) {
+        super(parent, modal);
         initComponents();
+        this.usuarios = usuarios;
         this.controlador = controlador;
         this.modelotabla = new ModeloTablaUsuarios();
         modificarTabla(this.modelotabla);
+        agregarListenerATabla(jTable1);
     }
 
     /**
@@ -107,7 +113,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -230,6 +236,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         return (ModeloTablaUsuarios)jTable1.getModel();
     }
     
+    public int obtenerFilaSeleccionada(){
+        return filaSeleccionada;
+    }
+    
     public javax.swing.JButton getBtnBorrar() {
         return jButton4;
     }
@@ -290,9 +300,9 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaObtenerFoco
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         this.controlador.txtApellidoPresionarTecla(evt);
-    }//GEN-LAST:event_txtApellidoActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     //     */
 //     * @param args the command line arguments
