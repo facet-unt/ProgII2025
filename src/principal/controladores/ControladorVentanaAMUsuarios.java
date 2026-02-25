@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import usuarios.modelos.GestorUsuarios;
+import usuarios.modelos.ModeloComboPerfil;
 import usuarios.modelos.Perfil;
 import usuarios.vistas.VentanaAMUsuarios;
 import usuarios.vistas.VentanaUsuarios;
@@ -25,32 +26,17 @@ import usuarios.vistas.VentanaUsuarios;
 public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
     private VentanaAMUsuarios ventana;
     private static ControladorVentanaAMUsuarios instancia;
-    IGestorUsuarios gu = GestorUsuarios.instanciarclase();
+    private ModeloComboPerfil modelo = new ModeloComboPerfil();
+    private IGestorUsuarios gu = GestorUsuarios.instanciarclase();
     
     public ControladorVentanaAMUsuarios(JDialog vista){
         this.ventana = new VentanaAMUsuarios(vista, true,this);
         this.ventana.setTitle(TITULO_NUEVO);
+        this.ventana.getComboPerfil().setModel(modelo);
         this.ventana.setVisible(true);
         this.ventana.setResizable(false);
-        this.ventana.setLocationRelativeTo(vista);
-        this.ventana.getComboPerfil().setModel(new DefaultComboBoxModel <>(Perfil.values()));
-    }
-    
-    private String validarDatos(String nombre, String apellido, String clave, String claverep){
-        if(nombre.isEmpty())
-            return "Error Nombre";
-        if(apellido.isEmpty())
-            return "Apellido no Valido";
-        if(clave.isEmpty() || clave == null)
-            return "Clave Vacia";
-        if(claverep.isEmpty() || claverep.isBlank() || claverep == null)
-            return "Clave Repetida Vacia";
-        if(!clave.equals(claverep)){
-            return "Las Claves No son Iguales";
-        }
-        
-        return VALIDACION_EXITO;
-    }
+        this.ventana.setLocationRelativeTo(null);
+    }    
     
     @Override
     public void btnGuardarClic(ActionEvent evt) {
@@ -60,15 +46,13 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
         String clave    = new String(ventana.getTxtClave().getPassword());
         String clave2   = new String(ventana.getTxtClaveRepetida().getPassword());
         Perfil perfil   = (Perfil) ventana.getComboPerfil().getSelectedItem();
-        String resp = validarDatos(nombre, apellido, clave, clave2);
         
-        if(!resp.equals(VALIDACION_EXITO)){
-            JOptionPane.showMessageDialog(ventana, resp, "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
+        if(gu.crearUsuario(correo, apellido, nombre, perfil, clave, clave2).equals(IGestorUsuarios.EXITO)){
+            JOptionPane.showMessageDialog(ventana, IGestorUsuarios.EXITO, "Exito", JOptionPane.INFORMATION_MESSAGE);
+            this.ventana.dispose();
         }
         else{
-            gu.crearUsuario(correo, apellido, nombre, perfil, clave, clave2);
-            this.ventana.dispose();
+            JOptionPane.showMessageDialog(ventana, IGestorUsuarios.CREACION_ERROR, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -23,4 +23,13 @@ public enum Perfil {
     public String toString() {
         return this.valor;
     }
+    
+    public static Perfil obtenerPerfil(String cadena){
+        for(Perfil p : Perfil.values()){
+            if(p.toString().equals(cadena))
+                return p;
+        }
+        
+        return null;
+    }
 }

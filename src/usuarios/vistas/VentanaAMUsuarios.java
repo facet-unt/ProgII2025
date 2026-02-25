@@ -28,16 +28,14 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
         super(ventana, modal);
         this.controlador = controlador;
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.jComboBox1.setModel(new ModeloComboPerfil());
     }
 
     public JTextField getTxtCorreo(){
         return this.jTextField1;
     }
     
-     public JButton getBotonGuardar() {
-        return this.jButton1;
+    public Perfil verComboPerfil(){
+        return (Perfil)this.comboPerfil.getSelectedItem();
     }
 
     public JTextField getTxtNombre() {
@@ -57,7 +55,7 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
     }
 
     public JComboBox getComboPerfil() {
-        return this.jComboBox1;
+        return this.comboPerfil;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +74,7 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPerfil = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -115,8 +113,8 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
 
         jLabel5.setText("Clave Repetida :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPerfil.addActionListener(this::comboPerfilActionPerformed);
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(this::btnSalirClicActionPerformed);
@@ -166,7 +164,7 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
-                    .addComponent(jComboBox1, 0, 250, Short.MAX_VALUE)
+                    .addComponent(comboPerfil, 0, 250, Short.MAX_VALUE)
                     .addComponent(jPasswordField1)
                     .addComponent(jPasswordField2)
                     .addComponent(jTextField1))
@@ -203,7 +201,7 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,9 +241,9 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
         this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarCliclActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPerfilActionPerformed
         
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboPerfilActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
      
@@ -259,34 +257,11 @@ public class VentanaAMUsuarios extends javax.swing.JDialog {
         this.controlador.txtCorreoPresionarTecla(evt);
     }//GEN-LAST:event_jTextField1KeyTyped
   
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboPerfil;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

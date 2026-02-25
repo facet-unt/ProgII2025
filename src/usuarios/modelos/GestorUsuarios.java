@@ -23,6 +23,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import pedidos.modelos.GestorPedidos;
+import static usuarios.modelos.Perfil.CLIENTE;
+import static usuarios.modelos.Perfil.EMPLEADO;
 import static usuarios.modelos.Perfil.ENCARGADO;
 
 public class GestorUsuarios implements IGestorUsuarios{
@@ -32,7 +34,6 @@ public class GestorUsuarios implements IGestorUsuarios{
     private static GestorUsuarios instancia;
     
     private GestorUsuarios(){
-        this.usuarios = leerUsuarios();
     }
 
     public static GestorUsuarios instanciarclase(){
@@ -42,17 +43,15 @@ public class GestorUsuarios implements IGestorUsuarios{
         System.out.print(crearArchivo());
         return instancia;
     }
-        @Override    
+    
+    @Override    
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){       
         String resultado = validarValores(correo, apellido, nombre, perfil, clave, claveRepetida);
+        
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
-        
-        if (obtenerUsuario(correo) != null){
-            return USUARIOS_DUPLICADOS;
-        }
-             
+                    
         Usuario u = null;
         switch (perfil){
             case CLIENTE:
@@ -65,15 +64,14 @@ public class GestorUsuarios implements IGestorUsuarios{
                 u = new Encargado(correo, clave, apellido, nombre, perfil);
                 break;
             default:
-                return ERROR_PERFIL;
-                
-        
+                return ERROR_PERFIL;                     
         }       
         
-        if(usuarios.contains(u)){
+        if(this.existeEsteUsuario(u)){
             return USUARIOS_DUPLICADOS;
         }
         
+        this.usuarios.add(u);
         agregarUsuario(u);
         return EXITO;
     }
@@ -103,13 +101,18 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     public String modificarUsuarios(Usuario us, String nombre, String apellido, String correo, String clave, String claverepetida, Perfil perfil){
-        if(existeEsteUsuario(us) == true){
-            borrarUsuario(us);
+        String resultado = validarValores(correo, apellido, nombre, perfil, clave, claverepetida);
+        
+        if (!resultado.equals(VALIDACION_EXITO)){
+            return resultado;
+        }
+        
+        if(existeEsteUsuario(us) != true){
             us.asignarApellido(apellido);
             us.asignarClave(clave);
             us.asignarNombre(nombre);
             us.asignarCorreo(correo);
-            agregarUsuario(us);
+            this.modificarArchivo(us);
             return EXITO;
         }
         else
@@ -120,14 +123,12 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     @Override
     public List<Usuario> verUsuarios(){
-        this.usuarios = leerUsuarios();
         Collections.sort(usuarios);
         return this.usuarios;
     }
     
     @Override
     public List<Usuario> buscarUsuarios(String apellido){
-        this.usuarios = this.leerUsuarios();
         List<Usuario> buscados = new ArrayList<>();
         
         for(Usuario u : usuarios){
@@ -135,19 +136,21 @@ public class GestorUsuarios implements IGestorUsuarios{
                 buscados.add(u);
             }
         }
-        Collections.sort(buscados, compararApyNom);
+        Collections.sort(buscados);
         return buscados;
     }
     
     @Override
     public boolean existeEsteUsuario(Usuario usuario){
-        this.usuarios = this.leerUsuarios();
-        return usuarios.contains(usuario);
+        if(this.usuarios.contains(usuario)){
+            return true;
+        }
+        else
+            return false;
     }
     
     @Override
     public Usuario obtenerUsuario(String correo){
-        this.usuarios = this.leerUsuarios();
         for (Usuario u : usuarios){
             if (u.verCorreo().equals(correo)){
                 return u;
@@ -158,48 +161,49 @@ public class GestorUsuarios implements IGestorUsuarios{
 
     @Override
     public String borrarUsuario(Usuario usuario) {
-        this.usuarios = this.leerUsuarios();
+
         if (usuario instanceof Cliente cliente) {
             GestorPedidos gp = GestorPedidos.getInstancia();
 
             if (gp.hayPedidosConEsteCliente(cliente)) {
                 return ERROR_USUARIO;
             }
-            else {
-                reescribirArchivo();
-                usuarios.remove(usuario);
-                for(Usuario u : usuarios){
-                    this.agregarUsuario(u);
+            else{
+                try(FileWriter fw = new FileWriter(IGestorUsuarios.NOMBRE_ARCHIVO)){
+                    for(Usuario us : this.usuarios){
+                        this.agregarUsuario(us);
+                    }
                 }
-            return USUARIO_BORRADO;
+                catch(IOException e){
+                    return IGestorUsuarios.ESCRITURA_ERROR;
+                }
             }
+            
         }
 
-    return ERROR_PERFIL;
+        return ERROR_PERFIL;
     
     }
-    
-    Comparator<Usuario> compararApyNom = (Usuario u1, Usuario u2) -> {
-        if(u1.verApellido().compareTo(u2.verApellido()) == 0)
-            return u1.verApellido().compareTo(u2.verApellido());
-        else
-            return u1.verApellido().compareTo(u2.verApellido());      
-    };
             
     private static String crearArchivo(){
-        try(FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, true)){
-            return CREACION_OK;
+        File f = new File(NOMBRE_ARCHIVO);
+        
+        if(!f.exists()){
+            try(FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, true)){
+                return CREACION_OK;
+            }
+            catch(IOException ex){
+                return CREACION_ERROR;
+            }
         }
-        catch(IOException ex){
-            return CREACION_ERROR;
-        }
-    }
+        
+        return "El archivo ya existe";
+    }    
     
     private String agregarUsuario(Usuario u){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, true))){
             String linea;
-            linea = u.verApellido() + SEPARADOR + u.verNombre() + SEPARADOR + u.verCorreo()
-                    + SEPARADOR + u.verPerfil() + SEPARADOR + u.verClave();
+            linea = this.convertirUsuarioALinea(u);
             bw.write(linea);
             bw.newLine();
             return ESCRITURA_OK;
@@ -209,87 +213,91 @@ public class GestorUsuarios implements IGestorUsuarios{
         }
     }
     
-    public List<Usuario> leerUsuarios() {
 
-    List<Usuario> lista = new ArrayList<>();
-
-    File f = new File(NOMBRE_ARCHIVO);
-    if (!f.exists())
-        return lista;
-
-    try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-
+    private String modificarArchivo(Usuario u){
+        this.buscarYReemplazar(u);
         String linea;
-        while ((linea = br.readLine()) != null) {
-
-            if (linea.trim().isEmpty())
-                continue;
-
-            String[] partes = linea.split(SEPARADOR);
-
-            if (partes.length != 5) {
-                System.err.println("Línea mal formateada: " + linea);
-                continue;
-            }
-
-            String apellido = partes[0].trim();
-            String nombre = partes[1].trim();
-            String correo = partes[2].trim();
-            Perfil perfil = convertirPerfil(partes[3].trim());
-            String clave = partes[4].trim();
-
-            if (perfil == null)
-                continue;
-
-            Usuario u = null;
-
-            switch (perfil) {
-                case ENCARGADO:
-                    u = new Encargado(correo, clave, apellido, nombre, perfil);
-                    break;
-                case EMPLEADO:
-                    u = new Empleado(correo, clave, apellido, nombre, perfil);
-                    break;
-                case CLIENTE:
-                    u = new Cliente(correo, clave, apellido, nombre, perfil);
-                    break;
-            }
-
-            if (u != null)
-                lista.add(u);
+        
+        try(FileWriter es = new FileWriter(IGestorUsuarios.NOMBRE_ARCHIVO)){      
+            for(Usuario us : usuarios){
+                this.agregarUsuario(us);
+            }           
         }
-
-    } catch (IOException e) {
-        System.err.println(LECTURA_ERROR + ": " + e.getMessage());
-    }
-
-    return lista;
-}
-
-    private Perfil convertirPerfil(String c){
-        try{
-            return Perfil.valueOf(c);
+        catch(IOException e){
+            return IGestorUsuarios.ESCRITURA_ERROR;
         }
-        catch(IllegalArgumentException e){
-            for (Perfil perfil : Perfil.values()){
-                if(e.toString().equalsIgnoreCase(c))
-                    return perfil;
-            }
-        }
-        return null;
+        
+        return IGestorUsuarios.ESCRITURA_OK;
     }
     
-    public String reescribirArchivo(){
-        File f = new File(NOMBRE_ARCHIVO);
-        try{
-            FileWriter fw = new FileWriter(NOMBRE_ARCHIVO, false); 
-            fw.write("");
-            fw.close();
-            return ESCRITURA_OK;
+    private String convertirUsuarioALinea(Usuario u){
+        StringBuilder cadU = new StringBuilder();
+        cadU.append(u.verClave());
+        cadU.append(IGestorUsuarios.SEPARADOR);
+        cadU.append(u.verCorreo());
+        cadU.append(IGestorUsuarios.SEPARADOR);
+        cadU.append(u.verNombre());
+        cadU.append(IGestorUsuarios.SEPARADOR);
+        cadU.append(u.verApellido());
+        cadU.append(IGestorUsuarios.SEPARADOR);
+        cadU.append(u.verPerfil().toString());
+        return cadU.toString();
+    }
+    
+    private void buscarYReemplazar(Usuario us){
+        int i;
+        for(i = 0; i < this.usuarios.size(); i++){
+            if(this.usuarios.get(i).verClave().equals(us.verClave())){
+                this.usuarios.set(i, us);
+                break;
+            }
         }
-        catch (IOException ex) {
-            return ESCRITURA_ERROR;
+    }
+    
+    public String leerArchivoUsuarios(){
+        System.out.println(this.crearArchivo());
+        usuarios.clear();
+        try(FileReader fr = new FileReader(IGestorUsuarios.NOMBRE_ARCHIVO)){
+            BufferedReader lee = new BufferedReader(fr);
+            String linea;    
+            while((linea = lee.readLine())!= null){
+                    Usuario usuario = this.convertirUsuario(linea);
+                    if(!usuarios.contains(usuario)){
+                        usuarios.add(usuario);
+                    }
+                }
+                
         }
+        catch(IOException e){
+            return IGestorUsuarios.LECTURA_ERROR;
+        }
+        
+        return IGestorUsuarios.LECTURA_OK;
+    }
+    
+    private Usuario convertirUsuario(String cadena){
+        String Cad[] = cadena.split(IGestorUsuarios.SEPARADOR);
+        
+        String clave = Cad[0].trim();
+        String correo = Cad[1].trim();
+        String nombre = Cad[2].trim();
+        String apellido = Cad[3].trim();
+        Perfil perfil = Perfil.obtenerPerfil(Cad[4]);
+        
+        Usuario u = null;
+        switch(perfil){
+            case CLIENTE:
+                u = new Cliente(clave, correo, nombre, apellido, perfil);
+                break;
+            case EMPLEADO:
+                u = new Empleado(clave, correo, nombre, apellido, perfil);
+                break;
+            case ENCARGADO:
+                u = new Cliente(clave, correo, nombre, apellido, perfil);
+                break;
+        }
+        
+        return u;
     }
 }
 

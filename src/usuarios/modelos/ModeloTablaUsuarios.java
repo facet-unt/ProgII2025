@@ -16,13 +16,9 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaUsuarios extends AbstractTableModel{
     private String[] ATRIBUTOS = {"Apellido", "Nombre", "Correo", "Perfil"};
     private List<Usuario> Usuarios = new ArrayList<>();
-    private GestorUsuarios gestor;
-    private Usuario u;
-    private int filaSeleccionada;
 
     public ModeloTablaUsuarios() {
-        IGestorUsuarios gu = GestorUsuarios.instanciarclase();
-        this.Usuarios = gu.verUsuarios();
+        
     }
 
     public void asignarUsuarios(List<Usuario> usuario){
@@ -30,10 +26,6 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
-    public void cargarUsuariosOrdenados(){
-        this.Usuarios = gestor.leerUsuarios();
-        fireTableDataChanged();
-    }
     
     @Override
     public int getRowCount() {
@@ -70,20 +62,5 @@ public class ModeloTablaUsuarios extends AbstractTableModel{
     //Se elige un usuario segun la fila seleccionada
     public Usuario seleccionarUsuario(int i){
         return this.Usuarios.get(i);
-    }
-    
-    public void actualizarTabla() {
-        IGestorUsuarios gestor = GestorUsuarios.instanciarclase();
-        this.Usuarios = gestor.verUsuarios();
-        this.fireTableDataChanged();
-    }
-    
-    public void mostrarTablaAcutalizada(List<Usuario> listado){
-        this.Usuarios = listado;
-        this.fireTableDataChanged();
-    }
-    
-    public List<Usuario> mostrarUsuarios(){
-        return Usuarios;
     }
 }  

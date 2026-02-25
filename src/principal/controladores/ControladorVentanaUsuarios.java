@@ -9,6 +9,7 @@ import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,13 +25,17 @@ import usuarios.vistas.VentanaUsuarios;
  */
 public class ControladorVentanaUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventana;
+    private ModeloTablaUsuarios modelo = new ModeloTablaUsuarios();
+    private GestorUsuarios gu = GestorUsuarios.instanciarclase();    
+    
 
     public ControladorVentanaUsuarios(JFrame vista) {
         this.ventana = new VentanaUsuarios(vista, true, this);
-        this.ventana.getTableMenu().setModel(new ModeloTablaUsuarios());
+        this.ventana.asignarModeloTabla(modelo);
         this.ventana.setTitle(TITULO);        
         this.ventana.setLocationRelativeTo(null);
         this.ventana.setVisible(true);
+        this.ventana.setResizable(false);
     }
        
     @Override
@@ -40,25 +45,25 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        int i = this.ventana.getTableMenu().getSelectedRow();
+        int i = this.ventana.verFilaSeleccionada();
+        
         try{
-            Usuario u = ((ModeloTablaUsuarios)this.ventana.getTableMenu().getModel()).seleccionarUsuario(i);           
-            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(this.ventana, u);
-            this.actualizarDatosTabla();          
+            Usuario u = this.modelo.seleccionarUsuario(i);           
+            IControladorAMUsuario controlador = new ControladorVentanaModificarUsuarios(this.ventana, u);         
         }
         catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this.ventana,
                     "No ha elegido a ningun usuario", "Error",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        int i = this.ventana.getTableMenu().getSelectedRow();
-        GestorUsuarios gu = GestorUsuarios.instanciarclase();
+        int i = this.ventana.verFilaSeleccionada();
+
         try{
-            Usuario u = ((ModeloTablaUsuarios)this.ventana.getTableMenu().getModel()).seleccionarUsuario(i);
+            Usuario u = this.modelo.seleccionarUsuario(i);
             int respuesta = JOptionPane.showOptionDialog(null
                    , CONFIRMACION
                    , TITULO
@@ -68,8 +73,8 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
                    , new Object[]{"Si","No"}
                    , "No");
            if(respuesta == JOptionPane.YES_OPTION){
-               String res = gu.borrarUsuario(u);
-               this.actualizarDatosTabla();
+                JOptionPane.showMessageDialog(ventana, gu.borrarUsuario(u), "Exito", JOptionPane.INFORMATION_MESSAGE);
+
            }
         }
         catch(IndexOutOfBoundsException e){
@@ -79,16 +84,11 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         }
     }    
 
-    private void actualizarDatosTabla() {
-        AbstractTableModel modelo =
-                (AbstractTableModel) this.ventana.getTableMenu().getModel();
-        ((ModeloTablaUsuarios) modelo).actualizarTabla();
-    }
     
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        this.actualizarDatosTabla();
-        this.ventana.getFieldApellido().setText(null);
+        List<Usuario> usuarios = gu.verUsuarios();
+        this.modelo.asignarUsuarios(usuarios);
     }
 
     @Override
@@ -103,20 +103,17 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        List<Usuario> encontrados;
-        String apellidobuscado = this.ventana.getFieldApellido().getText().trim();
+        List<Usuario> encontrados = new ArrayList<>();
+        String apellidobuscado = this.ventana.verTxtApellido();
         
-        if(apellidobuscado.isEmpty() ){
-            this.actualizarDatosTabla();
+        if(apellidobuscado.isEmpty() || apellidobuscado.isBlank()){
+            this.btnBuscarClic(null);
         }
         else{
-            IGestorUsuarios gu = GestorUsuarios.instanciarclase();
             encontrados = gu.buscarUsuarios(apellidobuscado);
-            AbstractTableModel modelotabla =
-                    (AbstractTableModel) this.ventana.getTableMenu().getModel();
-            ((ModeloTablaUsuarios) modelotabla).mostrarTablaAcutalizada(encontrados);
         }
         
+        this.modelo.asignarUsuarios(encontrados);
     }
     
     

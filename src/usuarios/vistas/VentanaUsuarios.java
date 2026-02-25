@@ -8,6 +8,7 @@ import interfaces.IControladorUsuarios;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import principal.controladores.ControladorVentanaUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
 import usuarios.modelos.Usuario;
@@ -46,10 +47,10 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
 
         textField1.setText("textField1");
         textField1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,16 +112,16 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         jLabel2.setText("   Apellido:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtApellidoActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel3.setText("  Menú");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -131,7 +132,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,7 +146,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +175,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,80 +198,14 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    private void modificarTabla(ModeloTablaUsuarios modelo){
-//        this.jTable1.setModel(modelo);
-//    }
-//    
-//    public void actualizarTabla(List<Usuario> lista){
-//        this.modelotabla.asignarUsuarios(lista);
-//    }
-//    
-//    public void mostrarMensaje(String mensaje) {
-//    javax.swing.JOptionPane.showMessageDialog(
-//            this,
-//            mensaje,
-//            "Información",
-//            javax.swing.JOptionPane.INFORMATION_MESSAGE
-//        );
-//    }
-//    
-//    public Usuario seleccionarUsuarioenFila(){
-//        int i = this.getTableMenu().getRowCount();
-//        
-//        if(i == -1)
-//            return null;
-//        
-//        return this.modelotabla.seleccionarUsuario(i);
-//    }
-//    
-//    private void agregarListenerATabla(JTable tabla) { 
-//        tabla.getSelectionModel().addListSelectionListener((e) -> { 
-//        if (!e.getValueIsAdjusting()) {                 
-//            if (tabla.getSelectedRow() != -1) 
-//                this.filaSeleccionada = tabla.getSelectedRow(); 
-//            } 
-//        }); 
-//    } 
-
-//    public ModeloTablaUsuarios verModelo(){
-//        return (ModeloTablaUsuarios)jTable1.getModel();
-//    }
-//    
-//    public int obtenerFilaSeleccionada(){
-//        return filaSeleccionada;
-//    }
+    public void asignarModeloTabla(TableModel modelo){
+        this.tablaUsuarios.setModel(modelo);
+    }
     
-    public javax.swing.JButton getBtnBorrar() {
-        return jButton4;
+    public String verTxtApellido() {
+        return txtApellido.getText().trim();
     }
 
-    public javax.swing.JButton getBtnBuscar() {
-        return jButton1;
-    }
-
-    public javax.swing.JButton getBtnModificar() {
-        return jButton3;
-    }
-
-    public javax.swing.JButton getBtnNuevo() {
-        return jButton2;
-    }
-
-    public javax.swing.JButton getBtnVolver() {
-        return jButton5;
-    }
-
-    public javax.swing.JTextField getFieldApellido() {
-        return jTextField1;
-    }
-
-    public javax.swing.JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public javax.swing.JTable getTableMenu() {
-        return jTable1;
-    }
     
     private void btnModificarClicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClicActionPerformed
         this.controlador.btnModificarClic(evt);
@@ -300,40 +235,17 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         this.controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_ventanaObtenerFoco
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         this.controlador.txtApellidoPresionarTecla(evt);
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         this.controlador.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_formWindowGainedFocus
 
-    
-    //     */
-//     * @param args the command line arguments
-//     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-    //    java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+    public int verFilaSeleccionada(){
+        return this.tablaUsuarios.getSelectedRow();
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -345,8 +257,8 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablaUsuarios;
     private java.awt.TextField textField1;
+    private javax.swing.JTextField txtApellido;
     // End of variables declaration//GEN-END:variables
 }
