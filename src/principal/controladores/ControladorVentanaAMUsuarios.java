@@ -35,7 +35,7 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario{
         this.ventana.getComboPerfil().setModel(modelo);
         this.ventana.setVisible(true);
         this.ventana.setResizable(false);
-        this.ventana.setLocationRelativeTo(null);
+        this.ventana.setLocationRelativeTo(vista);
     }    
     
     @Override

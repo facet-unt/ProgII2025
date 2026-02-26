@@ -80,7 +80,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this.ventana,
                     "No ha elegido a ningun usuario", "Error",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         }
     }    
 
@@ -98,7 +98,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
 
     @Override
     public void txtApellidoPresionarTecla(ActionEvent evt) {
-        this.btnBorrarClic(null);
+        this.btnBuscarClic(null);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ControladorVentanaUsuarios implements IControladorUsuarios {
         String apellidobuscado = this.ventana.verTxtApellido();
         
         if(apellidobuscado.isEmpty() || apellidobuscado.isBlank()){
-            this.btnBuscarClic(null);
+            encontrados = gu.verUsuarios();
         }
         else{
             encontrados = gu.buscarUsuarios(apellidobuscado);

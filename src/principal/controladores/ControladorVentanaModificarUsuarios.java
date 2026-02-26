@@ -29,12 +29,13 @@ public class ControladorVentanaModificarUsuarios implements IControladorAMUsuari
     private ModeloComboPerfil combo = new ModeloComboPerfil();
     
     public ControladorVentanaModificarUsuarios(VentanaUsuarios padre, Usuario usuario){
-        this.vista = new VentanaModificarUsuarios(vista, this);
-        this.vista.setVisible(true);
-        this.vista.setTitle(TITULO_MODIFICAR);
+        this.vista = new VentanaModificarUsuarios(padre, this);
         this.vista.verComboPerfil().setModel(combo);
+        this.vista.setTitle(TITULO_MODIFICAR);
+        this.vista.cargarDatosUsuario(usuario);    
+        this.vista.setVisible(true);
         this.vista.setResizable(false);
-        this.vista.setLocationRelativeTo(null);
+        this.vista.setLocationRelativeTo(vista);
         this.u = usuario;
     }
 

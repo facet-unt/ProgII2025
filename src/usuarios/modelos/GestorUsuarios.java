@@ -34,13 +34,14 @@ public class GestorUsuarios implements IGestorUsuarios{
     private static GestorUsuarios instancia;
     
     private GestorUsuarios(){
+        usuarios.clear();
+        this.leerArchivoUsuarios();
     }
 
     public static GestorUsuarios instanciarclase(){
         if (instancia == null){
             instancia = new GestorUsuarios();
         }
-        System.out.print(crearArchivo());
         return instancia;
     }
     
@@ -101,22 +102,28 @@ public class GestorUsuarios implements IGestorUsuarios{
     }
     
     public String modificarUsuarios(Usuario us, String nombre, String apellido, String correo, String clave, String claverepetida, Perfil perfil){
+        
+        if(!usuarios.contains(us)){
+            return USUARIO_NO_EXISTENTE;
+        }
+        
         String resultado = validarValores(correo, apellido, nombre, perfil, clave, claverepetida);
         
         if (!resultado.equals(VALIDACION_EXITO)){
             return resultado;
         }
         
-        if(existeEsteUsuario(us) != true){
-            us.asignarApellido(apellido);
-            us.asignarClave(clave);
-            us.asignarNombre(nombre);
-            us.asignarCorreo(correo);
-            this.modificarArchivo(us);
-            return EXITO;
-        }
-        else
-            return USUARIO_NO_EXISTENTE;
+        us.asignarApellido(apellido);
+        us.asignarClave(clave);
+        us.asignarNombre(nombre);
+        us.asignarPerfil(perfil);
+        us.asignarCorreo(correo);
+      
+        if(this.existeEsteUsuario(us) == true)
+            return IGestorUsuarios.USUARIOS_DUPLICADOS;
+        
+        this.modificarArchivo(us);
+        return CREACION_OK;
     }
     
     
@@ -161,28 +168,30 @@ public class GestorUsuarios implements IGestorUsuarios{
 
     @Override
     public String borrarUsuario(Usuario usuario) {
-
-        if (usuario instanceof Cliente cliente) {
-            GestorPedidos gp = GestorPedidos.getInstancia();
-
-            if (gp.hayPedidosConEsteCliente(cliente)) {
-                return ERROR_USUARIO;
-            }
-            else{
-                try(FileWriter fw = new FileWriter(IGestorUsuarios.NOMBRE_ARCHIVO)){
-                    for(Usuario us : this.usuarios){
-                        this.agregarUsuario(us);
-                    }
-                }
-                catch(IOException e){
-                    return IGestorUsuarios.ESCRITURA_ERROR;
-                }
-            }
-            
+        if(usuario == null || !this.usuarios.contains(usuario)){
+            return USUARIO_NO_EXISTENTE;
         }
-
-        return ERROR_PERFIL;
-    
+        
+        GestorPedidos gp = GestorPedidos.getInstancia();
+        
+        if(usuario instanceof Cliente cliente){
+            if(gp.hayPedidosConEsteCliente(cliente)){
+                return IGestorUsuarios.ERROR_USUARIO;
+            }
+        }
+        
+        this.usuarios.remove(usuario);
+        
+        try(FileWriter fw = new FileWriter(IGestorUsuarios.NOMBRE_ARCHIVO)){
+            for(Usuario us : this.usuarios){
+                this.agregarUsuario(us);
+            }
+        }
+        catch(IOException e){
+            return IGestorUsuarios.ESCRITURA_ERROR;
+        }
+        
+        return USUARIO_BORRADO;
     }
             
     private static String crearArchivo(){
@@ -256,17 +265,13 @@ public class GestorUsuarios implements IGestorUsuarios{
     
     public String leerArchivoUsuarios(){
         System.out.println(this.crearArchivo());
-        usuarios.clear();
         try(FileReader fr = new FileReader(IGestorUsuarios.NOMBRE_ARCHIVO)){
             BufferedReader lee = new BufferedReader(fr);
             String linea;    
             while((linea = lee.readLine())!= null){
                     Usuario usuario = this.convertirUsuario(linea);
-                    if(!usuarios.contains(usuario)){
-                        usuarios.add(usuario);
-                    }
-                }
-                
+                    usuarios.add(usuario);
+                }               
         }
         catch(IOException e){
             return IGestorUsuarios.LECTURA_ERROR;

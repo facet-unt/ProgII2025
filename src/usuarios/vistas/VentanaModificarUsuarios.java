@@ -4,14 +4,13 @@
  */
 package usuarios.vistas;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import principal.controladores.ControladorVentanaModificarUsuarios;
-import usuarios.modelos.ModeloComboPerfil;
 import usuarios.modelos.Perfil;
+import usuarios.modelos.Usuario;
 
 /**
  *
@@ -246,7 +245,13 @@ public class VentanaModificarUsuarios extends javax.swing.JDialog {
         return txtNombre;
     }
 
-
+    public void cargarDatosUsuario(Usuario u){
+        this.txtCorreo.setText(u.verCorreo());
+        this.txtCorreo.setEditable(false);
+        this.txtApellido.setText(u.verApellido());
+        this.txtNombre.setText(u.verNombre());
+        this.comboPerfil.setSelectedItem(u.verPerfil());
+    }
     
     
     public String verTxtApellido() {
